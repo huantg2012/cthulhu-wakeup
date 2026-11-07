@@ -168,7 +168,7 @@ static func relic_entry(ui: RefCounted, parent: Node, index: int, label: String,
 	var icon := _relic_icon(ui,button,(index%RELIC_IDS.size() if art_index < 0 else art_index))
 	icon.position.x += 5.5
 	ui.label(button,"RelicName",label,Rect2(0,38,103,26),17,ui.BONE,true).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	ui.label(button,"RelicState",("R%02d · %s" % [index+1,state] if instance_label.is_empty() else state + " · " + instance_label),Rect2(0,64,103,25),16,ui.BOUND if state=="绑定" else ui.MUTED).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	ui.label(button,"RelicState",(state if instance_label.is_empty() else state + " · " + instance_label),Rect2(0,64,103,25),16,ui.BOUND if state=="绑定" else ui.MUTED).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	if (index%RELIC_IDS.size() if art_index < 0 else art_index) >= RELIC_REGIONS.size(): icon.modulate.a=0.55
 	return button
 

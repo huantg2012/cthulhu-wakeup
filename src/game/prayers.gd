@@ -11,15 +11,18 @@ const Producers = preload("res://src/game/prayer_producers.gd")
 const Sources = preload("res://src/game/prayer_sources.gd")
 const ID: String = "prayers"
 const Materials = preload("res://src/simulation/material_transfer.gd")
+const Space = preload("res://src/game/prayer_space.gd")
 const SCHEMA: int = 1
 var catalog: RefCounted
 var issuers: Dictionary
 var version: String
 var checks: RefCounted
+var space: RefCounted
 
 func _init(content: RefCounted, accepted_issuers: Dictionary = {}) -> void:
 	catalog = content; issuers = accepted_issuers.duplicate(true)
 	version = rule_version(content); checks = Powers.new(content, accepted_issuers)
+	space = Space.new(content)
 
 static func rule_version(content: RefCounted) -> String:
 	return "4/sources-scenes6/" + content.version + "/" + str(content.extension_versions.get("prayers", "missing")) + "/" + str(content.extension_versions.get("prayer_facts", "missing")) + "/" + str(content.extension_versions.get("prayer_effects", "missing")) + "/" + str(content.extension_versions.get("events", "missing")) + "/" + Knowledge.version(content)
@@ -398,9 +401,10 @@ func _freeze(world: RefCounted, owner: Object) -> bool:
 			ledger.offered.append(id)
 			break
 		if not supply.available(world, owner): return owner._fail("本轮祈求没有合法回应分支")
-	return true
+	return space.freeze(world, owner)
 
 func prepare(view: Dictionary, request_id: String, variant: String, options: Dictionary = {}) -> Dictionary:
+	if Space.is_request(request_id): return space.prepare(view, request_id, variant, options)
 	var state: Dictionary = view.world
 	for key: Variant in options:
 		if not key in ["agent", "agent_source", "preparations"]: return _error("Unknown prayer option")
@@ -457,7 +461,7 @@ func handle(view: Dictionary, input: Dictionary) -> Dictionary:
 	var options: Dictionary = payload.duplicate(true); options.erase("request"); options.erase("variant")
 	var plan: Dictionary = prepare(view, payload.request, payload.variant, options)
 	if not plan.ok: return {"ok": false, "empty": true, "effects": [], "state": {}, "error": plan.error}
-	return {"ok": true, "empty": false, "effects": [{"type": "prayers", "operation": "respond", "plan": plan}], "state": {}, "meta": {"faith_cost": plan.faith, "whispers_cost": plan.whispers, "min_awakening": 0, "actor": "", "source": plan.descriptor.source, "outcome": "prayer_attempt", "responds": true, "used_power": false, "used_relic": false, "target": plan.descriptor.domain, "attention": plan.attention}}
+	return {"ok": true, "empty": false, "effects": [{"type": "prayers", "operation": "respond", "plan": plan}], "state": {}, "meta": {"faith_cost": plan.faith, "whispers_cost": plan.whispers, "min_awakening": 0, "actor": "", "source": plan.descriptor.source, "outcome": "prayer_space_attempt" if plan.get("space", false) else "prayer_attempt", "responds": not plan.get("dismiss", false), "used_power": false, "used_relic": false, "target": plan.descriptor.domain, "attention": plan.attention}}
 
 func preview(turn: RefCounted, request_id: String, variant: String, options: Dictionary = {}) -> Dictionary:
 	if not turn._attached or turn._in_transaction or turn._in_participant or turn.context.phase != "actions": return _error("Prayer preview requires the action phase")
@@ -512,7 +516,10 @@ func _delta(world: RefCounted, plan: Dictionary, row: Dictionary, amount: int, s
 				if actual > 0 and not world.submit({"kind": "population", "domain": id, "mode": "convert" if amount > 0 else "leave", "amount": actual, "parents": [source]}, owner, true): return false
 			else:
 				var before: int = domain[field]
-				domain[field] = clampi(before + amount, 0, catalog.integer("attribute_max"))
+				if field == "pollution":
+					world.change_pollution(id, amount)
+				else:
+					domain[field] = clampi(before + amount, 0, catalog.integer("attribute_max"))
 				if field == "pollution" and domain[field] > before: domain.pollution_changed_turn = world.state.turn
 				if field == "alert" and domain[field] > before: domain.exposure_turn = world.state.turn
 				if field == "barrier" and domain[field] != before: domain.barrier_source = source
@@ -695,7 +702,7 @@ func _deadlines(world: RefCounted, owner: Object) -> bool:
 		if expired.is_empty(): expired = _window_due(world, request)
 		if request.status == "open" and not _expiry(world, request, expired, owner): return false
 		_close(world, id, "expired", expired)
-	return Sources.finish_deadlines(world)
+	return Sources.finish_deadlines(world) and space.deadlines(world, owner)
 
 func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String = "") -> bool:
 	if not world._driver_allowed(owner): return false
@@ -703,6 +710,7 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String 
 	if effect.operation == "prayer_freeze": return _freeze(world, owner)
 	if effect.operation == "prayer_deadlines": return _deadlines(world, owner)
 	var plan: Dictionary = effect.plan.duplicate(true)
+	if plan.get("space", false): return space.commit(world, plan, owner)
 	if not world.state.prayer_system.requests.has(plan.request): return false
 	var request: Dictionary = world.state.prayer_system.requests[plan.request]
 	if request.status != "open": return false
@@ -755,6 +763,8 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String 
 	return true
 
 static func validate_state(state: Dictionary, content: RefCounted, trusted: Dictionary = {}) -> Array[String]:
+	var space_errors: Array[String] = Space.validate(state, content)
+	if not space_errors.is_empty(): return space_errors
 	if not state.has("prayer_system"):
 		if trusted.has("prayer_system"): return ["Installed prayer policy disappeared"]
 		return []
@@ -987,3 +997,9 @@ func reopen_event(world: RefCounted, result_id: String, original_request: String
 	elif offered.size() < catalog.integer("prayer_offer_limit"): offered.append(request)
 	if not request in owner.context.background_ids: owner.context.background_ids.append(request)
 	return {"ok": true, "request": request, "offered": request in offered}
+
+func space_entries(state: Dictionary) -> Array:
+	return Space.entries(state)
+
+func space_choices(state: Dictionary, id: String) -> Array:
+	return Space.choices(state, id)

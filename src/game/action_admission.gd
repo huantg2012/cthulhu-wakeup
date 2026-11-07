@@ -1,6 +1,7 @@
 extends RefCounted
 ## The existing Turn payment/execution predicate, shared with read-only queries.
 ## Reservation, payment, marking actors and recording outcomes remain with Turn.
+const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Store = preload("res://src/simulation/archive_store.gd")
 
 static func can_execute(state: Dictionary, actor: String, reader: RefCounted = null) -> bool:
@@ -8,7 +9,7 @@ static func can_execute(state: Dictionary, actor: String, reader: RefCounted = n
 	if person.is_empty() and reader != null:
 		var found: Dictionary = reader.entity("npcs", actor)
 		if found.get("ok", false): person = found.item
-	return state.get("phase") == "actions" and person.get("status") == "active" and int(person.get("acted_turn", -1)) != int(state.turn)
+	return PrayerRules.space_allows(state, actor, "can_act") and state.get("phase") == "actions" and person.get("status") == "active" and int(person.get("acted_turn", -1)) != int(state.turn)
 
 static func validate(state: Dictionary, cursor: Dictionary, meta: Variant, content: RefCounted, default_choice: bool = false, reader: RefCounted = null) -> Dictionary:
 	if not meta is Dictionary: return _deny("Missing action metadata")

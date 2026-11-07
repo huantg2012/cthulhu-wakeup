@@ -28,9 +28,17 @@ func build(host, result: Dictionary, before: Dictionary, after: Dictionary, acti
 	var old: Dictionary = _index(before)
 	var current: Dictionary = _index(after)
 	var facts: Array = result.get("facts", [])
+	var reported: Dictionary = {}
+	for fact: Dictionary in facts:
+		if fact.get("kind") != "npc_miracle_response": continue
+		if not reported.has(fact.actor): reported[fact.actor] = {}
+		for field: String in fact.changes.actual_deltas:
+			reported[fact.actor][field] = int(reported[fact.actor].get(field, 0)) + int(fact.changes.actual_deltas[field])
 	var outcome: String = ""
 	for check: Dictionary in result.get("result", {}).get("checks", []):
 		outcome = {"deep": "深刻成功", "success": "成功", "failure": "失败", "disaster": "灾变"}.get(str(check.get("outcome", "")), outcome)
+	for fact: Dictionary in facts:
+		if fact.get("kind") == "prayer_space_result" and fact.get("changes", {}).get("disclosure") == "unknown" and fact.changes.get("outcome") in ["deep", "success"]: outcome = "已显现"
 	if not action_title.is_empty(): lines.append(action_title + (" · " + outcome if not outcome.is_empty() else " · 已执行"))
 	# Status and ownership changes outrank bookkeeping and newly learned objects.
 	var changes: Array[String] = []
@@ -59,6 +67,9 @@ func build(host, result: Dictionary, before: Dictionary, after: Dictionary, acti
 			if not _numeric(item.get(field)): continue
 			if not _numeric(prior.get(field)):
 				if not field in ["alert", "pollution", "barrier", "stability"]: revealed.append(str(ATTRIBUTES[field]) + " " + str(item[field]))
+			elif reported.get(id, {}).has(field):
+				var remaining: int = int(item[field]) - int(prior[field]) - int(reported[id][field])
+				if remaining != 0: numbers.append("%s %+d（其余变化）" % [ATTRIBUTES[field], remaining])
 			elif prior[field] != item[field]: numbers.append("%s %s → %s" % [ATTRIBUTES[field], prior[field], item[field]])
 		if not numbers.is_empty(): _append(changes, name_value + "：" + "；".join(numbers))
 		if not revealed.is_empty(): learned.append(name_value + " · 现可知：" + "、".join(revealed))
@@ -79,6 +90,29 @@ func build(host, result: Dictionary, before: Dictionary, after: Dictionary, acti
 	if lines.is_empty(): lines.append("行动已执行。")
 	return lines
 
+static func miracle_reaction(fact: Dictionary, person: String) -> Dictionary:
+	var data: Dictionary = fact.changes
+	var changes: Dictionary = data.actual_deltas
+	var title := person + ("的信仰加深" if int(changes.get("loyalty", 0)) > 0 else "回想所见的异象")
+	var numbers: Array[String] = []
+	for field: String in ["loyalty", "sanity", "adaptation"]:
+		var amount: int = int(changes.get(field, 0))
+		if amount != 0: numbers.append("%s %+d" % [ATTRIBUTES[field], amount])
+	var cause := str(data.cause)
+	if data.assisted and not numbers.is_empty(): numbers.push_front("本轮合计")
+	return {"title": title, "cause": cause, "numbers": " · ".join(numbers)}
+
+func pollution_lines(row: Dictionary) -> Array[String]:
+	var lines: Array[String] = []
+	var estimate: bool = row.get("estimated", true)
+	lines.append("教团规模 +%.2f  ·  成员影响 +%.2f" % [float(row.size) / 1000, float(row.named) / 1000])
+	var decay: String = "自然消退 %s%.2f" % ["至多 −" if estimate and row.decay > 0 else ("−" if row.decay > 0 else ""), float(row.decay) / 1000]
+	var net: String = "净变化待查" if estimate else "净变化 %+.2f" % (float(row.net) / 1000)
+	lines.append(decay + "  ·  " + net)
+	if row.has("support"):
+		lines.append("当前可支撑的污染约 %.1f" % (float(row.support) / 1000))
+	return lines
+
 func cult_settlement_lines(host, records: Array, include_name := true) -> Array[String]:
 	var lines: Array[String] = []
 	for row: Dictionary in records:
@@ -92,6 +126,9 @@ func cult_settlement_lines(host, records: Array, include_name := true) -> Array[
 			lines.append(line)
 		elif row.kind == "economy_income":
 			lines.append(prefix + "实际入账 %s 信仰" % row.actual)
+		elif row.kind == "cult_pollution_report":
+			lines.append(prefix + ("持续污染潜力" if row.estimated else "持续污染结算"))
+			lines.append_array(pollution_lines(row))
 	return lines
 
 func resource_summary(before: Dictionary, after: Dictionary) -> String:
@@ -103,6 +140,14 @@ func resource_summary(before: Dictionary, after: Dictionary) -> String:
 	return " · ".join(resources)
 
 func _fact_line(host, fact: Dictionary, old: Dictionary, current: Dictionary) -> String:
+	if fact.get("kind") == "npc_miracle_response":
+		var row := miracle_reaction(fact, _title(host, fact.actor, old, current))
+		var parts: Array[String] = [row.title]
+		if not row.cause.is_empty(): parts.append("亲历 · " + row.cause)
+		if not row.numbers.is_empty(): parts.append(row.numbers)
+		return "\n".join(parts)
+	if fact.get("kind") == "prayer_space_progress" and fact.changes.get("concrete_followup", false):
+		return str(fact.changes.get("effect", ""))
 	var data: Dictionary = fact.get("changes", {})
 	var kind: String = str(fact.get("kind", ""))
 	var targets: Array = fact.get("targets", [])
@@ -129,6 +174,20 @@ func _fact_line(host, fact: Dictionary, old: Dictionary, current: Dictionary) ->
 			var public_title: String = str(host.title(source))
 			if public_title != source and not public_title.begins_with("已知事实"): material = public_title
 		return recipient + "已从" + sender + ("取得「%s」的副本并知晓其内容。" % material if data.get("grant") == "custody" else "获知「%s」的内容。" % material)
+	if kind == "prayer_space_result":
+		if data.get("outcome") in ["failure", "disaster"]: return "本次介入未成功，原处境继续。"
+		var actual: Array[String] = []
+		for change: Variant in data.get("state_changes", []):
+			if change is String: _append(actual, change)
+			elif change is Dictionary and change.get("text") is String: _append(actual, str(change.text))
+		if not actual.is_empty(): return "\n".join(actual)
+		if data.get("outcome") in ["deep", "success", "deterministic"]:
+			var summary: String = str(data.get("effect", ""))
+			if not str(data.get("tradeoff", "")).is_empty(): summary += "\n" + str(data.tradeoff)
+			if int(data.get("maintenance_remaining", 0)) > 0: summary += "\n约定 · 还需 %d 轮" % int(data.maintenance_remaining)
+			return summary
+		return ""
+	if kind == "prayer_space_closed": return "已不再回应这项祈求；原处境按已有期限继续。"
 	if kind == "prayer_result" and data.get("outcome") in ["failure", "disaster"]:
 		return _title(host, str(data.get("actor", fact.get("actor", ""))), old, current) + "：此次回应未能解决原诉求。"
 	if kind == "member_enrolled" and not subject.is_empty(): return subject + "：已成为正式成员"

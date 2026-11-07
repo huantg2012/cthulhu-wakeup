@@ -63,7 +63,7 @@ static func command_roots(world_state: Dictionary, turn_context: Dictionary, led
 	return load("res://src/game/player_knowledge.gd").new(world_state, turn_context, ledger, content, index)._command_knowledge_roots(request)
 
 static func _internal_fact(kind: String) -> bool:
-	return kind.begins_with("opportunity_") or kind in ["route_attempt", "route_progress", "prayer_call", "prayer_call_basis", "prayer_need_selected", "prayer_dispatch_tick", "prayer_contact_selected", "prayer_producer_update", "identity_notice_selected", "deity_identified", "deity_identity_received", "prayer_bootstrap"]
+	return kind.begins_with("opportunity_") or kind in ["cult_pollution_settlement", "route_attempt", "route_progress", "prayer_call", "prayer_call_basis", "prayer_need_selected", "prayer_dispatch_tick", "prayer_contact_selected", "prayer_producer_update", "identity_notice_selected", "deity_identified", "deity_identity_received", "prayer_bootstrap"]
 
 static func validate_ledger(state: Dictionary, ledger: Dictionary, catalog: RefCounted) -> Array[String]:
 	if not ledger.get("cursor") is int or ledger.cursor < 1 or ledger.cursor > int(state.next_fact): return ["Invalid player knowledge cursor"]
@@ -105,6 +105,12 @@ func _learn(source: String, restoring: bool = false, explicit_observation: bool 
 		if not restoring and not request_id in state.prayer_system.offered and not _known_prayers.has(request_id): return
 		if not fixed.is_empty() and int(fixed.get("visible_turn", 0)) > int(cursor.turn): return
 	_known_facts[source] = true
+	if fact.kind in ["prayer_space_registered", "prayer_space_result", "prayer_space_progress", "prayer_space_closed"]:
+		var snapshot: Dictionary = fact.changes.get("scene_after", {})
+		if not snapshot.is_empty():
+			var item: Dictionary = load("res://src/game/prayer_space.gd").entry(snapshot)
+			_known_prayers[item.id] = item
+			_request_clues(item.descriptor, item.card)
 	if not _known_kinds.has(fact.kind): _known_kinds[fact.kind] = {}
 	_known_kinds[fact.kind][source] = true
 	if fact.kind in ["background_fixed", "prayer_fixed", "event_fixed"]:
@@ -221,6 +227,10 @@ func _command_knowledge_roots(request: Dictionary) -> Dictionary:
 		if fact.get("kind") == "world_origin" and _known_domains.has(fact.get("domain", "")) and state.domains[fact.domain].origin == source:
 			roots[source] = true
 	if request.op == "act" and request.get("participant") == "prayers":
+		var space_id: String = str(request.get("payload", {}).get("request", ""))
+		var scene: Dictionary = state.get("prayer_system", {}).get("space", {}).get("scenes", {}).get(space_id, {})
+		if not scene.is_empty() and _known_prayers.has(space_id):
+			for source: String in [scene.source, scene.last_event]: roots[source] = true
 		var prayer: Dictionary = Store.entry(state.prayer_system.requests, request.get("payload", {}).get("request", ""), {})
 		if not prayer.is_empty():
 			for source: String in [prayer.card.fact, str(prayer.descriptor.source), str(prayer.get("source", ""))]:
@@ -236,6 +246,11 @@ func _command_knowledge_roots(request: Dictionary) -> Dictionary:
 	return roots
 
 func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionary = {}) -> void:
+	var space_rules: GDScript = load("res://src/game/prayer_space.gd")
+	for request: Dictionary in space_rules.entries(state):
+		_known_prayers[request.id] = request.duplicate(true)
+		_request_clues(request.descriptor, request.card)
+		_learn(request.source)
 	for id: String in state.attention.members:
 		var person: Dictionary = Store.entry(state.npcs, id)
 		_known_people[id] = true
@@ -255,6 +270,15 @@ func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionar
 		# Automatically derived qualifications are never command disclosures. Their
 		# exact original fact must already be known before availability can expose it.
 		if fact.kind in ["power_qualification", "world_observation"]: continue
+		if fact.kind == "prayer_space_progress" and fact.changes.has("manifestation_of"):
+			if _known_facts.has(fact.changes.manifestation_of): _learn(source)
+			continue
+		if fact.kind == "miracle" and fact.changes.has("prayer_space_source"):
+			if _known_facts.has(fact.changes.prayer_space_source): _learn(source)
+			continue
+		if fact.kind == "npc_miracle_response":
+			if _known_people.has(fact.actor) and _known_facts.has(fact.changes.source): _learn(source)
+			continue
 		var command_result: bool = own_action and number >= first_fact and fact.causal_parents.any(func(parent: String) -> bool: return action_chain.has(parent))
 		if command_result:
 			_learn(source); action_chain[source] = true

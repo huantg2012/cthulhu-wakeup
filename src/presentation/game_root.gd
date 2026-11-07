@@ -250,11 +250,12 @@ func _identity_title(option: Dictionary) -> String:
 func _render_menu() -> void:
 	_detail.add_child(_label("邪神苏醒", true))
 	_detail.add_child(_label("新局保留旧局存档。相同种子生成相同初始世界；继续读取上次保存的局。"))
-	_detail.add_child(_label("世界种子（整数）"))
-	_seed = LineEdit.new(); _seed.name = "Seed"; _seed.text = str(int(Time.get_unix_time_from_system())); _seed.placeholder_text = "整数种子"; _seed.custom_minimum_size.y = 38; _detail.add_child(_seed)
+	_detail.add_child(_label("世界种子（可选整数）"))
+	_seed = LineEdit.new(); _seed.name = "Seed"; _seed.placeholder_text = "留空随机"; _seed.custom_minimum_size.y = 38; _detail.add_child(_seed)
 	_detail.add_child(_button("新局", func() -> void:
-		if not _seed.text.is_valid_int(): _status.text = "请输入整数种子。"; return
-		var seed_value: int = _seed.text.to_int()
+		var seed_text := _seed.text.strip_edges()
+		if not seed_text.is_empty() and not seed_text.is_valid_int(): _status.text = "请输入整数种子。"; return
+		var seed_value: int = randi_range(1, 2147483647) if seed_text.is_empty() else seed_text.to_int()
 		if projection.get("active", false): _ask("保存当前局并开启新局？旧局文件会保留，保存失败时停止。", func() -> void:
 			var saved: Dictionary = session.save_game()
 			if saved.ok: _start(seed_value)
@@ -476,8 +477,8 @@ func describe(value: Variant, depth: int = 0) -> String:
 				if object.id == value: return str(object.get("title", object.get("name", value)))
 		if session.catalog != null:
 			for table: String in ["prayers", "events", "powers", "npc_profiles", "civilization_profiles"]:
-				if session.catalog.tables.get(table, {}).has(value):
-					var entry: Dictionary = session.catalog.tables[table][value]
+				if session.catalog.display_tables.get(table, {}).has(value):
+					var entry: Dictionary = session.catalog.display_tables[table][value]
 					return str(entry.get("title", entry.get("name", value)))
 		if value.begins_with("BACKGROUND-"): return "诉求 " + value.trim_prefix("BACKGROUND-")
 	return str(WORDS.get(str(value), {"BG_CONTACT":"当下求告", "BG_ESCAPE":"屏障往来", "BG_RECORD":"已知记录", "BG_RITUAL":"当前祭仪", "candidate":"诉求实例", "template":"处境类型", "content_id":"事由"}.get(str(value), str(value))))

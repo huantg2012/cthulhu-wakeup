@@ -92,8 +92,15 @@ func prayer_members(content: String, actors: Array) -> Array:
 func preview_needs(state: Dictionary, request: Dictionary, effects: Array = [], actor: String = "", depth: int = 0) -> Dictionary:
 	if version.is_empty() or not enabled(state) or depth > 8: return _error("Attention unavailable or cyclic effect description")
 	var key: String = str(request.get("family", "")) + "/" + str(request.get("content_id", "")) + "/" + str(request.get("variant", ""))
-	if not policies.has(key): return _error("Unregistered intervention")
-	var rule: Dictionary = policies[key]
+	var rule: Dictionary = policies.get(key, {})
+	if rule.is_empty() and str(request.get("family")) == "prayer" and str(request.get("content_id", "")).begins_with("SPACE_"):
+		var found: Dictionary = {}
+		for scene: Dictionary in state.get("prayer_system", {}).get("space", {}).get("scenes", {}).values():
+			if scene.source == request.get("source") and "SPACE_" + str(scene.case_id) == request.content_id:
+				found = scene; break
+		if found.is_empty() or found.actors != request.get("participants") or found.domain != request.get("target") or (request.get("variant") != "dismiss" and not found.choices.has(request.get("variant"))): return _error("Invalid fixed prayer-space intervention")
+		rule = {"focus_scope": "target", "person_scope": "participants", "member_scope": "none"}
+	if rule.is_empty(): return _error("Unregistered intervention")
 	var needs: Dictionary = {"ok": true, "focus": [], "people": [], "members": [], "identities": [], "source": request.get("source", "")}
 	for field: String in ["participants", "nominees", "new_people", "fixed", "ritual_domains", "calls"]:
 		if request.has(field) and not request[field] is Array: return _error("Invalid intervention dependency graph")

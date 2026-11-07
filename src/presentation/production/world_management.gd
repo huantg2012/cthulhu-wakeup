@@ -84,7 +84,14 @@ func _remember_intelligence_scroll() -> void:
 func _show_intelligence() -> void:
 	_shell("intelligence", "世界情报", host.title(_domain), "当地机构的作用与已知反制。")
 	var body := _right(237)
-	host._text(_column, "机构与反制", Rect2(0, 0, 664, 39), 20, UI.GOLD_HI)
+	host._text(_column, "文明与当地机构", Rect2(0, 0, 664, 39), 20, UI.GOLD_HI)
+	var background: String = host.session.world_name_background(_domain)
+	if not background.is_empty():
+		var section := _intelligence_section(body, "CivilizationBackground")
+		var world: Dictionary = host._views._find(host, "domains", _domain)
+		if world.has("tier"):
+			host._line(section, "文明层级 · " + {"planet":"星球", "system":"星系", "cosmic":"宇宙"}.get(world.tier, "未掌握"), 16, UI.MUTED)
+		host._line(section, background, 17, UI.MUTED)
 	_local_institutions(body)
 	_reading.set_deferred("scroll_vertical", int(_intelligence_scrolls.get(_domain, 0)))
 	_fixed("WorldBack", "返回世界", close, 279, 221)
@@ -104,7 +111,7 @@ func _local_institutions(body: VBoxContainer) -> void:
 	var plans: Array = host._views.world_plans(host, _domain)
 	if plans.is_empty(): host._line(body, "暂无已知反制计划。", 16, UI.MUTED)
 	for plan: Dictionary in plans:
-		var rule: Dictionary = host.session.catalog.tables.resistance_plans.get(plan.get("rule", ""), {})
+		var rule: Dictionary = host.session.catalog.display_tables.resistance_plans.get(plan.get("rule", ""), {})
 		var section := _intelligence_section(body, "Resistance_" + str(plan.get("id", "")))
 		host._line(section, "%s · 第 %s 轮到期" % [rule.get("name", "已知反制"), plan.get("due", "?")], 18, UI.RISK)
 		var target: String = RecordText.entity_name(host, str(plan.get("target", "")), _domain)
@@ -257,7 +264,7 @@ func _world_details() -> void:
 	for field: String in host._views.WORLD_METRICS:
 		_metric(body, world, field)
 	for plan: Dictionary in host._views.world_plans(host, _domain):
-		var rule: Dictionary = host.session.catalog.tables.resistance_plans.get(plan.get("rule", ""), {})
+		var rule: Dictionary = host.session.catalog.display_tables.resistance_plans.get(plan.get("rule", ""), {})
 		host._line(body, "%s · %s · 第 %s 轮到期" % [rule.get("name", "已知反制"), host.title(plan.get("target", _domain)), plan.get("due", "?")], 16, UI.RISK)
 		if rule.has("result"): host._line(body, rule.result, 15, UI.MUTED)
 	var attention_action := "attention/release_focus" if world.get("focused", false) else "attention/focus"
@@ -329,6 +336,9 @@ func _show_cult(focus_name: String, reading_scroll := 0) -> void:
 	if not str(cult.get("leader", "")).is_empty(): host._line(body, "领袖 · " + host.title(cult.leader), 16)
 	var order: String = host.projection.economy_plan.get("strategies", {}).get(cult.id, cult.strategy)
 	host._line(body, "已登记指令 · " + host._views._strategy_name(order), 17, UI.GOLD)
+	if cult.has("pollution_preview"):
+		host._line(body, "持续污染预估", 16, UI.CYAN)
+		for line: String in host._feedback.pollution_lines(cult.pollution_preview): host._line(body, line, 16)
 	var last: Array = _settlements.get(cult.id, [])
 	if not last.is_empty():
 		host._line(body, "第 %s 轮实际经营" % last[0].turn, 15, UI.CYAN)
@@ -500,7 +510,7 @@ func _read_relic(id: String) -> void:
 	else:
 		host._line(body, "状态 · " + str(host._views.PLACEMENTS.get(item.get("placement"), "未掌握")), 17)
 		if item.has("holder"): host._line(body, "持有者 · " + host.title(item.holder), 17)
-		var definition: Dictionary = host.session.catalog.tables.relics.get(item.get("type", ""), {})
+		var definition: Dictionary = host.session.catalog.display_tables.relics.get(item.get("type", ""), {})
 		for field: String in ["carry_effect", "carry_cost"]:
 			if definition.has(field): host._line(body, definition[field], 17)
 		_action(body, "OpenRelic", "查看圣物处置", host._tasks.open_subject.bind("relic", id, _restore_member.bind(_member, "carried", "Carried_" + id)))

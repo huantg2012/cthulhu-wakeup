@@ -40,6 +40,11 @@ static func blocked(state: Dictionary, npc: String, kind: String) -> bool:
 
 static func prayer_action(action: String) -> Dictionary:
 	var parts: PackedStringArray = action.split("/")
+	if parts.size() == 3 and parts[0] == "PRAYER" and parts[1].begins_with("PS-"):
+		var sequence := parts[1].trim_prefix("PS-")
+		if sequence.is_valid_int() and int(sequence) > 0 and parts[1] == "PS-%08d" % int(sequence) and parts[2] in ["choice_a", "choice_b", "choice_c", "choice_d", "choice_e"]:
+			return {"ok": true, "request": parts[1], "variant": parts[2], "space": true}
+		return {"ok": false}
 	if parts.size() != 3 or parts[0] != "PRAYER" or not parts[2] in ["shallow", "deep"] or not parts[1].begins_with("BACKGROUND-"): return {"ok": false}
 	var number: String = parts[1].trim_prefix("BACKGROUND-")
 	if not number.is_valid_int() or int(number) < 1 or parts[1] != "BACKGROUND-%08d" % int(number): return {"ok": false}
@@ -48,6 +53,10 @@ static func prayer_action(action: String) -> Dictionary:
 static func prayer_target(state: Dictionary, action: String, actor: String) -> bool:
 	var parsed: Dictionary = prayer_action(action)
 	if not parsed.ok: return false
+	if parsed.get("space", false):
+		var space: Dictionary = state.get("prayer_system", {}).get("space", {})
+		var scene: Dictionary = space.get("scenes", {}).get(parsed.request, {})
+		return scene.get("status") == "open" and parsed.request in space.get("offered", []) and scene.get("due", -1) >= state.turn and scene.get("roles", {}).get("petitioner") == actor and scene.get("choices", {}).get(parsed.variant, {}).has("difficulty")
 	var request: Dictionary = state.get("prayer_system", {}).get("requests", {}).get(parsed.request, {})
 	if request.is_empty() or request.get("status") != "open": return false
 	var card: Dictionary = request.get("card", {})
@@ -119,3 +128,11 @@ static func _used(state: Dictionary, key: String, reader: RefCounted = null) -> 
 		var found: Dictionary = reader.authorization(key)
 		return str(found.source) if found.get("ok", false) and found.get("used", false) else ""
 	return str(Store.entry(state.get("applied_authorizations", {}), key, ""))
+
+## Situation constraints belong to their actual role-bound person. They never
+## rewrite identity/status history or invent numeric ability penalties.
+static func space_allows(state: Dictionary, npc: String, ability: String) -> bool:
+	for scene: Dictionary in state.get("prayer_system", {}).get("space", {}).get("scenes", {}).values():
+		for object: Dictionary in scene.get("objects", {}).values():
+			if object.get("role") == npc and object.get(ability, true) == false: return false
+	return true

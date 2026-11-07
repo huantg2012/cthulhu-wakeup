@@ -167,6 +167,10 @@ static func _power_fields(context: Dictionary, power: String, selection: Diction
 				if row.check_kind != "deterministic": declarations.append(_choice(row.id, row.name))
 			for id: String in context.world.prayer_system.offered:
 				for variant: String in ["shallow", "deep"]: declarations.append(_choice("PRAYER/" + id + "/" + variant))
+			for scene: Dictionary in context.world.prayer_system.get("space", {}).get("scenes", {}).values():
+				if scene.status != "open" or not context.knowledge.known_prayers.has(scene.id) or scene.roles.petitioner != npc: continue
+				for option: Dictionary in scene.choices.values():
+					if option.has("difficulty"): declarations.append(_choice("PRAYER/" + scene.id + "/" + option.id, scene.title + " · " + option.label))
 			fields.append(_field("declared_action", "要准备的检定", declarations))
 		"POWER_BESTOW": fields.append(_field("attribute", "属性", [_choice("will", "意志"), _choice("insight", "洞察"), _choice("influence", "影响"), _choice("adaptation", "适应")]))
 		"POWER_TRANSFER":
@@ -276,6 +280,16 @@ static func _transfer_fields(context: Dictionary, available: Array, selection: D
 
 
 static func fields(context: Dictionary, entry: String, selection: Dictionary) -> Dictionary:
+	var space_parts := entry.split("/")
+	if space_parts.size() == 3 and space_parts[0] == "prayer" and space_parts[1].begins_with("PS-"):
+		if context.turn.get("phase") != "actions": return {"ok": false, "error": "轮初事件处理完毕后才能回应"}
+		var space: Dictionary = context.world.get("prayer_system", {}).get("space", {})
+		var scene: Dictionary = space.get("scenes", {}).get(space_parts[1], {})
+		if scene.is_empty() or not space_parts[1] in space.get("offered", []) or not context.knowledge.known_prayers.has(space_parts[1]) or (space_parts[2] != "dismiss" and not scene.choices.has(space_parts[2])): return {"ok": false, "error": "当前没有这项回应"}
+		if space_parts[2] == "dismiss" or not scene.choices[space_parts[2]].has("difficulty"):
+			if not selection.is_empty(): return {"ok": false, "error": "这项回应不需要额外配置"}
+			return {"ok": true, "fields": []}
+		return {"ok": true, "fields": [_field("preparations", "谕言准备（尝试后消耗）", _preparations(context, scene.roles.petitioner, "PRAYER/" + space_parts[1] + "/" + space_parts[2]), true, true)]}
 	var parts: PackedStringArray = entry.split("/")
 	var phase: String = str(context.turn.get("phase", ""))
 	var output: Array = []

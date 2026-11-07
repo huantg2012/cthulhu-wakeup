@@ -667,6 +667,11 @@ func generate(seed_value: int, owner: Object = null, hybrid: bool = false) -> bo
 		var domain: Dictionary = {"id": id, "profile": profile.id, "tier": tier, "communication": profile.communication, "authority": profile.authority, "barrier": int(profile.barrier), "stability": int(profile.stability), "pollution": 0, "alert": 0, "population": catalog.integer("domain_population"), "unnamed_nonfollowers": catalog.integer("domain_population") - named_budget, "unnamed_followers": 0, "neighbors": [], "institutions": [], "crisis_facts": [], "public_facts": [], "public_anomalies": {}, "pending_plan": {}, "plan_cooldowns": {}, "barrier_source": "", "pollution_changed_turn": -1, "exposure_turn": -1}
 		for paradigm: String in ["tech", "occult", "faith", "meme"]:
 			domain[paradigm] = int(profile[paradigm])
+		if catalog.cult_pollution != null:
+			domain["pollution_version"] = catalog.cult_pollution.version
+			domain["pollution_remainder"] = 0
+			domain["pollution_revision"] = 0
+			domain["pollution_settled_turn"] = -1
 		state.domains[id] = domain
 		var origin: String = _record("world_origin", id, "", [], [], {"profile": profile.id, "initialization": Initialization.origin_data(birth, hybrid, index)})
 		domain.origin = origin
@@ -898,6 +903,8 @@ func _apply_behaviors(actions: Array, view: Dictionary) -> Dictionary:
 			Store.entry(state.npcs, id)[field] = clampi(int(Store.entry(view.npcs, id)[field]) + int(deltas[id][field]), 0, catalog.integer("attribute_max"))
 	var touched_evidence: Array = []
 	var batch_sources: Dictionary = {}
+	var interpretations: Dictionary = {}
+	var assisted: Dictionary = {}
 	for action: Dictionary in actions:
 		var rule: Dictionary = catalog.tables.npc_behaviors[action.behavior]
 		var npc: Dictionary = Store.entry(state.npcs, action.actor)
@@ -915,6 +922,10 @@ func _apply_behaviors(actions: Array, view: Dictionary) -> Dictionary:
 		batch_sources[npc.domain].append(result)
 		_know(npc.id, result)
 		_know(action.target, result)
+		if rule.effect == "restore_target_sanity" and action.target != action.actor:
+			assisted[action.target] = true
+		if rule.effect == "increase_self_loyalty" and npc.get("bound_member", false):
+			interpretations[npc.id] = {"behavior": result, "source": action.source}
 		if int(rule.sanity_cost) > 0:
 			var strain: String = _record("strain", npc.domain, npc.id, [npc.id], [result], {"sanity_delta": -int(rule.sanity_cost)})
 			_know(npc.id, strain)
@@ -959,7 +970,16 @@ func _apply_behaviors(actions: Array, view: Dictionary) -> Dictionary:
 				actual[id] = {}
 				for field: String in _keys(deltas[id]):
 					actual[id][field] = int(Store.entry(state.npcs, id)[field]) - int(Store.entry(view.npcs, id)[field])
-		_record("npc_batch_applied", domain_id, "", actual.keys(), batch_sources[domain_id], {"actual_deltas": actual, "snapshot_turn": view.turn})
+		var batch := _record("npc_batch_applied", domain_id, "", actual.keys(), batch_sources[domain_id], {"actual_deltas": actual, "snapshot_turn": view.turn})
+		for id: String in _keys(actual):
+			if not interpretations.has(id): continue
+			var effect: Dictionary = interpretations[id]
+			var changes: Dictionary = actual[id].duplicate()
+			var growth: int = int(Store.entry(state.npcs, id).adaptation) - int(Store.entry(view.npcs, id).adaptation)
+			if growth != 0: changes["adaptation"] = growth
+			_record("npc_miracle_response", domain_id, id, [id], [batch, effect.behavior, effect.source], {
+				"source": effect.source, "actual_deltas": changes, "assisted": assisted.has(id),
+			})
 	touched_evidence.sort()
 	for key: String in touched_evidence:
 		var evidence: Dictionary = Store.entry(state.evidence, key)
@@ -1032,6 +1052,49 @@ func _evolution_snapshot() -> Dictionary:
 	view["_history_snapshot"] = history.fork()
 	return view
 
+func change_pollution(domain_id: String, amount: int) -> void:
+	stage_collections(["domains"])
+	var domain: Dictionary = state.domains[domain_id]
+	var maximum: int = catalog.integer("attribute_max")
+	var policy: RefCounted = catalog.cult_pollution
+	if policy == null:
+		domain.pollution = clampi(int(domain.pollution) + amount, 0, maximum)
+		return
+	var before: int = policy.total(domain)
+	policy.write_total(domain, before + amount * int(policy.values.fixed_scale), maximum)
+	if policy.total(domain) != before: domain.pollution_revision = state.next_fact
+	if policy.total(domain) > before:
+		domain.pollution_changed_turn = state.turn
+
+func _settle_pollution(domain: Dictionary, input: Dictionary, cult_source: String, decay: int) -> void:
+	var policy: RefCounted = catalog.cult_pollution
+	var maximum: int = catalog.integer("attribute_max")
+	var scale: int = policy.values.fixed_scale
+	var produced: Dictionary = {"size": 0, "named": 0, "support": 0}
+	var cult_id: String = str(input.get("cult", ""))
+	if not input.is_empty():
+		var cult: Dictionary = state.cults[cult_id]
+		# Keep snapshot populations and attributes. Only remove carriers that
+		# became unavailable during this batch.
+		for id: String in input.members.keys():
+			if not policy.eligible(Store.entry(state.npcs, id, {}), cult, catalog):
+				input.members.erase(id)
+		if cult.status == "destroyed" or not input.members.has(cult.leader):
+			input.working = false
+		produced = policy.production(input, maximum)
+	var before: int = policy.total(domain)
+	var revision: int = domain.pollution_revision
+	var receipt: Dictionary = policy.settlement(before, produced, decay * scale, maximum)
+	if receipt.net != 0: domain.pollution_revision = state.next_fact
+	policy.write_total(domain, before + int(receipt.net), maximum)
+	domain.pollution_settled_turn = state.turn
+	if not input.is_empty() or receipt.net != 0:
+		var parents: Array = [domain.origin] if cult_source.is_empty() else [cult_source]
+		for id: String in input.get("members", {}):
+			parents.append(str(Store.entry(state.npcs, id).joined_source))
+		receipt.merge({"cult": cult_id, "produced": produced, "decay_rate": decay * scale, "before": before, "before_revision": revision, "version": policy.version})
+		_record("cult_pollution_settlement", domain.id, "", [cult_id] if not cult_id.is_empty() else [], parents, receipt)
+
 func evolve(owner: Object = null, economic_batch: Dictionary = {}) -> Array:
 	if not ensure_history(): return []
 	stage_current()
@@ -1039,6 +1102,15 @@ func evolve(owner: Object = null, economic_batch: Dictionary = {}) -> Array:
 	if not _driver_allowed(owner) or state.phase != "actions" or (state.has("economy") and (economic_batch.is_empty() or economic_batch.get("turn") != state.turn)):
 		return []
 	var view: Dictionary = _evolution_snapshot()
+	var pollution_inputs: Dictionary = {}
+	if catalog.cult_pollution != null:
+		for domain: Dictionary in view.domains.values():
+			if int(domain.pollution_settled_turn) >= int(view.turn): return []
+		for cult: Dictionary in view.cults.values():
+			if cult.status == "destroyed": continue
+			var working: bool = Economy.operational_reason(view, cult, catalog).is_empty()
+			var strategy: String = view.get("economy", {}).get("effective", {}).get(cult.id, "hold")
+			pollution_inputs[cult.domain] = catalog.cult_pollution.inputs(view, cult, catalog, working, strategy)
 	var actions: Array = []
 	var assigned: bool = state.has("simulation")
 	var due: Array = []
@@ -1084,7 +1156,10 @@ func evolve(owner: Object = null, economic_batch: Dictionary = {}) -> Array:
 			if anchor.domain == domain_id and anchor.state == "active":
 				has_active_anchor = true
 		var routine_due: bool = not assigned or domain_id in view.simulation.focused or domain_id in due
-		if routine_due and not has_active_anchor and int(before.pollution_changed_turn) < int(state.turn):
+		var decays: bool = not has_active_anchor and int(before.pollution_changed_turn) < int(state.turn)
+		if catalog.cult_pollution != null:
+			_settle_pollution(domain, pollution_inputs.get(domain_id, {}), str(economic_deltas.get(domain_id, {}).get("source", "")), catalog.integer("pollution_base_decay") if decays else 0)
+		elif routine_due and decays:
 			var prior: int = int(domain.pollution)
 			domain.pollution = maxi(0, prior - catalog.integer("pollution_base_decay"))
 			if prior != int(domain.pollution):
@@ -1436,13 +1511,13 @@ func _resolve_plans() -> void:
 				"repair_barrier":
 					domain.barrier = mini(catalog.integer("attribute_max"), int(domain.barrier) + int(effect.barrier_delta))
 					domain.barrier_source = outcome
-					domain.pollution = maxi(0, int(domain.pollution) + int(effect.pollution_delta))
+					change_pollution(domain_id, int(effect.pollution_delta))
 				"destroy_anchor":
 					state.anchors[plan.target].state = "destroyed"
 					state.anchors[plan.target].needs_rebind = true
 				"rewrite_reality":
 					state.wounds += int(effect.wounds_delta)
-					domain.pollution = maxi(0, int(domain.pollution) + int(effect.pollution_delta))
+					change_pollution(domain_id, int(effect.pollution_delta))
 			stats.plans_resolved += 1
 		domain.plan_cooldowns[plan.rule] = int(state.turn) + int(rule.cooldown_turns)
 		domain.pending_plan = {}
@@ -1725,6 +1800,16 @@ func _validate_state(candidate: Dictionary, first_new_fact: int) -> Array[String
 		for field: String in ["barrier", "pollution", "alert", "stability"]:
 			if not domain.get(field) is int or int(domain[field]) < 0 or int(domain[field]) > catalog.integer("attribute_max"):
 				issues.append("Invalid domain metric")
+		if catalog.cult_pollution != null:
+			if domain.get("pollution_version") != catalog.cult_pollution.version or not catalog.cult_pollution.valid_state(domain, int(candidate.turn), catalog.integer("attribute_max")):
+				issues.append("Invalid cult pollution state")
+			if not domain.get("pollution_revision") is int or domain.pollution_revision < 0 or domain.pollution_revision >= candidate.next_fact:
+				issues.append("Invalid pollution observation revision")
+			var settled_turn: int = int(candidate.turn) - (0 if candidate.phase == "between" else 1)
+			if domain.get("pollution_settled_turn") != (settled_turn if settled_turn > 0 else -1):
+				issues.append("Cult pollution settlement does not match world phase")
+		elif domain.has("pollution_version") or domain.has("pollution_remainder") or domain.has("pollution_settled_turn") or domain.has("pollution_revision"):
+			issues.append("Cult pollution state requires matching rules")
 		for field: String in ["population", "unnamed_nonfollowers", "unnamed_followers"]:
 			if not domain.get(field) is int or int(domain[field]) < 0:
 				issues.append("Invalid population")
@@ -1802,6 +1887,9 @@ func _validate_state(candidate: Dictionary, first_new_fact: int) -> Array[String
 			issues.append("Invalid fact")
 			continue
 		max_fact_id = maxi(max_fact_id, int(id.get_slice("-", 1)))
+		if fact.get("kind") == "cult_pollution_settlement":
+			if catalog.cult_pollution == null or not candidate.domains.has(fact.get("domain", "")) or not catalog.cult_pollution.valid_receipt(fact.changes, int(id.get_slice("-", 1)), catalog.integer("attribute_max"), catalog.integer("pollution_base_decay")):
+				issues.append("Invalid cult pollution settlement")
 		for parent: Variant in fact.causal_parents:
 			if not parent is String or not Store.has(candidate.facts, parent) or parent >= id or int(Store.entry(candidate.facts, parent).get("turn", -1)) > int(fact.turn):
 				issues.append("Invalid causal ancestry")

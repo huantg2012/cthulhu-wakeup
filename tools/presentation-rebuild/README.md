@@ -2,7 +2,7 @@
 
 **当前设计交付：**打开 `docs/art/presentation-rebuild/interaction-slice.html` 体验诸界→当地→人物/媒介准备→演示结果→后续责任；设计唯一正文为同目录 `interface-design.md` §10–§11。它是离线HTML交互夹具，“预演成功分支”仅改本页状态，不执行游戏规则或写存档。重建：`python3 tools/presentation-rebuild/build_interaction_slice.py`。目录/费用来自正式CSV，局势来自 `interaction_fixture.csv`。旧结构阅览器 `interface-review.html` 仍保留，可用 `build_interface_review.py` 重建。旧 `visual-system.md` 只读，下方Godot三卡属于原批次问题样本。
 
-本轮成果位于 `codex/visual-interaction-exploration` 的独立worktree；功能开发继续在原目录 `cthulhu-wakeup` 分支。请从本worktree启动此入口，避免在功能目录切分支。分支建立于 `cd4fbd9`，未自动合并后续功能更新。
+本轮成果位于 `codex/visual-interaction-exploration` 的独立worktree；功能开发继续在原目录 `cthulhu-wakeup` 分支。请从本worktree启动此入口，避免在功能目录切分支。分支建立于 `cd4fbd9`。2026-11-07 合入功能分支 `3ac9ba2`，探索与正式界面继续使用各自入口。
 
 运行根目录 表现重构对比.command。Godot 4.7.2；1280×720逻辑、1920×1080输出。
 

@@ -127,6 +127,7 @@ func probability(person: Dictionary, domain: Dictionary, power: Dictionary, prep
 	var p: int = catalog.integer("check_base") + catalog.integer("check_attribute_step") * (int(person[power.attribute]) - catalog.integer("check_" + domain.tier + "_difficulty"))
 	p += clampi(preparation, -catalog.integer("check_preparation_limit"), catalog.integer("check_preparation_limit")) + modifier
 	p -= int(floor(float(domain.barrier) / catalog.number("check_barrier_divisor"))) + int(floor(float(domain.alert) / catalog.number("check_alert_divisor")))
+	p -= int(power.get("difficulty", 0))
 	return clampi(p, catalog.integer("check_probability_min"), catalog.integer("check_probability_max"))
 
 func _manifest_valid(state: Dictionary, data: Dictionary) -> bool:
@@ -174,6 +175,8 @@ func prepare(view: Dictionary, power_id: String, payload: Dictionary, partial: b
 	if not state.domains.has(domain): return _error("Power needs its actual target domain")
 	if power_id != "POWER_LISTEN" and (person.is_empty() or person.status != "active" or person.domain != domain): return _error("Power subject unavailable or in another domain")
 	if not power_id in ["POWER_LISTEN", "POWER_DREAM", "POWER_ANCHOR"] and (not person.get("bound_member", false) or person.loyalty < catalog.integer("loyalty_follower_threshold")): return _error("Power needs a loyal bound member")
+	if power_id in EXECUTORS and not PrayerRules.space_allows(state, npc, "can_act"): return _error("此人正在履行无法分身的约定")
+	if power_id == "POWER_DREAM" and not PrayerRules.space_allows(state, npc, "can_sleep"): return _error("此人当前无法入睡")
 	if power_id == "POWER_ANCHOR":
 		_fact(view, str(person.get("dedication_source", ""))); _fact(view, str(person.get("binding_source", "")))
 		if not Cults.eligible(state, person, catalog): return _error("Anchor guardian cannot join")
@@ -206,8 +209,10 @@ func prepare(view: Dictionary, power_id: String, payload: Dictionary, partial: b
 				if catalog.tables.powers[action].check_kind == "deterministic": return _error("Oracle cannot prepare a deterministic operation")
 			else:
 				if not PrayerRules.prayer_target(state, action, npc): return _error("Oracle needs the same petitioner and a current fixed prayer check")
-				var target_request: Dictionary = state.prayer_system.requests[PrayerRules.prayer_action(action).request]
-				if not _valid_source(view, str(target_request.descriptor.source), domain): return _error("Prayer situation source is no longer current")
+				var prayer: Dictionary = PrayerRules.prayer_action(action)
+				var target_request: Dictionary = state.prayer_system.space.scenes[prayer.request] if prayer.get("space", false) else state.prayer_system.requests[prayer.request]
+				var prayer_source: String = str(target_request.source) if prayer.get("space", false) else str(target_request.descriptor.source)
+				if not _valid_source(view, prayer_source, domain): return _error("Prayer situation source is no longer current")
 		"POWER_BREACH": proofs.weakness = _proof(view, payload, "weakness", npc, npc, domain)
 		"POWER_SEED": proofs.spread = _proof(view, payload, "spread", cult, npc, domain)
 		"POWER_VEIL": proofs.evidence = _proof(view, payload, "evidence", cult, npc, domain)
@@ -372,7 +377,10 @@ func _delta(world: RefCounted, plan: Dictionary, row: Dictionary, amount: int, s
 		return actual == 0 or world.submit({"kind": "population", "domain": domain_id, "mode": "convert" if amount > 0 else "leave", "amount": actual, "parents": [source]}, owner, true)
 	if not field in ["alert", "pollution", "barrier"]: return false
 	var before: int = int(state.domains[domain_id][field])
-	state.domains[domain_id][field] = clampi(before + amount, 0, catalog.integer("attribute_max"))
+	if field == "pollution":
+		world.change_pollution(domain_id, amount)
+	else:
+		state.domains[domain_id][field] = clampi(before + amount, 0, catalog.integer("attribute_max"))
 	var actual: int = int(state.domains[domain_id][field]) - before
 	var result_source: String = world._record("power_effect", domain_id, plan.npc, [] if plan.npc.is_empty() else [plan.npc], [source], {"power": plan.power, "field": field, "requested": amount, "actual": actual})
 	if field == "pollution" and actual > 0: state.domains[domain_id].pollution_changed_turn = state.turn
@@ -544,7 +552,7 @@ static func _attempt_for(state: Dictionary, source: String) -> Dictionary:
 static func _valid_preparation_consumer(state: Dictionary, preparation: String, consumer: String) -> bool:
 	var oracle: Dictionary = _attempt_for(state, preparation)
 	var fact: Variant = Store.entry(state.facts, consumer)
-	if oracle.is_empty() or not fact is Dictionary or not fact.get("kind") in ["power_attempt", "prayer_attempt"] or fact.get("actor") != oracle.actor or fact.get("turn", -1) < oracle.turn or fact.get("turn", 2147483647) > oracle.turn + 1: return false
+	if oracle.is_empty() or not fact is Dictionary or not fact.get("kind") in ["power_attempt", "prayer_attempt", "prayer_space_attempt"] or fact.get("actor") != oracle.actor or fact.get("turn", -1) < oracle.turn or fact.get("turn", 2147483647) > oracle.turn + 1: return false
 	var selected: Variant = fact.get("changes", {}).get("preparations")
 	if not selected is Array or selected.count(preparation) != 1: return false
 	var action: String = str(fact.changes.get("power", "")) if fact.kind == "power_attempt" else "PRAYER/" + str(fact.changes.get("request", "")) + "/" + str(fact.changes.get("variant", ""))

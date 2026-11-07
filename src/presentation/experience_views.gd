@@ -27,7 +27,7 @@ func render(host, box: VBoxContainer, kind: String, id: String = "") -> void:
 	if not host.projection.get("active", false):
 		box.add_child(host.label("邪神苏醒", true))
 		box.add_child(host.label("开始新局或载入已有进度，进入你实际获知的联系。"))
-		box.add_child(host.button("开启新局", func() -> void: host.start_new(1)))
+		box.add_child(host.button("开启新局", func() -> void: host.start_new(randi_range(1, 2147483647))))
 		return
 	match kind:
 		"home": _home(host, box)
@@ -286,7 +286,7 @@ func _current_cult(host, id: String) -> Dictionary:
 	return {}
 
 func _cult_name(host, c: Dictionary) -> String:
-	return host.title(str(c.get("domain", ""))) + "的教团"
+	return host.session.cult_title(str(c.get("domain", "")))
 
 func _members_for(host, c: Dictionary) -> Array:
 	var result: Array = []
@@ -296,6 +296,7 @@ func _members_for(host, c: Dictionary) -> Array:
 
 func _role(host, p: Dictionary) -> String:
 	var roles: PackedStringArray = []
+	if not str(p.get("role_name", "")).is_empty(): roles.append(str(p.role_name))
 	for c: Dictionary in host.projection.get("cults", []):
 		if c.get("leader") == p.id: roles.append("领袖")
 	for a: Dictionary in host.projection.get("anchors", []):
@@ -601,7 +602,7 @@ func _world(host, box: VBoxContainer, id: String) -> void:
 		_heading(host, box, "已发动的反制")
 		for plan: Dictionary in plans:
 			box.add_child(host.label(host.crisis_summary(plan)))
-			var rule: Dictionary = host.session.catalog.tables.resistance_plans.get(str(plan.get("rule", "")), {})
+			var rule: Dictionary = host.session.catalog.display_tables.resistance_plans.get(str(plan.get("rule", "")), {})
 			box.add_child(host.label("若未阻止：" + str(rule.get("result", "后果尚未掌握"))))
 		box.add_child(host.label("察觉降低不会自动撤销已经发动的计划。"))
 	var sources: Dictionary = {}
@@ -656,7 +657,7 @@ func _institution(host, box: VBoxContainer, id: String) -> void:
 	for anchor: Dictionary in host.projection.get("anchors", []):
 		if anchor.get("institution") != id: continue
 		found = true
-		_object_link(host, box, "第%s锚点" % anchor.get("ordinal", "?"), _anchor_state(anchor) + " · 苏醒贡献 " + str(_anchor_contributions(host).get(anchor.id, 0)), "anchor", anchor.id, "anchor_status")
+		_object_link(host, box, host.title(str(anchor.institution)) + "锚点", _anchor_state(anchor) + " · 苏醒贡献 " + str(_anchor_contributions(host).get(anchor.id, 0)), "anchor", anchor.id, "anchor_status")
 	if not found:
 		box.add_child(host.label("尚无已知锚点。锚定需要护持者、圣物和适合当地的神迹联系。"))
 		_action(host, box, "准备在此锚定", "POWER_ANCHOR", {"domain":domain, "institution":id})
@@ -682,8 +683,8 @@ func _relic(host, box: VBoxContainer, id: String) -> void:
 	if not captor.is_empty() and captor != "尚未知晓": _pair(host, box, "扣押方", host.title(captor))
 	if not str(r.get("holder", "")).is_empty(): _link(host, box, "持有者 · " + host.title(r.holder), "person", r.holder)
 	if not str(r.get("anchor", "")).is_empty(): _link(host, box, "绑定的锚点", "anchor", r.anchor)
-	var definition: Dictionary = host.session.catalog.tables.relics.get(str(r.get("type", "")), {})
-	for field: String in ["carry_effect", "carry_cost"]:
+	var definition: Dictionary = host.session.catalog.display_tables.relics.get(str(r.get("type", "")), {})
+	for field: String in ["description", "carry_effect", "carry_cost", "anchor_role"]:
 		if definition.has(field): box.add_child(host.label(str(definition[field])))
 	_divider(box)
 	var actions: Array = {"controlled":["equip", "disassemble"], "ground":["recover"], "carried":["unequip", "disassemble"], "bound":["unbind"], "seized":["recover"]}.get(str(r.get("placement", "")), [])
@@ -762,7 +763,7 @@ func _opportunities(host, box: VBoxContainer, domain: String) -> void:
 			else: _divider(box)
 			shown[source] = true
 			var details: Dictionary = fact.get("changes", {})
-			var item: Dictionary = host.session.catalog.tables.relics.get(details.get("relic_type", ""), {})
+			var item: Dictionary = host.session.catalog.display_tables.relics.get(details.get("relic_type", ""), {})
 			var institution: String = RecordText.entity_name(host, str(details.get("institution", "")), str(fact.domain))
 			_heading(host, box, str(item.get("name", "圣物")) + (" · " + institution if not institution.is_empty() else ""))
 			if domain.is_empty(): box.add_child(host.label("发现于 " + host.title(str(fact.domain))))
@@ -975,18 +976,6 @@ func _fact(host, box: VBoxContainer, id: String) -> void:
 		for line: String in context: box.add_child(host.label(line))
 	if hidden: box.add_child(host.label("部分来由尚未获知。"))
 
-func _activity_purpose(mode: String) -> String:
-	return {
-		"private_devotion":"让知晓你的自愿者建立私人信仰联系。", "joint_work":"让两人共同工作，建立真实合作经历。",
-		"covert_gathering":"由成员组织秘密集会，发展当地信众。", "calendar_rite":"主持祭仪，发展信众并留下真实仪式经历。",
-		"record_practice":"持续运用同一档案，积累当地扎根所需的实践。", "calendar_keeping":"跨轮使用同一超常节拍，形成持续的历法依赖。",
-		"ritual_transmission":"传授祭仪，再由原学徒独自施行。", "memory_circle":"促成共同见闻，为后续保全记忆的祈求做准备。",
-		"memory_practice":"由原参加者跨轮再现共同记忆。", "dissent_practice":"由原参加者跨轮保留相斥的见证。",
-		"pact_agreement":"约定两端的记录保管，为后续履约祈求做准备。", "reciprocal_covenant":"约定双方的记录交付，再分轮履行。",
-		"network_exchange":"让两个真实节点交换并使用神迹记录。", "axiom_probe":"观察真实异常，取得独立的例外见证。",
-		"axiom_recheck":"让另一节点独立观察同一异常。", "axiom_repeat":"跨轮使用同一例外，形成持续的实际依赖。",
-	}.get(mode, "选择参加者，查看当前条件、代价和后果。")
-
 func _materials(host, box: VBoxContainer, domain: String) -> void:
 	# Legacy inspection root delegates directly; production routes to the single
 	# workbench before rendering this subject. Never configure a second draft.
@@ -994,12 +983,21 @@ func _materials(host, box: VBoxContainer, domain: String) -> void:
 	var selected_domain: String = str(cult.domain) if not cult.is_empty() else domain
 	_action(host, box, "安排当地活动", "route/context", {"domain":selected_domain} if not selected_domain.is_empty() else {})
 
+static func next_power_hint(catalog: RefCounted, awakening: int) -> String:
+	var next: Dictionary = {}
+	for power: Dictionary in catalog.display_tables.powers.values():
+		var threshold := int(power.unlock_awakening)
+		if threshold > awakening and (next.is_empty() or threshold < int(next.unlock_awakening)):
+			next = power
+	if next.is_empty(): return "全部权能已解锁"
+	return "下一权能 · %s　苏醒 %s 解锁 · 还差 %d" % [next.name, next.unlock_awakening, int(next.unlock_awakening) - awakening]
+
 func _self(host, box: VBoxContainer) -> void:
-	_heading(host, box, "本体与苏醒")
+	if not host is RefCounted: _heading(host, box, "本体与苏醒")
 	_pair(host, box, "当前苏醒", host.projection.get("awakening"))
+	box.add_child(host.label(next_power_hint(host.session.catalog, int(host.projection.get("awakening", 0))), true))
 	for value: Dictionary in host.projection.get("awakening_sources", []):
 		box.add_child(host.label((host.title(value.title) if value.get("kind") == "anchor" else str(value.get("title", "来源"))) + "　" + str(value.get("value", 0))))
-	_pair(host, box, "创伤", host.projection.get("wounds"))
 	var rest: Button = host.button("查看敛息与恢复代价", func() -> void: host.request_rest()); rest.disabled = not _is_action(host); box.add_child(rest)
 	_divider(box)
 	var manifest: Dictionary = host.projection.get("manifest", {})

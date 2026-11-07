@@ -205,7 +205,11 @@ func _build_top() -> void:
 			var readout: Array = resources[index]
 			var x := 268 + index * 148
 			_ui.icon(top, "ResourceIcon", readout[0], Rect2(x, 6, 23, 25))
-			_text(top, readout[1] + " " + readout[2], Rect2(x + 28, 0, 120, 36), 17)
+			var amount := _text(top, readout[1] + " " + readout[2], Rect2(x + 28, 0, 120, 36), 17)
+			if readout[0] == "awakening":
+				amount.name = "AwakeningReadout"
+				amount.tooltip_text = Views.next_power_hint(session.catalog, int(projection.awakening))
+				amount.mouse_filter = Control.MOUSE_FILTER_STOP
 		var entries: Array = [
 			["CultIndex", "教团", _tasks.open_subject.bind("cults", ""), "教团 %d" % projection.cults.size()],
 			["RelicIndex", "圣物", _tasks.open_subject.bind("relics", ""), "圣物 %d" % projection.relics.filter(func(item: Dictionary) -> bool: return item.get("placement") != "consumed").size()],
@@ -239,7 +243,7 @@ func _build_dock() -> void:
 		var unlocked := 0
 		for icon_key: String in UI.POWER_ICONS:
 			var key := "POWER_" + icon_key.to_upper()
-			var data: Dictionary = session.catalog.tables.powers[key]
+			var data: Dictionary = session.catalog.display_tables.powers[key]
 			var locked := int(data.unlock_awakening) > int(projection.awakening)
 			if not locked: unlocked += 1
 			var item: Button = Dock.power_entry(_ui, powers.row, key, data, locked, _show_power_reference.bind(key))
@@ -257,10 +261,9 @@ func _build_dock() -> void:
 			for index: int in relics.size():
 				var relic: Dictionary = relics[index]
 				var art_index: int = Dock.RELIC_IDS.find(str(relic.get("type", "")))
-				var definition: Dictionary = session.catalog.tables.relics.get(relic.get("type", ""), {})
+				var definition: Dictionary = session.catalog.display_tables.relics.get(relic.get("type", ""), {})
 				var state: String = Views.PLACEMENTS.get(relic.get("placement", ""), "未掌握")
-				var serial: String = str(relic.id).trim_prefix("RELIC/FACT-")
-				serial = str(serial.to_int()) if serial.is_valid_int() else "实例"
+				var serial: String = session.relic_context(str(relic.id))
 				var item: Button = Dock.relic_entry(_ui, collection.row, index, definition.get("name", "圣物"), state, _show_relic_reference.bind(relic.id), art_index if art_index >= 0 else 4, serial)
 				Dock.fit_entry(item, 0.76, 2 if _large_text else 0)
 				item.tooltip_text = "%s · %s" % [title(relic.id), state]
@@ -337,7 +340,7 @@ func _build_worlds() -> void:
 		var source := "已关注" if world.get("focused", false) else "祈求所指 · 有限线索"
 		var cult: Dictionary = _views._current_cult(self, world.id)
 		if not cult.is_empty(): source = "已知教团 · " + _views._strategy_name(str(projection.economy_plan.get("strategies", {}).get(cult.id, cult.strategy)))
-		var row := Composites.world_entry(_ui, rows, "World_" + world.id, {"name":world.title,"hint":source,"tag":"场景示意"}, _world_picture(world.id), _inspect_world.bind(world.id), 0.80, 3 if _large_text else 0)
+		var row := Composites.world_entry(_ui, rows, "World_" + world.id, {"name":world.title,"hint":source,"tag":"场景示意","multiline_name":str(world.title).length() > (4 if _large_text else 6)}, _world_picture(world.id), _inspect_world.bind(world.id), 0.80, 3 if _large_text else 0)
 		row.accessibility_name = world.title
 		_world_buttons[world.id] = row
 	_world_matches = _text(_stage, "", Rect2(26, 416, 208, 30), 13, UI.MUTED)
@@ -385,6 +388,8 @@ func _select_world(id: String) -> void:
 		for state: String in ["normal", "hover", "pressed", "disabled"]: help.add_theme_stylebox_override(state, StyleBoxEmpty.new())
 		help.accessibility_name = "查看" + str(metric[1]) + "情报说明"
 		help.accessibility_description = _views.metric_help_text(world, metric[0])
+		if metric[0] == "pollution" and _views._current_cult(self, id).has("pollution_preview"):
+			help.accessibility_description += " · 持续影响见教团"
 		help.mouse_entered.connect(func() -> void:
 			_set_keyboard(false)
 			_update_metric_hint())
@@ -745,10 +750,10 @@ func _show_menu() -> void:
 	_ui.icon(emblem, "MenuEmblem", "awakening", Rect2(6, 6, 56, 52))
 	_text(emblem, "本局旅程" if active else "开启旅程", Rect2(74, 4, 145, 30), 19, UI.GOLD_HI)
 	_text(emblem, "第 %s 回合 · %s" % [projection.turn, projection.phase_title] if active else "世界尚未展开", Rect2(74, 33, 150, 28), 14, UI.MUTED)
-	_line(journey, "新局种子", 16, UI.MUTED)
+	_line(journey, "新局种子（可选）", 16, UI.MUTED)
 	var seed_field := LineEdit.new()
 	seed_field.name = "Seed"
-	seed_field.text = "1"
+	seed_field.placeholder_text = "留空随机"
 	seed_field.accessibility_name = "世界种子"
 	seed_field.custom_minimum_size.y = 39
 	seed_field.add_theme_font_size_override("font_size", _size(17))
@@ -757,11 +762,13 @@ func _show_menu() -> void:
 	journey.add_child(seed_field)
 	var status := _line(journey, _notice_text, 16, _notice_color)
 	var new_game := _button(journey, "NewGame", "开始新局", Rect2(), func() -> void:
-		if not seed_field.text.is_valid_int():
+		var seed_text := seed_field.text.strip_edges()
+		if not seed_text.is_empty() and not seed_text.is_valid_int():
 			status.add_theme_color_override("font_color", UI.RISK)
 			status.text = "请输入整数种子。"
 			return
-		_confirm_switch("开始新局", _start_new.bind(seed_field.text.to_int())))
+		var seed_value: int = randi_range(1, 2147483647) if seed_text.is_empty() else seed_text.to_int()
+		_confirm_switch("开始新局", _start_new.bind(seed_value)))
 	new_game.custom_minimum_size = Vector2(145, 40)
 	var menu_items := VBoxContainer.new()
 	menu_items.size_flags_horizontal = Control.SIZE_EXPAND_FILL

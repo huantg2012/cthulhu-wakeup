@@ -13,6 +13,7 @@ func _row(session: RefCounted, key: String, title: String, fields: Array, select
 	var resolved: Dictionary = Eligibility.fields(view, session.knowledge_snapshot(), session.modules, key, selection, session.object_title)
 	view.reader.close()
 	fields = resolved.get("fields", [])
+	_word_fields(session, fields)
 	var row: Dictionary = {"key": key, "title": title, "fields": fields, "details": session._public(details)}
 	var prepared: Dictionary = _prepare(session, key, selection, fields)
 	row["preview"] = _player_preview(session, prepared)
@@ -22,6 +23,12 @@ func _row(session: RefCounted, key: String, title: String, fields: Array, select
 		row.preview["当前进展"] = row.details.duplicate(true)
 	return row
 
+func _word_fields(session: RefCounted, fields: Array) -> void:
+	for field: Dictionary in fields:
+		if field.get("key") != "operation": continue
+		for option: Dictionary in field.get("options", []):
+			option.label = session.catalog.display_tables.progression_route_operations.get(option.id, {}).get("name", option.label)
+
 func _player_preview(session: RefCounted, prepared: Dictionary) -> Dictionary:
 	if not prepared.get("ok", false): return session._public(prepared)
 	return {"ok": true, "preview": session._public(prepared.get("preview", {})), "irreversible": prepared.get("irreversible", false)}
@@ -29,7 +36,9 @@ func _player_preview(session: RefCounted, prepared: Dictionary) -> Dictionary:
 func _context(session: RefCounted, descriptor: Dictionary, card: Dictionary) -> Dictionary:
 	var content: String = str(descriptor.get("content_id", card.get("content_id", "")))
 	var details: Dictionary = {}
-	var prayer: Dictionary = session.catalog.tables.prayers.get(content, {})
+	if descriptor.get("space", false):
+		return {"本次求告": str(descriptor.get("appeal", "")), "祈求人": session.object_title(str(descriptor.get("subjects", {}).get("petitioner", ""))), "所在时空": session.object_title(str(descriptor.get("domain", ""))), "请求期限": "第 %d 轮" % int(card.get("due_turn", 0))}
+	var prayer: Dictionary = session.catalog.display_tables.prayers.get(content, {})
 	if not prayer.is_empty():
 		details["当前诉求"] = session.prayer_title(descriptor, card)
 		details["求告方向"] = "定向" if descriptor.get("addressing", "undirected") == "directed" else "无向"
@@ -41,11 +50,11 @@ func _context(session: RefCounted, descriptor: Dictionary, card: Dictionary) -> 
 			var subject: Variant = descriptor.subjects[role]
 			details[roles[role]] = subject.map(func(id: Variant) -> String: return session.object_title(str(id))) if subject is Array else session.object_title(str(subject))
 		details["所在时空"] = session.object_title(str(descriptor.get("domain", card.get("domain", ""))))
-		if content == "PRAYER_08": details["本次求告"] = session.catalog.tables.prayer_addressing_modes[str(descriptor.get("addressing", "undirected"))].devotion_text
+		if content == "PRAYER_08": details["本次求告"] = session.catalog.display_tables.prayer_addressing_modes[str(descriptor.get("addressing", "undirected"))].devotion_text
 		if card.has("due_turn"): details["请求期限"] = "第 %d 轮" % int(card.due_turn)
 		if descriptor.get("crisis", {}).has("due"): details["原危机期限"] = "第 %d 轮" % int(descriptor.crisis.due)
 		return session._public(details)
-	details["当前处境"] = session.catalog.tables.events.get(content, {}).get("title", "已固定的事件")
+	details["当前处境"] = session.catalog.display_tables.events.get(content, {}).get("title", "已固定的事件")
 	if descriptor.get("prayer_descriptor") is Dictionary:
 		var original: Dictionary = _context(session, descriptor.prayer_descriptor, card)
 		details.merge(original)
@@ -84,7 +93,7 @@ func _context(session: RefCounted, descriptor: Dictionary, card: Dictionary) -> 
 func _manifest_context(session: RefCounted) -> Dictionary:
 	var manifest: Dictionary = session.world.state.power_system.manifest
 	if manifest.is_empty(): return {}
-	return session._public({"固定仪式主体": session.object_title(manifest.npc), "固定宇宙锚点": manifest.cosmic_anchor, "固定星系锚点": manifest.system_anchor, "已付仪式轮次": manifest.progress, "仪式总轮次": session.catalog.integer("manifest_duration"), "最近实付回合": manifest.paid_turn, "持续规则": session.catalog.tables.powers.POWER_MANIFEST.notes})
+	return session._public({"固定仪式主体": session.object_title(manifest.npc), "固定宇宙锚点": manifest.cosmic_anchor, "固定星系锚点": manifest.system_anchor, "已付仪式轮次": manifest.progress, "仪式总轮次": session.catalog.integer("manifest_duration"), "最近实付回合": manifest.paid_turn, "持续规则": session.catalog.display_tables.powers.POWER_MANIFEST.notes})
 
 func _matches(key: String, scope: String, exact: bool) -> bool:
 	return key == scope if exact else key.begins_with(scope)
@@ -116,24 +125,34 @@ func list_entries(session: RefCounted, scope: String = "", exact: bool = false) 
 			var descriptor: Dictionary = entry.descriptor
 			for option: String in session.modules.events.Rules.active_choices(session.catalog, descriptor.content_id):
 				if not _matches("event/" + event.id + "/" + option, scope, exact): continue
-				var effect: Dictionary = session.catalog.tables.event_effects[descriptor.content_id + "/" + option]
+				var effect: Dictionary = session.catalog.display_tables.event_effects[descriptor.content_id + "/" + option]
 				var details: Dictionary = _context(session, descriptor, entry.card)
-				details.merge({"选项名称": session.catalog.tables.events[descriptor.content_id]["choice_" + option.to_lower()], "选择后果": effect.on_choose, "不可逆代价": effect.irreversible_cost, "信仰费用": int(effect.faith_cost)})
-				rows.append(_entry("event/" + event.id + "/" + option, session.catalog.tables.events[descriptor.content_id].title + " · " + option, details))
+				details.merge({"选项名称": session.catalog.display_tables.events[descriptor.content_id]["choice_" + option.to_lower()], "选择后果": effect.on_choose, "不可逆代价": effect.irreversible_cost, "信仰费用": int(effect.faith_cost)})
+				rows.append(_entry("event/" + event.id + "/" + option, session.catalog.display_tables.events[descriptor.content_id].title + " · " + option, details))
 		return rows
 	if session.turn.context.phase != "actions": return rows
 	if session.modules.has("progression_routes") and _matches("route/context", scope, exact):
 		rows.append(_entry("route/context", "促成当前进展", {"行动": "选择当前人物可促成的组织、实践或约定。准备完成的记忆与保管约定从原祈求回应。"}))
-	for id: String in session.world.state.prayer_system.offered:
-		var request: Dictionary = session.prayer_entry(id)
+	for request: Dictionary in session.visible_prayer_entries():
+		var id: String = str(request.card.id)
+		if request.descriptor.get("space", false):
+			for choice: Dictionary in session.modules.prayers.space_choices(session.world.state, id):
+				var key: String = "prayer/" + id + "/" + str(choice.id)
+				if not _matches(key, scope, exact): continue
+				var details: Dictionary = _context(session, request.descriptor, request.card)
+				details["回应"] = str(choice.get("hint", "具体后果未知。" if choice.get("disclosure") == "unknown" else ""))
+				rows.append(_entry(key, str(choice.label), details))
+			var dismiss: String = "prayer/" + id + "/dismiss"
+			if _matches(dismiss, scope, exact): rows.append(_entry(dismiss, "不再回应", _context(session, request.descriptor, request.card)))
+			continue
 		var content: String = request.card.content_id
 		for variant: String in ["shallow", "deep"]:
 			if not _matches("prayer/" + id + "/" + variant, scope, exact): continue
-			var prayer: Dictionary = session.catalog.tables.prayers[content]
+			var prayer: Dictionary = session.catalog.display_tables.prayers[content]
 			var details: Dictionary = _context(session, request.descriptor, request.card)
-			details.merge({"回应所得": prayer[variant + "_gain"], "始终代价": prayer[variant + "_cost"]})
+			details["回应"] = str(prayer.get(variant + "_hint", ""))
 			rows.append(_entry("prayer/" + id + "/" + variant, session.prayer_title(request.descriptor, request.card) + (" · 浅触" if variant == "shallow" else " · 深应"), details))
-	for power: Dictionary in session.catalog.tables.powers.values():
+	for power: Dictionary in session.catalog.display_tables.powers.values():
 		if _matches(power.id, scope, exact): rows.append(_entry(power.id, power.name, {"requirement": power.target_requirement, "always": power.always_cost, "success": power.success, "deep": power.deep_success, "failure": power.failure, "disaster": power.disaster}))
 	if not session.world.state.power_system.manifest.is_empty():
 		for id: String in ["POWER_MANIFEST_CONTINUE", "POWER_MANIFEST_CANCEL"]:
@@ -157,7 +176,9 @@ func _fields_for(session: RefCounted, key: String, selection: Dictionary) -> Arr
 	var view: Dictionary = session.turn._read_view(Eligibility.participant(key), session.turn.context.phase)
 	var resolved: Dictionary = Eligibility.fields(view, session.knowledge_snapshot(), session.modules, key, selection, session.object_title)
 	view.reader.close()
-	return resolved.get("fields", [])
+	var fields: Array = resolved.get("fields", [])
+	_word_fields(session, fields)
+	return fields
 
 func choices(session: RefCounted, key: String, selection: Dictionary = {}) -> Dictionary:
 	var fields: Array = _fields_for(session, key, selection)
@@ -178,7 +199,7 @@ func _prepare(session: RefCounted, key: String, selection: Dictionary, _fields: 
 	# qualification internals remain in the rule layer.
 	var plan: Dictionary = prepared.preview
 	var visible: Dictionary = {}
-	for field: String in ["faith", "whispers", "faith_cost", "probability", "net_gain", "awakening_loss", "consumes", "needs"]:
+	for field: String in ["faith", "whispers", "faith_cost", "probability", "net_gain", "awakening_loss", "consumes", "needs", "first_upkeep", "disclosure", "approach", "intensity", "hint", "success_target", "omen", "disaster_text", "effect", "tradeoff", "pollution", "alert"]:
 		if plan.has(field): visible[field] = plan[field].duplicate(true) if plan[field] is Dictionary or plan[field] is Array else plan[field]
 	if key in ["POWER_MANIFEST", "POWER_MANIFEST_CONTINUE"]:
 		var paid: int = int(session.world.state.power_system.manifest.get("progress", 0)) if key == "POWER_MANIFEST_CONTINUE" else 0
@@ -188,7 +209,10 @@ func _prepare(session: RefCounted, key: String, selection: Dictionary, _fields: 
 		# The rule plan estimates a check for preparation math, but early payments
 		# do not roll or lock that final result. Do not present it as this action.
 		if visible.ritual_pending: visible["probability"] = -1
-	if visible.has("probability") and int(visible.probability) >= 0:
+	if key.begins_with("prayer/"):
+		for field: String in ["omen", "disaster_text", "effect", "tradeoff", "pollution", "alert"]: visible.erase(field)
+		if visible.has("probability") and int(visible.probability) >= 0: visible["success_target"] = int(visible.probability)
+	elif visible.has("probability") and int(visible.probability) >= 0:
 		var outcomes: Dictionary = {"deep": 0, "success": 0, "failure": 0, "disaster": 0}
 		for roll: int in range(1, 101): outcomes[session.world.check_result(int(visible.probability), roll)] += 1
 		visible["outcomes"] = outcomes
@@ -209,7 +233,7 @@ func _route_details(session: RefCounted, selection: Dictionary, fields: Array) -
 	var details: Dictionary = {"行动": action}
 	var npc: String = str(chosen.get("npc", "")); var operation: String = str(chosen.get("operation", ""))
 	if npc.is_empty() or operation.is_empty(): return details
-	var row: Dictionary = session.catalog.tables.progression_route_operations.get(operation, {})
+	var row: Dictionary = session.catalog.display_tables.progression_route_operations.get(operation, {})
 	if row.is_empty(): return details
 	var people: Array = [npc]
 	people.append_array(chosen.get("participants", []))

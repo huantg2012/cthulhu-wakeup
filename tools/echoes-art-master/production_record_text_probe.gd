@@ -42,7 +42,7 @@ func run() -> void:
 	assert(text.contains("共同记忆") and text.contains("当前条件") and not text.contains("NEVER_REVEAL"))
 	var opportunity := {"kind":"institution_relic_opportunity", "domain":"DOMAIN-001", "changes":{"relic_type":"RELIC_HOLLOW_SEAL", "due":3}, "targets":[]}
 	text = visible(Text.summarize(host, opportunity))
-	assert(text.contains("空名印") and text.contains("第 3 轮到期") and text.contains("等待不会延长"))
+	assert(text.contains("无字印章") and text.contains("第 3 轮到期") and text.contains("等待不会延长"))
 	var effect := {"kind":"power_effect", "changes":{"power":"POWER_BESTOW", "field":"sanity", "requested":-8, "actual":-2}, "targets":[]}
 	text = visible(Text.summarize(host, effect))
 	assert(text.contains("理智 -2") and not text.contains("-8"))
@@ -60,14 +60,14 @@ func run() -> void:
 	var named := Host.new()
 	named.projection = {"people":[{"id":"NPC-00000007", "title":"记录者 · 00000007"}, {"id":"NPC-00000008", "title":"记录者 · 00000008"}, {"id":"NPC-00000009", "title":"祭司 · 00000009"}]}
 	var identities: Dictionary = named.projection.duplicate(true)
-	assert(Text.entity_name(named, "NPC-00000007") == "记录者 · 7")
-	assert(Text.entity_name(named, "NPC-00000008") == "记录者 · 8")
+	assert(Text.entity_name(named, "NPC-00000007") == "记录者")
+	assert(Text.entity_name(named, "NPC-00000008") == "记录者")
 	assert(Text.entity_name(named, "NPC-00000009") == "祭司")
 	assert(Text.entity_name(named, "NPC-99999999").is_empty())
 	assert(named.projection == identities)
 	var remembrance := {"kind":"shared_observation", "actor":"NPC-00000007", "targets":["NPC-00000007", "NPC-00000008", "NPC-99999999"], "changes":{}}
 	text = visible(Text.summarize(named, remembrance))
-	assert(text.contains("记录者 · 7") and text.contains("记录者 · 8") and not text.contains("000000") and not text.contains("999"))
+	assert(text.contains("记录者") and not text.contains("000000") and not text.contains("999"))
 	assert(host.session.turn.snapshot() == before and host.session.knowledge_snapshot() == knowledge)
 	print("PLAYER_RECORD_TEXT_OK public_records=", count, " fallback_kinds=", fallback_kinds.keys())
 	quit()

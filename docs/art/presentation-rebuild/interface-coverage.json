@@ -123,7 +123,7 @@
     {
       "id": "POWER_ORACLE",
       "name": "谕言",
-      "unlock_awakening": "10",
+      "unlock_awakening": "14",
       "whispers": "1",
       "faith": "4",
       "check_kind": "occult",
@@ -140,7 +140,7 @@
     {
       "id": "POWER_BESTOW",
       "name": "赐予",
-      "unlock_awakening": "10",
+      "unlock_awakening": "56",
       "whispers": "2",
       "faith": "6",
       "check_kind": "occult",
@@ -174,7 +174,7 @@
     {
       "id": "POWER_SACRIFICE",
       "name": "献祭",
-      "unlock_awakening": "20",
+      "unlock_awakening": "34",
       "whispers": "2",
       "faith": "0",
       "check_kind": "occult",
@@ -191,7 +191,7 @@
     {
       "id": "POWER_BREACH",
       "name": "穿隙",
-      "unlock_awakening": "20",
+      "unlock_awakening": "70",
       "whispers": "2",
       "faith": "8",
       "check_kind": "occult",
@@ -208,7 +208,7 @@
     {
       "id": "POWER_SEED",
       "name": "播种",
-      "unlock_awakening": "20",
+      "unlock_awakening": "26",
       "whispers": "2",
       "faith": "6",
       "check_kind": "social",
@@ -242,7 +242,7 @@
     {
       "id": "POWER_VEIL",
       "name": "掩迹",
-      "unlock_awakening": "10",
+      "unlock_awakening": "18",
       "whispers": "2",
       "faith": "5",
       "check_kind": "social",
@@ -259,7 +259,7 @@
     {
       "id": "POWER_TRANSFER",
       "name": "迁引",
-      "unlock_awakening": "40",
+      "unlock_awakening": "44",
       "whispers": "2",
       "faith": "8",
       "check_kind": "social",

@@ -3,17 +3,21 @@ extends RefCounted
 const UI = preload("res://src/presentation/ui/ui_components.gd")
 
 static func world_entry(ui: RefCounted, parent: Node, title: String, data: Dictionary, picture: Texture2D, callback: Callable, unit: float = 1.0, text_delta: int = 0) -> Button:
-	var row: Button = ui.button(parent,title,"",_rect(0,0,270,96,unit),callback,false,true)
-	row.custom_minimum_size = Vector2(0,96 * unit)
+	var multiline: bool = data.get("multiline_name", false)
+	var extra := (88 if text_delta > 0 else 28) if multiline else 0
+	var row: Button = ui.button(parent,title,"",_rect(0,0,270,96 + extra,unit),callback,false,true)
+	row.custom_minimum_size = Vector2(0,(96 + extra) * unit)
 	row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.set_meta("search_text",str(data.name))
-	ui.image(row,"Portrait",_rect(0,0,91,96,unit),picture,Color.WHITE,TextureRect.STRETCH_KEEP_ASPECT_COVERED)
-	ui.gradient(row,"PortraitFade",_rect(70,0,32,96,unit),Color(0.02,0.033,0.032,0),Color(0.02,0.033,0.032,0.83),true)
-	ui.label(row,"Name",str(data.name),_rect(105,8,156,31,unit),roundi(22 * unit) + text_delta,UI.GOLD_HI,true)
-	ui.label(row,"Hint",str(data.hint),_rect(105,44,162,28,unit),roundi(17 * unit) + text_delta,UI.RISK if data.get("risk",false) else UI.BONE)
-	ui.label(row,"Tag",str(data.get("tag","")),_rect(105,70,142,23,unit),roundi(14 * unit) + text_delta,UI.MUTED)
+	ui.image(row,"Portrait",_rect(0,0,91,96 + extra,unit),picture,Color.WHITE,TextureRect.STRETCH_KEEP_ASPECT_COVERED)
+	ui.gradient(row,"PortraitFade",_rect(70,0,32,96 + extra,unit),Color(0.02,0.033,0.032,0),Color(0.02,0.033,0.032,0.83),true)
+	ui.label(row,"Name",str(data.name),_rect(105,8,156,31 + extra,unit),roundi(22 * unit) + text_delta,UI.GOLD_HI,true,multiline)
+	ui.label(row,"Hint",str(data.hint),_rect(105,44 + extra,162,28,unit),roundi(17 * unit) + text_delta,UI.RISK if data.get("risk",false) else UI.BONE)
+	ui.label(row,"Tag",str(data.get("tag","")),_rect(105,70 + extra,142,23,unit),roundi(14 * unit) + text_delta,UI.MUTED)
 	select_entry(ui,row,bool(data.get("selected",false)))
 	_fit_labels(row)
+	if multiline:
+		row.get_node("Name").text_overrun_behavior = TextServer.OVERRUN_NO_TRIMMING
 	return row
 
 static func select_entry(ui: RefCounted, row: Button, selected: bool) -> void:

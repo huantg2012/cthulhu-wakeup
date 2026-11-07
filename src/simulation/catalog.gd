@@ -1,10 +1,13 @@
 extends RefCounted
 const AnchorRoutes = preload("res://src/game/anchor_routes.gd")
 const SocialGraph = preload("res://src/simulation/social_graph.gd")
+const PlayerText = preload("res://src/content/player_text.gd")
 ## The authored CSV catalog is the only source of gameplay values.
 ## Loading is transactional: malformed content never replaces an existing catalog.
 
 const ATTRIBUTES: Array[String] = ["will", "insight", "influence", "adaptation"]
+## Immutable compatibility revision; all gameplay values remain in its CSV.
+const LEGACY_POWERS_VERSION: String = "e86154df2bf0bb004acf35db2f26bf9abe4b5c65b7bc1ca07e617ede0b3d0ba6"
 const FILES: Array[String] = [
 	"npc_profiles", "civilization_profiles", "civilization_conditions", "civilization_parameters", "run_parameters",
 	"npc_behaviors", "simulation_parameters", "civilization_actions", "resistance_plans", "event_parameters",
@@ -21,24 +24,36 @@ const CIVILIZATION_EFFECT_SIGNATURES: Dictionary = {
 	"rewrite_reality": ["interpretation", "confirmed_exception", "record"],
 }
 var tables: Dictionary = {}
+var display_tables: Dictionary = {}
+var player_text: RefCounted
+var prayer_space: RefCounted
+var cult_pollution: RefCounted
 var parameters: Dictionary = {}
 var version: String = ""
 var extension_versions: Dictionary = {}
 var errors: Array[String] = []
 
-func load_files(directory: String = "res://data") -> bool:
+func load_files(directory: String = "res://data", powers_revision: String = "", sustained_pollution := false) -> bool:
 	var candidate: Dictionary = {}
 	var candidate_parameters: Dictionary = {}
 	var digest_input: String = ""
 	var candidate_extensions: Dictionary = {}
 	errors.clear()
+	if not powers_revision.is_empty() and powers_revision != LEGACY_POWERS_VERSION:
+		errors.append("Unsupported power rules revision")
+		return false
 	for name: String in FILES + EXTENSIONS:
 		var path: String = directory.path_join(name + ".csv")
+		if name == "powers" and powers_revision == LEGACY_POWERS_VERSION:
+			path = directory.path_join("legacy/powers-before-2026-11-07.csv")
 		var file: FileAccess = FileAccess.open(path, FileAccess.READ)
 		if file == null:
 			errors.append("Missing CSV: " + path)
 			continue
 		var content: String = name + "\n" + file.get_as_text() + "\n"
+		if name == "powers" and not powers_revision.is_empty() and content.sha256_text() != powers_revision:
+			errors.append("Legacy power rules revision does not match its CSV")
+			continue
 		if name == "npc_profiles": candidate_extensions[name] = content.sha256_text()
 		if name in EXTENSIONS: candidate_extensions[name] = content.sha256_text()
 		else: digest_input += content
@@ -123,7 +138,25 @@ func load_files(directory: String = "res://data") -> bool:
 		errors.append_array(_validate_world_intelligence(candidate, candidate_parameters))
 	if not errors.is_empty():
 		return false
+	var wording := PlayerText.new()
+	if not wording.load_files(candidate, directory):
+		errors.append_array(wording.errors)
+		return false
+	var prayers := preload("res://src/content/prayer_space_catalog.gd").new()
+	if not prayers.load_files(directory):
+		errors.append_array(prayers.errors)
+		return false
+	var pollution: RefCounted
+	if sustained_pollution:
+		pollution = preload("res://src/simulation/cult_pollution.gd").new()
+		if not pollution.load_file(directory.path_join("cult_pollution_parameters.csv")):
+			errors.append_array(pollution.errors)
+			return false
+	cult_pollution = pollution
+	prayer_space = prayers
 	tables = candidate
+	display_tables = wording.tables
+	player_text = wording
 	parameters = candidate_parameters
 	version = digest_input.sha256_text()
 	extension_versions = candidate_extensions
