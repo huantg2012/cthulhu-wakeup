@@ -81,6 +81,17 @@ func build(host, result: Dictionary, before: Dictionary, after: Dictionary, acti
 	if lines.is_empty(): lines.append("行动已执行。")
 	return lines
 
+func pollution_lines(row: Dictionary) -> Array[String]:
+	var lines: Array[String] = []
+	var estimate: bool = row.get("estimated", true)
+	lines.append("教团规模 +%.2f  ·  成员影响 +%.2f" % [float(row.size) / 1000, float(row.named) / 1000])
+	var decay: String = "自然消退 %s%.2f" % ["至多 −" if estimate and row.decay > 0 else ("−" if row.decay > 0 else ""), float(row.decay) / 1000]
+	var net: String = "净变化待查" if estimate else "净变化 %+.2f" % (float(row.net) / 1000)
+	lines.append(decay + "  ·  " + net)
+	if row.has("support"):
+		lines.append("当前可支撑的污染约 %.1f" % (float(row.support) / 1000))
+	return lines
+
 func cult_settlement_lines(host, records: Array, include_name := true) -> Array[String]:
 	var lines: Array[String] = []
 	for row: Dictionary in records:
@@ -94,6 +105,9 @@ func cult_settlement_lines(host, records: Array, include_name := true) -> Array[
 			lines.append(line)
 		elif row.kind == "economy_income":
 			lines.append(prefix + "实际入账 %s 信仰" % row.actual)
+		elif row.kind == "cult_pollution_report":
+			lines.append(prefix + ("持续污染潜力" if row.estimated else "持续污染结算"))
+			lines.append_array(pollution_lines(row))
 	return lines
 
 func resource_summary(before: Dictionary, after: Dictionary) -> String:

@@ -234,7 +234,7 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String 
 	var progress: Dictionary = plan.progress.duplicate(true)
 	if progress.is_empty(): progress = {"operation": plan.operation, "npc": plan.npc, "people": plan.people.duplicate(), "turn": -1, "uses": [], "record": str(plan.payload.get("record", ""))}
 	if outcome in ["success", "deep"]:
-		domain.pollution = mini(catalog.integer("attribute_max"), int(domain.pollution) + int(row.success_pollution if not str(row.success_pollution).is_empty() else 0))
+		world.change_pollution(plan.domain, int(row.success_pollution) if not str(row.success_pollution).is_empty() else 0)
 		if not _success(world, plan, progress, result, owner, token): return false
 	progress.turn = world.state.turn; progress["source"] = result
 	progress.npc = plan.npc; progress.people = plan.people.duplicate()

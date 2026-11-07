@@ -166,7 +166,10 @@ func _apply(scene: Dictionary, updates: Dictionary) -> Dictionary:
 func _metric(world: RefCounted, scene: Dictionary, field: String, amount: int, source: String) -> String:
 	var domain: Dictionary = world.state.domains[scene.domain]
 	var before: int = domain[field]
-	domain[field] = clampi(before + amount, 0, catalog.integer("attribute_max"))
+	if field == "pollution":
+		world.change_pollution(scene.domain, amount)
+	else:
+		domain[field] = clampi(before + amount, 0, catalog.integer("attribute_max"))
 	if field == "pollution" and domain[field] > before: domain.pollution_changed_turn = world.state.turn
 	if field == "alert" and domain[field] > before: domain.exposure_turn = world.state.turn
 	return world._record("prayer_delta", scene.domain, scene.roles.petitioner, [scene.domain], [source], {"request": scene.id, "field": field, "before": before, "after": int(domain[field]), "amount": int(domain[field]) - before})

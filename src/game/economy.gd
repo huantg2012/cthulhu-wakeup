@@ -52,6 +52,7 @@ func install(turn: RefCounted) -> bool:
 	if not initialize(turn.world, turn):
 		return false
 	var version: String = "2/anchor-routes1/" + Anchors.rule_version(catalog) + "/" + JSON.stringify(issuers, "", true, true).sha256_text()
+	if catalog.cult_pollution != null: version += "/" + catalog.cult_pollution.version
 	return turn.register_participant(ID, version, ["round_start", "prepay", "evolution", "income"], ["economy"], handle, validate_plan)
 
 func handle(view: Dictionary, input: Dictionary) -> Dictionary:

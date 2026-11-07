@@ -336,6 +336,9 @@ func _show_cult(focus_name: String, reading_scroll := 0) -> void:
 	if not str(cult.get("leader", "")).is_empty(): host._line(body, "领袖 · " + host.title(cult.leader), 16)
 	var order: String = host.projection.economy_plan.get("strategies", {}).get(cult.id, cult.strategy)
 	host._line(body, "已登记指令 · " + host._views._strategy_name(order), 17, UI.GOLD)
+	if cult.has("pollution_preview"):
+		host._line(body, "持续污染预估", 16, UI.CYAN)
+		for line: String in host._feedback.pollution_lines(cult.pollution_preview): host._line(body, line, 16)
 	var last: Array = _settlements.get(cult.id, [])
 	if not last.is_empty():
 		host._line(body, "第 %s 轮实际经营" % last[0].turn, 15, UI.CYAN)

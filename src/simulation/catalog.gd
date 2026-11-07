@@ -27,12 +27,13 @@ var tables: Dictionary = {}
 var display_tables: Dictionary = {}
 var player_text: RefCounted
 var prayer_space: RefCounted
+var cult_pollution: RefCounted
 var parameters: Dictionary = {}
 var version: String = ""
 var extension_versions: Dictionary = {}
 var errors: Array[String] = []
 
-func load_files(directory: String = "res://data", powers_revision: String = "") -> bool:
+func load_files(directory: String = "res://data", powers_revision: String = "", sustained_pollution := false) -> bool:
 	var candidate: Dictionary = {}
 	var candidate_parameters: Dictionary = {}
 	var digest_input: String = ""
@@ -145,6 +146,13 @@ func load_files(directory: String = "res://data", powers_revision: String = "") 
 	if not prayers.load_files(directory):
 		errors.append_array(prayers.errors)
 		return false
+	var pollution: RefCounted
+	if sustained_pollution:
+		pollution = preload("res://src/simulation/cult_pollution.gd").new()
+		if not pollution.load_file(directory.path_join("cult_pollution_parameters.csv")):
+			errors.append_array(pollution.errors)
+			return false
+	cult_pollution = pollution
 	prayer_space = prayers
 	tables = candidate
 	display_tables = wording.tables

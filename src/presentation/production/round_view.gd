@@ -388,6 +388,8 @@ func _select_world(id: String) -> void:
 		for state: String in ["normal", "hover", "pressed", "disabled"]: help.add_theme_stylebox_override(state, StyleBoxEmpty.new())
 		help.accessibility_name = "查看" + str(metric[1]) + "情报说明"
 		help.accessibility_description = _views.metric_help_text(world, metric[0])
+		if metric[0] == "pollution" and _views._current_cult(self, id).has("pollution_preview"):
+			help.accessibility_description += " · 持续影响见教团"
 		help.mouse_entered.connect(func() -> void:
 			_set_keyboard(false)
 			_update_metric_hint())

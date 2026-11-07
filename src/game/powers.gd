@@ -377,7 +377,10 @@ func _delta(world: RefCounted, plan: Dictionary, row: Dictionary, amount: int, s
 		return actual == 0 or world.submit({"kind": "population", "domain": domain_id, "mode": "convert" if amount > 0 else "leave", "amount": actual, "parents": [source]}, owner, true)
 	if not field in ["alert", "pollution", "barrier"]: return false
 	var before: int = int(state.domains[domain_id][field])
-	state.domains[domain_id][field] = clampi(before + amount, 0, catalog.integer("attribute_max"))
+	if field == "pollution":
+		world.change_pollution(domain_id, amount)
+	else:
+		state.domains[domain_id][field] = clampi(before + amount, 0, catalog.integer("attribute_max"))
 	var actual: int = int(state.domains[domain_id][field]) - before
 	var result_source: String = world._record("power_effect", domain_id, plan.npc, [] if plan.npc.is_empty() else [plan.npc], [source], {"power": plan.power, "field": field, "requested": amount, "actual": actual})
 	if field == "pollution" and actual > 0: state.domains[domain_id].pollution_changed_turn = state.turn

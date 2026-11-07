@@ -516,7 +516,10 @@ func _delta(world: RefCounted, plan: Dictionary, row: Dictionary, amount: int, s
 				if actual > 0 and not world.submit({"kind": "population", "domain": id, "mode": "convert" if amount > 0 else "leave", "amount": actual, "parents": [source]}, owner, true): return false
 			else:
 				var before: int = domain[field]
-				domain[field] = clampi(before + amount, 0, catalog.integer("attribute_max"))
+				if field == "pollution":
+					world.change_pollution(id, amount)
+				else:
+					domain[field] = clampi(before + amount, 0, catalog.integer("attribute_max"))
 				if field == "pollution" and domain[field] > before: domain.pollution_changed_turn = world.state.turn
 				if field == "alert" and domain[field] > before: domain.exposure_turn = world.state.turn
 				if field == "barrier" and domain[field] != before: domain.barrier_source = source

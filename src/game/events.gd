@@ -571,9 +571,12 @@ func _delta(world: RefCounted, descriptor: Dictionary, row: Dictionary, source: 
 			var actual: int = mini(absi(amount), int(domain.unnamed_nonfollowers) if amount >= 0 else int(domain.unnamed_followers))
 			if actual > 0 and not world.submit({"kind": "population", "domain": descriptor.domain, "mode": "convert" if amount > 0 else "leave", "amount": actual, "parents": [source]}, owner, true): return false
 		else:
-			domain[field] = clampi(int(domain[field]) + amount, 0, catalog.integer("attribute_max"))
+			if field == "pollution":
+				world.change_pollution(descriptor.domain, amount)
+			else:
+				domain[field] = clampi(int(domain[field]) + amount, 0, catalog.integer("attribute_max"))
 			if field == "alert" and amount > 0: domain.exposure_turn = world.state.turn
-			if field == "pollution" and amount > 0: domain.pollution_changed_turn = world.state.turn
+			if field == "pollution" and amount > 0 and catalog.cult_pollution == null: domain.pollution_changed_turn = world.state.turn
 	else:
 		for id: String in targets:
 			var person: Dictionary = world.mutable_npc(id)

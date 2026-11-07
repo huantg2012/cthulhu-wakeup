@@ -6,6 +6,7 @@ const World = preload("res://src/simulation/world.gd")
 const Turn = preload("res://src/game/turn.gd")
 const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
+const CultPollution = preload("res://src/simulation/cult_pollution.gd")
 const Economy = preload("res://src/game/economy.gd")
 const Cults = preload("res://src/game/cults.gd")
 const Relics = preload("res://src/game/relics.gd")
@@ -159,9 +160,9 @@ func _failure(message: String) -> Dictionary:
 	last_error = message
 	return {"ok": false, "error": message}
 
-func _build(seed_value: int, powers_revision: String = "") -> Dictionary:
+func _build(seed_value: int, powers_revision: String = "", sustained_pollution := true) -> Dictionary:
 	var content: RefCounted = Catalog.new()
-	if not content.load_files("res://data", powers_revision): return {"ok": false, "error": "; ".join(content.errors)}
+	if not content.load_files("res://data", powers_revision, sustained_pollution): return {"ok": false, "error": "; ".join(content.errors)}
 	var fresh: RefCounted = World.new(content)
 	if not fresh.generate_hybrid(seed_value): return {"ok": false, "error": fresh.last_error}
 	var clock: RefCounted = Turn.new(fresh)
@@ -229,6 +230,12 @@ func _submit(op: String, fields: Dictionary = {}, durable_id: String = "") -> Di
 			var source: String = "FACT-%08d" % number
 			var fact: Dictionary = Store.entry(world.state.facts, source)
 			if _known_facts.has(source): facts.append(_public(fact))
+			if fact.kind == "cult_pollution_settlement":
+				var receipt: Dictionary = fact.changes
+				if _known_domains.has(fact.domain) and _identity_known(receipt.cult):
+					var record := _pollution_report(fact.domain, receipt.produced, receipt.decay_rate, receipt.before_revision, number)
+					record.merge({"cult": receipt.cult, "turn": fact.turn, "kind": "cult_pollution_report"})
+					cult_settlement.append(record)
 			# Report own known cults' booked payments and income, without
 			# disclosing the underlying sources, forecasts or hidden targets.
 			if fact.get("kind") in ["economy_strategy_payment", "economy_income"]:
@@ -561,6 +568,44 @@ func _world_observation_title(fact: Dictionary) -> String:
 	elif not observer.is_empty() and observer.begins_with("NPC-"): parts.append("来源人物身份未掌握")
 	return " · ".join(parts)
 
+func _pollution_report(domain: String, produced: Dictionary, decay: int, revision: int, sequence_limit: int) -> Dictionary:
+	var policy: RefCounted = catalog.cult_pollution
+	var report := {"size": produced.size, "named": produced.named, "decay": decay, "estimated": true}
+	var observation: Dictionary = _domain_intelligence.get(domain, {}).get("pollution", {})
+	var observed_sequence: int = int(observation.get("observed_sequence", 0))
+	if observed_sequence < revision or observed_sequence >= sequence_limit or observation.is_empty():
+		return report
+	var maximum: int = catalog.integer("attribute_max")
+	var scale: int = policy.values.fixed_scale
+	var low: int = int(observation.get("lower", observation.get("value", 0))) * scale
+	var high: int = mini(maximum * scale, (int(observation.get("upper", observation.get("value", maximum))) + 1) * scale - 1)
+	# The two endpoints account for both bands and the unseen fractional part.
+	# Disclose an actual result only when every compatible value gives it.
+	var left: Dictionary = policy.settlement(low, produced, decay, maximum)
+	var right: Dictionary = policy.settlement(high, produced, decay, maximum)
+	if left == right:
+		report.merge(left, true)
+		report.estimated = false
+	if produced.size + produced.named > 0 and low + produced.size + produced.named > produced.support:
+		report["support"] = produced.support
+	return report
+
+func _cult_pollution_preview(cult: Dictionary, strategy: String) -> Dictionary:
+	var domain: Dictionary = world.state.domains[cult.domain]
+	var working: bool = Economy.operational_reason(world.state, cult, catalog).is_empty()
+	var policy: RefCounted = catalog.cult_pollution
+	var input: Dictionary = policy.inputs(world.state, cult, catalog, working, strategy)
+	var produced: Dictionary = policy.production(input, catalog.integer("attribute_max"))
+	var decay: int = catalog.integer("pollution_base_decay") * int(policy.values.fixed_scale)
+	if domain.pollution_changed_turn == world.state.turn:
+		decay = 0
+	else:
+		for anchor: Dictionary in world.state.anchors.values():
+			if anchor.domain == cult.domain and anchor.state == "active":
+				decay = 0
+				break
+	return _pollution_report(cult.domain, produced, decay, domain.pollution_revision, world.state.next_fact)
+
 func project() -> Dictionary:
 	if turn == null: return {"ok": false, "active": false, "error": last_error}
 	var state: Dictionary = world.state
@@ -592,10 +637,15 @@ func project() -> Dictionary:
 	for id: String in known_relics():
 		var item: Dictionary = Store.entry(state.relics, id)
 		relics.append(item.duplicate(true))
+	var economy: Dictionary = economy_preview()
+	var effective: Dictionary = {}
+	for row: Dictionary in economy.get("cults", []): effective[row.cult] = row.effective
 	for cult: Dictionary in state.cults.values():
 		if _known_facts.has(cult.established_source) or _known_people.has(cult.leader):
 			var visible_cult: Dictionary = cult.duplicate(true)
 			visible_cult["followers"] = int(state.domains[cult.domain].unnamed_followers)
+			if catalog.cult_pollution != null and cult.status != "destroyed" and _known_domains.has(cult.domain):
+				visible_cult["pollution_preview"] = _cult_pollution_preview(cult, effective.get(cult.id, "hold"))
 			cults.append(visible_cult)
 	for anchor: Dictionary in state.anchors.values():
 		if _known_facts.has(anchor.get("established_source", "")) or _known_people.has(anchor.guardian): anchors.append(anchor.duplicate(true))
@@ -622,7 +672,7 @@ func project() -> Dictionary:
 	for plan: Dictionary in modules.resistance.preview(turn).get("plans", []):
 		if _known_domains.has(plan.domain): resistance.append(_public(plan))
 	var terminal: Dictionary = Store.entry(state.facts, str(state.ending_system.get("terminal", "")), {})
-	return {"ok": true, "active": true, "turn": turn.context.turn, "phase": turn.context.phase, "phase_title": {"between": "轮间", "events": "轮初事件", "actions": "神意行动", "evolution": "共同演化", "settlement": "轮末结算", "ending": "终局检查", "ended": "本局封存"}.get(str(turn.context.phase), ""), "busy": _busy, "terminal": turn.context.phase == "ended", "outcome": turn.context.outcome, "ending_reason": terminal.get("changes", {}).get("reason", ""), "awakening": state.awakening, "awakening_sources": awakening_sources, "faith": state.faith, "capacity": Economy.capacity(state, catalog), "whispers": state.whispers, "insight": state.insight, "wounds": state.wounds, "disconnected": state.ending_system.disconnected, "manifest": _public(state.power_system.manifest), "domains": domains, "institutions": institutions, "people": people, "relics": _public(relics), "cults": _public(cults), "anchors": _public(anchors), "prayers": prayers, "prayer_response_spent": int(turn.context.responses) >= catalog.integer("prayer_response_limit"), "events": events, "resistance": resistance, "attention": attention, "last_result": _public(last_result), "economy_plan": _public(turn.context.plans.get("economy", {})), "summary_income": _public(economy_preview()), "slot": slot}
+	return {"ok": true, "active": true, "turn": turn.context.turn, "phase": turn.context.phase, "phase_title": {"between": "轮间", "events": "轮初事件", "actions": "神意行动", "evolution": "共同演化", "settlement": "轮末结算", "ending": "终局检查", "ended": "本局封存"}.get(str(turn.context.phase), ""), "busy": _busy, "terminal": turn.context.phase == "ended", "outcome": turn.context.outcome, "ending_reason": terminal.get("changes", {}).get("reason", ""), "awakening": state.awakening, "awakening_sources": awakening_sources, "faith": state.faith, "capacity": Economy.capacity(state, catalog), "whispers": state.whispers, "insight": state.insight, "wounds": state.wounds, "disconnected": state.ending_system.disconnected, "manifest": _public(state.power_system.manifest), "domains": domains, "institutions": institutions, "people": people, "relics": _public(relics), "cults": _public(cults), "anchors": _public(anchors), "prayers": prayers, "prayer_response_spent": int(turn.context.responses) >= catalog.integer("prayer_response_limit"), "events": events, "resistance": resistance, "attention": attention, "last_result": _public(last_result), "economy_plan": _public(turn.context.plans.get("economy", {})), "summary_income": _public(economy), "slot": slot}
 
 func history_page(cursor: int = 0, limit: int = 20) -> Dictionary:
 	if turn == null or cursor < 0 or limit < 1 or limit > 100: return _failure("无效历史页")
@@ -700,6 +750,7 @@ func continue_game(path: String = "") -> Dictionary:
 	# verify all versions, checksums and historical evidence under those rules.
 	# This never rewrites historical facts or upgrades an old campaign's rules.
 	var powers_revision: String = ""
+	var sustained_pollution := false
 	var snapshot_envelope: Variant = JSON.parse_string(body.snapshot)
 	if snapshot_envelope is Dictionary and snapshot_envelope.get("body") is Dictionary:
 		var participants: Variant = snapshot_envelope.body.get("participants")
@@ -707,7 +758,10 @@ func continue_game(path: String = "") -> Dictionary:
 			var saved_version: Variant = participants.powers.get("version")
 			if saved_version is String and Catalog.LEGACY_POWERS_VERSION in saved_version.split("/"):
 				powers_revision = Catalog.LEGACY_POWERS_VERSION
-	var built: Dictionary = _build(1, powers_revision)
+		if participants is Dictionary and participants.get("economy") is Dictionary:
+			var economy_version: String = str(participants.economy.get("version", ""))
+			sustained_pollution = CultPollution.CAPABILITY in economy_version.split("/")
+	var built: Dictionary = _build(1, powers_revision, sustained_pollution)
 	if not built.ok: return _failure(built.error)
 	if not built.turn.restore(body.snapshot): return _failure(built.turn.last_error)
 	var name_payload: Variant = body.get("display_names")

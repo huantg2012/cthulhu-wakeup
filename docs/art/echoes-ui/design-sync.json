@@ -195,6 +195,12 @@
       "path": "src/content/world_names.gd"
     },
     {
+      "path": "src/simulation/cult_pollution.gd"
+    },
+    {
+      "path": "data/cult_pollution_parameters.csv"
+    },
+    {
       "path": "src/presentation/experience_root.gd"
     },
     {
@@ -273,18 +279,24 @@
     "docs/qa/ui-anchor-goal/02-result.png"
   ],
   "snapshot": {
-    "revision": 65,
-    "recordedAt": "2026-11-07T13:22:04.662Z",
-    "note": "世界命名v2：生成/存档568项通过，世界情报背景及返回通过；大字六字名截断已修正并复看。固定标题和原图文结构保持",
+    "revision": 66,
+    "recordedAt": "2026-11-07T14:56:11.592Z",
+    "note": "正式接入教团规模与具名成员持续污染，复用教团概况、污染说明和轮末回执，核对标准与大字",
     "sections": [
       "F5",
-      "P01",
       "P03",
+      "P04",
+      "P17",
       "G1",
+      "G2",
+      "G7",
+      "J4",
+      "J5",
       "D5"
     ],
-    "configHash": "c309b1cdd78893a585946f1e31e0a1852a412ce41275598990a4cee6b4953896",
+    "configHash": "6a8e9901c4aa159795c7828b95a3315046765256120b16790beaf2c15adda2ef",
     "sources": {
+      "data/cult_pollution_parameters.csv": "0b4cb8a3ef46aec31929e9856a741ee9cea0fb8624586f58173d8ace6f099c89",
       "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
       "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
       "data/legacy/powers-before-2026-11-07.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
@@ -296,7 +308,7 @@
       "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
       "data/world_name_parts.csv": "271d6cb1944a3cb090aaeff16337e75271729c20c37e34d7d6ac4c185d8e80ff",
       "data/world_name_patterns.csv": "bc6746632f5064c0755c970a72f27c00874673d1265db0c7497acd00dc0c2292",
-      "docs/architecture.md": "085fd4d5433cb7521cc61cfd291c850304979f52e2eba0caf2702a3e33d789f4",
+      "docs/architecture.md": "bae47720fdf87783ee495c27399b11f721f6acb470669f11c298e137507be8ba",
       "docs/art/echoes-ui/assets/etched-frame.png": "36c24638a63e43a4754a83a2f029fe699d7308c1c62bec03a1b05e494c060e56",
       "docs/art/echoes-ui/assets/manifest.json": "9f3f2a95f33587c3dad56d5a3bb9c15d9f206ff9a54142b21b0deefad618fd8a",
       "docs/art/echoes-ui/assets/relic-icons.png": "cd9de5dfeb2ccd823061bc4a5497949b81f53df982543cfff4416e409ece211a",
@@ -350,15 +362,15 @@
       "src/game/anchor_routes.gd": "7c4d272069cebfed88c1a6e4349d7c6170608761469b4d641252f6e1508c6c15",
       "src/game/entry_selectors.gd": "f7e8d73821b1a8ee92959a8dc4522923370cf07000fa08ebcafeaf66e19c9274",
       "src/game/opportunity_eligibility.gd": "183267019c316ac19f9c6300d7b9bf3a389a580c0b056572372b6df41fce3d76",
-      "src/game/player_knowledge.gd": "cfd23e259552c7a5b4b13639caf06c8c61a2acb3fc9ef6f76e68e3c32ca7f7da",
-      "src/game/powers.gd": "3d52e43aac915dd662c85bab4389ff9098feee6827ad2e1805338f42f10f0f69",
-      "src/game/progression_routes.gd": "533b3694b1a10f69f28f968180dd25a6f89826ab4720afb643defbb10f0fe0e9",
+      "src/game/player_knowledge.gd": "e94e9e2d74306462d6105fdc0e2605897b15bc2e734927bf1423f238d036fd99",
+      "src/game/powers.gd": "3dba3cd053a95d2f4ae22a22ad466302b8313d80f4fdd6dee118c5110630b35e",
+      "src/game/progression_routes.gd": "4bbd4b666885397e90cbb73f9c444bc9338193dbbac5a53f4febe4e577258ad6",
       "src/game/relics.gd": "c025210482416efee8d007af66e079e63192306be5c7b645ac935b5ceacfc5eb",
       "src/presentation/action_availability.gd": "90bf4a3e54bb272cd46da7b7fe20693b114280a67541f580e5ee551e37993fe3",
       "src/presentation/action_catalog.gd": "93d6232834ab14843b7a52298153cea5cbd6e868c2cd5b351d50d5bc5516929b",
       "src/presentation/anchor_preparation.gd": "ec593251d95dfa099d1d20c15e5fae96c61d5aa3a9ca091ccdd836b173d3a7c3",
       "src/presentation/experience_actions.gd": "7cb4da9dc88f52b0884297561c6b92ae180107a8ea4bbd7378703da2fb472a5d",
-      "src/presentation/experience_feedback.gd": "60749aa71ceffc12d46ff1ed07cc155b6842109f9818e54e67f8e0ac03ab67e8",
+      "src/presentation/experience_feedback.gd": "565aeffebe3f66fef71e03c5aa4ac5715436587c25fa1e9979345da92c23ee31",
       "src/presentation/experience_root.gd": "3f2dc6a5e3ded52041464e631a4cb372cfe5cdb8152e41ba04ebc2df5f51fec9",
       "src/presentation/experience_semantics.gd": "0882cd7068a8f7e8b79b7b4fed08c6ac9f9c7bdfbf98ee92f93039f2d43b8582",
       "src/presentation/experience_views.gd": "37672a14cc6d1aa9d8b9a6012bca6c26de96ea9ce98dd33ab77775164716596f",
@@ -370,10 +382,10 @@
       "src/presentation/production/game_root.tscn": "6be5813b55b3ece2ea16cdb8c87ee686aa28be6c29b981bd0fdacdb1213bb9db",
       "src/presentation/production/prayer_space_view.gd": "79da593af098cbbb953221177432088eee236abfaf4118d61bb8f448a192be3c",
       "src/presentation/production/prayer_view.gd": "38852a01e87cc3f838b1a354b8915a0a906ea672f35acb74f7a6e1e390e7b756",
-      "src/presentation/production/round_view.gd": "8c3be4a6b9d8f698d99d313a4804c8db887a1fbb1f5483343986e35488c05e5d",
+      "src/presentation/production/round_view.gd": "4f288a5396e8b704b8eaf9dc85adb02492efddfd302d11d152c99ee98214b99d",
       "src/presentation/production/task_view.gd": "09ac14214477477a184e7dee8c7b0b7036ec4a7f08a4d1c8834020ccc861240e",
-      "src/presentation/production/world_management.gd": "23a0db1b923acbfdefdaa93580dd6b7a3405d13c70ce442362a3ebb8033f6c14",
-      "src/presentation/session.gd": "5700826420f904e7fd096b24c13621a30e5b631c71e2aa3a2e4214b5f8c202b0",
+      "src/presentation/production/world_management.gd": "fa4ce0a4b3f1765a7f64cfc535b6ba97160ea8f89cefb1456cdaa81e364b91d0",
+      "src/presentation/session.gd": "8541834ec94047082b8be1d0f33a8e57a668237c2f349e101a02534b309d3148",
       "src/presentation/ui/dock_content.gd": "6330effb7a7bb53fc40faa2049b8ef02d25714c960d6b5d6306bdeec3f738ee4",
       "src/presentation/ui/motion.gd": "faf70ca12c8706802248c65073a240b0bbfdb55101422e5e9d36ebd100536430",
       "src/presentation/ui/opening_veil.gd": "532ddbc76e36a7002dad8f961f222978e4805c577a81b8004ee151dc5dc44091",
@@ -383,7 +395,8 @@
       "src/presentation/ui/round_action_button.gd": "77c794d22260b8ef7633674e38588ad24498c2bf1b4e1a9f29543b73e35659d7",
       "src/presentation/ui/ui_components.gd": "2a28497f5eacc8012e3e89547a90369904fd18f20f28a93e7b251399114f68e3",
       "src/presentation/ui/ui_composites.gd": "bf713b79554fe39bf7079024508f368597e052af0b531297573aece1f7ab0a4d",
-      "src/simulation/catalog.gd": "1f0df4468715864e20fc0cc4bbe40d9d6f4b84bbac0aca1de9ea0036ba7dc2d7",
+      "src/simulation/catalog.gd": "33886bb0ac8bb60350ac7737b905a42fc867b1074beecd719050fce2e928ecb3",
+      "src/simulation/cult_pollution.gd": "93a3e24da13f2d3478751a3359ca5c26373251df512c699836390e77b4c781a6",
       "tools/echoes-art-master/build_flow_wireframes.py": "d581082136cf7416ee2f6aec7ff948d849d95bee3f20aaa2c3a1ddda54b4d42a",
       "tools/echoes-art-master/component_catalog.gd": "92cbb6775948791ee010889721868d3f6e0c80c9a524a9e5c7f0d7a6f1579b7c",
       "tools/echoes-art-master/component_catalog.tscn": "b9907be44ae15139ae5e3eaac0870c7e93eed5e04ec128aee85a77afc2e1a946",
@@ -433,9 +446,9 @@
       "美术打版.command": "087ddf1989ae888ecf0b58105cde09ec2729b8030c9dd2b85482e654ab7ae10c"
     },
     "documents": {
-      "docs/art/echoes-ui/component-map.md": "848d639ab01f7ad78425d7a2c5eb04740ceb4d8ef92a25e2d67d359f168300e4",
+      "docs/art/echoes-ui/component-map.md": "9ea3142ca58e67e677e73b2a462e80db8e17454cfb1e6de0a82e029fac880845",
       "docs/art/echoes-ui/tokens.json": "8dc54bbeca124c1a09931d1da3e1d38376e63949c628692277af8921408e0e2f",
-      "docs/art/echoes-ui/visual-system.md": "786904fb77e9199e6ff11822b4329a3fc66606080e6a1632b0366934959af278"
+      "docs/art/echoes-ui/visual-system.md": "68b01dcf991466c3676aadd3d6f6f1f28e0f2b47913eed9c295cc8f97b29e82e"
     },
     "evidence": {
       "docs/art/echoes-ui/visual-exhibits/controls-0.png": "9621e43af50ac4d3b3c39e0a07b792c00ce182395926c3051ca881e95fc25529",
@@ -504,12 +517,22 @@
       "tools/echoes-art-master/evidence/world-subject-layout.png": "ac1b7e495d03c132849e1a15c9bc92ff8a86fd2cf8c24fa06af3262a4ef1cf4e"
     },
     "changed": {
-      "config": false,
+      "config": true,
       "sources": [
+        "data/cult_pollution_parameters.csv",
+        "docs/architecture.md",
+        "src/game/player_knowledge.gd",
+        "src/game/powers.gd",
+        "src/game/progression_routes.gd",
+        "src/presentation/experience_feedback.gd",
         "src/presentation/production/round_view.gd",
-        "src/presentation/production/world_management.gd"
+        "src/presentation/production/world_management.gd",
+        "src/presentation/session.gd",
+        "src/simulation/catalog.gd",
+        "src/simulation/cult_pollution.gd"
       ],
       "documents": [
+        "docs/art/echoes-ui/component-map.md",
         "docs/art/echoes-ui/visual-system.md"
       ],
       "evidence": []
