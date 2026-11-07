@@ -43,6 +43,7 @@ var _knowledge_cursor: int = 1
 var _campaign: String = ""
 var _action_inputs: Dictionary = {}
 var _world_names: Dictionary = {}
+var _world_name_backgrounds: Dictionary = {}
 var _known_kinds: Dictionary = {}
 var _known_relics: Dictionary = {}
 var _domain_intelligence: Dictionary = {}
@@ -186,6 +187,7 @@ func start_new(seed_value: int) -> Dictionary:
 	if not opened.ok: return _failure(opened.error)
 	catalog = built.catalog; world = built.world; turn = built.turn; modules = built.modules
 	_world_names = naming.names
+	_world_name_backgrounds = naming.backgrounds
 	_campaign = "%d-%d" % [Time.get_unix_time_from_system(), Time.get_ticks_usec()]
 	slot = save_directory + "/" + _campaign + ".json"
 	_request_sequence = 1; _knowledge_cursor = 1
@@ -638,7 +640,7 @@ func save_game(path: String = "") -> Dictionary:
 	var destination: String = slot if path.is_empty() else path
 	var body: Dictionary = {"schema": SAVE_SCHEMA, "campaign": _campaign, "request_sequence": _request_sequence, "snapshot": turn.snapshot(), "action_inputs": _action_inputs, "material_version": catalog.material_transfer_version(), "eligibility_version": Eligibility.VERSION, "knowledge": {"domains": known_domains(), "people": known_people(), "facts": known_sources(), "cursor": _knowledge_cursor}}
 	body["knowledge_version"] = PlayerKnowledge.VERSION
-	body["display_names"] = {"version":WorldNames.VERSION, "worlds":_world_names.duplicate(true)}
+	body["display_names"] = {"version":WorldNames.VERSION, "worlds":_world_names.duplicate(true), "backgrounds":_world_name_backgrounds.duplicate(true)}
 	body["opportunity_version"] = Opportunities.version(catalog)
 	var saved: Dictionary = _atomic_write(destination, World.canonical({"body": body, "checksum": World.canonical(body).sha256_text()}))
 	if not saved.ok: return saved
@@ -760,6 +762,7 @@ func continue_game(path: String = "") -> Dictionary:
 		if parts.size() == 3 and parts[0] == "prayer" and (receipt.op != "act" or receipt.get("participant") != "prayers" or receipt.get("action") != "respond" or receipt.get("payload", {}).get("request") != parts[1] or receipt.get("payload", {}).get("variant") != parts[2]): return _failure("存档输入选择与正式求告不一致")
 	catalog = built.catalog; world = built.world; turn = built.turn; modules = built.modules
 	_world_names = naming.names
+	_world_name_backgrounds = naming.backgrounds
 	_campaign = body.campaign; _request_sequence = body.request_sequence; _knowledge_cursor = knowledge.cursor; slot = source
 	_action_inputs = body.get("action_inputs", {}).duplicate(true)
 	_rebuild_knowledge(knowledge)
@@ -811,3 +814,7 @@ func entry_eligibility(entry: String, selection: Dictionary = {}) -> Dictionary:
 	var result: Dictionary = Eligibility.query(view, knowledge_snapshot(), modules, entry, selection)
 	view.reader.close()
 	return result
+
+func world_name_background(domain: String) -> String:
+	if not _known_domains.has(domain): return ""
+	return str(_world_name_backgrounds.get(domain, ""))

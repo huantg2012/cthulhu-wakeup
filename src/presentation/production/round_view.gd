@@ -340,7 +340,7 @@ func _build_worlds() -> void:
 		var source := "已关注" if world.get("focused", false) else "祈求所指 · 有限线索"
 		var cult: Dictionary = _views._current_cult(self, world.id)
 		if not cult.is_empty(): source = "已知教团 · " + _views._strategy_name(str(projection.economy_plan.get("strategies", {}).get(cult.id, cult.strategy)))
-		var row := Composites.world_entry(_ui, rows, "World_" + world.id, {"name":world.title,"hint":source,"tag":"场景示意","multiline_name":str(world.title).length() > 6}, _world_picture(world.id), _inspect_world.bind(world.id), 0.80, 3 if _large_text else 0)
+		var row := Composites.world_entry(_ui, rows, "World_" + world.id, {"name":world.title,"hint":source,"tag":"场景示意","multiline_name":str(world.title).length() > (4 if _large_text else 6)}, _world_picture(world.id), _inspect_world.bind(world.id), 0.80, 3 if _large_text else 0)
 		row.accessibility_name = world.title
 		_world_buttons[world.id] = row
 	_world_matches = _text(_stage, "", Rect2(26, 416, 208, 30), 13, UI.MUTED)

@@ -32,8 +32,8 @@ func _initialize() -> void:
 		var generated: Dictionary = naming.generate(seed_value, domains)
 		check(generated.ok, "seed %d generates" % seed_value)
 		if not generated.ok: continue
-		check(generated.names == naming.generate(seed_value, domains).names, "seed %d repeats" % seed_value)
-		check(Names.restore({"version":Names.VERSION, "worlds":generated.names}, domains).ok, "seed %d complete unique names" % seed_value)
+		check(generated == naming.generate(seed_value, domains), "seed %d repeats" % seed_value)
+		check(Names.restore({"version":Names.VERSION, "worlds":generated.names, "backgrounds":generated.backgrounds}, domains).ok, "seed %d complete unique names" % seed_value)
 		var families: Dictionary = {}
 		for family: String in generated.families.values(): families[family] = true
 		check(families.size() >= 2, "seed %d mixes naming families" % seed_value)
@@ -53,13 +53,29 @@ func _initialize() -> void:
 	for tier: String in ["planet", "system", "cosmic"]:
 		check(int(naming.capacities.get(tier, 0)) >= 10000, "authored combination capacity " + tier)
 	for id: String in domains:
-		if session.known_domains().has(id): check(session.object_title(id) == session._world_names[id], "known world uses frozen name")
-		else: check(session.object_title(id) != session._world_names[id], "unknown world does not leak its name")
+		if session.known_domains().has(id):
+			check(session.object_title(id) == session._world_names[id], "known world uses frozen name")
+			check(session.world_name_background(id) == session._world_name_backgrounds[id], "known world background reachable")
+		else:
+			check(session.object_title(id) != session._world_names[id], "unknown world does not leak its name")
+			check(session.world_name_background(id).is_empty(), "unknown world does not leak background")
 	var saved: Dictionary = session.save_game(DIRECTORY + "/current.json")
 	check(saved.ok, "new campaign saves")
 	var loaded := Session.new(DIRECTORY)
 	check(loaded.continue_game(DIRECTORY + "/current.json").ok, "new campaign continues")
 	check(loaded._world_names == session._world_names, "saved names restored exactly")
+	check(loaded._world_name_backgrounds == session._world_name_backgrounds, "backgrounds restored exactly")
+	check(not Names.restore({"version":Names.VERSION, "worlds":session._world_names, "backgrounds":{"INVALID":"背景"}}, domains).ok, "incomplete context rejected")
+	check(not Names.restore({"version":Names.VERSION, "worlds":session._world_names, "unknown":{}}, domains).ok, "unknown identity field rejected")
+	var v1: Dictionary = World._normalize_numbers(JSON.parse_string(FileAccess.get_file_as_string(DIRECTORY + "/current.json")))
+	v1.body.display_names.version = "world-names/1"
+	v1.body.display_names.erase("backgrounds")
+	v1.checksum = World.canonical(v1.body).sha256_text()
+	write_text(DIRECTORY + "/v1.json", World.canonical(v1))
+	var old := Session.new(DIRECTORY)
+	check(old.continue_game(DIRECTORY + "/v1.json").ok and old._world_names == session._world_names and old._world_name_backgrounds.is_empty(), "v1 names preserved without fabricated background")
+	check(old.save_game(DIRECTORY + "/v1-resaved.json").ok, "v1 resaves")
+	check(old.continue_game(DIRECTORY + "/v1-resaved.json").ok and old._world_names == session._world_names, "v1 resaved names preserved")
 	check(loaded.turn != null and loaded.turn.snapshot() == original, "save restore retains rule snapshot and RNG")
 	# Persisted names intentionally need not exist in the current lexicon.
 	var frozen: Dictionary = session._world_names.duplicate(true)
@@ -89,7 +105,7 @@ func _initialize() -> void:
 		write_text(DIRECTORY + "/world_name_patterns.csv", patterns)
 		check(not naming.load_files(session.catalog.tables.civilization_profiles, DIRECTORY), "bad parts rejected %d" % index)
 	write_text(DIRECTORY + "/world_name_parts.csv", parts)
-	for suffix: String in ["INVALID,planet,council,formal,{missing_pool}星球议会\n", "INVALID,planet,unified,formal,{missing_pool}星球共同体\n", "INVALID,planet,council,formal,{bad-token}星球议会\n"]:
+	for suffix: String in ["INVALID,planet,council,formal,{missing_pool}星球议会,背景,2\n", "INVALID,planet,unified,formal,{missing_pool}星球共同体,背景,2\n", "INVALID,planet,council,formal,{bad-token}星球议会,背景,2\n"]:
 		write_text(DIRECTORY + "/world_name_patterns.csv", patterns + suffix)
 		check(not naming.load_files(session.catalog.tables.civilization_profiles, DIRECTORY), "bad structure rejected " + suffix.strip_edges())
 	check(naming.generate(1, domains).names == examples["1"], "invalid catalog load preserves previous naming catalog")

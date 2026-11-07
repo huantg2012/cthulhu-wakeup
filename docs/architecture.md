@@ -13,7 +13,7 @@ changed-this-slice: true
 
 ## 世界身份命名（2026-11-07）
 
-`src/content/world_names.gd` 读取两张命名 CSV，根据世界真实层级／权力组织用独立随机流生成本局名称映射。Session 在新局启动时生成并冻结；外层存档增加可选 `display_names`（版本和完整 worlds 映射），由原 checksum 覆盖，World/Turn 快照和规则签名不变。没有该字段的旧档采用原 `player_text.world_names`，再存后同样固定。名称映射必须完整、唯一、有效；读档不按新词库重新生成。`object_title` 先守知情边界，再为已知世界取映射，所有正式页面复用。新局留空随机种子；显式种子可复现。
+`src/content/world_names.gd` 读取两张命名 CSV，根据世界真实层级／权力组织用独立随机流生成本局名称映射。Session 在新局启动时生成并冻结；外层存档增加可选 `display_names`（版本、完整 worlds 映射与 backgrounds 背景映射），由原 checksum 覆盖，World/Turn 快照和规则签名不变。`world-names/2` 接收 v1 名称而不补写背景；新局背景由匹配层级和组织的命名结构生成并固定，仅通过已知世界的 `world_name_background` 读取，不进入规则事实。没有该字段的旧档采用原 `player_text.world_names`，再存后同样固定。名称映射必须完整、唯一、有效；读档不按新词库重新生成。`object_title` 先守知情边界，再为已知世界取映射，所有正式页面复用。新局留空随机种子；显式种子可复现。
 
 ## 玩家展示文案（2026-11-06）
 

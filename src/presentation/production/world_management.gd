@@ -84,7 +84,14 @@ func _remember_intelligence_scroll() -> void:
 func _show_intelligence() -> void:
 	_shell("intelligence", "世界情报", host.title(_domain), "当地机构的作用与已知反制。")
 	var body := _right(237)
-	host._text(_column, "机构与反制", Rect2(0, 0, 664, 39), 20, UI.GOLD_HI)
+	host._text(_column, "文明与当地机构", Rect2(0, 0, 664, 39), 20, UI.GOLD_HI)
+	var background: String = host.session.world_name_background(_domain)
+	if not background.is_empty():
+		var section := _intelligence_section(body, "CivilizationBackground")
+		var world: Dictionary = host._views._find(host, "domains", _domain)
+		if world.has("tier"):
+			host._line(section, "文明层级 · " + {"planet":"星球", "system":"星系", "cosmic":"宇宙"}.get(world.tier, "未掌握"), 16, UI.MUTED)
+		host._line(section, background, 17, UI.MUTED)
 	_local_institutions(body)
 	_reading.set_deferred("scroll_vertical", int(_intelligence_scrolls.get(_domain, 0)))
 	_fixed("WorldBack", "返回世界", close, 279, 221)
