@@ -314,7 +314,7 @@ func action_entries(prefix: String) -> Array:
 func preview_action(key: String, selection: Dictionary = {}) -> Dictionary:
 	return Actions.new().preview(self, key, selection) if turn != null else _failure("尚未开启一局")
 
-func execute_action(key: String, selection: Dictionary = {}, confirmed: bool = false, durable_id: String = "") -> Dictionary:
+func execute_action(key: String, selection: Dictionary = {}, confirmed: bool = false, durable_id: String = "", expected_preview: Dictionary = {}) -> Dictionary:
 	if turn == null: return _failure("尚未开启一局")
 	var signature: String = World.canonical({"key": key, "selection": selection})
 	if not durable_id.is_empty() and _action_inputs.has(durable_id):
@@ -324,6 +324,9 @@ func execute_action(key: String, selection: Dictionary = {}, confirmed: bool = f
 		return _public(prior.get("response", replayed)) if replayed.ok else _public(replayed)
 	var prepared: Dictionary = Actions.new().command(self, key, selection)
 	if not prepared.ok: return _failure(prepared.get("error", "当前选择不可执行"))
+	if int(expected_preview.get("situation_revision", -1)) >= 0:
+		for field: String in ["situation_revision", "success_target", "faith", "whispers", "first_upkeep"]:
+			if prepared.preview.get(field) != expected_preview.get(field): return _failure("处境或成功点数已变化，请重新选择回应")
 	if prepared.get("irreversible", false) and not confirmed: return {"ok": false, "confirmation": true, "error": "此行动含不可逆代价，请确认", "preview": prepared.preview}
 	var response: Dictionary = _submit(prepared.op, prepared.fields, durable_id)
 	if response.ok and not durable_id.is_empty(): _action_inputs[durable_id] = {"signature": signature, "op": prepared.op, "fields": prepared.fields.duplicate(true), "response": response.duplicate(true)}
@@ -482,7 +485,7 @@ func _public(value: Variant) -> Variant:
 			if value.kind == "prayer_space_progress" and (value.changes.has("manifestation_of") or value.changes.has("consequence_of") or value.changes.get("concrete_followup", false)): visible.changes["concrete_followup"] = true
 			if visible.changes.has("title"):
 				var scene: Dictionary = world.state.get("prayer_system", {}).get("space", {}).get("scenes", {}).get(str(visible.changes.get("request", "")), {})
-				if not scene.is_empty(): visible.changes.title = prayer_title({"space": true, "content_id": scene.case_id})
+				if not scene.is_empty(): visible.changes.title = prayer_title({"space": true, "content_id": scene.case_id, "title": scene.title})
 			if value.kind == "prayer_space_consequence" and _known_facts.has(value.id):
 				visible.changes["title"] = object_title(value.id)
 			return visible
@@ -683,6 +686,7 @@ func project() -> Dictionary:
 			var due: int = restrictions[ability]
 			limitations.append(label if due < 0 else "%s · 剩余%d轮" % [label, maxi(1, due - int(state.turn))])
 		row["prayer_limitations"] = limitations
+		row["prayer_capabilities"] = PrayerRules.Capabilities.known_status(state, id, _known_facts, catalog)
 		row["title"] = person_title(person); row["role_name"] = catalog.display_tables.npc_profiles[person.profile].name; people.append(row)
 	for id: String in known_relics():
 		var item: Dictionary = Store.entry(state.relics, id)

@@ -6,6 +6,9 @@ const Powers = preload("res://src/game/powers.gd")
 const Consequences = preload("res://src/game/prayer_consequences.gd")
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Voice = preload("res://src/presentation/prayer_response_voice.gd")
+const Generator = preload("res://src/game/prayer_generator.gd")
+const Compiler = preload("res://src/game/prayer_effect_compiler.gd")
+const Capabilities = preload("res://src/game/prayer_capabilities.gd")
 const SCHEMA := 1
 const PREFIX := "PS-"
 # Frozen schema-one contracts from the previous release remain executable.
@@ -13,11 +16,13 @@ const LEGACY_VERSIONS := ["abb8cb04d9c83177752602b7d867fca1e8e49df66a91a8112f696
 var catalog: RefCounted
 var content: RefCounted
 var checks: RefCounted
+var generator: RefCounted
 
 func _init(source: RefCounted) -> void:
 	catalog = source
 	content = source.prayer_space
 	checks = Powers.new(source)
+	generator = Generator.new(content, catalog)
 
 static func is_request(id: String) -> bool:
 	return id.begins_with(PREFIX)
@@ -30,20 +35,24 @@ static func entries(state: Dictionary) -> Array:
 	var data := ledger(state)
 	for id: String in data.get("offered", []):
 		var scene: Dictionary = data.get("scenes", {}).get(id, {})
-		if not scene.is_empty() and scene.status == "open": result.append(entry(scene))
+		if not scene.is_empty() and scene.status == "open": result.append(entry(_current(data, scene)))
 	return result
 
 static func entry(scene: Dictionary) -> Dictionary:
-	return {"id": scene.id, "card": {"id": scene.id, "content_id": scene.case_id, "visible_turn": scene.created, "due_turn": scene.due, "domain": scene.domain, "actors": scene.actors, "fact": scene.source}, "descriptor": {"space": true, "content_id": scene.case_id, "domain": scene.domain, "actors": scene.actors, "subjects": {"petitioner": scene.roles.petitioner}, "source": scene.source, "title": scene.title, "context": scene.context, "appeal": scene.appeal, "goal": scene.goal_text, "petitioner_role": scene.petitioner_role, "crisis": {"due": scene.crisis_due} if scene.crisis_due >= 0 else {}}, "status": scene.status, "source": scene.source}
+	return {"id": scene.id, "card": {"id": scene.id, "content_id": scene.case_id, "visible_turn": scene.created, "due_turn": scene.due, "domain": scene.domain, "actors": scene.actors, "fact": scene.source}, "descriptor": {"space": true, "content_id": scene.case_id, "domain": scene.domain, "actors": scene.actors, "subjects": {"petitioner": scene.roles.petitioner}, "source": scene.source, "title": scene.title, "context": scene.context, "appeal": scene.appeal, "goal": scene.goal_text, "petitioner_role": scene.petitioner_role, "crisis": {"due": scene.crisis_due} if int(scene.get("crisis_due", -1)) >= 0 else {}}, "status": scene.status, "source": scene.source}
 
 static func choices(state: Dictionary, id: String) -> Array:
-	var scene: Dictionary = ledger(state).get("scenes", {}).get(id, {})
+	var data := ledger(state)
+	var scene := _current(data, data.get("scenes", {}).get(id, {}))
 	var visible: Array = []
 	for choice: Dictionary in scene.get("choices", {}).values():
+		if scene.has("situation_id"):
+			var contract: Dictionary = scene.contracts[choice.id]
+			if _possible_effects(scene.objects, contract).size() < (2 if contract.get("disclosure") == "unknown" else 1): continue
 		var item: Dictionary = {}
-		for field: String in ["id", "label", "operator", "cost", "whispers", "faith", "first_upkeep", "check_kind", "attribute", "difficulty", "hint", "irreversible", "duration", "approach", "intensity", "disclosure"]:
+		for field: String in ["id", "label", "operator", "cost", "whispers", "faith", "first_upkeep", "check_kind", "attribute", "difficulty", "hint", "irreversible", "duration", "upkeep_turns", "upkeep_stop", "approach", "intensity", "disclosure"]:
 			if choice.has(field): item[field] = choice[field]
-		item.merge(Voice.wording(choice, scene.case_id, choice.id), true)
+		if not scene.has("situation_id"): item.merge(Voice.wording(choice, scene.case_id, choice.id), true)
 		visible.append(item)
 	return visible
 
@@ -117,7 +126,7 @@ func prepare(view: Dictionary, id: String, variant: String, options: Dictionary)
 		if field != "preparations": return _deny("本项回应没有这项准备")
 	var state: Dictionary = view.world
 	var data := ledger(state)
-	var scene: Dictionary = data.get("scenes", {}).get(id, {})
+	var scene := _current(data, data.get("scenes", {}).get(id, {}))
 	if scene.is_empty() or not id in data.offered or scene.status != "open" or scene.due < state.turn or int(data.offer_turn) != int(state.turn): return _deny("这项祈求已不在当前回应窗口")
 	if not _alive(state, scene.actors, scene.domain, view.get("reader")): return _deny("原参与者已无法参与这项回应")
 	var dismiss := variant == "dismiss"
@@ -128,8 +137,12 @@ func prepare(view: Dictionary, id: String, variant: String, options: Dictionary)
 	var modern := selected.has("difficulty")
 	if (dismiss or not modern) and not options.is_empty(): return _deny("本项回应无需额外配置对象")
 	if not dismiss:
+		if _obsolete(scene): return _deny("原来的困境已经改变")
 		if not matches(scene.objects, contract.requires): return _deny("此回应需要的对象或条件已改变")
-		if _possible_effects(scene.objects, contract).is_empty(): return _deny("此处境已经改变，无法再如此回应")
+		var minimum := 2 if scene.has("situation_id") and contract.get("disclosure") == "unknown" else 1
+		var possible := _possible_effects(scene.objects, contract)
+		if possible.size() < minimum: return _deny("此处境已经改变，无法再如此回应")
+		if not _still_eligible(state, scene, possible, view.get("reader")): return _deny("原参与者或能力条件已经变化")
 	var faith := 0 if dismiss else int(selected.faith)
 	var first_upkeep := 0 if dismiss else int(selected.get("first_upkeep", 0))
 	var whispers := 0 if dismiss else int(selected.whispers)
@@ -149,15 +162,33 @@ func prepare(view: Dictionary, id: String, variant: String, options: Dictionary)
 	var probability := -1
 	if not dismiss and selected.check_kind != "deterministic": probability = checks.probability(npc, state.domains[scene.domain], selected, preparation)
 	if modern and contract.get("disclosure") == "unknown" and _effect_ranges(_possible_effects(scene.objects, contract), probability).is_empty(): return _deny("当前合法结果无法分配检定区间")
-	return {"ok": true, "space": true, "request": id, "variant": variant, "actor": actor, "faith": faith, "first_upkeep": first_upkeep, "whispers": whispers, "probability": probability, "success_target": probability, "p": probability, "preparation": preparation, "preparations": preparations, "agent_source": "", "descriptor": entry(scene).descriptor, "hint": "" if dismiss else Voice.wording(selected, scene.case_id, variant).hint, "dismiss": dismiss, "disclosure": selected.get("disclosure", "clear"), "approach": selected.get("approach", ""), "intensity": selected.get("intensity", 0), "attention": {"family": "prayer", "content_id": "SPACE_" + scene.case_id, "variant": variant, "participants": scene.actors, "target": scene.domain, "source": scene.source}}
+	return {"ok": true, "space": true, "request": id, "variant": variant, "actor": actor, "faith": faith, "first_upkeep": first_upkeep, "whispers": whispers, "probability": probability, "success_target": probability, "p": probability, "preparation": preparation, "preparations": preparations, "agent_source": "", "descriptor": entry(scene).descriptor, "hint": "" if dismiss else (selected.hint if scene.has("situation_id") else Voice.wording(selected, scene.case_id, variant).hint), "situation_revision": _situation(data, scene).get("revision", -1), "upkeep_turns": selected.get("upkeep_turns", 0), "upkeep_stop": selected.get("upkeep_stop", ""), "dismiss": dismiss, "disclosure": selected.get("disclosure", "clear"), "approach": selected.get("approach", ""), "intensity": selected.get("intensity", 0), "attention": {"family": "prayer", "content_id": "SPACE_" + scene.case_id, "variant": variant, "participants": scene.actors, "target": scene.domain, "source": scene.source}}
+
+func _still_eligible(state: Dictionary, scene: Dictionary, effects: Array, reader: RefCounted) -> bool:
+	if not scene.has("situation_id"): return true
+	var frame: Dictionary = content.generator_tables.frames[scene.generation_meta.frame]
+	var history: RefCounted = reader._index if reader != null and reader.has_method("history_query") else reader
+	var context := {"state": state, "history": history, "objects": scene.objects, "roles": scene.roles, "nouns": frame.nouns, "tags": Compiler.split(frame.capability_tags), "neighbor": scene.generation_meta.get("neighbor", ""), "catalog": catalog}
+	if not Compiler.predicate(frame.get("predicates", {}), context): return false
+	for effect: Dictionary in effects:
+		if not Compiler.predicate(effect.get("predicates", {}), context): return false
+		var capability: Dictionary = effect.get("capability", {})
+		if not capability.is_empty() and not Capabilities.can_apply(state, capability, catalog): return false
+	return true
 
 func _snapshot(world: RefCounted, scene: Dictionary, kind: String, parents: Array, extra: Dictionary = {}) -> String:
 	var copy := scene.duplicate(true)
 	copy.erase("last_event")
+	if scene.has("situation_id"):
+		for field: String in ["objects", "crisis", "crisis_due", "crisis_done"]: copy.erase(field)
 	var data: Dictionary = {"request": scene.id, "version": scene.get("content_version", ledger(world.state).version), "scene_after": copy}
 	data.merge(extra, true)
 	var source: String = world._record(kind, scene.domain, scene.roles.petitioner, scene.actors, parents, data)
 	scene.last_event = source
+	if scene.has("situation_id"):
+		copy["last_event"] = source
+		ledger(world.state).scenes[scene.id] = copy
+		_persist_situation(world, scene, source)
 	return source
 
 func _apply(scene: Dictionary, updates: Dictionary) -> Dictionary:
@@ -200,7 +231,8 @@ func _metric(world: RefCounted, scene: Dictionary, field: String, amount: int, s
 func commit(world: RefCounted, plan: Dictionary, owner: Object) -> bool:
 	var data := ledger(world.state)
 	if not data.scenes.has(plan.request): return false
-	var scene: Dictionary = data.scenes[plan.request]
+	var scene := _current(data, data.scenes[plan.request])
+	if scene.is_empty() or int(_situation(data, scene).get("revision", -1)) != int(plan.get("situation_revision", -1)): return false
 	if scene.status != "open": return false
 	var paid_id := "FACT-%08d" % (int(world.state.next_fact) - 1)
 	var paid: Dictionary = Store.entry(world.state.facts, paid_id, {})
@@ -215,17 +247,18 @@ func commit(world: RefCounted, plan: Dictionary, owner: Object) -> bool:
 	var selected: Dictionary = scene.choices[plan.variant]
 	var contract: Dictionary = scene.contracts[plan.variant]
 	var alternatives := _possible_effects(scene.objects, contract)
-	if alternatives.is_empty(): return false
+	if alternatives.size() < (2 if scene.has("situation_id") and contract.get("disclosure") == "unknown" else 1) or not _still_eligible(world.state, scene, alternatives, world.history): return false
 	var modern := selected.has("difficulty")
 	var ranges: Array = _effect_ranges(alternatives, int(plan.probability)) if modern and contract.get("disclosure") == "unknown" else []
 	if modern and (plan.probability < 0 or (contract.get("disclosure") == "unknown" and ranges.is_empty())): return false
-	var before_metrics := _metrics(world.state, scene)
+	var sanity_target: String = contract.get("sanity_target", plan.actor)
+	var before_metrics := _metrics(world.state, scene, sanity_target)
 	var attempt := ""
 	if modern:
 		var person: Dictionary = Store.entry(world.state.npcs, plan.actor, {})
 		var domain: Dictionary = world.state.domains[scene.domain]
 		var check_inputs := {"person": {"sanity": person.sanity, selected.attribute: person[selected.attribute]}, "domain": {"tier": domain.tier, "barrier": domain.barrier, "alert": domain.alert}, "preparation": int(plan.preparation)}
-		attempt = world._record("prayer_space_attempt", scene.domain, plan.actor, scene.actors, [scene.source, paid_id] + plan.preparations, {"request": scene.id, "variant": plan.variant, "payment": paid_id, "probability": plan.probability, "preparations": plan.preparations, "check_inputs": check_inputs, "objects_before": scene.objects.duplicate(true), "metrics_before": before_metrics, "ranges": ranges})
+		attempt = world._record("prayer_space_attempt", scene.domain, plan.actor, scene.actors, [scene.source, paid_id] + plan.preparations, {"request": scene.id, "variant": plan.variant, "payment": paid_id, "probability": plan.probability, "preparations": plan.preparations, "check_inputs": check_inputs, "objects_before": scene.objects.duplicate(true), "metrics_before": before_metrics, "sanity_target": sanity_target, "ranges": ranges})
 		for source: String in plan.preparations:
 			Store.put(world.state.applied_authorizations, "power/preparation/" + source, attempt)
 			world.state.power_system.preparations.erase(source)
@@ -287,107 +320,146 @@ func commit(world: RefCounted, plan: Dictionary, owner: Object) -> bool:
 	var metric_sources: Array = []
 	var metric_parent := checked if not checked.is_empty() else paid_id
 	if outcome in ["success", "deep"]:
-		metric_sources.append(_metric(world, scene, "pollution", int(selected.pollution), metric_parent))
-		metric_sources.append(_metric(world, scene, "alert", int(selected.alert), metric_parent))
+		var metrics: Dictionary = contract.get("metrics", selected)
+		metric_sources.append(_metric(world, scene, "pollution", int(metrics.pollution), metric_parent))
+		metric_sources.append(_metric(world, scene, "alert", int(metrics.alert), metric_parent))
+		var sanity_loss := int(metrics.get("success_sanity", selected.get("success_sanity", 0)))
+		if sanity_loss > 0:
+			var subject: Dictionary = world.mutable_npc(sanity_target)
+			subject.sanity = maxi(0, int(subject.sanity) - sanity_loss)
+			metric_sources.append(world._record("prayer_delta", scene.domain, plan.actor, [sanity_target], [metric_parent], {"request": scene.id, "field": "sanity", "before": before_metrics.sanity, "after": subject.sanity, "amount": int(subject.sanity) - int(before_metrics.sanity)}))
 	elif outcome == "disaster":
-		var person: Dictionary = world.mutable_npc(plan.actor)
+		var person: Dictionary = world.mutable_npc(sanity_target)
 		person.sanity = maxi(0, int(person.sanity) - int(selected.disaster_sanity))
-		metric_sources.append(world._record("prayer_delta", scene.domain, plan.actor, [plan.actor], [metric_parent], {"request": scene.id, "field": "sanity", "before": before_metrics.sanity, "after": person.sanity, "amount": int(person.sanity) - int(before_metrics.sanity)}))
+		metric_sources.append(world._record("prayer_delta", scene.domain, plan.actor, [sanity_target], [metric_parent], {"request": scene.id, "field": "sanity", "before": before_metrics.sanity, "after": person.sanity, "amount": int(person.sanity) - int(before_metrics.sanity)}))
 		metric_sources.append(_metric(world, scene, "alert", int(selected.disaster_alert), metric_parent))
-	var after_metrics := _metrics(world.state, scene)
+	var after_metrics := _metrics(world.state, scene, sanity_target)
 	var actual_deltas := {}
 	for field: String in before_metrics: actual_deltas[field] = int(after_metrics[field]) - int(before_metrics[field])
 	scene.status = "answered"
 	scene["response"] = "FACT-%08d" % int(world.state.next_fact)
-	var result := _snapshot(world, scene, "prayer_space_result", [scene.source, paid_id] + ([] if checked.is_empty() else [checked]) + ([] if upkeep_payment.is_empty() else [upkeep_payment]) + ([] if twist.is_empty() else [twist]) + metric_sources, {"attempt": attempt, "check": checked, "twist": twist, "disclosure": selected.get("disclosure", "clear"), "title": scene.title, "choice_label": selected.label, "variant": plan.variant, "outcome": outcome, "probability": plan.probability, "success_target": plan.probability, "roll": roll, "actual_deltas": actual_deltas, "metric_sources": metric_sources, "effect": revealed_effect if outcome in ["success", "deep"] else "此次介入未生效，原处境继续。", "tradeoff": revealed_tradeoff if outcome in ["success", "deep"] else (selected.disaster if outcome == "disaster" else "已付费用不返还。"), "state_changes": changes, "goal_reached": scene.goal_reached, "pending_count": scene.pending.size(), "maintenance_remaining": int(scene.maintenance.get("remaining", 0)), "maintenance_payment": upkeep_payment, "payment": paid_id, "faith_cost": plan.faith, "whispers_cost": plan.whispers})
-	for person: String in scene.actors: world._know(person, result)
+	var result := _snapshot(world, scene, "prayer_space_result", [scene.source, paid_id] + ([] if checked.is_empty() else [checked]) + ([] if upkeep_payment.is_empty() else [upkeep_payment]) + ([] if twist.is_empty() else [twist]) + metric_sources, {"attempt": attempt, "check": checked, "twist": twist, "disclosure": selected.get("disclosure", "clear"), "title": scene.title, "choice_label": selected.label, "variant": plan.variant, "outcome": outcome, "probability": plan.probability, "success_target": plan.probability, "roll": roll, "actual_deltas": actual_deltas, "metric_sources": metric_sources, "effect": revealed_effect if outcome in ["success", "deep"] else "此次介入未生效，原处境继续。", "tradeoff": revealed_tradeoff if outcome in ["success", "deep"] else (selected.disaster if outcome == "disaster" else "已付费用不返还。"), "state_changes": changes, "goal_reached": scene.goal_reached, "pending_count": scene.pending.size(), "maintenance_remaining": int(scene.maintenance.get("remaining", 0)), "maintenance_payment": upkeep_payment, "payment": paid_id, "faith_cost": plan.faith, "whispers_cost": plan.whispers, "capability": contract.get("capability", {}) if outcome in ["success", "deep"] else {}})
+	if scene.has("situation_id"):
+		world._know(plan.actor, result)
+		for delta: Dictionary in changes:
+			var affected: String = scene.objects.get(delta.object, {}).get("role", "")
+			if not affected.is_empty() and affected in scene.actors: world._know(affected, result)
+	else:
+		for person: String in scene.actors: world._know(person, result)
 	if not manifestation.is_empty() and not _record_miracle(world, scene, manifestation, result, owner): return false
 	if outcome in ["success", "deep"] and not Consequences.publish(world, scene, contract.get("consequence", {}), result, -1): return false
+	if scene.has("situation_id") and outcome in ["success", "deep"]:
+		var capability: Dictionary = contract.get("capability", {})
+		if not capability.is_empty() and not Capabilities.apply(world, capability, result): return false
+		if not changes.is_empty(): _follow_up(world, scene, contract, result)
+		_close_obsolete(world, scene.situation_id, result)
 	data.offered.erase(scene.id)
 	return true
 
-static func _metrics(state: Dictionary, scene: Dictionary) -> Dictionary:
-	return {"pollution": int(state.domains[scene.domain].pollution), "alert": int(state.domains[scene.domain].alert), "sanity": int(Store.entry(state.npcs, scene.roles.petitioner, {}).get("sanity", 0))}
+static func _metrics(state: Dictionary, scene: Dictionary, sanity_target: String) -> Dictionary:
+	return {"pollution": int(state.domains[scene.domain].pollution), "alert": int(state.domains[scene.domain].alert), "sanity": int(Store.entry(state.npcs, sanity_target, {}).get("sanity", 0))}
 
-static func _bind(value: Variant, roles: Dictionary) -> Variant:
-	if value is String: return roles.get(value, value)
-	if value is Array:
-		var result: Array = []
-		for child: Variant in value: result.append(_bind(child, roles))
-		return result
-	if value is Dictionary:
-		var result: Dictionary = {}
-		for key: String in value: result[key] = _bind(value[key], roles)
-		return result
-	return value
+## The original ledger keeps its format. Generated requests own frozen choices
+## and receipts, while their objects and clock live in one shared situation.
+static func _situation(data: Dictionary, scene: Dictionary) -> Dictionary:
+	return data.get("generation", {}).get("situations", {}).get(scene.get("situation_id", ""), {})
 
-static func _needs_missing_cult(objects: Dictionary, contract: Dictionary) -> bool:
-	for key: String in objects:
-		if objects[key].get("owner") != "cult": continue
-		for field: String in ["requires", "updates", "goal"]:
-			for path: String in contract.get(field, {}):
-				if path.begins_with(key + "."): return true
-	for outcome: Dictionary in contract.get("outcomes", []):
-		if _needs_missing_cult(objects, outcome): return true
-	return false
+static func _current(data: Dictionary, scene: Dictionary) -> Dictionary:
+	if not scene.has("situation_id"): return scene
+	var root := _situation(data, scene)
+	if root.is_empty(): return {}
+	var current := scene.duplicate(true)
+	for field: String in ["objects", "crisis", "crisis_due", "crisis_done"]:
+		current[field] = root[field]
+	return current
 
-func _compatible_people(state: Dictionary, objects: Dictionary) -> bool:
-	# A newly generated background may not erase an existing bodily change,
-	# obligation or disability belonging to the same actual person.
-	for previous: Dictionary in ledger(state).get("scenes", {}).values():
-		if previous.status != "answered": continue
-		for known: Dictionary in previous.objects.values():
-			if not known.has("role"): continue
-			for candidate: Dictionary in objects.values():
-				if candidate.get("role") != known.role: continue
-				for field: String in candidate:
-					if field in ["name", "role", "location"]: continue
-					if known.has(field) and known[field] != candidate[field]: return false
-	return true
+func _persist_situation(world: RefCounted, scene: Dictionary, cause: String) -> void:
+	if not scene.has("situation_id"): return
+	var root := _situation(ledger(world.state), scene)
+	var changed := false
+	for field: String in ["objects", "crisis_due", "crisis_done"]:
+		if root[field] != scene[field]:
+			root[field] = scene[field]
+			changed = true
+	if changed: _record_situation(world, root, cause)
 
-func _new_scene(world: RefCounted, case_id: String, people: Array, domain: String) -> Dictionary:
-	var row: Dictionary = content.tables.cases[case_id]
-	var runtime: Dictionary = content.tables.runtime[case_id]
-	var roles: Dictionary = {"petitioner": people[0], "institution": domain + "/order"}
-	if people.size() > 1: roles["other"] = people[1]
-	if people.size() > 2: roles["third"] = people[2]
-	for cult: Dictionary in world.state.get("cults", {}).values():
-		if cult.domain == domain and cult.status != "destroyed":
-			roles["cult"] = cult.id; break
-	var objects: Dictionary = _bind(runtime.objects, roles)
-	if not _compatible_people(world.state, objects): return {}
-	var available: Dictionary = {}; var contracts: Dictionary = {}
-	for choice_id: String in row.choices:
-		var contract_key := case_id + "/" + choice_id
-		if not content.tables.response_contracts.has(contract_key): continue
-		var contract: Dictionary = _bind(content.tables.response_contracts[contract_key], roles)
-		if not roles.has("cult") and _needs_missing_cult(runtime.objects, contract): continue
-		if not matches(objects, contract.requires) or _possible_effects(objects, contract).is_empty(): continue
-		var option: Dictionary = row.choices[choice_id].duplicate(true)
-		var costs: Dictionary = content.tables.costs[option.cost]
-		for key: String in ["whispers", "faith", "pollution", "alert", "disaster_sanity", "disaster_alert"]: option[key] = int(costs[key])
-		var quote: Dictionary = contract.outcomes[0] if contract.get("disclosure", "clear") == "unknown" else contract
-		option["first_upkeep"] = int(quote.get("maintenance", {}).get("faith", 0))
-		for field: String in ["approach", "intensity", "disclosure", "omen"]: option[field] = contract.get(field, 0 if field == "intensity" else "")
-		for key: String in ["check_kind", "attribute", "difficulty", "hint"]: option[key] = contract[key]
-		option["disaster"] = costs.disaster
-		option["irreversible"] = contract.irreversible
-		option["duration"] = str(quote.get("maintenance", {}).get("turns", ""))
-		available[choice_id] = option; contracts[choice_id] = contract
-	if available.is_empty(): return {}
-	var affordable: bool = available.values().any(func(option: Dictionary) -> bool: return world.state.faith >= option.faith + int(option.first_upkeep) and world.state.whispers >= option.whispers)
-	if not affordable: return {}
+func _record_situation(world: RefCounted, root: Dictionary, cause: String) -> void:
+	var parent: String = root.get("last_event", "")
+	root.revision += 1
+	var frozen := root.duplicate(true)
+	frozen.erase("last_event")
+	root["last_event"] = world._record("prayer_generator_situation", root.domain, "", [], [cause] if parent.is_empty() or parent == cause else [parent, cause], {"situation": frozen})
+
+static func draft_situation(scene: Dictionary) -> Dictionary:
+	var meta: Dictionary = scene.generation_meta
+	var root_id: String = meta.root_key
+	return {"id": root_id, "root_id": root_id, "root_key": meta.root_key, "domain": scene.domain, "frame": meta.frame, "grammar": meta.grammar, "template": meta.get("template", ""), "neighbor": meta.get("neighbor", ""), "schema": 2, "roles": meta.get("roles", scene.roles).duplicate(true), "objects": scene.objects.duplicate(true), "facts": meta.get("facts", {}), "crisis": scene.crisis, "crisis_due": scene.crisis_due, "crisis_done": scene.crisis_done, "created": scene.created, "revision": 0, "status": "active", "source": "", "depth": 0}
+
+func _register(world: RefCounted, draft: Dictionary) -> Dictionary:
 	var data := ledger(world.state)
-	var id := PREFIX + "%08d" % int(data.next_id)
-	var crisis: Dictionary = _bind(runtime.crisis, roles)
-	var due: int = int(world.state.turn) + int(row.deadline) - 1
-	var scene: Dictionary = {"id": id, "content_version": content.version, "case_id": case_id, "domain": domain, "actors": people.duplicate(), "roles": roles, "created": int(world.state.turn), "due": due, "status": "open", "objects": objects, "choices": available, "contracts": contracts, "crisis": crisis, "crisis_due": int(world.state.turn) + int(crisis.get("delay", -1)) - 1 if not crisis.is_empty() else -1, "crisis_done": false, "pending": [], "maintenance": {}, "goal_reached": false, "title": row.title, "context": row.context, "appeal": row.appeal, "goal_text": row.goal, "petitioner_role": row.petitioner, "expiry": row.expiry, "expiry_updates": _bind(runtime.expiry_updates, roles), "source": ""}
-	var source: String = world._record("prayer_space_situation", domain, people[0], people, [world.state.domains[domain].origin], {"request": id, "version": content.version, "case_id": case_id, "roles": roles, "objects": objects, "created": int(world.state.turn), "due": due, "background": true})
-	scene.source = source
+	var generation: Dictionary = data.generation
+	var scene := draft.duplicate(true)
+	var meta: Dictionary = scene.generation_meta
+	var root_id: String = meta.get("situation_id", "")
+	if root_id.is_empty(): root_id = str(meta.root_key)
+	var root: Dictionary = generation.situations.get(root_id, {})
+	if root.is_empty():
+		var foundation: String = world.state.domains[scene.domain].origin
+		root = draft_situation(scene)
+		root.source = "FACT-%08d" % int(world.state.next_fact)
+		generation.situations[root_id] = root
+		_record_situation(world, root, foundation)
+	if root.objects != scene.objects or root.crisis_due != scene.crisis_due: return {}
+	if int(meta.get("expected_revision", -1)) >= 0 and int(meta.expected_revision) != root.revision: return {}
+	for role: String in root.roles:
+		if role != "petitioner" and root.roles[role] != scene.roles.get(role): return {}
+	var origin: String = root.last_event
+	var followup: String = meta.get("followup_source", "")
+	if not followup.is_empty():
+		if root.get("opportunity", {}).get("source") != followup: return {}
+		root.depth = int(root.opportunity.depth)
+		root.erase("opportunity")
+		_record_situation(world, root, followup)
+		origin = root.last_event
+	scene["schema"] = 2
+	scene["situation_id"] = root_id
+	scene["content_version"] = generation.policy_version
+	scene["id"] = PREFIX + "%08d" % int(data.next_id)
+	scene["source"] = world._record("prayer_space_situation", scene.domain, scene.roles.petitioner, scene.actors, [origin], {"request": scene.id, "version": generation.policy_version, "case_id": scene.case_id, "roles": scene.roles, "created": scene.created, "due": scene.due, "situation_id": root_id, "revision": root.revision})
 	scene["registration"] = "FACT-%08d" % int(world.state.next_fact)
-	_snapshot(world, scene, "prayer_space_registered", [source], {"title": row.title})
+	_snapshot(world, scene, "prayer_space_registered", [scene.source], {"title": scene.title})
 	data.next_id += 1
-	return scene
+	return data.scenes[scene.id]
+
+func _follow_up(world: RefCounted, scene: Dictionary, contract: Dictionary, result: String) -> void:
+	if not scene.has("situation_id"): return
+	var intents: Array = contract.get("followup_intents", [])
+	if intents.is_empty() or not str(contract.get("consequence", {}).get("event", "")).is_empty(): return
+	for delayed: Dictionary in contract.get("followup", []):
+		if not str(delayed.get("consequence", {}).get("event", "")).is_empty(): return
+	var root := _situation(ledger(world.state), scene)
+	if root.depth >= generator.parameter("situation_depth_limit") or root.has("opportunity"): return
+	root["opportunity"] = {"source": result, "eligible_intents": intents.duplicate(), "depth": int(root.depth) + 1}
+	_record_situation(world, root, result)
+
+func _close_obsolete(world: RefCounted, root_id: String, cause: String) -> void:
+	var data := ledger(world.state)
+	for stored: Dictionary in data.scenes.values():
+		if stored.get("situation_id") != root_id or stored.status != "open": continue
+		var scene := _current(data, stored)
+		if not _obsolete(scene): continue
+		scene.status = "unavailable"
+		data.offered.erase(scene.id)
+		_snapshot(world, scene, "prayer_space_closed", [scene.last_event, cause], {"reason": "situation_changed"})
+
+static func _obsolete(scene: Dictionary) -> bool:
+	var goal: Dictionary = scene.get("generation_meta", {}).get("goal", {})
+	if not goal.is_empty() and matches(scene.objects, goal): return true
+	if not scene.has("situation_id"): return false
+	for contract: Dictionary in scene.contracts.values():
+		var minimum := 2 if contract.get("disclosure") == "unknown" else 1
+		if _possible_effects(scene.objects, contract).size() >= minimum: return false
+	return true
 
 func freeze(world: RefCounted, owner: Object) -> bool:
 	world.stage_collections(["prayer_system"])
@@ -396,68 +468,69 @@ func freeze(world: RefCounted, owner: Object) -> bool:
 		world.state.prayer_system["space"] = {"schema": SCHEMA, "version": content.version, "installed": installed, "offer_turn": int(world.state.turn), "scenes": {}, "offered": [], "next_id": 1, "cooldowns": {}, "people_cooldowns": {}, "used": {}, "recent": [], "rng_seed": str(world.randoms.generation.seed), "draw": 0}
 	var data := ledger(world.state)
 	if not _supported_version(str(data.version), content.version): return false
+	if not data.has("generation"):
+		var policy: String = world._record("prayer_generator_adopted", "", "", [], [data.installed], {"schema": 2, "version": generator.version})
+		data["generation"] = {"schema": 2, "policy_version": generator.version, "source": policy, "rng_seed": data.rng_seed, "draw": 0, "situations": {}, "recent": [], "cooldowns": {}, "people_cooldowns": {}, "used": {}}
+	var generation: Dictionary = data.generation
+	if generation.policy_version != generator.version: return false
 	data.offered = []
 	data.offer_turn = int(world.state.turn)
-	for id: String in data.scenes:
-		var scene: Dictionary = data.scenes[id]
-		if scene.status != "open": continue
-		if not _alive(world.state, scene.actors, scene.domain):
+	var legacy: Array = world.state.prayer_system.offered
+	var supply: GDScript = load("res://src/game/prayer_supply.gd")
+	# Reserve the real minimum-supply card, even if it was admitted last.
+	if legacy.size() > 1 and world.state.has("prayer_dispatch"):
+		for id: String in legacy.duplicate():
+			if supply.available(world, owner, id):
+				legacy.erase(id)
+				legacy.push_front(id)
+				break
+	var limit: int = catalog.integer("prayer_offer_limit") - (0 if legacy.is_empty() else 1)
+	var request_ids: Array = data.scenes.keys()
+	request_ids.sort()
+	for id: String in request_ids:
+		var stored: Dictionary = data.scenes[id]
+		if stored.status != "open": continue
+		var scene := _current(data, stored)
+		if scene.is_empty(): return false
+		if not _alive(world.state, scene.actors, scene.domain) or _obsolete(scene):
 			scene.status = "unavailable"
-			_snapshot(world, scene, "prayer_space_closed", [scene.last_event], {"reason": "subject_changed"})
-		elif scene.due >= world.state.turn and data.offered.size() < 2: data.offered.append(id)
-	var domains: Array = world.state.simulation.get("focused", []).duplicate()
-	domains.sort()
-	var candidates: Array = []
-	var recent: Array = []
-	for item: Dictionary in data.recent:
-		if int(item.turn) + content.parameter("recent_memory") >= int(world.state.turn): recent.append(item)
-	data.recent = recent
-	for domain: String in domains:
-		var people: Array = world.history.ids("living").filter(func(id: String) -> bool:
-			var person: Dictionary = Store.entry(world.state.npcs, id)
-			return person.status == "active" and person.domain == domain and int(data.people_cooldowns.get(id, -1)) <= int(world.state.turn))
-		people.sort()
-		if people.is_empty(): continue
-		for case_id: String in content.tables.runtime:
-			var row: Dictionary = content.tables.cases[case_id]
-			var runtime: Dictionary = content.tables.runtime[case_id]
-			if not str(world.state.domains[domain].profile) in str(runtime.profiles).split("|", false) or people.size() < int(runtime.people): continue
-			var cooldown := domain + "/" + str(row.scene)
-			if int(data.cooldowns.get(cooldown, -1)) > int(world.state.turn): continue
-			var selected: Array = people.slice(0, int(runtime.people))
-			var occurrence := domain + "/" + case_id + "/" + str(selected[0])
-			if data.used.has(occurrence): continue
-			var signature := str(row.frame) + "/" + str(row.scene) + "/" + str(row.concern)
-			var repeated: bool = data.recent.any(func(item: Dictionary) -> bool: return item.signature == signature)
-			candidates.append({"domain": domain, "case_id": case_id, "people": selected, "occurrence": occurrence, "signature": signature, "cooldown": cooldown, "weight": content.parameter("seen_signature_weight" if repeated else "new_signature_weight")})
-	# Shuffle the bounded binding page independently of legacy random streams.
-	var rng := RandomNumberGenerator.new()
-	rng.seed = (str(data.rng_seed) + "/prayer-space/" + str(data.draw)).hash()
-	while data.offered.size() < 2 and not candidates.is_empty() and int(data.get("attempted_turn", -1)) != int(world.state.turn):
-		var tried := 0
-		while data.offered.size() < 2 and not candidates.is_empty() and tried < content.parameter("candidate_budget"):
-			var total := 0
-			for candidate: Dictionary in candidates: total += int(candidate.weight)
-			var pick := rng.randi_range(1, total)
-			var index := 0
-			while index < candidates.size() - 1 and pick > int(candidates[index].weight):
-				pick -= int(candidates[index].weight); index += 1
-			var candidate: Dictionary = candidates.pop_at(index)
-			tried += 1; data.draw += 1
-			if int(data.cooldowns.get(candidate.cooldown, -1)) > int(world.state.turn): continue
-			if candidate.people.any(func(id: String) -> bool: return int(data.people_cooldowns.get(id, -1)) > int(world.state.turn)): continue
-			var scene := _new_scene(world, candidate.case_id, candidate.people, candidate.domain)
+			_snapshot(world, scene, "prayer_space_closed", [scene.last_event], {"reason": "subject_or_situation_changed"})
+		elif scene.due >= world.state.turn and data.offered.size() < limit: data.offered.append(id)
+	if data.offered.size() < limit and generation.get("attempted_turn", -1) != world.state.turn:
+		var recent: Array = generation.recent.filter(func(item: Dictionary) -> bool: return int(item.turn) + content.parameter("recent_memory") >= int(world.state.turn))
+		generation.recent = recent
+		var proposal: Dictionary = generator.propose(world.state, generation, {}, world.history)
+		generation.draw = proposal.draw
+		generation["attempted_turn"] = int(world.state.turn)
+		var candidates: Array = proposal.candidates
+		var new_roots := 0
+		while data.offered.size() < limit and not candidates.is_empty():
+			var index: int = generator.pick(candidates, str(generation.rng_seed), int(generation.draw))
+			if index < 0 or index >= candidates.size(): break
+			var draft: Dictionary = candidates.pop_at(index)
+			generation.draw += 1
+			var meta: Dictionary = draft.generation_meta
+			var creates_root: bool = not generation.situations.has(str(meta.get("situation_id", meta.root_key))) and not generation.situations.has(str(meta.root_key))
+			if creates_root and new_roots >= generator.parameter("background_commit_limit"): continue
+			# Drafts have no authorization yet. Budget-check their participants
+			# here; execution still uses the registered-source admission path.
+			var need: Dictionary = world.attention.preview(world.state, {"focus": [draft.domain], "people": draft.actors, "members": [], "identities": []})
+			if not need.get("ok", false): continue
+			if int(generation.people_cooldowns.get(draft.roles.petitioner, -1)) > world.state.turn and str(meta.get("followup_source", "")).is_empty(): continue
+			if creates_root and int(generation.cooldowns.get(draft.domain + "/" + str(meta.grammar), -1)) > world.state.turn: continue
+			if not meta.get("urgent", false) and str(meta.get("followup_source", "")).is_empty() and generation.recent.any(func(item: Dictionary) -> bool: return item.turn == world.state.turn and item.decision_signature == meta.decision_signature): continue
+			var scene := _register(world, draft)
 			if scene.is_empty(): continue
-			data.scenes[scene.id] = scene; data.offered.append(scene.id)
-			data.used[candidate.occurrence] = scene.source
-			data.cooldowns[candidate.cooldown] = int(world.state.turn) + content.parameter("scene_cooldown")
-			for person: String in candidate.people: data.people_cooldowns[person] = int(world.state.turn) + content.parameter("petitioner_cooldown")
-			data.recent.append({"turn": int(world.state.turn), "signature": candidate.signature})
-		data["attempted_turn"] = int(world.state.turn)
-	# Preserve a legacy opportunity, including its exact fixed snapshot. New
-	# situations occupy the other slots rather than waiting behind three old cards.
+			if creates_root: new_roots += 1
+			data.offered.append(scene.id)
+			generation.people_cooldowns[scene.roles.petitioner] = int(world.state.turn) + content.parameter("petitioner_cooldown")
+			generation.cooldowns[scene.domain + "/" + str(meta.grammar)] = int(world.state.turn) + content.parameter("scene_cooldown")
+			generation.used[scene.situation_id + "/" + str(scene.roles.petitioner) + "/" + str(meta.semantic_signature)] = scene.source
+			generation.recent.append({"turn": int(world.state.turn), "domain": scene.domain, "semantic_signature": meta.semantic_signature, "decision_signature": meta.decision_signature})
+		var batch_parent: String = generation.get("batch", generation.source)
+		generation["batch"] = world._record("prayer_generator_batch", "", "", [], [batch_parent], {"turn": generation.attempted_turn, "cursor_digest": _cursor_digest(generation)})
 	var maximum: int = catalog.integer("prayer_offer_limit") - data.offered.size()
-	if world.state.prayer_system.offered.size() > maximum: world.state.prayer_system.offered.resize(maximum)
+	if legacy.size() > maximum: legacy.resize(maximum)
 	return true
 
 func deadlines(world: RefCounted, owner: Object) -> bool:
@@ -465,7 +538,9 @@ func deadlines(world: RefCounted, owner: Object) -> bool:
 	if data.is_empty(): return true
 	world.stage_collections(["prayer_system", "domains", "npcs"])
 	var recovered := {}
-	for scene: Dictionary in data.scenes.values():
+	for stored: Dictionary in data.scenes.values():
+		var scene := _current(data, stored)
+		if scene.is_empty(): return false
 		var changes: Array = []
 		var changed := false
 		var manifestations: Array = []
@@ -526,12 +601,12 @@ func deadlines(world: RefCounted, owner: Object) -> bool:
 				if not applied.ok: return false
 				changes.append_array(applied.changes)
 			scene.crisis_done = true; changed = true
-		if scene.status == "open" and (scene.due <= world.state.turn or not active):
-			if active:
+		if scene.status == "open" and (scene.due <= world.state.turn or not active or _obsolete(scene)):
+			if active and not _obsolete(scene):
 				var expired := _apply(scene, scene.expiry_updates)
 				if not expired.ok: return false
 				changes.append_array(expired.changes)
-			scene.status = "expired" if active else "unavailable"
+			scene.status = "expired" if active and not _obsolete(scene) else "unavailable"
 			data.offered.erase(scene.id); changed = true
 		if scene.has("selected_goal") and not scene.selected_goal.is_empty():
 			var reached: bool = matches(scene.objects, scene.selected_goal)
@@ -568,6 +643,37 @@ func deadlines(world: RefCounted, owner: Object) -> bool:
 			world._record("prayer_space_recovered", person.domain, id, [id], restored.values(), {"restored": restored})
 	return true
 
+static func _cursor_digest(generation: Dictionary) -> String:
+	return JSON.stringify([generation.draw, generation.recent, generation.used, generation.cooldowns, generation.people_cooldowns]).sha256_text()
+
+static func _validate_generation(state: Dictionary, data: Dictionary, version: String) -> Array[String]:
+	if not data.has("generation"): return []
+	var generation: Variant = data.generation
+	if not generation is Dictionary or generation.get("schema") != 2 or generation.get("policy_version") != version: return ["Unknown prayer generator policy"]
+	var policy: Dictionary = Store.entry(state.facts, str(generation.get("source", "")), {})
+	if policy.get("kind") != "prayer_generator_adopted" or policy.changes.get("version") != version or not data.installed in policy.causal_parents: return ["Missing prayer generator adoption"]
+	for field: String in ["situations", "cooldowns", "people_cooldowns", "used"]:
+		if not generation.get(field) is Dictionary: return ["Malformed prayer generator ledger"]
+	if not generation.get("draw") is int or generation.draw < 0 or generation.get("rng_seed") != data.rng_seed or not generation.get("recent") is Array: return ["Malformed prayer generator cursor"]
+	if generation.has("batch"):
+		var batch: Dictionary = Store.entry(state.facts, str(generation.batch), {})
+		if batch.get("kind") != "prayer_generator_batch" or batch.changes.get("turn") != generation.get("attempted_turn") or batch.changes.get("cursor_digest") != _cursor_digest(generation): return ["Prayer generator cursor changed outside supply"]
+	elif generation.draw != 0 or not generation.recent.is_empty() or not generation.used.is_empty(): return ["Prayer generator cursor lacks its first batch"]
+	for id: String in generation.situations:
+		var root: Variant = generation.situations[id]
+		if not root is Dictionary or root.get("id") != id or root.get("root_id") != id or not root.get("objects") is Dictionary or not state.domains.has(root.get("domain")) or not root.get("revision") is int or root.revision < 1: return ["Invalid shared prayer situation"]
+		var first: Dictionary = Store.entry(state.facts, str(root.get("source", "")), {})
+		var last: Dictionary = Store.entry(state.facts, str(root.get("last_event", "")), {})
+		var frozen: Dictionary = root.duplicate(true)
+		frozen.erase("last_event")
+		if first.get("kind") != "prayer_generator_situation" or first.changes.get("situation", {}).get("id") != id or first.changes.situation.get("revision") != 1 or last.get("kind") != "prayer_generator_situation" or last.changes.get("situation") != frozen: return ["Shared prayer situation lost its source or revision"]
+		for object: Variant in root.objects.values():
+			if not object is Dictionary or (object.has("role") and not Store.has(state.npcs, str(object.role))): return ["Shared prayer situation references an invented participant"]
+		if root.has("opportunity"):
+			var result: Dictionary = Store.entry(state.facts, str(root.opportunity.get("source", "")), {})
+			if result.get("kind") != "prayer_space_result" or not result.changes.get("outcome") in ["success", "deep"] or result.changes.get("scene_after", {}).get("situation_id") != id or result.changes.get("state_changes", []).is_empty() or root.opportunity.get("eligible_intents") != Consequences.selected(result).get("followup_intents") or root.opportunity.get("depth") != root.depth + 1: return ["Invented prayer follow-up opportunity"]
+	return []
+
 static func validate(state: Dictionary, content_source: RefCounted) -> Array[String]:
 	var data := ledger(state)
 	if data.is_empty(): return []
@@ -578,6 +684,9 @@ static func validate(state: Dictionary, content_source: RefCounted) -> Array[Str
 	if data.offered.size() + state.prayer_system.offered.size() > content_source.integer("prayer_offer_limit"): return ["Combined prayer offer limit exceeded"]
 	var installed: Dictionary = Store.entry(state.facts, str(data.get("installed", "")), {})
 	if installed.get("kind") != "prayer_space_adopted" or installed.changes.get("version") != data.version: return ["Prayer space adoption lost its original policy"]
+	var generator_version := str(content_source.prayer_space.generator_version)
+	var generation_errors := _validate_generation(state, data, generator_version)
+	if not generation_errors.is_empty(): return generation_errors
 	var seen: Dictionary = {}
 	for id: Variant in data.offered:
 		if not id is String or seen.has(id) or not data.scenes.has(id) or data.scenes[id].status != "open": return ["Invalid prayer space offer"]
@@ -590,12 +699,19 @@ static func validate(state: Dictionary, content_source: RefCounted) -> Array[Str
 		if original.get("kind") != "prayer_space_situation" or original.changes.get("request") != id or latest.get("kind") not in ["prayer_space_registered", "prayer_space_result", "prayer_space_progress", "prayer_space_closed"] or latest.changes.get("request") != id: return ["Prayer space lost its actual state transition"]
 		var current: Dictionary = scene.duplicate(true); current.erase("last_event")
 		if latest.changes.get("scene_after") != current: return ["Prayer space state changed without an actual result"]
-		if not _supported_version(str(original.changes.get("version", "")), content_source.prayer_space.version) or original.changes.get("version") != scene.get("content_version", data.version) or latest.changes.get("version") != original.changes.get("version"): return ["Prayer space lost its frozen content version"]
+		var generated: bool = scene.has("situation_id")
+		var valid_version: bool = original.changes.get("version") == generator_version if generated else _supported_version(str(original.changes.get("version", "")), content_source.prayer_space.version)
+		if generated:
+			var root := _situation(data, scene)
+			if scene.get("schema") != 2 or root.is_empty() or root.domain != scene.domain or original.changes.get("situation_id") != scene.situation_id or scene.has("objects"): return ["Prayer request lost its shared situation"]
+			var root_at_admission: Dictionary = Store.entry(state.facts, str(original.causal_parents[0]), {}) if original.causal_parents.size() == 1 else {}
+			if root_at_admission.get("kind") != "prayer_generator_situation" or root_at_admission.changes.get("situation", {}).get("id") != scene.situation_id or root_at_admission.changes.situation.get("revision") != original.changes.get("revision"): return ["Prayer request lost its original shared revision"]
+		if not valid_version or original.changes.get("version") != scene.get("content_version", data.version) or latest.changes.get("version") != original.changes.get("version"): return ["Prayer space lost its frozen content version"]
 		if scene.get("case_id") != original.changes.get("case_id") or scene.get("roles") != original.changes.get("roles") or scene.get("due") != original.changes.get("due"): return ["Prayer space changed its original subjects or request deadline"]
 		if scene.has("registration"):
 			var registration: Dictionary = Store.entry(state.facts, str(scene.registration), {})
 			if registration.get("kind") != "prayer_space_registered" or not scene.source in registration.get("causal_parents", []) or registration.changes.get("request") != id: return ["Prayer space lost its frozen registration"]
-			for field: String in ["choices", "contracts"]:
+			for field: String in (["choices", "contracts", "generation_meta", "title", "appeal", "situation_id"] if generated else ["choices", "contracts"]):
 				if registration.changes.get("scene_after", {}).get(field) != scene.get(field): return ["Prayer space changed its frozen response contract"]
 		if scene.status == "answered":
 			var response: Dictionary = Store.entry(state.facts, str(scene.get("response", "")), {})
@@ -677,7 +793,22 @@ static func _validate_attempt(state: Dictionary, source: RefCounted, scene: Dict
 	for field: String in expected:
 		if not before.get(field) is int: return ["Prayer result lost its original metrics"]
 	if result.outcome in ["success", "deep"]:
-		for field: String in ["pollution", "alert"]: expected[field] = clampi(int(before[field]) + int(option[field]), 0, source.integer("attribute_max")) - int(before[field])
+		var chosen := Consequences.selected(response)
+		var metrics: Dictionary = chosen.get("metrics", option)
+		for field: String in ["pollution", "alert"]: expected[field] = clampi(int(before[field]) + int(metrics[field]), 0, source.integer("attribute_max")) - int(before[field])
+		expected.sanity = maxi(0, int(before.sanity) - int(metrics.get("success_sanity", option.get("success_sanity", 0)))) - int(before.sanity)
+		if scene.has("situation_id"):
+			if data.get("sanity_target") != contract.get("sanity_target", scene.roles.petitioner) or not data.sanity_target in scene.actors: return ["Generated prayer changed its sanity recipient"]
+			var applied := updated(data.objects_before, chosen.get("updates", {}))
+			if not applied.ok: return ["Generated prayer cannot replay its chosen writes"]
+			var upkeep: Dictionary = chosen.get("maintenance", {})
+			var changes: Array = applied.changes
+			if not upkeep.is_empty():
+				var first := updated(applied.objects, upkeep.get("updates", {}))
+				var receipt: Dictionary = Store.entry(state.facts, str(result.get("maintenance_payment", "")), {})
+				if not first.ok or receipt.get("kind") != "prayer_space_maintenance" or receipt.changes.get("request") != scene.id or receipt.changes.get("faith_cost") != upkeep.faith or receipt.changes.get("installment") != 1 or not receipt.id in response.causal_parents: return ["Generated prayer lost its first upkeep payment"]
+				changes.append_array(first.changes)
+			if _change_keys(changes) != _change_keys(result.get("state_changes", [])) or chosen.get("capability", {}) != result.get("capability", {}): return ["Generated prayer changed its actual effect receipt"]
 	elif result.outcome == "disaster":
 		expected.alert = clampi(int(before.alert) + int(option.disaster_alert), 0, source.integer("attribute_max")) - int(before.alert)
 		expected.sanity = maxi(0, int(before.sanity) - int(option.disaster_sanity)) - int(before.sanity)
@@ -692,6 +823,11 @@ static func _validate_attempt(state: Dictionary, source: RefCounted, scene: Dict
 		seen[field] = true; actual[field] = int(delta.amount)
 	if actual != expected: return ["Prayer result omitted its actual metric receipt"]
 	return []
+
+static func _change_keys(changes: Array) -> Array:
+	var keys := changes.map(func(change: Dictionary) -> String: return JSON.stringify(change))
+	keys.sort()
+	return keys
 
 static func _supported_version(value: String, current: String) -> bool:
 	return value == current or value in LEGACY_VERSIONS

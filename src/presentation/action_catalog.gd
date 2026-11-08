@@ -214,7 +214,7 @@ func _prepare(session: RefCounted, key: String, selection: Dictionary, _fields: 
 	# qualification internals remain in the rule layer.
 	var plan: Dictionary = prepared.preview
 	var visible: Dictionary = {}
-	for field: String in ["faith", "whispers", "faith_cost", "probability", "net_gain", "awakening_loss", "consumes", "needs", "first_upkeep", "disclosure", "approach", "intensity", "hint", "success_target", "omen", "disaster_text", "effect", "tradeoff", "pollution", "alert"]:
+	for field: String in ["faith", "whispers", "faith_cost", "probability", "net_gain", "awakening_loss", "consumes", "needs", "first_upkeep", "upkeep_turns", "upkeep_stop", "situation_revision", "disclosure", "approach", "intensity", "hint", "success_target", "omen", "disaster_text", "effect", "tradeoff", "pollution", "alert"]:
 		if plan.has(field): visible[field] = plan[field].duplicate(true) if plan[field] is Dictionary or plan[field] is Array else plan[field]
 	if key in ["POWER_MANIFEST", "POWER_MANIFEST_CONTINUE"]:
 		var paid: int = int(session.world.state.power_system.manifest.get("progress", 0)) if key == "POWER_MANIFEST_CONTINUE" else 0

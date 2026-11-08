@@ -92,7 +92,8 @@ func update(focus_name := "", scroll_position := -1) -> void:
 		var quoted: Dictionary = preview.get("preview", choice)
 		var short_cost := "低语 %s · 信仰 %s" % [quoted.get("whispers", 0), quoted.get("faith", 0)]
 		host._line(body, short_cost + (" · " + _check_text(quoted) if enabled else ""), 14, UI.CYAN)
-		if int(quoted.get("first_upkeep", 0)) > 0: host._line(body, "生效另付 %s 信仰" % quoted.first_upkeep, 14, UI.CYAN)
+		if int(quoted.get("first_upkeep", 0)) > 0:
+			host._line(body, _upkeep_text(quoted), 14, UI.CYAN)
 		if not enabled:
 			host._line(body, str(preview.get("error", "当前条件不满足")), 14, UI.MUTED)
 		if active:
@@ -131,7 +132,7 @@ func respond(row: Dictionary, choice: Dictionary, confirmed: bool) -> void:
 	var before: Dictionary = host.projection
 	host._busy = true
 	var selection: Dictionary = parent._draft().inputs.get(str(choice.id), {}).duplicate(true)
-	var result: Dictionary = host.session.execute_action(row.key, selection, confirmed)
+	var result: Dictionary = host.session.execute_action(row.key, selection, confirmed, "", row.get("preview", {}).get("preview", {}))
 	host._busy = false
 	if result.get("confirmation", false):
 		parent._remember_return("Respond")
@@ -141,6 +142,7 @@ func respond(row: Dictionary, choice: Dictionary, confirmed: bool) -> void:
 		host._line(body, str(choice.get("hint", "具体后果未知。")), 18, UI.VIOLET if choice.get("disclosure") == "unknown" else UI.BONE)
 		var price: Dictionary = row.get("preview", {}).get("preview", {})
 		host._line(body, _cost_text(price), 16, UI.CYAN)
+		if int(price.get("upkeep_turns", 0)) > 0: host._line(body, _upkeep_text(price), 14, UI.CYAN)
 		host._line(body, _check_text(price), 18, UI.GOLD)
 		host._line(body, "无法撤回；未生效也消耗费用。", 15, UI.RISK)
 		host._button(host._surface, "BackToPrayer", "返回祈求", Rect2(534, 516, 180, 40), parent.back_to_detail).grab_focus()
@@ -169,6 +171,14 @@ func _cost_text(price: Dictionary) -> String:
 	var text := "低语 %s · 信仰 %s" % [price.get("whispers", 0), price.get("faith", price.get("faith_cost", 0))]
 	if int(price.get("first_upkeep", 0)) > 0: text += " · 生效另付 %s 信仰" % price.first_upkeep
 	return text
+
+func _upkeep_text(price: Dictionary) -> String:
+	var fee := int(price.get("first_upkeep", 0))
+	var turns := int(price.get("upkeep_turns", 0))
+	if turns <= 0: return "生效另付 %d 信仰" % fee
+	var text := "生效即付首期 · 每轮 %d 信仰，共 %d 期" % [fee, turns]
+	var stop := str(price.get("upkeep_stop", ""))
+	return text if stop.is_empty() else text + "。" + stop
 
 func _check_text(price: Dictionary) -> String:
 	var target := int(price.get("success_target", price.get("probability", -1)))

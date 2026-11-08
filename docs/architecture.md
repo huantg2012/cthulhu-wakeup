@@ -686,4 +686,4 @@ Session 统一投影新旧请求，ActionCatalog 仅提供当前正式操作。`
 
 祈求回应展示：`src/presentation/prayer_response_voice.gd` 从 `data/prayer_response_voice.csv` 缓存读取表达，供 PrayerSpace 的选项与预览投影调用。仅展示，不进入冻结合同版本或行动随机流；离线目录构建器使用同源数据与稳定选择规则。
 
-组合祈求生成器待实现架构：system-events §16.10 是唯一接口合同。拟新增只读生成器、typed effect compiler 和 Session 拥有的共享 Situation 注册表；Request 引用处境，共享时钟与对象版本。旧 schema1 与新 schema2 分派，不重写旧冻结合同。新参数表尚未装载；实施模块、依赖和实际完成状态待 G01–G08 接入后更新。
+组合祈求在 Catalog 读取 `prayer_generator_*` 后由 `prayer_generator.gd` 只读求解，`prayer_effect_compiler.gd` 编译效果及报价。`PrayerSpace` 在正式事务内登记共享处境与独立请求，记录版本、随机游标和处境变更来源。旧 scene 沿 schema1 审计，新请求引用 schema2 共享状态。`prayer_capabilities.gd` 将实际成功回执接入人物资格与活动。作者查看器由 `tools/prayer-space/serve_viewer.py` 调用同一 Godot 生成核心。接口合同见 system-events §16.10。

@@ -390,6 +390,7 @@ func _person(host, box: VBoxContainer, id: String) -> void:
 	_pair(host, box, "职责", _role(host, p))
 	_pair(host, box, "处境", _state(p.get("status", "仅有请求线索")))
 	for limitation: String in p.get("prayer_limitations", []): box.add_child(host.label(limitation))
+	for change: String in p.get("prayer_capabilities", []): box.add_child(host.label(change))
 	if p.get("bound_member", false):
 		box.add_child(host.label("意志 %s · 洞察 %s · 影响 %s · 适应 %s" % [p.get("will", "?"), p.get("insight", "?"), p.get("influence", "?"), p.get("adaptation", "?")]))
 		box.add_child(host.label("忠诚 %s · 理智 %s" % [p.get("loyalty", "?"), p.get("sanity", "?")]))

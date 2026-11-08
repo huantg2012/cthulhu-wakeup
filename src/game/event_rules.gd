@@ -5,6 +5,7 @@ const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
 const Materials = preload("res://src/simulation/material_transfer.gd")
 const Anchors = preload("res://src/game/anchors.gd")
+const PrayerRules = preload("res://src/game/prayer_rules.gd")
 
 static func fact(state: Dictionary, id: String, index: RefCounted = null) -> Dictionary:
 	if Store.has(state.get("facts", {}), id): return Store.entry(state.facts, id)
@@ -464,7 +465,7 @@ static func related_any(state: Dictionary, sources: Array, first: String, second
 
 static func successor_legal(state: Dictionary, id: String, institution: String, content: RefCounted, index: RefCounted = null) -> bool:
 	var npc: Dictionary = person(state, id, index)
-	if npc.is_empty() or npc.status != "active" or not state.institutions.has(institution) or npc.domain != state.institutions[institution].domain or int(npc.sanity) < content.integer("institution_successor_min_sanity"): return false
+	if npc.is_empty() or npc.status != "active" or not PrayerRules.can_hold_office(state, id) or not state.institutions.has(institution) or npc.domain != state.institutions[institution].domain or int(npc.sanity) < content.integer("institution_successor_min_sanity"): return false
 	var profile: Dictionary = content.tables.npc_profiles.get(npc.get("profile", ""), {})
 	if profile.is_empty() or not state.institutions[institution].role in str(profile.institution_roles).split("|"): return false
 	var domain: Dictionary = state.domains[npc.domain]

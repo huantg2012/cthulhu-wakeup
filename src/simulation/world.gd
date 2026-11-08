@@ -16,6 +16,7 @@ const Powers = preload("res://src/game/powers.gd")
 const Relics = preload("res://src/game/relics.gd")
 const Prayers = preload("res://src/game/prayers.gd")
 const PrayerRules = preload("res://src/game/prayer_rules.gd")
+const Capabilities = preload("res://src/game/prayer_capabilities.gd")
 const Anchors = preload("res://src/game/anchors.gd")
 const Events = preload("res://src/game/events.gd")
 const Resistance = preload("res://src/game/resistance.gd")
@@ -456,18 +457,18 @@ func _nominate(command: Dictionary, local_expansion: bool = false) -> bool:
 	_refresh_anchors()
 	return true
 
-func _detach_roles(npc: Dictionary, source: String = "") -> void:
+func _detach_roles(npc: Dictionary, source: String = "", active_only: bool = false) -> void:
 	for institution: Dictionary in state.institutions.values():
 		if institution.representative == npc.id:
 			institution.representative = ""
 			if institution.has("occupancy"): institution.occupancy = "vacant"
 	for cult: Dictionary in state.cults.values():
-		if cult.leader == npc.id:
+		if cult.leader == npc.id and (not active_only or cult.status != "destroyed"):
 			cult.leader = ""
 			cult.succession_source = npc.status_source if source.is_empty() else source
 			cult.status = "dormant"
 	for anchor: Dictionary in state.anchors.values():
-		if anchor.guardian == npc.id:
+		if anchor.guardian == npc.id and (not active_only or anchor.state != "destroyed"):
 			anchor.guardian = ""
 			if anchor.state != "destroyed":
 				anchor.state = "dormant"
@@ -832,7 +833,7 @@ func choose_behavior(npc_id: String, view: Dictionary = {}) -> Dictionary:
 				if not source.is_empty() and int(npc.sanity) < catalog.integer("autonomous_recovery_threshold"):
 					options.append({"target": npc_id, "source": source})
 			"known_local_exposure":
-				if current.institutions.has(npc.institution) and _institution_operational(current, npc.institution):
+				if PrayerRules.can_hold_office(current, npc_id) and current.institutions.has(npc.institution) and _institution_operational(current, npc.institution):
 					var subjects: Array = index.ids("active/" + npc.domain) + index.ids("subject_relics/" + npc.domain)
 					for target: String in subjects:
 						if not _subject_valid(current, target, npc.domain) or PrayerRules.concealed(current, target): continue
@@ -1243,7 +1244,7 @@ func _institution_operational(view: Dictionary, id: String) -> bool:
 	if view.has("simulation"):
 		if view.institutions[id].get("occupancy") in ["vacant", "disabled"]: return false
 		if representative.is_empty() and view.institutions[id].get("occupancy") == "occupied_abstract" and not view.institutions[id].domain in view.simulation.focused: return true
-	return Store.has(view.npcs, representative) and Store.entry(view.npcs, representative).status == "active" and Store.entry(view.npcs, representative).domain == view.institutions[id].domain
+	return PrayerRules.can_hold_office(view, representative) and Store.has(view.npcs, representative) and Store.entry(view.npcs, representative).status == "active" and Store.entry(view.npcs, representative).domain == view.institutions[id].domain
 
 func _succeed_cults() -> void:
 	for cult_id: String in _keys(state.cults):
@@ -1253,7 +1254,7 @@ func _succeed_cults() -> void:
 		var eligible: Array = []
 		for npc_id: String in _living_ids():
 			var npc: Dictionary = Store.entry(state.npcs, npc_id)
-			if npc.domain == cult.domain and npc.status == "active" and int(npc.loyalty) >= catalog.integer("loyalty_follower_threshold"):
+			if npc.domain == cult.domain and npc.status == "active" and PrayerRules.can_hold_office(state, npc_id) and int(npc.loyalty) >= catalog.integer("loyalty_follower_threshold"):
 				if Attention.enabled(state) and not npc.get("bound_member", false):
 					var willingness: String = str(npc.get("dedication_source", ""))
 					if willingness.is_empty() or not Store.has(state.facts, willingness) or (Store.entry(state.facts, npc.binding_source).kind == "member_left" and willingness <= str(npc.binding_source)): continue
@@ -1285,7 +1286,7 @@ func institution_successors(institution_id: String) -> Array:
 		return eligible
 	for id: String in _living_ids():
 		var npc: Dictionary = Store.entry(state.npcs, id)
-		if npc.status == "active" and npc.domain == state.institutions[institution_id].domain and int(npc.sanity) >= catalog.integer("institution_successor_min_sanity") and _profile_legal(catalog.tables.npc_profiles[npc.profile], npc.domain, institution_id):
+		if npc.status == "active" and npc.domain == state.institutions[institution_id].domain and PrayerRules.can_hold_office(state, id) and int(npc.sanity) >= catalog.integer("institution_successor_min_sanity") and _profile_legal(catalog.tables.npc_profiles[npc.profile], npc.domain, institution_id):
 			eligible.append(id)
 	return eligible
 
@@ -1666,6 +1667,8 @@ func validate_increment(candidate: Dictionary, trusted: Dictionary) -> Array[Str
 	if not resistance_errors.is_empty(): return resistance_errors
 	var event_errors: Array[String] = Events.validate_state(candidate, catalog, trusted, history)
 	if not event_errors.is_empty(): return event_errors
+	var capability_errors: Array[String] = Capabilities.validate(candidate, trusted)
+	if not capability_errors.is_empty(): return capability_errors
 	var route_errors: Array[String] = Progression.validate_state(candidate, catalog, trusted)
 	if not route_errors.is_empty(): return route_errors
 	var opportunity_errors: Array[String] = Opportunities.validate_state(candidate, catalog, trusted)
@@ -1716,6 +1719,8 @@ func validate_state(candidate: Dictionary) -> Array[String]:
 	if not resistance_errors.is_empty(): return resistance_errors
 	var event_errors: Array[String] = Events.validate_state(candidate, catalog)
 	if not event_errors.is_empty(): return event_errors
+	var capability_errors: Array[String] = Capabilities.validate(candidate)
+	if not capability_errors.is_empty(): return capability_errors
 	var route_errors: Array[String] = Progression.validate_state(candidate, catalog)
 	if not route_errors.is_empty(): return route_errors
 	var opportunity_errors: Array[String] = Opportunities.validate_state(candidate, catalog)

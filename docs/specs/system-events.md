@@ -5,7 +5,7 @@ last-modified-by: design
 last-modified-date: 2026-11-09
 interface-changed: true
 interfaces-with: [system-turn-economy, system-powers-cults, system-progression, system-civilizations]
-exposes: [组合祈求生成器待实现合同与公式, 处境化二至五项回应与未知曲解结果池, 祈求跨系统人物限制与恢复, 有源证言与取得结果, 有限后续事件, 冻结合同兼容与执行后揭晓, 行动窗口最低一项祈求及前向供给迁移, 原B来源族概率补偿与有限FIFO提交合同, 受管理同一本玩家账本与真实direct服务实施接口, 共享知情与当前入口资格查询前置, 轻量情境抽签与重要结果持久化目标, 轻量契约继任选定及实际接续, PR03深成功精确关系撤销回执, 记忆登记实践与契约实际履约路线目标合同, 当前私祷与首团组织及记录祭仪路线目标合同, 关键替代路线与独立观察目标, 关键机会共享等待与实际服务目标合同, 跨机构争议与共同见闻目标合同, 正式十二事件与二十四分支, 原计划到期事件交接, 锚前遗物处置, 到期概率身份仲裁, 祈求候选, 可执行回应, 事件队列, 已发生事实, 因果编年史, 对象失效处理, 多前因事实与知情范围, 唯一结果消费键, 固定候选与主体预留, 背景生成来源与危机期限, 正式祈求情境与回应效果, 请求窗口与原危机分离, 可选秘密合作渠道, 有限材料接收层次与指定目标端点, schema2实际依托机会消费, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
+exposes: [组合祈求生成器与共享处境结算, 处境化二至五项回应与未知曲解结果池, 祈求跨系统人物限制与恢复, 有源证言与取得结果, 有限后续事件, 冻结合同兼容与执行后揭晓, 行动窗口最低一项祈求及前向供给迁移, 原B来源族概率补偿与有限FIFO提交合同, 受管理同一本玩家账本与真实direct服务实施接口, 共享知情与当前入口资格查询前置, 轻量情境抽签与重要结果持久化目标, 轻量契约继任选定及实际接续, PR03深成功精确关系撤销回执, 记忆登记实践与契约实际履约路线目标合同, 当前私祷与首团组织及记录祭仪路线目标合同, 关键替代路线与独立观察目标, 关键机会共享等待与实际服务目标合同, 跨机构争议与共同见闻目标合同, 正式十二事件与二十四分支, 原计划到期事件交接, 锚前遗物处置, 到期概率身份仲裁, 祈求候选, 可执行回应, 事件队列, 已发生事实, 因果编年史, 对象失效处理, 多前因事实与知情范围, 唯一结果消费键, 固定候选与主体预留, 背景生成来源与危机期限, 正式祈求情境与回应效果, 请求窗口与原危机分离, 可选秘密合作渠道, 有限材料接收层次与指定目标端点, schema2实际依托机会消费, 两类求告与有源身份知晓, 有限原根生产及单一候选职责]
 ---
 
 TL;DR：普通背景由条件加权抽签概括，只持久保存影响玩家选择的事实与后果（DEC-026；五族来源及必要原消费者已限定接入，完整Session与自然新局待验）。祈求来自有身份和处境的具体人物，事件从现有状态与历史中筛选，可有整轮没有事件。所有回应与事件后果先改变真实世界，再由受约束的叙事表达呈现，随机文本不能另造事实。
@@ -769,7 +769,7 @@ TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources已接当前选
 
 后续系统设计见 §16。制作人已要求直接交付系统与派生祈求，随后将本批数量确定为 50 条。内容是否合理、回应是否有趣由制作人判断；本批仅检查内容数量、字段和引用完整性，不另做体验评分、扩展回归或重复取证。
 
-## 16. 祈求生成与回应系统（有限情境已接入；组合生成见16.10待实现）
+## 16. 祈求生成与回应系统（组合生成与旧冻结合同并行）
 
 本节承接 §15 的研究，给出生成、回应、结算和续存规则。本批按制作人最新要求交付 **50 条祈求与按处境变化的具体回应**；不继续扩写至 100 条。全部案例见 [阅读目录](../content/prayer-space.html)，策划源见 [prayer_space_cases.csv](../../data/prayer_space_cases.csv)。新情境使用具体回应及独立处境账本；原十二类机制卡继续按原合同结算。
 
@@ -875,7 +875,7 @@ TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources已接当前选
 
 `data/prayer_response_voice.csv` 是独立于处境的可复用表达库，按类别和实际效果分档选择；正式投影与离线目录共用它。稳定选择以情境键和回应键为输入，不消耗游戏随机流，不更改旧档冻结合同；同一回应反复查看不改口。后续新增情境可以直接使用，不需要再复制一套回应前文案。原 CSV 中具体行动与效果继续作为作者规则说明和结算来源。
 
-**生成器目标仍为按背景、动机、关系、危机、介入规则组合产生新处境。当前 50 个有限情境是运行内容池，不是已实现海量组合的证明；本次表达库只完成表达层复用，不将换词统计为新祈求。** 后续处境生成必须先构造合法对象与效果，再生成原话及回应；不能先拼故事，再凭空补结算。
+组合生产规则见 §16.10。表达库负责玩家措辞，容量统计按语义、决策和文字分别计数。
 
 ### 16.8 数据交付与接入边界
 
@@ -883,7 +883,7 @@ TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources已接当前选
 
 生产装载由 `src/content/prayer_space_catalog.gd` 注册六份设计 CSV，并装载 `prayer_space_runtime.csv`（50 个有限处境）及 `prayer_space_response_contracts.csv`（每个回应的类型化执行合同）。效果由对象路径、前置、有限更新、定时规则和维护规则执行，不解析自由文案。独立版本和随机流保存在 `prayer_system.space`；已冻结的报价、结果合同与旧消费身份保持原语义，兼容新内容版本。
 
-当前调度的限定：新情境绑定聚焦世界与现存活跃人物；CIV01/02/03/04/06 支持本批人类生活背景。每轮合计最多三项，其中新情境最多两项，保留原机制供给；24 候选预算、处境四轮／人物三轮冷却、十二轮签名记忆（当前签名为背景／语法／关切）；尚未采用已存危机加权及利益关系／结果边界的完整签名。五十个有限处境依真实角色绑定派生，不宣称已经实现其余五种背景或任意自由组合。普通背景首次固定后由处境内对象、责任与定时消费者推进，不新增完整社会模拟。
+历史有限池的调度边界：固定情境绑定聚焦世界与现存活跃人物；CIV01/02/03/04/06 支持本批人类生活背景。每轮合计最多三项，其中新情境最多两项，保留原机制供给；24 候选预算、处境四轮／人物三轮冷却、十二轮签名记忆（当前签名为背景／语法／关切）；尚未采用已存危机加权及利益关系／结果边界的完整签名。五十个有限处境依真实角色绑定派生，不宣称已经实现其余五种背景或任意自由组合。普通背景首次固定后由处境内对象、责任与定时消费者推进，不新增完整社会模拟。
 
 正式界面以处境身份为标题，正文只有祈求原话；回应显示类型、行动、短模糊后果、费用与明确成功点数。首次维护费单列，失败不扣成功后维护。暂缓只关闭阅读，不再回应关闭请求但不取消危机。玩家投影不外露执行合同、完整场景快照或底层因果图。真实执行经过 Session、准入、轮次事务、实际扣费、结果及保存恢复链路。
 
@@ -952,9 +952,9 @@ TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources已接当前选
 
 <a id="compositional-prayer-generator"></a>
 
-### 16.10 组合祈求生成器：实施合同（2026-11-09，设计已确认，尚未实现）
+### 16.10 组合祈求生成器：实施合同（已接正式 Session，待制作人验收）
 
-**权威与状态。** 本节将制作人确认的生成目标及取舍设计固化为待实现合同。代码基线 `8d2e73a` 仍是 50 个固定情境／178 项回应及共用表达库；不能将本节或新设计 CSV 的存在写成“已接入”。本节对新生成祈求优先于 §16 前段的有限池限定；旧冻结卡继续沿原版本。§16.9 的真实后果、知情、来源与幂等约束继续适用。任务拆分见 `docs/tasks/prayer-space-integration.md#generator-implementation`。
+正式生产从十类背景、处境模板、诉求和效果配方组合候选。本节规定新生成祈求的行为。50 个历史情境及其冻结回应继续按原版本结算，作者可在查看器切到旧案例。§16.9 的真实后果、知情、来源与幂等约束适用于两条链路。实施范围与待验事项见 [G01–G08](../tasks/prayer-space-integration.md#generator-implementation)。
 
 #### 16.10.1 必须达成的行为与容量口径
 
@@ -966,15 +966,15 @@ TASK-SOURCE-CONTRACT — Current Agreement and Obligation Sources已接当前选
 
 #### 16.10.2 数据源与装载合同
 
-所有策划参数和内容 CSV → Catalog → 规则编译；不在代码里写题材、职业、祈求、效果蓝本。下列文件除特别标注已存在外均是 **待实现表结构**，接手者须按 schema 建表并完成装载，不能只存描述性中文。
+所有策划参数和内容 CSV → Catalog → 规则编译；不在代码里写题材、职业、祈求、效果蓝本。Catalog 加载新生成表并编译受限谓词和写入规则。生成版背景与处境使用 `prayer_generator_frames.csv` 和 `prayer_generator_scenes.csv`，原表用于历史合同与阅读。字段以下方语义及 CSV 实际表头为准。
 
-1. `prayer_space_frames.csv`（已有，扩展）：`id,requires_tags,excludes_tags,entity_types,register_tags,base_weight`。自然环境、社会制度、身体形态来自世界能力标签和实际对象；不得根据文明或世界名称猜测，不能把 CIV01…名单当唯一兼容条件。缺失环境信息时只用显式已知兼容背景。
-2. `prayer_space_scenes.csv`（已有，扩展）：`id,role_slots,object_slots,predicates,initial_facts,clock,allowed_goals`。JSON 字段声明类型、基数、必要关系和允许一次概括成立的普通事实。登记普通家庭关系／职业前须检查既有关系及身份，无矛盾方可创建并保存；不可每次为同一人重造职业、配偶或过去。
-3. `prayer_generator_intents.csv`（待建）：`id,scene_tags,stance,roles,knowledge_predicates,desire_predicates,goal,belief,allowed_approaches,appeal_registers,base_weight`。立场描述受害、受益、责任、竞争、照护等；`belief` 是人物认识，不覆盖处境真相。愿付代价与忠诚、知情分别保存。
-4. `prayer_generator_effects.csv`（待建）：`id,operator,requires_tags,predicates,bindings,writes,goal,followup,upkeep,capabilities,miracle,consequence,base_difficulty,check_kind,attribute,tradeoff_profile,result_text_id`。把现有 `prayer_space_operators.csv` 的文字合同编译成可执行原语。一个原语可用于多个背景；新增题材不得要求在执行器新增 case_id 分支。特殊原语可新增受限 adapter，但须写出消费者与失败语义。
-5. `prayer_generator_twists.csv`（待建）：`id,concept,compatible_goal,requires_tags,reinterpretation,effect_recipe_ids,weight,result_text_id`。concept 为对象、归属、状态、时间等语义维度；reinterpretation 是有类型的目标变换，不能是供程序自由理解的自然语言指令。
-6. `prayer_generator_language.csv`（待建）：`id,kind,register,required_slots,required_facts,forbidden_tags,text,weight`。kind 为身份标题、原话短段、连接段、结果句。使用编辑过的完整句／短段，带受限占位符；选择规则维护主谓、数、称谓、时态及人物知情。不同动机用不同段落结构，不以统一“我有{问题}，请{动作}”覆盖全表。
-7. `prayer_generator_parameters.csv`、`prayer_generator_tradeoffs.csv`（本次已交付，全部 DESIGN_ONLY）：前者为算法初值；后者为已讨论的四类亵变取舍基型，不是强制四选一。实施时扩充其他类别基型，不能只实现亵变。`prayer_response_voice.csv`（已有）负责态度和提示词，增加事实条件及系统分档引用，避免泛用词错误暗示肉体变化或无代价。
+1. `prayer_generator_frames.csv`：`id,requires_tags,excludes_tags,entity_types,register_tags,base_weight`。自然环境、社会制度、身体形态来自世界能力标签和实际对象；不得根据文明或世界名称猜测，不能把 CIV01…名单当唯一兼容条件。缺失环境信息时只用显式已知兼容背景。
+2. `prayer_generator_scenes.csv`：`id,role_slots,object_slots,predicates,initial_facts,clock,allowed_goals`。JSON 字段声明类型、基数、必要关系和允许一次概括成立的普通事实。登记普通家庭关系／职业前须检查既有关系及身份，无矛盾方可创建并保存；不可每次为同一人重造职业、配偶或过去。
+3. `prayer_generator_intents.csv`：`id,scene_tags,stance,roles,knowledge_predicates,desire_predicates,goal,belief,allowed_approaches,appeal_registers,base_weight`。立场描述受害、受益、责任、竞争、照护等；`belief` 是人物认识，不覆盖处境真相。愿付代价与忠诚、知情分别保存。
+4. `prayer_generator_effects.csv`：`id,operator,requires_tags,predicates,bindings,writes,goal,followup,upkeep,capabilities,miracle,consequence,base_difficulty,check_kind,attribute,tradeoff_profile,result_text_id`。把现有 `prayer_space_operators.csv` 的文字合同编译成可执行原语。一个原语可用于多个背景；新增题材不得要求在执行器新增 case_id 分支。特殊原语可新增受限 adapter，但须写出消费者与失败语义。
+5. `prayer_generator_twists.csv`：`id,concept,compatible_goal,requires_tags,reinterpretation,effect_recipe_ids,weight,result_text_id`。concept 为对象、归属、状态、时间等语义维度；reinterpretation 是有类型的目标变换，不能是供程序自由理解的自然语言指令。
+6. `prayer_generator_language.csv`：`id,kind,register,required_slots,required_facts,forbidden_tags,text,weight`。kind 为身份标题、原话短段、连接段、结果句。使用编辑过的完整句／短段，带受限占位符；选择规则维护主谓、数、称谓、时态及人物知情。不同动机用不同段落结构，不以统一“我有{问题}，请{动作}”覆盖全表。
+7. `prayer_generator_parameters.csv`、`prayer_generator_tradeoffs.csv`（当前运行初值）：前者为算法初值；后者为已讨论的四类亵变取舍基型，不是强制四选一。实施时扩充其他类别基型，不能只实现亵变。`prayer_response_voice.csv`（已有）负责态度和提示词，增加事实条件及系统分档引用，避免泛用词错误暗示肉体变化或无代价。
 
 谓词采用受限 JSON AST：`all/any/not`、`eq/ne/gt/gte/lt/lte`、`has_tag`、`exists_relation`、`knows`、`can_reach`、`owns`、`can_execute`；量词仅遍历已绑定的有限角色集合。类型声明区分 person/group/institution/item/place/service/fact；写操作仅允许 `set/add/remove/link/unlink/schedule` 经注册 adapter 执行。禁止 eval、任意对象路径、文件访问或执行文本。Catalog 验证所有引用、类型、读写域、费用非负、计时终止和消费接口；未知原语装载失败，不能静默变为纯文案。
 
@@ -1047,7 +1047,7 @@ W = base_weight * N * B * (urgent_weight if U else 1)
 
 #### 16.10.6 难度、费用和系统后果公式
 
-参数源：新增两张 DESIGN_ONLY CSV 与既有 `run_parameters.csv`。下列算法是首版实现合同，初值尚未经过长期经济平衡。**成本与成功难度分别计算，禁止从价格反推难度，也禁止为亵变统一加难度。**
+参数从两张生成参数 CSV 和既有 `run_parameters.csv`。下列算法是首版实现合同，初值尚未经过长期经济平衡。**成本与成功难度分别计算，禁止从价格反推难度，也禁止为亵变统一加难度。**
 
 参数取自已绑定效果，不随机摇档：
 
@@ -1064,7 +1064,7 @@ L = base_whispers
 成功察觉 = max(0, base_alert + 2*v + 1*ds - 2*h)
 ```
 
-数字分别读取参数表对应行，不能把本段抄为代码常量。效果配方须匹配贸易基型条件；低费用持续供奉型必须真正建立维护，不得单独取其低价给永久无义务结果。成功理智损失、灾变理智损失、灾变察觉分别读配方，指定实际承受者。当前仅有灾变理智分支的代码须扩展成功分支，不能用文字假装实现。
+数字分别读取参数表对应行，不能把本段抄为代码常量。效果配方须匹配贸易基型条件；低费用持续供奉型必须真正建立维护，不得单独取其低价给永久无义务结果。成功理智损失、灾变理智损失、灾变察觉分别读配方，指定实际承受者。成功与灾变的理智影响分别登记到实际承受者。
 
 D100 沿 `Powers.probability`，**只在最后截断一次**：
 
@@ -1123,7 +1123,7 @@ count_i=1+floor(x_i)
 
 #### 16.10.10 模块接驳、兼容与失败处理
 
-建议新增模块（名称可依代码结构调整，但职责不可省略）：`src/game/prayer_generator.gd` 负责只读有界求解；`src/game/prayer_effect_compiler.gd` 将 CSV 配方变成 typed writes、预览和消费者；共享处境注册表独立于 Request，仍由 Session 事务拥有。具体实现登记到 architecture，不能由 UI 持有世界事实。
+运行模块包括 `src/game/prayer_generator.gd` 负责只读有界求解；`src/game/prayer_effect_compiler.gd` 将 CSV 配方变成 typed writes、预览和消费者；共享处境注册表独立于 Request，仍由 Session 事务拥有。具体实现登记到 architecture，不能由 UI 持有世界事实。
 
 接入点：`src/content/prayer_space_catalog.gd` 装载/类型校验/版本；`PrayerSpace.freeze` 新生产入口；`prepare/commit/deadlines` 执行新合同和共享时钟；`PrayerRules`/`World.choose_behavior` 能力准入；`prayer_consequences.gd`、`Events`/`EventRules` 后续仲裁；`Session` 保存/恢复与玩家投影；`production/prayer_space_view.gd` 读取同一投影；查看器通过生成核心导出结果，不能另写一套 JS 故事算法。
 
@@ -1138,3 +1138,5 @@ count_i=1+floor(x_i)
 在现有 `docs/content/prayer-space.html` 所在入口提供生成模式：输入种子、固定背景/处境/立场、连续生成下一批、锁定同一处境看不同求告、重现一个实例；固定50条移至“旧案例”。玩家预览默认只显示允许字段，作者展开可看组件、前提、真实后果、价格/D 推导、签名与拒绝原因。浏览器通过本地只读生成服务或 Godot 核心批量导出调用同一规则；查看器假想世界明确标“预览环境”，不得污染玩家存档。独立祈求浏览和同根多方诉求两个模式都支持。
 
 验证分层且一次收口：CSV全量引用/类型检查；一次有上限的离线容量抽样，最多10000次候选尝试，记录种子、成功/拒绝数、三类容量和十背景覆盖；不跑10000次完整战役。容量报告是该样本观察到的下界，不是全空间总量，不能用乘法宣称上限为已实现内容。选择少量代表性真实 Session 做普通/曲解/维护/能力变化/同处境冲突/后续仲裁/旧档续存闭环，边界合并验证；正式标准和大字各复看一个代表界面。核心与必要边界通过即停止，不反复抽样直至数字好看；文案、玩家感知和好玩与否由制作人审阅。
+
+首版把“改变今后用途”接到 CIV_01 的记录实践和 CIV_02 的历法实践，并撤销人物原有领袖、护持或机构代表任职资格。可用实践仍遵守当地机构和材料条件。世界内新增普通事件使用共享处境账本，只有声明实际消费者的效果才进入相应外部系统。作者查看器使用独立的世界预览及同一 Godot 生成核心。

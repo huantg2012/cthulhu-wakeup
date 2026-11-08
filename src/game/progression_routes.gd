@@ -5,6 +5,8 @@ const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
 const Cults = preload("res://src/game/cults.gd")
 const Knowledge = preload("res://src/game/prayer_knowledge.gd")
+const PrayerRules = preload("res://src/game/prayer_rules.gd")
+const Capabilities = preload("res://src/game/prayer_capabilities.gd")
 const Sources = preload("res://src/game/prayer_sources.gd")
 const Materials = preload("res://src/simulation/material_transfer.gd")
 const ID: String = "progression_routes"
@@ -77,6 +79,7 @@ func prepare(view: Dictionary, operation: String, payload: Dictionary, partial: 
 	var domain: String = person.domain; var office: String = person.institution
 	if not state.institutions.has(office): return _deny("Current institution required")
 	var people: Array = [npc]
+	var capability_source := ""
 	var mode: String = row.mode; var stage: String = str(payload.get("stage", "prepare"))
 	if not stage in ["prepare", "perform"]: return _deny("Unknown progression stage")
 	if not payload.get("participants", []) is Array: return _deny("Invalid participants")
@@ -88,7 +91,7 @@ func prepare(view: Dictionary, operation: String, payload: Dictionary, partial: 
 	if people.size() > int(row.participants_max): return _deny("Participant limit exceeded")
 	for id: String in people:
 		var participant: Dictionary = _person(view, id)
-		if participant.get("status") != "active" or participant.domain != domain or participant.acted_turn == state.turn: return _deny("Participant unavailable or already acted")
+		if participant.get("status") != "active" or participant.domain != domain or participant.acted_turn == state.turn or not PrayerRules.space_allows(state, id, "can_act"): return _deny("Participant unavailable or already acted")
 		if id != npc and participant.institution != office:
 			var links: Array = state.institutions[office].get("links", [])
 			if not participant.institution in links or not office in state.institutions[participant.institution].get("links", []): return _deny("Current two-way contact required")
@@ -124,7 +127,10 @@ func prepare(view: Dictionary, operation: String, payload: Dictionary, partial: 
 		"calendar_rite":
 			if not "ritual_keeper" in person.role_tags: return _deny("Actual ritual keeper required")
 		"record_practice", "calendar_keeping":
-			if not "record_keeper" in person.role_tags: return _deny("Actual record keeper required")
+			if not "record_keeper" in person.role_tags:
+				capability_source = Capabilities.grant_source(state, npc, Capabilities.RECORD_PRACTICE)
+				if capability_source.is_empty() or not Capabilities.practice_supported(state, person, catalog, mode): return _deny("需要记录实践能力")
+				if _fact(view, capability_source).is_empty(): return _deny("当前缺少能力来源")
 		"axiom_probe", "axiom_recheck", "axiom_repeat":
 			if state.domains[domain].tier != "cosmic": return _deny("Cosmic domain required")
 			if mode != "axiom_probe" and target.is_empty() and progress.is_empty() and not partial: return _deny("Same actual exception required")
@@ -160,14 +166,14 @@ func prepare(view: Dictionary, operation: String, payload: Dictionary, partial: 
 	var deterministic: bool = row.check_rule == "deterministic" or (mode in ["memory_circle", "reciprocal_covenant"] and stage == "prepare")
 	var probability: int = -1 if deterministic else _probability(state, person, mode)
 	var attention: Dictionary = {"family": "system", "content_id": operation, "variant": "use", "participants": people.duplicate(), "target": domain, "source": source, "nominees": [npc] if mode == "private_devotion" and not person.get("bound_member", false) else []}
-	return {"ok": true, "operation": operation, "mode": mode, "payload": payload.duplicate(true), "npc": npc, "domain": domain, "institution": office, "people": people, "key": key, "progress": progress.duplicate(true), "faith": cost.faith, "whispers": cost.whispers, "probability": probability, "attention": attention}
+	return {"ok": true, "operation": operation, "mode": mode, "payload": payload.duplicate(true), "npc": npc, "domain": domain, "institution": office, "people": people, "capability_source": capability_source, "key": key, "progress": progress.duplicate(true), "faith": cost.faith, "whispers": cost.whispers, "probability": probability, "attention": attention}
 
 func _student_plan(view: Dictionary, operation: String, payload: Dictionary, row: Dictionary) -> Dictionary:
 	var key: String = str(payload.target); var progress: Dictionary = view.world[ID].progress[key]
 	var npc: String = str(payload.get("npc", "")); var person: Dictionary = _person(view, npc)
 	var lesson: Dictionary = _fact(view, str(progress.get("lesson", "")))
 	var source: Dictionary = _fact(view, str(payload.get("source", "")))
-	if progress.get("operation") != operation or progress.get("completed", false) or person.get("status") != "active" or person.get("acted_turn") == view.world.turn or source.get("domain") != person.get("domain") or lesson.is_empty() or view.reader.invalidated(lesson.id) or view.reader.invalidated(source.id) or lesson.changes.get("data", {}).get("student") != npc or not lesson.changes.data.get("teacher_qualified", false) or int(view.world.turn) <= int(lesson.turn): return _deny("Original student must personally perform on a later turn")
+	if progress.get("operation") != operation or progress.get("completed", false) or person.get("status") != "active" or person.get("acted_turn") == view.world.turn or not PrayerRules.space_allows(view.world, npc, "can_act") or source.get("domain") != person.get("domain") or lesson.is_empty() or view.reader.invalidated(lesson.id) or view.reader.invalidated(source.id) or lesson.changes.get("data", {}).get("student") != npc or not lesson.changes.data.get("teacher_qualified", false) or int(view.world.turn) <= int(lesson.turn): return _deny("Original student must personally perform on a later turn")
 	var cost: Dictionary = _cost(row, payload)
 	if view.world.faith < cost.faith or view.world.whispers < cost.whispers: return _deny("Progression operation is not affordable")
 	return {"ok": true, "operation": operation, "mode": "ritual_transmission", "payload": payload.duplicate(true), "npc": npc, "student": npc, "domain": person.domain, "institution": person.institution, "people": [npc], "key": key, "progress": progress.duplicate(true), "faith": cost.faith, "whispers": cost.whispers, "probability": _probability(view.world, person, "ritual_transmission"), "attention": {"family": "system", "content_id": operation, "variant": "use", "participants": [npc], "target": person.domain, "source": payload.source}}
@@ -224,7 +230,14 @@ func commit(world: RefCounted, effect: Dictionary, owner: Object, token: String 
 	if plan.probability >= 0:
 		roll = world.randoms.checks.randi_range(1, 100); outcome = world.check_result(plan.probability, roll)
 		owner._checks.append({"probability": plan.probability, "roll": roll, "outcome": outcome})
-	var result: String = world._record("route_attempt", plan.domain, plan.npc, plan.people, [plan.payload.source, payment], {"issuer": ID, "version": version, "operation": plan.operation, "institution": plan.institution, "payload": plan.payload, "probability": plan.probability, "roll": roll, "outcome": outcome, "payment": payment})
+	var parents: Array = [plan.payload.source, payment]
+	var details: Dictionary = {"issuer": ID, "version": version, "operation": plan.operation, "institution": plan.institution, "payload": plan.payload, "probability": plan.probability, "roll": roll, "outcome": outcome, "payment": payment}
+	var capability_source: String = str(plan.get("capability_source", ""))
+	if not capability_source.is_empty():
+		if Capabilities.grant_source(world.state, plan.npc, Capabilities.RECORD_PRACTICE) != capability_source: return false
+		parents.append(capability_source)
+		details["capability_source"] = capability_source
+	var result: String = world._record("route_attempt", plan.domain, plan.npc, plan.people, parents, details)
 	for person: String in plan.people:
 		if person != plan.npc and not world.mark_player_task(person, owner): return false
 		var npc: Dictionary = world.mutable_npc(person)
@@ -358,6 +371,11 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 			var cost: Dictionary = rules._cost(row, data.payload)
 			if payment.get("kind") != "turn_action" or not payment.id in fact.causal_parents or payment.turn != fact.turn or payment.actor != fact.actor or payment.changes.get("outcome") != "progression/" + data.operation or payment.changes.get("faith_cost") != cost.faith or payment.changes.get("whispers_cost") != cost.whispers: return ["Route attempt lost its unique actual payment"]
 			if not data.get("outcome") in ["success", "deep", "failure", "disaster"]: return ["Invalid route check result"]
+			if data.has("capability_source"):
+				var source: String = str(data.capability_source)
+				var modifier: Dictionary = Capabilities.modifiers(state, fact.actor).get(source, {})
+				if not row.mode in Capabilities.RECORD_ROUTES or not source in fact.causal_parents or modifier.is_empty() or not Capabilities._active(modifier, int(fact.turn)) or not Capabilities.RECORD_PRACTICE in modifier.granted_tags:
+					return ["Route practice lost its prayer-granted capability"]
 			if int(data.probability) < 0:
 				if data.outcome != "success" or data.roll != 0: return ["Deterministic route manufactured a check"]
 			else:

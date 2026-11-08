@@ -1,5 +1,6 @@
 extends RefCounted
 const Store = preload("res://src/simulation/archive_store.gd")
+const Capabilities = preload("res://src/game/prayer_capabilities.gd")
 ## Dedicated, immutable authority for the new minimum-supply timing. Ordinary
 ## requests and event reopenings keep their separate original clocks.
 static func _supply_fact(state: Dictionary, source: String, reader: RefCounted) -> Dictionary:
@@ -34,7 +35,11 @@ static func ritual_keeper(state: Dictionary, person: Dictionary) -> bool:
 	var institution: Dictionary = state.institutions.get(str(person.get("institution", "")), {})
 	return not person.is_empty() and person.get("status") == "active" and "ritual_keeper" in person.get("role_tags", []) and institution.get("active", false) and institution.get("domain") == person.get("domain") and institution.get("role") in ["interpretation", "propagation"]
 
+static func can_hold_office(state: Dictionary, npc: String) -> bool:
+	return Capabilities.allows(state, npc, Capabilities.OFFICE_HOLDING)
+
 static func blocked(state: Dictionary, npc: String, kind: String) -> bool:
+	if kind == "appointment" and not can_hold_office(state, npc): return true
 	var entry: Variant = state.get("prayer_system", {}).get("restrictions", {}).get(npc, {}).get(kind)
 	return entry is Dictionary and entry.get("until") is int and int(state.turn) <= int(entry.until)
 
@@ -129,27 +134,48 @@ static func _used(state: Dictionary, key: String, reader: RefCounted = null) -> 
 		return str(found.source) if found.get("ok", false) and found.get("used", false) else ""
 	return str(Store.entry(state.get("applied_authorizations", {}), key, ""))
 
-## Situation constraints belong to their actual role-bound person. They never
-## rewrite identity/status history or invent numeric ability penalties.
+## The rules read each shared situation once. Old requests keep their own
+## objects, while generated requests refer to their common living state.
 static func space_allows(state: Dictionary, npc: String, ability: String) -> bool:
-	for scene: Dictionary in state.get("prayer_system", {}).get("space", {}).get("scenes", {}).values():
-		for object: Dictionary in scene.get("objects", {}).values():
-			if object.get("role") == npc and object.get(ability, true) == false: return false
+	var space: Dictionary = state.get("prayer_system", {}).get("space", {})
+	for scene: Dictionary in space.get("scenes", {}).values():
+		if scene.has("situation_id"): continue
+		if _blocked_by_objects(scene.get("objects", {}), npc, ability): return false
+	for situation: Dictionary in space.get("generation", {}).get("situations", {}).values():
+		if _blocked_by_objects(situation.get("objects", {}), npc, ability): return false
 	return true
+
+static func _blocked_by_objects(objects: Dictionary, npc: String, ability: String) -> bool:
+	for object: Dictionary in objects.values():
+		if object.get("role") == npc and object.get(ability, true) == false: return true
+	return false
 
 static func space_restrictions(state: Dictionary, npc: String, known_facts: Dictionary) -> Dictionary:
 	var result := {}
-	for scene: Dictionary in state.get("prayer_system", {}).get("space", {}).get("scenes", {}).values():
-		if not known_facts.has(scene.get("response", "")): continue
-		for object: String in scene.objects:
-			var subject: Dictionary = scene.objects[object]
+	var space: Dictionary = state.get("prayer_system", {}).get("space", {})
+	var situations: Dictionary = space.get("generation", {}).get("situations", {})
+	for scene: Dictionary in space.get("scenes", {}).values():
+		var response: String = str(scene.get("response", ""))
+		if not known_facts.has(response): continue
+		var objects: Dictionary = scene.get("objects", {})
+		var root_id: String = str(scene.get("situation_id", ""))
+		var recorded: Array = []
+		if not root_id.is_empty():
+			objects = situations.get(root_id, {}).get("objects", {})
+			recorded = Store.entry(state.facts, response, {}).get("changes", {}).get("state_changes", [])
+		for object: String in objects:
+			var subject: Dictionary = objects[object]
 			if subject.get("role") != npc: continue
 			for field: String in ["can_act", "can_sleep"]:
 				if subject.get(field, true): continue
+				if not root_id.is_empty() and not recorded.any(func(change: Dictionary) -> bool:
+					return change.get("object") == object and change.get("field") == field and change.get("after") == false):
+					continue
 				var due := -1
 				for step: Dictionary in scene.pending:
 					if step.get("updates", {}).get(object + "." + field) == true:
-						due = int(step.due); break
+						due = int(step.due)
+						break
 				var previous: int = result.get(field, due)
 				result[field] = -1 if previous < 0 or due < 0 else maxi(previous, due)
 	return result

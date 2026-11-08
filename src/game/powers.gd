@@ -178,6 +178,7 @@ func prepare(view: Dictionary, power_id: String, payload: Dictionary, partial: b
 	if power_id in EXECUTORS and not PrayerRules.space_allows(state, npc, "can_act"): return _error("此人目前无法行动")
 	if power_id == "POWER_DREAM" and not PrayerRules.space_allows(state, npc, "can_sleep"): return _error("此人当前无法入睡")
 	if power_id == "POWER_ANCHOR":
+		if not PrayerRules.can_hold_office(state, npc): return _error("此人已无法担任护持者")
 		_fact(view, str(person.get("dedication_source", ""))); _fact(view, str(person.get("binding_source", "")))
 		if not Cults.eligible(state, person, catalog): return _error("Anchor guardian cannot join")
 	var cult: String = _cult(state, domain)

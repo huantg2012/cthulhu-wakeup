@@ -63,7 +63,7 @@ static func command_roots(world_state: Dictionary, turn_context: Dictionary, led
 	return load("res://src/game/player_knowledge.gd").new(world_state, turn_context, ledger, content, index)._command_knowledge_roots(request)
 
 static func _internal_fact(kind: String) -> bool:
-	return kind.begins_with("opportunity_") or kind in ["cult_pollution_settlement", "route_attempt", "route_progress", "prayer_call", "prayer_call_basis", "prayer_need_selected", "prayer_dispatch_tick", "prayer_contact_selected", "prayer_producer_update", "identity_notice_selected", "deity_identified", "deity_identity_received", "prayer_bootstrap"]
+	return kind.begins_with("opportunity_") or kind.begins_with("prayer_generator_") or kind in ["cult_pollution_settlement", "route_attempt", "route_progress", "prayer_call", "prayer_call_basis", "prayer_need_selected", "prayer_dispatch_tick", "prayer_contact_selected", "prayer_producer_update", "identity_notice_selected", "deity_identified", "deity_identity_received", "prayer_bootstrap"]
 
 static func validate_ledger(state: Dictionary, ledger: Dictionary, catalog: RefCounted) -> Array[String]:
 	if not ledger.get("cursor") is int or ledger.cursor < 1 or ledger.cursor > int(state.next_fact): return ["Invalid player knowledge cursor"]
