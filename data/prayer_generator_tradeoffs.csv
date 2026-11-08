@@ -1,0 +1,5 @@
+id,approach,requires_tags,base_scale,base_persistence,base_difficulty,whispers,faith,pollution,alert,success_sanity_loss,disaster_sanity_loss,disaster_alert,upkeep_faith,upkeep_installments,upkeep_on_stop,capability_effect,status
+overt_alteration,horror,living_subject|compatible_alteration,0,2,-8,2,4,8,4,0,8,5,0,0,none,authored_alteration,DESIGN_ONLY
+covert_psychic_burden,horror,living_subject|mind_access|covert_channel,0,2,12,2,4,1,0,8,8,3,0,0,none,authored_alteration,DESIGN_ONLY
+maintained_alteration,horror,living_subject|compatible_alteration|safe_upkeep_stop,0,1,-3,2,1,2,1,0,4,3,1,3,withdraw_service_no_new_injury,temporary_service,DESIGN_ONLY
+specialized_alteration,horror,living_subject|capability_tradeoff|registered_consumers,0,2,-3,2,4,4,2,2,6,4,0,0,none,gain_and_lose_capabilities,DESIGN_ONLY

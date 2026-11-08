@@ -306,12 +306,13 @@
     "docs/qa/ui-anchor-goal/02-result.png"
   ],
   "snapshot": {
-    "revision": 71,
-    "recordedAt": "2026-11-08T16:35:50.936Z",
-    "note": "Reusable prayer voice uses neutral references; bounded verification complete",
+    "revision": 72,
+    "recordedAt": "2026-11-08T17:16:08.743Z",
+    "note": "Document executable compositional prayer generator contract and handoff; gameplay remains unchanged",
     "sections": [
-      "P02",
       "F5",
+      "P02",
+      "G5",
       "D5"
     ],
     "configHash": "61419530b9b8b59e493e3cba722852673abfdf1174006bf19b635509e14f6c71",
@@ -331,7 +332,7 @@
       "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
       "data/world_name_parts.csv": "271d6cb1944a3cb090aaeff16337e75271729c20c37e34d7d6ac4c185d8e80ff",
       "data/world_name_patterns.csv": "bc6746632f5064c0755c970a72f27c00874673d1265db0c7497acd00dc0c2292",
-      "docs/architecture.md": "976879a9f5b64f84e733c5917f7d6baa5822163513e7a46682b49215667ea501",
+      "docs/architecture.md": "cc85323d0d472a62292fbf75fe39dade496cd21931d8f509f98047f130e8eaed",
       "docs/art/echoes-ui/assets/etched-frame.png": "36c24638a63e43a4754a83a2f029fe699d7308c1c62bec03a1b05e494c060e56",
       "docs/art/echoes-ui/assets/manifest.json": "9f3f2a95f33587c3dad56d5a3bb9c15d9f206ff9a54142b21b0deefad618fd8a",
       "docs/art/echoes-ui/assets/relic-icons.png": "cd9de5dfeb2ccd823061bc4a5497949b81f53df982543cfff4416e409ece211a",
@@ -477,7 +478,7 @@
     "documents": {
       "docs/art/echoes-ui/component-map.md": "8c8325f5b2979610884a37660005c39768183862fa74b64eb3eccd40a458e48c",
       "docs/art/echoes-ui/tokens.json": "8dc54bbeca124c1a09931d1da3e1d38376e63949c628692277af8921408e0e2f",
-      "docs/art/echoes-ui/visual-system.md": "2e2d2aa7d1f7fb9a2d5e0a792abe698c288b3578e9830a7da4f6ac8a0eadedc4"
+      "docs/art/echoes-ui/visual-system.md": "654736f8a837b542eb744c3f264fd160330070864c08b1e7a41c9c4f7e848b2c"
     },
     "evidence": {
       "docs/art/echoes-ui/visual-exhibits/controls-0.png": "9621e43af50ac4d3b3c39e0a07b792c00ce182395926c3051ca881e95fc25529",
@@ -548,7 +549,7 @@
     "changed": {
       "config": false,
       "sources": [
-        "data/prayer_response_voice.csv"
+        "docs/architecture.md"
       ],
       "documents": [
         "docs/art/echoes-ui/visual-system.md"
