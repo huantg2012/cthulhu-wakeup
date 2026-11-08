@@ -2,6 +2,7 @@ extends RefCounted
 ## Managed event pool. Handlers only declare effects; all selection and writes
 ## occur in the Turn transaction using the independent events random stream.
 const Spread = preload("res://src/game/cult-spread.gd")
+const Consequences = preload("res://src/game/prayer_consequences.gd")
 const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
 const Rules = preload("res://src/game/event_rules.gd")
@@ -119,7 +120,7 @@ static func observe(world: RefCounted, source: String) -> void:
 	if not world.state.has("event_system"): return
 	var fact: Dictionary = Rules.fact(world.state, source)
 	if fact.is_empty(): return
-	var pending: bool = (fact.kind == "prayer_fact" and fact.changes.get("tag") == "future_callback") or fact.kind in ["prayer_window_due", "resistance_started"] or (fact.kind == "miracle" and fact.changes.get("power") == "POWER_DREAM")
+	var pending: bool = (fact.kind == "prayer_space_consequence" and not str(fact.changes.get("rule", {}).get("event", "")).is_empty()) or (fact.kind == "prayer_fact" and fact.changes.get("tag") == "future_callback") or fact.kind in ["prayer_window_due", "resistance_started"] or (fact.kind == "miracle" and fact.changes.get("power") == "POWER_DREAM")
 	if not pending: return
 	world.stage_collections(["event_system"])
 	if pending: world.state.event_system.pending[source] = fact.turn
@@ -414,7 +415,7 @@ func _collect(world: RefCounted, owner: Object) -> bool:
 		if descriptor.due_turn < world.state.turn:
 			var expired: String = world._record("event_source_expired", descriptor.domain, "", descriptor.actors, [source], {"descriptor": descriptor})
 			Store.put(world.state.applied_authorizations, descriptor.once_key, expired); ledger.pending.erase(source); continue
-		_enrich(world, descriptor)
+		if Rules.fact(world.state, source).kind != "prayer_space_consequence": _enrich(world, descriptor)
 		var fixed: Dictionary = world.fix_event_candidate(descriptor, owner)
 		if not fixed.get("ok", false):
 			# Capacity is a real admission failure; leave the source pending until
@@ -656,6 +657,12 @@ func _deny(world: RefCounted, descriptor: Dictionary, result: String, owner: Obj
 
 func _publish(world: RefCounted, descriptor: Dictionary, field: String, result: String, owner: Object) -> bool:
 	if field == "records":
+		var trigger: Dictionary = Rules.fact(world.state, descriptor.source)
+		if trigger.get("kind") == "prayer_space_consequence":
+			if Consequences.proof(world.state, trigger).is_empty() or not _deliver(world, descriptor.institution, trigger.id, descriptor.actors, result, owner): return false
+			var publication: String = world._record("event_publication", descriptor.domain, trigger.actor, [descriptor.institution, trigger.actor], [result, trigger.id], {"event": descriptor.content_id, "option": "B", "institution": descriptor.institution, "record": trigger.id})
+			world._institution_know(descriptor.institution, publication)
+			return not world.introduce_fact("exposure", descriptor.domain, trigger.actor, [trigger.actor], [publication, result], {"public": true, "event": descriptor.content_id, "record": trigger.id}, [], [descriptor.institution], owner).is_empty()
 		var publications: Array = []
 		for original: String in descriptor.facts.records:
 			var record: Dictionary = Anchors._evidence_record(world.state, original, world.history, true)
@@ -698,6 +705,9 @@ func _operation(world: RefCounted, descriptor: Dictionary, option: String, row: 
 		"delta": return _delta(world, descriptor, row, result, owner)
 		"record":
 			var tag: String = row.field
+			if tag == "mutated":
+				var trigger: Dictionary = Rules.fact(world.state, descriptor.source)
+				if trigger.get("kind") == "prayer_space_consequence" and trigger.changes.rule.get("altered", false): tag = "mutation_revealed"
 			if tag == "favor_owed":
 				return world.establish_relation(subjects.former, subjects.cooperator, "favor_owed", [result] + facts.relations, [], owner).ok
 			_write(world, descriptor, tag, targets, result)
@@ -860,7 +870,7 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 		if not _descriptor_contract(state, entry.descriptor, content): return ["Invalid fixed event source contract"]
 	for source: String in ledger.pending:
 		var fact: Dictionary = Rules.fact(state, source)
-		if fact.is_empty() or fact.turn != ledger.pending[source] or not (fact.kind in ["prayer_window_due", "resistance_started"] or (fact.kind == "prayer_fact" and fact.changes.get("tag") == "future_callback") or (fact.kind == "miracle" and fact.changes.get("power") == "POWER_DREAM")): return ["Invented pending event source"]
+		if fact.is_empty() or fact.turn != ledger.pending[source] or not ((fact.kind == "prayer_space_consequence" and not Rules.descriptor(state, source, content).is_empty()) or fact.kind in ["prayer_window_due", "resistance_started"] or (fact.kind == "prayer_fact" and fact.changes.get("tag") == "future_callback") or (fact.kind == "miracle" and fact.changes.get("power") == "POWER_DREAM")): return ["Invented pending event source"]
 	for source: String in ledger.records:
 		var fact: Dictionary = Rules.fact(state, source)
 		if fact.get("kind") != "prayer_fact" or fact.turn != ledger.records[source]: return ["Invalid bounded event record intake"]
@@ -883,6 +893,8 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 			if candidate.get("kind") == "event_result" and candidate.changes.get("content_id") == "EVENT_09" and candidate.changes.get("option") == "A": origin = candidate
 		if permit.get("kind") != "economy_qualification" or permit.changes.get("issuer") != ID or permit.changes.get("version") != ledger.version or permit.changes.get("institution") != institution or origin.is_empty() or origin.changes.get("descriptor", {}).get("subjects", {}).get("cooperator") != entry.cooperator: return ["Permission lost the actual cooperative event source"]
 	for fact: Dictionary in _new_facts(state, trusted):
+		if fact.kind == "prayer_space_consequence" and Consequences.proof(state, fact).is_empty():
+			return ["Invalid source for a prayer consequence"]
 		if fact.kind == "event_result":
 			var data: Dictionary = fact.changes
 			if not content.tables.events.has(data.get("content_id", "")) or not data.get("option") in ["A", "B"] or not data.get("event") is String or not data.get("descriptor") is Dictionary or not data.get("operations") is Array or not data.get("payment") is String: return ["Invalid event result schema"]
@@ -938,6 +950,7 @@ static func _descriptor_contract(state: Dictionary, descriptor: Dictionary, cont
 	if descriptor.get("once_key") != "event/source/" + descriptor.content_id + "/" + descriptor.source or descriptor.get("default_action") != str(row.default_result).trim_prefix("option:"): return false
 	for id: String in descriptor.source_ids:
 		if not Store.has(state.facts, id): return false
+	if source.kind == "prayer_space_consequence": return descriptor == Rules.descriptor(state, source.id, content)
 	if source.kind == "prayer_fact":
 		var actual: Dictionary = Rules.actual_prayer(state, source.id)
 		if actual.is_empty() or source.changes.get("tag") != "future_callback" or source.changes.get("event") != descriptor.content_id or descriptor.get("prayer_descriptor") != actual.attempt.changes.descriptor: return false

@@ -53,6 +53,22 @@ def render_spec(text):
     return ''.join(blocks)
 
 
+# The same display-only CSV and stable selection as prayer_response_voice.gd.
+with (ROOT / 'data/prayer_response_voice.csv').open() as source:
+    voice = {}
+    for row in csv.DictReader(source):
+        voice.setdefault(row['group'], []).append(row['text'])
+
+def wording(case_id, choice_id, contract, price):
+    index = sum(case_id.encode('utf-8')) + ord(choice_id[-1]) - 97
+    def pick(group):
+        return voice[group][index % len(voice[group])]
+    pollution, alert, risk = (int(price[k]) for k in ('pollution', 'alert', 'disaster_sanity'))
+    hint = pick(f'pollution_{1 if pollution <= 1 else 2 if pollution <= 3 else 3}')
+    hint += '，' + pick(f'alert_{0 if alert == 0 else 1 if alert <= 1 else 2 if alert <= 3 else 3}') + '。'
+    hint += pick('unknown' if contract['disclosure'] == 'unknown' else f'risk_{0 if risk == 0 else 1 if risk <= 4 else 2 if risk <= 6 else 3}')
+    return pick(contract['approach']), hint
+
 cases = read('cases')
 frames = {r['id']: r for r in read('frames')}
 operators = {r['id']: r for r in read('operators')}
@@ -60,8 +76,8 @@ costs = {r['id']: r for r in read('costs')}
 scenes = {r['id']: r for r in read('scenes')}
 read('parameters')
 contracts = {(r['case_id'], r['choice']): r for r in read('response_contracts')}
-assert len(cases) == 50
-assert len({r['title'] for r in cases}) == 50
+assert cases
+assert len({r['title'] for r in cases}) == len(cases)
 count = 0
 for case in cases:
     assert case['frame'] in frames and case['scene'] in scenes
@@ -76,7 +92,8 @@ for case in cases:
         label, operator, cost, effect, tradeoff = parts
         assert operator in operators and cost in costs, (case['id'], key)
         contract = contracts[(case['id'], key)]
-        choices.append(dict(label=label, operator=operator, cost=cost, effect=effect, tradeoff=tradeoff, approach=contract['approach'], disclosure=contract['disclosure'], hint=contract['hint'], difficulty=int(contract['difficulty']), check_kind=contract['check_kind'], attribute=contract['attribute'], maintenance=json.loads(contract['maintenance']), outcomes=json.loads(contract['outcomes'])))
+        label, hint = wording(case['id'], key, contract, costs[cost])
+        choices.append(dict(label=label, operator=operator, cost=cost, effect=effect, tradeoff=tradeoff, approach=contract['approach'], disclosure=contract['disclosure'], hint=hint, difficulty=int(contract['difficulty']), check_kind=contract['check_kind'], attribute=contract['attribute'], maintenance=json.loads(contract['maintenance']), outcomes=json.loads(contract['outcomes'])))
     assert 2 <= len(choices) <= 5
     case['choices'] = choices
     count += len(choices)
@@ -95,8 +112,8 @@ page = r'''<!doctype html>
 @media(max-width:850px){header{padding:18px}h1{font-size:25px}.workspace{grid-template-columns:210px minmax(0,1fr);height:calc(100dvh - 190px)}main{padding:20px}.choices{grid-template-columns:1fr}h2{font-size:24px}}@media(max-width:580px){.workspace{display:block;height:auto}.sidebar{border-right:0}.filters{display:grid;grid-template-columns:1fr 1fr;gap:8px}.filters label:first-child{grid-column:1/-1}.filters input,.filters select{margin:0}nav{max-height:155px}.choices{grid-template-columns:1fr}main{overflow:visible}.document{padding:20px}}
 @media print{header,.sidebar,.guide,.tabs{display:none!important}.workspace{display:block;height:auto}main{overflow:visible;padding:0}.prayer{break-before:page;border:0}.prayer:first-child{break-before:auto}.choices{grid-template-columns:1fr 1fr}.choice{break-inside:avoid}.choice details{display:none}body{background:white;font-size:12px}h2{font-size:22px}blockquote{font-size:17px}}
 </style></head><body>
-<header><div class="eyebrow">邪神苏醒 · 祈求设计</div><h1>五十则求告，一套生成规则</h1><p>50 条祈求 · __COUNT__ 个回应 · 已接入有限情境运行与具体回应。所有案例共用暂缓与不再回应控制。</p><div class="tabs" aria-label="阅读内容"><button id="cases-tab" aria-pressed="true">祈求目录</button><button id="system-tab" aria-pressed="false">系统设计</button><button id="sources-tab" aria-pressed="false">研究来源</button></div></header>
-<section id="cases-panel" class="workspace"><aside class="sidebar"><div class="filters"><label>搜索内容<input id="query" type="search" placeholder="标题、人物、愿望、回应…"></label><label>生活背景<select id="frame"><option value="">全部背景</option></select></label><label>介入方式<select id="method"><option value="">全部方式</option></select></label><div id="count" aria-live="polite"></div></div><nav id="directory" aria-label="祈求目录"></nav></aside><main id="reading"><div class="guide">默认阅读与游戏知情边界一致：处境身份、求告原话、行动和模糊后果。此处只列独立难度修正，实际成功点数需绑定游戏局势后计算。作者栏含具体结果与隐藏分支，默认关闭。</div><div id="entries"></div></main></section>
+<header><div class="eyebrow">邪神苏醒 · 祈求设计</div><h1>祈求内容与回应表达</h1><p>__CASES__ 条祈求 · __COUNT__ 个回应 · 已接入有限情境运行与具体回应。所有案例共用暂缓与不再回应控制。</p><div class="tabs" aria-label="阅读内容"><button id="cases-tab" aria-pressed="true">祈求目录</button><button id="system-tab" aria-pressed="false">系统设计</button><button id="sources-tab" aria-pressed="false">研究来源</button></div></header>
+<section id="cases-panel" class="workspace"><aside class="sidebar"><div class="filters"><label>搜索内容<input id="query" type="search" placeholder="标题、人物、愿望、回应…"></label><label>生活背景<select id="frame"><option value="">全部背景</option></select></label><label>介入方式<select id="method"><option value="">全部方式</option></select></label><div id="count" aria-live="polite"></div></div><nav id="directory" aria-label="祈求目录"></nav></aside><main id="reading"><div class="guide">默认阅读与游戏知情边界一致：处境身份、求告原话、介入态度和系统影响。此处只列独立难度修正，实际成功点数需绑定游戏局势后计算。作者栏含具体结果与隐藏分支，默认关闭。</div><div id="entries"></div></main></section>
 <section id="system-panel" class="document hidden">__SYSTEM__</section><section id="sources-panel" class="document hidden">__SOURCES__</section>
 <script id="design-data" type="application/json">__DATA__</script>
 <script>
@@ -122,7 +139,7 @@ for(const id of ['query','frame','method'])$(id).addEventListener(id==='query'?'
 for(const name of ['cases','system','sources'])$(name+'-tab').addEventListener('click',()=>{for(const other of ['cases','system','sources']){$(other+'-panel').classList.toggle('hidden',other!==name);$(other+'-tab').setAttribute('aria-pressed',String(other===name));}});
 render();
 </script></body></html>'''
-page = page.replace('__COUNT__', str(count)).replace('__SYSTEM__', render_spec(section)).replace('__SOURCES__', render_spec(research)).replace('__DATA__', payload)
+page = page.replace('__CASES__', str(len(cases))).replace('__COUNT__', str(count)).replace('__SYSTEM__', render_spec(section)).replace('__SOURCES__', render_spec(research)).replace('__DATA__', payload)
 OUTPUT.write_text(page, encoding='utf-8')
 print(f'{len(cases)} prayers / {count} responses; references valid; {OUTPUT}')
 print('Backgrounds:', dict(Counter(frames[c['frame']]['name'] for c in cases)))

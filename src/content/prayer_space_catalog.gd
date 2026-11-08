@@ -30,7 +30,7 @@ func load_files(directory: String = "res://data") -> bool:
 	if not errors.is_empty(): return false
 	for table: String in ["runtime", "response_contracts"]:
 		for row: Dictionary in candidate[table].values():
-			var fields: Array = ["objects", "crisis", "expiry_updates"] if table == "runtime" else ["requires", "updates", "goal", "followup", "maintenance", "outcomes", "miracle"]
+			var fields: Array = ["objects", "crisis", "expiry_updates"] if table == "runtime" else ["requires", "updates", "goal", "followup", "maintenance", "outcomes", "miracle", "consequence"]
 			for field: String in fields:
 				var parsed := JSON.new()
 				if parsed.parse(str(row.get(field, "[]" if field == "outcomes" else ""))) != OK:
@@ -90,7 +90,9 @@ func load_files(directory: String = "res://data") -> bool:
 			errors.append("Hidden prayer witnesses belong to its selected outcome: " + str(row.id))
 		for effect: Dictionary in effects:
 			_check_miracle(effect, int(runtime.people), str(row.id))
+			_check_consequence(effect, effect, int(runtime.people), str(row.id))
 			for step: Dictionary in effect.followup:
+				_check_consequence(step, effect, int(runtime.people), str(row.id))
 				if step.has("miracle"):
 					_check_miracle(step, int(runtime.people), str(row.id))
 					if not step.get("effect") is String or step.effect.strip_edges().is_empty():
@@ -102,6 +104,20 @@ func load_files(directory: String = "res://data") -> bool:
 
 func parameter(id: String) -> int:
 	return int(tables.parameters[id].value)
+
+func _check_consequence(effect: Dictionary, origin: Dictionary, people: int, label: String) -> void:
+	var rule: Variant = effect.get("consequence", {})
+	if rule == {}: return
+	var roles := ["petitioner", "other", "third"].slice(0, people)
+	if not rule is Dictionary or rule.size() != (7 if rule.has("altered") else 6) or not rule.get("kind") in ["account", "document", "evidence", "rescue"] or not rule.get("change") in effect.updates or not rule.get("person") in roles or not rule.get("title") is String or rule.title.strip_edges().is_empty():
+		errors.append("Invalid prayer consequence: " + label); return
+	if rule.has("altered") and (rule.kind != "rescue" or rule.altered != true):
+		errors.append("Invalid surviving transformation: " + label)
+	var event: Variant = rule.get("event")
+	var witness: Variant = rule.get("witness")
+	var actual: Array = origin.get("miracle", {}).get("witnesses", [])
+	if (rule.kind == "rescue" and (event != "EVENT_01" or witness != rule.person or not witness in actual)) or (rule.kind == "evidence" and (event != "" or witness != rule.person or not witness in actual)) or (rule.kind in ["account", "document"] and not (event == "" or (rule.kind == "account" and event == "EVENT_02" and witness in roles))):
+		errors.append("Invalid prayer consequence source or event: " + label)
 
 func _check_miracle(effect: Dictionary, people: int, label: String) -> void:
 	var witness: Variant = effect.get("miracle")

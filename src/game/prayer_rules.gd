@@ -136,3 +136,20 @@ static func space_allows(state: Dictionary, npc: String, ability: String) -> boo
 		for object: Dictionary in scene.get("objects", {}).values():
 			if object.get("role") == npc and object.get(ability, true) == false: return false
 	return true
+
+static func space_restrictions(state: Dictionary, npc: String, known_facts: Dictionary) -> Dictionary:
+	var result := {}
+	for scene: Dictionary in state.get("prayer_system", {}).get("space", {}).get("scenes", {}).values():
+		if not known_facts.has(scene.get("response", "")): continue
+		for object: String in scene.objects:
+			var subject: Dictionary = scene.objects[object]
+			if subject.get("role") != npc: continue
+			for field: String in ["can_act", "can_sleep"]:
+				if subject.get(field, true): continue
+				var due := -1
+				for step: Dictionary in scene.pending:
+					if step.get("updates", {}).get(object + "." + field) == true:
+						due = int(step.due); break
+				var previous: int = result.get(field, due)
+				result[field] = -1 if previous < 0 or due < 0 else maxi(previous, due)
+	return result

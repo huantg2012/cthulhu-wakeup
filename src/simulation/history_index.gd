@@ -1061,6 +1061,7 @@ func add_anchor_material(state: Dictionary, source: String) -> void:
 		elif tag == "memory_conflict": family = "conflict"
 		elif tag == "contract_dependency": family = "contract_dependency"
 		elif tag in ["contract_fulfilled", "contract_witness", "contract_learned", "hostile_witness"]: family = "contract_witness"
+	elif item.kind == "prayer_space_consequence" and item.changes.get("rule", {}).get("kind") == "evidence": family = "evidence"
 	elif item.kind == "miracle" and item.changes.get("power") == "POWER_DREAM": family = "dream"
 	elif item.kind == "contract_successor_authorized": family = "successor"
 	if family.is_empty(): return

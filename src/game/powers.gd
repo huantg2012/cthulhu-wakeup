@@ -175,7 +175,7 @@ func prepare(view: Dictionary, power_id: String, payload: Dictionary, partial: b
 	if not state.domains.has(domain): return _error("Power needs its actual target domain")
 	if power_id != "POWER_LISTEN" and (person.is_empty() or person.status != "active" or person.domain != domain): return _error("Power subject unavailable or in another domain")
 	if not power_id in ["POWER_LISTEN", "POWER_DREAM", "POWER_ANCHOR"] and (not person.get("bound_member", false) or person.loyalty < catalog.integer("loyalty_follower_threshold")): return _error("Power needs a loyal bound member")
-	if power_id in EXECUTORS and not PrayerRules.space_allows(state, npc, "can_act"): return _error("此人正在履行无法分身的约定")
+	if power_id in EXECUTORS and not PrayerRules.space_allows(state, npc, "can_act"): return _error("此人目前无法行动")
 	if power_id == "POWER_DREAM" and not PrayerRules.space_allows(state, npc, "can_sleep"): return _error("此人当前无法入睡")
 	if power_id == "POWER_ANCHOR":
 		_fact(view, str(person.get("dedication_source", ""))); _fact(view, str(person.get("binding_source", "")))

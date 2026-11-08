@@ -680,4 +680,8 @@ WorldManagement 的 `open_archive` 承接顶部跨世界检索；`open_intellige
 
 Session 统一投影新旧请求，ActionCatalog 仅提供当前正式操作。`prayer_space_view.gd` 在现有祈求场景呈现具体介入，固定标题／费用／执行区、局部纵向滚动及一次人物查阅返回。事实公开使用白名单，完整 `scene_after` 与执行 DSL 不进入玩家记录。旧卡保留原费用和结果语义。范围及验证见 `docs/tasks/prayer-space-integration.md`。
 
+2026-11-08：祈求的即时或定时结果经 `prayer_consequences.gd` 依实际变化和冻结合同登记一次后果。见证接 Anchors 和既有传递规则，后续决定接 Events 的候选、调度与来源校验。人物限制由玩家指令和自主行为共用，期限解除后在原人物资料及回执呈现。具体规则和存档边界见 [system-events §16.9](specs/system-events.md#prayer-consequence-integration)。
+
 祈求曲解的结果池仅留在规则层的冻结合同中，预览和 `space_choices` 使用公开字段白名单。新合同按单项难度生成成功目标，以唯一 D100 骰点命中合法结果的完整整数区间，支付／状态变化／骰点记录在同一事务内；旧冻结合同按原语义恢复。具体 schema 与信息边界见 system-events §16。祈求场景只显示处境身份、原话、介入方式／行动／模糊提示／费用／成功点数，结果回执展示实际骰点及紧凑后果。
+
+祈求回应展示：`src/presentation/prayer_response_voice.gd` 从 `data/prayer_response_voice.csv` 缓存读取表达，供 PrayerSpace 的选项与预览投影调用。仅展示，不进入冻结合同版本或行动随机流；离线目录构建器使用同源数据与稳定选择规则。

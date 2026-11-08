@@ -389,10 +389,11 @@ func _person(host, box: VBoxContainer, id: String) -> void:
 	if not host is RefCounted: _heading(host, box, host.title(id))
 	_pair(host, box, "职责", _role(host, p))
 	_pair(host, box, "处境", _state(p.get("status", "仅有请求线索")))
+	for limitation: String in p.get("prayer_limitations", []): box.add_child(host.label(limitation))
 	if p.get("bound_member", false):
 		box.add_child(host.label("意志 %s · 洞察 %s · 影响 %s · 适应 %s" % [p.get("will", "?"), p.get("insight", "?"), p.get("influence", "?"), p.get("adaptation", "?")]))
 		box.add_child(host.label("忠诚 %s · 理智 %s" % [p.get("loyalty", "?"), p.get("sanity", "?")]))
-		box.add_child(host.label(_execution_status(host, p)))
+		if not _execution_status(host, p).begins_with("无法行动"): box.add_child(host.label(_execution_status(host, p)))
 	if not str(p.get("cult_id", "")).is_empty(): _link(host, box, "所属教团与全体成员", "cult", p.cult_id)
 	for r: Dictionary in host.projection.get("relics", []):
 		if r.get("holder") == id and r.get("placement") != "consumed": _link(host, box, "携带 · " + host.title(r.id), "relic", r.id)
@@ -473,11 +474,13 @@ func _members(host, box: VBoxContainer, id: String, heading: bool = true) -> voi
 	_action(host, box, "任命领袖或护持者", "POWER_APPOINT", {"domain":c.domain, "cult":c.id})
 
 func _execution_status(host, person: Dictionary) -> String:
+	for limitation: String in person.get("prayer_limitations", []):
+		if limitation.begins_with("无法行动"): return limitation
 	if not person.get("acted_turn") is int: return "执行机会未掌握"
 	return "本轮机会已用" if int(person.acted_turn) == int(host.projection.turn) else "本轮机会未用"
 
 func _person_matches(host, person: Dictionary, query: String, unused_only: bool) -> bool:
-	if unused_only and (not person.get("acted_turn") is int or int(person.acted_turn) == int(host.projection.turn)): return false
+	if unused_only and _execution_status(host, person) != "本轮机会未用": return false
 	return query.is_empty() or (host.title(str(person.id)) + " " + str(person.id)).to_lower().contains(query.to_lower())
 
 func _person_list(host, box: VBoxContainer, people: Array, key: String, changed: Callable) -> void:

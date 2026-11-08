@@ -12,6 +12,7 @@ const Cults = preload("res://src/game/cults.gd")
 const Relics = preload("res://src/game/relics.gd")
 const Powers = preload("res://src/game/powers.gd")
 const Prayers = preload("res://src/game/prayers.gd")
+const PrayerRules = preload("res://src/game/prayer_rules.gd")
 const Anchors = preload("res://src/game/anchors.gd")
 const Events = preload("res://src/game/events.gd")
 const Resistance = preload("res://src/game/resistance.gd")
@@ -92,8 +93,8 @@ func explain_error(message: String) -> String:
 		"Original member admission requirements unmet": "该人物尚未满足原成员准入条件",
 		"Current two-way contact required": "双方机构当前需要有效的双向联系",
 		"Current shared need required": "双方当前需要一项共同需求",
-		"Two original distinct records in actual custody required": "双方须分别实际保管不同原根的记录，并来自不同机构",
-		"Obligor must actually hold the preserved record": "承担保管义务的人物须实际持有所选记录",
+		"Two original distinct records in actual custody required": "需要两所机构各有一份独立证据",
+		"Obligor must actually hold the preserved record": "负责交接的人须已经拿到这份证据",
 		"Prayer preview requires the action phase": "请先处理轮初事件，进入行动阶段",
 		"Power preview requires the action phase": "请先处理轮初事件，进入行动阶段",
 		"Prayer response opportunity already spent": "本轮唯一的祈求回应已使用",
@@ -381,6 +382,12 @@ func event_entry(id: String) -> Dictionary:
 	if not _known_events.has(id): return {}
 	return _known_events[id].duplicate(true)
 
+func event_title(descriptor: Dictionary) -> String:
+	var trigger: Dictionary = Store.entry(world.state.facts, str(descriptor.get("source", "")), {})
+	if trigger.get("kind") == "prayer_space_consequence" and descriptor.get("content_id") == "EVENT_02":
+		return "是否公开" + str(trigger.changes.rule.title)
+	return str(catalog.display_tables.events.get(descriptor.get("content_id", ""), {}).get("title", "当地事件"))
+
 func current_sources() -> Array:
 	if turn == null: return []
 	var view: Dictionary = turn._read_view("economy", turn.context.phase)
@@ -452,6 +459,14 @@ func _public(value: Variant) -> Variant:
 				return _known_facts.has(id) and Store.entry(world.state.facts, id).kind in ["power_result", "prayer_result", "prayer_space_result", "prayer_space_progress"])
 			bundled = bundled or value.changes.get("bundled", false)
 			return {"id": value.id, "kind": value.kind, "turn": value.turn, "domain": _public_string(value.domain), "actor": _public_string(value.actor), "changes": {"bundled": bundled}}
+		if value.get("kind") == "prayer_space_recovered":
+			var restored: Dictionary = value.changes.get("restored", {})
+			if restored.is_empty() and value.changes.has("effect"): return value.duplicate(true)
+			var effects: Array[String] = []
+			if _known_facts.has(str(restored.get("can_act", ""))): effects.append("恢复行动")
+			if _known_facts.has(str(restored.get("can_sleep", ""))): effects.append("能够入睡")
+			if effects.is_empty() or not _known_people.has(value.actor): return {}
+			return {"id": value.id, "kind": value.kind, "turn": value.turn, "domain": value.domain, "actor": value.actor, "changes": {"effect": "，".join(effects)}}
 		# Endings forecasts future contacts to determine disconnection. Those
 		# internal candidates are not a player disclosure before visibility.
 		if str(value.get("kind", "")).begins_with("prayer_space_"):
@@ -462,10 +477,14 @@ func _public(value: Variant) -> Variant:
 			visible["changes"] = {}
 			for field: String in ["request", "title", "choice_label", "disclosure", "outcome", "effect", "tradeoff", "summary", "goal_reached", "pending_count", "maintenance_remaining", "faith_cost", "whispers_cost", "probability", "success_target", "roll", "actual_deltas", "due"]:
 				if value.get("changes", {}).has(field): visible.changes[field] = _public(value.changes[field])
-			if value.kind == "prayer_space_progress" and (value.changes.has("manifestation_of") or value.changes.get("concrete_followup", false)): visible.changes["concrete_followup"] = true
+			if visible.changes.get("tradeoff") == "多了一个保管记忆的人，没有多出一个亲历者。":
+				visible.changes.tradeoff = "他能复述那场审讯。"
+			if value.kind == "prayer_space_progress" and (value.changes.has("manifestation_of") or value.changes.has("consequence_of") or value.changes.get("concrete_followup", false)): visible.changes["concrete_followup"] = true
 			if visible.changes.has("title"):
 				var scene: Dictionary = world.state.get("prayer_system", {}).get("space", {}).get("scenes", {}).get(str(visible.changes.get("request", "")), {})
 				if not scene.is_empty(): visible.changes.title = prayer_title({"space": true, "content_id": scene.case_id})
+			if value.kind == "prayer_space_consequence" and _known_facts.has(value.id):
+				visible.changes["title"] = object_title(value.id)
 			return visible
 		if value.get("kind") == "ending_assessed":
 			var visible: Dictionary = {}
@@ -557,6 +576,8 @@ func object_title(id: String) -> String:
 		return object_title(str(anchor.institution)) + "锚点"
 	if _known_facts.has(id):
 		var fact: Dictionary = Store.entry(world.state.facts, id)
+		if fact.kind == "prayer_space_consequence":
+			return str(fact.changes.rule.title)
 		if fact.kind == "world_observation" or (fact.kind == "message" and fact.changes.get("observation_version") == "world-observation/1"):
 			return _world_observation_title(fact)
 		if fact.kind == "power_qualification" and fact.changes.get("rule") == "listen":
@@ -655,6 +676,13 @@ func project() -> Dictionary:
 			if person.has(field): row[field] = person[field]
 		if person.get("bound_member", false):
 			for field: String in ["will", "insight", "influence", "adaptation", "loyalty", "sanity", "acted_turn"]: row[field] = person[field]
+		var restrictions := PrayerRules.space_restrictions(state, id, _known_facts)
+		var limitations: Array[String] = []
+		for ability: String in restrictions:
+			var label: String = "无法行动" if ability == "can_act" else "无法入睡"
+			var due: int = restrictions[ability]
+			limitations.append(label if due < 0 else "%s · 剩余%d轮" % [label, maxi(1, due - int(state.turn))])
+		row["prayer_limitations"] = limitations
 		row["title"] = person_title(person); row["role_name"] = catalog.display_tables.npc_profiles[person.profile].name; people.append(row)
 	for id: String in known_relics():
 		var item: Dictionary = Store.entry(state.relics, id)
@@ -678,8 +706,7 @@ func project() -> Dictionary:
 	var events: Array = []
 	for row: Dictionary in turn.context.events:
 		var event: Dictionary = event_entry(row.id)
-		var content: String = str(event.get("descriptor", {}).get("content_id", ""))
-		events.append({"id": row.id, "key": "event/" + row.id, "title": catalog.display_tables.events[content].title if catalog.display_tables.events.has(content) else row.id, "resolved": row.resolved, "descriptor": _public(event.get("descriptor", {}))})
+		events.append({"id": row.id, "key": "event/" + row.id, "title": event_title(event.get("descriptor", {})), "resolved": row.resolved, "descriptor": _public(event.get("descriptor", {}))})
 	var attention: Dictionary = {}
 	for budget: String in ["focus", "people", "members", "identities"]: attention[budget] = world.attention.occupied(state, budget).size()
 	attention["limits"] = {"focus": int(world.attention.parameters.focused_domain_limit), "members": int(world.attention.parameters.bound_member_limit), "people": int(world.attention.parameters.temporary_actor_limit), "identities": catalog.integer("living_named_global_limit")}

@@ -11,7 +11,7 @@ const BASIS := {
 	"record_practice":"持续使用神迹记录的实践已形成当地依托。", "ritual_calendar":"祭仪与历法的持续使用已形成当地依托。",
 	"calendar_dependency":"推算祭日已开始依赖神迹。", "calendar_keeping":"推算祭日已开始依赖神迹。", "ritual_transmission":"传授祭仪与实际使用已形成当地依托。",
 	"shared_memory":"共同记忆及其见证已形成当地依托。", "memory_circle":"共同记忆及其见证已形成当地依托。", "memory_practice":"跨轮共同回忆的实践已形成当地依托。",
-	"contract_dependency":"实际履行的契约已开始依赖神迹。", "pact_agreement":"保管约定及其履行已形成当地依托。", "reciprocal_covenant":"双方实际履行的互惠约定已形成当地依托。",
+	"contract_dependency":"实际履行的契约已开始依赖神迹。", "pact_agreement":"履行交付证据的约定，形成了当地依托。", "reciprocal_covenant":"双方实际履行的互惠约定已形成当地依托。",
 	"distributed_records":"不同节点持有的独立神迹记录已形成当地依托。", "network_independent":"不同节点持有的独立神迹记录已形成当地依托。", "network_exchange":"双方交换与使用记录的经历已形成当地依托。",
 	"public_prophet":"先知与公开神迹的经历已形成当地依托。", "axiom_exception":"法则例外的观察与使用已形成当地依托。", "axiom_nodes":"不同节点对同一法则例外的观察已形成当地依托。", "axiom_archive":"跨轮使用同一法则例外的经历已形成当地依托。",
 	"dissent_memory":"对同一记忆的异议与见证已形成当地依托。", "dissent_circle":"对同一记忆的异议与见证已形成当地依托。", "dissent_practice":"共同经历并陈述分歧的实践已形成当地依托。",
@@ -44,7 +44,7 @@ const SIMPLE := {
 static func is_history_entry(fact: Dictionary) -> bool:
 	if fact.get("kind") == "miracle": return not fact.changes.get("bundled", false)
 	if str(fact.get("kind", "")).begins_with("prayer_space_"):
-		return fact.kind in ["prayer_space_result", "prayer_space_closed", "prayer_space_expired", "prayer_space_maintenance", "prayer_space_progress"]
+		return fact.kind in ["prayer_space_result", "prayer_space_closed", "prayer_space_expired", "prayer_space_maintenance", "prayer_space_progress", "prayer_space_recovered"]
 	return not str(fact.get("kind", "")) in ["social_graph_generation", "member_leave_authorized", "institution_succession_authorized", "cult_establishment_authorized", "attention_admitted", "economy_income_cohort", "cult_local_payment"]
 
 static func summarize(host, fact: Dictionary) -> Dictionary:
@@ -60,6 +60,12 @@ static func summarize(host, fact: Dictionary) -> Dictionary:
 		result.title = SIMPLE[kind][0]
 		result.summary = (subject + "：" if not subject.is_empty() else "") + str(SIMPLE[kind][1])
 	match kind:
+		"prayer_space_consequence":
+			result.title = str(d.get("title", "已知见闻"))
+			result.summary = result.title
+		"prayer_space_recovered":
+			result.title = "人物恢复"
+			result.summary = who + " · " + str(d.get("effect", ""))
 		"miracle":
 			result.title = "亲历异象"
 			result.summary = who + "亲历了一次异常。" if not who.is_empty() else "当地发生了一次已知的异常。"
@@ -236,7 +242,9 @@ static func summarize(host, fact: Dictionary) -> Dictionary:
 		"material_received":
 			var sender: String = entity_name(host, str(d.get("sender", "")), domain)
 			var recipient: String = entity_name(host, str(d.get("recipient", "")), domain)
-			result.summary = (recipient if not recipient.is_empty() else "接收者") + "从" + (sender if not sender.is_empty() else "原持有人") + ("取得记录副本并获知其内容。" if d.get("grant") == "custody" else "获知了记录内容。")
+			var evidence_name: String = entity_name(host, str(d.get("source", "")), domain)
+			if evidence_name.is_empty(): evidence_name = "这份证据"
+			result.summary = (recipient if not recipient.is_empty() else "接收者") + ("拿到了" if d.get("grant") == "custody" else "听取了") + evidence_name + ("，由" + sender + "转交。" if not sender.is_empty() else "。")
 		"initial_relationship", "social_contact":
 			result.title = "人物联系"
 			var a: String = entity_name(host, str(d.get("a", "")), domain)

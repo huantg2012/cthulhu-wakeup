@@ -15,8 +15,8 @@ const FACT_RESULTS: Dictionary = {
 	"contract_learned": "已获知此次契约", "relation_learned": "已获知原有关系事实",
 	"relic_holder_learned": "已获知圣物的实际持有机构", "exception_learned": "已取得法则例外的知识",
 	"ordinary_life": "恢复普通生活，本次未变异", "mutated": "已发生变异",
-	"private_records": "继续秘密保管原记录", "contract_released": "此次神迹履约依赖已解除",
-	"prophet_allowed": "已获准继续以先知身份活动", "custody_retained": "维持原保管状态",
+	"private_records": "暂不公开证词", "contract_released": "此次神迹履约依赖已解除", "mutation_revealed": "异变已经公开",
+	"prophet_allowed": "已获准继续以先知身份活动", "custody_retained": "证据仍在原处",
 	"institution_hostile": "已成为敌对机构", "departed": "已离去",
 	"memory_dispute_closed": "此次记忆争议已结束", "cooperation_opportunity_closed": "此次合作机会已结束",
 	"recovery_opportunity_closed": "此次争夺机会已结束", "request_closed": "此次请求已结束",
@@ -140,6 +140,8 @@ func resource_summary(before: Dictionary, after: Dictionary) -> String:
 	return " · ".join(resources)
 
 func _fact_line(host, fact: Dictionary, old: Dictionary, current: Dictionary) -> String:
+	if fact.get("kind") == "prayer_space_recovered":
+		return _title(host, fact.actor, old, current) + " · " + str(fact.changes.effect)
 	if fact.get("kind") == "npc_miracle_response":
 		var row := miracle_reaction(fact, _title(host, fact.actor, old, current))
 		var parts: Array[String] = [row.title]

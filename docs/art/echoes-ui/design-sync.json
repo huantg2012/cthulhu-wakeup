@@ -153,6 +153,18 @@
       "path": "src/game/prayer_space.gd"
     },
     {
+      "path": "src/game/prayer_consequences.gd"
+    },
+    {
+      "path": "src/game/prayer_rules.gd"
+    },
+    {
+      "path": "src/game/event_rules.gd"
+    },
+    {
+      "path": "data/prayer_space_cases.csv"
+    },
+    {
       "path": "src/content/prayer_space_catalog.gd"
     },
     {
@@ -214,6 +226,12 @@
     },
     {
       "path": "src/presentation/game_root.gd"
+    },
+    {
+      "path": "src/presentation/prayer_response_voice.gd"
+    },
+    {
+      "path": "data/prayer_response_voice.csv"
     }
   ],
   "documents": [
@@ -288,34 +306,32 @@
     "docs/qa/ui-anchor-goal/02-result.png"
   ],
   "snapshot": {
-    "revision": 67,
-    "recordedAt": "2026-11-07T15:36:46.056Z",
-    "note": "神迹见证接入与已知人物反应的回执及编年史呈现",
+    "revision": 71,
+    "recordedAt": "2026-11-08T16:35:50.936Z",
+    "note": "Reusable prayer voice uses neutral references; bounded verification complete",
     "sections": [
-      "F5",
       "P02",
-      "P16",
-      "G5",
-      "G7",
-      "J2",
-      "J5"
+      "F5",
+      "D5"
     ],
-    "configHash": "5bcb42bf00c1a8e57fafaeb366f9c942e5608e5ffa3d9a9d0260abe29a6f5d31",
+    "configHash": "61419530b9b8b59e493e3cba722852673abfdf1174006bf19b635509e14f6c71",
     "sources": {
       "data/cult_pollution_parameters.csv": "0b4cb8a3ef46aec31929e9856a741ee9cea0fb8624586f58173d8ace6f099c89",
       "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
       "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
       "data/legacy/powers-before-2026-11-07.csv": "a3a8b88e3b1f2b9366efdc5be9c706c98b4b2bf59e480635479d5f5c87d5dcde",
       "data/person_names.csv": "215b080c70e5d44775c9f155bbb5f51bd8e2e2309adf71f3a0f11b82a4bc3693",
-      "data/player_text.csv": "84db732b385b3b944bb4e510e4f9fd7358b5f8cbd397c411334c0eab5fe07ba4",
+      "data/player_text.csv": "6cad495729610c8934d67d4fb07aaabd612b8c4ee2710efb6b76933ad0436fc8",
       "data/powers.csv": "420b80fa99d31fe412910334656d5e6f343c9d88eab3764836b969c16a16d733",
-      "data/prayer_space_response_contracts.csv": "52c2686fe02f018db760ce869829d715b6703f7765c875e8528b0064bce16065",
+      "data/prayer_response_voice.csv": "3e28f8576ec47c2e5052eefb1ccae2dbe5d52be4082fb95c2f46ad1f383eda80",
+      "data/prayer_space_cases.csv": "b3ac749c6c2d3acf2621a1267a7ee8b03ce876da810366ccfb8a126af9ff7b7d",
+      "data/prayer_space_response_contracts.csv": "dc562aeed0ecaf0f4d38d2b7828304b496c24a85f3f55e0286ab222ba395d159",
       "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
       "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
       "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
       "data/world_name_parts.csv": "271d6cb1944a3cb090aaeff16337e75271729c20c37e34d7d6ac4c185d8e80ff",
       "data/world_name_patterns.csv": "bc6746632f5064c0755c970a72f27c00874673d1265db0c7497acd00dc0c2292",
-      "docs/architecture.md": "7cd3dc02dfe53424795babbc70957f6b645c3f4574aaaaac7cb85b3d1dbbeff7",
+      "docs/architecture.md": "976879a9f5b64f84e733c5917f7d6baa5822163513e7a46682b49215667ea501",
       "docs/art/echoes-ui/assets/etched-frame.png": "36c24638a63e43a4754a83a2f029fe699d7308c1c62bec03a1b05e494c060e56",
       "docs/art/echoes-ui/assets/manifest.json": "9f3f2a95f33587c3dad56d5a3bb9c15d9f206ff9a54142b21b0deefad618fd8a",
       "docs/art/echoes-ui/assets/relic-icons.png": "cd9de5dfeb2ccd823061bc4a5497949b81f53df982543cfff4416e409ece211a",
@@ -365,27 +381,31 @@
       "docs/specs/ui-interaction.md": "69e76e0b09b07fa58ecfc64f5984d76f43f92294c53c6483f036c359e9512af2",
       "project.godot": "febc5607624bc9ae60079f761c5338aa628bfd73145aa8479483ea64b03c3431",
       "src/content/player_text.gd": "46e2294fb555e4017925a3be80ab33e7d81cd5e9dd7fb4d8374f7104540171f1",
-      "src/content/prayer_space_catalog.gd": "ed1291f1778c4cb87734b78d867e25ee950925487100bb9173714875001acf51",
+      "src/content/prayer_space_catalog.gd": "afe60302707264d5564ee3569594e721610dd082b7cfcbcaf4f33d4e5c0d4851",
       "src/content/world_names.gd": "0b5c56e9d86e0b4a41d0e16c66cbe54179211a6b60a741397f38b1d46202561d",
       "src/game/anchor_routes.gd": "7c4d272069cebfed88c1a6e4349d7c6170608761469b4d641252f6e1508c6c15",
       "src/game/entry_selectors.gd": "f7e8d73821b1a8ee92959a8dc4522923370cf07000fa08ebcafeaf66e19c9274",
+      "src/game/event_rules.gd": "b67872f86f244e5ee1b26dcbe554a1957f0e729ac2723b10c07d4478547b9360",
       "src/game/opportunity_eligibility.gd": "183267019c316ac19f9c6300d7b9bf3a389a580c0b056572372b6df41fce3d76",
-      "src/game/player_knowledge.gd": "3af0f1cc3ac0fe91599e4d931dc956390434fd49cc4ef522044516a6dcca36d1",
-      "src/game/powers.gd": "3dba3cd053a95d2f4ae22a22ad466302b8313d80f4fdd6dee118c5110630b35e",
-      "src/game/prayer_space.gd": "853a18ae73d94dd10713cdd2e11bbb67fddbb05951fc84689916cc5f0f4cdc34",
+      "src/game/player_knowledge.gd": "1d05d6823ff7c81a6193f736f1603eaaf148cf57ba65f801a209283ea17ff009",
+      "src/game/powers.gd": "ea8bc883abd17cae19d101e033aa06cf01b3d12e06be829eb8f57c440b966d13",
+      "src/game/prayer_consequences.gd": "b0339c25b481ffcea9d92f250295c888c93931ba9ecc46c6463aefa13aa8849f",
+      "src/game/prayer_rules.gd": "d7b8bf58221f37e88b617fa32d6e63e7fcb23df4b74df5134a73c08cce2213c9",
+      "src/game/prayer_space.gd": "f19bcec8542cd2f100d0f9cd808ff1f4dc5d6c7a5b65ad0ea95a2d2d753ea8fb",
       "src/game/progression_routes.gd": "4bbd4b666885397e90cbb73f9c444bc9338193dbbac5a53f4febe4e577258ad6",
       "src/game/relics.gd": "c025210482416efee8d007af66e079e63192306be5c7b645ac935b5ceacfc5eb",
       "src/presentation/action_availability.gd": "90bf4a3e54bb272cd46da7b7fe20693b114280a67541f580e5ee551e37993fe3",
-      "src/presentation/action_catalog.gd": "93d6232834ab14843b7a52298153cea5cbd6e868c2cd5b351d50d5bc5516929b",
+      "src/presentation/action_catalog.gd": "21aeceb20ab1f81eb4cebc58042508dac97bffd08477a1ae8af28d34cdda4390",
       "src/presentation/anchor_preparation.gd": "ec593251d95dfa099d1d20c15e5fae96c61d5aa3a9ca091ccdd836b173d3a7c3",
-      "src/presentation/experience_actions.gd": "7cb4da9dc88f52b0884297561c6b92ae180107a8ea4bbd7378703da2fb472a5d",
-      "src/presentation/experience_feedback.gd": "98a4b93f28c24b957754c0baf52f43da23ec3e0c99fa22aca18ec9c36044e450",
+      "src/presentation/experience_actions.gd": "707ce98932df85b9bfb50b13b141e8826239ac1e6bfcfd9f950bd7be03e8b9d4",
+      "src/presentation/experience_feedback.gd": "a240df5c773a45ffdfc390d779cdfd0546eae96bdad214a2be637cc85f80ea46",
       "src/presentation/experience_root.gd": "3f2dc6a5e3ded52041464e631a4cb372cfe5cdb8152e41ba04ebc2df5f51fec9",
       "src/presentation/experience_semantics.gd": "0882cd7068a8f7e8b79b7b4fed08c6ac9f9c7bdfbf98ee92f93039f2d43b8582",
-      "src/presentation/experience_views.gd": "37672a14cc6d1aa9d8b9a6012bca6c26de96ea9ce98dd33ab77775164716596f",
+      "src/presentation/experience_views.gd": "e4fb6e990a1986f1ae62d487a6b55582fbef9189b82915b35519e49c707e873b",
       "src/presentation/game_root.gd": "e69ab0e10c66ee826efe815dbd3233fc35fb8b466368d3c67b58b74d94ee9584",
       "src/presentation/gameplay_requirements.gd": "ca8c6285eb505adaba034a20854f5002d74a9c49a1ca5cabb3f0132573e390b0",
-      "src/presentation/player_record_text.gd": "973d4ba05f5fbccc825979664a43ec5e97d737ff0732a486c0836c497ed646dd",
+      "src/presentation/player_record_text.gd": "421bba75b1e3531f61452c196949d2f0f03a6cbcef5218ff9033ba7c59122868",
+      "src/presentation/prayer_response_voice.gd": "052ee73f0d26c0a00f0dab2e3a0d174f2749f7040b77f0944368dda27b5f9ea9",
       "src/presentation/production/action_workbench.gd": "050c139b0c32038af3a5d274ffa85161a7855176cb0220fb7e35ad761c1bbc7b",
       "src/presentation/production/bestow_view.gd": "cc0be6608e94c36cecae6b8badc0a19c1218eb43643da5f818e571896fbf79eb",
       "src/presentation/production/game_root.tscn": "6be5813b55b3ece2ea16cdb8c87ee686aa28be6c29b981bd0fdacdb1213bb9db",
@@ -394,7 +414,7 @@
       "src/presentation/production/round_view.gd": "4f288a5396e8b704b8eaf9dc85adb02492efddfd302d11d152c99ee98214b99d",
       "src/presentation/production/task_view.gd": "09ac14214477477a184e7dee8c7b0b7036ec4a7f08a4d1c8834020ccc861240e",
       "src/presentation/production/world_management.gd": "fa4ce0a4b3f1765a7f64cfc535b6ba97160ea8f89cefb1456cdaa81e364b91d0",
-      "src/presentation/session.gd": "cbd26392b57f925f75694c9a37175c16f49ae1e09a83bc8ad4b3ff87324705be",
+      "src/presentation/session.gd": "fa10fca8cbcd8d64ed3d4f80be4ad3de887f7e5092a8bd69a0a66a5fd445e5e3",
       "src/presentation/ui/dock_content.gd": "6330effb7a7bb53fc40faa2049b8ef02d25714c960d6b5d6306bdeec3f738ee4",
       "src/presentation/ui/motion.gd": "faf70ca12c8706802248c65073a240b0bbfdb55101422e5e9d36ebd100536430",
       "src/presentation/ui/opening_veil.gd": "532ddbc76e36a7002dad8f961f222978e4805c577a81b8004ee151dc5dc44091",
@@ -455,9 +475,9 @@
       "美术打版.command": "087ddf1989ae888ecf0b58105cde09ec2729b8030c9dd2b85482e654ab7ae10c"
     },
     "documents": {
-      "docs/art/echoes-ui/component-map.md": "9919b97ab141ae380cfe8302691f6c3fa174a01a908ea53eec056475e17d5bb1",
+      "docs/art/echoes-ui/component-map.md": "8c8325f5b2979610884a37660005c39768183862fa74b64eb3eccd40a458e48c",
       "docs/art/echoes-ui/tokens.json": "8dc54bbeca124c1a09931d1da3e1d38376e63949c628692277af8921408e0e2f",
-      "docs/art/echoes-ui/visual-system.md": "b145d311378aebbfe6511a748cc2d4af942b0db25b233fa84f67fd36aec7f609"
+      "docs/art/echoes-ui/visual-system.md": "2e2d2aa7d1f7fb9a2d5e0a792abe698c288b3578e9830a7da4f6ac8a0eadedc4"
     },
     "evidence": {
       "docs/art/echoes-ui/visual-exhibits/controls-0.png": "9621e43af50ac4d3b3c39e0a07b792c00ce182395926c3051ca881e95fc25529",
@@ -526,19 +546,11 @@
       "tools/echoes-art-master/evidence/world-subject-layout.png": "ac1b7e495d03c132849e1a15c9bc92ff8a86fd2cf8c24fa06af3262a4ef1cf4e"
     },
     "changed": {
-      "config": true,
+      "config": false,
       "sources": [
-        "data/prayer_space_response_contracts.csv",
-        "docs/architecture.md",
-        "src/content/prayer_space_catalog.gd",
-        "src/game/player_knowledge.gd",
-        "src/game/prayer_space.gd",
-        "src/presentation/experience_feedback.gd",
-        "src/presentation/player_record_text.gd",
-        "src/presentation/session.gd"
+        "data/prayer_response_voice.csv"
       ],
       "documents": [
-        "docs/art/echoes-ui/component-map.md",
         "docs/art/echoes-ui/visual-system.md"
       ],
       "evidence": []

@@ -150,6 +150,7 @@ func context_lines(row: Dictionary, selection: Dictionary = {}, title_for: Calla
 			if not id.is_empty(): lines.append(key + "：" + (str(title_for.call(id)) if title_for.is_valid() else id))
 	for index: int in range(0, identities.size(), 2): lines.append(" · ".join(identities.slice(index, index + 2)))
 	if not places.is_empty(): lines.append(" · ".join(places))
+	if details.has("原事件"): lines.append(str(details["原事件"]))
 	if not deadlines.is_empty(): lines.append(" · ".join(deadlines))
 	return lines
 

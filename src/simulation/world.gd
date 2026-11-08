@@ -817,7 +817,7 @@ func choose_behavior(npc_id: String, view: Dictionary = {}) -> Dictionary:
 	if not Store.has(current.npcs, npc_id):
 		return {}
 	var npc: Dictionary = Store.entry(current.npcs, npc_id)
-	if npc.status != "active" or int(npc.acted_turn) == int(current.turn):
+	if npc.status != "active" or int(npc.acted_turn) == int(current.turn) or not PrayerRules.space_allows(current, npc_id, "can_act"):
 		return {}
 	index.metrics.current_entities += 1
 	var candidates: Array = []
