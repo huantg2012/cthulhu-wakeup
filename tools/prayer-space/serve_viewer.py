@@ -2,11 +2,12 @@
 """Serve the author reader and its read-only Godot preview on loopback."""
 import argparse
 from collections import OrderedDict
-from http.server import SimpleHTTPRequestHandler, HTTPServer
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
 from pathlib import Path
 import shutil
 import subprocess
+from threading import Lock
 from urllib.parse import parse_qs, urlsplit
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -16,6 +17,8 @@ GODOT_APP = Path('/Applications/Godot.app/Contents/MacOS/Godot')
 
 
 class Handler(SimpleHTTPRequestHandler):
+    timeout = 5
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=ROOT, **kwargs)
 
@@ -37,7 +40,12 @@ class Handler(SimpleHTTPRequestHandler):
         if path.path != '/__prayer_generator':
             self.send_error(404)
             return
-        query = parse_qs(path.query)
+        # Keep idle browser connections and Godot work off the accept loop.
+        # Only one preview runs at a time, so its root cache stays consistent.
+        with self.server.preview_lock:
+            self.generate(parse_qs(path.query))
+
+    def generate(self, query):
         try:
             seed = int(query.get('seed', ['1'])[0])
             draw = int(query.get('draw', ['0'])[0])
@@ -80,9 +88,10 @@ def main():
     parser.add_argument('--port', type=int, default=8766)
     parser.add_argument('--godot', default=shutil.which('godot') or shutil.which('godot4') or str(GODOT_APP))
     args = parser.parse_args()
-    with HTTPServer(('127.0.0.1', args.port), Handler) as server:
+    with ThreadingHTTPServer(('127.0.0.1', args.port), Handler) as server:
         server.godot = args.godot
         server.roots = OrderedDict()
+        server.preview_lock = Lock()
         print(f'http://127.0.0.1:{args.port}{PAGE}', flush=True)
         server.serve_forever()
 
