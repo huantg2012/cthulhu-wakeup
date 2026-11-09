@@ -47,6 +47,7 @@ func run() -> void:
 	var cult: Dictionary = app.projection.cults[0]
 	var member: String = cult.leader
 	var before_faith: int = app.projection.faith
+	_press("Menu")
 	_press("WorldArchive")
 	var search: LineEdit = app.find_child("ArchiveSearch", true, false)
 	search.text = "zz-no-match"
@@ -85,22 +86,47 @@ func run() -> void:
 	var actual: Array = app._world_management._settlements.get(cult.id, [])
 	if not _expect(app.projection.turn == 5 and actual.size() == 2 and actual[0].effective == "conceal" and actual[0].fee == 0 and actual[1].actual == 0, "actual settlement did not apply the registered instruction"): return
 	if not _expect("实际入账 0 信仰" in " ".join(app._receipt), "round receipt omitted actual income"): return
+	_press("World_" + cult.domain)
 	_press("LocalCult")
 	await _capture("03-settlement")
 	app._world_management.close()
 	var pending: Array = app._pending_prayers()
-	var old: Dictionary = pending.filter(func(p: Dictionary) -> bool: return p.card.domain == cult.domain)[0]
-	if not _expect(app.session.execute_action(old.key + "/shallow", {}, true).ok, "could not close original domain's prayer"): return
+	var local_response := ""
+	for prayer: Dictionary in pending:
+		if prayer.card.domain != cult.domain: continue
+		var variants: Array = ["shallow", "deep"]
+		if prayer.descriptor.get("space", false):
+			variants = app.session.prayer_space_choices(prayer.id).map(func(choice: Dictionary) -> String: return str(choice.id))
+		for variant: String in variants:
+			var key: String = prayer.key + "/" + variant
+			if not app.session.preview_action(key).get("ok", false): continue
+			local_response = key
+			break
+		if not local_response.is_empty(): break
+	if not _expect(not local_response.is_empty(), "original domain lost all payable requests"): return
+	if not _expect(local_response.begins_with("prayer/PS-") and not cult.domain in app.session.world.state.simulation.focused, "fixture did not reach a generated request in a released world"): return
+	if not _expect(app.session.execute_action(local_response, {}, true).ok, "could not respond to the generated situation while refocusing its original world"): return
+	var saved: Dictionary = app.session.save_game()
+	var resumed := Session.new(app.session.save_directory)
+	if not _expect(saved.get("ok", false) and resumed.continue_game(saved.path).get("ok", false) and resumed.turn.snapshot() == app.session.turn.snapshot(), "reopened save did not validate the generated prayer's attention receipt"): return
 	app._refresh()
-	if not _expect(not app._world_buttons.has(cult.domain), "world should now be outside the left list"): return
+	if not _expect(app._world_id == cult.domain, "losing focus erased the viewed world"): return
+	_press("Menu")
 	_press("WorldArchive")
-	var clue: Dictionary = app.projection.domains.filter(func(w: Dictionary) -> bool: return w.has("已知范围"))[0]
+	var clues: Array = app.projection.domains.filter(func(w: Dictionary) -> bool: return w.has("已知范围"))
+	if not _expect(not clues.is_empty(), "new offer displaced the other world's contact clue"): return
+	var clue: Dictionary = clues[0]
 	_press("WorldRecord_" + clue.id)
 	if not _expect(app._views._current_cult(app, clue.id).is_empty() and app.find_child("ArchiveCult", true, false) == null, "clue-only world displayed a cult"): return
 	await process_frame
 	_press("WorldRecord_" + cult.domain)
 	if not _expect(app._surface.find_child("Observation_*", true, false) == null, "archive reintroduced a separate observation page"): return
 	await _capture("04-world-archive")
+	_press("WorldBack")
+	if not _expect(app._world_management._domain.is_empty() and root.gui_get_focus_owner().name == "WorldRecord_" + cult.domain, "World detail did not return to its archive row"): return
+	_press("WorldRecord_" + cult.domain)
+	_press("EnterLocalWorld")
+	if not _expect(app._dialog.is_empty() and app._world_id == cult.domain, "Archive could not deliberately enter a local world"): return
 	if not _expect(original_hash == FileAccess.get_sha256(ORIGINAL), "original save changed"): return
 	print("B03_OK archive-only world, search, clue-only world, inline observation explanation, member tabs, deferred strategy and actual settlement")
 	game.free()

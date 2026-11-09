@@ -1,0 +1,30 @@
+.perspective-review .p-painted,.perspective-review .p-pixel {display:none}
+.perspective-review[data-perspective-style=painted] .p-painted,
+.perspective-review[data-perspective-style=pixel] .p-pixel {display:inline}
+.perspective-review[data-perspective-style=pixel] image.p-pixel,
+.perspective-review[data-perspective-style=pixel] .p-pixel image {image-rendering:pixelated}
+.perspective-review .realm .world-form {width:100%;height:100%;overflow:hidden}
+.perspective-review .realm .world-name {top:380px}
+.perspective-review #realms .realm.r0 {filter:drop-shadow(0 0 32px #8eaaa53b)}
+.perspective-switch {position:absolute;right:48px;top:80px;z-index:40;display:flex;background:#101c28ef;border-bottom:1px solid #8aa3a3}
+.perspective-switch button {padding:9px 15px;color:#aebec4;font-size:13px}
+.perspective-switch button.active {color:#e3c790;border-bottom:2px solid #e3c790}
+.perspective-cult {position:absolute;left:550px;top:180px;width:490px;height:350px;z-index:6;pointer-events:none;filter:drop-shadow(0 8px 20px #000b)}
+.perspective-cult .cult-form {width:100%;height:100%}
+.perspective-cult small {display:block;text-align:center;margin-top:-35px;color:#e6e2ce;text-shadow:0 2px 5px #000}
+.perspective-prayer {background:radial-gradient(ellipse at 48% 55%,#253d48,#09131c 67%)}
+.perspective-prayer-world {position:absolute;inset:90px 320px 0;opacity:.3;filter:blur(2px)}
+.perspective-prayer-world svg {width:100%;height:100%}
+.person-medallion {position:absolute;left:575px;top:85px;width:350px;height:430px;border:1px solid #b9c2aa60;background:radial-gradient(ellipse,#3342468c,#10191bd9);border-radius:48% 48% 6px 6px;z-index:2;overflow:hidden}
+.person-medallion .p-person-art {width:100%;height:100%}
+.perspective-prayer .prayer-story,.perspective-prayer .prayer-decisions {z-index:5}
+.p-person {display:inline-block;overflow:hidden}
+.p-person-art {width:100%;height:100%}
+.perspective-review .ritual-portrait {width:340px;height:405px}
+.perspective-review .dossier-portrait {width:240px;height:300px;flex:none}
+.perspective-review .ritual-option-portrait {width:62px;height:75px}
+.perspective-gallery {position:absolute;inset:150px 260px 125px;z-index:35;background:#0a141ef8;border:1px solid #96a9a773;box-shadow:0 16px 70px #000d;padding:26px 42px}
+.perspective-gallery h2 {font:30px "Songti SC",serif;margin:0 0 7px}.perspective-gallery>p {color:#aebdc0;font-size:14px;margin:0}
+.pose-pair {height:400px;display:flex;gap:35px;justify-content:center;text-align:center}
+.pose-pair>div {width:280px;height:100%;color:#d5d6ca}.pose-pair p {margin:0;font-size:14px}
+.pose-art {height:350px;width:100%}.perspective-gallery>button {display:block;margin:8px auto}

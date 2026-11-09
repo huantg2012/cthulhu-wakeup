@@ -78,8 +78,9 @@ func explain_error(message: String) -> String:
 		"Select the original lesson as its student for independent performance": "教习已完成，请选择原学徒和原教习，独自施行祭仪",
 		"Continue the fixed covenant rather than replace its terms": "两项交付约定已经固定，请按原条款继续履行",
 		"Outstanding original reciprocal leg required": "需要尚未完成的原交付条款；两项均完成后不能再次履行",
-		"Private devotion needs actual deity knowledge": "该人物尚未真正知晓邪神身份，不能进行秘密祈祷",
-		"Private devotion needs current willingness": "该人物当前没有献身意愿，不能进行秘密祈祷",
+		"Private devotion needs actual deity knowledge": "此人尚未认出你，无法向你秘密祈祷。",
+		"Private devotion needs current willingness": "此人还未愿意向你献身。",
+		"Private devotion needs current loyalty for member admission": "此人对你的忠诚还不足以让其成为信徒。",
 		"No current capacity for this fixed request": "当前没有容纳这项固定祈求的名额",
 		"Actual teacher and current cooperation required": "需要合格的原祭仪者，以及双方当前有效的支持或合作联系",
 		"Original participants must continue their own operation": "须由原参加者继续原行动，不能替换参加者",
@@ -173,7 +174,7 @@ func _build(seed_value: int, powers_revision: String = "", sustained_pollution :
 	for name: String in services:
 		if not services[name].install(clock): return {"ok": false, "error": "无法安装正式能力：" + name}
 	if not Opportunities.install(clock): return {"ok": false, "error": "无法安装直接行动服务"}
-	var initial: Dictionary = clock.bootstrap_prayers()
+	var initial: Dictionary = clock.bootstrap_prayers(true)
 	if not initial.get("ok", false): return {"ok": false, "error": str(initial.get("error", "初始求告不可用"))}
 	return {"ok": true, "catalog": content, "world": fresh, "turn": clock, "modules": services}
 
@@ -357,11 +358,28 @@ func known_relics() -> Array:
 	result.sort(); return result
 
 func visible_prayer_entries() -> Array:
-	var result: Array = []
+	var result: Array = modules.prayers.space_entries(world.state)
 	for id: String in world.state.prayer_system.offered:
 		var entry: Dictionary = prayer_entry(id)
 		if not entry.is_empty(): result.append(entry)
-	result.append_array(modules.prayers.space_entries(world.state))
+	return result
+
+func prayer_space_choices(id: String) -> Array:
+	if turn == null or not _known_prayers.has(id): return []
+	var current: Dictionary = prayer_entry(id)
+	if current.get("status") != "open" or not current.get("descriptor", {}).get("space", false): return []
+	var case_id: String = str(current.descriptor.content_id)
+	var result: Array = []
+	for choice: Dictionary in modules.prayers.space_choices(world.state, id):
+		var item: Dictionary = {}
+		for field: String in ["id", "label", "hint", "approach", "intensity", "disclosure", "faith", "whispers", "first_upkeep"]:
+			if choice.has(field): item[field] = choice[field]
+		if not item.has("hint"):
+			var wording: Dictionary = catalog.prayer_space.tables.response_contracts.get(case_id + "/" + str(choice.id), {})
+			item["hint"] = str(wording.get("hint", "具体后果未知。" if item.get("disclosure") == "unknown" else ""))
+		if item.get("disclosure") != "unknown" and int(item.get("first_upkeep", 0)) > 0:
+			item["maintenance_turns"] = int(choice.get("duration", ""))
+		result.append(_public(item))
 	return result
 
 func prayer_entry(id: String) -> Dictionary:

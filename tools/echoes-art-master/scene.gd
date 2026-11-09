@@ -63,6 +63,8 @@ func _ready() -> void:
 	get_window().content_scale_mode = Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 	get_window().content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
 	motion = preload("res://src/presentation/ui/motion.gd").new()
+	var motion_tokens: Variant = JSON.parse_string(FileAccess.get_file_as_string("res://docs/art/echoes-ui/tokens.json"))
+	motion.params = motion_tokens.get("motion", {}) if motion_tokens is Dictionary else {}
 	add_child(motion)
 	catalog = Catalog.new()
 	if not catalog.load_files():

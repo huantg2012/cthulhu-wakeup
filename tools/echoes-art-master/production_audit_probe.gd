@@ -8,6 +8,9 @@ func run() -> void:
 		DirAccess.make_dir_recursive_absolute(evidence)
 	folder = "user://ui-audit/%s" % Time.get_ticks_usec()
 	var game := open_game()
+	if not check(app._surface.find_child("Seed", true, false) == null and app._surface.find_child("Continue", true, false) == null, "Fresh title exposed seed or nonexistent Continue"): return
+	press("NewGameOptions")
+	app.find_child("Seed", true, false).text = "1"
 	press("NewGame")
 	app._close_surface()
 	app._tasks.open_action("POWER_LISTEN")
@@ -36,6 +39,7 @@ func run() -> void:
 	app._close_surface()
 	if not check(app.projection.cults.size() == 1, "Existing legal cult save did not load"): return
 	var cult: Dictionary = app.projection.cults[0]
+	press("Menu")
 	press("WorldArchive")
 	press("WorldRecord_" + cult.domain)
 	await process_frame
@@ -48,21 +52,27 @@ func run() -> void:
 	await shot("01-world-archive")
 	for pair: Array in [["WorldPeople","people"],["WorldInstitutions","institutions"],["WorldMaterials","materials"],["WorldRelics","relics"],["WorldAnchors","anchors"]]:
 		press(pair[0])
-		if not check(app._tasks._subject.kind == pair[1], "Wrong world destination " + pair[0]): return
+		if pair[1] == "materials":
+			if not check(app._dialog == "task_action" and app._tasks.draft.key == "route/context" and app._tasks.draft.selection.domain == cult.domain, "World activity lost its scope"): return
+		elif not check(app._tasks._subject.kind == pair[1], "Wrong world destination " + pair[0]): return
 		app._tasks.back()
 		if not check(app._dialog == "world_management" and app._world_management._domain == cult.domain, "Archive return lost world"): return
 	press("ArchiveCult")
 	for pair: Array in [["CultMaterials","materials"],["CultBudget","budget"]]:
 		press(pair[0])
-		if not check(app._tasks._subject.kind == pair[1], "Wrong cult destination " + pair[0]): return
-		if pair[0] == "CultMaterials" and not check(app._tasks._subject.id == cult.id, "Cult activities lost membership scope"): return
+		if pair[0] == "CultMaterials":
+			if not check(app._dialog == "task_action" and app._tasks.draft.key == "route/context" and app._tasks.draft.activity_cult == cult.id, "Cult activities lost membership scope"): return
+		elif not check(app._tasks._subject.kind == pair[1], "Wrong cult destination " + pair[0]): return
 		app._tasks.back()
 		if not check(app._dialog == "world_management" and app._world_management._page == "cult", "Cult return lost management"): return
 	await shot("02-cult-links")
 	app._close_surface()
+	app._inspect_world(cult.domain)
 	for item: Array in [["Activities", "materials"], ["AnchorIndex", "anchors"]]:
 		press(item[0])
-		if not check(app._tasks._subject.kind == item[1], "Main gameplay entrance missing " + item[0]): return
+		if item[0] == "Activities":
+			if not check(app._dialog == "task_action" and app._tasks.draft.selection.domain == cult.domain, "Local activities lost scope"): return
+		elif not check(app._tasks._subject.kind == item[1], "Main gameplay entrance missing " + item[0]): return
 		app._close_surface()
 	app._tasks.open_subject("people",cult.domain)
 	press("PersonFilter_people_" + cult.domain)
@@ -97,7 +107,18 @@ func run() -> void:
 	app._start_new(2)
 	app._close_surface()
 	app._show_menu()
+	if not check(app._surface.find_child("Seed", true, false) == null and app._surface.find_child("Import", true, false) == null, "Pause exposed secondary controls directly"): return
+	press("NewGameOptions")
+	app.find_child("Seed", true, false).text = "invalid"
+	press("NewGame")
+	if not check(app._dialog == "new_game", "Invalid seed left new game setup"): return
+	app.find_child("Seed", true, false).text = "42"
+	press("NewGame")
+	press("Cancel")
+	if not check(app._dialog == "new_game" and app.find_child("Seed", true, false).text == "42", "Cancelled new game lost the seed"): return
+	press("Return")
 	press("SavedGames")
+	if not check(app._surface.find_child("Import", true, false) != null, "Import missing from save management"): return
 	var saves: Array = app.session.saved_games()
 	var selected := -1
 	for i: int in saves.size():
@@ -106,8 +127,7 @@ func run() -> void:
 	await shot("05-saved-games")
 	press("SavedGame_%s" % selected)
 	press("Cancel")
-	if not check(app.session.slot != original_slot, "Cancelled load replaced campaign"): return
-	press("SavedGames")
+	if not check(app.session.slot != original_slot and app._dialog == "saved_games", "Cancelled load lost its save list or replaced campaign"): return
 	press("SavedGame_%s" % selected)
 	press("Switch")
 	if not check(ProjectSettings.globalize_path(app.session.slot) == ProjectSettings.globalize_path(original_slot) and app.projection.cults.size() == 1 and FileAccess.get_sha256(CULT_SAVE) == original_hash, "Saved-game selection did not restore chosen copy or changed original"): return

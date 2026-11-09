@@ -29,7 +29,10 @@ func _actions(session: RefCounted) -> bool:
 
 func _response(session: RefCounted) -> String:
 	for prayer: Dictionary in session.project().prayers:
-		for variant: String in ["shallow", "deep"]:
+		var variants: Array = ["shallow", "deep"]
+		if prayer.descriptor.get("space", false):
+			variants = session.prayer_space_choices(prayer.id).map(func(choice: Dictionary) -> String: return choice.id)
+		for variant: String in variants:
 			var key: String = str(prayer.key) + "/" + variant
 			if session.preview_action(key, {}).get("ok", false): return key
 	return ""
@@ -76,9 +79,10 @@ func _run() -> void:
 		var key: String = _response(fresh)
 		if not need(not key.is_empty() and fresh.project().prayers.size() <= 3, "连续行动窗口至少一项且不超过三项", fresh.project().prayers): return
 		var request_id: String = key.get_slice("/", 1)
-		var card: Dictionary = fresh.world.state.prayer_system.requests[request_id].card
+		var request: Dictionary = fresh.prayer_entry(request_id)
+		var card: Dictionary = request.card
 		var call: Dictionary = Store.entry(fresh.world.state.facts, str(card.get("call", "")), {})
-		windows.append({"turn": fresh.project().turn, "count": fresh.project().prayers.size(), "response": key, "petitioner": card.subjects.petitioner, "source": card.source, "occurrence": call.get("changes", {}).get("occurrence", "")})
+		windows.append({"turn": fresh.project().turn, "count": fresh.project().prayers.size(), "response": key, "petitioner": request.descriptor.subjects.petitioner, "source": request.descriptor.source, "occurrence": call.get("changes", {}).get("occurrence", "")})
 		var action: Dictionary = fresh.execute_action(key, {}, true, "SUPPLY/FRESH/" + str(index))
 		if not need(action.get("ok", false), "连续窗口执行真实回应", action): return
 		if index < 2:

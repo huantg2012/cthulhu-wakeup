@@ -89,17 +89,23 @@ func prayer_members(content: String, actors: Array) -> Array:
 		if policies.get("prayer/" + content + "/" + variant, {}).get("member_scope") == "nominees": return actors.duplicate()
 	return []
 
+static func prayer_space_policy(state: Dictionary, request: Dictionary) -> Dictionary:
+	if request.get("family") != "prayer" or not str(request.get("content_id", "")).begins_with("SPACE_"): return {}
+	# The detached eligibility view carries frozen situations, not the fact
+	# archive. The commit audit separately verifies the actual source and payment.
+	var scene: Dictionary = state.get("prayer_system", {}).get("space", {}).get("scenes", {}).get(request.get("request", ""), {})
+	if scene.is_empty() or request.get("source") != scene.source or request.get("content_id") != "SPACE_" + str(scene.case_id) or request.get("target") != scene.domain: return {}
+	if request.get("variant") == "dismiss":
+		if request.get("participants") != []: return {}
+		return {"focus_scope": "none", "person_scope": "none", "member_scope": "none"}
+	if request.get("participants") != scene.actors or not scene.choices.has(request.get("variant")): return {}
+	return {"focus_scope": "target", "person_scope": "participants", "member_scope": "none"}
+
 func preview_needs(state: Dictionary, request: Dictionary, effects: Array = [], actor: String = "", depth: int = 0) -> Dictionary:
 	if version.is_empty() or not enabled(state) or depth > 8: return _error("Attention unavailable or cyclic effect description")
 	var key: String = str(request.get("family", "")) + "/" + str(request.get("content_id", "")) + "/" + str(request.get("variant", ""))
 	var rule: Dictionary = policies.get(key, {})
-	if rule.is_empty() and str(request.get("family")) == "prayer" and str(request.get("content_id", "")).begins_with("SPACE_"):
-		var found: Dictionary = {}
-		for scene: Dictionary in state.get("prayer_system", {}).get("space", {}).get("scenes", {}).values():
-			if scene.source == request.get("source") and "SPACE_" + str(scene.case_id) == request.content_id:
-				found = scene; break
-		if found.is_empty() or found.actors != request.get("participants") or found.domain != request.get("target") or (request.get("variant") != "dismiss" and not found.choices.has(request.get("variant"))): return _error("Invalid fixed prayer-space intervention")
-		rule = {"focus_scope": "target", "person_scope": "participants", "member_scope": "none"}
+	if rule.is_empty(): rule = prayer_space_policy(state, request)
 	if rule.is_empty(): return _error("Unregistered intervention")
 	var needs: Dictionary = {"ok": true, "focus": [], "people": [], "members": [], "identities": [], "source": request.get("source", "")}
 	for field: String in ["participants", "nominees", "new_people", "fixed", "ritual_domains", "calls"]:

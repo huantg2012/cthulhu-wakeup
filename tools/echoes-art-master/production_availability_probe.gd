@@ -61,6 +61,7 @@ func run() -> void:
 	s.slot = "/tmp/availability-review-working.json"
 	var game := Scene.instantiate(); app = game.get_node("Presentation/CanvasLayer/OverlayRoot"); app.session = s; root.add_child(game); app._close_surface()
 	var before: String = s.turn.snapshot(); var knowledge: Dictionary = s.knowledge_snapshot()
+	app._inspect_world("DOMAIN-001")
 	assert(app._world_body.is_ancestor_of(app.find_child("Activities", true, false)))
 	assert(app._world_body.is_ancestor_of(app.find_child("AnchorIndex", true, false)))
 	assert(app.find_child("MaterialTransfer", true, false) == null)
@@ -76,6 +77,7 @@ func run() -> void:
 	assert(app._dialog == "task_action" and app._tasks.draft.key == "route/context")
 	assert(app.find_child("PrepareActivity", true, false) == null)
 	assert(app.find_child("ActionTab_operation", true, false) != null)
+	assert(app.find_child("ActionTab_domain", true, false) == null, "World activity offers another world")
 	verify_cards()
 	await shoot("03-activities")
 	var rejected: Array = [
@@ -93,6 +95,9 @@ func run() -> void:
 	var action: Dictionary = await search("route/context", chosen)
 	assert(action.ok)
 	await verify_prefixes("route/context", action.selection)
+	app._tasks.open_person_activity({"domain":action.selection.domain, "operation":action.selection.operation, "npc":action.selection.npc})
+	await settle()
+	assert(app._tasks.activity_actors() == [action.selection.npc] and app.find_child("ActionTab_npc", true, false) == null, "Person activity must stay with its original initiator")
 	for field: String in ["npc", "source"]:
 		var unknown: Dictionary = action.selection.duplicate(true)
 		unknown[field] = "unknown-to-player"
@@ -134,6 +139,8 @@ func run() -> void:
 	assert(app._dialog == "receipt")
 	assert(s.world.state.faith == faith - int(preview.preview.faith))
 	await shoot("06-paid-result")
+	press("Return"); await settle()
+	assert(app._dialog == "task_action" and app._tasks.draft.selection == action.selection and app.find_child("ActivityProgress", true, false) != null, "Receipt does not return to the actual activity and its progress")
 	var spent: Dictionary = await search("route/context", action.selection)
 	assert(not spent.ok, "same-turn participants must not be offered again")
 	app._tasks.open_action("route/context", chosen); app._tasks.draft.config_tab = "npc"; app._tasks.render_workbench(); await settle(); verify_cards()

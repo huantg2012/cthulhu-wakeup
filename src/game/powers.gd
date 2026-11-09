@@ -248,18 +248,12 @@ func prepare(view: Dictionary, power_id: String, payload: Dictionary, partial: b
 			if not state.has("relic_system"): return _error("Formal medium lifecycle unavailable")
 			var medium: Dictionary = _entity(view, "relics", payload.relic)
 			if medium.is_empty() or medium.domain != domain or not medium.placement in ["controlled", "carried", "bound"] or (medium.placement == "carried" and medium.holder != npc): return _error("Anchor medium is not controllable locally")
-			var anchor_id: String = "ANCHOR/" + payload.institution
-			var ordinal: int = 1
-			var occupied: Array = []
-			for anchor: Dictionary in state.anchors.values():
-				if anchor.institution == payload.institution: anchor_id = anchor.id; ordinal = anchor.ordinal
-				if anchor.domain == domain: occupied.append(anchor.ordinal)
-			if not state.anchors.has(anchor_id):
-				while ordinal in occupied: ordinal += 1
+			var slot := anchor_slot(state, payload.institution)
+			var ordinal: int = slot.ordinal
 			if ordinal > state.domains[domain].institutions.size() or state.domains[domain].pollution < catalog.integer("anchor_create_pollution_" + str(ordinal)) or state.domains[domain].unnamed_followers < catalog.integer("anchor_followers_min") or state.cults[cult].cohesion < catalog.integer("anchor_cohesion_min"): return _error("Anchor organization, slot or pollution threshold unmet")
 			var assignment_error: String = anchor_assignment_error(state, payload.institution, npc, payload.relic)
 			if not assignment_error.is_empty(): return _error(assignment_error)
-			payload = payload.duplicate(true); payload["_anchor"] = anchor_id; payload["_ordinal"] = ordinal
+			payload = payload.duplicate(true); payload["_anchor"] = slot.id; payload["_ordinal"] = ordinal
 		"POWER_MANIFEST", "POWER_MANIFEST_CONTINUE":
 			var fixed: Dictionary = manifest if continuation else payload
 			_entity(view, "npcs", str(fixed.get("npc", "")))
@@ -681,6 +675,17 @@ static func validate_state(state: Dictionary, content: RefCounted, trusted: Dict
 			var reservation: Dictionary = state.attention.reservations[ritual.token]
 			if not reservation.persistent or reservation.get("owner") != ID or not ritual.npc in reservation.people or not state.anchors[ritual.cosmic_anchor].domain in reservation.focus or not state.anchors[ritual.system_anchor].domain in reservation.focus: return ["Ritual capacity does not match its fixed objects"]
 	return []
+
+## This is the same permanent slot used to determine the creation threshold.
+static func anchor_slot(state: Dictionary, institution: String) -> Dictionary:
+	var domain: String = state.institutions[institution].domain
+	var occupied: Array = []
+	for anchor: Dictionary in state.anchors.values():
+		if anchor.institution == institution: return {"id": anchor.id, "ordinal": anchor.ordinal}
+		if anchor.domain == domain: occupied.append(anchor.ordinal)
+	var ordinal := 1
+	while ordinal in occupied: ordinal += 1
+	return {"id": "ANCHOR/" + institution, "ordinal": ordinal}
 
 ## Shared assignment check for formal preparation and public condition counts.
 ## It does not check costs, action slots or manufacture a complete legal action.

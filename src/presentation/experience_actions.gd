@@ -25,7 +25,7 @@ func render(host, box: VBoxContainer, footer: Container = null, production := fa
 	var definition: Dictionary = host.session.catalog.display_tables.powers.get(key, {})
 	if not definition.is_empty() and int(host.projection.get("awakening", 0)) < int(definition.unlock_awakening):
 		box.add_child(host.label(str(definition.name), true))
-		RequirementList.render(box, [Requirements.group("权能解锁", [Requirements.quantity("awakening", "苏醒", int(host.projection.get("awakening", 0)), int(definition.unlock_awakening))])], _large(host))
+		RequirementList.render(box, [Requirements.group("权能解锁", [Requirements.quantity("awakening", "苏醒", int(host.projection.get("awakening", 0)), int(definition.unlock_awakening))])], _large(host), (host.host._ui if host is RefCounted else null))
 		_render_power_description(host, box, definition)
 		return
 	var row: Dictionary = decision_row(host, current_row if not current_row.is_empty() else resolve_row(host, key, selection), selection)
@@ -181,7 +181,7 @@ func _render_preparation(host, box: VBoxContainer, row: Dictionary, selection: D
 	render_activity_progress(host, box, row)
 
 func render_requirements(host, box: VBoxContainer, row: Dictionary, selection: Dictionary) -> void:
-	RequirementList.render(box, requirement_groups(host, host.projection, row, selection), _large(host))
+	RequirementList.render(box, requirement_groups(host, host.projection, row, selection), _large(host), (host.host._ui if host is RefCounted else null))
 
 func requirement_groups(host, public: Dictionary, row: Dictionary, selection: Dictionary) -> Array:
 	return Requirements.action(host.session, public, row, selection, func(text: String) -> String: return readable_reference(host, text))
@@ -192,7 +192,7 @@ func _large(host) -> bool:
 
 func render_activity_progress(host, box: VBoxContainer, row: Dictionary) -> void:
 	var items: Array = Requirements.activity(row.get("details", {}), func(text: String) -> String: return readable_reference(host, text))
-	if not items.is_empty(): RequirementList.render(box, [Requirements.group("实际进展", items)], _large(host))
+	if not items.is_empty(): RequirementList.render(box, [Requirements.group("实际进展", items)], _large(host), (host.host._ui if host is RefCounted else null))
 
 func _render_unavailable(host, box: VBoxContainer, key: String) -> void:
 	var definition: Dictionary = host.session.catalog.display_tables.powers.get(key, {}) if host.session.catalog != null else {}
@@ -304,7 +304,7 @@ func _option_title(host, option: Dictionary) -> String:
 			var request: Dictionary = host.session.prayer_entry(parts[1])
 			if not request.is_empty():
 				if request.descriptor.get("space", false):
-					for choice: Dictionary in host.session.modules.prayers.space_choices(host.session.world.state, parts[1]):
+					for choice: Dictionary in host.session.prayer_space_choices(parts[1]):
 						if choice.id == parts[2]: return host.session.prayer_title(request.descriptor, request.card) + " · " + str(choice.label)
 				elif parts[2] in ["shallow", "deep"]: return host.session.prayer_title(request.descriptor, request.card) + (" · 浅触" if parts[2] == "shallow" else " · 深应")
 	for collection: String in ["domains", "people", "cults", "relics", "institutions", "anchors"]:

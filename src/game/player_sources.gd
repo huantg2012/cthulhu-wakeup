@@ -64,6 +64,8 @@ func _used(state: Dictionary, key: String, reader: RefCounted = null) -> bool:
 	return not result.ok or result.used
 
 func _matches(fact: Dictionary, row: Dictionary) -> bool:
+	if fact.get("kind") == "prayer_space_situation" and row.rule == "dream" and row.source_kind == "prayer_fixed" and row.selector == "fixed_prayer_actor":
+		return true
 	return fact.get("kind") == row.source_kind and (row.tag.is_empty() or fact.changes.get("tag") == row.tag)
 
 func _propagation_benefit(fact: Dictionary) -> bool:
@@ -71,7 +73,9 @@ func _propagation_benefit(fact: Dictionary) -> bool:
 
 func _actors(state: Dictionary, fact: Dictionary, row: Dictionary, history: RefCounted) -> Array:
 	match row.selector:
-		"fixed_prayer_actor": return fact.changes.get("candidate", {}).get("actors", []).slice(0, 1)
+		"fixed_prayer_actor":
+			if fact.kind == "prayer_space_situation": return [str(fact.actor)]
+			return fact.changes.get("candidate", {}).get("actors", []).slice(0, 1)
 		"barrier_subject": return fact.changes.get("candidate", {}).get("actors", []).slice(0, 1) if fact.kind == "background_fixed" else [str(fact.changes.get("subject", ""))]
 		"joined_member", "current_member": return [str(fact.actor)]
 		"prayer_actor": return [str(fact.changes.get("subjects", {}).get("petitioner", ""))]
@@ -93,9 +97,15 @@ func _plan(state: Dictionary, fact: Dictionary, row: Dictionary, actor: String, 
 			if current and (not person.get("bound_member", false) or person.get("status") != "active" or not fact.id in [person.get("binding_source", ""), person.get("joined_source", "")]): return {}
 			institution = str(person.institution); basis = {"contact": fact.id}
 		"fixed_prayer_actor":
-			var card: Dictionary = fact.changes.get("candidate", {})
-			if not str(card.get("content_id", "")).begins_with("PRAYER_") or card.get("actors", []).is_empty() or actor != card.actors[0]: return {}
-			if current and (not state.get("simulation", {}).get("candidates", {}).has(card.id) or int(card.due_turn) < int(state.turn)): return {}
+			if fact.kind == "prayer_space_situation":
+				if actor != fact.actor or actor != fact.changes.get("roles", {}).get("petitioner") or not actor in fact.targets: return {}
+				var scene: Dictionary = state.get("prayer_system", {}).get("space", {}).get("scenes", {}).get(fact.changes.get("request", ""), {})
+				if scene.get("source") != fact.id or scene.get("domain") != fact.domain: return {}
+				if current and (scene.get("status") != "open" or int(scene.get("due", -1)) < int(state.turn)): return {}
+			else:
+				var card: Dictionary = fact.changes.get("candidate", {})
+				if not str(card.get("content_id", "")).begins_with("PRAYER_") or card.get("actors", []).is_empty() or actor != card.actors[0]: return {}
+				if current and (not state.get("simulation", {}).get("candidates", {}).has(card.id) or int(card.due_turn) < int(state.turn)): return {}
 			basis = {"contact": fact.id}
 		"barrier_subject":
 			if fact.kind == "background_fixed":

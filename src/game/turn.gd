@@ -116,7 +116,7 @@ func _bootstrap_preview(source: String) -> Dictionary:
 	if not admitted.get("ok", false): return admitted
 	return {"ok": true, "card": card.id, "person": descriptor.subjects.petitioner, "source": source, "faith": prepared.faith, "whispers": prepared.whispers}
 
-func bootstrap_prayers() -> Dictionary:
+func bootstrap_prayers(situation_first := false) -> Dictionary:
 	if not _attached or _in_transaction or _in_participant or commit_sequence != 0 or context.turn != 0 or context.phase != "between" or Store.size(context.receipts) != 0 or not world.attention.enabled(world.state): return {"ok": false, "error": "Initial prayer requires the committed initial world"}
 	if world.state.simulation.bootstrap:
 		var previous: Dictionary = Store.entry(world.state.facts, str(Store.entry(world.state.applied_authorizations, "prayer/bootstrap", "")), {})
@@ -134,7 +134,9 @@ func bootstrap_prayers() -> Dictionary:
 	if checked.get("ok", false):
 		world.stage_collections(["simulation", "applied_authorizations"])
 		world.state.simulation.bootstrap = true
-		var source: String = world._record("prayer_bootstrap", checked.get("domain", world.state.simulation.candidates[checked.card].domain), checked.person, [checked.person], [checked.source, world.state.simulation.candidates[checked.card].fact], {"candidate": checked.card, "source": checked.source, "petitioner": checked.person, "faith": checked.faith, "whispers": checked.whispers})
+		var evidence := {"candidate": checked.card, "source": checked.source, "petitioner": checked.person, "faith": checked.faith, "whispers": checked.whispers}
+		if situation_first: evidence["offer_policy"] = "situation_first"
+		var source: String = world._record("prayer_bootstrap", checked.get("domain", world.state.simulation.candidates[checked.card].domain), checked.person, [checked.person], [checked.source, world.state.simulation.candidates[checked.card].fact], evidence)
 		Store.put(world.state.applied_authorizations, "prayer/bootstrap", source)
 		world.attention.sync(world)
 		if _participants.player_sources.instance.refresh(world, self, int(_transaction.base_state.next_fact)):

@@ -22,9 +22,24 @@ func run() -> void:
 		if not require(session.progress().get("ok", false), "finish events"): return
 	var entries: Array = session.modules.prayers.space_entries(session.world.state)
 	print("SPACE_ENTRIES ", entries.map(func(item: Dictionary) -> String: return item.id + ":" + item.descriptor.content_id))
-	if not require(not entries.is_empty(), "New situations were not supplied"): return
-	if not require(entries.size() + session.world.state.prayer_system.offered.size() <= 3, "Combined offer overflow"): return
+	if not require(entries.size() == 2, "A focused world with free residents should fill both situation slots"): return
+	if not require(session.world.state.prayer_system.offered.is_empty(), "New campaign kept a legacy offer despite two playable situations"): return
+	var opening: Dictionary = Store.entry(session.world.state.facts, Store.entry(session.world.state.applied_authorizations, "prayer/bootstrap"))
+	var old_id: String = opening.changes.candidate
+	var closed: Dictionary = Store.entry(session.world.state.facts, Store.entry(session.world.state.applied_authorizations, "prayer/closed/" + old_id))
+	if not require(closed.changes.reason == "replaced_by_situation" and not session.preview_action("prayer/" + old_id + "/shallow").get("ok", false), "Legacy opening remained actionable or lost its closure source"): return
+	if not require(not entries[0].card.actors.any(func(id: String) -> bool: return id in entries[1].card.actors), "Second situation reused actors on cooldown"): return
 	var chosen: Dictionary = entries[0]
+	var petitioner: String = chosen.descriptor.subjects.petitioner
+	var dream_inputs := {"domain": chosen.descriptor.domain, "npc": petitioner}
+	for source: String in session.current_sources():
+		var fact: Dictionary = Store.entry(session.world.state.facts, source)
+		if fact.kind == "power_qualification" and fact.changes.get("rule") == "dream" and fact.changes.get("origin") == chosen.source:
+			dream_inputs["source"] = source
+			break
+	if not require(dream_inputs.has("source") and session.preview_action("POWER_DREAM", dream_inputs).ok, "Known petitioner has no sourced Dream entry"): return
+	var reachable: Array = session.modules.endings.contacts(session.turn)
+	if not require(not reachable.is_empty() and reachable[0].kind == "prayer_space", "An open payable situation did not count as a reachable contact"): return
 	var options: Array = session.modules.prayers.space_choices(session.world.state, chosen.id)
 	var key := "prayer/" + str(chosen.id) + "/" + str(options[1].id)
 	var before: String = session.world.snapshot()

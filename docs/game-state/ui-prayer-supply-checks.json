@@ -48,27 +48,27 @@
   "scope": "Original T3 to T4, three fresh action windows, exact save/restore next-action replay; not whole-campaign or balance validation.",
   "windows": [
     {
-      "count": 1,
-      "occurrence": "prayer/occurrence2/0bb014873a3297636956f28f0be6ff83735c423a6f336bc48c1e0072f87c6f6f",
-      "petitioner": "NPC-00000007",
-      "response": "prayer/BACKGROUND-00000001/shallow",
-      "source": "FACT-00000058",
+      "count": 2,
+      "occurrence": "",
+      "petitioner": "NPC-00000001",
+      "response": "prayer/PS-00000001/choice_a",
+      "source": "FACT-00000079",
       "turn": 1
     },
     {
-      "count": 1,
-      "occurrence": "prayer/occurrence2/d761e331857d1c1fae5e4725f9728acb267aa44efdab4da22378e25028f641ac",
-      "petitioner": "NPC-00000001",
-      "response": "prayer/BACKGROUND-00000002/shallow",
-      "source": "FACT-00000126",
+      "count": 2,
+      "occurrence": "",
+      "petitioner": "NPC-00000003",
+      "response": "prayer/PS-00000002/choice_a",
+      "source": "FACT-00000081",
       "turn": 2
     },
     {
-      "count": 1,
-      "occurrence": "prayer/occurrence2/173354f12f3b9ddbf1d76bf5202494025369ed45a8fb43ed91da2acbe9801f05",
+      "count": 3,
+      "occurrence": "",
       "petitioner": "NPC-00000005",
-      "response": "prayer/BACKGROUND-00000003/shallow",
-      "source": "FACT-00000150",
+      "response": "prayer/PS-00000003/choice_a",
+      "source": "FACT-00000138",
       "turn": 3
     }
   ]

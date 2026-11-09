@@ -33,6 +33,10 @@ changed-this-slice: true
 
 生产根继续使用 `src/presentation/production/game_root.tscn`。`TaskView` 提供共享视图所需的宿主协议、同一关联阅读位置和显式任务切换；`WorldManagement` 复用既有教团／档案布局，并以回调恢复具体来处和滚动。菜单消费 `Session.saved_games()`，选择已有局面仍经原 `continue_game` 校验。
 
+人物档案由 `TaskView` 设置单一范围标题及三列阅读位置，`ExperienceViews` 共用已知人物列表、查找和筛选。独立编年史仍由自己的导航进入。
+
+人物资料从 `Session` 的公开人物和圣物投影读取能力与持有状态。最近经历和人物编年史共用公开历史筛选，世界初见、态势情报和权能资格不作为个人经历。`TaskView` 给人物资料链接和行动行统一文字左缘，限制说明沿用正式候选查询。
+
 `PlayerKnowledge` 最小修复实际行动的已联系世界来源追踪、已知活动材料对私有执行依赖的佐证，以及依据→承认→机会→回收结果的公开收据交接。查询不写账本、不揭示未知材料／人物、不公开内部执行记录；无 CSV、RNG、费用或存档格式变更。证据和高阶未验分支见[唯一任务记录](tasks/ui-production-integration.md#full-ui-audit)。
 
 ## UI 按需查询与入口卡顿修复（2026-11-05）
@@ -48,6 +52,10 @@ changed-this-slice: true
 ### 锚定目标准备（2026-11-06）
 
 `presentation/anchor_preparation.gd` 以所选机构为目标，读取有界材料头、已知人物、原交接预览及路线判定，提供能改善独立见证计数或补齐材料路径的合法方案。假设接收仅存在于局部规范化材料/只读 reader，既不写事实也不增加玩家知情；执行时重新求证并调用原 Session 命令。TaskView 承载目标、预计收益/费用、实际执行及回到目标；中央/人物/通用目录不再暴露独立转交表单。
+
+`TaskView` 保存机构入口及原阅读位置，条件、仪式和回执沿同一机构返回。`GameplayRequirements` 结合公开污染观测与 `Powers.anchor_slot` 的正式序号计算门槛。机构准备沿原 Session 行动字段提交，固定机构的选择只重置相关候选与协助项。
+
+持续活动共用 `route/context`。`TaskView` 保留世界、教团和人物范围及回执来处。`ActionWorkbench` 读取 `ActionCatalog` 已公开的实际进展，回执返回同一配置并重新预览。
 
 ### 条件与实际进展呈现（2026-11-06）
 
@@ -108,6 +116,8 @@ v0.2把纯几何与视觉处理分离：`skin.css`管理材质/颜色/状态，`
 DEC-041只扩展原型的决策信息与查询质量，不复制概念图场景结构。`experience_semantics.gd`只读CSV效果阶段/条件/缩放并翻译祈求语义；`experience_feedback.gd`只读执行前后公开projection和本次known facts，构成具名实际结果，禁止从requested delta或未知世界状态推导实际量。结果内嵌当前主体，全文及最多两对象对照复用单个临时窗。教团策略比较复用Session.preview_plan，人物检索保留范围，历史在公开分页上先精确匹配关联再按匹配记录分页；以上均不消费随机或修改正式状态。
 
 `src/game/prayer_supply.gd`维护独立的`prayer-supply/1`政策启用、有限尝试及当轮可见授权，接入正式prayer_freeze，轮初事件结束后也重查合法回应。旧会话先按原CSV/模块签名完整恢复，再从合法advance或finish_events事务追加政策事实，原历史不重写。自然来源游标保持原节拍；供给使用现有Knowledge/Producers/World固定及同一Prayers offered链，失败整事务回滚。供给断言与UI集成证据分开，不把拒绝非法来源误称任意极端局面可继续。
+
+新 Session 的初始化凭据记录情境优先策略。`Prayers` 先在同一事务冻结情境，`PrayerSupply` 用实际 `prepare` 与注意力准入确认存在可执行回应，随后由 `Prayers` 正式关闭原固定求告。`PlayerSources` 从真实情境绑定生成入梦资格。`Endings` 用原期限和下一轮预算检查仍可回应的已固定情境。历史存档使用其原初始化凭据。
 
 付款影响以正式行动预览的费用替换只读state顶层副本的faith，再调用原Economy.preview及原reader；不写World、不消费随机，结果限于玩家已知对象并明确不含行动随机后果。所有执行仍回Session复核与Turn事务。独立存档`user://ui-experience-campaigns`；导入其他目录的存档先复制，再由完整Session恢复校验，避免后续自动保存覆盖证据。短检查与引擎截图只证明当前有限交互，不替代各系统已有验收。
 
@@ -694,3 +704,18 @@ WorldManagement 的 `open_archive` 承接顶部跨世界检索；`open_intellige
 Session 统一投影新旧请求，ActionCatalog 仅提供当前正式操作。`prayer_space_view.gd` 在现有祈求场景呈现具体介入，固定标题／费用／执行区、局部纵向滚动及一次人物查阅返回。事实公开使用白名单，完整 `scene_after` 与执行 DSL 不进入玩家记录。旧卡保留原费用和结果语义。范围及验证见 `docs/tasks/prayer-space-integration.md`。
 
 祈求曲解的结果池仅留在规则层的冻结合同中，预览和 `space_choices` 使用公开字段白名单。新合同按单项难度生成成功目标，以唯一 D100 骰点命中合法结果的完整整数区间，支付／状态变化／骰点记录在同一事务内；旧冻结合同按原语义恢复。具体 schema 与信息边界见 system-events §16。祈求场景只显示处境身份、原话、介入方式／行动／模糊提示／费用／成功点数，结果回执展示实际骰点及紧凑后果。
+
+
+## 锁定交互框架的原生接入
+
+正式根场景 `production/game_root.tscn` 下的 OverlayRoot 继续持有唯一 Session。 `interaction_stage.gd` 负责公开投影的诸界、当地联系、行动接触与可替换占位， `power_stage.gd` 负责十二权能入口。 `round_view.gd` 管会话、阶段与回执，现有 TaskView、PrayerView 和 WorldManagement 继续提供实际准备、关联阅读和管理。ActionCatalog 与 ExperienceActions 提供正式字段、候选及条件。Session 处理预览、提交、推进和保存。生产入口和体验启动器共用该根场景。
+
+诸界和当地的原生坐标由 `production/perception_layout.gd` 保存样板的实际画幅数值，进入控件层时统一换算。`realm_placeholders.gd` 保留样板的几何占位，同一世界在会话内保持形状身份。正式数据仍由公开投影提供。
+
+子场景使用同一画幅换算。祈求、轮初事件、施力准备、当地焦点和档案分别组织内容。`RoundView` 保持关联速览下的来源场景，`InteractionStage` 管当前字段的中央候选层，`TaskView` 按正式字段和规则恢复草稿。`LockedControls` 提供样板字体、边线和交互状态。场景、任务和状态的还原依据见[独立设计 §19.2](art/presentation-rebuild/interface-design.md#full-scene-calibration)。
+
+`RoundView` 按会话状态呈现标题菜单或局内暂停菜单。新局与存档管理使用独立子页，切换确认保留子页作为取消去向，实际操作继续由 Session 处理。
+
+正式交互的返回、焦点和滚动遵循[当前合同](specs/ui-interaction.md#production-interaction-polish)。`RoundView` 管模态输入边界、共享页脚按钮和滚动提示。祈求列表与详情的来源及返回由 `PrayerView` 保存，`WorldManagement` 持有目录与所选世界的阅读位置。人物和编年史的固定检索与分列阅读由 `TaskView` 组织，仍复用 `ExperienceViews` 的公开资料。候选核对继续走 `Session`，`LockedControls` 统一带自定义内容的按钮可用状态。
+
+`Session.prayer_space_choices` 从当前已知的冻结情境投影玩家可读选项，祈求场景和行动目录共用此接口。预览和正式执行仍由原准入层与 Turn 处理。新版祈求需要重新聚焦时，注意力校验从同一冻结请求确认范围，提交审计再核对原始事实、付款与结果。

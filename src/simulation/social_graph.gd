@@ -4,6 +4,7 @@ extends RefCounted
 const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
 const Initialization = preload("res://src/simulation/world_initialization.gd")
+const Attention = preload("res://src/game/attention.gd")
 const SCHEMA: int = 1
 const STATE_SCHEMA: int = 2
 const PARAM_UNITS: Dictionary = {
@@ -555,9 +556,11 @@ static func validate_births(state: Dictionary, catalog: RefCounted, policy: Dict
 static func _policy_focus(state: Dictionary, descriptor: Dictionary, policies: Dictionary, depth: int = 0) -> Dictionary:
 	if depth > 8: return {"ok": false}
 	var key: String = str(descriptor.get("family", "")) + "/" + str(descriptor.get("content_id", "")) + "/" + str(descriptor.get("variant", ""))
-	if not policies.has(key): return {"ok": false}
+	var policy: Dictionary = policies.get(key, {})
+	if policy.is_empty(): policy = Attention.prayer_space_policy(state, descriptor)
+	if policy.is_empty(): return {"ok": false}
 	var result: Array = []
-	match str(policies[key].focus_scope):
+	match str(policy.focus_scope):
 		"target": result = [descriptor.get("target")]
 		"source_and_target": result = [descriptor.get("source_domain"), descriptor.get("target")]
 		"ritual_domains":
@@ -591,6 +594,8 @@ static func _action_admission_completed(state: Dictionary, admitted: Dictionary,
 	# Generic registered components are checked against their real Turn payment.
 	# Formal adapters additionally have their own actual attempt/result chain.
 	if caller.participant == "prayers":
+		if str(descriptor.get("content_id", "")).begins_with("SPACE_"):
+			return _space_admission_completed(state, admitted, payment, input, descriptor, records)
 		for fact: Dictionary in records:
 			var data: Dictionary = _object(fact.get("changes")); var situation: Dictionary = _object(data.get("descriptor"))
 			if fact.get("kind") == "prayer_attempt" and data.get("payment") == payment.id and input.get("action") == "respond" and data.get("request") == _object(input.get("payload")).get("request") and data.get("variant") == _object(input.get("payload")).get("variant") and descriptor.get("family") == "prayer" and descriptor.get("content_id") == situation.get("content_id") and descriptor.get("variant") == data.get("variant") and descriptor.get("target") == fact.domain and situation.get("source") == admitted.changes.source: return true
@@ -617,6 +622,18 @@ static func _action_admission_completed(state: Dictionary, admitted: Dictionary,
 			if fact.get("kind") == "event_result" and data.get("payment") == payment.id and data.get("event") == input.get("event") and data.get("option") == input.get("action") and descriptor.get("family") == "event" and descriptor.get("variant") == data.get("option") and descriptor.get("content_id") == data.get("content_id") and descriptor.get("target") == fact.domain and fixed.get("kind") == "event_fixed" and candidate.get("id") == data.get("event") and candidate.get("descriptor") == original and admitted.changes.source in fact.causal_parents and input.get("source") == admitted.changes.source: return true
 		return false
 	return true
+
+static func _space_admission_completed(state: Dictionary, admitted: Dictionary, payment: Dictionary, input: Dictionary, descriptor: Dictionary, records: Array) -> bool:
+	var payload: Dictionary = _object(input.get("payload"))
+	var source: Dictionary = _fact(state, admitted.changes.source)
+	if source.get("kind") != "prayer_space_situation" or input.get("action") != "respond" or payment.changes.get("outcome") != "prayer_space_attempt": return false
+	if payload.get("request") != source.changes.get("request") or payload.get("request") != descriptor.get("request") or payload.get("variant") != descriptor.get("variant") or descriptor.get("target") != source.domain: return false
+	for fact: Dictionary in records:
+		if fact.get("kind") != "prayer_space_result" or fact.get("domain") != source.domain or fact.get("actor") != source.actor: continue
+		var result: Dictionary = _object(fact.get("changes"))
+		if result.get("request") != payload.request or result.get("variant") != payload.variant or result.get("payment") != payment.id: continue
+		if source.id in fact.causal_parents and payment.id in fact.causal_parents: return true
+	return false
 
 static func _admission_request_valid(state: Dictionary, context: Dictionary, fact: Dictionary, receipt: Dictionary, _catalog: RefCounted, policies: Dictionary) -> bool:
 	if not _admission_valid(state, fact): return false

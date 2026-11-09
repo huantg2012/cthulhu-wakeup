@@ -145,7 +145,8 @@ func prepare(view: Dictionary, id: String, variant: String, options: Dictionary)
 	var probability := -1
 	if not dismiss and selected.check_kind != "deterministic": probability = checks.probability(npc, state.domains[scene.domain], selected, preparation)
 	if modern and contract.get("disclosure") == "unknown" and _effect_ranges(_possible_effects(scene.objects, contract), probability).is_empty(): return _deny("当前合法结果无法分配检定区间")
-	return {"ok": true, "space": true, "request": id, "variant": variant, "actor": actor, "faith": faith, "first_upkeep": first_upkeep, "whispers": whispers, "probability": probability, "success_target": probability, "p": probability, "preparation": preparation, "preparations": preparations, "agent_source": "", "descriptor": entry(scene).descriptor, "hint": str(selected.get("hint", "")), "dismiss": dismiss, "disclosure": selected.get("disclosure", "clear"), "approach": selected.get("approach", ""), "intensity": selected.get("intensity", 0), "attention": {"family": "prayer", "content_id": "SPACE_" + scene.case_id, "variant": variant, "participants": scene.actors, "target": scene.domain, "source": scene.source}}
+	var attention := {"family": "prayer", "content_id": "SPACE_" + scene.case_id, "request": id, "variant": variant, "participants": [] if dismiss else scene.actors, "target": scene.domain, "source": scene.source}
+	return {"ok": true, "space": true, "request": id, "variant": variant, "actor": actor, "faith": faith, "first_upkeep": first_upkeep, "whispers": whispers, "probability": probability, "success_target": probability, "p": probability, "preparation": preparation, "preparations": preparations, "agent_source": "", "descriptor": entry(scene).descriptor, "hint": str(selected.get("hint", "")), "dismiss": dismiss, "disclosure": selected.get("disclosure", "clear"), "approach": selected.get("approach", ""), "intensity": selected.get("intensity", 0), "attention": attention}
 
 func _snapshot(world: RefCounted, scene: Dictionary, kind: String, parents: Array, extra: Dictionary = {}) -> String:
 	var copy := scene.duplicate(true)
@@ -378,7 +379,19 @@ func _new_scene(world: RefCounted, case_id: String, people: Array, domain: Strin
 	data.next_id += 1
 	return scene
 
-func freeze(world: RefCounted, owner: Object) -> bool:
+func _bind_candidate(people: Array, required: int, occurrence_prefix: String, data: Dictionary, turn: int) -> Array:
+	var available := people.filter(func(id: String) -> bool: return int(data.people_cooldowns.get(id, -1)) <= turn)
+	if available.size() < required: return []
+	for id: String in available:
+		if data.used.has(occurrence_prefix + id): continue
+		var participants: Array = [id]
+		for other: String in available:
+			if participants.size() == required: break
+			if other != id: participants.append(other)
+		return participants
+	return []
+
+func freeze(world: RefCounted, new_limit: int) -> bool:
 	world.stage_collections(["prayer_system"])
 	if ledger(world.state).is_empty():
 		var installed: String = world._record("prayer_space_adopted", "", "", [], [], {"version": content.version, "schema": SCHEMA, "turn": int(world.state.turn)})
@@ -397,6 +410,7 @@ func freeze(world: RefCounted, owner: Object) -> bool:
 	var domains: Array = world.state.simulation.get("focused", []).duplicate()
 	domains.sort()
 	var candidates: Array = []
+	var residents: Dictionary = {}
 	var recent: Array = []
 	for item: Dictionary in data.recent:
 		if int(item.turn) + content.parameter("recent_memory") >= int(world.state.turn): recent.append(item)
@@ -407,24 +421,24 @@ func freeze(world: RefCounted, owner: Object) -> bool:
 			return person.status == "active" and person.domain == domain and int(data.people_cooldowns.get(id, -1)) <= int(world.state.turn))
 		people.sort()
 		if people.is_empty(): continue
+		residents[domain] = people
 		for case_id: String in content.tables.runtime:
 			var row: Dictionary = content.tables.cases[case_id]
 			var runtime: Dictionary = content.tables.runtime[case_id]
 			if not str(world.state.domains[domain].profile) in str(runtime.profiles).split("|", false) or people.size() < int(runtime.people): continue
 			var cooldown := domain + "/" + str(row.scene)
 			if int(data.cooldowns.get(cooldown, -1)) > int(world.state.turn): continue
-			var selected: Array = people.slice(0, int(runtime.people))
-			var occurrence := domain + "/" + case_id + "/" + str(selected[0])
-			if data.used.has(occurrence): continue
+			var occurrence_prefix := domain + "/" + case_id + "/"
+			if _bind_candidate(people, int(runtime.people), occurrence_prefix, data, int(world.state.turn)).is_empty(): continue
 			var signature := str(row.frame) + "/" + str(row.scene) + "/" + str(row.concern)
 			var repeated: bool = data.recent.any(func(item: Dictionary) -> bool: return item.signature == signature)
-			candidates.append({"domain": domain, "case_id": case_id, "people": selected, "occurrence": occurrence, "signature": signature, "cooldown": cooldown, "weight": content.parameter("seen_signature_weight" if repeated else "new_signature_weight")})
+			candidates.append({"domain": domain, "case_id": case_id, "required": int(runtime.people), "occurrence_prefix": occurrence_prefix, "signature": signature, "cooldown": cooldown, "weight": content.parameter("seen_signature_weight" if repeated else "new_signature_weight")})
 	# Shuffle the bounded binding page independently of legacy random streams.
 	var rng := RandomNumberGenerator.new()
 	rng.seed = (str(data.rng_seed) + "/prayer-space/" + str(data.draw)).hash()
-	while data.offered.size() < 2 and not candidates.is_empty() and int(data.get("attempted_turn", -1)) != int(world.state.turn):
+	while data.offered.size() < new_limit and not candidates.is_empty() and int(data.get("attempted_turn", -1)) != int(world.state.turn):
 		var tried := 0
-		while data.offered.size() < 2 and not candidates.is_empty() and tried < content.parameter("candidate_budget"):
+		while data.offered.size() < new_limit and not candidates.is_empty() and tried < content.parameter("candidate_budget"):
 			var total := 0
 			for candidate: Dictionary in candidates: total += int(candidate.weight)
 			var pick := rng.randi_range(1, total)
@@ -434,19 +448,18 @@ func freeze(world: RefCounted, owner: Object) -> bool:
 			var candidate: Dictionary = candidates.pop_at(index)
 			tried += 1; data.draw += 1
 			if int(data.cooldowns.get(candidate.cooldown, -1)) > int(world.state.turn): continue
-			if candidate.people.any(func(id: String) -> bool: return int(data.people_cooldowns.get(id, -1)) > int(world.state.turn)): continue
-			var scene := _new_scene(world, candidate.case_id, candidate.people, candidate.domain)
+			# A previous offer in this window may have reserved the original
+			# participants. Rebind before freezing, never after an offer exists.
+			var participants := _bind_candidate(residents[candidate.domain], candidate.required, candidate.occurrence_prefix, data, int(world.state.turn))
+			if participants.is_empty(): continue
+			var scene := _new_scene(world, candidate.case_id, participants, candidate.domain)
 			if scene.is_empty(): continue
 			data.scenes[scene.id] = scene; data.offered.append(scene.id)
-			data.used[candidate.occurrence] = scene.source
+			data.used[candidate.occurrence_prefix + str(participants[0])] = scene.source
 			data.cooldowns[candidate.cooldown] = int(world.state.turn) + content.parameter("scene_cooldown")
-			for person: String in candidate.people: data.people_cooldowns[person] = int(world.state.turn) + content.parameter("petitioner_cooldown")
+			for person: String in participants: data.people_cooldowns[person] = int(world.state.turn) + content.parameter("petitioner_cooldown")
 			data.recent.append({"turn": int(world.state.turn), "signature": candidate.signature})
 		data["attempted_turn"] = int(world.state.turn)
-	# Preserve a legacy opportunity, including its exact fixed snapshot. New
-	# situations occupy the other slots rather than waiting behind three old cards.
-	var maximum: int = catalog.integer("prayer_offer_limit") - data.offered.size()
-	if world.state.prayer_system.offered.size() > maximum: world.state.prayer_system.offered.resize(maximum)
 	return true
 
 func deadlines(world: RefCounted, owner: Object) -> bool:

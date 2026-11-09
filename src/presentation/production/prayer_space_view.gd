@@ -1,6 +1,7 @@
 extends RefCounted
 ## A concrete decision in the existing prayer scene. Only Session can execute it.
-const UI = preload("res://src/presentation/ui/ui_components.gd")
+const UI = preload("res://src/presentation/production/locked_controls.gd")
+const Layout = preload("res://src/presentation/production/perception_layout.gd")
 const APPROACHES := {"mercy": "施恩", "bargain": "交易", "horror": "亵变", "twist": "曲解", "reveal": "启示", "coerce": "支配"}
 var _parent: WeakRef
 var parent: RefCounted:
@@ -8,44 +9,16 @@ var parent: RefCounted:
 var host: Control:
 	get: return parent.host
 var _choices_scroll: ScrollContainer
-var _context_scroll: ScrollContainer
 
 func _init(owner: RefCounted) -> void:
 	_parent = weakref(owner)
 
 func choices() -> Array:
-	var result: Array = host.session.modules.prayers.space_choices(host.session.world.state, str(parent._prayer.id))
-	var case_id := str(parent._prayer.descriptor.get("content_id", ""))
-	for choice: Dictionary in result:
-		if not choice.has("hint"):
-			var text: Dictionary = host.session.catalog.prayer_space.tables.response_contracts.get(case_id + "/" + str(choice.id), {})
-			choice["hint"] = str(text.get("hint", "具体后果未知。" if choice.get("disclosure") == "unknown" else ""))
+	var result: Array = host.session.prayer_space_choices(str(parent._prayer.id))
 	result.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		if int(a.get("intensity", 0)) != int(b.get("intensity", 0)): return int(a.get("intensity", 0)) < int(b.get("intensity", 0))
 		return str(a.id) < str(b.id))
 	return result
-
-func stage(kind: String, reveal := false) -> void:
-	host._begin_surface(kind, false)
-	var surface: Control = host._surface
-	host._ui.soft_support(surface, "PrayerSpaceSupport", Rect2(236, 46, 748, 528), Color(0.005, 0.018, 0.021, 0.96))
-	var art: TextureRect = parent._scene_art(surface, parent._prayer.id, Rect2(244, 90, 281, 443))
-	art.modulate.a = 0.38
-	if reveal:
-		art.modulate.a = 0.0
-		host._motion.animate(art, "modulate:a", 0.38, host._motion.params.scene_reveal_s)
-	host._text(surface, parent._prayer.title, Rect2(260, 62, 694, 54), 25, UI.GOLD_HI)
-	host._text(surface, parent._person_title(parent._prayer), Rect2(263, 116, 440, 38), 16)
-	host._text(surface, parent._deadline(parent._prayer), Rect2(742, 116, 210, 38), 15, UI.CYAN)
-	_context_scroll = host._scroller(surface, Rect2(263, 171, 244, 327))
-	var context: VBoxContainer = parent._column(_context_scroll)
-	var data: Dictionary = parent._prayer.descriptor
-	host._line(context, host.title(str(data.get("domain", ""))), 15, UI.CYAN)
-	if not str(data.get("appeal", "")).is_empty(): host._line(context, "“" + str(data.appeal) + "”", 21, UI.GOLD_HI)
-	if data.get("crisis", {}).has("due") and int(data.crisis.due) != int(parent._prayer.card.get("due_turn", -1)):
-		host._line(context, "第 %s 轮前，事情将恶化" % data.crisis.due, 15, UI.RISK)
-	host._text(surface, "场景示意", Rect2(263, 518, 244, 25), 13, UI.MUTED)
-	parent._right = null
 
 func update(focus_name := "", scroll_position := -1) -> void:
 	host._tasks.begin_candidates()
@@ -57,17 +30,19 @@ func update(focus_name := "", scroll_position := -1) -> void:
 		host._surface.remove_child(parent._right)
 		parent._right.queue_free()
 	if scroll_position >= 0: position = scroll_position
-	parent._right = host._region(host._surface, "Response", Rect2(534, 171, 420, 385))
+	parent._right = parent.response_panel()
 	var panel: Control = parent._right
-	var heading := "如何回应 · %d 种" % choices().size()
-	host._text(panel, heading, Rect2(0, 0, 420, 31), 19, UI.GOLD)
-	_choices_scroll = host._scroller(panel, Rect2(0, 40, 420, 238))
-	parent._scroll = _choices_scroll
-	var body: VBoxContainer = parent._column(_choices_scroll)
-	if not parent._error.is_empty(): host._line(body, parent._error, 16, UI.RISK)
+	var body: VBoxContainer = parent.response_rows(panel)
+	_choices_scroll = parent._scroll
+	if not parent._error.is_empty(): host._line(body, parent._error, 13, UI.RISK)
 	var selected: Dictionary = {}
 	var selected_row: Dictionary = {}
+	var first_ready: Button
 	var available := choices()
+	var spent: bool = host.projection.get("prayer_response_spent", false)
+	var window := "本轮回应机会已用" if spent else "本轮可回应一次"
+	host._reference(panel, "ResponseIndex", "%d 种回应 · %s" % [available.size(), window], Rect2(25, 4, 290, 24), 13, UI.CYAN)
+	host._scroll_cue(_choices_scroll, panel, Layout.box(Rect2(315, 4, 125, 24)))
 	for choice: Dictionary in available:
 		var id: String = str(choice.id)
 		var key: String = str(parent._prayer.key) + "/" + id
@@ -78,45 +53,43 @@ func update(focus_name := "", scroll_position := -1) -> void:
 		var enabled: bool = preview.get("ok", false)
 		var active: bool = str(draft.mode) == id
 		var unknown: bool = choice.get("disclosure", "clear") == "unknown"
-		var accent: Color = UI.VIOLET if unknown else (UI.RISK if int(choice.get("intensity", 0)) >= 2 else UI.GOLD)
 		var approach: String = str(APPROACHES.get(str(choice.get("approach", "")), ""))
-		var button: Button = parent._row_button(body, "SpaceChoice_" + id, approach + " · " + str(choice.label), func() -> void:
+		var hint := str(choice.get("hint", "具体后果未知。" if unknown else ""))
+		var quoted: Dictionary = preview.get("preview", choice)
+		var short_cost := _cost_text(quoted) + (" · " + _check_text(quoted) if enabled else "")
+		var notes: Array[String] = [hint, short_cost]
+		var upkeep := _upkeep_text(choice)
+		if not upkeep.is_empty(): notes.append(upkeep)
+		if not enabled: notes.append(str(preview.get("error", "当前条件不满足")))
+		var caption := str(choice.label) if approach.is_empty() else approach + " · " + str(choice.label)
+		var button: Button = parent.response_card(body, "SpaceChoice_" + id, caption, notes, func() -> void:
 			draft.mode = id
 			parent._error = ""
 			update("SpaceChoice_" + id), active)
-		button.custom_minimum_size.y = 43
-		button.disabled = not enabled
-		var hint := str(choice.get("hint", "具体后果未知。" if unknown else ""))
-		button.accessibility_description = hint
-		if not hint.is_empty(): host._line(body, hint, 16, accent)
-		var quoted: Dictionary = preview.get("preview", choice)
-		var short_cost := "低语 %s · 信仰 %s" % [quoted.get("whispers", 0), quoted.get("faith", 0)]
-		host._line(body, short_cost + (" · " + _check_text(quoted) if enabled else ""), 14, UI.CYAN)
-		if int(quoted.get("first_upkeep", 0)) > 0: host._line(body, "生效另付 %s 信仰" % quoted.first_upkeep, 14, UI.CYAN)
-		if not enabled:
-			host._line(body, str(preview.get("error", "当前条件不满足")), 14, UI.MUTED)
+		host._ui.set_available(button, enabled)
+		if first_ready == null and enabled: first_ready = button
 		if active:
 			parent._fields(body, row.get("fields", []), selection)
 			selected = choice
 			selected_row = row
 	if available.is_empty(): host._line(body, "当前没有可用回应。可以暂缓，或不再回应。", 17, UI.MUTED)
-	parent._people_links(body)
 	var ready: bool = not selected.is_empty() and selected_row.get("preview", {}).get("ok", false)
-	var footer := "选择你的回应"
+	var footer := "可查阅其他回应" if spent else "选择你的回应"
 	if not selected.is_empty():
 		var price: Dictionary = selected_row.get("preview", {}).get("preview", {})
-		footer = _cost_text(price) + " · 行动费成败皆付" if ready else str(selected_row.get("preview", {}).get("error", "原选择已不可用"))
-	host._text(panel, footer, Rect2(0, 283, 420, 43), 15, UI.GOLD_HI if ready else UI.MUTED)
-	host._button(panel, "ClosePrayer", "暂缓", Rect2(0, 331, 88, 39), parent.close)
-	host._button(panel, "DismissPrayer", "不再回应", Rect2(96, 331, 116, 39), dismiss)
-	var submit: Button = host._button(panel, "Respond", "回应", Rect2(224, 331, 196, 39), respond.bind(selected_row, selected, false), true)
+		footer = str(selected.label) + "\n" + (_cost_text(price) + " · 行动费成败皆付" if ready else str(selected_row.get("preview", {}).get("error", "原选择已不可用")))
+	host._stage_button(panel, "DeferPrayer", "暂缓", Rect2(248, 320, 78, 29), parent.close, 13)
+	var dismiss_button: Button = host._stage_button(panel, "DismissPrayer", "不再回应…", Rect2(333, 320, 107, 29), _review_dismiss, 13)
+	dismiss_button.disabled = not host.session.preview_action(str(parent._prayer.key) + "/dismiss").get("ok", false)
+	var submit: Button = parent.response_footer(panel, footer, "回应这声祈求", respond.bind(selected_row, selected, false))
 	submit.disabled = not ready
 	_choices_scroll.set_deferred("scroll_vertical", position)
-	var focus: Control = panel.find_child(focus_name, true, false)
+	var focus: Control = host._surface.find_child(focus_name, true, false)
 	if is_instance_valid(focus) and not (focus is Button and focus.disabled):
 		focus.grab_focus()
 		if focus_name.begins_with("SpaceChoice_") and scroll_position < 0: _reveal_choice(focus, _choices_scroll)
-	else: panel.get_node("ClosePrayer").grab_focus()
+	elif first_ready != null: first_ready.grab_focus()
+	else: host._surface.get_node("ClosePrayer").grab_focus()
 	host._tasks.scan_candidates()
 
 func _reveal_choice(control: Control, scroll: ScrollContainer) -> void:
@@ -135,16 +108,18 @@ func respond(row: Dictionary, choice: Dictionary, confirmed: bool) -> void:
 	host._busy = false
 	if result.get("confirmation", false):
 		parent._remember_return("Respond")
-		stage("prayer_confirm")
-		var body: VBoxContainer = parent._column(host._scroller(host._surface, Rect2(534, 171, 420, 325)))
+		parent._stage("prayer_confirm")
+		var body: VBoxContainer = parent._reading()
 		host._line(body, "确认 · " + str(choice.label), 21, UI.GOLD_HI)
 		host._line(body, str(choice.get("hint", "具体后果未知。")), 18, UI.VIOLET if choice.get("disclosure") == "unknown" else UI.BONE)
 		var price: Dictionary = row.get("preview", {}).get("preview", {})
 		host._line(body, _cost_text(price), 16, UI.CYAN)
 		host._line(body, _check_text(price), 18, UI.GOLD)
+		var upkeep := _upkeep_text(choice)
+		if not upkeep.is_empty(): host._line(body, upkeep, 15, UI.MUTED)
 		host._line(body, "无法撤回；未生效也消耗费用。", 15, UI.RISK)
-		host._button(host._surface, "BackToPrayer", "返回祈求", Rect2(534, 516, 180, 40), parent.back_to_detail).grab_focus()
-		host._button(host._surface, "ConfirmPrayer", "确认回应", Rect2(734, 516, 220, 40), respond.bind(row, choice, true), true)
+		host._button(host._surface, "BackToPrayer", "返回祈求", Layout.box(Rect2(1078, 594, 140, 44)), parent.back_to_detail).grab_focus()
+		host._button(host._surface, "ConfirmPrayer", "确认回应", Layout.box(Rect2(1230, 594, 263, 44)), respond.bind(row, choice, true), true)
 		return
 	if not result.get("ok", false):
 		parent._error = str(result.get("error", "条件已变化，未执行"))
@@ -159,11 +134,11 @@ func respond(row: Dictionary, choice: Dictionary, confirmed: bool) -> void:
 	host._resource_delta = host._feedback.resource_summary(before, after)
 	host._set_notice(result)
 	host._refresh()
-	stage("prayer_result")
-	var body: VBoxContainer = parent._column(host._scroller(host._surface, Rect2(534, 171, 420, 325)))
+	parent._stage("prayer_result")
+	var body: VBoxContainer = parent._reading()
 	for index: int in host._receipt.size(): host._line(body, host._receipt[index], 20 if index == 0 else 17, UI.GOLD_HI if index == 0 else UI.BONE)
-	host._line(body, "本轮回应机会已用。", 15, UI.CYAN)
-	host._button(host._surface, "ClosePrayerResult", "返回现状", Rect2(534, 516, 420, 40), parent.close).grab_focus()
+	host._reference(host._surface, "ResponseSpent", "本轮回应机会已用。", Rect2(1078, 568, 415, 24), 14, UI.CYAN)
+	host._button(host._surface, "ClosePrayerResult", parent.result_return_caption(), Layout.box(Rect2(1078, 594, 415, 44)), parent.close).grab_focus()
 
 func _cost_text(price: Dictionary) -> String:
 	var text := "低语 %s · 信仰 %s" % [price.get("whispers", 0), price.get("faith", price.get("faith_cost", 0))]
@@ -174,6 +149,11 @@ func _check_text(price: Dictionary) -> String:
 	var target := int(price.get("success_target", price.get("probability", -1)))
 	return "掷出 1–%d 成功" % target if target >= 0 else "按原约定生效"
 
+func _upkeep_text(choice: Dictionary) -> String:
+	var turns := int(choice.get("maintenance_turns", 0))
+	if turns < 2: return ""
+	return "生效后需供奉 %d 轮（含本轮），停供则中断。" % turns
+
 func _receipt(result: Dictionary, before: Dictionary, after: Dictionary, action: String) -> Array[String]:
 	var lines: Array[String] = []
 	for fact: Dictionary in result.get("facts", []):
@@ -181,17 +161,16 @@ func _receipt(result: Dictionary, before: Dictionary, after: Dictionary, action:
 		var data: Dictionary = fact.get("changes", {})
 		var outcome: String = str(data.get("outcome", ""))
 		var succeeded := outcome in ["success", "deep", "deterministic"]
-		lines.append(action + " · " + ("已生效" if succeeded else ("灾变" if outcome == "disaster" else "未生效")))
+		var status := "已显现" if data.get("disclosure") == "unknown" else "已生效"
+		if not succeeded: status = "灾变" if outcome == "disaster" else "未生效"
+		lines.append(action + " · " + status)
 		if int(data.get("roll", -1)) > 0:
 			lines.append("骰点 %s · 成功点数 1–%s" % [data.roll, data.get("success_target", data.get("probability", 0))])
-		if succeeded:
-			var aftermath: Array[String] = []
-			for field: String in ["effect", "tradeoff"]:
-				var text := str(data.get(field, ""))
-				if not text.is_empty() and not aftermath.has(text): aftermath.append(text)
-			if not aftermath.is_empty(): lines.append("".join(aftermath))
-		else:
-			lines.append(str(data.get("summary", "原来的困境仍在。")))
+		var aftermath: Array[String] = []
+		for field: String in ["effect", "tradeoff"]:
+			var text := str(data.get(field, ""))
+			if not text.is_empty() and not aftermath.has(text): aftermath.append(text)
+		if not aftermath.is_empty(): lines.append(" ".join(aftermath))
 		var numbers: Array[String] = []
 		for field: String in data.get("actual_deltas", {}):
 			var amount := int(data.actual_deltas[field])
@@ -203,14 +182,37 @@ func _receipt(result: Dictionary, before: Dictionary, after: Dictionary, action:
 	if not resources.is_empty(): lines.append(resources)
 	return lines
 
-func dismiss() -> void:
+func _review_dismiss() -> void:
 	if host._busy or host._dialog != "prayer_detail": return
+	var key: String = str(parent._prayer.key) + "/dismiss"
+	if not host.session.preview_action(key).get("ok", false): return
+	parent._remember_return("DismissPrayer")
+	parent._stage("prayer_confirm")
+	var body: VBoxContainer = parent._reading()
+	host._line(body, "就此断开这声祈求？", 21, UI.GOLD_HI)
+	host._line(body, "一旦断开，便不能再回应这声祈求。求告者的处境仍会继续。", 17)
+	host._line(body, "无需支付，也不占用本轮回应机会。", 15, UI.MUTED)
+	host._stage_button(host._surface, "BackToPrayer", "返回祈求", Rect2(1078, 594, 140, 44), parent.back_to_detail).grab_focus()
+	host._ui.scene_submit(host._stage_button(host._surface, "ConfirmDismissPrayer", "确认不再回应", Rect2(1230, 594, 263, 44), _dismiss.bind(key)))
+
+func _dismiss(key: String) -> void:
+	if host._busy or host._dialog != "prayer_confirm" or key != str(parent._prayer.key) + "/dismiss": return
 	host._busy = true
-	var result: Dictionary = host.session.execute_action(str(parent._prayer.key) + "/dismiss", {}, true)
+	var result: Dictionary = host.session.execute_action(key, {}, true)
 	host._busy = false
 	if not result.get("ok", false):
 		parent._error = str(result.get("error", "当前不能关闭此祈求"))
-		update("DismissPrayer")
+		host.projection = host.session.project()
+		parent.back_to_detail()
 		return
-	parent.close()
+	parent._drafts.erase(parent._prayer.id)
+	host._set_notice(result)
+	host._receipt_requirements = []
+	host._receipt.assign(["已断开这声祈求", "这声祈求已关闭，本轮回应机会未受影响。"])
+	host._resource_delta = ""
 	host._refresh()
+	parent._stage("prayer_result")
+	var body: VBoxContainer = parent._reading()
+	host._line(body, host._receipt[0], 21, UI.GOLD_HI)
+	host._line(body, host._receipt[1], 16, UI.MUTED)
+	host._button(host._surface, "ClosePrayerResult", parent.result_return_caption(), Layout.box(Rect2(1078, 594, 415, 44)), parent.close).grab_focus()

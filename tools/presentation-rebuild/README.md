@@ -32,3 +32,9 @@
 第二轮默认先显示轮初事件，处理后查看四维/权能准备；底部开关可标注资产位置尺寸。扩展层为 `interaction_refinements.js/.css`，UI字段与情报示例分别为 `power_preparation_fields.csv` / `world_observation_fixture.csv`。仍用同一生成命令，规范见探索正文§12。
 
 场景化权能与立绘版见正文§13：先处理轮初，再选十二权能→入梦→选伊弥→施展；当地祈求和人物档案可看同一角色。新增 `ritual_experience.js/.css` 与 `ritual-assets/`（完整prompt/manifest随资产保存）。带图版本离线需同时保留相对资产目录。
+
+### 美术 A/B 对照
+
+`build_interaction_slice.py` 同时生成 `art-comparison.html`。对照页共用连续样板的动作、资源状态、权能草稿和预演，附加两套渲染及两个局势夹具。入口使用 `comparison-assets/` 的环境与人物图集。右上或数字键 1 / 2 切换画风，底栏切换归船和坏灯塔局势。
+
+变更世界种子时，用当前 Godot 执行 `--headless --path . --script res://tools/presentation-rebuild/export_comparison_worlds.gd -- tools/presentation-rebuild/comparison_worlds.json`，再运行页面生成器。导出包含正式生成的世界名称、层级、背景、人物名。港口布局、祈求者绑定与教团活动使用样片夹具。设计及走查范围见[探索正文 §17](../../docs/art/presentation-rebuild/interface-design.md#art-direction-candidates)。

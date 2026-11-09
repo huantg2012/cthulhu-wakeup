@@ -1,0 +1,48 @@
+{
+	"147": {
+		"person": "米拉·里德",
+		"worlds": [
+			{
+				"background": "同一行星的各国保留自治权，以共同的文明名称结成邦联。",
+				"id": "DOMAIN-001",
+				"name": "阿纳瓦邦联",
+				"tier": "planet"
+			},
+			{
+				"background": "多个自治世界组成邦联，以共同的文明名称对外交往。",
+				"id": "DOMAIN-008",
+				"name": "阿尔达星系邦联",
+				"tier": "system"
+			},
+			{
+				"background": "广泛的社会共享基础规则和文明身份，内部仍保留不同的组织与生活方式。",
+				"id": "DOMAIN-011",
+				"name": "图伊卡瓦宇宙文明圈",
+				"tier": "cosmic"
+			}
+		]
+	},
+	"617": {
+		"person": "罗安·佩里",
+		"worlds": [
+			{
+				"background": "各国维持独立，以共同条约管理整个行星的对外事务。",
+				"id": "DOMAIN-001",
+				"name": "萨维恩诸国联盟",
+				"tier": "planet"
+			},
+			{
+				"background": "旧邦联解体后，散落的移民世界重新联合，以“新”标记重建。",
+				"id": "DOMAIN-009",
+				"name": "新洛阿维星系邦联",
+				"tier": "system"
+			},
+			{
+				"background": "广泛的社会共享基础规则和文明身份，内部仍保留不同的组织与生活方式。",
+				"id": "DOMAIN-012",
+				"name": "维克兰宇宙文明圈",
+				"tier": "cosmic"
+			}
+		]
+	}
+}

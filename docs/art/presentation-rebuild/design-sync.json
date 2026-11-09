@@ -138,6 +138,62 @@
         "*.png",
         "*.json"
       ]
+    },
+    {
+      "path": "tools/presentation-rebuild/art_comparison.js"
+    },
+    {
+      "path": "tools/presentation-rebuild/art_comparison.css"
+    },
+    {
+      "path": "tools/presentation-rebuild/comparison_scenes.csv"
+    },
+    {
+      "path": "tools/presentation-rebuild/comparison_worlds.json"
+    },
+    {
+      "path": "docs/art/presentation-rebuild/art-comparison.html"
+    },
+    {
+      "path": "src/content/world_names.gd"
+    },
+    {
+      "path": "data/world_name_parts.csv"
+    },
+    {
+      "path": "data/world_name_patterns.csv"
+    },
+    {
+      "path": "data/prayer_space_cases.csv"
+    },
+    {
+      "path": "data/prayer_space_response_contracts.csv"
+    },
+    {
+      "path": "data/prayer_space_costs.csv"
+    },
+    {
+      "path": "docs/art/presentation-rebuild/comparison-assets",
+      "include": [
+        "*.png",
+        "*.json"
+      ]
+    },
+    {
+      "path": "tools/presentation-rebuild/perspective_exploration.js"
+    },
+    {
+      "path": "tools/presentation-rebuild/perspective_exploration.css"
+    },
+    {
+      "path": "docs/art/presentation-rebuild/perspective-slice.html"
+    },
+    {
+      "path": "docs/art/presentation-rebuild/perspective-assets",
+      "include": [
+        "*.png",
+        "*.json"
+      ]
     }
   ],
   "documents": [
@@ -177,23 +233,30 @@
     "docs/art/presentation-rebuild/ritual-dossier-preview.png"
   ],
   "snapshot": {
-    "revision": 13,
-    "recordedAt": "2026-11-07T15:47:48.692Z",
-    "note": "合入功能分支并依据合并后的CSV重建探索页面",
+    "revision": 29,
+    "recordedAt": "2026-11-08T18:02:45.224Z",
+    "note": "正式交互精修，登记固定检索、阅读分栏及真实操作状态",
     "sections": [
-      "interface-design §14; architecture; README"
+      "19.2",
+      "正式交互精修原则"
     ],
-    "configHash": "973a72828c7eb218689629f687085ff1f75683bfb86034cbc9e57805c1274996",
+    "configHash": "92937539b16f11dec91444eaeee50d4de76e2e18976c6e9a1ef23c48ed1f69f8",
     "sources": {
       "data/civilization_profiles.csv": "3052e9b0eb7772260fb40e9898c1fe0e50c97562839def4426b6e750f9d81eb0",
       "data/event_effects.csv": "92dec25c5de6d3739a568ba821b9a76821210a2a2bfcfb58a419edbe4380b3d4",
       "data/events.csv": "d8795347b6f221513d65f2a0785aedc795b8534e20267cfa4d85f63c142b67fc",
       "data/powers.csv": "420b80fa99d31fe412910334656d5e6f343c9d88eab3764836b969c16a16d733",
+      "data/prayer_space_cases.csv": "2b34ef690211a3551d5fbd7cb72682b1364c03e9539ef4a394785966553c1503",
+      "data/prayer_space_costs.csv": "46380c3d3028cdd063b8ab4ca3855591e2520830a6e68bba4f921a24e35a599d",
+      "data/prayer_space_response_contracts.csv": "52c2686fe02f018db760ce869829d715b6703f7765c875e8528b0064bce16065",
       "data/prayers.csv": "b8d00af54c392c6146aebbd0cf97dd58d6e58d0e0c024f346790e24fae9f4edf",
       "data/relics.csv": "0400fc3551ecd49c83ce908b2027ab35f969014f053bfb01faaa46dffc999ecb",
       "data/run_parameters.csv": "9aaea8ece89783412ecf4366b8f7c700204a568cc4be33624566e1228148f605",
       "data/world_intelligence_bands.csv": "b88b6edef3c8db739320d67033784bbafca02dcd2bc31f6f6db17420484d9887",
+      "data/world_name_parts.csv": "271d6cb1944a3cb090aaeff16337e75271729c20c37e34d7d6ac4c185d8e80ff",
+      "data/world_name_patterns.csv": "bc6746632f5064c0755c970a72f27c00874673d1265db0c7497acd00dc0c2292",
       "data/world_observation_sources.csv": "c80fa6932ac9cc91c13641fc2b5d10c8ac4d35bfec545387125ee7b0564c2087",
+      "docs/art/presentation-rebuild/art-comparison.html": "d9c8249329a6c4adcb8ff6b2cf7ccc5de0c6b66e02c37230917fedba25333645",
       "docs/art/presentation-rebuild/asset-manifest.json": "4377a04eb18fd57d600c2f4f592a6a5cb8e126743a78cc60af62735a9cc06463",
       "docs/art/presentation-rebuild/assets/atlas-portrait.png": "f6305e885b5dc939c1275f5a84c74edccb95fad927c9bf7ca61bd508c7ae5113",
       "docs/art/presentation-rebuild/assets/atlas-scene.png": "924e015260c4a46274464df5c0459bfad6080606446900ec383cef8fcb695974",
@@ -271,52 +334,71 @@
       "docs/art/presentation-rebuild/assets/icons/dossier/whispers.svg": "93021052a38e41fc60c447311362eecc5ae9cc1ecb2c924696a8e5e3912786e2",
       "docs/art/presentation-rebuild/assets/icons/dossier/world.svg": "dc9a0039921a849c02c056f5d247b4b2b037231c2abd49b305628bc65aecb816",
       "docs/art/presentation-rebuild/candidate-tokens.json": "bc8d3e9aae495cc01d5c89cce960b1631a92972cfd562f403a70b24b1c98fdfb",
+      "docs/art/presentation-rebuild/comparison-assets/people-a.png": "071b807a8602575013ee95bbf0211666c7c852b0eb358732ca6b5f8dffd60b09",
+      "docs/art/presentation-rebuild/comparison-assets/people-b.png": "aedbb5e79167d95a7089df75212f5c6f1b40eeacc0ca7db5a4435c50c7ebf50e",
+      "docs/art/presentation-rebuild/comparison-assets/prompts.json": "0061242694a8e94395e7233695d51af46748a3ef768eb121a1b0846c4263232b",
+      "docs/art/presentation-rebuild/comparison-assets/world-a.png": "22247dcf5641d923557482ba21fc50fa5783235b3b1e83bf5413186b9403ec99",
+      "docs/art/presentation-rebuild/comparison-assets/world-b.png": "9d3640ff4279a1f28aa6fd21d86ac1d3dd0f2ba54618932ada20a4c8184bae49",
       "docs/art/presentation-rebuild/game-screen-manifest.json": "f98ec7a5581f129627354fba01f4514a5132d9bcc15f763066df5b16cd2116f4",
       "docs/art/presentation-rebuild/game-screen-prompts.json": "6008bb8a0187f79275d9497f89689f227b6994e50068673ff74398a9a800f69e",
       "docs/art/presentation-rebuild/game-screen-references.json": "5074569e891b0d3b947a2f6c6bb78d43f286210db1c75be78b6e53bd9c4f0746",
       "docs/art/presentation-rebuild/game-screens/numinous-object-field.png": "3a84e47ffb45ccc157e28690b4a91e9862e539727673494010a4babff5ae3e79",
       "docs/art/presentation-rebuild/game-screens/scene-embedded-initial.png": "2fefeb920f76056afead467a8d72ba457155f116e1e921525c674f5f8feebfd4",
       "docs/art/presentation-rebuild/game-screens/scene-embedded.png": "c7ae8771f6b841d6bb56bf5b885474227f3d46033c2077ed793a73984961747c",
-      "docs/art/presentation-rebuild/interaction-slice.html": "3185466c146a728c2bc1feb82f7ffb745dc835f7171c190301e30175efc4f0b5",
+      "docs/art/presentation-rebuild/interaction-slice.html": "50a4cd0dc119622a2e7a9559456f76836f8cf645465a86f9aae2029d271d8f4b",
       "docs/art/presentation-rebuild/interface-coverage.json": "4b83f3b2a91f490bda42915fbb935885d43c2eb88df14e9fae0cbb648b0520fd",
       "docs/art/presentation-rebuild/interface-review.html": "89002a42c86d392ca992a87206ad62a978d9fe2ac038ecaca17165737f98863d",
+      "docs/art/presentation-rebuild/perspective-assets/people-painted.png": "5b95c028a09de193b5c94c7616da81abc88b90d534836415a7a81844a1115045",
+      "docs/art/presentation-rebuild/perspective-assets/people-pixel.png": "81a87ffe289e547ccc3a450ed393b58a06957ee69f142fc777cdc6f9a798cec3",
+      "docs/art/presentation-rebuild/perspective-assets/prompts.json": "d187403afbe056981bd5bfedee19ed9c027e660bc9ab6bcb68fa999bfa755023",
+      "docs/art/presentation-rebuild/perspective-assets/world-painted.png": "a186b91fc5f064f29a910740606e09886ff285530dd45003d81e1c5c5d90b04d",
+      "docs/art/presentation-rebuild/perspective-assets/world-pixel.png": "d0368d9ea87cf136813dd404a0a1739741d2f89f6704d0c8f296c03b743869a9",
+      "docs/art/presentation-rebuild/perspective-slice.html": "06271d1f2b54ae66b922180d06150a4e20a7249c804de0329d33616ecbd61af0",
       "docs/art/presentation-rebuild/ritual-assets/manifest.json": "d2000303ffd565851f455bac0af11a75738ef956e41246de61ebce9451030e27",
       "docs/art/presentation-rebuild/ritual-assets/power-scene.png": "b41475af4081de2e429162fa7dd0991b09118b578552b2d59288c6774460bd92",
       "docs/art/presentation-rebuild/ritual-assets/prayer-scene.png": "f79092fe263a156c2e19b58d36e1e3cc1aef71215a449e97b3d05102ef8a0222",
       "docs/art/presentation-rebuild/ritual-assets/prompts.json": "6c2092bebacb44ff809ecb0a86d169e7687d858ed9b4bd4b4c446c485df6739a",
       "docs/art/presentation-rebuild/ritual-assets/recorder.png": "552550d9ff7f7dc914543d9f8438295712c3064e3c5a621f0b7d6b573df92e55",
-      "src/presentation/action_catalog.gd": "93d6232834ab14843b7a52298153cea5cbd6e868c2cd5b351d50d5bc5516929b",
-      "src/presentation/experience_actions.gd": "7cb4da9dc88f52b0884297561c6b92ae180107a8ea4bbd7378703da2fb472a5d",
+      "src/content/world_names.gd": "0b5c56e9d86e0b4a41d0e16c66cbe54179211a6b60a741397f38b1d46202561d",
+      "src/presentation/action_catalog.gd": "12fce0b7e0da5a0d03df7c7c08fdec65a8233116094630c74d2eafa8863edf6a",
+      "src/presentation/experience_actions.gd": "15bac6fe76271a0c06f149284b838d93aa0d81a438291d5fe1fb59a8a2429ce6",
       "src/presentation/experience_feedback.gd": "98a4b93f28c24b957754c0baf52f43da23ec3e0c99fa22aca18ec9c36044e450",
       "src/presentation/experience_semantics.gd": "0882cd7068a8f7e8b79b7b4fed08c6ac9f9c7bdfbf98ee92f93039f2d43b8582",
-      "src/presentation/experience_views.gd": "37672a14cc6d1aa9d8b9a6012bca6c26de96ea9ce98dd33ab77775164716596f",
+      "src/presentation/experience_views.gd": "d38d1e18e3a93ba2ed4336757f05363f9a16903c5937c5766b651891516c5586",
       "src/presentation/reconstruction/lesson.gd": "828c7def6ae4a179ebca77bbb00f8b7e88b5aa64285ff5f338dd7b9a7fc6ad38",
       "src/presentation/reconstruction/lesson.tscn": "2d632d1689723795bbe27fc96c83ef38dd5626ed15f04a88c0743b87c37bd5d4",
-      "src/presentation/session.gd": "cbd26392b57f925f75694c9a37175c16f49ae1e09a83bc8ad4b3ff87324705be",
+      "src/presentation/session.gd": "adb0e4c73c43a2d794f8f2c030741fd061fdbdd5ccbb9948a16cf23d22174904",
+      "tools/presentation-rebuild/art_comparison.css": "cc7e2d2a1e8dabe7741c414b0b564d59431580c63eee6a12d3e4010a9901de9b",
+      "tools/presentation-rebuild/art_comparison.js": "5787147c58dc166bb5dbf5c2c4fbfedaeae8688ca5786c1cb6730c87b229d800",
       "tools/presentation-rebuild/baseline.gd": "7eb97766f529f4c12a16c957d96cc90814f9371a1986935531a0dd7b471c7ca8",
-      "tools/presentation-rebuild/build_interaction_slice.py": "464a69d5e1038167f63ef20b3ce83c60a0aa4fefe4cfa1e36d25e97643d89e29",
+      "tools/presentation-rebuild/build_interaction_slice.py": "d967dc91a2b286c85aeacfb27836347574e39317f52081927e76e95e71c14dea",
       "tools/presentation-rebuild/build_interface_review.py": "e39709f3d406b0253887130f85caec63358838081be991466dc3f9fb01ae41d4",
+      "tools/presentation-rebuild/comparison_scenes.csv": "5f218a01373ac7a825fe5a52e0a0e4243012a9cd1a2eecce4a3576e99e9e5057",
+      "tools/presentation-rebuild/comparison_worlds.json": "91909568a09c3abd646e63214e0f41f74f1680d384bbbbdf81c9406c151fadcc",
+      "tools/presentation-rebuild/export_comparison_worlds.gd": "cac10c718b09f9a6ec6feb9a201a4cb04c6de621f6b5387ba26fd216640a5bff",
       "tools/presentation-rebuild/interaction_fixture.csv": "5896868715508f4a2fcdc7d86e94a7ce682cdce129baa4a5aabc51cf19295fe6",
       "tools/presentation-rebuild/interaction_refinements.css": "71f3feda5efa922bf9fafdd71d6925aeb7e7f931eb4b4ccfe1e087be19cb152f",
       "tools/presentation-rebuild/interaction_refinements.js": "e421ee869264786929b134b91d3a80e67394d79d285de7c9770efbd3a40acb7a",
       "tools/presentation-rebuild/interaction_slice.template.html": "ecd47e48b3e9c1786c55a4e01a47eff9486a099e436aa99c3d5c34908c844eef",
       "tools/presentation-rebuild/interface_review.template.html": "17b3c7092e578454b7cdaba071f8120b2d6d2763679d04c2241e5088d058b8d8",
       "tools/presentation-rebuild/layout_probe.gd": "dbfb323ee19380140360577a0da8734e6406f919e700d4cb92c8def34b936cac",
+      "tools/presentation-rebuild/perspective_exploration.css": "a86d81ed7ccffe20c6356d32b56f49f36a2f0a02495462fb968e089d99d76b26",
+      "tools/presentation-rebuild/perspective_exploration.js": "90f938750b84484960cbc80e5d8638f5438cdb05e75062ce3aff44250ba8eb46",
       "tools/presentation-rebuild/power_preparation_fields.csv": "275859e07c5e0517a6899e0b1a81a0089b1dc7077c366b17e4216c83aed99531",
       "tools/presentation-rebuild/probe.gd": "d845681de1f4f5b4c1b0d2846160fbc15af365b2059438e91059470777a39f3c",
       "tools/presentation-rebuild/ritual_experience.css": "52bf6181d0d796f89dbe3e3773b8ae9eb3dda23fca425d6ebea3860b0428f1ba",
-      "tools/presentation-rebuild/ritual_experience.js": "aa21a46fb784f683874327e085327ebf291876722b7858cc319c262ec0d252ae",
+      "tools/presentation-rebuild/ritual_experience.js": "1d9d60d8d5cba527575f20c56687ac97257fcdf2a603864c8916dc445e9d53bf",
       "tools/presentation-rebuild/world_observation_fixture.csv": "7f9673a5093a6eb5b1ee475a3c8e84865288de7ba3b5973d840bab2e5d867cda",
       "表现重构对比.command": "fbf58bebd50ab22cf6659087b495e81e8fac53ccd3bfc69ef9cab3f4915b1b49"
     },
     "documents": {
-      "docs/architecture.md": "ed8fda92afc25c001c072a4b7f80883c8c6ea317227cd4659bbb4442c2f0495d",
+      "docs/architecture.md": "f0c8c066e7ed1d15157023f7f78c589670d5f73540c718ce663f1cc73d42bbd7",
       "docs/art/presentation-rebuild/first-composition-review.md": "72d2bc0f3582defa2c514c7b767c547b50664cb6d562884ac968ca26e03b768f",
-      "docs/art/presentation-rebuild/interface-design.md": "e162143e2aea1d8786f152838b25cd12a5a752aca97100148c879afdfd6c1c48",
+      "docs/art/presentation-rebuild/interface-design.md": "bfe3fd86237f9ab335fa61f8ea4d2e12b1b03fa78d4a7997320dd76425e6d3c7",
       "docs/art/presentation-rebuild/visual-cards.md": "542ac2716e24cb4296db5342054883f840874a3920864f21532e28497564021b",
-      "docs/specs/ui-interaction.md": "b845b2b307865a595faba724a189cf2ce14c06adbe81fb50aa03412d1d4c19fe",
+      "docs/specs/ui-interaction.md": "c3cb5de26ca18dd058ed9ae98a2cca4b3b3053ea3a6c2f513533192dd8df71c5",
       "docs/tasks/presentation-rebuild.md": "3c8061e387400caa2296844fe9e2d555107ee7c9a15046b59dbe1105b56faf17",
-      "tools/presentation-rebuild/README.md": "1f7221930ba519e9a98315af4550f01260446bec48dfb99388f0308fc6f79c7c"
+      "tools/presentation-rebuild/README.md": "4a914e9e34b2adcce0e5e9bb71e8b63caea44231ba36ae595cd76b7949c60747"
     },
     "evidence": {
       "docs/art/presentation-rebuild/interaction-asset-annotations.png": "b96bcc7fc03746fde1de7f2d390bd7c57da9f15d52714cc3930a4b81ba678b92",
@@ -348,22 +430,12 @@
     "changed": {
       "config": false,
       "sources": [
-        "data/powers.csv",
-        "docs/art/presentation-rebuild/interaction-slice.html",
-        "docs/art/presentation-rebuild/interface-coverage.json",
-        "docs/art/presentation-rebuild/interface-review.html",
-        "src/presentation/action_catalog.gd",
-        "src/presentation/experience_actions.gd",
-        "src/presentation/experience_feedback.gd",
-        "src/presentation/experience_semantics.gd",
-        "src/presentation/experience_views.gd",
-        "src/presentation/session.gd"
+        "src/presentation/experience_views.gd"
       ],
       "documents": [
         "docs/architecture.md",
         "docs/art/presentation-rebuild/interface-design.md",
-        "docs/specs/ui-interaction.md",
-        "tools/presentation-rebuild/README.md"
+        "docs/specs/ui-interaction.md"
       ],
       "evidence": []
     }

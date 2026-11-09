@@ -49,6 +49,18 @@ func contacts(turn: RefCounted) -> Array:
 	var view: Dictionary = _next_view(turn)
 	var result: Array = []
 	var prayers: RefCounted = turn._participants.prayers.instance
+	var space: Dictionary = view.world.prayer_system.get("space", {})
+	if not space.is_empty():
+		view.turn.phase = "actions"
+		space.offer_turn = view.world.turn
+		for id: String in space.offered:
+			var scene: Dictionary = space.scenes[id]
+			if scene.status != "open" or scene.due < view.world.turn: continue
+			for option: String in scene.choices:
+				var response: Dictionary = prayers.prepare(view, id, option)
+				if response.ok and _admitted(turn, view.world, response.attention):
+					view.reader.close()
+					return [{"kind": "prayer_space", "subject": id, "source": scene.source, "when": view.world.turn}]
 	var cards: Array = view.world.get("simulation", {}).get("candidates", {}).keys(); cards.sort()
 	for id: String in cards:
 		var card: Dictionary = view.world.simulation.candidates[id]
@@ -206,7 +218,7 @@ static func _assessment_errors(state: Dictionary, fact: Dictionary) -> Array[Str
 		var prior: Dictionary = Store.entry(state.facts, data.previous, {})
 		if prior.get("kind") != "ending_assessed" or int(prior.turn) != int(fact.turn) - 1 or prior.changes.get("count") != data.before or not data.previous in fact.causal_parents: return ["Disconnection history skipped a round"]
 	for contact: Variant in data.contacts:
-		if not contact is Dictionary or not contact.get("kind") in ["cult", "prayer", "medium", "opportunity", "private_devotion"] or not contact.get("subject") is String or not contact.get("source") in fact.causal_parents: return ["Contact lacks its actual source"]
+		if not contact is Dictionary or not contact.get("kind") in ["cult", "prayer", "prayer_space", "medium", "opportunity", "private_devotion"] or not contact.get("subject") is String or not contact.get("source") in fact.causal_parents: return ["Contact lacks its actual source"]
 		var source: Dictionary = Store.entry(state.facts, contact.source, {})
 		if source.is_empty() or int(source.turn) > int(fact.turn): return ["Contact source is absent or from the future"]
 		match contact.kind:
@@ -220,6 +232,8 @@ static func _assessment_errors(state: Dictionary, fact: Dictionary) -> Array[Str
 				if source.kind != "power_qualification" or source.changes.get("rule") != "listen" or source.changes.get("target") != contact.subject: return ["Medium contact changed its qualification"]
 			"opportunity":
 				if source.kind != "institution_relic_opportunity" or source.changes.get("institution") != contact.subject or int(source.changes.due) < int(fact.turn) + 1: return ["Opportunity contact changed its source or deadline"]
+			"prayer_space":
+				if source.kind != "prayer_space_situation" or source.changes.get("request") != contact.subject or contact.get("when") != int(fact.turn) + 1 or int(source.changes.due) < int(contact.when): return ["Situation contact changed its source or deadline"]
 			"prayer":
 				var card: Dictionary = source.changes.get("candidate", {})
 				if not source.kind in ["prayer_fixed", "background_fixed"] or card.get("id") != contact.subject or not str(card.get("content_id", "")).begins_with("PRAYER_") or card.get("visible_turn") != contact.get("visible") or card.get("due_turn") != contact.get("due") or not contact.get("when") is int or contact.when < maxi(int(fact.turn) + 1, int(contact.visible)) or contact.when > int(contact.due) or not contact.get("releases") is Array: return ["Prayer contact changed its fixed candidate or window"]

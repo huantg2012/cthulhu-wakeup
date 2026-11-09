@@ -9,6 +9,17 @@ func _initialize() -> void: run_ui.call_deferred()
 func need(value: bool, label_value: String) -> bool:
 	if not value: push_error(label_value); quit(1)
 	return value
+func press(id: String) -> bool:
+	var control: Button = app.find_child(id, true, false)
+	if not need(control != null and control.is_visible_in_tree() and not control.disabled, "Available control: " + id): return false
+	control.grab_focus()
+	control.pressed.emit()
+	return true
+func escape() -> void:
+	var key := InputEventKey.new()
+	key.keycode = KEY_ESCAPE
+	key.pressed = true
+	app._input(key)
 func capture(label_value: String) -> void:
 	if evidence.is_empty() or DisplayServer.get_name() == "headless": return
 	await process_frame
@@ -46,8 +57,20 @@ func run_ui() -> void:
 	var before: String = player.turn.snapshot()
 	var knowledge: Dictionary = player.knowledge_snapshot()
 	app._tasks.open_subject("anchors", data.domain)
-	app.find_child("AnchorGoal_" + str(data.institution).replace("/", "_"), true, false).pressed.emit()
+	var goal_id: String = "AnchorGoal_" + str(data.institution).replace("/", "_")
+	if not press(goal_id): return
 	if not need(app._dialog == "anchor_goal" and app.find_child("ActionTab_source", true, false) == null, "Goal replaces record/person configuration"): return
+	if not need(app._surface.find_children("*", "ScrollContainer", true, false).is_empty(), "Core institution conditions do not depend on scrolling"): return
+	for id: String in ["AnchorStatus_Materials", "AnchorStatus_Guardian", "AnchorStatus_Relic", "AnchorStatus_Cult", "AnchorPollution"]:
+		if not need(app.find_child(id, true, false) != null, "Visible prerequisite summary: " + id): return
+	if not need(app.find_child("ConfigureAnchor", true, false).disabled, "Missing materials gate ritual preparation"): return
+	if not press("AnchorConditions"): return
+	if not need(app._dialog == "anchor_materials" and app._surface.find_child("Requirement_anchor_pollution", true, false) != null, "Detail view contains the public pollution observation and threshold"): return
+	escape()
+	if not need(app._dialog == "anchor_goal" and root.gui_get_focus_owner().name == "AnchorConditions", "Details return to the institution and the exact opener"): return
+	escape()
+	if not need(app._dialog == "task_subject" and root.gui_get_focus_owner().name == goal_id, "Institution returns to the same index row"): return
+	if not press(goal_id): return
 	for pass_number: int in 3:
 		app._tasks.AnchorPreparation.plan(player, data.institution)
 	if not need(before == player.turn.snapshot() and knowledge == player.knowledge_snapshot(), "Condition queries preserve world, RNG and knowledge"): return
@@ -55,6 +78,7 @@ func run_ui() -> void:
 	if not need(quote.before == 1 and quote.after == 2, "Goal predicts actual useful progress"): return
 	var whispers: int = player.project().whispers
 	await capture("01-transfer-before")
+	await process_frame
 	var execute: Button = app.find_child("GatherAnchorMaterial", true, false)
 	if not need(execute != null and not execute.disabled, "Actual transfer executable"): return
 	execute.pressed.emit()
@@ -69,8 +93,24 @@ func run_ui() -> void:
 	if not need(medium != null and medium.get_meta("requirement").current == 0, "Remaining relic gap stays visible in receipt"): return
 	if not need(RequirementModel.independent_testimonies(player, data.institution, 2) == 2, "Receipt aliases never add a third witness"): return
 	await capture("02-transfer-receipt")
-	app.find_child("Return", true, false).pressed.emit()
+	escape()
 	if not need(app._dialog == "anchor_goal" and app.find_child("GatherAnchorMaterial", true, false) == null, "Return to goal; no redundant transfer once materials complete"): return
+	if not press("ConfigureAnchor"): return
+	if not need(app._dialog == "task_action" and app._tasks.draft.selection.institution == data.institution and app.find_child("ActionTab_institution", true, false) == null, "One explicit preparation entry fixes the selected institution"): return
+	for field: String in ["npc", "relic"]:
+		if not press("ActionTab_" + field): return
+		if not need(app._tasks.draft.picker_open, "Anchor comparison opens inside preparation"): return
+		var reference: Button = app._surface.find_child("AnchorCandidateRead_" + field + "_*", true, false)
+		if reference != null:
+			var ref_name: String = str(reference.name)
+			if not press(ref_name): return
+			if not need(app._dialog == "task_related", "Candidate stays a related reading"): return
+			escape()
+			if not need(app._dialog == "task_action" and app._tasks.draft.picker_open and root.gui_get_focus_owner().name == ref_name, "Candidate reading returns to the same comparison and opener"): return
+		escape()
+		if not need(app._dialog == "task_action" and not app._tasks.draft.picker_open, "Comparison returns to preparation"): return
+	escape()
+	if not need(app._dialog == "anchor_goal" and root.gui_get_focus_owner().name == "ConfigureAnchor" and player.turn.snapshot() == paid, "Preparation returns to the institution without payment"): return
 	var receipts: Array = data.world.history.material_receipts(second)
 	if not need(not receipts.is_empty(), "Actual receipt exists"): return
 	var remembered: Dictionary = player._known_facts.duplicate(true)

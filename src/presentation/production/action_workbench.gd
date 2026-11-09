@@ -1,8 +1,7 @@
 extends RefCounted
 ## General production action configuration: decisions are the original fields,
 ## eligibility and execution remain the existing Session and TaskView paths.
-const UI = preload("res://src/presentation/ui/ui_components.gd")
-const Dock = preload("res://src/presentation/ui/dock_content.gd")
+const UI = preload("res://src/presentation/production/locked_controls.gd")
 const CONDITIONS := "__requirements"
 const OUTCOME := "__outcomes"
 
@@ -12,62 +11,44 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	var missing: Array = actions._missing_fields(fields, selection)
 	var preview: Dictionary = row.get("preview", {})
 	var tabs: Array = []
-	for field: Dictionary in actions.visible_fields(fields): tabs.append(str(field.key))
+	for field: Dictionary in actions.visible_fields(fields):
+		if task.draft.get("fixed_anchor", false) and field.key in ["domain", "institution", "source"]: continue
+		if task.draft.get("fixed_activity", false) and field.key == "domain": continue
+		if not str(task.draft.get("activity_person", "")).is_empty() and field.key == "npc": continue
+		tabs.append(str(field.key))
+	if task.draft.get("fixed_anchor", false) and "npc" in tabs:
+		tabs.erase("npc")
+		tabs.push_front("npc")
 	tabs.append(CONDITIONS)
 	tabs.append(OUTCOME)
 	var tab: String = str(task.draft.get("config_tab", tabs[0]))
 	if not tab in tabs: tab = tabs[0]
-	var banner := Control.new()
-	banner.custom_minimum_size.y = 54
-	banner.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	box.add_child(banner)
-	var art: TextureRect = host._ui.image(banner, "ActionScene", Rect2(0, 0, 600, 54), host._world_picture(str(selection.get("domain", ""))))
-	art.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	art.modulate = Color(0.47, 0.53, 0.50, 0.7)
-	var shade: ColorRect = host._ui.fill(banner, "ActionShade", Rect2(0, 0, 600, 54), Color(0, 0.02, 0.02, 0.58))
-	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var key: String = str(row.key)
-	var icon: String = key.trim_prefix("POWER_").to_lower() if key.begins_with("POWER_") else ("ritual" if key.begins_with("relic/") else "evidence")
-	host._ui.icon(banner, "ActionSigil", icon, Rect2(10, 2, 50, 50))
-	host._ui.label(banner, "ActionTitle", actions.action_purpose(row), Rect2(81, 3, 520, 29), host._size(20), UI.GOLD_HI)
-	var note: String = "选定对象，确认代价与后果"
+	var note: String = "选择本次行动的对象，查看条件与代价。"
 	if key == "route/context":
 		var operation: Dictionary = task.session.catalog.display_tables.progression_route_operations.get(selection.get("operation", ""), {})
-		note = str(operation.get("description", "选择参加者，查看条件、代价与后果。"))
+		note = str(operation.get("description", "先选要促成的活动，再安排参加者。"))
+	elif task.draft.get("fixed_anchor", false):
+		note = "确认后在所选机构施展锚定。" if missing.is_empty() else "选择护持者和绑定圣物。"
 	if key in ["POWER_MANIFEST_CONTINUE", "POWER_MANIFEST_CANCEL"]:
 		note = "维持原主体与固定锚点 · 仅实际付款推进仪式"
-	if missing.is_empty() and not preview.get("ok", false): note = "当前不可用 · " + task.session.explain_error(str(preview.get("error", "条件尚未满足")))
-	var note_label: Label = host._ui.label(banner, "ActionNote", note, Rect2(81, 29, 540, 24), host._size(14), UI.RISK if missing.is_empty() and not preview.get("ok", false) else UI.BONE)
-	note_label.tooltip_text = note
-	note_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	var stage := HBoxContainer.new()
-	stage.add_theme_constant_override("separation", 18)
-	box.add_child(stage)
-	var nav_scroll := ScrollContainer.new()
-	nav_scroll.custom_minimum_size = Vector2(205, 240)
-	nav_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	nav_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
-	nav_scroll.follow_focus = true
-	stage.add_child(nav_scroll)
-	var nav := VBoxContainer.new()
-	nav.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	nav.add_theme_constant_override("separation", 4)
-	nav_scroll.add_child(nav)
-	var pane := VBoxContainer.new()
-	pane.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	pane.add_theme_constant_override("separation", 5)
-	stage.add_child(pane)
-	var list := ScrollContainer.new()
+	if missing.is_empty() and not preview.get("ok", false): note = task.session.explain_error(str(preview.get("error", "条件尚未满足")))
+	var layout: Dictionary = host._interaction.action_layout(task, box, row, selection, actions, note)
+	var nav: VBoxContainer = layout.nav
+	var reading: VBoxContainer = layout.costs
+	if key == "route/context" and row.details.has("最近行动回合"):
+		host._line(reading, "已知进展 · 第 %s 轮" % row.details["最近行动回合"], 16, UI.CYAN).name = "ActivityProgress"
+		for item: Dictionary in actions.Requirements.activity(row.details):
+			var value: String = "%s / %s" % [item.current, item.required] if item.has("current") else str(item.get("value", ""))
+			if not value.is_empty(): host._line(reading, "%s  %s" % [item.title, value], 14)
+	var compare := key == "POWER_ANCHOR" and tab in ["npc", "relic"]
+	var pane: Control = host._interaction.candidate_layer(layout.canvas, bool(task.draft.get("picker_open", false)), task.close_picker, compare)
+	var list: ScrollContainer = host._scroller(pane, Rect2(33, 91, 1082, 277) if compare else Rect2(20, 63, 512, 246))
 	list.name = "ActionOptionsScroll"
-	list.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	list.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
-	list.follow_focus = true
-	list.custom_minimum_size.y = 210
-	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	var active_tab: Button
+	host._scroll_cue(list, pane, Rect2(33, 368, 1082, 14) if compare else Rect2(20, 309, 512, 16))
 	for field_id: String in tabs:
 		var field: Dictionary = _field(fields, field_id)
-		var caption: String = ("结果预览" if field_id == OUTCOME else ("条件与进展" if field_id == CONDITIONS else str(field.get("label", field_id)).replace("时空", "世界"))) + " · " + _summary(task, field, selection, preview, field_id, actions)
+		var caption: String = ("结果预览" if field_id == OUTCOME else ("条件与进展" if field_id == CONDITIONS else _field_label(task, field))) + " · " + _summary(task, field, selection, preview, field_id, actions)
 		var button: Button = task.button(caption, _switch.bind(task, field_id, tab, list))
 		button.name = "ActionTab_" + field_id
 		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
@@ -75,18 +56,20 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 		button.add_theme_font_size_override("font_size", host._size(14))
 		button.clip_text = true
 		button.tooltip_text = caption
-		button.custom_minimum_size = Vector2(205, 34)
+		button.custom_minimum_size.y = 43
+		host._ui.choice_style(button, false)
 		if field_id == tab:
-			button.add_theme_stylebox_override("normal", host._ui.button_style("hover", false, true))
-			button.modulate = Color("ffe7ae")
-			active_tab = button
-		nav.add_child(button)
-	if is_instance_valid(active_tab): nav_scroll.call_deferred("ensure_control_visible", active_tab)
+			host._ui.choice_style(button, true)
+		if field_id in [CONDITIONS, OUTCOME]:
+			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			reading.add_child(button)
+		else: nav.add_child(button)
 	var header := HBoxContainer.new()
 	header.add_theme_constant_override("separation", 10)
+	host._ui.rect(header, Rect2(20, 13, 464, 45))
 	pane.add_child(header)
 	var field: Dictionary = _field(fields, tab)
-	var title: Label = host._line(header, "本次结果" if tab == OUTCOME else ("条件与进展" if tab == CONDITIONS else "选择" + str(field.get("label", tab)).replace("时空", "世界")), 18, UI.GOLD_HI)
+	var title: Label = host._line(header, "本次结果" if tab == OUTCOME else ("条件与进展" if tab == CONDITIONS else "选择" + _field_label(task, field)), 18, UI.GOLD_HI)
 	title.name = "ActionListTitle"
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	title.autowrap_mode = TextServer.AUTOWRAP_OFF
@@ -100,7 +83,6 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 		read.autowrap_mode = TextServer.AUTOWRAP_OFF
 		read.custom_minimum_size.x = 110
 		header.add_child(read)
-	pane.add_child(list)
 	var rows := VBoxContainer.new()
 	rows.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	rows.add_theme_constant_override("separation", 6)
@@ -132,6 +114,8 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 		rows.add_child(task.label("当地暂无可交予的记录或合格接收人。交予者须实际掌握记录，双方须存在可用联系。" if key == "cults/transfer_material" else "当前没有符合条件的候选。"))
 	elif tab == "escort" and _numeric(field.options):
 		_number(task, rows, list, tab, field, selection)
+	elif compare:
+		_anchor_candidates(task, rows, list, field, selection, actions)
 	else:
 		if field.get("optional", false) and not field.get("multiple", false):
 			var clear: Button = task.button("不使用此项", _choose.bind(task, tab, list, field, "", selection))
@@ -139,6 +123,10 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 			rows.add_child(clear)
 		for i: int in field.options.size():
 			_option(task, rows, list, tab, field, selection, field.options[i], i, actions)
+	var evidence: String = str(selection.get("source", ""))
+	if not evidence.is_empty() and tab in ["source", OUTCOME]:
+		var explanation: Dictionary = actions.source_info(task, evidence)
+		if not explanation.is_empty(): rows.add_child(task.label(str(explanation.summary)))
 	var offsets: Dictionary = task.draft.get("config_scroll", {})
 	if offsets.has(tab): list.set_deferred("scroll_vertical", int(offsets[tab]))
 	elif not kind.is_empty():
@@ -154,16 +142,54 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	var choice: Dictionary = selection.duplicate(true)
 	var action_name: String = str(row.title)
 	if key == "route/context": action_name = str(row.get("details", {}).get("行动", "开展活动")) if selection.has("operation") else "开展活动"
-	var caption: String = "执行 · " + action_name + ("…" if preview.get("irreversible", false) else "")
+	var caption: String = ("施展 · " if key.begins_with("POWER_") else "执行 · ") + action_name + ("…" if preview.get("irreversible", false) else "")
 	var execute: Button = task.button(caption, func() -> void: task.run_action(key, choice))
 	execute.name = "ExecuteDraft"
 	execute.disabled = not preview.get("ok", false) or not missing.is_empty() or task.projection.get("terminal", false)
 	footer.add_child(execute)
 
+func _anchor_candidates(task, rows: VBoxContainer, list: ScrollContainer, field: Dictionary, selection: Dictionary, actions) -> void:
+	var host: Control = task.host
+	var grid := GridContainer.new()
+	grid.columns = 3
+	grid.add_theme_constant_override("h_separation", 28)
+	grid.add_theme_constant_override("v_separation", 16)
+	rows.add_child(grid)
+	var kind := "person" if field.key == "npc" else "relic"
+	for index: int in field.options.size():
+		var option: Dictionary = field.options[index]
+		var column := VBoxContainer.new()
+		column.custom_minimum_size.x = 302
+		grid.add_child(column)
+		var figure := Control.new()
+		figure.custom_minimum_size.y = 90
+		column.add_child(figure)
+		if kind == "person":
+			host._ui.image(figure, "CandidatePortrait", Rect2(106, 0, 90, 90), host._interaction.picture("person_portrait"))
+		else:
+			host._ui.icon(figure, "CandidateMark", kind, Rect2(106, 0, 90, 90))
+		host._line(column, actions._option_title(task, option), 18)
+		var data: Dictionary = host._views._find(task, "people" if kind == "person" else "relics", str(option.id))
+		if kind == "person" and not data.is_empty(): host._line(column, host._views._role(task, data), 14, UI.MUTED)
+		elif kind == "relic" and not data.is_empty(): host._line(column, str(host._views.PLACEMENTS.get(data.get("placement"), "仅有线索")), 14, UI.MUTED)
+		var select: Button = task.button("选为护持者" if kind == "person" else "用于这次锚定", _choose.bind(task, field.key, list, field, option.id, selection))
+		select.name = "Choice_%s_%d" % [field.key, index]
+		column.add_child(select)
+		task.guard_choice(select, column, field, option.id, selection)
+		var read: Button = task.button("查阅 ↗", task.show_subject.bind(kind, str(option.id)))
+		read.name = "AnchorCandidateRead_%s_%d" % [field.key, index]
+		column.add_child(read)
+
 func _field(fields: Array, key: String) -> Dictionary:
 	for field: Dictionary in fields:
 		if str(field.key) == key: return field
 	return {}
+
+func _field_label(task, field: Dictionary) -> String:
+	var label: String = str(field.label).replace("时空", "世界")
+	if task.draft.get("fixed_anchor", false):
+		return {"npc":"护持者", "qualification":"锚定材料", "relic":"绑定圣物"}.get(field.key, label)
+	return label
 
 func _summary(task, field: Dictionary, selection: Dictionary, preview: Dictionary, key: String, actions) -> String:
 	if key == CONDITIONS: return "查看缺口"
@@ -191,7 +217,10 @@ func _save_scroll(task, tab: String, list: ScrollContainer) -> void:
 func _switch(task, next: String, current: String, list: ScrollContainer) -> void:
 	_save_scroll(task, current, list)
 	task.draft.config_tab = next
+	task.draft.picker_open = true
 	task.render_workbench()
+	var picker: Control = task.host._body.find_child("ClosePicker", true, false)
+	if is_instance_valid(picker): picker.grab_focus()
 
 func _choose(task, tab: String, list: ScrollContainer, field: Dictionary, value: Variant, selection: Dictionary) -> void:
 	_save_scroll(task, tab, list)
@@ -199,6 +228,7 @@ func _choose(task, tab: String, list: ScrollContainer, field: Dictionary, value:
 		var offsets: Dictionary = task.draft.get("config_scroll", {})
 		for dependent: String in ["npc", "source", "qualification", "institution", "relic", "anchor", "target_domain", "participants", "record", "second_record"]: offsets.erase(dependent)
 		task.draft.config_scroll = offsets
+	if not field.get("multiple", false): task.draft.picker_open = false
 	task._choose(field, value, selection)
 
 func _numeric(options: Array) -> bool:
@@ -238,7 +268,6 @@ func _option(task, parent: VBoxContainer, list: ScrollContainer, tab: String, fi
 	card.tooltip_text = actions._option_title(task, option)
 	if selected:
 		card.add_theme_stylebox_override("normal", task.host._ui.button_style("hover", false, true))
-		card.modulate = Color("ffe7ae")
 	parent.add_child(card)
 	var content := HBoxContainer.new()
 	content.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -254,10 +283,7 @@ func _option(task, parent: VBoxContainer, list: ScrollContainer, tab: String, fi
 		content.add_child(artwork)
 		if kind == "world": task.host._ui.image(artwork, "WorldArt", Rect2(0, 0, 70, 50), task.host._world_picture(str(option.id)))
 		elif kind == "relic":
-			var relic: Dictionary = task.host._views._find(task, "relics", str(option.id))
-			var art_index: int = Dock.RELIC_IDS.find(str(relic.get("type", "")))
-			if art_index >= 0: Dock._relic_icon(task.host._ui, artwork, art_index)
-			else: task.host._ui.icon(artwork, "RelicSymbol", "ritual", Rect2(12, 4, 42, 42))
+			task.host._ui.icon(artwork, "RelicSymbol", "relic", Rect2(12, 4, 42, 42))
 		else:
 			var symbol: String = {"person":"person", "cult":"management", "institution":"stability", "anchor":"anchor_status", "fact":"evidence"}[kind]
 			task.host._ui.icon(artwork, "SubjectSymbol", symbol, Rect2(12, 4, 42, 42), UI.CYAN)
@@ -266,6 +292,8 @@ func _option(task, parent: VBoxContainer, list: ScrollContainer, tab: String, fi
 	words.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	content.add_child(words)
 	var label: Label = task.host._line(words, ("◆ " if selected else "") + actions._option_title(task, option), 15, UI.GOLD_HI if selected else UI.BONE)
+	label.name = "ChoiceCaption"
+	card.accessibility_name = actions._option_title(task, option)
 	label.autowrap_mode = TextServer.AUTOWRAP_OFF
 	label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	label.tooltip_text = card.tooltip_text

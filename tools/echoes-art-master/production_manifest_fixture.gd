@@ -129,6 +129,10 @@ func create_session(directory: String) -> RefCounted:
 	var data: Dictionary = build_fixture()
 	var player := PlayerSession.new(directory)
 	player.catalog = catalog; player.world = data.world; player.turn = data.turn
+	var naming: Dictionary = catalog.player_text.world_names.generate(int(data.initial_seed), player.world.state.domains)
+	assert(naming.ok, str(naming))
+	player._world_names = naming.names
+	player._world_name_backgrounds = naming.backgrounds
 	for key: String in ["economy", "cults", "relics", "powers", "prayers", "anchors", "events", "resistance", "endings", "player_sources", "progression_routes"]:
 		player.modules[key] = data[key]
 	# Explicitly known preexisting source graph, before bootstrap/first receipt.

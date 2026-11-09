@@ -1,6 +1,6 @@
 extends RefCounted
 ## Bespoke presentation of one real action; selectors and payment remain in Session.
-const UI = preload("res://src/presentation/ui/ui_components.gd")
+const UI = preload("res://src/presentation/production/locked_controls.gd")
 const TABS := ["domain", "npc", "attribute", "source", "preparations", "requirements", "outcomes"]
 const TAB_NAMES := {"domain":"世界", "npc":"人物", "attribute":"属性", "source":"依据", "preparations":"可选准备", "requirements":"所需条件", "outcomes":"结果预览"}
 const RESULT_NAMES := {"deep":"深刻成功", "success":"成功", "failure":"失败", "disaster":"灾变"}
@@ -15,47 +15,15 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 	if not fields.any(func(f: Dictionary) -> bool: return f.get("optional", false) and not f.get("options", []).is_empty()): tabs.erase("preparations")
 	var tab: String = str(task.draft.get("bestow_tab", "domain"))
 	if not tab in tabs: tab = tabs[0]
-	var banner := Control.new()
-	banner.custom_minimum_size = Vector2(0, 54)
-	banner.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	box.add_child(banner)
-	var scene: TextureRect = host._ui.image(banner, "BestowWorld", Rect2(0, 0, 600, 54), host._world_picture(str(selection.get("domain", ""))))
-	scene.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	scene.modulate = Color(0.47, 0.53, 0.50, 0.7)
-	var shade: ColorRect = host._ui.fill(banner, "RitualShade", Rect2(0, 0, 600, 54), Color(0.0, 0.02, 0.02, 0.58))
-	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	host._ui.icon(banner, "BestowSigil", "bestow", Rect2(10, 2, 50, 50))
-	host._ui.label(banner, "RitualTitle", "将神意赐予一位信徒", Rect2(81, 3, 520, 29), host._size(20), UI.GOLD_HI)
 	var note := "每位人物一生仅能成功受赐一次 · 失败仍支付代价"
-	if missing.is_empty() and not preview.get("ok", false): note = "当前不可用 · " + task.session.explain_error(str(preview.get("error", "条件尚未满足")))
-	var note_label: Label = host._ui.label(banner, "RitualNote", note, Rect2(81, 29, 540, 24), host._size(14), UI.RISK if missing.is_empty() and not preview.get("ok", false) else UI.BONE)
-	note_label.tooltip_text = note
-	note_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	var stage := HBoxContainer.new()
-	stage.add_theme_constant_override("separation", 18)
-	box.add_child(stage)
-	var nav_scroll := ScrollContainer.new()
-	nav_scroll.custom_minimum_size = Vector2(205, 240)
-	nav_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	nav_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
-	nav_scroll.follow_focus = true
-	stage.add_child(nav_scroll)
-	var navigation := VBoxContainer.new()
-	navigation.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	navigation.custom_minimum_size.x = 205
-	navigation.add_theme_constant_override("separation", 4)
-	nav_scroll.add_child(navigation)
-	var pane := VBoxContainer.new()
-	pane.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	pane.add_theme_constant_override("separation", 5)
-	stage.add_child(pane)
-	var list := ScrollContainer.new()
+	if missing.is_empty() and not preview.get("ok", false): note = task.session.explain_error(str(preview.get("error", "条件尚未满足")))
+	var layout: Dictionary = host._interaction.action_layout(task, box, row, selection, actions, note)
+	var nav: VBoxContainer = layout.nav
+	var reading: VBoxContainer = layout.costs
+	var pane: Control = host._interaction.candidate_layer(layout.canvas, bool(task.draft.get("picker_open", false)), task.close_picker)
+	var list: ScrollContainer = host._scroller(pane, Rect2(20, 63, 512, 246))
 	list.name = "BestowOptionsScroll"
-	list.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	list.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
-	list.follow_focus = true
-	list.custom_minimum_size.y = 210
-	list.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	host._scroll_cue(list, pane, Rect2(20, 309, 512, 16))
 	for key: String in tabs:
 		var caption: String = str(TAB_NAMES[key]) + "  ·  " + _summary(task, key, fields, selection, preview, actions)
 		var button: Button = task.button(caption, _switch.bind(task, key, tab, list))
@@ -65,14 +33,17 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 		button.add_theme_font_size_override("font_size", host._size(14))
 		button.clip_text = true
 		button.tooltip_text = caption
-		button.custom_minimum_size = Vector2(205, 34)
+		button.custom_minimum_size.y = 43
+		host._ui.choice_style(button, false)
 		if key == tab:
-			button.add_theme_stylebox_override("normal", host._ui.button_style("hover", false, true))
-			button.modulate = Color("ffe7ae")
-		navigation.add_child(button)
-		if key == tab: nav_scroll.call_deferred("ensure_control_visible", button)
+			host._ui.choice_style(button, true)
+		if key in ["requirements", "outcomes"]:
+			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			reading.add_child(button)
+		else: nav.add_child(button)
 	var header := HBoxContainer.new()
 	header.add_theme_constant_override("separation", 10)
+	host._ui.rect(header, Rect2(20, 13, 464, 45))
 	pane.add_child(header)
 	var title: Label = _line(task, header, _heading(tab), 18, UI.GOLD_HI)
 	title.name = "BestowListTitle"
@@ -87,7 +58,6 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 		read.autowrap_mode = TextServer.AUTOWRAP_OFF
 		read.custom_minimum_size.x = 110
 		header.add_child(read)
-	pane.add_child(list)
 	var rows := VBoxContainer.new()
 	rows.add_theme_constant_override("separation", 6)
 	rows.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -198,7 +168,10 @@ func _save_scroll(task, tab: String, list: ScrollContainer) -> void:
 func _switch(task, next: String, current: String, list: ScrollContainer) -> void:
 	_save_scroll(task, current, list)
 	task.draft.bestow_tab = next
+	task.draft.picker_open = true
 	task.render_workbench()
+	var picker: Control = task.host._body.find_child("ClosePicker", true, false)
+	if is_instance_valid(picker): picker.grab_focus()
 
 func _choose(task, tab: String, list: ScrollContainer, field: Dictionary, value: Variant, selection: Dictionary) -> void:
 	_save_scroll(task, tab, list)
@@ -207,6 +180,7 @@ func _choose(task, tab: String, list: ScrollContainer, field: Dictionary, value:
 		if field.key == "domain": offsets.erase("npc")
 		offsets.erase("source")
 		task.draft.bestow_scroll = offsets
+	if not field.get("multiple", false): task.draft.picker_open = false
 	task._choose(field, value, selection)
 
 func _options(task, parent: VBoxContainer, list: ScrollContainer, tab: String, field: Dictionary, selection: Dictionary, actions) -> void:
@@ -222,7 +196,6 @@ func _options(task, parent: VBoxContainer, list: ScrollContainer, tab: String, f
 		card.tooltip_text = actions._option_title(task, option)
 		if selected:
 			card.add_theme_stylebox_override("normal", task.host._ui.button_style("hover", false, true))
-			card.modulate = Color("ffe7ae")
 		parent.add_child(card)
 		var interior := HBoxContainer.new()
 		interior.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -254,6 +227,8 @@ func _options(task, parent: VBoxContainer, list: ScrollContainer, tab: String, f
 			var record: Dictionary = actions.source_info(task, str(option.id))
 			subtitle = str(record.get("summary", ""))
 		var name_label: Label = _line(task, words, ("◆ " if selected else "") + name_value, 15, UI.GOLD_HI if selected else UI.BONE)
+		name_label.name = "ChoiceCaption"
+		card.accessibility_name = name_value
 		name_label.autowrap_mode = TextServer.AUTOWRAP_OFF
 		name_label.clip_text = true
 		name_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS

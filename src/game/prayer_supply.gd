@@ -45,6 +45,23 @@ static func available(world: RefCounted, owner: Object, only_request: String = "
 	reader.close()
 	return found
 
+static func playable_situation(world: RefCounted, owner: Object) -> String:
+	var space: Dictionary = world.state.prayer_system.get("space", {})
+	var cursor: Dictionary = owner.context.duplicate(false)
+	cursor.phase = "actions"
+	var reader: RefCounted = StateView.new(world.state, cursor, owner.commit_sequence, world.history)
+	var view: Dictionary = reader.participant("prayers", "actions")
+	var source := ""
+	for id: String in space.get("offered", []):
+		for variant: String in space.scenes[id].choices:
+			var prepared: Dictionary = owner._participants.prayers.instance.prepare(view, id, variant)
+			if not prepared.get("ok", false) or not world.attention.preview_needs(world.state, prepared.attention).get("ok", false): continue
+			source = str(prepared.descriptor.source)
+			break
+		if not source.is_empty(): break
+	reader.close()
+	return source
+
 static func grant(world: RefCounted, owner: Object, source: String) -> bool:
 	if not owner.prayer_supply_active or world.transaction == null: return false
 	var sample: Dictionary = Knowledge.capture(world, owner)

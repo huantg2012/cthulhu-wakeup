@@ -383,6 +383,21 @@ func _freeze(world: RefCounted, owner: Object) -> bool:
 		if not current.ok: _close(world, id, "subject_or_situation_invalid", request.source); continue
 		if ledger.offered.size() < catalog.integer("prayer_offer_limit"): ledger.offered.append(id)
 	var supply: GDScript = load("res://src/game/prayer_supply.gd")
+	var opening: Dictionary = _fact(world.state, str(Store.entry(world.state.applied_authorizations, "prayer/bootstrap", "")))
+	var situation_first: bool = opening.get("changes", {}).get("offer_policy") == "situation_first"
+	if situation_first:
+		var bootstrap_id: String = str(opening.changes.candidate)
+		var held: Array = ledger.offered.duplicate()
+		ledger.offered.erase(bootstrap_id)
+		if not space.freeze(world, _situation_limit(ledger)): return false
+		var replacement: String = supply.playable_situation(world, owner)
+		if not replacement.is_empty():
+			if world.state.has("prayer_dispatch") and not supply.adopt(world, owner): return false
+			# Keep the original world-birth evidence, but retire the old request
+			# in the rules once a real response can take its place.
+			_close(world, bootstrap_id, "replaced_by_situation", replacement)
+			return _trim_legacy_offers(world, owner, ledger, false)
+		ledger.offered = held
 	if not supply.ensure(world, owner): return false
 	# The supply goes through the same formal import and offer list. It never
 	# writes a separate presentation card or bypasses the response predicates.
@@ -401,7 +416,46 @@ func _freeze(world: RefCounted, owner: Object) -> bool:
 			ledger.offered.append(id)
 			break
 		if not supply.available(world, owner): return owner._fail("本轮祈求没有合法回应分支")
-	return space.freeze(world, owner)
+	if not situation_first and not space.freeze(world, _situation_limit(ledger)): return false
+	return _trim_legacy_offers(world, owner, ledger, true)
+
+func _offer_domains(ledger: Dictionary) -> Dictionary:
+	var domains := {}
+	for id: String in ledger.offered:
+		domains[ledger.requests[id].card.domain] = true
+	return domains
+
+func _situation_limit(ledger: Dictionary) -> int:
+	return clampi(catalog.integer("prayer_offer_limit") - clampi(_offer_domains(ledger).size(), 1, 2), 0, 2)
+
+func _trim_legacy_offers(world: RefCounted, owner: Object, ledger: Dictionary, require_playable: bool) -> bool:
+	# Reserve the other slots for authored situations while preserving a legal
+	# legacy offer if the minimum-supply check had to put one later in the list.
+	var maximum: int = catalog.integer("prayer_offer_limit") - Space.ledger(world.state).offered.size()
+	if ledger.offered.size() <= maximum: return true
+	var old_offers: Array = ledger.offered.duplicate()
+	var retained: Array = []
+	var represented: Dictionary = {}
+	if maximum == 1 and _offer_domains(ledger).size() > 1:
+		for entry: Dictionary in Space.entries(world.state): represented[entry.card.domain] = true
+	for id: String in old_offers:
+		if retained.size() == maximum: break
+		var domain: String = ledger.requests[id].card.domain
+		if represented.has(domain): continue
+		represented[domain] = true
+		retained.append(id)
+	for id: String in old_offers:
+		if retained.size() == maximum: break
+		if not id in retained: retained.append(id)
+	ledger.offered = retained
+	var supply: GDScript = load("res://src/game/prayer_supply.gd")
+	if require_playable and maximum > 0 and world.state.has("prayer_dispatch") and int(owner.context.responses) < catalog.integer("prayer_response_limit") and not supply.available(world, owner):
+		for id: String in old_offers:
+			if id in ledger.offered: continue
+			if not supply.available(world, owner, id): continue
+			ledger.offered[maximum - 1] = id
+			break
+	return true
 
 func prepare(view: Dictionary, request_id: String, variant: String, options: Dictionary = {}) -> Dictionary:
 	if Space.is_request(request_id): return space.prepare(view, request_id, variant, options)

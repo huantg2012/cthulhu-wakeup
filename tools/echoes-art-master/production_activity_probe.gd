@@ -105,23 +105,47 @@ func run_ui() -> void:
 	print("CARRY_OK real unload and equip")
 	var before_sacrifice: Dictionary = app.projection
 	app._tasks.open_action("POWER_SACRIFICE", {"domain":data.domain, "npc":data.guardian})
-	app.find_child("ActionTab_mode", true, false).pressed.emit()
-	app.find_child("Choice_mode_0", true, false).pressed.emit()
-	var selected: Dictionary = app._tasks.draft.selection.duplicate(true)
-	app.find_child("ActionTab_npc", true, false).pressed.emit()
-	app.find_child("Read_npc", true, false).pressed.emit()
-	if not require(app._dialog == "task_related", "Related person did not replace action"): return
-	app._tasks.back()
-	if not require(selected.mode == "faith" and app._tasks.draft.selection == selected, "Reading changed selected mode or person"): return
+	var sacrifice_unlock: int = int(player.catalog.display_tables.powers.POWER_SACRIFICE.unlock_awakening)
+	if int(app.projection.awakening) >= sacrifice_unlock:
+		app.find_child("ActionTab_mode", true, false).pressed.emit()
+		app.find_child("Choice_mode_0", true, false).pressed.emit()
+		var selected: Dictionary = app._tasks.draft.selection.duplicate(true)
+		app.find_child("ActionTab_npc", true, false).pressed.emit()
+		app.find_child("Read_npc", true, false).pressed.emit()
+		if not require(app._dialog == "task_related", "Related person did not replace action"): return
+		app._tasks.back()
+		if not require(selected.mode == "faith" and app._tasks.draft.selection == selected, "Reading changed selected mode or person"): return
+	else:
+		if not require(app.find_child("ExecuteDraft", true, false) == null and app._dialog == "task_action", "Locked sacrifice offered an execution"): return
 	app._tasks.back()
 	if not require(app.projection.whispers == before_sacrifice.whispers and app.projection.people == before_sacrifice.people, "Leaving preparation changed resources or person"): return
 	var target := {"domain":data.domain,"npc":data.guardian,"institution":data.institution,"relic":relic_id,"source":proof,"qualification":proof}
 	_seed(data, "POWER_ANCHOR", "success", target)
-	app._tasks.open_action("POWER_ANCHOR", target)
+	app._tasks.open_subject("anchors", data.domain)
+	app.find_child("AnchorGoal_" + str(data.institution).replace("/", "_"), true, false).pressed.emit()
+	var prepare: Button = app.find_child("ConfigureAnchor", true, false)
+	if not require(prepare != null and not prepare.disabled, "Legal goal must offer the preparation entry"): return
+	await shoot("15-anchor-institution")
+	prepare.pressed.emit()
+	for key: String in ["npc", "relic"]:
+		app.find_child("ActionTab_" + key, true, false).pressed.emit()
+		var field: Dictionary = app._tasks._current_fields.filter(func(row: Dictionary) -> bool: return row.key == key)[0]
+		var index: int = field.options.find_custom(func(option: Dictionary) -> bool: return option.id == target[key])
+		if not require(index >= 0, "Original legal object is visible: " + key): return
+		var choose: Button = app.find_child("Choice_%s_%s" % [key, index], true, false)
+		for frame: int in range(60):
+			if not choose.disabled: break
+			await process_frame
+		if not require(not choose.disabled, "Original legal object can be chosen: " + key): return
+		choose.pressed.emit()
+	await shoot("15-anchor-preparation")
 	app.find_child("ActionTab___requirements", true, false).pressed.emit()
 	if not require(app.find_child("Requirement_guardian", true, false).get_meta("requirement").current >= 1 and app.find_child("Requirement_medium", true, false).get_meta("requirement").current >= 1, "Legal anchor was shown missing its actual person or medium"): return
 	await shoot("15-anchor")
 	if not execute(): return
+	if not require(app._world_id == data.domain and app._surface.has_node("LocalFocus"), "Anchor receipt must stay in the institution's world"): return
+	app.find_child("Return", true, false).pressed.emit()
+	if not require(app._dialog == "anchor_goal" and app.find_child("AnchorUpkeep", true, false) != null, "Result returns to institution with its own upkeep preview"): return
 	if not require(_next(data), "Anchor settlement failed"): return
 	app._refresh()
 	if not require(app.projection.anchors.size() == 1, "UI anchor did not become public"): return

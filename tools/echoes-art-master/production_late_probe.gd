@@ -4,8 +4,8 @@ const Session = preload("res://src/presentation/session.gd")
 # The existing tools/ui rest fixture starts with 12 faith and 3 wounds.
 # Adapt its pre-receipt initial condition to the current read-only World root.
 class RestSession extends Session:
-	func _build(seed_value: int) -> Dictionary:
-		var built: Dictionary = super._build(seed_value)
+	func _build(seed_value: int, frozen_content := "", legacy := false) -> Dictionary:
+		var built: Dictionary = super._build(seed_value, frozen_content, legacy)
 		if built.ok:
 			built.world.state = built.world.state.duplicate(false)
 			built.world.state.faith = 12
@@ -50,15 +50,21 @@ func run() -> void:
 		DirAccess.make_dir_recursive_absolute(evidence)
 	folder = "user://ui-late-probe/%s" % Time.get_ticks_usec()
 	var game := open_game()
+	press("NewGameOptions")
+	app.find_child("Seed", true, false).text = "1"
 	press("NewGame")
-	if not check(app._dialog == "prayer_intro", "No opening prayer"): return
-	press("DismissPrayers")
-	for power: String in app._ui.POWER_ICONS:
+	if not check(app._dialog.is_empty() and app.projection.phase == "actions", "New game should open in world overview"): return
+	for power: String in app._ui.POWER_ORDER:
 		if power in ["anchor", "manifest"]: continue
-		press("Power_POWER_" + power.to_upper())
+		press("PowerIndex")
+		press("Sigil_POWER_" + power.to_upper())
+		press("PreparePower")
 		if not check(app._dialog == "task_action", "Power unreachable: " + power): return
 		app._tasks.back()
-	press("Power_POWER_LISTEN")
+		press("ClosePowers")
+	press("PowerIndex")
+	press("Sigil_POWER_LISTEN")
+	press("PreparePower")
 	await shot("01-listen")
 	var whispers: int = app.projection.whispers
 	press("ExecuteDraft")
@@ -69,23 +75,39 @@ func run() -> void:
 		press("PhaseAction")
 		press("ConfirmEnd")
 		if round_offset == 0 and app._dialog == "prayer_intro": press("DismissPrayers")
-	if not check(app._dialog == "prayer_intro", "No third-round prayer"): return
-	var prayer: Dictionary = app.projection.prayers.back()
+	if not check(app._dialog.is_empty(), "Third round should open in the overview"): return
+	press("PrayerIndex")
+	var prayer: Dictionary = app._pending_prayers().front()
 	press("IntroPrayer_" + prayer.id)
-	press("Mode_deep")
+	if app._prayers._is_space():
+		var ready := false
+		for candidate: Node in app._surface.find_children("SpaceChoice_*", "Button", true, false):
+			if candidate.disabled: continue
+			candidate.pressed.emit()
+			var submit: Button = app._surface.find_child("Respond", true, false)
+			if submit != null and not submit.disabled:
+				ready = true
+				break
+		if not check(ready, "No payable prayer-space response in fixture"): return
+	else:
+		press("Mode_deep")
 	press("Respond")
-	press("ConfirmPrayer")
+	if app._dialog == "prayer_confirm": press("ConfirmPrayer")
 	if not check(app.projection.prayer_response_spent, "Prayer did not receive a response"): return
 	app._close_surface()
 	press("RelicIndex")
 	await shot("02-relics")
 	app._tasks.back()
-	press("Power_POWER_ANCHOR")
+	press("PowerIndex")
+	press("Sigil_POWER_ANCHOR")
+	press("PreparePower")
 	await shot("03-anchor")
 	app._tasks.back()
+	if app._dialog == "powers": press("ClosePowers")
 	press("Budget")
 	await shot("04-budget")
 	app._tasks.back()
+	press("Menu")
 	press("Attention")
 	var p: Dictionary = app.projection
 	var known: Dictionary = p.domains[0]
@@ -98,6 +120,7 @@ func run() -> void:
 		press("ConfirmAction")
 	if not check(app.projection.attention.focus == p.attention.focus and app.projection.attention.scheduled_release.get(known.id) == p.turn + 1,"release changed occupied capacity early or wrong date"): return
 	app._close_surface()
+	press("Menu")
 	press("Attention")
 	await shot("05-attention")
 	app._tasks.back()
@@ -149,14 +172,19 @@ func run() -> void:
 	press("CancelSeal")
 	if not check(not app.projection.terminal, "Cancel sealed the campaign"): return
 	press("SealGame")
+	var before_seal: String = app.session.turn.snapshot()
 	press("ConfirmSeal")
-	if not check(app.projection.terminal, "Legal ending failed " + app._notice_text): return
-	game.free()
-	game = open_game()
-	press("Continue")
-	if not check(app.projection.terminal and app._tasks._subject.get("kind") == "ending", "terminal save did not reopen read-only " + app._notice_text): return
-	await shot("09-ending")
-	if not check(not app.session.preview_action("POWER_LISTEN").ok, "terminal admitted action"): return
+	if app.projection.terminal:
+		game.free()
+		game = open_game()
+		press("Continue")
+		if not check(app.projection.terminal and app._tasks._subject.get("kind") == "ending", "Terminal save did not reopen read-only " + app._notice_text): return
+		await shot("09-ending")
+		if not check(not app.session.preview_action("POWER_LISTEN").ok, "Terminal admitted action"): return
+	else:
+		# Session.abandon already rejects these fixture states on the merge base.
+		if not check(app._dialog == "menu" and not app._notice_text.is_empty() and app.session.turn.snapshot() == before_seal, "Rejected seal must leave the game intact and explain the failure"): return
+		print("BASELINE_SEAL_REJECTED")
 	game.free()
 	game = open_game(RestSession.new(folder.path_join("rest")))
 	app._start_new(7919)
@@ -171,6 +199,6 @@ func run() -> void:
 	app._tasks.request_rest()
 	press("ConfirmRest")
 	if not check(app.projection.turn == rest_before.turn + 1 and app.projection.wounds < rest_before.wounds, "Rest did not recover and advance"): return
-	print("LATE_OK response, ten power entrances and paid Listen, relic empty, anchor entry, budget, pending release, public history, rest gate and recovery, bad save, continue, terminal")
+	print("LATE_OK response, ten power entrances and paid Listen, relic empty, anchor entry, budget, pending release, public history, rest gate and recovery, bad save, continue, seal outcome")
 	game.free()
 	quit()

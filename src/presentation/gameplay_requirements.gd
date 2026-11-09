@@ -135,7 +135,16 @@ static func anchor(session, public: Dictionary, selection: Dictionary) -> Array:
 		organization.append(quantity("cohesion", "教团凝聚", int(cult.get("cohesion", 0)), session.catalog.integer("anchor_cohesion_min")))
 		break
 	if organization.is_empty(): organization.append(condition("cult", "当地教团", "missing", "尚未建立"))
-	return [group("锚定材料", materials), group("护持与绑定", people), group("当地组织条件", organization)]
+	var ordinal: int = Powers.anchor_slot(state, institution).ordinal
+	var pollution := condition("anchor_pollution", "当地污染", "missing", "没有空余锚点序号")
+	if ordinal <= state.domains[domain].institutions.size():
+		var threshold: int = session.catalog.integer("anchor_create_pollution_" + str(ordinal))
+		var observation: Dictionary = world.get("metric_sources", {}).get("pollution", {})
+		var known := "未掌握"
+		if observation.get("precision") == "exact": known = str(observation.value)
+		elif observation.get("precision") == "range": known = "%s–%s" % [observation.lower, observation.upper]
+		pollution = condition("anchor_pollution", "当地污染", "info", "%s / %s" % [known, threshold], "已知观测 / 建立或修复所需污染。以实际施展时的状态为准。")
+	return [group("锚定材料", materials), group("护持与绑定", people), group("当地组织条件", organization), group("污染门槛", [pollution])]
 
 static func independent_testimonies(session, institution: String, required: int, reception: Dictionary = {}) -> int:
 	var state: Dictionary = session.world.state

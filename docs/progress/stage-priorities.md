@@ -4,6 +4,24 @@
 
 ## 游戏 UI 执行路由
 
+## 当前：锁定交互框架正式接入（2026-11-08）
+
+制作人授权以[连续可操作样板](../art/presentation-rebuild/interaction-slice.html)替换正式 UI。开工依据为[交互 spec 当前合同](../specs/ui-interaction.md#locked-interaction-production)与探索正文 §10–§13，P01–P19/G1–G7 核对原玩法入口。优先用真实 Session 核对条件、费用、结算和保存。世界、教团与人物使用占位。制作人明确排除旧 UI 的所有元素，包含控件布局、分组与显隐、样式、字体、颜色、图标和动效。旧视觉规范只读，两项制作人禁令继续适用。接入与测试范围见[正式交付记录](../tasks/ui-production-integration.md#locked-framework-delivery)。
+
+制作人复审退回首版布局。图示的诸界与当地场景以 [设计 §19.1](../art/presentation-rebuild/interface-design.md#perception-fidelity) 和实际浏览器画幅尺寸重建，采用[同幅对照及核查记录](../tasks/ui-production-integration.md#perception-fidelity-review)复看。
+
+制作人要求全场景复核。现按[设计 §19.2](../art/presentation-rebuild/interface-design.md#full-scene-calibration)继续校准祈求、事件、权能及锚定、经营、档案、回合责任与关联查阅；按[逐场对照和实机路径](../tasks/ui-production-integration.md#full-scene-calibration)复看。正式新增分支继续采用同一组构图和阅读关系。
+
+正式接入后按[交互精修原则](../specs/ui-interaction.md#production-interaction-polish)收口入口归属、返回与焦点、滚动边界、候选状态和不可逆确认。后续美术设计以正式运行行为为底稿。[精修范围及验证](../tasks/ui-production-integration.md#production-interaction-polish)。
+
+## 此前探索：美术定型准备（2026-11-08）
+
+制作人纠正视角与交互：邪神从高维观察世界、世界中的教团与人物，人物姿态须符合求告处境；延续已认可的连续交互。微缩世界与人物独立画幅是待审候选，回应与权能动效暂不作为重点。新[视角探索样片](../art/presentation-rebuild/perspective-slice.html)及[设计记录 §18](../art/presentation-rebuild/interface-design.md#perspective-exploration)为当前审阅入口。上版海面城市及交互收缩已被否定。
+
+制作人确认以连续交互样板为基础，采用[探索设计 §15 的七维美术方向框架](../art/presentation-rebuild/interface-design.md#art-direction-framework)。首轮比较媒介、风格化、基调与世界视觉设计的组合，并在共同的诸界、祈求和入梦片段里观察空间构图、界面与动态。制作管线单列，具体美术方向待制作人选择。
+
+[§16 规模化美术生产](../art/presentation-rebuild/interface-design.md#art-scalability)记录场景、人物部件和变化规则的复用原则。人物主要靠轮廓、发型、衣装和姿态识别。当前[可操作对照](../art/presentation-rebuild/art-comparison.html)只比较分层绘景和像素美术，详见[§17](../art/presentation-rebuild/interface-design.md#art-direction-candidates)。制作人剔除浮雕，教团从整体尺度呈现。世界采用当前生成器产物，祈求采用真实生活处境中的无指向求告，制作人审阅 A/B 画面与扩展潜力。
+
 ## 当前：独立探索版的任务、层级、场景结构与UI美术（2026-11-06）
 
 **最新体验研究：**探索正文§13与同一连续样板已加入场景化权能、人物档案/祈求立绘。以入梦路径供判断，其他权能演出仍有缺口；资产为待审候选。

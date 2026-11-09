@@ -37,7 +37,8 @@ func _context(session: RefCounted, descriptor: Dictionary, card: Dictionary) -> 
 	var content: String = str(descriptor.get("content_id", card.get("content_id", "")))
 	var details: Dictionary = {}
 	if descriptor.get("space", false):
-		return {"本次求告": str(descriptor.get("appeal", "")), "祈求人": session.object_title(str(descriptor.get("subjects", {}).get("petitioner", ""))), "所在时空": session.object_title(str(descriptor.get("domain", ""))), "请求期限": "第 %d 轮" % int(card.get("due_turn", 0))}
+		var public: Dictionary = session._prayer_projection(descriptor)
+		return {"本次求告": str(public.get("appeal", "")), "祈求人": session.object_title(str(public.get("subjects", {}).get("petitioner", ""))), "所在时空": session.object_title(str(public.get("domain", ""))), "请求期限": "第 %d 轮" % int(card.get("due_turn", 0))}
 	var prayer: Dictionary = session.catalog.display_tables.prayers.get(content, {})
 	if not prayer.is_empty():
 		details["当前诉求"] = session.prayer_title(descriptor, card)
@@ -136,7 +137,7 @@ func list_entries(session: RefCounted, scope: String = "", exact: bool = false) 
 	for request: Dictionary in session.visible_prayer_entries():
 		var id: String = str(request.card.id)
 		if request.descriptor.get("space", false):
-			for choice: Dictionary in session.modules.prayers.space_choices(session.world.state, id):
+			for choice: Dictionary in session.prayer_space_choices(id):
 				var key: String = "prayer/" + id + "/" + str(choice.id)
 				if not _matches(key, scope, exact): continue
 				var details: Dictionary = _context(session, request.descriptor, request.card)

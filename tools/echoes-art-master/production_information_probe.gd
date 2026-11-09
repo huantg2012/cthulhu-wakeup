@@ -28,7 +28,8 @@ func run() -> void:
 	var game = Scene.instantiate(); app = game.get_node("Presentation/CanvasLayer/OverlayRoot"); app.session = s; root.add_child(game); app._close_surface()
 	var before: String = s.turn.snapshot()
 	var knowledge = s.knowledge_snapshot().duplicate(true)
-	for entry: String in ["Activities", "AnchorIndex", "RelicIndex", "CultIndex", "WorldArchive", "People", "Budget", "Self"]:
+	app._inspect_world("DOMAIN-001")
+	for entry: String in ["Activities", "AnchorIndex", "RelicIndex", "People", "Budget", "Self"]:
 		assert(app.find_child(entry, true, false) != null)
 	await capture("01-main")
 	assert(await check_world_intelligence())
@@ -70,27 +71,40 @@ func run() -> void:
 	assert(not text.contains("shared_memory") and not text.contains("已知前因") and not text.contains("实际变化"))
 	assert(not text.contains("已知事实 ·"))
 	await capture("07-record")
+	app._tasks.open_subject("people")
+	var directory: ScrollContainer = app._body_scroll
+	var search: LineEdit = app._surface.find_child("SubjectSearch_people_", true, false)
+	assert(search != null and not directory.is_ancestor_of(search))
+	assert(not directory.is_ancestor_of(app._surface.find_child("PersonFilter_people_", true, false)))
 	app._tasks.open_subject("history")
+	press(str(app._surface.find_child("Record_*", true, false).name))
+	var peek: Control = app._surface.get_node("RelatedPeek")
+	var chronicle: ScrollContainer = app._body_scroll
+	assert(chronicle.get_global_rect().end.x <= peek.get_global_rect().position.x, "chronicle list overlapped the record reader")
+	assert(not chronicle.is_ancestor_of(app._surface.find_child("HistoryFilter", true, false)))
 	await capture("08-history")
 	assert(s.turn.snapshot() == before and s.knowledge_snapshot() == knowledge, "reading mutated state or knowledge")
 	print("INFORMATION_OWNERSHIP_ROUTES_EVIDENCE_PURITY_OK")
 	game.free(); quit()
 
 func check_world_intelligence() -> bool:
-	assert(app.find_child("WorldArchive", true, false).text == "世界档案")
+	press("Menu")
 	press("WorldArchive")
 	var search: LineEdit = app.find_child("ArchiveSearch", true, false)
 	search.text = "zz-no-match"
 	search.text_changed.emit(search.text)
 	app._world_management.close()
+	press("Return")
 	var current: String = app._world_id
-	for domain: String in app._world_buttons:
+	for row: Dictionary in app._worlds.duplicate():
+		var domain: String = row.id
 		app._select_world(domain)
 		var help: Button = app.find_child("MetricHelp_barrier", true, false)
 		help.grab_focus()
+		assert(help.accessibility_description.contains("查看不会刷新") or help.accessibility_description.contains("尚未掌握"))
 		press("MetricHelp_barrier")
-		assert(app._dialog.is_empty() and app._world_id == domain)
-		assert(app.find_child("MetricHint", true, false).text.contains("查看不会刷新"))
+		assert(app._world_management._page == "intelligence" and app._world_management._metric_field == "barrier")
+		press("WorldBack")
 		app.find_child("WorldObservations", true, false).grab_focus()
 		press("WorldObservations")
 		assert(app._world_management._page == "intelligence" and app._world_management._domain == domain)
@@ -114,10 +128,12 @@ func check_world_intelligence() -> bool:
 		assert(app._dialog.is_empty() and app._world_id == domain)
 		assert(root.gui_get_focus_owner().name == "WorldObservations")
 	app._select_world(current)
+	press("Menu")
 	press("WorldArchive")
 	assert(app.find_child("ArchiveSearch", true, false).text == "zz-no-match", "local view reset global search")
 	press("ClearArchiveSearch")
 	press("WorldRecord_" + current)
 	assert(app._surface.find_child("Observation_*", true, false) == null)
 	app._world_management.close()
+	press("Return")
 	return true

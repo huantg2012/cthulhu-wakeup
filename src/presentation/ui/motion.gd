@@ -5,9 +5,6 @@ var enabled := true
 var elapsed := 0.0
 var effects: Dictionary = {}
 var materials: Array = []
-func _ready() -> void:
-	var raw = JSON.parse_string(FileAccess.get_file_as_string("res://docs/art/echoes-ui/tokens.json"))
-	params = raw.get("motion", {}) if raw is Dictionary else {}
 func register_material(owner: Node, material: ShaderMaterial) -> void:
 	materials.append([weakref(owner),material])
 func _process(delta: float) -> void:
