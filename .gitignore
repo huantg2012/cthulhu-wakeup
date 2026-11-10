@@ -35,3 +35,6 @@ pnpm-lock.yaml
 **/__pycache__/
 
 *.pyc
+
+# 附加参考项目（IDE 挂载，非本仓库产出，含编译好的 wasm/pck）
+/ref-project/

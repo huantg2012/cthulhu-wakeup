@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>原作工程基线出图 · godot-base</title>
+<link rel="icon" href="data:,">
+<style>
+  :root{--bg:#0b0f12;--panel:#12191d;--ink:#eaf2ec;--dim:#93a9a0;--line:rgba(140,230,200,.26);--hot:#7fe3c0}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Microsoft YaHei",sans-serif}
+  body{padding:20px 26px 40px;max-width:1780px;margin:0 auto}
+  header{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;
+    border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:16px;flex-wrap:wrap}
+  h1{font-size:19px;font-weight:600;letter-spacing:.04em;margin:0 0 6px}
+  .sub{font-size:12px;color:var(--dim);line-height:1.7;margin:0;max-width:900px}
+  .sub b{color:var(--hot);font-weight:500}
+  .actions{display:flex;gap:8px;flex-wrap:wrap}
+  a.btn{display:inline-block;background:rgba(127,227,192,.12);color:var(--hot);
+    border:1px solid var(--line);padding:8px 14px;font-size:12px;text-decoration:none;border-radius:2px}
+  a.btn:hover{border-color:var(--hot)}
+  .meta{font-size:11px;color:var(--dim);line-height:1.9;background:var(--panel);
+    border:1px solid var(--line);padding:9px 14px;margin-bottom:16px}
+  .meta code{color:var(--hot);font-family:ui-monospace,Menlo,monospace;font-size:11px}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  @media(max-width:1100px){.grid{grid-template-columns:1fr}}
+  figure{margin:0;background:var(--panel);border:1px solid var(--line);padding:9px}
+  figure a{display:block;cursor:zoom-in}
+  figure img{display:block;width:100%;height:auto;background:#000}
+  figcaption{display:flex;justify-content:space-between;gap:12px;align-items:baseline;
+    font-size:12px;color:var(--dim);padding:9px 3px 2px;line-height:1.5}
+  figcaption b{color:var(--ink);font-weight:500}
+  figcaption span{white-space:nowrap;font-size:11px}
+  .foot{margin-top:18px;border-top:1px solid var(--line);padding-top:10px;font-size:11px;color:var(--dim);line-height:1.8}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>原版裁剪 · 三组减法</h1>
+    <p class="sub">在退回的原版工程上按制作人 2026-11-10 指示做减法：<b>移除低多边形／全息星图</b>两种媒介、<b>移除三分构图／远景</b>两种构图、<b>克苏鲁元素只保留腐化蔓延／疯狂扭曲／星云密度</b>。下方首屏是裁剪后工程用本机 Godot 4.7.2 实跑的结果；原版 8 媒介总览与更早的探索产出均标注为留痕。</p>
+  </div>
+  <div class="actions">
+    <a class="btn" href="http://127.0.0.1:8931/index.html" target="_blank">原版可交互（未裁剪，对照用）↗</a>
+    <a class="btn" href="slice.html">看 v3 WebGL 切片（已被取代）</a>
+  </div>
+</header>
+
+<div class="meta">
+  基线工程：<code>docs/art/visual-generation/godot-base/</code> ｜ 引擎 <code>4.7.2.stable</code> ｜ 渲染 <code>gl_compatibility</code> ｜ 出图目录 <code>godot-baseline/</code> ｜ 控制台 0 errors。<br>
+  复现：<code>GODOT=/Applications/Godot.app/Contents/MacOS/Godot</code> → <code>$GODOT --path godot-base --editor --quit</code> → <code>$GODOT --path godot-base -- --shots=/tmp/out --cfg=scene:0,style:2,seed:42</code>。点击下方任意图可打开原尺寸。
+</div>
+
+<h2 style="font-size:16px;font-weight:600;margin:26px 0 8px;letter-spacing:.04em">裁剪后 · 6 种媒介 × 3 类场景 <span style="color:var(--hot);font-size:12px;font-weight:400">（当前，18 张全出）</span></h2>
+<p class="sub" style="margin-bottom:10px">固定 seed <code>1337</code>。剩余媒介：暗黑厚涂／赛璐璐／古典铜版画／复古像素／水彩手稿／怪奇杂志；<b>低多边形、全息星图已从数据表、UI 按钮与随机池移除</b>（shader 内原编号分支保留为不可达死代码，通过 <code>sid</code> 映射维持其余六种的原作观感）。</p>
+<figure style="margin-bottom:10px">
+  <a href="godot-baseline/trimmed-all-styles.png" target="_blank"><img src="godot-baseline/trimmed-all-styles.png" alt="裁剪后 6 媒介 × 3 场景"></a>
+  <figcaption><b>总览 · 6 媒介 × 3 场景（18 格）</b><span>点击开原尺寸</span></figcaption>
+</figure>
+<figure style="margin-bottom:10px">
+  <a href="godot-baseline/trimmed-compositions.png" target="_blank"><img src="godot-baseline/trimmed-compositions.png" alt="剩余 3 种构图"></a>
+  <figcaption><b>构图对照 · 居中 / 巨构地平线 / 日蚀逆光</b><span>固定原型与色板，只差构图</span></figcaption>
+</figure>
+<figure style="margin-bottom:10px">
+  <a href="godot-baseline/trimmed-elements.png" target="_blank"><img src="godot-baseline/trimmed-elements.png" alt="三个保留元素开关对照"></a>
+  <figcaption><b>保留的三项 · 腐化蔓延 / 疯狂扭曲 / 星云密度（0 ↔ 1）</b><span>触手、眼睛、古神符文已归零且从 UI 移除</span></figcaption>
+</figure>
+<div class="meta" style="margin-bottom:20px">
+  单张原图在 <code>godot-baseline/trimmed/</code>（27 张 + UI）。改动文件：<code>scripts/data.gd</code>、<code>scripts/main.gd</code>、<code>scripts/generator.gd</code>、<code>shaders/common.gdshaderinc</code> 注释。本机 Godot 4.7.2 实跑 <b>0 errors / 0 warnings</b>。<br>
+  <b>边界说明</b>：「星环」「奇景类型」「卫星数」属于 UI 的「主体设定」分组、星际奇景场景与凝视之眼原型仍保留，未擅自扩权移除；<code>godot-baseline/original/</code> 的原始 8 媒介编译产物也未改动。是否需要一并处理，由制作人定。
+</div>
+
+<h2 style="font-size:16px;font-weight:600;margin:26px 0 8px;letter-spacing:.04em">裁剪前对照 · 原版 8 媒介 × 3 类场景 <span style="color:var(--dim);font-size:12px;font-weight:400">（留痕，24 张）</span></h2>
+<p class="sub" style="margin-bottom:10px">同一 seed <code>1337</code>，原版工程原生能力，未改一行代码。8 种媒介：暗黑厚涂／赛璐璐／古典铜版画／低多边形／复古像素／全息星图／水彩手稿／怪奇杂志；3 类场景：星球立绘／星系图／星际奇景。<a class="btn" href="http://127.0.0.1:8931/index.html" target="_blank" style="padding:4px 10px;margin-left:6px">打开完整原作 · 可交互版 ↗</a></p>
+<figure style="margin-bottom:10px">
+  <a href="godot-baseline/original-all-styles.png" target="_blank"><img src="godot-baseline/original-all-styles.png" alt="原版 8 媒介 × 3 场景总览"></a>
+  <figcaption><b>总览 · 8 媒介 × 3 场景（24 格）</b><span>点击开原尺寸</span></figcaption>
+</figure>
+<figure style="margin-bottom:10px">
+  <a href="godot-baseline/original-styles-planet.png" target="_blank"><img src="godot-baseline/original-styles-planet.png" alt="原版 8 媒介星球立绘"></a>
+  <figcaption><b>星球立绘 · 8 媒介放大对照</b><span>点击开原尺寸</span></figcaption>
+</figure>
+<div class="meta" style="margin-bottom:20px">
+  单张原图在 <code>godot-baseline/original/</code>（24 张 + UI）。本机 Godot 4.7.2 实跑 <b>0 errors / 0 warnings</b>。魔改版工程完整归档在 <code>archive-mutated/godot-base-mutated/</code>，与此前所有 PNG 证据、设定文档一并保留，未删除、未改写历史。
+</div>
+
+<h2 style="font-size:16px;font-weight:600;margin:26px 0 8px;letter-spacing:.04em">以下为探索留痕 · 已退回 <span style="color:var(--dim);font-size:12px;font-weight:400">（不再作为方向，也不再复现）</span></h2>
+
+<div class="grid">
+  <figure>
+    <a href="godot-baseline/00_s0_st0_1337.png" target="_blank"><img src="godot-baseline/00_s0_st0_1337.png" alt="暗黑厚涂"></a>
+    <figcaption><b>暗黑厚涂 · style 0</b><span>scene 0 / seed 1337</span></figcaption>
+  </figure>
+  <figure>
+    <a href="godot-baseline/00_s0_st2_42.png" target="_blank"><img src="godot-baseline/00_s0_st2_42.png" alt="古典铜版画"></a>
+    <figcaption><b>古典铜版画 · style 2</b><span>scene 0 / seed 42</span></figcaption>
+  </figure>
+  <figure>
+    <a href="godot-baseline/01_s0_st7_1337.png" target="_blank"><img src="godot-baseline/01_s0_st7_1337.png" alt="怪奇杂志"></a>
+    <figcaption><b>怪奇杂志 · style 7</b><span>scene 0 / seed 1337</span></figcaption>
+  </figure>
+  <figure>
+    <a href="godot-baseline/02_s1_st2_42.png" target="_blank"><img src="godot-baseline/02_s1_st2_42.png" alt="星系图"></a>
+    <figcaption><b>星系图 · style 2</b><span>scene 1 / seed 42</span></figcaption>
+  </figure>
+  <figure>
+    <a href="godot-baseline/ui.png" target="_blank"><img src="godot-baseline/ui.png" alt="原作工具界面"></a>
+    <figcaption><b>原作工具界面</b><span>完整参数面板</span></figcaption>
+  </figure>
+</div>
+
+<h2 style="font-size:16px;font-weight:600;margin:26px 0 8px;letter-spacing:.04em">留痕：具名科幻工程参考 × 星球原型 <span style="color:var(--dim);font-size:12px;font-weight:400">（4 个世界 × 3 个等级，已退回）</span></h2>
+<p class="sub" style="margin-bottom:10px">制作人提示「从科幻作品找灵感，别自己瞎琢磨」后钉的具名锚点：Kardashev 1964、Dyson 1960、Niven《Ringworld》1970、Paul Birch 1982 轨道环与壳世界。三档＝星球级自然球微痕（全域照明、<b>无盈亏</b>）／星系级<b>少数几条连续实体工程带</b>（螺旋堤·水平台地·同心环墙·胞格板，<b>无经纬网格</b>）／宇宙级<b>球壳被切成大弧带并逐层拉开错转</b>（不透明实体金属、有解析明暗与厚度边，<b>不是半透明荧光球、不是散落薯片</b>）。参考与禁令见 <a class="btn" href="SCI-FI-REFERENCES.md" target="_blank" style="padding:4px 10px;margin-left:6px">SCI-FI-REFERENCES.md ↗</a> · <a class="btn" href="ARCHETYPE-MATRIX.md" target="_blank" style="padding:4px 10px">原型原理 ↗</a></p>
+<figure style="margin-bottom:10px">
+  <a href="godot-baseline/matrix-grid.png" target="_blank"><img src="godot-baseline/matrix-grid.png" alt="4 原型 × 3 等级"></a>
+  <figcaption><b>4 原型 × 3 等级（同 seed 4242）</b><span>横向看四个世界，纵向看三档递进 · 点击开原尺寸</span></figcaption>
+</figure>
+<figure style="margin-bottom:10px">
+  <a href="godot-baseline/matrix-engraving-grid.png" target="_blank"><img src="godot-baseline/matrix-engraving-grid.png" alt="四原型在铜版媒介下"></a>
+  <figcaption><b>星系级四原型 × 古典铜版画</b><span>证明原作后期管线完整保留</span></figcaption>
+</figure>
+<div class="meta" style="margin-bottom:20px">
+  三档改造的<b>方向／方法／可见效果</b>均不同：星球级顺应自然（场不改、全域照明、无盈亏）／星系级<b>连续实体工程带</b>（按原型分螺旋堤·水平台地·同心环墙·胞格板，带宽连续、有厚度边与少量大型接缝，<b>没有等间距经纬网格</b>）／宇宙级<b>把球壳切成整圈大弧带、逐层径向拉开并错转</b>（不透明金属实体、解析明暗、断口厚度高光、桁架开口，四种带向互不相同）。铜版下排线描的是<b>实体带的轮廓</b>，不再是网格。本机 Godot 4.7.2 实跑 0 errors。
+</div>
+
+<h2 style="font-size:16px;font-weight:600;margin:26px 0 8px;letter-spacing:.04em">前一版：单原型 + 三档改造 <span style="color:var(--dim);font-size:12px;font-weight:400">（已被上面的二维方案取代）</span></h2>
+<p class="sub" style="margin-bottom:10px">制作人设定：<b>同一颗母星、同一个观察位置、同一个半径</b>，只有改造程度在变。星球级＝地表微量改造，从太空几乎看不出；星系级＝地表翻天覆地重铸，痕迹巨大张扬；宇宙级＝文明已脱离母星，母星被拆成看不出是行星的奇观。<b>不使用</b>原作的 scene / composition / 11 个地表原型 / 另放奇景物体。设定全文见 <a class="btn" href="TERRAFORM.md" target="_blank" style="padding:4px 10px;margin-left:6px">TERRAFORM.md ↗</a></p>
+<figure style="margin-bottom:10px">
+  <a href="godot-baseline/terraform-grid.png" target="_blank"><img src="godot-baseline/terraform-grid.png" alt="三档母星改造 × 两种媒介"></a>
+  <figcaption><b>三档改造 × 暗黑厚涂／古典铜版画</b><span>点击开原尺寸</span></figcaption>
+</figure>
+<div class="meta" style="margin-bottom:20px">
+  保留原作管线：噪声库、解析光照、天空、4 SubViewport + bloom + 8 媒介后期、装帧、确定性出图。新写：<code>world_terraform.gdshader</code> / <code>world_core.gdshader</code> / <code>generator.gd:_build_terraform()</code>，<code>terraform>=0</code> 时<b>完全绕开原作三套视角</b>。下排铜版证明媒介仍生效：工程网格被排线译成制图感，纸白底与装帧完整保留。本机 Godot 4.7.2 实跑 0 errors。
+</div>
+
+<h2 style="font-size:16px;font-weight:600;margin:26px 0 8px;letter-spacing:.04em">前一版：用镜头尺度表现层级 <span style="color:var(--dim);font-size:12px;font-weight:400">（已被上面的改造设定取代）</span></h2>
+<p class="sub" style="margin-bottom:10px"><b>不做</b>城市、机构、记录、灯火、证言、契约——天体图承载不了，至少现在不做。<code>world.md</code> §36：层级表示<b>影响与反制范围</b>，不是按人口展开的地图。所以三档是「边界闭合的单一对象 → 多个对象 + 通路 → 边界消融的场」。<code>tier_expression.py</code> 固定种子与色板，只改 tier，并跨两个蓝本交叉，<b>不改一行 Godot 代码</b>。</p>
+<figure style="margin-bottom:10px">
+  <a href="godot-baseline/tiers-grid.png" target="_blank"><img src="godot-baseline/tiers-grid.png" alt="三档层级 × 两个蓝本"></a>
+  <figcaption><b>三档层级 × 两个蓝本（控制变量）</b><span>点击开原尺寸</span></figcaption>
+</figure>
+<div class="meta" style="margin-bottom:20px">
+  低频结构差：<b>同 tier 跨蓝本 10.92</b> ｜ 同蓝本跨 tier 43.76 ｜ 跨 tier 且跨蓝本 43.77 → 层级差异约为蓝本差异的 <b>4 倍</b>，<b>层级成为主导视觉维度</b>。玩家先读出「一个世界 / 一片星系 / 整个法则场」，再分辨具体文明。详见 <code>FOUNDATION.md</code> §12。
+</div>
+
+<h2 style="font-size:16px;font-weight:600;margin:26px 0 8px;letter-spacing:.04em">前一版验证：不同世界如何生成 <span style="color:var(--dim);font-size:12px;font-weight:400">（结论已被 §12 收窄）</span></h2>
+<p class="sub" style="margin-bottom:10px">输入是 <b>data/civilization_profiles.csv</b> 的八个蓝本（层级 / 四范式 / 传播 / 组织 / 稳定），由 <code>world_identity.py</code> 推导原作参数，<b>不改一行 Godot 代码</b>。10 张 = 8 蓝本 + 同蓝本第二实例 + 改一个 CSV 字段的探针。<a class="btn" href="world_identity.csv" target="_blank" style="padding:4px 10px;margin-left:6px">看推导表 ↗</a></p>
+<figure style="margin-bottom:12px">
+  <a href="godot-baseline/worlds-grid.png" target="_blank"><img src="godot-baseline/worlds-grid.png" alt="八个文明蓝本生成对照"></a>
+  <figcaption><b>八个文明蓝本 + 两个验证实例</b><span>点击开原尺寸</span></figcaption>
+</figure>
+<div class="meta" style="margin-bottom:16px">
+  <b style="color:var(--hot)">验证结论（否证）</b>：A 八个蓝本可辨 — <b>部分成立</b>，但差异主要来自构图／环／色板，不是文明身份；两个不同蓝本的低频结构差最小只有 9.37。<br>
+  B 同蓝本两实例家族相似 — 修正实现后成立（01/09），但比值 0.69，不够稳。C 同 seed 复现 — <b>通过</b>（逐字节相同）。D 改 CSV 一个字段画面跟着变 — <b>通过</b>（03 → 10）。<br>
+  ⇒ <b>只把 CSV 映射到原作现有参数不成立</b>：原作参数空间里没有「城市／机构／记录／灯火／证言／契约」这一层。下一步要在生成层新增「文明痕迹」，不是在 composition / rings / count 里继续凑。详见 <code>FOUNDATION.md</code> §11。
+</div>
+
+<div class="foot">
+  第三张「怪奇杂志」可直接对照：原作是青绿低频渐变 + 细密网点 + 近乎纯色的深球，画面稳定。v3 自己写的半调叠大幅内容动效才出现闪烁花纹。<br>
+  「完整原作 · 可交互版」是参考项目自带的 Web 导出（index.html + wasm + pck），能现场调参数、切八种画风、看动效；它与本页的 <code>godot-base/</code> 是同一套源码，但一个是已编译产物、一个是可以继续改的源码基线。
+</div>
+
+</body>
+</html>

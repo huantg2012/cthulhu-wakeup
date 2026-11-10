@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>立绘生成切片 · 诸界态势 / 一个世界 · 三个时刻</title>
+<link rel="icon" href="data:,">
+<style>
+  :root{
+    --bg:#04060a; --ink:#eaf6ef; --dim:#8ea79c; --line:rgba(140,230,200,.28);
+    --hot:#7fe3c0; --warn:#e8925e; --bad:#e2607a; --paper:#e3d5b4;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Microsoft YaHei",sans-serif;}
+  body{min-height:100vh;padding:22px 26px 40px;display:flex;flex-direction:column;align-items:center}
+  .top{width:100%;max-width:1100px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;
+    border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:16px}
+  h1{font-size:18px;font-weight:600;letter-spacing:.06em;margin:0 0 5px}
+  .sub{font-size:12px;color:var(--dim);line-height:1.6;margin:0}
+  .meta{font-size:11px;color:var(--dim);text-align:right;line-height:1.7;white-space:nowrap}
+  .meta b{color:var(--hot);font-weight:500}
+  .bar{width:100%;max-width:1100px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin-bottom:14px}
+  .grp{display:flex;align-items:center;gap:6px}
+  .lab{font-size:11px;color:var(--dim);letter-spacing:.08em;margin-right:3px}
+  button{background:rgba(12,20,24,.9);color:var(--dim);border:1px solid var(--line);
+    padding:6px 11px;font-size:12px;cursor:pointer;border-radius:2px;
+    font-family:inherit;transition:.15s}
+  button:hover{color:var(--ink);border-color:var(--hot)}
+  button.on{background:rgba(127,227,192,.14);color:var(--hot);border-color:var(--hot)}
+  input[type=number]{width:82px;background:rgba(12,20,24,.9);color:var(--ink);
+    border:1px solid var(--line);padding:6px 8px;font-size:12px;border-radius:2px;font-family:inherit}
+  label.ck{font-size:12px;color:var(--dim);display:flex;align-items:center;gap:5px;cursor:pointer}
+  .platewrap{position:relative;width:800px;max-width:100%}
+  canvas#plate{display:block;width:800px;height:450px;max-width:100%;height:auto;
+    border:1px solid rgba(140,230,200,.22);background:#000}
+  .hint{width:100%;max-width:1100px;font-size:11px;color:var(--dim);margin:12px 0 16px;line-height:1.7}
+  .timeline{width:100%;max-width:1100px}
+  .tl-title{font-size:11px;color:var(--dim);letter-spacing:.1em;margin-bottom:8px}
+  .tl{display:flex;gap:10px}
+  .tl-item{flex:1;background:rgba(10,16,20,.8);border:1px solid var(--line);padding:7px;cursor:pointer;transition:.15s}
+  .tl-item:hover{border-color:var(--hot)}
+  .tl-item.on{border-color:var(--hot);box-shadow:0 0 0 1px rgba(127,227,192,.25) inset}
+  .tl-item canvas{display:block;width:100%;height:auto;background:#000}
+  .tl-cap{display:flex;justify-content:space-between;font-size:11px;margin-top:6px;color:var(--dim)}
+  .tl-item.on .tl-cap b{color:var(--hot)}
+  .tl-cap b{font-weight:500;color:var(--ink)}
+  .foot{width:100%;max-width:1100px;margin-top:20px;border-top:1px solid var(--line);
+    padding-top:10px;font-size:11px;color:var(--dim);line-height:1.8}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div>
+    <h1>诸界态势 · 一个世界，三个时刻</h1>
+    <p class="sub">同一世界、同一 seed，按污染 / 屏障 / 察觉的连续变化生成。画面里没有贴图、没有外部资源，全部逐像素现场算出。</p>
+  </div>
+  <div class="meta">
+    分支 <b>codex/visual-generation-exploration</b><br>
+    切片 · 未接真实 Session · 固定种子可复现
+  </div>
+</div>
+
+<div class="bar">
+  <div class="grp"><span class="lab">时刻</span><span id="btns-state"></span></div>
+  <div class="grp"><span class="lab">画风</span><span id="btns-style"></span></div>
+  <div class="grp"><span class="lab">种子</span><input id="seed" type="number" value="1337"></div>
+  <div class="grp"><label class="ck"><input id="anim" type="checkbox" checked> 动效</label></div>
+  <div class="grp"><button id="export">导出 PNG</button></div>
+</div>
+
+<div class="platewrap"><canvas id="plate" width="800" height="450"></canvas></div>
+
+<p class="hint">数值与文字用立绘反差色绘制并加背景块（制作人 2026-11-09 允许整屏压黑）。装帧编号与引线只做氛围，不遮费用、概率与条件。</p>
+
+<div class="timeline">
+  <div class="tl-title">时间线 · 点击切换主画面</div>
+  <div class="tl" id="tl"></div>
+</div>
+
+<div class="foot">
+  内容层：球面噪声场 / 腐化蔓延 / 环阴影 / 夜面城市灯 / 赤道符文带 / 大气边缘光 / 三层星点。<br>
+  画风：内容层（对照）· 梦谕残影 · 仪轨刻本 · 神侧观测 —— 后三种按本游戏世界观新增，非参考项目已有媒介换皮。
+</div>
+
+<script>
+"use strict";
+const W=800,H=450,TAU=Math.PI*2;
+const plate=document.getElementById('plate'), ctx=plate.getContext('2d',{willReadFrequently:true});
+
+/* ---------- 状态：同一个世界的三个时刻 ---------- */
+const STATES=[
+  {name:'干净',   sub:'尚未被看见', poll:0.06, barrier:0.92, notice:0.10, counter:'无',          counterLv:0},
+  {name:'扩散中', sub:'开始被记录', poll:0.46, barrier:0.58, notice:0.42, counter:'调查者入境', counterLv:1},
+  {name:'快反扑', sub:'正在被清除', poll:0.86, barrier:0.22, notice:0.83, counter:'清剿令 · 3 轮', counterLv:2},
+];
+const STYLES=[
+  {id:'raw',      name:'内容层'},
+  {id:'oneiric',  name:'梦谕残影'},
+  {id:'codex',    name:'仪轨刻本'},
+  {id:'vantage',  name:'神侧观测'},
+];
+let seed=1337, stateIdx=1, styleId='vantage', animate=true, t0=performance.now();
+
+/* ---------- 数学 / 噪声（零外部资源） ---------- */
+const clamp=(v,a,b)=>v<a?a:(v>b?b:v);
+const mix=(a,b,k)=>a+(b-a)*k;
+const fract=x=>x-Math.floor(x);
+const ss=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
+function h3(i,j,k,s){
+  let n=Math.imul(i|0,374761393)^Math.imul(j|0,668265263)^Math.imul(k|0,1442695041)^Math.imul(s|0,1013904223);
+  n=Math.imul(n^(n>>>13),1274126177);
+  return ((n^(n>>>16))>>>0)/4294967295;
+}
+function n3(x,y,z,s){
+  const xi=Math.floor(x),yi=Math.floor(y),zi=Math.floor(z);
+  let fx=x-xi,fy=y-yi,fz=z-zi;
+  fx=fx*fx*(3-2*fx);fy=fy*fy*(3-2*fy);fz=fz*fz*(3-2*fz);
+  const a=h3(xi,yi,zi,s),     b=h3(xi+1,yi,zi,s),
+        c=h3(xi,yi+1,zi,s),   d=h3(xi+1,yi+1,zi,s),
+        e=h3(xi,yi,zi+1,s),   f=h3(xi+1,yi,zi+1,s),
+        g=h3(xi,yi+1,zi+1,s), v=h3(xi+1,yi+1,zi+1,s);
+  const x00=a+(b-a)*fx, x10=c+(d-c)*fx, x01=e+(f-e)*fx, x11=g+(v-g)*fx;
+  const y0=x00+(x10-x00)*fy, y1=x01+(x11-x01)*fy;
+  return (y0+(y1-y0)*fz)*2-1;
+}
+function fbm(x,y,z,s,oct){
+  let sum=0,amp=.5,f=1;
+  for(let i=0;i<oct;i++){sum+=amp*n3(x*f,y*f,z*f,s+i*17);f*=2.03;amp*=.5;}
+  return sum;
+}
+function segDist(px,py,ax,ay,bx,by){
+  const vx=bx-ax,vy=by-ay,wx=px-ax,wy=py-ay;
+  const t=clamp((wx*vx+wy*vy)/(vx*vx+vy*vy||1),0,1);
+  const dx=wx-vx*t,dy=wy-vy*t;return Math.sqrt(dx*dx+dy*dy);
+}
+/* 5 级色板：c0..c3 走 ramp，c4 只做发光 */
+const RAMP=[[.012,.035,.045],[.035,.14,.16],[.10,.32,.30],[.42,.52,.40]];
+const C4=[.55,1.0,.72], COR_DARK=[.055,0,.085], CITY=[1,.82,.45];
+function ramp(t){
+  t=clamp(t,0,1)*3;const i=Math.min(2,Math.floor(t)),f=clamp(t-i,0,1);
+  return [mix(RAMP[i][0],RAMP[i+1][0],f),mix(RAMP[i][1],RAMP[i+1][1],f),mix(RAMP[i][2],RAMP[i+1][2],f)];
+}
+
+/* ---------- ① 意思 → 场：内容层 ---------- */
+function buildRaw(st,sd){
+  const cv=document.createElement('canvas');cv.width=W;cv.height=H;
+  const c=cv.getContext('2d',{willReadFrequently:true});
+  const img=c.createImageData(W,H),d=img.data;
+  const cx=W*.44,cy=H*.53,R=168;
+  const so=sd*.0137;
+  const Lx=-.55,Ly=-.42,Lz=.72;
+  // 腐化源点（由 seed 决定，稳定复现）
+  const ca=h3(sd,3,7,11)*TAU, cb=(h3(sd,9,2,13)-.5)*1.2;
+  const cdx=Math.cos(ca)*Math.cos(cb),cdy=Math.sin(cb),cdz=Math.sin(ca)*Math.cos(cb);
+  const corGlow=[mix(.85,.95,st.poll),mix(.25,.28,st.poll),mix(1,.35,st.poll)];
+  const atmo=[mix(.28,.95,st.poll),mix(.85,.35,st.poll),mix(.68,.28,st.poll)];
+  const glowPts=[];
+  for(let y=0;y<H;y++){
+    for(let x=0;x<W;x++){
+      const i=(y*W+x)*4;
+      const dx=(x-cx)/R,dy=(y-cy)/R,r2=dx*dx+dy*dy;
+      let r,g,b;
+      if(r2<1){
+        const nx=dx,ny=-dy,nz=Math.sqrt(1-r2);
+        // 地表高度场 + 脊线裂纹
+        const q=fbm(nx*2.4+so,ny*2.4+so,nz*2.4+so,sd,4);
+        const rg=1-Math.abs(n3(nx*7.1+so,ny*7.1,nz*7.1,sd+7));
+        const cr=Math.pow(rg,12)+.55*Math.pow(1-Math.abs(n3(nx*15,ny*15,nz*15,sd+19)),16);
+        const ndl=nx*Lx+ny*Ly+nz*Lz;
+        const day=ss(-.06,.24,ndl);
+        let col=ramp(.40+q*1.05+rg*.10);
+        const lit=.16+.92*day;
+        r=col[0]*lit;g=col[1]*lit;b=col[2]*lit;
+        // 腐化蔓延：从种子点长出，边界毛糙
+        const dotc=nx*cdx+ny*cdy+nz*cdz;
+        const dd=Math.acos(clamp(dotc,-1,1))/Math.PI;
+        const wob=n3(nx*3.2+1,ny*3.2,nz*3.2,sd+23)*.26;
+        const reach=st.poll*1.28;
+        const mask=1-ss(reach-.24,reach,dd+wob);
+        r=mix(r,COR_DARK[0],mask*.72);g=mix(g,COR_DARK[1],mask*.72);b=mix(b,COR_DARK[2],mask*.72);
+        const gl=Math.min(1.3,cr)*mask;
+        r+=corGlow[0]*gl*1.05;g+=corGlow[1]*gl*1.05;b+=corGlow[2]*gl*1.05;
+        if(gl>.62 && (x+y)%11===0 && glowPts.length<180) glowPts.push({x,y,p:h3(x,y,0,sd)*TAU});
+        // 夜面城市灯：察觉越高越密
+        if(ndl<.06){
+          const gx=Math.floor(nx*46),gy=Math.floor(ny*46),gz=Math.floor(nz*46);
+          const hv=h3(gx,gy,gz,sd+31);
+          const cl=n3(nx*5+3,ny*5,nz*5,sd+37)*.5+.5;
+          if(hv>.80+ (1-st.notice)*.14 && cl>.38){
+            const k=(1-day)*st.notice*1.35;
+            r+=CITY[0]*k;g+=CITY[1]*k;b+=CITY[2]*k;
+          }
+        }
+        // 环阴影：屏障压在球面上
+        const band=dx*.38+dy*.92;
+        const rings=Math.exp(-Math.pow((band-.55)/.055,2))+.6*Math.exp(-Math.pow((band-.72)/.03,2));
+        const sh=1-rings*st.barrier*.62;r*=sh;g*=sh;b*=sh;
+        // 赤道符文带（生成式文字，不构成可读语言）
+        const lat=Math.asin(clamp(ny,-1,1));
+        if(Math.abs(lat)<.085 && nz>.12){
+          const lon=Math.atan2(nz,nx),gg=(lon/TAU+.5)*64,id=Math.floor(gg),fx=fract(gg),fy=(lat+.085)/.17;
+          if(h3(id,5,0,sd+41)>.42){
+            const gid=Math.floor(h3(id,3,0,sd+43)*97);
+            let dd2=9;
+            // 斜线 / 竖线 / 横线 / 十字，避免排成可读数字
+            const A=[[.2,.2,.8,.2],[.2,.8,.8,.8],[.2,.2,.2,.8],[.8,.2,.8,.8],
+                     [.2,.2,.8,.8],[.8,.2,.2,.8],[.5,.14,.5,.86],[.14,.5,.86,.5]];
+            for(let k=0;k<8;k++) if(h3(gid,k,1,sd+47)>.58){const s=A[k];dd2=Math.min(dd2,segDist(fx,fy,s[0],s[1],s[2],s[3]));}
+            if(gid%2===0) dd2=Math.min(dd2,Math.abs(Math.hypot(fx-.5,fy-.5)-.19));
+            const line=1-ss(.026,.058,dd2);
+            r=mix(r,r*.3,line*.6);g=mix(g,g*.3,line*.6);b=mix(b,b*.3,line*.6);
+            r+=C4[0]*line*.34;g+=C4[1]*line*.34;b+=C4[2]*line*.34;
+          }
+        }
+        // 大气边缘光
+        const fres=Math.pow(1-nz,3.2);
+        const ak=fres*(.30+.70*Math.max(0,ndl))*(.45+st.poll*.8);
+        r+=atmo[0]*ak;g+=atmo[1]*ak;b+=atmo[2]*ak;
+      }else{
+        // 深空：低频星云 + 三层星点
+        const neb=.5+.5*Math.sin(x*.0083+so*13)*Math.sin(y*.0121+so*7)
+                  +.25*Math.sin(x*.021-y*.017+so*3);
+        const nv=Math.pow(clamp(neb*.5,0,1),2.4);
+        r=.004+nv*.045;g=.007+nv*.030;b=.013+nv*.075;
+        for(let L=0;L<3;L++){
+          const step=[2.7,5.3,9.7][L],th=[.9935,.9962,.9978][L],br=[.42,.75,1.05][L];
+          const gx=Math.floor(x/step),gy=Math.floor(y/step),hv=h3(gx,gy,L,sd+13);
+          if(hv>th){
+            // 格内随机位置 + 高斯核心 + 光晕，避免整格亮成方块
+            const px=(gx+.15+h3(gx,gy,1,sd+17)*.7)*step,
+                  py=(gy+.15+h3(gx,gy,2,sd+19)*.7)*step;
+            const dd=Math.hypot(x-px,y-py);
+            const core=Math.exp(-dd*dd/(.62*.62)),halo=Math.exp(-dd/(step*.34))*.10;
+            const k=(hv-th)/(1-th)*br*(core+halo);
+            r+=k*.85;g+=k*.95;b+=k;
+          }
+        }
+      }
+      d[i]=clamp(r,0,1)*255;d[i+1]=clamp(g,0,1)*255;d[i+2]=clamp(b,0,1)*255;d[i+3]=255;
+    }
+  }
+  c.putImageData(img,0,0);
+  cv._glow=glowPts;
+  return cv;
+}
+
+/* ---------- ② 场 → 媒介：三种新画风 ---------- */
+function applyStyle(raw,sid,st,sd){
+  const src=raw.getContext('2d').getImageData(0,0,W,H).data;
+  const cv=document.createElement('canvas');cv.width=W;cv.height=H;
+  const c=cv.getContext('2d',{willReadFrequently:true});const out=c.createImageData(W,H),d=out.data;d.set(src);
+  if(sid==='raw'){
+    // 对照：只保留内容层
+  }else if(sid==='oneiric'){
+    // 梦谕残影：通道位移 + 局部负像 + 边缘溶解 + 冷紫偏色
+    for(let y=0;y<H;y++)for(let x=0;x<W;x++){
+      const i=(y*W+x)*4;
+      const xr=Math.min(W-1,x+4),xb=Math.max(0,x-4);
+      const l=(src[i]*.299+src[i+1]*.587+src[i+2]*.114)/255;
+      let R=src[(y*W+xr)*4],G=src[i+1],B=src[(y*W+xb)*4+2];
+      const neg=ss(.60,.90,l)*.72;
+      R=R*(1-neg)+(255-R)*neg;G=G*(1-neg)+(255-G)*neg;B=B*(1-neg)+(255-B)*neg;
+      const dis=h3(Math.floor(x/3),Math.floor(y/3),0,sd+77);
+      if(dis>.935&&l<.42){R*=.18;G*=.22;B*=.30;}
+      const cool=.90+.10*Math.sin(y*.013+sd);
+      d[i]=R*.90*cool;d[i+1]=G*.88;d[i+2]=Math.min(255,B*1.12+10);d[i+3]=255;
+    }
+  }else if(sid==='codex'){
+    // 仪轨刻本：三向排线把明暗译成墨，纸底 + 朱墨套印
+    const paper=[226,212,180],inkc=[38,27,20];
+    for(let y=0;y<H;y++)for(let x=0;x<W;x++){
+      const i=(y*W+x)*4;
+      const l=(src[i]*.299+src[i+1]*.587+src[i+2]*.114)/255;
+      const sp=5;
+      const h1=Math.abs(fract((x+y)/sp)-.5)*2;
+      const h2=Math.abs(fract((x-y)/sp)-.5)*2;
+      const h3l=Math.abs(fract(y/(sp*.7))-.5)*2;
+      let ink=0;
+      if(l<.78&&h1<(1-l)*.95)ink=1;
+      if(l<.58&&h2<(.62-l)*1.45)ink=1;
+      if(l<.30&&h3l<(.34-l)*2.1)ink=1;
+      if(x>0&&x<W-1){
+        const j=i+4,lr=(src[j]*.299+src[j+1]*.587+src[j+2]*.114)/255;
+        if(Math.abs(lr-l)>.11)ink=1;
+      }
+      const grain=.96+.04*h3(x,y,1,sd+5);
+      let R=mix(paper[0],inkc[0],ink)*grain,
+          G=mix(paper[1],inkc[1],ink)*grain,
+          B=mix(paper[2],inkc[2],ink)*grain;
+      // 高饱和区保留一点原色，像彩色版的手工上色
+      const mx=Math.max(src[i],src[i+1],src[i+2]),mn=Math.min(src[i],src[i+1],src[i+2]);
+      const sat=(mx-mn)/Math.max(mx,1);
+      if(sat>.42){R=mix(R,src[i]*.85,.36);G=mix(G,src[i+1]*.85,.36);B=mix(B,src[i+2]*.85,.36);}
+      d[i]=R;d[i+1]=G;d[i+2]=B;d[i+3]=255;
+    }
+  }else{
+    // 神侧观测：抬暗部去单一光源 + 等高线 + 青色网格底
+    for(let y=0;y<H;y++)for(let x=0;x<W;x++){
+      const i=(y*W+x)*4;
+      const l=(src[i]*.299+src[i+1]*.587+src[i+2]*.114)/255;
+      const lift=Math.pow(l,.62)*.82+.13;
+      let R=mix(src[i]/255,lift,.46)*255,
+          G=mix(src[i+1]/255,lift,.46)*255,
+          B=mix(src[i+2]/255,lift,.46)*255;
+      const f=fract(l*12);
+      if(f<.045||f>.955){R+=34;G+=112;B+=126;}
+      d[i]=clamp(R,0,255);d[i+1]=clamp(G,0,255);d[i+2]=clamp(B,0,255);d[i+3]=255;
+    }
+  }
+  c.putImageData(out,0,0);
+  return cv;
+}
+
+/* ---------- 颗粒贴图（预生成一次） ---------- */
+const grain=document.createElement('canvas');grain.width=128;grain.height=128;
+{
+  const c=grain.getContext('2d'),im=c.createImageData(128,128),d=im.data;
+  for(let i=0;i<128*128;i++){const v=h3(i%128,Math.floor(i/128),0,91)*255;d[i*4]=v;d[i*4+1]=v;d[i*4+2]=v;d[i*4+3]=255;}
+  c.putImageData(im,0,0);
+}
+
+/* ---------- 缓存 ---------- */
+let rawCache=[],base=null;
+function rebuildRaw(){
+  rawCache=STATES.map(s=>buildRaw(s,seed));
+  document.querySelectorAll('.tl-item canvas').forEach((cv,i)=>{
+    const c=cv.getContext('2d');c.imageSmoothingEnabled=true;
+    c.clearRect(0,0,cv.width,cv.height);c.drawImage(rawCache[i],0,0,cv.width,cv.height);
+  });
+  rebuildBase();
+}
+function rebuildBase(){base=applyStyle(rawCache[stateIdx],styleId,STATES[stateIdx],seed);}
+
+/* ---------- ③ 图 → 物件：动效 / 装帧 / 读数 ---------- */
+function frame(now){
+  const t=animate?(now-t0)/1000:3.0;
+  const st=STATES[stateIdx],pts=rawCache[stateIdx]._glow;
+  ctx.clearRect(0,0,W,H);
+  ctx.drawImage(base,0,0);
+
+  // 各画风专属的叠影
+  if(styleId==='oneiric'){
+    ctx.save();ctx.globalCompositeOperation='lighter';ctx.globalAlpha=.20;
+    ctx.drawImage(base,9+Math.sin(t*.7)*3,-5);ctx.restore();
+  }
+  if(styleId==='vantage'){
+    // 同一对象的多个时间切面叠影并存
+    ctx.save();ctx.globalCompositeOperation='screen';
+    ctx.globalAlpha=.24;ctx.drawImage(base,-17+Math.sin(t*.45)*7,7+Math.cos(t*.37)*5,W*1.04,H*1.04);
+    ctx.globalAlpha=.17;ctx.drawImage(base,15-Math.sin(t*.31)*5,-9+Math.cos(t*.52)*4,W*.975,H*.975);
+    ctx.restore();
+    const cx=W*.44,cy=H*.53,R=168;
+    // 偏移轮廓：另一个时刻的球面边界，不假装由人记录
+    ctx.save();ctx.globalCompositeOperation='screen';ctx.lineWidth=1;
+    ctx.strokeStyle='rgba(110,235,215,.28)';
+    ctx.beginPath();ctx.arc(cx+34,cy-18,R*.86,0,TAU);ctx.stroke();
+    ctx.beginPath();ctx.arc(cx-26,cy+14,R*.93,0,TAU);ctx.stroke();
+    // 经纬网格：不是仪器读数，是「正在被注视」
+    ctx.strokeStyle='rgba(95,225,205,.23)';
+    for(let k=-3;k<=3;k++){ctx.beginPath();ctx.ellipse(cx,cy,R*.34*Math.abs(k),R,0,0,TAU);ctx.stroke();}
+    for(let k=-3;k<=3;k++){const yy=cy+k*R*.27,hh=Math.sqrt(Math.max(0,R*R-(yy-cy)*(yy-cy)));
+      ctx.beginPath();ctx.ellipse(cx,yy,hh,Math.max(2,hh*.16),0,0,TAU);ctx.stroke();}
+    ctx.restore();
+  }
+  if(styleId==='codex'){
+    // 度量线与朱笔批注
+    ctx.save();ctx.strokeStyle='rgba(150,45,35,.55)';ctx.lineWidth=1;
+    const cx=W*.44,cy=H*.53,R=168;
+    ctx.beginPath();ctx.arc(cx,cy,R*1.34,0,TAU);ctx.stroke();
+    ctx.beginPath();ctx.arc(cx,cy,R*1.30,0,TAU);ctx.stroke();
+    for(let k=0;k<48;k++){const a=k*TAU/48+t*.02,r0=R*1.30,r1=k%4===0?R*1.40:R*1.35;
+      ctx.beginPath();ctx.moveTo(cx+Math.cos(a)*r0,cy+Math.sin(a)*r0);
+      ctx.lineTo(cx+Math.cos(a)*r1,cy+Math.sin(a)*r1);ctx.stroke();}
+    ctx.restore();
+  }
+
+  // 动效：裂纹发光呼吸 + 符文环缓慢转动
+  if(pts.length){
+    ctx.save();ctx.globalCompositeOperation='screen';
+    for(let k=0;k<pts.length;k++){
+      const p=pts[k],pu=.5+.5*Math.sin(t*1.7+p.p+p.x*.012),a=.09+.25*pu,rr=1.7+2.0*pu;
+      const col=styleId==='codex'?`170,55,40`:`190,90,255`;
+      ctx.fillStyle=`rgba(${col},${a*.14})`;
+      ctx.beginPath();ctx.arc(p.x,p.y,rr*2.0,0,TAU);ctx.fill();
+      ctx.fillStyle=`rgba(${col},${a})`;
+      ctx.beginPath();ctx.arc(p.x,p.y,rr,0,TAU);ctx.fill();
+    }
+    ctx.restore();
+  }
+  // 大气呼吸：苏醒的边缘辉光，低频、不抢读数
+  {
+    const breath=.5+.5*Math.sin(t*1.05);
+    ctx.save();ctx.globalCompositeOperation='lighter';
+    ctx.strokeStyle=styleId==='codex'?`rgba(170,60,40,${.05+.10*breath})`:`rgba(120,235,205,${.05+.13*breath})`;
+    ctx.lineWidth=7+7*breath;
+    ctx.beginPath();ctx.arc(W*.44,H*.53,170,0,TAU);ctx.stroke();
+    ctx.restore();
+  }
+  // 球外法阵环（教团留下的痕迹）
+  ctx.save();ctx.translate(W*.44,H*.53);ctx.rotate(t*.18);
+  ctx.strokeStyle=styleId==='codex'?'rgba(150,45,35,.42)':'rgba(127,227,192,.30)';ctx.lineWidth=1;
+  for(let k=0;k<56;k++){
+    const a=k*TAU/56,r0=196,r1=k%7===0?207:201;
+    ctx.beginPath();ctx.moveTo(Math.cos(a)*r0,Math.sin(a)*r0*.46);
+    ctx.lineTo(Math.cos(a)*r1,Math.sin(a)*r1*.46);ctx.stroke();
+  }
+  ctx.restore();
+
+  // 逐帧颗粒（很淡，不影响读数）
+  ctx.save();ctx.globalAlpha=.045;ctx.globalCompositeOperation='overlay';
+  const pat=ctx.createPattern(grain,'repeat');ctx.fillStyle=pat;
+  ctx.translate((t*7)%128-128,(t*5)%128-128);ctx.fillRect(0,0,W+256,H+256);ctx.restore();
+
+  drawEditorial(st,t);
+  drawHUD(st);
+  requestAnimationFrame(frame);
+}
+function drawEditorial(st,t){
+  // 双线边框 + 角饰 + 编号；不遮读数
+  ctx.save();
+  ctx.strokeStyle='rgba(127,227,192,.34)';ctx.lineWidth=1;
+  ctx.strokeRect(14.5,14.5,W-29,H-29);
+  ctx.strokeStyle='rgba(127,227,192,.14)';ctx.strokeRect(20.5,20.5,W-41,H-41);
+  ctx.fillStyle='rgba(234,246,239,.78)';ctx.font='11px "PingFang SC",sans-serif';
+  ctx.fillText('WORLD 03 / Ψ-2417',30,38);
+  ctx.textAlign='right';ctx.fillStyle='rgba(142,167,156,.8)';
+  ctx.fillText('ATLAS OF THE OUTER SPHERES  ·  PLATE III',W-30,38);
+  ctx.textAlign='left';
+  // 引线：污染前沿
+  ctx.strokeStyle='rgba(127,227,192,.45)';
+  ctx.beginPath();ctx.moveTo(W*.44+118,H*.53-56);ctx.lineTo(W-232,H*.53-92);ctx.lineTo(W-206,H*.53-92);ctx.stroke();
+  ctx.fillStyle='rgba(234,246,239,.85)';ctx.font='11px "PingFang SC",sans-serif';
+  ctx.fillText('污染前沿',W-232,H*.53-98);
+  // 底部状态条
+  ctx.fillStyle='rgba(127,227,192,.55)';ctx.fillRect(30,H-38,3,12);
+  ctx.fillStyle='rgba(234,246,239,.85)';ctx.font='12px "PingFang SC",sans-serif';
+  ctx.fillText(`灰湾 · ${st.name} — ${st.sub}`,42,H-28);
+  ctx.restore();
+}
+function roundRect(x,y,w,h,r){
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
+}
+function drawHUD(st){
+  // 制作人 2026-11-09：整屏压黑允许，值与文字用反差色 + 背景块
+  const x=W-214,y=H-224,w=184,h=150;
+  ctx.save();
+  roundRect(x,y,w,h,3);ctx.fillStyle='rgba(4,8,11,.88)';ctx.fill();
+  ctx.strokeStyle='rgba(127,227,192,.42)';ctx.lineWidth=1;ctx.stroke();
+  ctx.fillStyle='rgba(127,227,192,.92)';ctx.font='11px "PingFang SC",sans-serif';
+  ctx.fillText('当前公开投影',x+14,y+22);
+  ctx.strokeStyle='rgba(127,227,192,.20)';ctx.beginPath();ctx.moveTo(x+14,y+31);ctx.lineTo(x+w-14,y+31);ctx.stroke();
+  const rows=[
+    ['污染',st.poll,st.poll>.7?'#e2607a':'#e8925e'],
+    ['屏障',st.barrier,'#7fe3c0'],
+    ['察觉',st.notice,st.notice>.7?'#e2607a':'#e8925e'],
+  ];
+  rows.forEach((row,k)=>{
+    const yy=y+52+k*27;
+    ctx.fillStyle='rgba(142,167,156,.95)';ctx.font='11px "PingFang SC",sans-serif';ctx.fillText(row[0],x+14,yy);
+    // 刻度尺式背景块：读得像观测档案，不是后台进度条
+    ctx.fillStyle='rgba(255,255,255,.05)';ctx.fillRect(x+56,yy-10,84,13);
+    ctx.save();ctx.globalAlpha=.30;ctx.fillStyle=row[2];ctx.fillRect(x+56,yy-10,84*row[1],13);ctx.restore();
+    for(let k=0;k<=10;k++){ctx.fillStyle='rgba(127,227,192,.32)';
+      ctx.fillRect(x+56+k*8.4,yy-4,1,k%5===0?7:4);}
+    ctx.fillStyle=row[2];ctx.fillRect(x+56+84*row[1]-1.5,yy-10,3,13);
+    ctx.fillStyle='#eaf6ef';ctx.font='11px "PingFang SC",sans-serif';ctx.textAlign='right';
+    ctx.fillText(row[1].toFixed(2),x+w-14,yy);ctx.textAlign='left';
+  });
+  const yy=y+138;
+  ctx.fillStyle='rgba(142,167,156,.95)';ctx.font='11px "PingFang SC",sans-serif';ctx.fillText('反制',x+14,yy);
+  ctx.fillStyle=st.counterLv===2?'#e2607a':(st.counterLv===1?'#e8925e':'#7fe3c0');
+  ctx.font='11px "PingFang SC",sans-serif';ctx.textAlign='right';
+  ctx.fillText(st.counter,x+w-14,yy);ctx.textAlign='left';
+  ctx.restore();
+}
+
+/* ---------- 控件 ---------- */
+const bs=document.getElementById('btns-state'),by=document.getElementById('btns-style');
+STATES.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s.name;
+  b.onclick=()=>{stateIdx=i;syncButtons();rebuildBase();};bs.appendChild(b);});
+STYLES.forEach(s=>{const b=document.createElement('button');b.textContent=s.name;
+  b.onclick=()=>{styleId=s.id;syncButtons();rebuildBase();};by.appendChild(b);});
+const tl=document.getElementById('tl');
+STATES.forEach((s,i)=>{
+  const it=document.createElement('div');it.className='tl-item';
+  const cv=document.createElement('canvas');cv.width=240;cv.height=135;
+  const cap=document.createElement('div');cap.className='tl-cap';
+  cap.innerHTML=`<b>${s.name}</b><span>污染 ${s.poll.toFixed(2)} · 察觉 ${s.notice.toFixed(2)}</span>`;
+  it.appendChild(cv);it.appendChild(cap);it.onclick=()=>{stateIdx=i;syncButtons();rebuildBase();};
+  tl.appendChild(it);
+});
+function syncButtons(){
+  bs.querySelectorAll('button').forEach((b,i)=>b.classList.toggle('on',i===stateIdx));
+  by.querySelectorAll('button').forEach((b,i)=>b.classList.toggle('on',STYLES[i].id===styleId));
+  tl.querySelectorAll('.tl-item').forEach((b,i)=>b.classList.toggle('on',i===stateIdx));
+}
+document.getElementById('seed').onchange=e=>{const v=parseInt(e.target.value,10);
+  if(!isNaN(v)){seed=v;rebuildRaw();}};
+document.getElementById('anim').onchange=e=>{animate=e.target.checked;};
+document.getElementById('export').onclick=()=>{
+  const a=document.createElement('a');
+  a.download=`world-${stateIdx}-${styleId}-${seed}.png`;a.href=plate.toDataURL('image/png');a.click();
+};
+window.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'){stateIdx=(stateIdx+1)%3;syncButtons();rebuildBase();}
+  if(e.key==='ArrowLeft'){stateIdx=(stateIdx+2)%3;syncButtons();rebuildBase();}
+});
+syncButtons();rebuildRaw();requestAnimationFrame(frame);
+</script>
+</body>
+</html>

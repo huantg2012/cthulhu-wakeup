@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>立绘生成切片 v2 · 八种画风 / 表面级动效</title>
+<link rel="icon" href="data:,">
+<style>
+  :root{--bg:#04060a;--ink:#eaf6ef;--dim:#8ea79c;--line:rgba(140,230,200,.28);--hot:#7fe3c0;}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Microsoft YaHei",sans-serif}
+  body{min-height:100vh;padding:20px 26px 36px;display:flex;flex-direction:column;align-items:center}
+  .top{width:100%;max-width:1100px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;
+    border-bottom:1px solid var(--line);padding-bottom:11px;margin-bottom:14px}
+  h1{font-size:18px;font-weight:600;letter-spacing:.06em;margin:0 0 5px}
+  .sub{font-size:12px;color:var(--dim);line-height:1.6;margin:0}
+  .meta{font-size:11px;color:var(--dim);text-align:right;line-height:1.7;white-space:nowrap}
+  .meta b{color:var(--hot);font-weight:500}
+  .bar{width:100%;max-width:1100px;display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-bottom:13px}
+  .grp{display:flex;flex-wrap:wrap;align-items:center;gap:5px}
+  .lab{font-size:11px;color:var(--dim);letter-spacing:.08em;margin-right:3px}
+  .sep{font-size:10px;color:#5b7068;border:1px solid var(--line);padding:3px 6px;border-radius:2px}
+  button{background:rgba(12,20,24,.9);color:var(--dim);border:1px solid var(--line);
+    padding:5px 10px;font-size:12px;cursor:pointer;border-radius:2px;font-family:inherit;transition:.15s}
+  button:hover{color:var(--ink);border-color:var(--hot)}
+  button.on{background:rgba(127,227,192,.14);color:var(--hot);border-color:var(--hot)}
+  input[type=number]{width:78px;background:rgba(12,20,24,.9);color:var(--ink);
+    border:1px solid var(--line);padding:5px 8px;font-size:12px;border-radius:2px;font-family:inherit}
+  label.ck{font-size:12px;color:var(--dim);display:flex;align-items:center;gap:5px;cursor:pointer}
+  .platewrap{position:relative;width:800px;max-width:100%;line-height:0}
+  .platewrap canvas{position:absolute;left:0;top:0;width:800px;height:450px;max-width:100%;height:auto}
+  #gl{position:relative;display:block;background:#000;border:1px solid rgba(140,230,200,.22)}
+  #ov{pointer-events:none}
+  .hint{width:100%;max-width:1100px;font-size:11px;color:var(--dim);margin:12px 0 14px;line-height:1.7}
+  .timeline{width:100%;max-width:1100px}
+  .tl-title{font-size:11px;color:var(--dim);letter-spacing:.1em;margin-bottom:8px}
+  .tl{display:flex;gap:10px}
+  .tl-item{flex:1;background:rgba(10,16,20,.8);border:1px solid var(--line);padding:7px;cursor:pointer;transition:.15s}
+  .tl-item:hover{border-color:var(--hot)}
+  .tl-item.on{border-color:var(--hot);box-shadow:0 0 0 1px rgba(127,227,192,.25) inset}
+  .tl-item canvas{display:block;width:100%;height:auto;background:#000}
+  .tl-cap{display:flex;justify-content:space-between;font-size:11px;margin-top:6px;color:var(--dim);line-height:1.4}
+  .tl-item.on .tl-cap b{color:var(--hot)}
+  .tl-cap b{font-weight:500;color:var(--ink)}
+  .foot{width:100%;max-width:1100px;margin-top:18px;border-top:1px solid var(--line);
+    padding-top:10px;font-size:11px;color:var(--dim);line-height:1.8}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div>
+    <h1>诸界态势 · 一个世界，三个时刻</h1>
+    <p class="sub">v2：内容层与媒介层都在 GPU fragment shader 里逐帧求值。表面纹理、花纹、符文、众眼本身在动，不是叠在静态底图上的装饰。</p>
+  </div>
+  <div class="meta">分支 <b>codex/visual-generation-exploration</b><br>未接真实 Session · 固定种子可复现</div>
+</div>
+
+<div class="bar">
+  <div class="grp"><span class="lab">时刻</span><span id="btns-state"></span></div>
+  <div class="grp">
+    <span class="lab">画风</span><span class="sep">原作保留 5</span><span id="btns-keep"></span>
+    <span class="sep">本作新增 3</span><span id="btns-new"></span>
+  </div>
+  <div class="grp"><span class="lab">种子</span><input id="seed" type="number" value="1337"></div>
+  <div class="grp"><label class="ck"><input id="anim" type="checkbox" checked> 动效</label></div>
+  <div class="grp"><button id="export">导出 PNG</button></div>
+</div>
+
+<div class="platewrap"><canvas id="gl" width="800" height="450"></canvas><canvas id="ov" width="800" height="450"></canvas></div>
+
+<p class="hint">画风 0–4 为原作保留并逐支重实现，5–7 为本作按世界观新增；已移除的赛璐璐 / 低多边形 / 全息不在此列。数值用反差色 + 背景块，装帧不遮费用与条件。</p>
+
+<div class="timeline">
+  <div class="tl-title">时间线 · 点击切换主画面</div>
+  <div class="tl" id="tl"></div>
+</div>
+
+<div class="foot">
+  表面级动效（全部由 u_time 在内容层内驱动）：域扭曲流动 · 高度场与花纹游走 · 腐化边界呼吸 · 裂纹能量沿相位传播 · 色相沿表面流转 · 众眼眨眼与视线游移 · 符文带滚动脉冲 · 夜面灯闪烁 · 大气呼吸 · 背景星点闪烁。<br>
+  两 pass：内容 shader → FBO → 媒介 shader（Kuwahara / 交叉排线 / Bayer 抖动 / 水彩晕染 / CMYK 半调 / 色差负像 / 朱墨套印 / 叠影等高线）→ 2D 装帧层。
+</div>
+
+<script>
+"use strict";
+const W=800,H=450;
+const glc=document.getElementById('gl'),ovc=document.getElementById('ov'),octx=ovc.getContext('2d');
+const gl=glc.getContext('webgl2',{preserveDrawingBuffer:true,antialias:false});
+if(!gl){document.body.insertAdjacentHTML('afterbegin','<p style="color:#e2607a">此浏览器不支持 WebGL2</p>');throw new Error('no webgl2');}
+
+const VS=`#version 300 es
+layout(location=0) in vec2 a_pos;
+void main(){gl_Position=vec4(a_pos,0.0,1.0);}
+`;
+
+/* ============ Pass 1：内容层（表面每一像素都在随时间演化） ============ */
+const CONTENT_FS=`#version 300 es
+precision highp float;
+out vec4 fragColor;
+uniform vec2 u_res;
+uniform float u_time,u_seed,u_poll,u_barrier,u_notice;
+#define PI 3.14159265
+#define TAU 6.2831853
+
+float hash13(vec3 p3){p3=fract(p3*0.1031);p3+=dot(p3,p3.zyx+31.32);return fract((p3.x+p3.y)*p3.z);}
+vec3 hash33(vec3 p3){p3=fract(p3*vec3(0.1031,0.1030,0.0973));p3+=dot(p3,p3.yxz+33.33);return fract((p3.xxy+p3.yxx)*p3.zyx);}
+float hash12(vec2 p){vec3 p3=fract(vec3(p.xyx)*0.1031);p3+=dot(p3,p3.yzx+33.33);return fract((p3.x+p3.y)*p3.z);}
+vec2 hash22(vec2 p){vec3 p3=fract(vec3(p.xyx)*vec3(0.1031,0.1030,0.0973));p3+=dot(p3,p3.yzx+33.33);return fract((p3.xx+p3.yz)*p3.zy);}
+float gnoise3(vec3 p){
+  vec3 i=floor(p),f=p-i;vec3 u=f*f*(3.0-2.0*f);
+  float a=dot(hash33(i)*2.0-1.0,f);
+  float b=dot(hash33(i+vec3(1,0,0))*2.0-1.0,f-vec3(1,0,0));
+  float c=dot(hash33(i+vec3(0,1,0))*2.0-1.0,f-vec3(0,1,0));
+  float d=dot(hash33(i+vec3(1,1,0))*2.0-1.0,f-vec3(1,1,0));
+  float e=dot(hash33(i+vec3(0,0,1))*2.0-1.0,f-vec3(0,0,1));
+  float g=dot(hash33(i+vec3(1,0,1))*2.0-1.0,f-vec3(1,0,1));
+  float h=dot(hash33(i+vec3(0,1,1))*2.0-1.0,f-vec3(0,1,1));
+  float k=dot(hash33(i+vec3(1,1,1))*2.0-1.0,f-vec3(1,1,1));
+  return 1.5*mix(mix(mix(a,b,u.x),mix(c,d,u.x),u.y),mix(mix(e,g,u.x),mix(h,k,u.x),u.y),u.z);
+}
+float fbm3(vec3 p,int oct){float s=0.0,a=0.5;for(int i=0;i<6;i++){if(i>=oct)break;s+=a*gnoise3(p);p=p*2.03+vec3(1.7,9.2,3.1);a*=0.5;}return s;}
+vec4 voronoi3(vec3 p){
+  vec3 i=floor(p),f=p-i;float f1=9.0,f2=9.0,id=0.0;
+  for(int z=-1;z<=1;z++)for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++){
+    vec3 g=vec3(float(x),float(y),float(z));vec3 o=hash33(i+g);vec3 r=g+o-f;float d=dot(r,r);
+    if(d<f1){f2=f1;f1=d;id=hash13(i+g+vec3(17.0,3.0,11.0));}else if(d<f2){f2=d;}
+  }
+  return vec4(sqrt(f1),sqrt(f2),id,0.0);
+}
+float sd_segment(vec2 p,vec2 a,vec2 b){vec2 pa=p-a,ba=b-a;float h=clamp(dot(pa,ba)/dot(ba,ba),0.0,1.0);return length(pa-ba*h);}
+float glyph_dist(vec2 uv,float gid){
+  float d=9.0;
+  for(int k=0;k<8;k++){
+    float on=hash12(vec2(gid*7.13+float(k)*1.37,gid*0.71+3.1));
+    if(on>0.58)continue;
+    vec2 a,b;
+    if(k<4){float row=float(k/2),col=float(k-(k/2)*2);a=vec2(col,row);b=vec2(col+1.0,row);}
+    else{int kk=k-4;float col=float(kk/2),row=float(kk-(kk/2)*2);a=vec2(col,row);b=vec2(col,row+1.0);}
+    a=vec2(0.22)+a*0.28;b=vec2(0.22)+b*0.28;
+    d=min(d,sd_segment(uv,a,b));
+  }
+  float fl=hash12(vec2(gid*3.7,9.1));
+  if(fl<0.3)d=min(d,abs(length(uv-vec2(0.5))-0.18));
+  else if(fl<0.55)d=min(d,sd_segment(uv,vec2(0.22),vec2(0.78)));
+  return d;
+}
+vec3 ramp4(float t){
+  t=clamp(t,0.0,1.0)*3.0;
+  vec3 a=mix(vec3(0.012,0.035,0.045),vec3(0.035,0.14,0.16),clamp(t,0.0,1.0));
+  a=mix(a,vec3(0.10,0.32,0.30),clamp(t-1.0,0.0,1.0));
+  return mix(a,vec3(0.42,0.52,0.40),clamp(t-2.0,0.0,1.0));
+}
+vec3 starLayer(vec2 fc,float scale,float prob,float bright,float sd,float t){
+  vec2 q=fc/scale+vec2(sd*13.0);vec2 id=floor(q),f=fract(q);vec2 h=hash22(id);
+  vec2 sp=0.15+h*0.7;float dd=length(f-sp);float sz=0.055;
+  float on=step(prob,hash12(id+vec2(7.1,sd)));
+  float core=exp(-dd*dd/(sz*sz));float halo=exp(-dd/(sz*4.0))*0.12;
+  float tw=0.75+0.25*sin(t*(1.0+h.y*3.0)+h.x*40.0);
+  return mix(vec3(0.65,0.78,1.0),vec3(1.0,0.82,0.62),h.x)*(core+halo)*on*bright*tw;
+}
+void main(){
+  vec2 uv=gl_FragCoord.xy/u_res;
+  float asp=u_res.x/u_res.y;
+  vec2 p2=(uv-vec2(0.44,0.47))*vec2(asp,1.0)/0.375;
+  float r2=dot(p2,p2);
+  float t=u_time;
+  vec3 col;
+  if(r2<1.0){
+    vec3 n=vec3(p2.x,p2.y,sqrt(max(0.0,1.0-r2)));
+    vec3 q=n+vec3(u_seed*0.0137);
+    /* ① 域扭曲随时间流动 —— 表面整体在缓慢变形 */
+    vec3 w=q+0.32*vec3(
+      fbm3(q*1.3+vec3(0.0,t*0.06,0.0),3),
+      fbm3(q*1.3+vec3(5.2,t*0.05,2.8),3),
+      fbm3(q*1.3+vec3(1.7,9.2,t*0.045),3));
+    /* ② 高度场 / 裂纹 / 脉络花纹都在游走 */
+    float h=fbm3(w*2.2,5);
+    float rg=1.0-abs(gnoise3(w*7.0+vec3(0.0,t*0.14,0.0)));
+    float crack=pow(rg,12.0)+0.55*pow(1.0-abs(gnoise3(w*15.0+vec3(t*0.09,0.0,t*0.05))),16.0);
+    float vein=pow(1.0-abs(gnoise3(w*3.0+vec3(0.0,t*0.18,t*0.10))),14.0);
+    float pulse=0.6+0.4*sin(t*2.5-dot(n,vec3(3.0,1.0,2.0))*4.0);
+    vec3 L=normalize(vec3(-0.55,0.42,0.72));
+    float ndl=dot(n,L),day=smoothstep(-0.06,0.24,ndl);
+    col=ramp4(0.40+h*1.05+rg*0.10)*(0.16+0.92*day);
+    /* ③ 色相沿表面缓慢流转 */
+    float hue=fract(h*0.6+ndl*0.2+t*0.045+fbm3(q*2.0,3)*0.4);
+    vec3 iri=0.5+0.5*cos(TAU*(hue+vec3(0.0,0.33,0.67)));
+    col=mix(col,col*(0.55+iri*1.15),0.16);
+    /* ④ 腐化边界呼吸 */
+    vec3 cd=normalize(hash33(vec3(u_seed,7.0,3.0))*2.0-1.0);
+    float dd=acos(clamp(dot(n,cd),-1.0,1.0))/PI;
+    float reach=u_poll*1.28+0.035*sin(t*0.6);
+    float mask=1.0-smoothstep(reach-0.24,reach,dd+fbm3(q*3.0+vec3(1.0,t*0.03,0.0),3)*0.26);
+    vec3 corGlow=mix(vec3(0.85,0.25,1.0),vec3(0.98,0.32,0.35),u_poll);
+    col=mix(col,vec3(0.055,0.0,0.085),mask*0.72);
+    float gl=(crack+vein*0.7)*mask*pulse;
+    col+=corGlow*min(1.4,gl)*1.15;
+    /* ⑤ 众眼：污染越重越多，眨眼 + 视线游移（表面花纹本身在动） */
+    vec4 vo=voronoi3(q*6.0+vec3(5.0));
+    float present=step(vo.z,u_poll*0.42)*mask;
+    vec3 dv=fract(q*6.0+vec3(5.0))-0.5;
+    float rs=0.26+0.10*fract(vo.z*13.0);
+    vec2 e=vec2(dv.x,dv.y)/rs;
+    float blink=smoothstep(0.92,1.0,sin(t*0.7+vo.z*40.0));
+    float lid=0.55*(1.0-blink)*max(1.0-e.x*e.x,0.0);
+    float dLid=abs(e.y)-lid;
+    float ins=(1.0-smoothstep(-0.03,0.03,dLid))*step(abs(e.x),1.0)*present;
+    vec2 lk=vec2(sin(t*0.5+vo.z*9.0),cos(t*0.4+vo.z*7.0))*0.13;
+    float ir=length(e-lk)/0.42;
+    vec3 sclera=vec3(0.82,0.78,0.62);
+    vec3 iris=mix(vec3(0.28,0.85,0.45),vec3(1.0,0.78,0.25),smoothstep(1.0,0.25,ir));
+    float pup=(1.0-smoothstep(0.09,0.15,abs(e.x-lk.x)))*(1.0-smoothstep(0.58,0.78,abs(e.y-lk.y)));
+    vec3 eye=mix(sclera,iris,1.0-smoothstep(0.55,1.0,ir));
+    eye=mix(eye,vec3(0.0),pup*(1.0-smoothstep(0.75,1.0,ir)));
+    col=mix(col,eye,ins);
+    col+=vec3(1.0,0.85,0.25)*step(ir,1.0)*(1.0-pup)*ins*0.12;
+    /* ⑥ 夜面城市灯闪烁 */
+    if(ndl<0.08){
+      vec3 cid=floor(q*46.0);float hv=hash13(cid+vec3(3.3));
+      float cl=fbm3(q*5.0+vec3(3.0),2)*0.5+0.5;
+      if(hv>0.80+(1.0-u_notice)*0.14&&cl>0.38){
+        float tw=0.7+0.3*sin(t*3.0+hv*40.0);
+        col+=vec3(1.0,0.82,0.45)*(1.0-day)*u_notice*1.4*tw;
+      }
+    }
+    /* ⑦ 环阴影：屏障压在球面上 */
+    float band=p2.x*0.38+p2.y*0.92;
+    float rings=exp(-pow((band-0.55)/0.055,2.0))+0.6*exp(-pow((band-0.72)/0.03,2.0));
+    col*=1.0-rings*u_barrier*0.62;
+    /* ⑧ 赤道符文带：滚动 + 脉冲 */
+    float lat=asin(clamp(n.y,-1.0,1.0));
+    if(abs(lat)<0.095){
+      float lon=atan(n.z,n.x)+t*0.035;
+      float gg=(lon/TAU+0.5)*64.0,id=floor(gg);
+      vec2 gf=vec2(fract(gg),(lat+0.095)/0.19);
+      float on=step(0.42,hash12(vec2(id,u_seed)));
+      float gd=glyph_dist(gf,floor(hash12(vec2(id,u_seed+1.0))*97.0));
+      float line=(1.0-smoothstep(0.026,0.060,gd))*on;
+      col=mix(col,col*0.3,line*0.6);
+      col+=vec3(0.55,1.0,0.72)*line*(0.55+0.45*sin(t*1.2+n.x*3.0))*0.55;
+    }
+    /* ⑨ 大气边缘光呼吸 */
+    float fres=pow(1.0-n.z,3.2);
+    vec3 atmo=mix(vec3(0.28,0.85,0.68),vec3(0.95,0.35,0.28),u_poll);
+    col+=atmo*fres*(0.30+0.70*max(0.0,ndl))*(0.45+u_poll*0.8)*(0.85+0.15*sin(t*1.05));
+  }else{
+    /* ⑩ 背景：星云 + 三层星点闪烁 */
+    vec2 fc=gl_FragCoord.xy;
+    float neb=fbm3(vec3(fc*0.006,0.7+u_seed*0.001),3)*0.5+0.5;
+    col=vec3(0.004,0.007,0.013)+pow(neb,2.4)*vec3(0.045,0.030,0.075);
+    col+=starLayer(fc,11.0,0.90,1.4,u_seed,t);
+    col+=starLayer(fc,23.0,0.72,0.8,u_seed,t);
+    col+=starLayer(fc,47.0,0.55,0.45,u_seed,t);
+  }
+  fragColor=vec4(clamp(col,0.0,1.0),1.0);
+}
+`;
+
+/* ============ Pass 2：媒介层（八种画风） ============ */
+const STYLE_FS=`#version 300 es
+precision highp float;
+out vec4 fragColor;
+uniform sampler2D u_tex;
+uniform vec2 u_res;
+uniform float u_time,u_seed;
+uniform int u_style;
+#define TAU 6.2831853
+vec3 tex(vec2 uv){return texture(u_tex,clamp(uv,0.0,1.0)).rgb;}
+float luma(vec3 c){return dot(c,vec3(0.299,0.587,0.114));}
+float h12(vec2 p){vec3 p3=fract(vec3(p.xyx)*0.1031);p3+=dot(p3,p3.yzx+33.33);return fract((p3.x+p3.y)*p3.z);}
+float vn(vec2 p){vec2 i=floor(p),f=fract(p),u=f*f*(3.0-2.0*f);
+  return mix(mix(h12(i),h12(i+vec2(1,0)),u.x),mix(h12(i+vec2(0,1)),h12(i+vec2(1,1)),u.x),u.y);}
+float fbm2(vec2 p){float s=0.0,a=0.5;for(int i=0;i<5;i++){s+=a*vn(p);p=p*2.03+vec2(1.7,9.2);a*=0.5;}return s;}
+float sobel(vec2 uv,vec2 px){
+  float tl=luma(tex(uv+px*vec2(-1,-1))),tc=luma(tex(uv+px*vec2(0,-1))),tr=luma(tex(uv+px*vec2(1,-1)));
+  float ml=luma(tex(uv+px*vec2(-1,0))),mr=luma(tex(uv+px*vec2(1,0)));
+  float bl=luma(tex(uv+px*vec2(-1,1))),bc=luma(tex(uv+px*vec2(0,1))),br=luma(tex(uv+px*vec2(1,1)));
+  float gx=-tl-2.0*ml-bl+tr+2.0*mr+br,gy=-tl-2.0*tc-tr+bl+2.0*bc+br;
+  return sqrt(gx*gx+gy*gy);
+}
+vec3 kuwahara(vec2 uv,vec2 px){
+  vec3 m[4],s[4];
+  for(int k=0;k<4;k++){m[k]=vec3(0.0);s[k]=vec3(0.0);}
+  for(int j=0;j<=2;j++)for(int i=0;i<=2;i++){
+    vec3 c;
+    c=tex(uv+px*vec2(float(-i),float(-j)));m[0]+=c;s[0]+=c*c;
+    c=tex(uv+px*vec2(float(i),float(-j)));m[1]+=c;s[1]+=c*c;
+    c=tex(uv+px*vec2(float(-i),float(j)));m[2]+=c;s[2]+=c*c;
+    c=tex(uv+px*vec2(float(i),float(j)));m[3]+=c;s[3]+=c*c;
+  }
+  vec3 best=vec3(0.0);float bs=1e9;
+  for(int k=0;k<4;k++){
+    vec3 mm=m[k]/9.0,vv=abs(s[k]/9.0-mm*mm);float sv=vv.r+vv.g+vv.b;
+    if(sv<bs){bs=sv;best=mm;}
+  }
+  return best;
+}
+vec3 sat(vec3 c,float k){return mix(vec3(luma(c)),c,k);}
+float bayer4(vec2 p){
+  ivec2 q=ivec2(mod(p,4.0));int idx=q.x+q.y*4;
+  float m[16]=float[16](0.,8.,2.,10.,12.,4.,14.,6.,3.,11.,1.,9.,15.,7.,13.,5.);
+  return (m[idx]+0.5)/16.0;
+}
+float halftone(vec2 fc,float ang,float cell,float v){
+  float c=cos(ang),s=sin(ang);
+  vec2 p=mat2(c,-s,s,c)*fc/cell;vec2 f=fract(p)-0.5;
+  float r=sqrt(clamp(v,0.0,1.0))*0.62;
+  return 1.0-smoothstep(r-0.08,r+0.08,length(f));
+}
+void main(){
+  vec2 uv=gl_FragCoord.xy/u_res,px=1.0/u_res,fc=gl_FragCoord.xy;
+  float t=u_time;vec3 src=tex(uv),c;
+  if(u_style==0){
+    /* 暗黑厚涂：Kuwahara 笔触 + 厚涂明暗 + 亮部溢出 */
+    c=kuwahara(uv,px*1.2);
+    float stroke=fbm2(vec2(fc.x*0.05+fc.y*0.12,fc.y*0.05-fc.x*0.02)+u_seed);
+    c*=0.93+0.14*stroke;c=sat(c,1.1);
+    c+=smoothstep(0.55,0.95,luma(src))*vec3(0.16,0.12,0.20);
+  }else if(u_style==1){
+    /* 古典铜版画：三向交叉排线 + Sobel 描线 + 手工上色 */
+    float e=sobel(uv,px*1.5),l=clamp(pow(luma(src),0.7)*1.2,0.0,1.0);
+    float sp=5.0,wob=(fbm2(fc*0.02+u_seed)-0.5)*2.0;
+    float h1=abs(fract((fc.x+fc.y)/sp+wob*0.4)-0.5)*2.0;
+    float h2=abs(fract((fc.x-fc.y)/sp+wob*0.4)-0.5)*2.0;
+    float h3=abs(fract(fc.y/(sp*0.7)+wob*0.3)-0.5)*2.0;
+    float ink=0.0;
+    ink=max(ink,1.0-smoothstep(0.0,0.25,h1-(1.0-l)*0.72+0.06));
+    ink=max(ink,(1.0-smoothstep(0.0,0.25,h2-(0.62-l)*1.15))*step(l,0.62));
+    ink=max(ink,(1.0-smoothstep(0.0,0.25,h3-(0.32-l)*1.8))*step(l,0.32));
+    ink=max(ink,smoothstep(0.2,0.5,e));
+    vec3 paper=vec3(0.88,0.82,0.69)*(0.92+0.08*fbm2(fc*0.01+u_seed));
+    c=mix(paper,vec3(0.13,0.09,0.07),ink);
+    float s=length(src-vec3(luma(src)))*2.6;
+    c=mix(c,c*(src/max(luma(src),0.05))*0.9,clamp(s,0.0,0.9));
+  }else if(u_style==2){
+    /* 复古像素：4px 块 + Bayer 有序抖动 + 5 阶量化 */
+    float ps=4.0;vec2 blk=floor(fc/ps),cuv=(blk+0.5)*ps/u_res;
+    c=tex(cuv);
+    c=mix(c,(tex(cuv+vec2(0.25,0.25)*ps/u_res)+tex(cuv-vec2(0.25,0.25)*ps/u_res))*0.5,0.5);
+    c=floor(c*5.0+(bayer4(blk)-0.5)*0.9+0.5)/5.0;
+    float l0=luma(c);
+    float lm=max(max(luma(tex(cuv+vec2(ps/u_res.x,0))),luma(tex(cuv+vec2(0,ps/u_res.y)))),
+                 max(luma(tex(cuv-vec2(ps/u_res.x,0))),luma(tex(cuv-vec2(0,ps/u_res.y)))));
+    c=mix(c,vec3(0.065,0.045,0.035),step(0.18,lm-l0)*step(l0,0.25)*0.85);
+  }else if(u_style==3){
+    /* 水彩手稿：颜料域扭曲 + 八邻域晕染 + 纸纹颗粒 + 墨线 */
+    vec2 wob=(vec2(fbm2(fc*0.012+u_seed),fbm2(fc*0.012+u_seed+7.0))-0.5)*6.0*px;
+    vec2 wuv=uv+wob;c=tex(wuv);
+    vec3 b=vec3(0.0);
+    for(int k=0;k<8;k++){float a=float(k)*0.785;b+=tex(wuv+vec2(cos(a),sin(a))*px*4.0);}b/=8.0;
+    float edge=smoothstep(0.03,0.18,length(c-b));
+    c=mix(c,c*c*0.95,edge*0.55);
+    float l=luma(c),gran=vn(fc*0.45)*0.6+vn(fc*0.12)*0.4;
+    c*=1.0-(1.0-l)*0.22*gran;c=sat(c,0.85);
+    c*=0.93+0.07*fbm2(fc*0.02+u_seed*3.0);
+    float e=sobel(wuv,px*0.9);
+    c=mix(c,vec3(0.13,0.09,0.07)*0.9+c*0.1,smoothstep(0.3,0.7,e)*0.55);
+    c=mix(c,vec3(0.46,0.33,0.54)*(0.45+0.95*luma(src)),0.42);
+  }else if(u_style==4){
+    /* 怪奇杂志：CMYK 四角半调 + 错版 + 重墨 */
+    vec3 s=pow(tex(uv),vec3(0.75))*1.2;
+    vec3 sm=pow(tex(uv+vec2(1.5,-1.0)*px),vec3(0.75))*1.2;
+    float k=1.0-max(max(s.r,s.g),s.b);
+    vec3 cmy=(1.0-vec3(sm.r,s.g,s.b)-k)/max(1.0-k,0.001);
+    float cell=5.0;
+    float dc=halftone(fc,0.26,cell,cmy.r*0.9),dm=halftone(fc,1.31,cell,cmy.g*0.9);
+    float dy=halftone(fc,0.0,cell,cmy.b*0.9),dk=halftone(fc,0.785,cell,k*0.85);
+    vec3 paper=vec3(0.88,0.82,0.69)*(0.94+0.06*fbm2(fc*0.01+u_seed));
+    c=paper;
+    c*=1.0-vec3(0.85,0,0)*dc;c*=1.0-vec3(0,0.8,0)*dm;
+    c*=1.0-vec3(0,0,0.85)*dy;c*=1.0-0.9*dk;
+    c=mix(c,vec3(0.13,0.09,0.07)*0.6,smoothstep(0.3,0.6,sobel(uv,px*1.3)));
+  }else if(u_style==5){
+    /* 梦谕残影：通道位移 + 局部负像 + 边缘溶解 */
+    float ca=2.0*px.x;
+    c=vec3(tex(uv+vec2(ca,0)).r,src.g,tex(uv-vec2(ca,0)).b);
+    float l=luma(c),neg=smoothstep(0.60,0.90,l)*0.72;
+    c=mix(c,1.0-c,neg);
+    float dis=vn(fc*0.33+vec2(t*0.4,u_seed));
+    c*=1.0-step(0.78,dis)*step(l,0.42)*0.8;
+    c*=vec3(0.90,0.88,1.10);
+  }else if(u_style==6){
+    /* 仪轨刻本：排线明暗 + 朱墨套印 + 纸底 */
+    float l=clamp(pow(luma(src),0.7)*1.15,0.0,1.0),sp=5.0;
+    float h1=abs(fract((fc.x+fc.y)/sp)-0.5)*2.0,h2=abs(fract((fc.x-fc.y)/sp)-0.5)*2.0;
+    float ink=max(1.0-smoothstep(0.0,0.25,h1-(1.0-l)*0.9),
+                  (1.0-smoothstep(0.0,0.25,h2-(0.6-l)*1.3))*step(l,0.6));
+    c=mix(vec3(0.86,0.79,0.66),vec3(0.12,0.09,0.07),ink);
+    c=mix(c,c*vec3(1.25,0.65,0.62),step(luma(src),0.28)*0.45);
+    c+=vec3(0.55,0.12,0.08)*smoothstep(0.35,0.8,luma(src))*0.10;
+  }else{
+    /* 神侧观测：抬暗部 + 等高线 + 多时间切片叠影 */
+    float l=luma(src),lift=pow(l,0.62)*0.82+0.13;
+    c=mix(src,vec3(lift),0.46);
+    float f=fract(l*12.0);
+    if(f<0.045||f>0.955)c+=vec3(0.13,0.44,0.49);
+    c+=tex(uv+vec2(-13.0,5.0)*px)*0.22;
+    c+=tex(uv+vec2(9.0,-6.0)*px)*0.15;
+  }
+  /* 纸媒介：把球外深空翻成承印物。原作铜版/水彩/杂志正是「深色球 + 纸白背景」 */
+  vec2 pu=(uv-vec2(0.44,0.47))*vec2(u_res.x/u_res.y,1.0)/0.375;
+  float outside=smoothstep(0.985,1.015,length(pu));
+  if(u_style==1||u_style==3||u_style==4||u_style==6){
+    float wash=fbm2(fc*0.008+u_seed);
+    vec3 bg=vec3(0.89,0.84,0.72)*(0.93+0.06*wash);
+    if(u_style==3){
+      bg=mix(bg,vec3(0.93,0.89,0.80),0.35);
+      bg*=1.0-0.09*vn(fc*0.7);
+    }else if(u_style==4){
+      vec3 grad=mix(vec3(0.40,0.66,0.59),vec3(0.87,0.83,0.68),
+                    smoothstep(0.0,1.0,uv.y+wash*0.3));
+      bg=grad*(1.0-0.55*halftone(fc,0.785,5.0,0.35))+vec3(0.88,0.82,0.69)*0.18;
+    }else if(u_style==6){
+      bg=vec3(0.86,0.79,0.66)*(0.94+0.06*wash);
+    }
+    bg*=1.0-smoothstep(0.18,0.65,luma(src))*0.35;
+    c=mix(c,bg,outside);
+  }
+  float rr=length((uv-0.5)*vec2(u_res.x/u_res.y,1.0));
+  c*=1.0-smoothstep(0.45,1.1,rr)*0.45;
+  c+=(h12(fc+vec2(fract(t*7.0)*100.0))-0.5)*0.035;
+  fragColor=vec4(clamp(c,0.0,1.0),1.0);
+}
+`;
+
+/* ============ WebGL 管线 ============ */
+function sh(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);
+  if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));return s;}
+function mkProg(fs){const p=gl.createProgram();gl.attachShader(p,sh(gl.VERTEX_SHADER,VS));
+  gl.attachShader(p,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(p);
+  if(!gl.getProgramParameter(p,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(p));return p;}
+const pContent=mkProg(CONTENT_FS),pStyle=mkProg(STYLE_FS);
+const U=(p,n)=>gl.getUniformLocation(p,n);
+const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+gl.enableVertexAttribArray(0);gl.vertexAttribPointer(0,2,gl.FLOAT,false,0,0);
+const texA=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,texA);
+gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,W,H,0,gl.RGBA,gl.UNSIGNED_BYTE,null);
+gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);
+gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
+gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+const fbo=gl.createFramebuffer();gl.bindFramebuffer(gl.FRAMEBUFFER,fbo);
+gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,texA,0);
+gl.bindFramebuffer(gl.FRAMEBUFFER,null);
+
+/* ============ 状态 / 画风 ============ */
+const STATES=[
+  {name:'干净',sub:'尚未被看见',poll:0.06,barrier:0.92,notice:0.10,counter:'无',lv:0},
+  {name:'扩散中',sub:'开始被记录',poll:0.46,barrier:0.58,notice:0.42,counter:'调查者入境',lv:1},
+  {name:'快反扑',sub:'正在被清除',poll:0.86,barrier:0.22,notice:0.83,counter:'清剿令 · 3 轮',lv:2},
+];
+const STYLES=[
+  {id:0,name:'暗黑厚涂',keep:true},{id:1,name:'古典铜版画',keep:true},
+  {id:2,name:'复古像素',keep:true},{id:3,name:'水彩手稿',keep:true},
+  {id:4,name:'怪奇杂志',keep:true},
+  {id:5,name:'梦谕残影',keep:false},{id:6,name:'仪轨刻本',keep:false},{id:7,name:'神侧观测',keep:false},
+];
+let seed=1337,stateIdx=1,styleId=0,animate=true,t0=performance.now();
+
+/* ============ 2D 装帧 / 读数层 ============ */
+function roundRect(x,y,w,h,r){octx.beginPath();octx.moveTo(x+r,y);octx.lineTo(x+w-r,y);
+  octx.quadraticCurveTo(x+w,y,x+w,y+r);octx.lineTo(x+w,y+h-r);octx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  octx.lineTo(x+r,y+h);octx.quadraticCurveTo(x,y+h,x,y+h-r);octx.lineTo(x,y+r);
+  octx.quadraticCurveTo(x,y,x+r,y);octx.closePath();}
+function drawOverlay(st,sty,time){
+  octx.clearRect(0,0,W,H);
+  const light=(sty===1||sty===3||sty===4||sty===6);
+  const edge=light?'rgba(58,38,28,.5)':'rgba(127,227,192,.34)';
+  const txt=light?'rgba(48,32,24,.9)':'rgba(234,246,239,.86)';
+  const dim=light?'rgba(80,58,42,.8)':'rgba(142,167,156,.85)';
+  octx.save();
+  octx.strokeStyle=edge;octx.lineWidth=1;octx.strokeRect(14.5,14.5,W-29,H-29);
+  octx.strokeStyle=light?'rgba(58,38,28,.22)':'rgba(127,227,192,.14)';
+  octx.strokeRect(20.5,20.5,W-41,H-41);
+  octx.fillStyle=txt;octx.font='11px "PingFang SC",sans-serif';
+  octx.fillText('WORLD 03 / Ψ-2417',30,38);
+  octx.textAlign='right';octx.fillStyle=dim;
+  octx.fillText('ATLAS OF THE OUTER SPHERES  ·  PLATE III',W-30,38);octx.textAlign='left';
+  // 引线
+  octx.strokeStyle=light?'rgba(58,38,28,.5)':'rgba(127,227,192,.45)';
+  octx.beginPath();octx.moveTo(W*.44+118,H*.53-56);octx.lineTo(W-250,H*.53-92);
+  octx.lineTo(W-224,H*.53-92);octx.stroke();
+  octx.fillStyle=txt;octx.fillText('污染前沿',W-250,H*.53-98);
+  // 画风专属装帧
+  octx.translate(W*.44,H*.53);
+  if(sty===6){ // 仪轨刻本：朱色度量环 + 刻度
+    octx.rotate(time*0.02);octx.strokeStyle='rgba(150,45,35,.45)';octx.lineWidth=1;
+    octx.beginPath();octx.arc(0,0,225,0,Math.PI*2);octx.stroke();
+    octx.beginPath();octx.arc(0,0,219,0,Math.PI*2);octx.stroke();
+    for(let k=0;k<48;k++){const a=k*Math.PI*2/48,r0=219,r1=k%4===0?233:227;
+      octx.beginPath();octx.moveTo(Math.cos(a)*r0,Math.sin(a)*r0);
+      octx.lineTo(Math.cos(a)*r1,Math.sin(a)*r1);octx.stroke();}
+  }else if(sty===7){ // 神侧观测：经纬网格 + 偏移轮廓
+    octx.strokeStyle='rgba(95,225,205,.20)';octx.lineWidth=1;
+    for(let k=-3;k<=3;k++){octx.beginPath();octx.ellipse(0,0,168*0.34*Math.abs(k),168,0,0,Math.PI*2);octx.stroke();}
+    octx.beginPath();octx.arc(34,-18,168*0.86,0,Math.PI*2);octx.stroke();
+    octx.beginPath();octx.arc(-26,14,168*0.93,0,Math.PI*2);octx.stroke();
+  }else if(sty===4){ // 杂志刊头
+    octx.fillStyle='rgba(184,26,16,.92)';octx.fillRect(-W*.44,-H*.53,W,34);
+    octx.fillStyle='rgba(250,210,60,.95)';octx.font='bold 17px "PingFang SC",sans-serif';
+    octx.fillText('UNSPEAKABLE SKIES',-W*.44+14,-H*.53+24);
+  }
+  octx.restore();
+  // 底部状态条
+  octx.save();
+  octx.fillStyle=light?'rgba(58,38,28,.6)':'rgba(127,227,192,.55)';octx.fillRect(30,H-38,3,12);
+  octx.fillStyle=txt;octx.font='12px "PingFang SC",sans-serif';
+  octx.fillText(`灰湾 · ${st.name} — ${st.sub}`,42,H-28);octx.restore();
+  // 读数卡（反差色 + 背景块，制作人 2026-11-09 允许整屏压黑）
+  const x=W-214,y=H-224,w=184,h=150;
+  octx.save();roundRect(x,y,w,h,3);octx.fillStyle='rgba(4,8,11,.88)';octx.fill();
+  octx.strokeStyle='rgba(127,227,192,.42)';octx.lineWidth=1;octx.stroke();
+  octx.fillStyle='rgba(127,227,192,.92)';octx.font='11px "PingFang SC",sans-serif';
+  octx.fillText('当前公开投影',x+14,y+22);
+  octx.strokeStyle='rgba(127,227,192,.20)';octx.beginPath();octx.moveTo(x+14,y+31);octx.lineTo(x+w-14,y+31);octx.stroke();
+  const rows=[['污染',st.poll,st.poll>.7?'#e2607a':'#e8925e'],['屏障',st.barrier,'#7fe3c0'],
+              ['察觉',st.notice,st.notice>.7?'#e2607a':'#e8925e']];
+  rows.forEach((row,k)=>{
+    const yy=y+52+k*27;
+    octx.fillStyle='rgba(142,167,156,.95)';octx.font='11px "PingFang SC",sans-serif';octx.fillText(row[0],x+14,yy);
+    octx.fillStyle='rgba(255,255,255,.05)';octx.fillRect(x+56,yy-10,84,13);
+    octx.save();octx.globalAlpha=.30;octx.fillStyle=row[2];octx.fillRect(x+56,yy-10,84*row[1],13);octx.restore();
+    for(let j=0;j<=10;j++){octx.fillStyle='rgba(127,227,192,.32)';
+      octx.fillRect(x+56+j*8.4,yy-4,1,j%5===0?7:4);}
+    octx.fillStyle=row[2];octx.fillRect(x+56+84*row[1]-1.5,yy-10,3,13);
+    octx.fillStyle='#eaf6ef';octx.textAlign='right';octx.fillText(row[1].toFixed(2),x+w-14,yy);octx.textAlign='left';
+  });
+  const yy=y+138;octx.fillStyle='rgba(142,167,156,.95)';octx.fillText('反制',x+14,yy);
+  octx.fillStyle=st.lv===2?'#e2607a':(st.lv===1?'#e8925e':'#7fe3c0');
+  octx.textAlign='right';octx.fillText(st.counter,x+w-14,yy);octx.textAlign='left';
+  octx.restore();
+}
+
+/* ============ 渲染 ============ */
+function render(st,sty,time){
+  gl.bindFramebuffer(gl.FRAMEBUFFER,fbo);gl.viewport(0,0,W,H);
+  gl.useProgram(pContent);
+  gl.uniform2f(U(pContent,'u_res'),W,H);
+  gl.uniform1f(U(pContent,'u_time'),time);
+  gl.uniform1f(U(pContent,'u_seed'),seed);
+  gl.uniform1f(U(pContent,'u_poll'),st.poll);
+  gl.uniform1f(U(pContent,'u_barrier'),st.barrier);
+  gl.uniform1f(U(pContent,'u_notice'),st.notice);
+  gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+  gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.viewport(0,0,W,H);
+  gl.useProgram(pStyle);
+  gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texA);
+  gl.uniform1i(U(pStyle,'u_tex'),0);
+  gl.uniform2f(U(pStyle,'u_res'),W,H);
+  gl.uniform1f(U(pStyle,'u_time'),time);
+  gl.uniform1f(U(pStyle,'u_seed'),seed);
+  gl.uniform1i(U(pStyle,'u_style'),sty);
+  gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+  drawOverlay(st,sty,time);
+}
+const timeNow=()=>animate?(performance.now()-t0)/1000:3.0;
+function loop(){render(STATES[stateIdx],styleId,timeNow());requestAnimationFrame(loop);}
+
+/* ============ 控件 ============ */
+const bs=document.getElementById('btns-state'),bk=document.getElementById('btns-keep'),bn=document.getElementById('btns-new');
+const stateBtns=[],styleBtns=[];
+STATES.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s.name;
+  b.onclick=()=>{stateIdx=i;sync();};bs.appendChild(b);stateBtns.push(b);});
+STYLES.forEach(s=>{const b=document.createElement('button');b.textContent=s.name;
+  b.onclick=()=>{styleId=s.id;sync();};(s.keep?bk:bn).appendChild(b);styleBtns.push(b);});
+const tl=document.getElementById('tl'),tlItems=[];
+STATES.forEach((s,i)=>{
+  const it=document.createElement('div');it.className='tl-item';
+  const cv=document.createElement('canvas');cv.width=240;cv.height=135;
+  const cap=document.createElement('div');cap.className='tl-cap';
+  cap.innerHTML=`<b>${s.name}</b><span>污染 ${s.poll.toFixed(2)} · 察觉 ${s.notice.toFixed(2)}</span>`;
+  it.appendChild(cv);it.appendChild(cap);it.onclick=()=>{stateIdx=i;sync();};
+  tl.appendChild(it);tlItems.push(it);
+});
+function sync(){
+  stateBtns.forEach((b,i)=>b.classList.toggle('on',i===stateIdx));
+  styleBtns.forEach((b,i)=>b.classList.toggle('on',i===styleId));
+  tlItems.forEach((b,i)=>b.classList.toggle('on',i===stateIdx));
+}
+function buildThumbs(){
+  const keepS=stateIdx,keepY=styleId;
+  for(let i=0;i<3;i++){
+    stateIdx=i;render(STATES[i],keepY,3.0);
+    const cv=tlItems[i].querySelector('canvas'),c=cv.getContext('2d');
+    c.clearRect(0,0,240,135);c.drawImage(glc,0,0,240,135);c.drawImage(ovc,0,0,240,135);
+  }
+  stateIdx=keepS;render(STATES[stateIdx],keepY,3.0);
+}
+document.getElementById('seed').onchange=e=>{const v=parseInt(e.target.value,10);
+  if(!isNaN(v)){seed=v;buildThumbs();}};
+document.getElementById('anim').onchange=e=>{animate=e.target.checked;};
+document.getElementById('export').onclick=()=>{
+  const tmp=document.createElement('canvas');tmp.width=W;tmp.height=H;
+  const c=tmp.getContext('2d');c.drawImage(glc,0,0);c.drawImage(ovc,0,0);
+  const a=document.createElement('a');a.download=`world-${stateIdx}-style${styleId}-${seed}.png`;
+  a.href=tmp.toDataURL('image/png');a.click();
+};
+window.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'){stateIdx=(stateIdx+1)%3;sync();}
+  if(e.key==='ArrowLeft'){stateIdx=(stateIdx+2)%3;sync();}
+});
+sync();buildThumbs();requestAnimationFrame(loop);
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+world_id,name,tier,paradigm,second,communication,authority,weakness,barrier,stability,scene,style,seed,archetype,palette,composition,star_type,wonder,count,rings,tentacles,eyes,glyphs,corruption,madness,nebula,aspect,quality,animate,show_title,show_labels,show_frame,show_swatch
+CIV_01,镜证议会,planet,tech,faith,broadcast,council,unexplained_evidence,75,70,0,0,10587720,5,-1,2,-1,-1,1,0,0,0,0.19,0.0,0.225,0.35,0,1,0,1,1,1,0
+CIV_02,盐梦诸邦,planet,occult,faith,ritual,decentralized,ritual_dispute,50,55,0,0,10692449,9,-1,4,-1,-1,2,1,0,0,0.71,0.0,0.362,0.35,0,1,0,1,1,1,0
+CIV_03,千面公社,planet,meme,tech,network,decentralized,attention_crisis,35,40,0,0,10797178,3,-1,4,-1,-1,5,0,0,0,0.41,0.0,0.4,0.35,0,1,0,1,1,1,0
+CIV_04,焚星圣统,system,faith,tech,broadcast,hierarchy,doctrinal_split,65,80,0,0,10901907,7,-1,5,-1,-1,1,0,0,0,0.21,0.0,0.1,0.6,0,1,0,1,1,1,0
+CIV_05,群机同梦,system,tech,meme,network,council,shared_channel,80,65,0,0,11006636,5,-1,2,-1,-1,5,0,0,0,0.41,0.0,0.237,0.6,0,1,0,1,1,1,0
+CIV_06,万誓商盟,system,faith,occult,ritual,decentralized,contract_conflict,60,60,0,0,11111365,7,-1,4,-1,-1,2,1,0,0,0.71,0.0,0.35,0.6,0,1,0,1,1,1,0
+CIV_07,自证天穹,cosmic,tech,occult,network,unified,axiom_exception,95,95,0,0,11216094,5,-1,3,-1,-1,5,0,0,0,0.43,0.0,0.113,0.85,0,1,0,1,1,1,0
+CIV_08,归一众声,cosmic,faith,meme,network,unified,collective_dissent,90,90,0,0,11320823,7,-1,3,-1,-1,5,0,0,0,0.43,0.0,0.125,0.85,0,1,0,1,1,1,0
+CIV_01,镜证议会,planet,tech,faith,broadcast,council,unexplained_evidence,75,70,0,0,26073583,5,-1,2,-1,-1,1,0,0,0,0.19,0.0,0.225,0.35,0,1,0,1,1,1,0
+CIV_03_PROBE,千面公社,planet,meme,tech,ritual,decentralized,attention_crisis,35,40,0,0,10797178,3,-1,4,-1,-1,2,1,0,0,0.71,0.0,0.4,0.35,0,1,0,1,1,1,0
