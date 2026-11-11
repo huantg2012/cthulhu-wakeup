@@ -2,6 +2,7 @@ extends RefCounted
 ## Original art remains untouched. UI paint and type have separate readability roles.
 const FONT_PATH := "res://docs/art/visual-generation/ui-study/type/fusion-pixel-12px-proportional-zh_hans.ttf"
 const BODY_PATH := "res://docs/art/visual-generation/ui-study/type/LXGWWenKaiScreen.ttf"
+const Marks = preload("res://docs/art/visual-generation/ui-study/occult_marks.gd")
 const Backdrop = preload("res://docs/art/visual-generation/ui-study/painted_backdrop.gd")
 const ART := "res://docs/art/visual-generation/procedural-study/native-evidence/"
 const INK := Color("#101719")
@@ -86,9 +87,31 @@ static func pigment(kind: String, seed_value: int=31) -> Texture2D:
    var grit:=grain.randf_range(-.004,.004)
    color=Color(color.r+grit,color.g+grit,color.b+grit,1)
    bitmap.set_pixel(x,y,color)
+ if is_card:
+  _imprint(bitmap, seed_value)
  var texture:=ImageTexture.create_from_image(bitmap)
  cache[key]=texture
  return texture
+
+static func _imprint(bitmap: Image, seed_value: int) -> void:
+ # A broad intaglio survives on exposed card stock, including the stacked cards.
+ var plain := bitmap.duplicate()
+ Marks.paint_eye(bitmap, Vector2(180, 331), Vector2(154, 65), Color("#6e806b"), 0.19, 63)
+ var folds := [
+  PackedVector2Array([Vector2(247, 275), Vector2(231, 293), Vector2(223, 326), Vector2(234, 368), Vector2(248, 388)]),
+  PackedVector2Array([Vector2(240, 278), Vector2(219, 298), Vector2(211, 332), Vector2(223, 373)]),
+  PackedVector2Array([Vector2(14, 387), Vector2(49, 378), Vector2(91, 382), Vector2(136, 388)])
+ ]
+ for i in folds.size():
+  Marks.stroke(bitmap, folds[i], Color("#748773"), 1.8, 0.13, seed_value + i)
+ # Suppress pigment under the actual reading rows while preserving the edge imprint.
+ for y in range(279, 381):
+  for x in range(18, 243):
+   var in_reading_row := (y < 313) or (y >= 316 and y < 335) or (y >= 339 and y < 379)
+   if in_reading_row:
+    var point := Vector2i(x, y)
+    bitmap.set_pixelv(point, plain.get_pixelv(point).lerp(bitmap.get_pixelv(point), 0.27))
+
 
 static func label(parent: Node, value: String, rect: Rect2, px: int=14, color: Color=BONE) -> Label:
  var heading:=px>=24

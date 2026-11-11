@@ -1,4 +1,5 @@
 extends Control
+const Marks=preload("res://docs/art/visual-generation/ui-study/occult_marks.gd")
 const Paint=preload("res://docs/art/visual-generation/ui-study/painted_material.gd")
 var recipe: Dictionary={}
 var ordinal:=0
@@ -41,7 +42,9 @@ func _draw() -> void:
  var shadow:=PackedVector2Array([Vector2(5,7),Vector2(259,8),Vector2(263,386),Vector2(7,394)])
  draw_colored_polygon(shadow,Color(0,0,0,.48))
  draw_texture_rect(Paint.pigment("card",31+ordinal%4),Rect2(Vector2.ZERO,Vector2(260,390)),false)
- if get_meta("fan_focused",false) or get_meta("fan_hovered",false):
+ var attended: bool = get_meta("fan_focused", false) or get_meta("fan_hovered", false)
+ draw_texture_rect(Marks.seal(attended), Rect2(50, 10, 40, 18), false)
+ if attended:
   var c:=Color("#b1c09b")
   draw_colored_polygon(PackedVector2Array([Vector2(4,52),Vector2(7,43),Vector2(9,114),Vector2(5,122)]),c)
   draw_colored_polygon(PackedVector2Array([Vector2(251,285),Vector2(256,278),Vector2(254,348),Vector2(251,354)]),Color(c,.8))

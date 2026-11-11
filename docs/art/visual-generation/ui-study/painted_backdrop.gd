@@ -9,6 +9,7 @@ const COLD := Color("#1c2330")
 const HAZE := Color("#344449")
 const LOW_HAZE := Color("#303e37")
 const NEAR := Color("#080e12")
+const Marks = preload("res://docs/art/visual-generation/ui-study/occult_marks.gd")
 static var _cached: Texture2D
 
 static func _noise(seed_value: int, frequency: float, octaves: int) -> FastNoiseLite:
@@ -98,6 +99,7 @@ static func texture() -> Texture2D:
    color.a=1.0
    bitmap.set_pixel(x,y,color)
  _distant_marks(bitmap)
+ _watching_presence(bitmap)
  _cached=ImageTexture.create_from_image(bitmap)
  return _cached
 
@@ -114,3 +116,47 @@ static func _distant_marks(bitmap: Image) -> void:
   if i%7==0 and point.x+1<bitmap.get_width():
    var neighbour := point+Vector2i(1,0)
    bitmap.set_pixelv(neighbour,bitmap.get_pixelv(neighbour).lerp(tint,alpha*0.35))
+
+static func _watching_presence(bitmap: Image) -> void:
+ # Most of this form extends behind the objects. Its visible scale belongs to the observer.
+ var underlying := bitmap.duplicate() as Image
+ var scale_to_bitmap := Vector2(SIZE) / LOGICAL
+ var pigment := Color("#6f7e70")
+ var cold_pigment := Color("#566773")
+ # Peripheral folds enter from beyond the frame; they do not outline a face or halo.
+ var rising_fold := _bezier_points(
+  Vector2(298,306), Vector2(372,145), Vector2(555,-19), Vector2(736,-58))
+ var descending_fold := _bezier_points(
+  Vector2(1058,-24), Vector2(1164,76), Vector2(1251,193), Vector2(1318,331))
+ Marks.stroke(bitmap, _scaled(rising_fold,scale_to_bitmap), cold_pigment, 4.3, 0.075, 510)
+ Marks.stroke(bitmap, _scaled(descending_fold,scale_to_bitmap), pigment, 3.8, 0.065, 532)
+ Marks.paint_eye(bitmap, Vector2(800,160)*scale_to_bitmap,
+  Vector2(760,250)*scale_to_bitmap, pigment, 0.16, 571)
+
+ # Restore the earlier paint in broad irregular patches. This puts the marks inside
+ # the haze, instead of leaving a complete emblem pasted above the card group.
+ var fog := _noise(68143,0.009,2)
+ var dry_brush := _noise(8149,0.072,2)
+ for y in SIZE.y:
+  var ly := (float(y)+0.5)*LOGICAL.y/float(SIZE.y)
+  var top_veil := lerpf(0.04,1.0,smoothstep(28.0,95.0,ly))
+  for x in SIZE.x:
+   var lx := (float(x)+0.5)*LOGICAL.x/float(SIZE.x)
+   var opening := smoothstep(-0.22,0.24,fog.get_noise_2d(lx,ly*1.18))
+   var scumble := smoothstep(-0.35,0.25,dry_brush.get_noise_2d(lx*0.65,ly*1.8))
+   var reveal := lerpf(0.07,0.98,opening)*lerpf(0.62,1.0,scumble)
+   reveal *= top_veil*smoothstep(310.0,455.0,lx)
+   bitmap.set_pixel(x,y,underlying.get_pixel(x,y).lerp(bitmap.get_pixel(x,y),reveal))
+
+static func _bezier_points(start: Vector2, first_control: Vector2,
+ second_control: Vector2, finish: Vector2, count: int = 80) -> PackedVector2Array:
+ var points := PackedVector2Array()
+ for i in count:
+  points.append(start.bezier_interpolate(first_control,second_control,finish,float(i)/float(count-1)))
+ return points
+
+static func _scaled(points: PackedVector2Array, amount: Vector2) -> PackedVector2Array:
+ var result := PackedVector2Array()
+ for point in points:
+  result.append(point*amount)
+ return result
