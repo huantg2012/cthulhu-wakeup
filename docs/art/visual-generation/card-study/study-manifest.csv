@@ -1,0 +1,45 @@
+section,key,type,value
+identity,world_template_id,string,CIV_02
+identity,world_name_source,string,data/player_text.csv
+identity,cult_name,string,听潮密会
+identity,person_name,string,守历人·伊弥
+identity,identity_status,string,教团与人物为候选视觉设定，非正式对象
+identity,world_note,string,采用正式 CIV_02 文明模板的展示名称；不是具体存档的生成世界
+identity,world_method,string,原作 Godot 生成器直接输出
+identity,cult_method,string,ImageGen 二维绘画母版 · 非参数化生成
+identity,person_method,string,ImageGen 二维绘画母版 · 非参数化生成
+params,scene,int,0
+params,star_type,int,-1
+params,wonder,int,-1
+params,style,int,0
+params,archetype,int,0
+params,palette,int,7
+params,seed,int,1337
+params,composition,int,1
+params,aspect,int,1
+params,quality,int,1
+params,animate,bool,false
+capture,initial_g_time,float,3
+capture,frames_after_rebuild,int,4
+params,corruption,float,0.2
+params,madness,float,0.06
+params,nebula,float,0.25
+params,rings,int,2
+params,count,int,0
+params,tentacles,float,0
+params,eyes,float,0
+params,glyphs,float,0
+params,show_title,bool,false
+params,show_labels,bool,false
+params,show_frame,bool,false
+params,show_swatch,bool,false
+labels,scene,string,星球立绘
+labels,style,string,暗黑厚涂
+labels,archetype,string,溺亡之海
+labels,palette,string,深海靛蓝
+labels,composition,string,居中
+labels,aspect,string,1:1 方图
+paths,world,string,assets/v2-world.png
+paths,cult,string,assets/v2-cult.png
+paths,person,string,assets/v2-person.png
+paths,reference,string,reference-check/reference-world.png

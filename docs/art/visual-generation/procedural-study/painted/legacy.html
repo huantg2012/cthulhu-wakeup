@@ -1,0 +1,9 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>二维程序绘景 · 新小样</title><link rel="stylesheet" href="style.css">
+<header><small>邪神苏醒 / 运行时二维绘画研究</small><h1>世界，聚所，求告者</h1><p>原作星球 × 曲线衣料与二维绘景。仅两个原型已实现，审美待制作人判断。</p></header>
+<form id="controls">
+<label>世界原型<select id="template"></select></label><label>原作画风<select id="style"></select></label><label>原作色板<select id="palette"></select></label>
+<label>世界种子<input id="seed" type="number" min="0" max="999999" value="1339"></label><label>人物种子<input id="personSeed" type="number" min="0" max="999999" value="1020"></label>
+<button>生成</button><button type="button" id="next-person">下个人物</button><button type="button" id="next-world">下个世界</button><button type="button" id="replay">同参重绘</button>
+</form><p class="status" id="status">正在准备…</p>
+<main><section class="triple" id="current"></section><p id="parameters"></p><nav><button id="samples">现场生成并排样本</button><button id="save">下载当前参数</button><a href="../">旧探索入口</a><a href="evidence/review.html">本轮已生成样本</a></nav><section id="gallery"></section><details><summary>本次实际生成参数与指纹</summary><pre id="manifest"></pre></details></main>
+<script type="module" src="app.js"></script></html>

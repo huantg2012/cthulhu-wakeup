@@ -1,0 +1,5 @@
+# 只交顶层源码与说明；过程资产留在本地
+/assets/
+/evidence/
+/reference-check/
+/rejected-3d/

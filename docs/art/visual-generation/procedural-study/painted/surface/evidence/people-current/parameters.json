@@ -1,0 +1,1605 @@
+{
+  "version": "tide-people-3",
+  "context": {
+    "request": {
+      "template": "tide",
+      "seed": 1339,
+      "palette": 0,
+      "style": 0
+    },
+    "world": {
+      "cached": true,
+      "framesAfterRebuild": 4,
+      "hash": "5ef267109893716154fd77bf882ee2dfc8f8731118a0f20f4a94b31e835a11ad",
+      "identity": {
+        "archetype": 0,
+        "archetype_name": "溺亡之海",
+        "civilization_id": "CIV_02",
+        "cult_name": "听潮密会",
+        "description": "潮汐历法与秘密祭仪",
+        "id": "tide",
+        "identity_status": "视觉候选；非正式 Session 对象",
+        "name": "塔穆什",
+        "person_name": "守历人·伊弥",
+        "world_name": "塔穆什"
+      },
+      "method": "unmodified original Godot generator",
+      "params": {
+        "animate": 0,
+        "archetype": 0,
+        "aspect": 1,
+        "composition": 1,
+        "corruption": 0.2,
+        "count": 0,
+        "eyes": 0,
+        "glyphs": 0,
+        "madness": 0.06,
+        "nebula": 0.25,
+        "palette": 0,
+        "quality": 1,
+        "rings": 2,
+        "scene": 0,
+        "seed": 1339,
+        "show_frame": 0,
+        "show_labels": 0,
+        "show_swatch": 0,
+        "show_title": 0,
+        "star_type": -1,
+        "style": 0,
+        "tentacles": 0,
+        "wonder": -1
+      },
+      "request": {
+        "palette": 0,
+        "seed": 1339,
+        "style": 0,
+        "template": "tide"
+      },
+      "size": [
+        960,
+        960
+      ],
+      "sourceFingerprint": "72cc66874d353d7a562aa9589f32f700ecfbdb0b7b9f75b933ad636f471d314f",
+      "styleSid": 0,
+      "time": 3,
+      "url": "/cache/03d7dac0d7aa4eed76d9b75f94af7b4ff32485d513be601c6ae23220bd2e1f67.png"
+    },
+    "cult": {
+      "url": "/cache/e478c468d6855a958314c991d7b6c8117a4e83e8c19a70ba632e2da075004944-cult.png",
+      "hash": "bfb8505c44a0b7d20b210efc77eae12dc2840dcd7a598b023375e3ce88bbec9a",
+      "inputHash": "ad88ab6209cc72b4b6838f8532079e1322df4820ac41ce80ffcc4db0520e44f3"
+    },
+    "baselinePersonHash": "d366d7bbd46a45c5aa2937e97424452988c35385cda716b129ad52eafbb93bc3"
+  },
+  "people": [
+    {
+      "id": "0",
+      "recipe": {
+        "version": "tide-people-3",
+        "world": {
+          "archetype": 0,
+          "styleSid": 0,
+          "palette": 0,
+          "worldSeed": 1339
+        },
+        "personSeed": 1847102961,
+        "background": {
+          "appeal": "我已经几天没打到鱼，家里快断粮了。求你告诉我哪里还能下网。",
+          "appearanceNote": "短防潮衣与空网绳结来自海上劳作；不是祭服",
+          "binding": "美术探索采用既有祈求角色槽；未绑定正式 Session 人物，不新增游戏事实",
+          "caseId": "net_silence",
+          "context": "连着几天空网。鱼群去了深水，村里的船还在，却没人知道该往哪划。",
+          "frame": "coast",
+          "garments": [
+            "oilcoat",
+            "jerkin"
+          ],
+          "genderRule": "any",
+          "gestures": [
+            "appeal",
+            "folded"
+          ],
+          "goal": "恢复一次渔获",
+          "heads": [
+            "workcap",
+            "brim"
+          ],
+          "material": "canvas",
+          "pigment": "ochre",
+          "role": "渔民",
+          "scene": "deprivation",
+          "source": {
+            "caseHash": "2b34ef690211a3551d5fbd7cb72682b1364c03e9539ef4a394785966553c1503",
+            "cases": "data/prayer_space_cases.csv",
+            "rulesHash": "791fead8651e6c7c1ad29bacc8a50e7f1070497bf2ca1a9bae07616cbc2575f9",
+            "visualRules": "data/portrait_context_rules.csv"
+          },
+          "title": "捕不到鱼的渔民",
+          "workDetail": "net"
+        },
+        "dimensions": {
+          "width": 0.9358626808135923,
+          "height": 0.9957937319157645,
+          "lean": -0.025208511410746724,
+          "shoulderSlope": -0.03423430828843266,
+          "headTilt": 0.10806406835094096,
+          "headWidth": 0.8777684089570159,
+          "headShift": -8.377290476113558,
+          "crown": 14.662852766923606,
+          "capRise": 0.45724859018810093,
+          "hairTone": 0.8410764767322689,
+          "gripX": -20.50924017932266,
+          "gripY": 9.443712687585503,
+          "elbowSpread": -16.57419898500666,
+          "elbowDrop": 11.700982790440321,
+          "mantle": 60.589479270391166,
+          "panel": 99.79707481595688,
+          "panelSlant": 15.133248749189079,
+          "veil": 0.06371730752289295,
+          "border": 0.3883880961453542,
+          "hem": 0.7629112477879971,
+          "dye": 0.45175038813613355,
+          "linen": 0.25421198969706893,
+          "panelDye": 0.8865227876231074,
+          "tension": 1.0076649484923108,
+          "sleeve": 0.004003195092082024,
+          "presentation": 0.8676175225991756,
+          "handScale": 0.8764764954801649
+        },
+        "construction": {
+          "civilian": true,
+          "head": "workcap",
+          "garment": "oilcoat",
+          "gesture": "folded",
+          "held": "none"
+        }
+      },
+      "key": "p1847102961",
+      "features": {
+        "pose": "拢臂守望",
+        "structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+        "personSeed": 1847102961,
+        "worldSeed": 1339,
+        "materials": [
+          "canvas",
+          "亚麻衬衣",
+          "旧皮革",
+          "头发",
+          "铜扣"
+        ],
+        "method": "existing prayer background and role → constrained occupation clothing / practical headwear / situational gesture → continuous 2D contours and material fields → illustrated light → original NPR",
+        "recipe": {
+          "version": "tide-people-3",
+          "world": {
+            "archetype": 0,
+            "styleSid": 0,
+            "palette": 0,
+            "worldSeed": 1339
+          },
+          "personSeed": 1847102961,
+          "background": {
+            "appeal": "我已经几天没打到鱼，家里快断粮了。求你告诉我哪里还能下网。",
+            "appearanceNote": "短防潮衣与空网绳结来自海上劳作；不是祭服",
+            "binding": "美术探索采用既有祈求角色槽；未绑定正式 Session 人物，不新增游戏事实",
+            "caseId": "net_silence",
+            "context": "连着几天空网。鱼群去了深水，村里的船还在，却没人知道该往哪划。",
+            "frame": "coast",
+            "garments": [
+              "oilcoat",
+              "jerkin"
+            ],
+            "genderRule": "any",
+            "gestures": [
+              "appeal",
+              "folded"
+            ],
+            "goal": "恢复一次渔获",
+            "heads": [
+              "workcap",
+              "brim"
+            ],
+            "material": "canvas",
+            "pigment": "ochre",
+            "role": "渔民",
+            "scene": "deprivation",
+            "source": {
+              "caseHash": "2b34ef690211a3551d5fbd7cb72682b1364c03e9539ef4a394785966553c1503",
+              "cases": "data/prayer_space_cases.csv",
+              "rulesHash": "791fead8651e6c7c1ad29bacc8a50e7f1070497bf2ca1a9bae07616cbc2575f9",
+              "visualRules": "data/portrait_context_rules.csv"
+            },
+            "title": "捕不到鱼的渔民",
+            "workDetail": "net"
+          },
+          "dimensions": {
+            "width": 0.9358626808135923,
+            "height": 0.9957937319157645,
+            "lean": -0.025208511410746724,
+            "shoulderSlope": -0.03423430828843266,
+            "headTilt": 0.10806406835094096,
+            "headWidth": 0.8777684089570159,
+            "headShift": -8.377290476113558,
+            "crown": 14.662852766923606,
+            "capRise": 0.45724859018810093,
+            "hairTone": 0.8410764767322689,
+            "gripX": -20.50924017932266,
+            "gripY": 9.443712687585503,
+            "elbowSpread": -16.57419898500666,
+            "elbowDrop": 11.700982790440321,
+            "mantle": 60.589479270391166,
+            "panel": 99.79707481595688,
+            "panelSlant": 15.133248749189079,
+            "veil": 0.06371730752289295,
+            "border": 0.3883880961453542,
+            "hem": 0.7629112477879971,
+            "dye": 0.45175038813613355,
+            "linen": 0.25421198969706893,
+            "panelDye": 0.8865227876231074,
+            "tension": 1.0076649484923108,
+            "sleeve": 0.004003195092082024,
+            "presentation": 0.8676175225991756,
+            "handScale": 0.8764764954801649
+          },
+          "construction": {
+            "civilian": true,
+            "head": "workcap",
+            "garment": "oilcoat",
+            "gesture": "folded",
+            "held": "none"
+          }
+        },
+        "role": "渔民",
+        "caseTitle": "捕不到鱼的渔民",
+        "silhouette": "防潮短外衣 · 劳作软帽 · 偏女性",
+        "genderExpression": "feminine",
+        "landmarks": {
+          "shoulders": [
+            [
+              323.67524362460045,
+              428.34149344712966
+            ],
+            [
+              626.5496689770646,
+              429.406376851134
+            ]
+          ],
+          "elbows": [
+            [
+              259.4906110860281,
+              639.7208746266314
+            ],
+            [
+              674.8522724913969,
+              628.8943238240397
+            ]
+          ],
+          "wrists": [
+            [
+              497.4148208417257,
+              601.823047396262
+            ],
+            [
+              407.2837172317662,
+              617.9912262947205
+            ]
+          ],
+          "head": [
+            443.9842634157236,
+            244.9829403894297
+          ]
+        }
+      },
+      "drawMs": 887,
+      "render": {
+        "adapterFingerprint": "edd19e97544f87d9257aa5065939ccf79fc5556962049b63630b3caa66a0b232",
+        "cached": false,
+        "hash": "06eb24f80098f7f4ffb0a1328d72337a31a6d97dae0bf256ca38df9fbe6e4e6c",
+        "inputHash": "cfdf40b2e440d7090b532817732eb645adc1c006989e628cd33e69269531c107",
+        "params": {
+          "animate": 0,
+          "archetype": 0,
+          "aspect": 1,
+          "composition": 1,
+          "corruption": 0.2,
+          "count": 0,
+          "eyes": 0,
+          "glyphs": 0,
+          "madness": 0.06,
+          "nebula": 0.25,
+          "palette": 0,
+          "quality": 1,
+          "rings": 2,
+          "scene": 0,
+          "seed": 1339,
+          "show_frame": 0,
+          "show_labels": 0,
+          "show_swatch": 0,
+          "show_title": 0,
+          "star_type": -1,
+          "style": 0,
+          "tentacles": 0,
+          "wonder": -1
+        },
+        "schema": "people-npr-1",
+        "sourceFingerprint": "72cc66874d353d7a562aa9589f32f700ecfbdb0b7b9f75b933ad636f471d314f",
+        "time": 3,
+        "url": "/cache/2d70a6fc3f7533550d3853013ccf2a381a081b2dadfe48b4757000d28bbb51f9-person.png"
+      }
+    },
+    {
+      "id": "1",
+      "recipe": {
+        "version": "tide-people-3",
+        "world": {
+          "archetype": 0,
+          "styleSid": 0,
+          "palette": 0,
+          "worldSeed": 1339
+        },
+        "personSeed": 1830325342,
+        "background": {
+          "appeal": "船上有病人，最后一桶水也臭了，港口不让我们进城。求你给我们找点能喝的水。",
+          "appearanceNote": "衬衣与随身药袋是船医的造型推演；不提前画出已获救助",
+          "binding": "美术探索采用既有祈求角色槽；未绑定正式 Session 人物，不新增游戏事实",
+          "caseId": "quarantine_dock",
+          "context": "船上挂着疫病黄旗。城门不肯开，最后一桶水也发了臭。",
+          "frame": "coast",
+          "garments": [
+            "waistcoat",
+            "workshirt"
+          ],
+          "genderRule": "any",
+          "gestures": [
+            "appeal",
+            "prayer"
+          ],
+          "goal": "取得不危及城内居民的救助",
+          "heads": [
+            "tiedhair",
+            "short_hair"
+          ],
+          "material": "cloth",
+          "pigment": "linen",
+          "role": "船医",
+          "scene": "dispute",
+          "source": {
+            "caseHash": "2b34ef690211a3551d5fbd7cb72682b1364c03e9539ef4a394785966553c1503",
+            "cases": "data/prayer_space_cases.csv",
+            "rulesHash": "791fead8651e6c7c1ad29bacc8a50e7f1070497bf2ca1a9bae07616cbc2575f9",
+            "visualRules": "data/portrait_context_rules.csv"
+          },
+          "title": "被拒绝靠岸的船医",
+          "workDetail": "medical_bag"
+        },
+        "dimensions": {
+          "width": 0.9150265875556495,
+          "height": 1.0201551697542892,
+          "lean": -0.028456656637135896,
+          "shoulderSlope": 0.029344474375247967,
+          "headTilt": -0.00428618215955795,
+          "headWidth": 0.9315128729248535,
+          "headShift": -4.855967469513416,
+          "crown": 13.121038977988064,
+          "capRise": 0.4218759925570339,
+          "hairTone": 0.3251317855902016,
+          "gripX": 20.416222989559174,
+          "gripY": -25.26853147195652,
+          "elbowSpread": 1.0584968817420304,
+          "elbowDrop": 10.419033575803041,
+          "mantle": 67.40228502824903,
+          "panel": 83.10484174732119,
+          "panelSlant": 27.36270303837955,
+          "veil": 0.36085323547013104,
+          "border": 0.8238541702274232,
+          "hem": 0.10145658790133893,
+          "dye": 0.1465918030589819,
+          "linen": 0.10302021820098162,
+          "panelDye": 0.4424443868920207,
+          "tension": 0.9480533570982516,
+          "sleeve": 0.75880749640055,
+          "presentation": 0.2365601377096027,
+          "handScale": 1.0026879724580795
+        },
+        "construction": {
+          "civilian": true,
+          "head": "tiedhair",
+          "garment": "waistcoat",
+          "gesture": "appeal",
+          "held": "none"
+        }
+      },
+      "key": "p1830325342",
+      "features": {
+        "pose": "抚胸伸掌",
+        "structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+        "personSeed": 1830325342,
+        "worldSeed": 1339,
+        "materials": [
+          "cloth",
+          "亚麻衬衣",
+          "旧皮革",
+          "头发",
+          "铜扣"
+        ],
+        "method": "existing prayer background and role → constrained occupation clothing / practical headwear / situational gesture → continuous 2D contours and material fields → illustrated light → original NPR",
+        "recipe": {
+          "version": "tide-people-3",
+          "world": {
+            "archetype": 0,
+            "styleSid": 0,
+            "palette": 0,
+            "worldSeed": 1339
+          },
+          "personSeed": 1830325342,
+          "background": {
+            "appeal": "船上有病人，最后一桶水也臭了，港口不让我们进城。求你给我们找点能喝的水。",
+            "appearanceNote": "衬衣与随身药袋是船医的造型推演；不提前画出已获救助",
+            "binding": "美术探索采用既有祈求角色槽；未绑定正式 Session 人物，不新增游戏事实",
+            "caseId": "quarantine_dock",
+            "context": "船上挂着疫病黄旗。城门不肯开，最后一桶水也发了臭。",
+            "frame": "coast",
+            "garments": [
+              "waistcoat",
+              "workshirt"
+            ],
+            "genderRule": "any",
+            "gestures": [
+              "appeal",
+              "prayer"
+            ],
+            "goal": "取得不危及城内居民的救助",
+            "heads": [
+              "tiedhair",
+              "short_hair"
+            ],
+            "material": "cloth",
+            "pigment": "linen",
+            "role": "船医",
+            "scene": "dispute",
+            "source": {
+              "caseHash": "2b34ef690211a3551d5fbd7cb72682b1364c03e9539ef4a394785966553c1503",
+              "cases": "data/prayer_space_cases.csv",
+              "rulesHash": "791fead8651e6c7c1ad29bacc8a50e7f1070497bf2ca1a9bae07616cbc2575f9",
+              "visualRules": "data/portrait_context_rules.csv"
+            },
+            "title": "被拒绝靠岸的船医",
+            "workDetail": "medical_bag"
+          },
+          "dimensions": {
+            "width": 0.9150265875556495,
+            "height": 1.0201551697542892,
+            "lean": -0.028456656637135896,
+            "shoulderSlope": 0.029344474375247967,
+            "headTilt": -0.00428618215955795,
+            "headWidth": 0.9315128729248535,
+            "headShift": -4.855967469513416,
+            "crown": 13.121038977988064,
+            "capRise": 0.4218759925570339,
+            "hairTone": 0.3251317855902016,
+            "gripX": 20.416222989559174,
+            "gripY": -25.26853147195652,
+            "elbowSpread": 1.0584968817420304,
+            "elbowDrop": 10.419033575803041,
+            "mantle": 67.40228502824903,
+            "panel": 83.10484174732119,
+            "panelSlant": 27.36270303837955,
+            "veil": 0.36085323547013104,
+            "border": 0.8238541702274232,
+            "hem": 0.10145658790133893,
+            "dye": 0.1465918030589819,
+            "linen": 0.10302021820098162,
+            "panelDye": 0.4424443868920207,
+            "tension": 0.9480533570982516,
+            "sleeve": 0.75880749640055,
+            "presentation": 0.2365601377096027,
+            "handScale": 1.0026879724580795
+          },
+          "construction": {
+            "civilian": true,
+            "head": "tiedhair",
+            "garment": "waistcoat",
+            "gesture": "appeal",
+            "held": "none"
+          }
+        },
+        "role": "船医",
+        "caseTitle": "被拒绝靠岸的船医",
+        "silhouette": "排扣背心与衬衣 · 束发与面部阴影 · 偏男性",
+        "genderExpression": "masculine",
+        "landmarks": {
+          "shoulders": [
+            [
+              327.41854340871674,
+              419.0668226646759
+            ],
+            [
+              623.4508416886271,
+              435.2256534673211
+            ]
+          ],
+          "elbows": [
+            [
+              276.65385258810375,
+              626.0333333420577
+            ],
+            [
+              667.0132004896874,
+              614.299841196815
+            ]
+          ],
+          "wrists": [
+            [
+              351.13307405215716,
+              674.4069291624515
+            ],
+            [
+              523.9873298133966,
+              500.8052139029596
+            ]
+          ],
+          "head": [
+            442.96444406987007,
+            237.92319159700304
+          ]
+        }
+      },
+      "drawMs": 783,
+      "render": {
+        "adapterFingerprint": "edd19e97544f87d9257aa5065939ccf79fc5556962049b63630b3caa66a0b232",
+        "cached": false,
+        "hash": "7623ae8a272526c4628a0ec0cd29e553fd30c1e39683059398ad3abc206b277f",
+        "inputHash": "721d0c117695408e59fdcdf3b35b2488ae997d8f3fe5fb94f5e48fcf4d992b89",
+        "params": {
+          "animate": 0,
+          "archetype": 0,
+          "aspect": 1,
+          "composition": 1,
+          "corruption": 0.2,
+          "count": 0,
+          "eyes": 0,
+          "glyphs": 0,
+          "madness": 0.06,
+          "nebula": 0.25,
+          "palette": 0,
+          "quality": 1,
+          "rings": 2,
+          "scene": 0,
+          "seed": 1339,
+          "show_frame": 0,
+          "show_labels": 0,
+          "show_swatch": 0,
+          "show_title": 0,
+          "star_type": -1,
+          "style": 0,
+          "tentacles": 0,
+          "wonder": -1
+        },
+        "schema": "people-npr-1",
+        "sourceFingerprint": "72cc66874d353d7a562aa9589f32f700ecfbdb0b7b9f75b933ad636f471d314f",
+        "time": 3,
+        "url": "/cache/2a3574d2ba6e652c3f283f978f0e77cba2db6fceddadaba1e1106766aa09d003-person.png"
+      }
+    },
+    {
+      "id": "2",
+      "recipe": {
+        "version": "tide-people-3",
+        "world": {
+          "archetype": 0,
+          "styleSid": 0,
+          "palette": 0,
+          "worldSeed": 1339
+        },
+        "personSeed": 1813547723,
+        "background": {
+          "appeal": "这单雕刻就差最后几刀，可我的伤手一直抖，连刀都握不住。求你让我把活做完。",
+          "appearanceNote": "工作围裙与检查伤手的动作；不让受伤的手稳持刻刀",
+          "binding": "美术探索采用既有祈求角色槽；未绑定正式 Session 人物，不新增游戏事实",
+          "caseId": "shaking_hand",
+          "context": "最后一单雕刻就差几刀。他的手抖得连自己的名字都刻不完。",
+          "frame": "body",
+          "garments": [
+            "apron",
+            "workshirt"
+          ],
+          "genderRule": "any",
+          "gestures": [
+            "injured",
+            "appeal"
+          ],
+          "goal": "恢复完成雕刻的能力",
+          "heads": [
+            "short_hair",
+            "tiedhair"
+          ],
+          "material": "leather",
+          "pigment": "umber",
+          "role": "雕刻师",
+          "scene": "deprivation",
+          "source": {
+            "caseHash": "2b34ef690211a3551d5fbd7cb72682b1364c03e9539ef4a394785966553c1503",
+            "cases": "data/prayer_space_cases.csv",
+            "rulesHash": "791fead8651e6c7c1ad29bacc8a50e7f1070497bf2ca1a9bae07616cbc2575f9",
+            "visualRules": "data/portrait_context_rules.csv"
+          },
+          "title": "握不稳刀的雕刻师",
+          "workDetail": "apron"
+        },
+        "dimensions": {
+          "width": 1.189983880920566,
+          "height": 0.9831582149816677,
+          "lean": 0.06007762466091662,
+          "shoulderSlope": 0.07629642887506634,
+          "headTilt": -0.1736967553384602,
+          "headWidth": 1.0440565150992984,
+          "headShift": 1.3609796203672886,
+          "crown": -0.9998081554658711,
+          "capRise": 0.08088297047652304,
+          "hairTone": 0.6593340444378555,
+          "gripX": -16.927245957776904,
+          "gripY": -34.80316731799394,
+          "elbowSpread": 5.939780458342284,
+          "elbowDrop": 0.6963282600045204,
+          "mantle": 92.75540522206575,
+          "panel": 109.13608671724796,
+          "panelSlant": 3.9914078637957573,
+          "veil": 0.6487901373766363,
+          "border": 0.8860312552773393,
+          "hem": 0.4137530771549791,
+          "dye": 0.5521389732602984,
+          "linen": 0.41805722936987877,
+          "panelDye": 0.32872492261230946,
+          "tension": 0.9150770341977477,
+          "sleeve": 0.610591679578647,
+          "presentation": 0.061544113559648395,
+          "handScale": 1.0376911772880704
+        },
+        "construction": {
+          "civilian": true,
+          "head": "tiedhair",
+          "garment": "apron",
+          "gesture": "appeal",
+          "held": "none"
+        }
+      },
+      "key": "p1813547723",
+      "features": {
+        "pose": "抚胸伸掌",
+        "structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+        "personSeed": 1813547723,
+        "worldSeed": 1339,
+        "materials": [
+          "leather",
+          "亚麻衬衣",
+          "旧皮革",
+          "头发",
+          "铜扣"
+        ],
+        "method": "existing prayer background and role → constrained occupation clothing / practical headwear / situational gesture → continuous 2D contours and material fields → illustrated light → original NPR",
+        "recipe": {
+          "version": "tide-people-3",
+          "world": {
+            "archetype": 0,
+            "styleSid": 0,
+            "palette": 0,
+            "worldSeed": 1339
+          },
+          "personSeed": 1813547723,
+          "background": {
+            "appeal": "这单雕刻就差最后几刀，可我的伤手一直抖，连刀都握不住。求你让我把活做完。",
+            "appearanceNote": "工作围裙与检查伤手的动作；不让受伤的手稳持刻刀",
+            "binding": "美术探索采用既有祈求角色槽；未绑定正式 Session 人物，不新增游戏事实",
+            "caseId": "shaking_hand",
+            "context": "最后一单雕刻就差几刀。他的手抖得连自己的名字都刻不完。",
+            "frame": "body",
+            "garments": [
+              "apron",
+              "workshirt"
+            ],
+            "genderRule": "any",
+            "gestures": [
+              "injured",
+              "appeal"
+            ],
+            "goal": "恢复完成雕刻的能力",
+            "heads": [
+              "short_hair",
+              "tiedhair"
+            ],
+            "material": "leather",
+            "pigment": "umber",
+            "role": "雕刻师",
+            "scene": "deprivation",
+            "source": {
+              "caseHash": "2b34ef690211a3551d5fbd7cb72682b1364c03e9539ef4a394785966553c1503",
+              "cases": "data/prayer_space_cases.csv",
+              "rulesHash": "791fead8651e6c7c1ad29bacc8a50e7f1070497bf2ca1a9bae07616cbc2575f9",
+              "visualRules": "data/portrait_context_rules.csv"
+            },
+            "title": "握不稳刀的雕刻师",
+            "workDetail": "apron"
+          },
+          "dimensions": {
+            "width": 1.189983880920566,
+            "height": 0.9831582149816677,
+            "lean": 0.06007762466091662,
+            "shoulderSlope": 0.07629642887506634,
+            "headTilt": -0.1736967553384602,
+            "headWidth": 1.0440565150992984,
+            "headShift": 1.3609796203672886,
+            "crown": -0.9998081554658711,
+            "capRise": 0.08088297047652304,
+            "hairTone": 0.6593340444378555,
+            "gripX": -16.927245957776904,
+            "gripY": -34.80316731799394,
+            "elbowSpread": 5.939780458342284,
+            "elbowDrop": 0.6963282600045204,
+            "mantle": 92.75540522206575,
+            "panel": 109.13608671724796,
+            "panelSlant": 3.9914078637957573,
+            "veil": 0.6487901373766363,
+            "border": 0.8860312552773393,
+            "hem": 0.4137530771549791,
+            "dye": 0.5521389732602984,
+            "linen": 0.41805722936987877,
+            "panelDye": 0.32872492261230946,
+            "tension": 0.9150770341977477,
+            "sleeve": 0.610591679578647,
+            "presentation": 0.061544113559648395,
+            "handScale": 1.0376911772880704
+          },
+          "construction": {
+            "civilian": true,
+            "head": "tiedhair",
+            "garment": "apron",
+            "gesture": "appeal",
+            "held": "none"
+          }
+        },
+        "role": "雕刻师",
+        "caseTitle": "握不稳刀的雕刻师",
+        "silhouette": "皮围裙与工作衫 · 束发与面部阴影 · 偏男性",
+        "genderExpression": "masculine",
+        "landmarks": {
+          "shoulders": [
+            [
+              276.6909916093238,
+              416.02417686251346
+            ],
+            [
+              662.3386767066155,
+              442.4080709858245
+            ]
+          ],
+          "elbows": [
+            [
+              232.49509086001223,
+              608.2874383106008
+            ],
+            [
+              724.924215816634,
+              613.1849172227091
+            ]
+          ],
+          "wrists": [
+            [
+              322.10678243543646,
+              658.1706673760445
+            ],
+            [
+              533.4661018404636,
+              499.8612467828741
+            ]
+          ],
+          "head": [
+            417.3876421451675,
+            241.5887986819148
+          ]
+        }
+      },
+      "drawMs": 937,
+      "render": {
+        "adapterFingerprint": "edd19e97544f87d9257aa5065939ccf79fc5556962049b63630b3caa66a0b232",
+        "cached": false,
+        "hash": "6645a54de085cd9c9a19c3e2e4d9db8060940cde91277d1e4f4d40523a3c684c",
+        "inputHash": "ad25a0d17341b7f59abf0270b405f6841df20f19d3b6f1e418818f363efac967",
+        "params": {
+          "animate": 0,
+          "archetype": 0,
+          "aspect": 1,
+          "composition": 1,
+          "corruption": 0.2,
+          "count": 0,
+          "eyes": 0,
+          "glyphs": 0,
+          "madness": 0.06,
+          "nebula": 0.25,
+          "palette": 0,
+          "quality": 1,
+          "rings": 2,
+          "scene": 0,
+          "seed": 1339,
+          "show_frame": 0,
+          "show_labels": 0,
+          "show_swatch": 0,
+          "show_title": 0,
+          "star_type": -1,
+          "style": 0,
+          "tentacles": 0,
+          "wonder": -1
+        },
+        "schema": "people-npr-1",
+        "sourceFingerprint": "72cc66874d353d7a562aa9589f32f700ecfbdb0b7b9f75b933ad636f471d314f",
+        "time": 3,
+        "url": "/cache/1624674c7e1b26eaf8db60243f28d947be76c199035f4726a971ba5012257fd7-person.png"
+      }
+    },
+    {
+      "id": "3",
+      "recipe": {
+        "version": "tide-people-3",
+        "world": {
+          "archetype": 0,
+          "styleSid": 0,
+          "palette": 0,
+          "worldSeed": 1339
+        },
+        "personSeed": 1796770104,
+        "background": {
+          "appeal": "那封受贿的信落到了申诉人手里，我会因此丢掉职位。求你替我取回它，我会让你的人进城。",
+          "appearanceNote": "裁判者的挺括衣襟与职务细节；不把申诉人持有的受贿信画回他手里",
+          "binding": "美术探索采用既有祈求角色槽；未绑定正式 Session 人物，不新增游戏事实",
+          "caseId": "judge_letter",
+          "context": "受贿的信落到了申诉人手里。裁判者知道自己判错了，仍舍不得那张椅子。",
+          "frame": "law",
+          "garments": [
+            "tailored",
+            "waistcoat"
+          ],
+          "genderRule": "any",
+          "gestures": [
+            "folded",
+            "appeal"
+          ],
+          "goal": "阻止贿赂书信用于复核",
+          "heads": [
+            "brim",
+            "swept_hair"
+          ],
+          "material": "cloth",
+          "pigment": "ink",
+          "role": "收受贿赂的裁判者",
+          "scene": "custody",
+          "source": {
+            "caseHash": "2b34ef690211a3551d5fbd7cb72682b1364c03e9539ef4a394785966553c1503",
+            "cases": "data/prayer_space_cases.csv",
+            "rulesHash": "791fead8651e6c7c1ad29bacc8a50e7f1070497bf2ca1a9bae07616cbc2575f9",
+            "visualRules": "data/portrait_context_rules.csv"
+          },
+          "title": "受贿书信外泄的裁判者",
+          "workDetail": "office_chain"
+        },
+        "dimensions": {
+          "width": 0.9318781245463785,
+          "height": 0.9678946524951607,
+          "lean": 0.00696519793942571,
+          "shoulderSlope": -0.007449211389757696,
+          "headTilt": 0.1648680695705116,
+          "headWidth": 1.0622050062294905,
+          "headShift": -1.8606634084135294,
+          "crown": -3.628284973092377,
+          "capRise": 0.944931477541104,
+          "hairTone": 0.22956658364273608,
+          "gripX": 9.9734838725999,
+          "gripY": -18.6016289643012,
+          "elbowSpread": -2.54047919344157,
+          "elbowDrop": 5.950983915477991,
+          "mantle": 66.39722154848278,
+          "panel": 97.98172390135005,
+          "panelSlant": -3.8297187723219395,
+          "veil": 0.8246271125972271,
+          "border": 0.8669972384581341,
+          "hem": 0.8094375315122306,
+          "dye": 0.09257126250304282,
+          "linen": 0.7101375905331224,
+          "panelDye": 0.8949949990492314,
+          "tension": 1.0872141991276294,
+          "sleeve": 0.566607114393264,
+          "presentation": 0.5049637304618955,
+          "handScale": 0.949007253907621
+        },
+        "construction": {
+          "civilian": true,
+          "head": "brim",
+          "garment": "tailored",
+          "gesture": "appeal",
+          "held": "none"
+        }
+      },
+      "key": "p1796770104",
+      "features": {
+        "pose": "抚胸伸掌",
+        "structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+        "personSeed": 1796770104,
+        "worldSeed": 1339,
+        "materials": [
+          "cloth",
+          "亚麻衬衣",
+          "旧皮革",
+          "头发",
+          "铜扣"
+        ],
+        "method": "existing prayer background and role → constrained occupation clothing / practical headwear / situational gesture → continuous 2D contours and material fields → illustrated light → original NPR",
+        "recipe": {
+          "version": "tide-people-3",
+          "world": {
+            "archetype": 0,
+            "styleSid": 0,
+            "palette": 0,
+            "worldSeed": 1339
+          },
+          "personSeed": 1796770104,
+          "background": {
+            "appeal": "那封受贿的信落到了申诉人手里，我会因此丢掉职位。求你替我取回它，我会让你的人进城。",
+            "appearanceNote": "裁判者的挺括衣襟与职务细节；不把申诉人持有的受贿信画回他手里",
+            "binding": "美术探索采用既有祈求角色槽；未绑定正式 Session 人物，不新增游戏事实",
+            "caseId": "judge_letter",
+            "context": "受贿的信落到了申诉人手里。裁判者知道自己判错了，仍舍不得那张椅子。",
+            "frame": "law",
+            "garments": [
+              "tailored",
+              "waistcoat"
+            ],
+            "genderRule": "any",
+            "gestures": [
+              "folded",
+              "appeal"
+            ],
+            "goal": "阻止贿赂书信用于复核",
+            "heads": [
+              "brim",
+              "swept_hair"
+            ],
+            "material": "cloth",
+            "pigment": "ink",
+            "role": "收受贿赂的裁判者",
+            "scene": "custody",
+            "source": {
+              "caseHash": "2b34ef690211a3551d5fbd7cb72682b1364c03e9539ef4a394785966553c1503",
+              "cases": "data/prayer_space_cases.csv",
+              "rulesHash": "791fead8651e6c7c1ad29bacc8a50e7f1070497bf2ca1a9bae07616cbc2575f9",
+              "visualRules": "data/portrait_context_rules.csv"
+            },
+            "title": "受贿书信外泄的裁判者",
+            "workDetail": "office_chain"
+          },
+          "dimensions": {
+            "width": 0.9318781245463785,
+            "height": 0.9678946524951607,
+            "lean": 0.00696519793942571,
+            "shoulderSlope": -0.007449211389757696,
+            "headTilt": 0.1648680695705116,
+            "headWidth": 1.0622050062294905,
+            "headShift": -1.8606634084135294,
+            "crown": -3.628284973092377,
+            "capRise": 0.944931477541104,
+            "hairTone": 0.22956658364273608,
+            "gripX": 9.9734838725999,
+            "gripY": -18.6016289643012,
+            "elbowSpread": -2.54047919344157,
+            "elbowDrop": 5.950983915477991,
+            "mantle": 66.39722154848278,
+            "panel": 97.98172390135005,
+            "panelSlant": -3.8297187723219395,
+            "veil": 0.8246271125972271,
+            "border": 0.8669972384581341,
+            "hem": 0.8094375315122306,
+            "dye": 0.09257126250304282,
+            "linen": 0.7101375905331224,
+            "panelDye": 0.8949949990492314,
+            "tension": 1.0872141991276294,
+            "sleeve": 0.566607114393264,
+            "presentation": 0.5049637304618955,
+            "handScale": 0.949007253907621
+          },
+          "construction": {
+            "civilian": true,
+            "head": "brim",
+            "garment": "tailored",
+            "gesture": "appeal",
+            "held": "none"
+          }
+        },
+        "role": "收受贿赂的裁判者",
+        "caseTitle": "受贿书信外泄的裁判者",
+        "silhouette": "挺括翻领外衣 · 压低帽檐 · 中性表达",
+        "genderExpression": "androgynous",
+        "landmarks": {
+          "shoulders": [
+            [
+              322.3236356340403,
+              426.8101674432479
+            ],
+            [
+              624.1866728834681,
+              433.89608936312203
+            ]
+          ],
+          "elbows": [
+            [
+              275.3981005538411,
+              618.0934030266304
+            ],
+            [
+              675.9320316300261,
+              615.0888501595588
+            ]
+          ],
+          "wrists": [
+            [
+              351.17138334149644,
+              665.9230551382389
+            ],
+            [
+              524.0275905454878,
+              500.4222908759383
+            ]
+          ],
+          "head": [
+            448.066338276887,
+            244.2611781078163
+          ]
+        }
+      },
+      "drawMs": 747,
+      "render": {
+        "adapterFingerprint": "edd19e97544f87d9257aa5065939ccf79fc5556962049b63630b3caa66a0b232",
+        "cached": false,
+        "hash": "db11e99ac0e7acfc81f15562880bd01dcb3d2abadc8d98ae10fd6be21505a3f5",
+        "inputHash": "fc8b98c04c88218e519da3a5fd196b7471adde10ba6c6b68aa6e90b519d89516",
+        "params": {
+          "animate": 0,
+          "archetype": 0,
+          "aspect": 1,
+          "composition": 1,
+          "corruption": 0.2,
+          "count": 0,
+          "eyes": 0,
+          "glyphs": 0,
+          "madness": 0.06,
+          "nebula": 0.25,
+          "palette": 0,
+          "quality": 1,
+          "rings": 2,
+          "scene": 0,
+          "seed": 1339,
+          "show_frame": 0,
+          "show_labels": 0,
+          "show_swatch": 0,
+          "show_title": 0,
+          "star_type": -1,
+          "style": 0,
+          "tentacles": 0,
+          "wonder": -1
+        },
+        "schema": "people-npr-1",
+        "sourceFingerprint": "72cc66874d353d7a562aa9589f32f700ecfbdb0b7b9f75b933ad636f471d314f",
+        "time": 3,
+        "url": "/cache/263bdf50a39ef518a55e0e547e730a46788be6c32967c89c522db8dca14f9c1a-person.png"
+      }
+    },
+    {
+      "id": "4",
+      "recipe": {
+        "version": "tide-people-3",
+        "world": {
+          "archetype": 0,
+          "styleSid": 0,
+          "palette": 0,
+          "worldSeed": 1339
+        },
+        "personSeed": 1914213437,
+        "background": {
+          "appeal": "女儿烧得连我都认不出来了，我怕她撑不过去。求你让她退烧，让她活下来。",
+          "appearanceNote": "普通生活衣物与紧握双手；父亲身份有原文依据但职业未被指定",
+          "binding": "美术探索采用既有祈求角色槽；未绑定正式 Session 人物，不新增游戏事实",
+          "caseId": "fever_child",
+          "context": "孩子烧得认不出父亲。父亲握着她的手，一遍遍报自己的名字。",
+          "frame": "body",
+          "garments": [
+            "jerkin",
+            "workshirt"
+          ],
+          "genderRule": "male",
+          "gestures": [
+            "prayer",
+            "appeal"
+          ],
+          "goal": "解除孩子的此次病危",
+          "heads": [
+            "short_hair",
+            "swept_hair"
+          ],
+          "material": "cloth",
+          "pigment": "slate",
+          "role": "孩子的父亲",
+          "scene": "hazard",
+          "source": {
+            "caseHash": "2b34ef690211a3551d5fbd7cb72682b1364c03e9539ef4a394785966553c1503",
+            "cases": "data/prayer_space_cases.csv",
+            "rulesHash": "791fead8651e6c7c1ad29bacc8a50e7f1070497bf2ca1a9bae07616cbc2575f9",
+            "visualRules": "data/portrait_context_rules.csv"
+          },
+          "title": "守着高烧孩子的父亲",
+          "workDetail": "repair"
+        },
+        "dimensions": {
+          "width": 1.1957126502186464,
+          "height": 0.9729929799307138,
+          "lean": 0.03499249042477459,
+          "shoulderSlope": -0.10476439393591136,
+          "headTilt": 0.07149727329611777,
+          "headWidth": 1.0879861651912144,
+          "headShift": 1.1108137406408787,
+          "crown": -9.504369939677417,
+          "capRise": 0.02685727528296411,
+          "hairTone": 0.6108390288427472,
+          "gripX": -17.548903610557318,
+          "gripY": -15.74901403253898,
+          "elbowSpread": 17.223992852959782,
+          "elbowDrop": -10.794269593432546,
+          "mantle": 41.53999970946461,
+          "panel": 97.61844567791559,
+          "panelSlant": -8.08813026174903,
+          "veil": 0.31901243003085256,
+          "border": 0.8361574411741457,
+          "hem": 0.9219475826248527,
+          "dye": 0.8148077675141394,
+          "linen": 0.8982042518910021,
+          "panelDye": 0.774449399439618,
+          "tension": 1.0679954421706497,
+          "sleeve": 0.15611887071281672,
+          "presentation": 0.14450782616622748,
+          "handScale": 1.0210984347667544
+        },
+        "construction": {
+          "civilian": true,
+          "head": "swept_hair",
+          "garment": "workshirt",
+          "gesture": "prayer",
+          "held": "none"
+        }
+      },
+      "key": "p1914213437",
+      "features": {
+        "pose": "合掌求援",
+        "structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+        "personSeed": 1914213437,
+        "worldSeed": 1339,
+        "materials": [
+          "cloth",
+          "亚麻衬衣",
+          "旧皮革",
+          "头发",
+          "铜扣"
+        ],
+        "method": "existing prayer background and role → constrained occupation clothing / practical headwear / situational gesture → continuous 2D contours and material fields → illustrated light → original NPR",
+        "recipe": {
+          "version": "tide-people-3",
+          "world": {
+            "archetype": 0,
+            "styleSid": 0,
+            "palette": 0,
+            "worldSeed": 1339
+          },
+          "personSeed": 1914213437,
+          "background": {
+            "appeal": "女儿烧得连我都认不出来了，我怕她撑不过去。求你让她退烧，让她活下来。",
+            "appearanceNote": "普通生活衣物与紧握双手；父亲身份有原文依据但职业未被指定",
+            "binding": "美术探索采用既有祈求角色槽；未绑定正式 Session 人物，不新增游戏事实",
+            "caseId": "fever_child",
+            "context": "孩子烧得认不出父亲。父亲握着她的手，一遍遍报自己的名字。",
+            "frame": "body",
+            "garments": [
+              "jerkin",
+              "workshirt"
+            ],
+            "genderRule": "male",
+            "gestures": [
+              "prayer",
+              "appeal"
+            ],
+            "goal": "解除孩子的此次病危",
+            "heads": [
+              "short_hair",
+              "swept_hair"
+            ],
+            "material": "cloth",
+            "pigment": "slate",
+            "role": "孩子的父亲",
+            "scene": "hazard",
+            "source": {
+              "caseHash": "2b34ef690211a3551d5fbd7cb72682b1364c03e9539ef4a394785966553c1503",
+              "cases": "data/prayer_space_cases.csv",
+              "rulesHash": "791fead8651e6c7c1ad29bacc8a50e7f1070497bf2ca1a9bae07616cbc2575f9",
+              "visualRules": "data/portrait_context_rules.csv"
+            },
+            "title": "守着高烧孩子的父亲",
+            "workDetail": "repair"
+          },
+          "dimensions": {
+            "width": 1.1957126502186464,
+            "height": 0.9729929799307138,
+            "lean": 0.03499249042477459,
+            "shoulderSlope": -0.10476439393591136,
+            "headTilt": 0.07149727329611777,
+            "headWidth": 1.0879861651912144,
+            "headShift": 1.1108137406408787,
+            "crown": -9.504369939677417,
+            "capRise": 0.02685727528296411,
+            "hairTone": 0.6108390288427472,
+            "gripX": -17.548903610557318,
+            "gripY": -15.74901403253898,
+            "elbowSpread": 17.223992852959782,
+            "elbowDrop": -10.794269593432546,
+            "mantle": 41.53999970946461,
+            "panel": 97.61844567791559,
+            "panelSlant": -8.08813026174903,
+            "veil": 0.31901243003085256,
+            "border": 0.8361574411741457,
+            "hem": 0.9219475826248527,
+            "dye": 0.8148077675141394,
+            "linen": 0.8982042518910021,
+            "panelDye": 0.774449399439618,
+            "tension": 1.0679954421706497,
+            "sleeve": 0.15611887071281672,
+            "presentation": 0.14450782616622748,
+            "handScale": 1.0210984347667544
+          },
+          "construction": {
+            "civilian": true,
+            "head": "swept_hair",
+            "garment": "workshirt",
+            "gesture": "prayer",
+            "held": "none"
+          }
+        },
+        "role": "孩子的父亲",
+        "caseTitle": "守着高烧孩子的父亲",
+        "silhouette": "日常衬衣 · 侧分发与面部阴影 · 偏男性",
+        "genderExpression": "masculine",
+        "landmarks": {
+          "shoulders": [
+            [
+              277.3327476034545,
+              437.75974311486794
+            ],
+            [
+              664.5637465180276,
+              422.8647348094093
+            ]
+          ],
+          "elbows": [
+            [
+              249.69942752700746,
+              640.7396649091919
+            ],
+            [
+              703.0964364120476,
+              666.4386224222416
+            ]
+          ],
+          "wrists": [
+            [
+              464.8392712682953,
+              532.5153928577721
+            ],
+            [
+              507.11060010983,
+              532.0278844316811
+            ]
+          ],
+          "head": [
+            438.69755855757353,
+            239.86796135815155
+          ]
+        }
+      },
+      "drawMs": 809,
+      "render": {
+        "adapterFingerprint": "edd19e97544f87d9257aa5065939ccf79fc5556962049b63630b3caa66a0b232",
+        "cached": false,
+        "hash": "58eeab51323b7c8ecee9bc41009393fec95b8cc8712db87fed638ffb32bd8de1",
+        "inputHash": "45df0970454e159db5482eca5385458bc4b99882d3916d5b3b2c5ef707c55aa6",
+        "params": {
+          "animate": 0,
+          "archetype": 0,
+          "aspect": 1,
+          "composition": 1,
+          "corruption": 0.2,
+          "count": 0,
+          "eyes": 0,
+          "glyphs": 0,
+          "madness": 0.06,
+          "nebula": 0.25,
+          "palette": 0,
+          "quality": 1,
+          "rings": 2,
+          "scene": 0,
+          "seed": 1339,
+          "show_frame": 0,
+          "show_labels": 0,
+          "show_swatch": 0,
+          "show_title": 0,
+          "star_type": -1,
+          "style": 0,
+          "tentacles": 0,
+          "wonder": -1
+        },
+        "schema": "people-npr-1",
+        "sourceFingerprint": "72cc66874d353d7a562aa9589f32f700ecfbdb0b7b9f75b933ad636f471d314f",
+        "time": 3,
+        "url": "/cache/c0a4acfeed47240888defc67d5d148112e3d94a0842e64a7b0d0aff19e4cc35f-person.png"
+      }
+    },
+    {
+      "id": "5",
+      "recipe": {
+        "version": "tide-people-3",
+        "world": {
+          "archetype": 0,
+          "styleSid": 0,
+          "palette": 0,
+          "worldSeed": 1339
+        },
+        "personSeed": 1897435818,
+        "background": {
+          "appeal": "我按他们的要求作了证，答应保护我的人却不见了，仇家已经找到住处。求你帮我躲过这次报复。",
+          "appearanceNote": "车夫的短外衣与工作挎带；躲避报复而非自动成为教徒",
+          "binding": "美术探索采用既有祈求角色槽；未绑定正式 Session 人物，不新增游戏事实",
+          "caseId": "protected_witness",
+          "context": "车夫按要求作了证。答应保护他的人不见了，仇家却已经找到他住的巷子。",
+          "frame": "law",
+          "garments": [
+            "drivercoat",
+            "jerkin"
+          ],
+          "genderRule": "any",
+          "gestures": [
+            "guarded",
+            "folded"
+          ],
+          "goal": "兑现证人保护并避免眼前报复",
+          "heads": [
+            "workcap",
+            "brim"
+          ],
+          "material": "leather",
+          "pigment": "umber",
+          "role": "已作证的车夫",
+          "scene": "obligation",
+          "source": {
+            "caseHash": "2b34ef690211a3551d5fbd7cb72682b1364c03e9539ef4a394785966553c1503",
+            "cases": "data/prayer_space_cases.csv",
+            "rulesHash": "791fead8651e6c7c1ad29bacc8a50e7f1070497bf2ca1a9bae07616cbc2575f9",
+            "visualRules": "data/portrait_context_rules.csv"
+          },
+          "title": "遭到报复的作证车夫",
+          "workDetail": "harness"
+        },
+        "dimensions": {
+          "width": 0.9745736350556997,
+          "height": 0.9698082917695865,
+          "lean": 0.04184764629462734,
+          "shoulderSlope": 0.041785306949168446,
+          "headTilt": 0.09813961470499633,
+          "headWidth": 1.0599380221916788,
+          "headShift": -6.1292131673544645,
+          "crown": -10.024019193369895,
+          "capRise": 0.10717451362870634,
+          "hairTone": 0.21352335577830672,
+          "gripX": 13.977911593392491,
+          "gripY": 18.85280343540944,
+          "elbowSpread": 8.736177770420909,
+          "elbowDrop": 6.331653060391545,
+          "mantle": 118.37636835733429,
+          "panel": 114.12394578987733,
+          "panelSlant": -5.783173274248838,
+          "veil": 0.2197786986362189,
+          "border": 0.9215559314121492,
+          "hem": 0.6916987607255578,
+          "dye": 0.228570124367252,
+          "linen": 0.8760617543011904,
+          "panelDye": 0.8232995721045882,
+          "tension": 0.8680811762344092,
+          "sleeve": 0.11906201136298478,
+          "presentation": 0.49668434588238597,
+          "handScale": 0.9506631308235228
+        },
+        "construction": {
+          "civilian": true,
+          "head": "workcap",
+          "garment": "drivercoat",
+          "gesture": "folded",
+          "held": "none"
+        }
+      },
+      "key": "p1897435818",
+      "features": {
+        "pose": "拢臂守望",
+        "structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+        "personSeed": 1897435818,
+        "worldSeed": 1339,
+        "materials": [
+          "leather",
+          "亚麻衬衣",
+          "旧皮革",
+          "头发",
+          "铜扣"
+        ],
+        "method": "existing prayer background and role → constrained occupation clothing / practical headwear / situational gesture → continuous 2D contours and material fields → illustrated light → original NPR",
+        "recipe": {
+          "version": "tide-people-3",
+          "world": {
+            "archetype": 0,
+            "styleSid": 0,
+            "palette": 0,
+            "worldSeed": 1339
+          },
+          "personSeed": 1897435818,
+          "background": {
+            "appeal": "我按他们的要求作了证，答应保护我的人却不见了，仇家已经找到住处。求你帮我躲过这次报复。",
+            "appearanceNote": "车夫的短外衣与工作挎带；躲避报复而非自动成为教徒",
+            "binding": "美术探索采用既有祈求角色槽；未绑定正式 Session 人物，不新增游戏事实",
+            "caseId": "protected_witness",
+            "context": "车夫按要求作了证。答应保护他的人不见了，仇家却已经找到他住的巷子。",
+            "frame": "law",
+            "garments": [
+              "drivercoat",
+              "jerkin"
+            ],
+            "genderRule": "any",
+            "gestures": [
+              "guarded",
+              "folded"
+            ],
+            "goal": "兑现证人保护并避免眼前报复",
+            "heads": [
+              "workcap",
+              "brim"
+            ],
+            "material": "leather",
+            "pigment": "umber",
+            "role": "已作证的车夫",
+            "scene": "obligation",
+            "source": {
+              "caseHash": "2b34ef690211a3551d5fbd7cb72682b1364c03e9539ef4a394785966553c1503",
+              "cases": "data/prayer_space_cases.csv",
+              "rulesHash": "791fead8651e6c7c1ad29bacc8a50e7f1070497bf2ca1a9bae07616cbc2575f9",
+              "visualRules": "data/portrait_context_rules.csv"
+            },
+            "title": "遭到报复的作证车夫",
+            "workDetail": "harness"
+          },
+          "dimensions": {
+            "width": 0.9745736350556997,
+            "height": 0.9698082917695865,
+            "lean": 0.04184764629462734,
+            "shoulderSlope": 0.041785306949168446,
+            "headTilt": 0.09813961470499633,
+            "headWidth": 1.0599380221916788,
+            "headShift": -6.1292131673544645,
+            "crown": -10.024019193369895,
+            "capRise": 0.10717451362870634,
+            "hairTone": 0.21352335577830672,
+            "gripX": 13.977911593392491,
+            "gripY": 18.85280343540944,
+            "elbowSpread": 8.736177770420909,
+            "elbowDrop": 6.331653060391545,
+            "mantle": 118.37636835733429,
+            "panel": 114.12394578987733,
+            "panelSlant": -5.783173274248838,
+            "veil": 0.2197786986362189,
+            "border": 0.9215559314121492,
+            "hem": 0.6916987607255578,
+            "dye": 0.228570124367252,
+            "linen": 0.8760617543011904,
+            "panelDye": 0.8232995721045882,
+            "tension": 0.8680811762344092,
+            "sleeve": 0.11906201136298478,
+            "presentation": 0.49668434588238597,
+            "handScale": 0.9506631308235228
+          },
+          "construction": {
+            "civilian": true,
+            "head": "workcap",
+            "garment": "drivercoat",
+            "gesture": "folded",
+            "held": "none"
+          }
+        },
+        "role": "已作证的车夫",
+        "caseTitle": "遭到报复的作证车夫",
+        "silhouette": "车夫短外套 · 劳作软帽 · 中性表达",
+        "genderExpression": "androgynous",
+        "landmarks": {
+          "shoulders": [
+            [
+              313.1439763280815,
+              421.1033377950422
+            ],
+            [
+              629.0583033767525,
+              439.43338490909207
+            ]
+          ],
+          "elbows": [
+            [
+              284.0033155912056,
+              635.3925355876431
+            ],
+            [
+              677.50492355717,
+              635.0510540897201
+            ]
+          ],
+          "wrists": [
+            [
+              535.9038970065441,
+              607.452873829363
+            ],
+            [
+              443.23021818261964,
+              622.6596914014849
+            ]
+          ],
+          "head": [
+            430.273832397464,
+            240.44845877619412
+          ]
+        }
+      },
+      "drawMs": 794,
+      "render": {
+        "adapterFingerprint": "edd19e97544f87d9257aa5065939ccf79fc5556962049b63630b3caa66a0b232",
+        "cached": false,
+        "hash": "ff6a6e977c4669fe6e3ce6c0afda2f1e4b0a211d7524c7dcb4e62f38c2be4fb2",
+        "inputHash": "d91cf0bda74973e7c88454be2d2a41dab22da3d1e0a319fc2691192f2241b27f",
+        "params": {
+          "animate": 0,
+          "archetype": 0,
+          "aspect": 1,
+          "composition": 1,
+          "corruption": 0.2,
+          "count": 0,
+          "eyes": 0,
+          "glyphs": 0,
+          "madness": 0.06,
+          "nebula": 0.25,
+          "palette": 0,
+          "quality": 1,
+          "rings": 2,
+          "scene": 0,
+          "seed": 1339,
+          "show_frame": 0,
+          "show_labels": 0,
+          "show_swatch": 0,
+          "show_title": 0,
+          "star_type": -1,
+          "style": 0,
+          "tentacles": 0,
+          "wonder": -1
+        },
+        "schema": "people-npr-1",
+        "sourceFingerprint": "72cc66874d353d7a562aa9589f32f700ecfbdb0b7b9f75b933ad636f471d314f",
+        "time": 3,
+        "url": "/cache/fc2dabb277bd6bc6588adf956931ca45668bed57ee676bc4b8ccfe5d717c628f-person.png"
+      }
+    }
+  ],
+  "timings": {
+    "totalMs": 10669,
+    "postMs": 3599
+  },
+  "coverage": "取材于既有祈求 CSV 的 6 个背景角色槽；每类仍可连续换人。不是正式 Session 人物绑定，不把求告者默认为教徒。其他世界/画风及其余祈求角色未覆盖。"
+}

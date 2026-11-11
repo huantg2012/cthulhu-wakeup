@@ -1,0 +1,17 @@
+{
+  "feedback": "目前的效果我比较满意。",
+  "scope": "世界 1339 / 溺亡之海 0 / 深渊翠 0 / sid 0；当前单个人物和光影细化后的教团；不是未来全部组合的认可",
+  "files": {
+    "world.png": "5ef267109893716154fd77bf882ee2dfc8f8731118a0f20f4a94b31e835a11ad",
+    "surface_2d.gdshader": "c7c88794b0612caf72aa0b49a7962ec789cd3c2a8ffa74ea67a58953e74fe397",
+    "parameters.json": "120e1c192585424b710e9717c577a17ed1a2d570cb0ca4d856ac13083af5ec7f",
+    "world.js": "877c1fb1feeb0e50f3ebbfae8344add39975c4a8bf9a9b64108708ae8653d160",
+    "person.png": "d366d7bbd46a45c5aa2937e97424452988c35385cda716b129ad52eafbb93bc3",
+    "portrait.js": "3d242f24d17ebbe9a72c5ec0e2acdcb101a6995d250ea039d45d86c46b117da6",
+    "style_2d.gd": "051a20401d31b890b790835deff252e14c70325c6b6249b9351604a7d49d7f17",
+    "engine.js": "2bfa1ce82c120a043e3d2070e64c7adc9871f8b786f70c5a99dc1a239843a540",
+    "necessary-checks.json": "8067dcf1d268d9332d2ecea96ad5351f12d7df162e88307f858ffc009e81a309",
+    "sanctuary.js": "8464350cb0f04fe91f39fe15a9119b8b25cc8902c0aceb67f8cfd5c3972c721a",
+    "cult.png": "bfb8505c44a0b7d20b210efc77eae12dc2840dcd7a598b023375e3ce88bbec9a"
+  }
+}

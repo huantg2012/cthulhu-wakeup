@@ -1,0 +1,26 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "mode": "reference-guided 2D concept painting; no authored 3D model",
+  "status": "visual candidates; not seed-reproducible generators",
+  "worldReference": "assets/v2-world.png",
+  "edits": [
+    {
+      "subject": "听潮密会",
+      "inputs": [
+        "assets/v2-cult-draft.png",
+        "assets/v2-world.png"
+      ],
+      "output": "assets/v2-cult.png",
+      "prompt": "Edit IMAGE 1, the painted tidal cult sanctuary. IMAGE 2 is the accepted planet PAINT-HANDLING and light-distribution reference only. Keep image 1's exact overall silhouette, tower/bell, archive building, central tidal basin, stair, material identities and isolated island composition. Change only painting treatment and light hierarchy. It is still too much like a sharply rendered miniature 3D asset. REDRAW roughly two-thirds of the individual roof shingles, tiny stones, rope knots and cliff speckles as larger irregular 2D oil-painted mass shapes and broken brush strokes, varied hard/soft/lost edges, like the broad granular painterly shapes on image2. Do not add blur, do not downsample, do not pixelate. Keep a few sharply described focal details at bell and basin, let secondary structure remain implied. Put the right buildings, foreground-right stairs and lower-right rock into broad near-black indigo shadow with restrained blue reflected shapes; eliminate scattered bright shoreline dots across the bottom. Main bright cyan area should be upper-left bell-tower outer wall, secondary gentle reflected cyan in central basin; warm windows tiny. Preserve depth via broad plane changes and occlusion, not hundreds of equally sharp cracks. Ocean/stone/cloth remain distinguishable, not flattened into icons. The result must feel directly hand-painted and atmospheric, not a model with a texture filter. No text or UI, no border, same square composition and dark background."
+    },
+    {
+      "subject": "守历人·伊弥",
+      "inputs": [
+        "assets/v2-person-draft.png",
+        "assets/v2-world.png"
+      ],
+      "output": "assets/v2-person.png",
+      "prompt": "Edit IMAGE 1 (the hooded calendar keeper holding the open book). IMAGE 2 is the planet painting reference for brush-scale and lighting. Preserve the exact anatomy, facial identity, hand positions and fingers, book angle, lunar plate design, hood silhouette and composition of image 1. Only revise brush treatment and shadow hierarchy to fit image2. Merge about half of the tiny bright blue strokes on lower-right robes, small rope knots, weathering on book pages into broad dark indigo painted masses. Keep broad cool-lit planes at upper-left hood/shoulder and around the hands/book focal area; not every cloth wrinkle should be outlined with brilliant blue-white. Larger irregular oil-paint strokes and lost edges in secondary shapes, skin and parchment painted with a few deliberate value planes instead of hyper-detailed photographic microtexture. Right lower sleeve and lower torso should partly disappear into near-black, without losing the supporting wrist or book contact. This is directly painted 2D concept art, not a full-image blur, not a pixelation filter. Do not change pose, add objects, change clothing design or move the face. Same square canvas, dark background, no text or UI."
+    }
+  ]
+}

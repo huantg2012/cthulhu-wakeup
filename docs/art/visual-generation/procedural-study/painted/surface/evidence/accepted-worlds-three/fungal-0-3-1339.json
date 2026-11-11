@@ -1,0 +1,189 @@
+{
+  "version": "world-cults-1",
+  "request": {
+    "template": "fungal",
+    "seed": 1339,
+    "style": 0,
+    "palette": 3
+  },
+  "recipe": {
+    "version": "world-cults-1",
+    "archetype": 3,
+    "worldSeed": 1339,
+    "styleSid": 0,
+    "styleIndex": 0,
+    "palette": 3,
+    "c0": "#0c0516",
+    "c1": "#2b0f45",
+    "c2": "#5e2a8a",
+    "c3": "#b58ad6",
+    "c4": "#e05cff",
+    "nebula": "#1a6b6b",
+    "star": "#f0e0ff",
+    "corruption": "#40ffd0"
+  },
+  "rule": {
+    "activity": "菌架采孢与低温标本保存",
+    "archetype": 3,
+    "default_palette": 3,
+    "institution": "孢灯守望会",
+    "layout": "fungal",
+    "material": "fungus",
+    "translation": "巨菌遮蔽的多层采集场与悬挂标本廊"
+  },
+  "features": {
+    "worldSeed": 1339,
+    "archetype": 3,
+    "styleSid": 0,
+    "palette": 3,
+    "institution": "孢灯守望会",
+    "construction": "巨菌遮蔽的多层采集场与悬挂标本廊",
+    "activity": "菌架采孢与低温标本保存",
+    "materialAlgorithm": "fungus",
+    "lights": [
+      {
+        "x": 606,
+        "y": 635,
+        "z": 58,
+        "r": 154,
+        "color": [
+          255,
+          173,
+          96
+        ],
+        "power": 0.561,
+        "falloff": 1.8,
+        "specular": 0.055,
+        "marker": false
+      },
+      {
+        "x": 390,
+        "y": 453,
+        "z": 58,
+        "r": 125,
+        "color": [
+          224,
+          92,
+          255
+        ],
+        "power": 0.23099999999999998,
+        "falloff": 1.8,
+        "specular": 0.055
+      },
+      {
+        "x": 230,
+        "y": 688,
+        "z": 58,
+        "r": 85,
+        "color": [
+          224,
+          92,
+          255
+        ],
+        "power": 0.165,
+        "falloff": 1.8,
+        "specular": 0.055
+      }
+    ],
+    "scope": "视觉候选，非正式游戏机构",
+    "compositionRevision": 3
+  },
+  "world": {
+    "cached": true,
+    "framesAfterRebuild": 4,
+    "hash": "3cddf1d3e7c71dbffc4055c0c2b7a4762d0e47496f520d166c779f0b8bf056d1",
+    "identity": {
+      "archetype": 3,
+      "archetype_name": "菌蚀冥星",
+      "civilization_id": "",
+      "cult_name": "孢灯守望会",
+      "description": "菌落与孢子",
+      "id": "fungal",
+      "identity_status": "视觉候选；非正式 Session 对象",
+      "name": "菌蚀冥星（候选世界）",
+      "person_name": "采孢人",
+      "world_name": "菌蚀冥星（候选世界）"
+    },
+    "method": "unmodified original Godot generator",
+    "params": {
+      "animate": 0,
+      "archetype": 3,
+      "aspect": 1,
+      "composition": 1,
+      "corruption": 0.2,
+      "count": 0,
+      "eyes": 0,
+      "glyphs": 0,
+      "madness": 0.06,
+      "nebula": 0.25,
+      "palette": 3,
+      "quality": 1,
+      "rings": 2,
+      "scene": 0,
+      "seed": 1339,
+      "show_frame": 0,
+      "show_labels": 0,
+      "show_swatch": 0,
+      "show_title": 0,
+      "star_type": -1,
+      "style": 0,
+      "tentacles": 0,
+      "wonder": -1
+    },
+    "request": {
+      "palette": 3,
+      "seed": 1339,
+      "style": 0,
+      "template": "fungal"
+    },
+    "size": [
+      960,
+      960
+    ],
+    "sourceFingerprint": "72cc66874d353d7a562aa9589f32f700ecfbdb0b7b9f75b933ad636f471d314f",
+    "styleSid": 0,
+    "time": 3,
+    "url": "/cache/5c946eff05a3a09d65332b154c40c186a1f475ecfcefe511b4345c9f9eea85f6.png"
+  },
+  "cult": {
+    "adapterFingerprint": "edd19e97544f87d9257aa5065939ccf79fc5556962049b63630b3caa66a0b232",
+    "cached": false,
+    "hash": "538344fe50aa9cfa114161bc78dd2d041d9407c287150cd75cd91f7bc53db927",
+    "inputHash": "1658deea5df3b7dacdde2c9621aeab42cf7ea2507fb9c5ae35146b24bafc1068",
+    "params": {
+      "animate": 0,
+      "archetype": 3,
+      "aspect": 1,
+      "composition": 1,
+      "corruption": 0.2,
+      "count": 0,
+      "eyes": 0,
+      "glyphs": 0,
+      "madness": 0.06,
+      "nebula": 0.25,
+      "palette": 3,
+      "quality": 1,
+      "rings": 2,
+      "scene": 0,
+      "seed": 1339,
+      "show_frame": 0,
+      "show_labels": 0,
+      "show_swatch": 0,
+      "show_title": 0,
+      "star_type": -1,
+      "style": 0,
+      "tentacles": 0,
+      "wonder": -1
+    },
+    "schema": "cult-npr-1",
+    "sourceFingerprint": "72cc66874d353d7a562aa9589f32f700ecfbdb0b7b9f75b933ad636f471d314f",
+    "time": 3,
+    "url": "/cache/4aeef0337d092dce8d46b16c56ede80ff5cf4147b853101ffd1c159f73ecd5b0-cult.png"
+  },
+  "rulesFingerprint": "a0f648b0ef579341d93a0974d90fa73e185440dd91e1051af136ae012a58bde0",
+  "timing": {
+    "drawMs": 621,
+    "totalMs": 2025
+  },
+  "scope": "原星球真实生成；二维教团候选；未绑定正式机构"
+}

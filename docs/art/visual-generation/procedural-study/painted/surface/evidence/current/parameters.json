@@ -1,0 +1,259 @@
+{
+  "request": {
+    "template": "tide",
+    "seed": 1339,
+    "palette": 0,
+    "style": 0,
+    "personSeed": 1339
+  },
+  "world": {
+    "cached": true,
+    "framesAfterRebuild": 4,
+    "hash": "5ef267109893716154fd77bf882ee2dfc8f8731118a0f20f4a94b31e835a11ad",
+    "identity": {
+      "archetype": 0,
+      "archetype_name": "溺亡之海",
+      "civilization_id": "CIV_02",
+      "cult_name": "听潮密会",
+      "description": "潮汐历法与秘密祭仪",
+      "id": "tide",
+      "identity_status": "视觉候选；非正式 Session 对象",
+      "name": "塔穆什",
+      "person_name": "守历人·伊弥",
+      "world_name": "塔穆什"
+    },
+    "method": "unmodified original Godot generator",
+    "params": {
+      "animate": 0,
+      "archetype": 0,
+      "aspect": 1,
+      "composition": 1,
+      "corruption": 0.2,
+      "count": 0,
+      "eyes": 0,
+      "glyphs": 0,
+      "madness": 0.06,
+      "nebula": 0.25,
+      "palette": 0,
+      "quality": 1,
+      "rings": 2,
+      "scene": 0,
+      "seed": 1339,
+      "show_frame": 0,
+      "show_labels": 0,
+      "show_swatch": 0,
+      "show_title": 0,
+      "star_type": -1,
+      "style": 0,
+      "tentacles": 0,
+      "wonder": -1
+    },
+    "request": {
+      "palette": 0,
+      "seed": 1339,
+      "style": 0,
+      "template": "tide"
+    },
+    "size": [
+      960,
+      960
+    ],
+    "sourceFingerprint": "72cc66874d353d7a562aa9589f32f700ecfbdb0b7b9f75b933ad636f471d314f",
+    "styleSid": 0,
+    "time": 3,
+    "url": "/cache/03d7dac0d7aa4eed76d9b75f94af7b4ff32485d513be601c6ae23220bd2e1f67.png"
+  },
+  "style": {
+    "adapterFingerprint": "051a20401d31b890b790835deff252e14c70325c6b6249b9351604a7d49d7f17",
+    "cached": false,
+    "framesAfterRebuild": 4,
+    "hashes": {
+      "cult": "bfb8505c44a0b7d20b210efc77eae12dc2840dcd7a598b023375e3ce88bbec9a",
+      "person": "d366d7bbd46a45c5aa2937e97424452988c35385cda716b129ad52eafbb93bc3"
+    },
+    "identity": {
+      "archetype": 0,
+      "archetype_name": "溺亡之海",
+      "civilization_id": "CIV_02",
+      "cult_name": "听潮密会",
+      "description": "潮汐历法与秘密祭仪",
+      "id": "tide",
+      "identity_status": "视觉候选；非正式 Session 对象",
+      "name": "塔穆什",
+      "person_name": "守历人·伊弥",
+      "world_name": "塔穆什"
+    },
+    "inputHashes": {
+      "cult": "ad88ab6209cc72b4b6838f8532079e1322df4820ac41ce80ffcc4db0520e44f3",
+      "cult_normal": "be6af173156ba500c893616b0256eeb96b724784e473f9432269f4bd14fa8f3c",
+      "person": "66bc3721c0919ee205ce96e114e38d8de0fdfcf242fa6614e574d921874d96c3",
+      "person_normal": "be6af173156ba500c893616b0256eeb96b724784e473f9432269f4bd14fa8f3c"
+    },
+    "lighting": {
+      "amb": [
+        0.0172941163182259,
+        0.0351764708757401,
+        0.0371176488697529
+      ],
+      "col": [
+        1.04999995231628,
+        1.03414702415466,
+        0.970735251903534
+      ],
+      "dir": [
+        -0.700376272201538,
+        0.195394486188889,
+        0.686508595943451
+      ],
+      "illustration_post_px_scale": 0.68,
+      "original_sky_count": 1,
+      "rim_col": [
+        0.301960796117783,
+        1,
+        0.690196096897125
+      ]
+    },
+    "method": "2D illustration masks → correlated material/height/reflectance fields → illustrated key and local lights → empty auxiliary bypass → original sky/bloom/post source, illustration px_scale 0.68 (world parameters unchanged)",
+    "params": {
+      "animate": 0,
+      "archetype": 0,
+      "aspect": 1,
+      "composition": 1,
+      "corruption": 0.2,
+      "count": 0,
+      "eyes": 0,
+      "glyphs": 0,
+      "madness": 0.06,
+      "nebula": 0.25,
+      "palette": 0,
+      "quality": 1,
+      "rings": 2,
+      "scene": 0,
+      "seed": 1339,
+      "show_frame": 0,
+      "show_labels": 0,
+      "show_swatch": 0,
+      "show_title": 0,
+      "star_type": -1,
+      "style": 0,
+      "tentacles": 0,
+      "wonder": -1
+    },
+    "postShaderHash": "dafb32c811a5d71439befd5088705bd4ca5ad92caee2d0be2036bf69125318af",
+    "size": [
+      960,
+      960
+    ],
+    "sourceFingerprint": "72cc66874d353d7a562aa9589f32f700ecfbdb0b7b9f75b933ad636f471d314f",
+    "styleSid": 0,
+    "surfaceShaderFingerprint": "c7c88794b0612caf72aa0b49a7962ec789cd3c2a8ffa74ea67a58953e74fe397",
+    "time": 3,
+    "urls": {
+      "cult": "/cache/e478c468d6855a958314c991d7b6c8117a4e83e8c19a70ba632e2da075004944-cult.png",
+      "person": "/cache/e478c468d6855a958314c991d7b6c8117a4e83e8c19a70ba632e2da075004944-person.png"
+    }
+  },
+  "urls": {
+    "world": "/cache/03d7dac0d7aa4eed76d9b75f94af7b4ff32485d513be601c6ae23220bd2e1f67.png",
+    "cult": "/cache/e478c468d6855a958314c991d7b6c8117a4e83e8c19a70ba632e2da075004944-cult.png",
+    "person": "/cache/e478c468d6855a958314c991d7b6c8117a4e83e8c19a70ba632e2da075004944-person.png"
+  },
+  "features": {
+    "cult": {
+      "worldSeed": 1339,
+      "construction": "潮蚀断崖上的残顶礼拜堂、上行祭径、跨隙桥、下沉环井与潮汐登陆点",
+      "method": "2D oblique footprints + correlated dry/wet stone fields + recessed water flow + local ritual lighting → original NPR",
+      "materials": [
+        "干盐石灰岩",
+        "湿岩",
+        "铜钟",
+        "织物",
+        "流动潮水",
+        "旧木"
+      ],
+      "activity": "持灯入会、围井祈求、潮水量测、供物存放与码头作业",
+      "lighting": {
+        "revision": "cliff-fill-plane-separation-local-sources",
+        "backPlaneAmbient": [
+          0.16,
+          0.22,
+          0.27
+        ],
+        "topNormal": [
+          -0.36,
+          -0.64,
+          0.7
+        ],
+        "wallNormal": [
+          0.1,
+          0.17,
+          1
+        ],
+        "lights": [
+          {
+            "id": "well",
+            "x": 615,
+            "y": 580,
+            "z": 48,
+            "r": 184,
+            "color": [
+              87,
+              238,
+              179
+            ],
+            "power": 0.66,
+            "falloff": 1.7,
+            "specular": 0.2
+          },
+          {
+            "id": "altar",
+            "x": 337,
+            "y": 361,
+            "z": 52,
+            "r": 168,
+            "color": [
+              255,
+              140,
+              57
+            ],
+            "power": 0.92,
+            "falloff": 1.75,
+            "specular": 0.1
+          },
+          {
+            "id": "stair",
+            "x": 270,
+            "y": 526,
+            "z": 38,
+            "r": 118,
+            "color": [
+              255,
+              145,
+              62
+            ],
+            "power": 0.78,
+            "falloff": 1.8,
+            "specular": 0.09
+          }
+        ],
+        "occlusion": "二维表面与光源遮罩；非三维阴影模拟"
+      }
+    },
+    "person": {
+      "pose": "俯首托持潮水盏",
+      "structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+      "personSeed": 1339,
+      "worldSeed": 1339,
+      "materials": [
+        "染色粗布",
+        "盐蚀亚麻",
+        "氧化铜",
+        "湿润皮肤",
+        "发光潮水"
+      ],
+      "method": "2D masks + constrained cloth fields + coupled surface channels + illustrated lighting → original NPR"
+    }
+  },
+  "coverage": "原型 0、sid 0、色板 0；一个教团构图与一个人物姿态。其余未实现/未检查。",
+  "method": "2D illustration masks → correlated material/height/reflectance fields → illustrated key and local lights → empty auxiliary bypass → original sky/bloom/post source, illustration px_scale 0.68 (world parameters unchanged)"
+}

@@ -1,0 +1,11 @@
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');const fs=require('fs'),assert=require('node:assert/strict');
+const dir=__dirname+'/evidence/';
+const shape=g=>JSON.parse(JSON.stringify(g, (k,v)=>['seed','template'].includes(k)?undefined:v));
+(async()=>{const b=await chromium.launch({headless:true});const p=await b.newPage({viewport:{width:1600,height:1050}}),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto('http://127.0.0.1:8950/');await p.waitForFunction(()=>window.studyState,{timeout:90000});const base=await p.evaluate(()=>studyState);await p.screenshot({path:dir+'tide-1337.png'});
+const again=await p.evaluate(()=>generateStudy({template:'tide',seed:1337,style:0,palette:7}));assert.deepEqual(again.hashes,base.hashes);assert(again.replayIdentical);
+const next=await p.evaluate(()=>generateStudy({template:'tide',seed:1338,style:0,palette:7}));assert(next);assert.notDeepEqual(shape(next.geometry.cult),shape(base.geometry.cult));assert.notDeepEqual(shape(next.geometry.person),shape(base.geometry.person));await p.screenshot({path:dir+'tide-1338.png'});
+const recolor=await p.evaluate(()=>generateStudy({template:'tide',seed:1337,style:0,palette:0}));assert.deepEqual(recolor.geometry,base.geometry);assert.notDeepEqual(recolor.hashes,base.hashes);
+const archive=await p.evaluate(()=>generateStudy({template:'archive',seed:1337,style:2,palette:0}));assert(archive);assert.notDeepEqual(shape(archive.geometry),shape(base.geometry));await p.screenshot({path:dir+'archive-engraving.png'});
+const pixel=await p.evaluate(()=>generateStudy({template:'tide',seed:2048,style:4,palette:8}));assert(pixel);await p.screenshot({path:dir+'tide-pixel.png'});
+const downloadWait=p.waitForEvent('download');await p.click('#export');const download=await downloadWait;await download.saveAs('/tmp/procedural-export.zip');assert.deepEqual(errors,[]);
+const report={base,again,next,recolor,archive,pixel,assertions:{sameParametersReplay:true,seedChangesGeometry:true,palettePreservesGeometry:true,templateChangesGeometry:true,allThreeStylesRendered:true,exportDownloaded:true},errors};fs.writeFileSync(dir+'generation-check.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report.assertions));await b.close();})();

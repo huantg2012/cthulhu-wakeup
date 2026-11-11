@@ -1,0 +1,122 @@
+[
+  {
+    "id": 0,
+    "name": "深渊翠",
+    "dark": "#04161a",
+    "shadow": "#0b3b3d",
+    "mid": "#1f6b5e",
+    "light": "#8c9a6a",
+    "glow": "#6bff9e",
+    "paper": "#e3d5b4",
+    "ink": "#2a1d14",
+    "nebula_shadow": "#5a2a6e"
+  },
+  {
+    "id": 1,
+    "name": "黄印金",
+    "dark": "#1a1206",
+    "shadow": "#4a3410",
+    "mid": "#9a7322",
+    "light": "#e6c55a",
+    "glow": "#ffe066",
+    "paper": "#e3d5b4",
+    "ink": "#2a1d14",
+    "nebula_shadow": "#7a2a1a"
+  },
+  {
+    "id": 2,
+    "name": "血月猩红",
+    "dark": "#1a0306",
+    "shadow": "#4d0a12",
+    "mid": "#8f1d22",
+    "light": "#d46a5a",
+    "glow": "#ff3b3b",
+    "paper": "#e3d5b4",
+    "ink": "#2a1d14",
+    "nebula_shadow": "#3a0f4a"
+  },
+  {
+    "id": 3,
+    "name": "幽紫秘仪",
+    "dark": "#0c0516",
+    "shadow": "#2b0f45",
+    "mid": "#5e2a8a",
+    "light": "#b58ad6",
+    "glow": "#e05cff",
+    "paper": "#e3d5b4",
+    "ink": "#2a1d14",
+    "nebula_shadow": "#1a6b6b"
+  },
+  {
+    "id": 4,
+    "name": "冷原霜灰",
+    "dark": "#0b0f14",
+    "shadow": "#26323d",
+    "mid": "#56687a",
+    "light": "#b8c4cc",
+    "glow": "#8fd7ff",
+    "paper": "#e3d5b4",
+    "ink": "#2a1d14",
+    "nebula_shadow": "#3a2a4e"
+  },
+  {
+    "id": 5,
+    "name": "腐沼胆绿",
+    "dark": "#0e1206",
+    "shadow": "#2c3610",
+    "mid": "#5d6e1f",
+    "light": "#b5b46a",
+    "glow": "#c6ff3b",
+    "paper": "#e3d5b4",
+    "ink": "#2a1d14",
+    "nebula_shadow": "#4e1a2e"
+  },
+  {
+    "id": 6,
+    "name": "余烬熔金",
+    "dark": "#100604",
+    "shadow": "#2e120a",
+    "mid": "#5a2a16",
+    "light": "#a0705a",
+    "glow": "#ff8a2a",
+    "paper": "#e3d5b4",
+    "ink": "#2a1d14",
+    "nebula_shadow": "#2a0e3a"
+  },
+  {
+    "id": 7,
+    "name": "深海靛蓝",
+    "dark": "#03071a",
+    "shadow": "#0a1a45",
+    "mid": "#1d3f7a",
+    "light": "#6a8fb8",
+    "glow": "#3bd6ff",
+    "paper": "#e3d5b4",
+    "ink": "#2a1d14",
+    "nebula_shadow": "#3a1a5e"
+  },
+  {
+    "id": 8,
+    "name": "骨白苍灰",
+    "dark": "#15130f",
+    "shadow": "#3b362d",
+    "mid": "#7a7262",
+    "light": "#d8cfb8",
+    "glow": "#ffe9b0",
+    "paper": "#e3d5b4",
+    "ink": "#2a1d14",
+    "nebula_shadow": "#4a2420"
+  },
+  {
+    "id": 9,
+    "name": "异界虹彩",
+    "dark": "#08060f",
+    "shadow": "#23305a",
+    "mid": "#6a4a9a",
+    "light": "#d6a8e6",
+    "glow": "#b8ff6b",
+    "paper": "#e3d5b4",
+    "ink": "#2a1d14",
+    "nebula_shadow": "#1a5e4e"
+  }
+]

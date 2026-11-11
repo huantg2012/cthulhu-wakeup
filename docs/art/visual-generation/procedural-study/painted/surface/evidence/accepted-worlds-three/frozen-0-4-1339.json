@@ -1,0 +1,190 @@
+{
+  "version": "world-cults-1",
+  "request": {
+    "template": "frozen",
+    "seed": 1339,
+    "style": 0,
+    "palette": 4
+  },
+  "recipe": {
+    "version": "world-cults-1",
+    "archetype": 5,
+    "worldSeed": 1339,
+    "styleSid": 0,
+    "styleIndex": 0,
+    "palette": 4,
+    "c0": "#0b0f14",
+    "c1": "#26323d",
+    "c2": "#56687a",
+    "c3": "#b8c4cc",
+    "c4": "#8fd7ff",
+    "nebula": "#3a2a4e",
+    "star": "#e8f4ff",
+    "corruption": "#60c0ff"
+  },
+  "rule": {
+    "activity": "测风记时与避风聚会",
+    "archetype": 5,
+    "default_palette": 4,
+    "institution": "测风誓约会",
+    "layout": "frozen",
+    "material": "frost",
+    "translation": "冰壁环抱的避风聚所与转折前庭"
+  },
+  "features": {
+    "worldSeed": 1339,
+    "archetype": 5,
+    "styleSid": 0,
+    "palette": 4,
+    "institution": "测风誓约会",
+    "construction": "冰壁环抱的避风聚所与转折前庭",
+    "activity": "测风记时与避风聚会",
+    "materialAlgorithm": "frost",
+    "lights": [
+      {
+        "x": 453,
+        "y": 461,
+        "z": 58,
+        "r": 135,
+        "color": [
+          255,
+          156,
+          80
+        ],
+        "power": 0.5478,
+        "falloff": 1.8,
+        "specular": 0.055,
+        "marker": false
+      },
+      {
+        "x": 280,
+        "y": 622,
+        "z": 58,
+        "r": 112,
+        "color": [
+          255,
+          171,
+          96
+        ],
+        "power": 0.44220000000000004,
+        "falloff": 1.8,
+        "specular": 0.055,
+        "marker": false
+      },
+      {
+        "x": 653,
+        "y": 566,
+        "z": 58,
+        "r": 77,
+        "color": [
+          178,
+          214,
+          231
+        ],
+        "power": 0.0792,
+        "falloff": 1.8,
+        "specular": 0.055
+      }
+    ],
+    "scope": "视觉候选，非正式游戏机构",
+    "compositionRevision": 3
+  },
+  "world": {
+    "cached": true,
+    "framesAfterRebuild": 4,
+    "hash": "77121cec9a7f6ac399f25f4ba53191150b45f34cf04328da4ea8f70082e03174",
+    "identity": {
+      "archetype": 5,
+      "archetype_name": "冷原",
+      "civilization_id": "",
+      "cult_name": "测风誓约会",
+      "description": "台地与风雪",
+      "id": "frozen",
+      "identity_status": "视觉候选；非正式 Session 对象",
+      "name": "冷原（候选世界）",
+      "person_name": "测风者",
+      "world_name": "冷原（候选世界）"
+    },
+    "method": "unmodified original Godot generator",
+    "params": {
+      "animate": 0,
+      "archetype": 5,
+      "aspect": 1,
+      "composition": 1,
+      "corruption": 0.2,
+      "count": 0,
+      "eyes": 0,
+      "glyphs": 0,
+      "madness": 0.06,
+      "nebula": 0.25,
+      "palette": 4,
+      "quality": 1,
+      "rings": 2,
+      "scene": 0,
+      "seed": 1339,
+      "show_frame": 0,
+      "show_labels": 0,
+      "show_swatch": 0,
+      "show_title": 0,
+      "star_type": -1,
+      "style": 0,
+      "tentacles": 0,
+      "wonder": -1
+    },
+    "request": {
+      "palette": 4,
+      "seed": 1339,
+      "style": 0,
+      "template": "frozen"
+    },
+    "size": [
+      960,
+      960
+    ],
+    "sourceFingerprint": "72cc66874d353d7a562aa9589f32f700ecfbdb0b7b9f75b933ad636f471d314f",
+    "styleSid": 0,
+    "time": 3,
+    "url": "/cache/cb3bfa87ec7a2dfbc797b57bd6628cfca926c0fb35d40f169db7bd24643367b1.png"
+  },
+  "cult": {
+    "adapterFingerprint": "edd19e97544f87d9257aa5065939ccf79fc5556962049b63630b3caa66a0b232",
+    "cached": false,
+    "hash": "44fd993acf8433d0ed42bd997ffebb1a90dbfbd42013196f9e5689f806ba65b2",
+    "inputHash": "37c5835990c795736029bf3721701677de5f4e71658e976bceddf633e769c707",
+    "params": {
+      "animate": 0,
+      "archetype": 5,
+      "aspect": 1,
+      "composition": 1,
+      "corruption": 0.2,
+      "count": 0,
+      "eyes": 0,
+      "glyphs": 0,
+      "madness": 0.06,
+      "nebula": 0.25,
+      "palette": 4,
+      "quality": 1,
+      "rings": 2,
+      "scene": 0,
+      "seed": 1339,
+      "show_frame": 0,
+      "show_labels": 0,
+      "show_swatch": 0,
+      "show_title": 0,
+      "star_type": -1,
+      "style": 0,
+      "tentacles": 0,
+      "wonder": -1
+    },
+    "schema": "cult-npr-1",
+    "sourceFingerprint": "72cc66874d353d7a562aa9589f32f700ecfbdb0b7b9f75b933ad636f471d314f",
+    "time": 3,
+    "url": "/cache/44b95038ad4c84976b236019f25d64f304dc22e17adebc9eb444b2a22dd8095c-cult.png"
+  },
+  "rulesFingerprint": "a0f648b0ef579341d93a0974d90fa73e185440dd91e1051af136ae012a58bde0",
+  "timing": {
+    "drawMs": 487,
+    "totalMs": 1819
+  },
+  "scope": "原星球真实生成；二维教团候选；未绑定正式机构"
+}

@@ -1,0 +1,191 @@
+{
+  "version": "world-cults-1",
+  "request": {
+    "template": "fire",
+    "seed": 1339,
+    "style": 0,
+    "palette": 6
+  },
+  "recipe": {
+    "version": "world-cults-1",
+    "archetype": 4,
+    "worldSeed": 1339,
+    "styleSid": 0,
+    "styleIndex": 0,
+    "palette": 6,
+    "c0": "#100604",
+    "c1": "#2e120a",
+    "c2": "#5a2a16",
+    "c3": "#a0705a",
+    "c4": "#ff8a2a",
+    "nebula": "#2a0e3a",
+    "star": "#fff0c0",
+    "corruption": "#ffd040"
+  },
+  "rule": {
+    "activity": "吊运炉料与守炉仪式",
+    "archetype": 4,
+    "default_palette": 6,
+    "institution": "余烬守炉会",
+    "layout": "fire",
+    "material": "basalt",
+    "translation": "高炉后壁与下沉炉井围合的工坊"
+  },
+  "features": {
+    "worldSeed": 1339,
+    "archetype": 4,
+    "styleSid": 0,
+    "palette": 6,
+    "institution": "余烬守炉会",
+    "construction": "高炉后壁与下沉炉井围合的工坊",
+    "activity": "吊运炉料与守炉仪式",
+    "materialAlgorithm": "basalt",
+    "lights": [
+      {
+        "x": 501,
+        "y": 614,
+        "z": 58,
+        "r": 237,
+        "color": [
+          255,
+          138,
+          42
+        ],
+        "power": 0.7656,
+        "falloff": 1.8,
+        "specular": 0.055,
+        "marker": false
+      },
+      {
+        "x": 629,
+        "y": 416,
+        "z": 58,
+        "r": 142,
+        "color": [
+          255,
+          172,
+          98
+        ],
+        "power": 0.42900000000000005,
+        "falloff": 1.8,
+        "specular": 0.055,
+        "marker": false
+      },
+      {
+        "x": 264,
+        "y": 671,
+        "z": 58,
+        "r": 118,
+        "color": [
+          255,
+          180,
+          108
+        ],
+        "power": 0.4158,
+        "falloff": 1.8,
+        "specular": 0.055,
+        "marker": false
+      }
+    ],
+    "scope": "视觉候选，非正式游戏机构",
+    "compositionRevision": 3
+  },
+  "world": {
+    "cached": true,
+    "framesAfterRebuild": 4,
+    "hash": "a5e6f5e8d187663bb2e69fe6c4bce21c2e7e8e680c52122100bb5bf005208969",
+    "identity": {
+      "archetype": 4,
+      "archetype_name": "炎狱之星",
+      "civilization_id": "",
+      "cult_name": "余烬守炉会",
+      "description": "火山裂隙与余烬",
+      "id": "fire",
+      "identity_status": "视觉候选；非正式 Session 对象",
+      "name": "炎狱之星（候选世界）",
+      "person_name": "守炉人",
+      "world_name": "炎狱之星（候选世界）"
+    },
+    "method": "unmodified original Godot generator",
+    "params": {
+      "animate": 0,
+      "archetype": 4,
+      "aspect": 1,
+      "composition": 1,
+      "corruption": 0.2,
+      "count": 0,
+      "eyes": 0,
+      "glyphs": 0,
+      "madness": 0.06,
+      "nebula": 0.25,
+      "palette": 6,
+      "quality": 1,
+      "rings": 2,
+      "scene": 0,
+      "seed": 1339,
+      "show_frame": 0,
+      "show_labels": 0,
+      "show_swatch": 0,
+      "show_title": 0,
+      "star_type": -1,
+      "style": 0,
+      "tentacles": 0,
+      "wonder": -1
+    },
+    "request": {
+      "palette": 6,
+      "seed": 1339,
+      "style": 0,
+      "template": "fire"
+    },
+    "size": [
+      960,
+      960
+    ],
+    "sourceFingerprint": "72cc66874d353d7a562aa9589f32f700ecfbdb0b7b9f75b933ad636f471d314f",
+    "styleSid": 0,
+    "time": 3,
+    "url": "/cache/30ffd30b3d19e32d73bab438ee94e2b7c6b8a6f0ea933a10befcff9d1580262f.png"
+  },
+  "cult": {
+    "adapterFingerprint": "edd19e97544f87d9257aa5065939ccf79fc5556962049b63630b3caa66a0b232",
+    "cached": false,
+    "hash": "6113498135e517d1331ae80d77fa7d9f0443ae28784740da8d9dfe7b4c8f8931",
+    "inputHash": "56f5c69bcbb9f0c93f4b43487ded5ab9f10701278b8c020eb7f6136ce266e399",
+    "params": {
+      "animate": 0,
+      "archetype": 4,
+      "aspect": 1,
+      "composition": 1,
+      "corruption": 0.2,
+      "count": 0,
+      "eyes": 0,
+      "glyphs": 0,
+      "madness": 0.06,
+      "nebula": 0.25,
+      "palette": 6,
+      "quality": 1,
+      "rings": 2,
+      "scene": 0,
+      "seed": 1339,
+      "show_frame": 0,
+      "show_labels": 0,
+      "show_swatch": 0,
+      "show_title": 0,
+      "star_type": -1,
+      "style": 0,
+      "tentacles": 0,
+      "wonder": -1
+    },
+    "schema": "cult-npr-1",
+    "sourceFingerprint": "72cc66874d353d7a562aa9589f32f700ecfbdb0b7b9f75b933ad636f471d314f",
+    "time": 3,
+    "url": "/cache/618bb50270260f40c717b8446aefcdd76254560a980b90d4906682a142ba60ba-cult.png"
+  },
+  "rulesFingerprint": "a0f648b0ef579341d93a0974d90fa73e185440dd91e1051af136ae012a58bde0",
+  "timing": {
+    "drawMs": 569,
+    "totalMs": 1850
+  },
+  "scope": "原星球真实生成；二维教团候选；未绑定正式机构"
+}

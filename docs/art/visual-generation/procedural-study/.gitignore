@@ -1,0 +1,5 @@
+/cache/
+/__pycache__/
+
+# 只交源码与关键证据；过程截图留在本地（关键证据用 git add -f 单独入库）
+**/evidence/

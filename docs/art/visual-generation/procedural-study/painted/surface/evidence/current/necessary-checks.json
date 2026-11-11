@@ -1,0 +1,11 @@
+{
+  "scope": "本轮只调整教团三项光影；实际看图两次，第二次收低灯光过曝。未扩大原型或测试矩阵。",
+  "personInputUnchanged": true,
+  "personOutputUnchanged": true,
+  "worldUnchanged": true,
+  "sourceUnchanged": true,
+  "producerFeedbackOnBefore": "这次的确进步明显",
+  "currentVisualStatus": "已实际查看；本轮光影调整待制作人审阅",
+  "sameParameterRepeat": "本轮未额外重复；上一版记录存 lighting-before/necessary-checks.json",
+  "actualEntryInspected": "已在用户当前应用内浏览器刷新，实际生成完成并查看本轮光影前后对照。"
+}

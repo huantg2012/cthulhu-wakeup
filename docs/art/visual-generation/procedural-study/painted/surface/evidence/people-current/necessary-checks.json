@@ -1,0 +1,14 @@
+{
+  "checks": {
+    "sameRecipe": true,
+    "sameInput": true,
+    "inputMatchesBatch": true,
+    "individualOutputMatchesBatch": true,
+    "individualCacheHit": true,
+    "worldUnchanged": true,
+    "cultUnchanged": true,
+    "acceptedPortraitUnchanged": true,
+    "originalSourceUnchanged": true
+  },
+  "scope": "两次真实二维重绘；单人请求复用批次中的同一内容缓存；当前批次的世界、教团与获认可母版一致。不是审美验收或全组合验证。"
+}

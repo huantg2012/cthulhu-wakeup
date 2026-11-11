@@ -1,0 +1,7 @@
+case_id,garments,heads,gestures,material,pigment,work_detail,gender_rule,appearance_note
+net_silence,oilcoat|jerkin,workcap|brim,appeal|folded,canvas,ochre,net,any,短防潮衣与空网绳结来自海上劳作；不是祭服
+quarantine_dock,waistcoat|workshirt,tiedhair|short_hair,appeal|prayer,cloth,linen,medical_bag,any,衬衣与随身药袋是船医的造型推演；不提前画出已获救助
+shaking_hand,apron|workshirt,short_hair|tiedhair,injured|appeal,leather,umber,apron,any,工作围裙与检查伤手的动作；不让受伤的手稳持刻刀
+judge_letter,tailored|waistcoat,brim|swept_hair,folded|appeal,cloth,ink,office_chain,any,裁判者的挺括衣襟与职务细节；不把申诉人持有的受贿信画回他手里
+fever_child,jerkin|workshirt,short_hair|swept_hair,prayer|appeal,cloth,slate,repair,male,普通生活衣物与紧握双手；父亲身份有原文依据但职业未被指定
+protected_witness,drivercoat|jerkin,workcap|brim,guarded|folded,leather,umber,harness,any,车夫的短外衣与工作挎带；躲避报复而非自动成为教徒
