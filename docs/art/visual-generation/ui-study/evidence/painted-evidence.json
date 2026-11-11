@@ -1,0 +1,356 @@
+{
+	"after": {
+		"AllAnchors": {
+			"pressed": 1,
+			"rect": [
+				63.2000007629395,
+				438.399993896484,
+				240.800003051758,
+				22.3999938964844
+			],
+			"visible": true
+		},
+		"AllWorlds": {
+			"pressed": 1,
+			"rect": [
+				63.2000007629395,
+				532.799987792969,
+				146.400009155273,
+				31.2000122070312
+			],
+			"visible": true
+		},
+		"AwakeningReadout": {
+			"pressed": 1,
+			"rect": [
+				1187.20007324219,
+				27.2000007629395,
+				56.0,
+				32.0
+			],
+			"visible": true
+		},
+		"Budget": {
+			"pressed": 1,
+			"rect": [
+				258.399993896484,
+				647.200012207031,
+				76.0,
+				32.7999877929688
+			],
+			"visible": true
+		},
+		"Faith": {
+			"pressed": 1,
+			"rect": [
+				1112.80004882812,
+				27.2000007629395,
+				56.0,
+				32.0
+			],
+			"visible": true
+		},
+		"History": {
+			"pressed": 1,
+			"rect": [
+				1070.40002441406,
+				647.200012207031,
+				51.199951171875,
+				32.7999877929688
+			],
+			"visible": true
+		},
+		"Menu": {
+			"pressed": 1,
+			"rect": [
+				1212.0,
+				79.2000045776367,
+				31.199951171875,
+				26.4000015258789
+			],
+			"visible": true
+		},
+		"People": {
+			"pressed": 1,
+			"rect": [
+				188.0,
+				647.200012207031,
+				64.8000030517578,
+				32.7999877929688
+			],
+			"visible": true
+		},
+		"PhaseAction": {
+			"pressed": 1,
+			"rect": [
+				1128.0,
+				644.799987792969,
+				113.599975585938,
+				37.5999755859375
+			],
+			"visible": true
+		},
+		"PowerIndex": {
+			"pressed": 1,
+			"rect": [
+				38.4000015258789,
+				642.400024414062,
+				97.5999984741211,
+				42.4000244140625
+			],
+			"visible": true
+		},
+		"PrayerIndex": {
+			"pressed": 1,
+			"rect": [
+				63.2000007629395,
+				460.800018310547,
+				240.800003051758,
+				22.3999938964844
+			],
+			"visible": true
+		},
+		"RelicIndex": {
+			"pressed": 1,
+			"rect": [
+				141.600006103516,
+				647.200012207031,
+				40.8000030517578,
+				32.7999877929688
+			],
+			"visible": true
+		},
+		"ResistanceIndex": {
+			"pressed": 1,
+			"rect": [
+				63.2000007629395,
+				483.200012207031,
+				240.800003051758,
+				22.3999938964844
+			],
+			"visible": true
+		},
+		"Self": {
+			"pressed": 1,
+			"rect": [
+				340.800018310547,
+				647.200012207031,
+				76.0,
+				32.7999877929688
+			],
+			"visible": true
+		},
+		"WorldOverview": {
+			"pressed": 1,
+			"rect": [
+				39.2000007629395,
+				80.0,
+				49.6000022888184,
+				28.8000030517578
+			],
+			"visible": true
+		}
+	},
+	"before": {
+		"AllAnchors": {
+			"pressed": 1,
+			"rect": [
+				63.2000007629395,
+				438.399993896484,
+				240.800003051758,
+				22.3999938964844
+			],
+			"visible": true
+		},
+		"AllWorlds": {
+			"pressed": 1,
+			"rect": [
+				63.2000007629395,
+				532.799987792969,
+				146.400009155273,
+				31.2000122070312
+			],
+			"visible": true
+		},
+		"AwakeningReadout": {
+			"pressed": 1,
+			"rect": [
+				1187.20007324219,
+				27.2000007629395,
+				56.0,
+				32.0
+			],
+			"visible": true
+		},
+		"Budget": {
+			"pressed": 1,
+			"rect": [
+				258.399993896484,
+				647.200012207031,
+				76.0,
+				32.7999877929688
+			],
+			"visible": true
+		},
+		"Faith": {
+			"pressed": 1,
+			"rect": [
+				1112.80004882812,
+				27.2000007629395,
+				56.0,
+				32.0
+			],
+			"visible": true
+		},
+		"History": {
+			"pressed": 1,
+			"rect": [
+				1070.40002441406,
+				647.200012207031,
+				51.199951171875,
+				32.7999877929688
+			],
+			"visible": true
+		},
+		"Menu": {
+			"pressed": 1,
+			"rect": [
+				1212.0,
+				79.2000045776367,
+				31.199951171875,
+				26.4000015258789
+			],
+			"visible": true
+		},
+		"People": {
+			"pressed": 1,
+			"rect": [
+				188.0,
+				647.200012207031,
+				64.8000030517578,
+				32.7999877929688
+			],
+			"visible": true
+		},
+		"PhaseAction": {
+			"pressed": 1,
+			"rect": [
+				1128.0,
+				644.799987792969,
+				113.599975585938,
+				37.5999755859375
+			],
+			"visible": true
+		},
+		"PowerIndex": {
+			"pressed": 1,
+			"rect": [
+				38.4000015258789,
+				642.400024414062,
+				97.5999984741211,
+				42.4000244140625
+			],
+			"visible": true
+		},
+		"PrayerIndex": {
+			"pressed": 1,
+			"rect": [
+				63.2000007629395,
+				460.800018310547,
+				240.800003051758,
+				22.3999938964844
+			],
+			"visible": true
+		},
+		"RelicIndex": {
+			"pressed": 1,
+			"rect": [
+				141.600006103516,
+				647.200012207031,
+				40.8000030517578,
+				32.7999877929688
+			],
+			"visible": true
+		},
+		"ResistanceIndex": {
+			"pressed": 1,
+			"rect": [
+				63.2000007629395,
+				483.200012207031,
+				240.800003051758,
+				22.3999938964844
+			],
+			"visible": true
+		},
+		"Self": {
+			"pressed": 1,
+			"rect": [
+				340.800018310547,
+				647.200012207031,
+				76.0,
+				32.7999877929688
+			],
+			"visible": true
+		},
+		"WorldOverview": {
+			"pressed": 1,
+			"rect": [
+				39.2000007629395,
+				80.0,
+				49.6000022888184,
+				28.8000030517578
+			],
+			"visible": true
+		}
+	},
+	"button_count": 15,
+	"resource_text": [
+		{
+			"available_width": 23.2000026702881,
+			"fits": true,
+			"needed_width": 12.0,
+			"text": "6"
+		},
+		{
+			"available_width": 26.3999996185303,
+			"fits": true,
+			"needed_width": 24.0,
+			"text": "63"
+		},
+		{
+			"available_width": 26.3999996185303,
+			"fits": true,
+			"needed_width": 24.0,
+			"text": "93"
+		}
+	],
+	"resource_text_fits": true,
+	"scope": "world card carrier and appearance only; sample copies are not Session worlds",
+	"shots": [
+		{
+			"count": 3,
+			"focus": 0,
+			"image": "01-three-worlds.png",
+			"stacked": false
+		},
+		{
+			"count": 12,
+			"focus": 5,
+			"image": "02-twelve-worlds.png",
+			"stacked": true
+		},
+		{
+			"count": 24,
+			"focus": 14,
+			"image": "03-twenty-four-worlds.png",
+			"stacked": true
+		},
+		{
+			"count": 3,
+			"focus": 0,
+			"image": "04-shared-world-art.png",
+			"stacked": false
+		}
+	],
+	"unchanged_non_world_buttons": true
+}
