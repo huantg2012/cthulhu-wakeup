@@ -5,13 +5,19 @@ const Session=preload("res://src/presentation/session.gd")
 const Paint=preload("res://docs/art/visual-generation/ui-study/painted_material.gd")
 const Card=preload("res://docs/art/visual-generation/ui-study/painted_card.gd")
 const Fan=preload("res://docs/art/visual-generation/ui-study/card_fan.gd")
+const Atmosphere=preload("res://docs/art/visual-generation/ui-study/peripheral_atmosphere.gd")
 const FIXTURE="res://docs/qa/ui-manifest/saves/ongoing.json"
 const SOURCES=["tide","fire","frozen","bone-watercolor"]
 const SHOTS=["01-three-worlds","02-twelve-worlds","03-twenty-four-worlds","04-shared-world-art"]
 class StudyKeys extends Node:
  signal chosen(value:int)
+ signal motion_toggled
  func _input(event:InputEvent)->void:
   if event is InputEventKey and event.pressed and not event.echo:
+   if event.keycode == KEY_F5:
+    get_viewport().set_input_as_handled()
+    motion_toggled.emit()
+    return
    var value: int=[KEY_F1,KEY_F2,KEY_F3,KEY_F4].find(event.keycode)
    if value>=0:get_viewport().set_input_as_handled();chosen.emit(value)
 var app:Control
@@ -21,6 +27,9 @@ var stage_id:=0
 var surface_id:=0
 var ready_to_style:=false
 var output:=""
+var motion_output := ""
+var atmosphere: Control
+var motion_paused := false
 var mode_label:Label
 var position_label:Label
 var recipes:Array[Dictionary]=[]
@@ -39,6 +48,7 @@ func _run()->void:
  for argument in OS.get_cmdline_user_args():
   if argument.begins_with("--capture="):output=argument.trim_prefix("--capture=")
   if argument.begins_with("--mode="):mode=clampi(argument.trim_prefix("--mode=").to_int()-1,0,3)
+  if argument.begins_with("--capture-motion="):motion_output=argument.trim_prefix("--capture-motion=")
  var isolated:="user://ui-visual-study/%d-%d" % [OS.get_process_id(),Time.get_ticks_usec()]
  DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(isolated))
  var fixture:=isolated.path_join("fixture.json")
@@ -48,10 +58,20 @@ func _run()->void:
  app.session=Session.new(isolated);root.add_child(game);app._load_saved(fixture)
  root.mode=Window.MODE_WINDOWED;root.size=Vector2i(1920,1080);root.move_to_center()
  var keys:=StudyKeys.new();keys.chosen.connect(_select);root.add_child(keys)
+ keys.motion_toggled.connect(_toggle_motion)
  await process_frame
  _fixed_before=_fixed_buttons()
  ready_to_style=true;_apply()
- if not output.is_empty():await _capture()
+ if not motion_output.is_empty():
+  await _capture_motion()
+ elif not output.is_empty():
+  await _capture()
+
+func _toggle_motion() -> void:
+ motion_paused = not motion_paused
+ if is_instance_valid(atmosphere):
+  atmosphere.paused = motion_paused
+ _title()
 
 func _select(value:int)->void:
  mode=value
@@ -60,7 +80,7 @@ func _select(value:int)->void:
  _title()
 
 func _title()->void:
- root.title="邪神苏醒 · 粗印画牌 · F1 三界 / F2 十二张 / F3 二十四张 / F4 三类立绘 · 独立预览"
+ root.title="邪神苏醒 · 粗印画牌 · F1–F4 切换 · F5 " + ("继续氛围" if motion_paused else "暂停氛围") + " · 独立预览"
 
 func _apply()->void:
  stage_id=app._stage.get_instance_id() if is_instance_valid(app._stage) else 0
@@ -71,6 +91,12 @@ func _apply()->void:
  Paint.style_buttons(app)
  var night:=stage.get_node_or_null("Night") as TextureRect
  if night:night.texture=Paint.pigment("sky");night.texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
+ atmosphere = Atmosphere.new()
+ atmosphere.name = "PeripheralAtmosphere"
+ atmosphere.paused = motion_paused
+ stage.add_child(atmosphere)
+ if night:
+  stage.move_child(atmosphere, night.get_index() + 1)
  # Only the producer-authorized world-card carrier changes geometry/input.
  for node:Node in stage.get_children():
   if str(node.name).begins_with("WorldPlaceholder_") or str(node.name).begins_with("World_"):node.hide()
@@ -135,6 +161,8 @@ func _capture()->void:
  if not output.is_absolute_path() or DisplayServer.get_name()=="headless":push_error("Capture needs graphical renderer and absolute directory");quit(1);return
  DirAccess.make_dir_recursive_absolute(output)
  var shots:Array=[]
+ atmosphere.paused = true
+ atmosphere.set_sample_time(4.0)
  for value in 4:
   _select(value)
   if value==1:fan.set_focus(5,false)
@@ -161,3 +189,27 @@ func _capture()->void:
  print("NON_WORLD_BUTTONS_UNCHANGED ",fixed_same)
  print("RESOURCE_TEXT_FITS ",resource_fit)
  quit(0 if fixed_same and resource_fit else 2)
+
+func _capture_motion() -> void:
+ if not motion_output.is_absolute_path() or DisplayServer.get_name() == "headless":
+  push_error("Motion capture needs graphical renderer and an absolute directory")
+  quit(1)
+  return
+ DirAccess.make_dir_recursive_absolute(motion_output)
+ root.size = Vector2i(1280, 720)
+ if mode == 1:
+  fan.set_focus(5, false)
+ atmosphere.paused = true
+ await create_timer(0.4).timeout
+ for frame in 144:
+  atmosphere.set_sample_time(float(frame) / 12.0)
+  await process_frame
+  RenderingServer.force_draw(false)
+  await RenderingServer.frame_post_draw
+  var error := root.get_texture().get_image().save_png(motion_output.path_join("frame-%03d.png" % frame))
+  if error != OK:
+   push_error("Could not write motion frame")
+   quit(1)
+   return
+ print("PERIPHERAL_MOTION_CAPTURE frames=144 fps=12 duration=12s")
+ quit()
