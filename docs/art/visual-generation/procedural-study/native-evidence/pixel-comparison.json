@@ -1,0 +1,41 @@
+{
+  "scope": "same parameters / same host; metric is not aesthetic acceptance",
+  "images": {
+    "world.png": {
+      "mean_absolute_8bit_channel_error": [
+        0.2790082465277778,
+        0.3131792534722222,
+        0.3969802517361111
+      ],
+      "max_channel_error": [
+        103,
+        141,
+        108
+      ]
+    },
+    "cult.png": {
+      "mean_absolute_8bit_channel_error": [
+        1.2792697482638888,
+        1.6075813802083334,
+        1.3045149739583333
+      ],
+      "max_channel_error": [
+        179,
+        172,
+        119
+      ]
+    },
+    "person-0-1000.png": {
+      "mean_absolute_8bit_channel_error": [
+        0.6739995659722222,
+        0.7622005208333333,
+        0.8148014322916667
+      ],
+      "max_channel_error": [
+        121,
+        134,
+        106
+      ]
+    }
+  }
+}

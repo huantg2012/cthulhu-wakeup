@@ -7,6 +7,10 @@ changed-this-slice: true
 
 # 技术边界与可实施性
 
+## 原生立绘生成（2026-11-11）
+
+`src/art_generation/` 是游戏 Godot 工程内独立的立绘生成模块，当前通过 `workbench/workbench.tscn` 运行，不接 Session，不改默认游戏入口。参数／CSV、二维构图算法、材质与受光渲染、原作星球适配器、NPR 后期及结果展示分层；接口、替换方式、迁移差异与检查范围唯一正文为 [system-art-generation.md](specs/system-art-generation.md)。当前立绘生成启动器均转向 Godot，旧浏览器探索保留作历史证据，退出运行链。
+
 ## 独立表现方向比较（2026-11-06，DEC-063）
 
 **当前补充：** `docs/art/presentation-rebuild/interface-review.html` 为自包含的设计阅览器，由 `tools/presentation-rebuild/build_interface_review.py` 读取新设计正文中的任务清单及正式CSV构建。它只演示界面范围、选择和草稿返回，不调用Session、不结算、不保存。设计正文为同目录 `interface-design.md`；旧 `visual-system.md` 已恢复并只读。原Godot三卡留作首批问题样本，不能让其检查结果代验新设计。

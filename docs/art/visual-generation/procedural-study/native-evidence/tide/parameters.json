@@ -1,0 +1,260 @@
+{
+	"counts_note": "潮汐 6 类/48 种离散组合；其他世界 4 类/24 种。种子不等于新职业。",
+	"cult_rule": {
+		"activity": "持灯入会与潮水量测",
+		"archetype": 0,
+		"default_palette": 0,
+		"institution": "听潮密会",
+		"layout": "tide",
+		"material": "stone",
+		"translation": "潮蚀双岸与下沉环井"
+	},
+	"duration_ms": 4483,
+	"options": {
+		"background": "judge_letter",
+		"count": 1,
+		"seed": 1000
+	},
+	"people": [
+		{
+			"features": {
+				"caseTitle": "受贿书信外泄的裁判者",
+				"genderExpression": "androgynous",
+				"materials": [
+					"染色粗布",
+					"盐蚀亚麻",
+					"氧化铜",
+					"湿润皮肤",
+					"发光潮水"
+				],
+				"method": "2D masks + constrained cloth fields + coupled surface channels + illustrated lighting → original NPR",
+				"personSeed": 1000,
+				"pose": "抚胸伸掌",
+				"recipe": {
+					"background": {
+						"appeal": "那封受贿的信落到了申诉人手里，我会因此丢掉职位。求你替我取回它，我会让你的人进城。",
+						"appearanceNote": "裁判者的挺括衣襟与职务细节；不把申诉人持有的受贿信画回他手里",
+						"caseId": "judge_letter",
+						"context": "受贿的信落到了申诉人手里。裁判者知道自己判错了，仍舍不得那张椅子。",
+						"frame": "law",
+						"garments": [
+							"tailored",
+							"waistcoat"
+						],
+						"genderRule": "any",
+						"gestures": [
+							"folded",
+							"appeal"
+						],
+						"goal": "阻止贿赂书信用于复核",
+						"heads": [
+							"brim",
+							"swept_hair"
+						],
+						"material": "cloth",
+						"pigment": "ink",
+						"role": "收受贿赂的裁判者",
+						"scene": "custody",
+						"title": "受贿书信外泄的裁判者",
+						"workDetail": "office_chain"
+					},
+					"construction": {
+						"civilian": true,
+						"garment": "waistcoat",
+						"gesture": "appeal",
+						"head": "swept_hair",
+						"held": "none"
+					},
+					"dimensions": {
+						"border": 0.415396031597629,
+						"capRise": 0.162834538612515,
+						"crown": -2.38471360411495,
+						"dye": 0.378184762783349,
+						"elbowDrop": -5.46058699116111,
+						"elbowSpread": 12.446352743078,
+						"gripX": 21.6328405002132,
+						"gripY": -18.8156481357291,
+						"hairTone": 0.536357073113322,
+						"handScale": 0.957044359995052,
+						"headShift": -10.2883691824973,
+						"headTilt": 0.0809019576665014,
+						"headWidth": 0.893755725121918,
+						"height": 0.955843593049794,
+						"hem": 0.830995362484828,
+						"lean": -0.0439536618161947,
+						"linen": 0.920156189007685,
+						"mantle": 104.532359981909,
+						"panel": 36.9630727106705,
+						"panelDye": 0.711445532506332,
+						"panelSlant": 0.588911552913487,
+						"presentation": 0.464778200024739,
+						"shoulderSlope": -0.00880589364562184,
+						"sleeve": 0.995471842354164,
+						"tension": 1.08643656058703,
+						"veil": 0.272784959292039,
+						"width": 0.902700024588101
+					},
+					"personSeed": 1000,
+					"version": "tide-people-3",
+					"world": {
+						"archetype": 0,
+						"c0": "#04161a",
+						"c1": "#0b3b3d",
+						"c2": "#1f6b5e",
+						"c3": "#8c9a6a",
+						"c4": "#6bff9e",
+						"corruption": "#c040ff",
+						"nebula": "#5a2a6e",
+						"palette": 0,
+						"star": "#fff4c8",
+						"styleIndex": 0,
+						"styleSid": 0,
+						"template": "tide",
+						"version": "godot-surface-1",
+						"worldSeed": 1339
+					}
+				},
+				"role": "收受贿赂的裁判者",
+				"scope": "独立立绘；未绑定 Session",
+				"silhouette": "排扣背心与衬衣 · 侧分发与面部阴影",
+				"structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+				"worldSeed": 1339
+			},
+			"recipe": {
+				"background": {
+					"appeal": "那封受贿的信落到了申诉人手里，我会因此丢掉职位。求你替我取回它，我会让你的人进城。",
+					"appearanceNote": "裁判者的挺括衣襟与职务细节；不把申诉人持有的受贿信画回他手里",
+					"caseId": "judge_letter",
+					"context": "受贿的信落到了申诉人手里。裁判者知道自己判错了，仍舍不得那张椅子。",
+					"frame": "law",
+					"garments": [
+						"tailored",
+						"waistcoat"
+					],
+					"genderRule": "any",
+					"gestures": [
+						"folded",
+						"appeal"
+					],
+					"goal": "阻止贿赂书信用于复核",
+					"heads": [
+						"brim",
+						"swept_hair"
+					],
+					"material": "cloth",
+					"pigment": "ink",
+					"role": "收受贿赂的裁判者",
+					"scene": "custody",
+					"title": "受贿书信外泄的裁判者",
+					"workDetail": "office_chain"
+				},
+				"construction": {
+					"civilian": true,
+					"garment": "waistcoat",
+					"gesture": "appeal",
+					"head": "swept_hair",
+					"held": "none"
+				},
+				"dimensions": {
+					"border": 0.415396031597629,
+					"capRise": 0.162834538612515,
+					"crown": -2.38471360411495,
+					"dye": 0.378184762783349,
+					"elbowDrop": -5.46058699116111,
+					"elbowSpread": 12.446352743078,
+					"gripX": 21.6328405002132,
+					"gripY": -18.8156481357291,
+					"hairTone": 0.536357073113322,
+					"handScale": 0.957044359995052,
+					"headShift": -10.2883691824973,
+					"headTilt": 0.0809019576665014,
+					"headWidth": 0.893755725121918,
+					"height": 0.955843593049794,
+					"hem": 0.830995362484828,
+					"lean": -0.0439536618161947,
+					"linen": 0.920156189007685,
+					"mantle": 104.532359981909,
+					"panel": 36.9630727106705,
+					"panelDye": 0.711445532506332,
+					"panelSlant": 0.588911552913487,
+					"presentation": 0.464778200024739,
+					"shoulderSlope": -0.00880589364562184,
+					"sleeve": 0.995471842354164,
+					"tension": 1.08643656058703,
+					"veil": 0.272784959292039,
+					"width": 0.902700024588101
+				},
+				"personSeed": 1000,
+				"version": "tide-people-3",
+				"world": {
+					"archetype": 0,
+					"c0": "#04161a",
+					"c1": "#0b3b3d",
+					"c2": "#1f6b5e",
+					"c3": "#8c9a6a",
+					"c4": "#6bff9e",
+					"corruption": "#c040ff",
+					"nebula": "#5a2a6e",
+					"palette": 0,
+					"star": "#fff4c8",
+					"styleIndex": 0,
+					"styleSid": 0,
+					"template": "tide",
+					"version": "godot-surface-1",
+					"worldSeed": 1339
+				}
+			}
+		}
+	],
+	"request": {
+		"palette": 0,
+		"seed": 1339,
+		"style": 0,
+		"template": "tide"
+	},
+	"reused_world": false,
+	"revision": "native-godot-surface-1",
+	"scope": "Godot 本体内独立生成；未接 Session",
+	"world_params": {
+		"animate": false,
+		"archetype": 0,
+		"aspect": 1,
+		"composition": 1,
+		"corruption": 0.2,
+		"count": 0,
+		"eyes": 0.0,
+		"glyphs": 0.0,
+		"madness": 0.06,
+		"nebula": 0.25,
+		"palette": 0,
+		"quality": 1,
+		"rings": 2,
+		"scene": 0,
+		"seed": 1339,
+		"show_frame": false,
+		"show_labels": false,
+		"show_swatch": false,
+		"show_title": false,
+		"star_type": -1,
+		"style": 0,
+		"tentacles": 0.0,
+		"wonder": -1
+	},
+	"world_recipe": {
+		"archetype": 0,
+		"c0": "#04161a",
+		"c1": "#0b3b3d",
+		"c2": "#1f6b5e",
+		"c3": "#8c9a6a",
+		"c4": "#6bff9e",
+		"corruption": "#c040ff",
+		"nebula": "#5a2a6e",
+		"palette": 0,
+		"star": "#fff4c8",
+		"styleIndex": 0,
+		"styleSid": 0,
+		"template": "tide",
+		"version": "godot-surface-1",
+		"worldSeed": 1339
+	}
+}

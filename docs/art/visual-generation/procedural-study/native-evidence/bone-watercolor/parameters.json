@@ -1,0 +1,296 @@
+{
+	"counts_note": "潮汐 6 类/48 种离散组合；其他世界 4 类/24 种。种子不等于新职业。",
+	"cult_rule": {
+		"activity": "拾骨记名与下降葬仪",
+		"archetype": 10,
+		"default_palette": 8,
+		"institution": "骨丘记名会",
+		"layout": "bone",
+		"material": "bone",
+		"translation": "坑缘台阶和骨拱覆盖的下沉记名庭"
+	},
+	"duration_ms": 8634,
+	"options": {
+		"background": "judge_letter",
+		"count": 1,
+		"seed": 1000
+	},
+	"people": [
+		{
+			"features": {
+				"caseTitle": "受贿书信外泄的裁判者",
+				"genderExpression": "feminine",
+				"materials": [
+					"染色粗布",
+					"盐蚀亚麻",
+					"氧化铜",
+					"湿润皮肤",
+					"发光潮水"
+				],
+				"method": "2D masks + constrained cloth fields + coupled surface channels + illustrated lighting → original NPR",
+				"personSeed": 1000,
+				"pose": "拢臂守望",
+				"recipe": {
+					"background": {
+						"appeal": "那封受贿的信落到了申诉人手里，我会因此丢掉职位。求你替我取回它，我会让你的人进城。",
+						"appearanceNote": "裁判者的挺括衣襟与职务细节；不把申诉人持有的受贿信画回他手里",
+						"caseId": "judge_letter",
+						"context": "受贿的信落到了申诉人手里。裁判者知道自己判错了，仍舍不得那张椅子。",
+						"environment": {
+							"layer": "collar",
+							"material_note": "骨灰沉积的防尘高领与旧皮衣",
+							"template": "bone",
+							"treatment": "chalk"
+						},
+						"frame": "law",
+						"garments": [
+							"tailored",
+							"waistcoat"
+						],
+						"genderRule": "any",
+						"gestures": [
+							"folded",
+							"bargain"
+						],
+						"goal": "阻止贿赂书信用于复核",
+						"heads": [
+							"brim",
+							"swept_hair"
+						],
+						"material": "cloth",
+						"pigment": "ink",
+						"role": "收受贿赂的裁判者",
+						"scene": "custody",
+						"title": "受贿书信外泄的裁判者",
+						"workDetail": "office_chain",
+						"worldRule": {
+							"adaptation": "bone",
+							"appeal_pose": "保留职务衣装，克制地陈述诉求",
+							"case_id": "judge_letter",
+							"garments": "tailored|waistcoat",
+							"gestures": "folded|bargain",
+							"heads": "brim|swept_hair",
+							"template": "bone"
+						}
+					},
+					"construction": {
+						"civilian": true,
+						"garment": "waistcoat",
+						"gesture": "folded",
+						"head": "swept_hair",
+						"held": "none"
+					},
+					"dimensions": {
+						"border": 0.610434979759157,
+						"capRise": 0.444288288475946,
+						"cover": 0.131181329255924,
+						"crown": 6.27591260941699,
+						"dye": 0.124492357950658,
+						"elbowDrop": -3.63670639134943,
+						"elbowSpread": -2.6612752918154,
+						"gripX": 1.86678510624915,
+						"gripY": -32.0023870810401,
+						"hairTone": 0.666574416216463,
+						"handScale": 0.90554276057519,
+						"headLift": 0.846615868527442,
+						"headShift": 6.0439481344074,
+						"headTilt": 0.0672138962242752,
+						"headWidth": 0.878885061973267,
+						"height": 0.975997576848604,
+						"hem": 0.787207263056189,
+						"lean": 0.041945863480214,
+						"linen": 0.455353536875919,
+						"mantle": 24.294080787804,
+						"panel": 99.4613729177509,
+						"panelDye": 0.201774147571996,
+						"panelSlant": 5.27688729576766,
+						"presentation": 0.722286197124049,
+						"shoulderSlope": -0.088083602716215,
+						"sleeve": 0.374809434637427,
+						"tension": 1.01421459438279,
+						"veil": 0.206721187569201,
+						"viewPitch": 0.31639973198995,
+						"width": 1.0523005515722
+					},
+					"personSeed": 1000,
+					"version": "unified-people-1",
+					"world": {
+						"archetype": 10,
+						"c0": "#15130f",
+						"c1": "#3b362d",
+						"c2": "#7a7262",
+						"c3": "#d8cfb8",
+						"c4": "#ffe9b0",
+						"corruption": "#ff3030",
+						"nebula": "#4a2420",
+						"palette": 8,
+						"star": "#fffaf0",
+						"styleIndex": 4,
+						"styleSid": 6,
+						"template": "bone",
+						"version": "godot-surface-1",
+						"worldSeed": 1339
+					}
+				},
+				"role": "收受贿赂的裁判者",
+				"scope": "独立立绘；未绑定 Session",
+				"silhouette": "排扣背心与衬衣 · 侧分发与面部阴影",
+				"structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+				"worldSeed": 1339
+			},
+			"recipe": {
+				"background": {
+					"appeal": "那封受贿的信落到了申诉人手里，我会因此丢掉职位。求你替我取回它，我会让你的人进城。",
+					"appearanceNote": "裁判者的挺括衣襟与职务细节；不把申诉人持有的受贿信画回他手里",
+					"caseId": "judge_letter",
+					"context": "受贿的信落到了申诉人手里。裁判者知道自己判错了，仍舍不得那张椅子。",
+					"environment": {
+						"layer": "collar",
+						"material_note": "骨灰沉积的防尘高领与旧皮衣",
+						"template": "bone",
+						"treatment": "chalk"
+					},
+					"frame": "law",
+					"garments": [
+						"tailored",
+						"waistcoat"
+					],
+					"genderRule": "any",
+					"gestures": [
+						"folded",
+						"bargain"
+					],
+					"goal": "阻止贿赂书信用于复核",
+					"heads": [
+						"brim",
+						"swept_hair"
+					],
+					"material": "cloth",
+					"pigment": "ink",
+					"role": "收受贿赂的裁判者",
+					"scene": "custody",
+					"title": "受贿书信外泄的裁判者",
+					"workDetail": "office_chain",
+					"worldRule": {
+						"adaptation": "bone",
+						"appeal_pose": "保留职务衣装，克制地陈述诉求",
+						"case_id": "judge_letter",
+						"garments": "tailored|waistcoat",
+						"gestures": "folded|bargain",
+						"heads": "brim|swept_hair",
+						"template": "bone"
+					}
+				},
+				"construction": {
+					"civilian": true,
+					"garment": "waistcoat",
+					"gesture": "folded",
+					"head": "swept_hair",
+					"held": "none"
+				},
+				"dimensions": {
+					"border": 0.610434979759157,
+					"capRise": 0.444288288475946,
+					"cover": 0.131181329255924,
+					"crown": 6.27591260941699,
+					"dye": 0.124492357950658,
+					"elbowDrop": -3.63670639134943,
+					"elbowSpread": -2.6612752918154,
+					"gripX": 1.86678510624915,
+					"gripY": -32.0023870810401,
+					"hairTone": 0.666574416216463,
+					"handScale": 0.90554276057519,
+					"headLift": 0.846615868527442,
+					"headShift": 6.0439481344074,
+					"headTilt": 0.0672138962242752,
+					"headWidth": 0.878885061973267,
+					"height": 0.975997576848604,
+					"hem": 0.787207263056189,
+					"lean": 0.041945863480214,
+					"linen": 0.455353536875919,
+					"mantle": 24.294080787804,
+					"panel": 99.4613729177509,
+					"panelDye": 0.201774147571996,
+					"panelSlant": 5.27688729576766,
+					"presentation": 0.722286197124049,
+					"shoulderSlope": -0.088083602716215,
+					"sleeve": 0.374809434637427,
+					"tension": 1.01421459438279,
+					"veil": 0.206721187569201,
+					"viewPitch": 0.31639973198995,
+					"width": 1.0523005515722
+				},
+				"personSeed": 1000,
+				"version": "unified-people-1",
+				"world": {
+					"archetype": 10,
+					"c0": "#15130f",
+					"c1": "#3b362d",
+					"c2": "#7a7262",
+					"c3": "#d8cfb8",
+					"c4": "#ffe9b0",
+					"corruption": "#ff3030",
+					"nebula": "#4a2420",
+					"palette": 8,
+					"star": "#fffaf0",
+					"styleIndex": 4,
+					"styleSid": 6,
+					"template": "bone",
+					"version": "godot-surface-1",
+					"worldSeed": 1339
+				}
+			}
+		}
+	],
+	"request": {
+		"palette": 8,
+		"seed": 1339,
+		"style": 6,
+		"template": "bone"
+	},
+	"reused_world": false,
+	"revision": "native-godot-surface-1",
+	"scope": "Godot 本体内独立生成；未接 Session",
+	"world_params": {
+		"animate": false,
+		"archetype": 10,
+		"aspect": 1,
+		"composition": 1,
+		"corruption": 0.2,
+		"count": 0,
+		"eyes": 0.0,
+		"glyphs": 0.0,
+		"madness": 0.06,
+		"nebula": 0.25,
+		"palette": 8,
+		"quality": 1,
+		"rings": 2,
+		"scene": 0,
+		"seed": 1339,
+		"show_frame": false,
+		"show_labels": false,
+		"show_swatch": false,
+		"show_title": false,
+		"star_type": -1,
+		"style": 4,
+		"tentacles": 0.0,
+		"wonder": -1
+	},
+	"world_recipe": {
+		"archetype": 10,
+		"c0": "#15130f",
+		"c1": "#3b362d",
+		"c2": "#7a7262",
+		"c3": "#d8cfb8",
+		"c4": "#ffe9b0",
+		"corruption": "#ff3030",
+		"nebula": "#4a2420",
+		"palette": 8,
+		"star": "#fffaf0",
+		"styleIndex": 4,
+		"styleSid": 6,
+		"template": "bone",
+		"version": "godot-surface-1",
+		"worldSeed": 1339
+	}
+}

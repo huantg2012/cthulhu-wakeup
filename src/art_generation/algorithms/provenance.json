@@ -1,0 +1,19 @@
+{
+  "source": "docs/art/visual-generation/procedural-study/painted/surface",
+  "note": "One-time port into editable native GDScript and Godot shaders; these JavaScript sources are historical references only, never runtime inputs. Rejected petitioner.js and petition-nohands.js are intentionally excluded.",
+  "source_hashes": {
+    "engine.js": "d5e8659f9b8a9fb4d0f8272be5ed7d5abcb58a6028d68384ad18b76440227b04",
+    "world.js": "877c1fb1feeb0e50f3ebbfae8344add39975c4a8bf9a9b64108708ae8653d160",
+    "design-space.js": "7e7843770426f84de2568be863366e636f04edf9f69626f9fb7135c98e485e37",
+    "portrait.js": "3ff21f0b4d519e5a645f41b978f3f6314c0fb1048e2c902d2874d884daee9413",
+    "figure-grammar.js": "53a82949bd1d4e0e25882f942eb28a272f51f4c5a3d44a8611f0ce7b29bfb69a",
+    "civilian.js": "35e89300c0a3efdf640c76c5e77d976d706cafc8d5cdc88a4faf526e693beec1",
+    "world-person.js": "68cc3b294a0e30e939239086de3f1e4cd7398358a5dd5933e3ead74e8f658168",
+    "person-environment.js": "9440cf85d9ebbd95644424813638cbfebd75179df1b8eabcec356329a50778a1",
+    "people.js": "103c76cd944b88fcce5de636dbebb5bf7f8d8a7d0e19542168cbb278146cad74",
+    "sanctuary.js": "6de30e4c7bef41023d2b25f3c499c9ec40b77ea50cca4db94d753701d16435aa",
+    "cult-kit.js": "26432d6775f2d49834d794033357defe45f973cee9b472a9443e234eb18b944c",
+    "cult-scenes.js": "c488bfba6426a0895aaf76134c099ba985978040018f743a5300cebf0781e448",
+    "world-fields.js": "df0e6a19c9da6771566d2ae8fc74d6a2c8095db7f74f0719f2fd80e26c03e406"
+  }
+}

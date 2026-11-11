@@ -1,0 +1,2396 @@
+[
+  {
+    "counts_note": "潮汐 6 类/48 种离散组合；其他世界 4 类/24 种。种子不等于新职业。",
+    "cult_rule": {
+      "activity": "持灯入会与潮水量测",
+      "archetype": 0,
+      "default_palette": 0,
+      "institution": "听潮密会",
+      "layout": "tide",
+      "material": "stone",
+      "translation": "潮蚀双岸与下沉环井"
+    },
+    "duration_ms": 4483,
+    "options": {
+      "background": "judge_letter",
+      "count": 1,
+      "seed": 1000
+    },
+    "people": [
+      {
+        "features": {
+          "caseTitle": "受贿书信外泄的裁判者",
+          "genderExpression": "androgynous",
+          "materials": [
+            "染色粗布",
+            "盐蚀亚麻",
+            "氧化铜",
+            "湿润皮肤",
+            "发光潮水"
+          ],
+          "method": "2D masks + constrained cloth fields + coupled surface channels + illustrated lighting → original NPR",
+          "personSeed": 1000,
+          "pose": "抚胸伸掌",
+          "recipe": {
+            "background": {
+              "appeal": "那封受贿的信落到了申诉人手里，我会因此丢掉职位。求你替我取回它，我会让你的人进城。",
+              "appearanceNote": "裁判者的挺括衣襟与职务细节；不把申诉人持有的受贿信画回他手里",
+              "caseId": "judge_letter",
+              "context": "受贿的信落到了申诉人手里。裁判者知道自己判错了，仍舍不得那张椅子。",
+              "frame": "law",
+              "garments": [
+                "tailored",
+                "waistcoat"
+              ],
+              "genderRule": "any",
+              "gestures": [
+                "folded",
+                "appeal"
+              ],
+              "goal": "阻止贿赂书信用于复核",
+              "heads": [
+                "brim",
+                "swept_hair"
+              ],
+              "material": "cloth",
+              "pigment": "ink",
+              "role": "收受贿赂的裁判者",
+              "scene": "custody",
+              "title": "受贿书信外泄的裁判者",
+              "workDetail": "office_chain"
+            },
+            "construction": {
+              "civilian": true,
+              "garment": "waistcoat",
+              "gesture": "appeal",
+              "head": "swept_hair",
+              "held": "none"
+            },
+            "dimensions": {
+              "border": 0.415396031597629,
+              "capRise": 0.162834538612515,
+              "crown": -2.38471360411495,
+              "dye": 0.378184762783349,
+              "elbowDrop": -5.46058699116111,
+              "elbowSpread": 12.446352743078,
+              "gripX": 21.6328405002132,
+              "gripY": -18.8156481357291,
+              "hairTone": 0.536357073113322,
+              "handScale": 0.957044359995052,
+              "headShift": -10.2883691824973,
+              "headTilt": 0.0809019576665014,
+              "headWidth": 0.893755725121918,
+              "height": 0.955843593049794,
+              "hem": 0.830995362484828,
+              "lean": -0.0439536618161947,
+              "linen": 0.920156189007685,
+              "mantle": 104.532359981909,
+              "panel": 36.9630727106705,
+              "panelDye": 0.711445532506332,
+              "panelSlant": 0.588911552913487,
+              "presentation": 0.464778200024739,
+              "shoulderSlope": -0.00880589364562184,
+              "sleeve": 0.995471842354164,
+              "tension": 1.08643656058703,
+              "veil": 0.272784959292039,
+              "width": 0.902700024588101
+            },
+            "personSeed": 1000,
+            "version": "tide-people-3",
+            "world": {
+              "archetype": 0,
+              "c0": "#04161a",
+              "c1": "#0b3b3d",
+              "c2": "#1f6b5e",
+              "c3": "#8c9a6a",
+              "c4": "#6bff9e",
+              "corruption": "#c040ff",
+              "nebula": "#5a2a6e",
+              "palette": 0,
+              "star": "#fff4c8",
+              "styleIndex": 0,
+              "styleSid": 0,
+              "template": "tide",
+              "version": "godot-surface-1",
+              "worldSeed": 1339
+            }
+          },
+          "role": "收受贿赂的裁判者",
+          "scope": "独立立绘；未绑定 Session",
+          "silhouette": "排扣背心与衬衣 · 侧分发与面部阴影",
+          "structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+          "worldSeed": 1339
+        },
+        "recipe": {
+          "background": {
+            "appeal": "那封受贿的信落到了申诉人手里，我会因此丢掉职位。求你替我取回它，我会让你的人进城。",
+            "appearanceNote": "裁判者的挺括衣襟与职务细节；不把申诉人持有的受贿信画回他手里",
+            "caseId": "judge_letter",
+            "context": "受贿的信落到了申诉人手里。裁判者知道自己判错了，仍舍不得那张椅子。",
+            "frame": "law",
+            "garments": [
+              "tailored",
+              "waistcoat"
+            ],
+            "genderRule": "any",
+            "gestures": [
+              "folded",
+              "appeal"
+            ],
+            "goal": "阻止贿赂书信用于复核",
+            "heads": [
+              "brim",
+              "swept_hair"
+            ],
+            "material": "cloth",
+            "pigment": "ink",
+            "role": "收受贿赂的裁判者",
+            "scene": "custody",
+            "title": "受贿书信外泄的裁判者",
+            "workDetail": "office_chain"
+          },
+          "construction": {
+            "civilian": true,
+            "garment": "waistcoat",
+            "gesture": "appeal",
+            "head": "swept_hair",
+            "held": "none"
+          },
+          "dimensions": {
+            "border": 0.415396031597629,
+            "capRise": 0.162834538612515,
+            "crown": -2.38471360411495,
+            "dye": 0.378184762783349,
+            "elbowDrop": -5.46058699116111,
+            "elbowSpread": 12.446352743078,
+            "gripX": 21.6328405002132,
+            "gripY": -18.8156481357291,
+            "hairTone": 0.536357073113322,
+            "handScale": 0.957044359995052,
+            "headShift": -10.2883691824973,
+            "headTilt": 0.0809019576665014,
+            "headWidth": 0.893755725121918,
+            "height": 0.955843593049794,
+            "hem": 0.830995362484828,
+            "lean": -0.0439536618161947,
+            "linen": 0.920156189007685,
+            "mantle": 104.532359981909,
+            "panel": 36.9630727106705,
+            "panelDye": 0.711445532506332,
+            "panelSlant": 0.588911552913487,
+            "presentation": 0.464778200024739,
+            "shoulderSlope": -0.00880589364562184,
+            "sleeve": 0.995471842354164,
+            "tension": 1.08643656058703,
+            "veil": 0.272784959292039,
+            "width": 0.902700024588101
+          },
+          "personSeed": 1000,
+          "version": "tide-people-3",
+          "world": {
+            "archetype": 0,
+            "c0": "#04161a",
+            "c1": "#0b3b3d",
+            "c2": "#1f6b5e",
+            "c3": "#8c9a6a",
+            "c4": "#6bff9e",
+            "corruption": "#c040ff",
+            "nebula": "#5a2a6e",
+            "palette": 0,
+            "star": "#fff4c8",
+            "styleIndex": 0,
+            "styleSid": 0,
+            "template": "tide",
+            "version": "godot-surface-1",
+            "worldSeed": 1339
+          }
+        }
+      }
+    ],
+    "request": {
+      "palette": 0,
+      "seed": 1339,
+      "style": 0,
+      "template": "tide"
+    },
+    "reused_world": false,
+    "revision": "native-godot-surface-1",
+    "scope": "Godot 本体内独立生成；未接 Session",
+    "world_params": {
+      "animate": false,
+      "archetype": 0,
+      "aspect": 1,
+      "composition": 1,
+      "corruption": 0.2,
+      "count": 0,
+      "eyes": 0.0,
+      "glyphs": 0.0,
+      "madness": 0.06,
+      "nebula": 0.25,
+      "palette": 0,
+      "quality": 1,
+      "rings": 2,
+      "scene": 0,
+      "seed": 1339,
+      "show_frame": false,
+      "show_labels": false,
+      "show_swatch": false,
+      "show_title": false,
+      "star_type": -1,
+      "style": 0,
+      "tentacles": 0.0,
+      "wonder": -1
+    },
+    "world_recipe": {
+      "archetype": 0,
+      "c0": "#04161a",
+      "c1": "#0b3b3d",
+      "c2": "#1f6b5e",
+      "c3": "#8c9a6a",
+      "c4": "#6bff9e",
+      "corruption": "#c040ff",
+      "nebula": "#5a2a6e",
+      "palette": 0,
+      "star": "#fff4c8",
+      "styleIndex": 0,
+      "styleSid": 0,
+      "template": "tide",
+      "version": "godot-surface-1",
+      "worldSeed": 1339
+    }
+  },
+  {
+    "counts_note": "潮汐 6 类/48 种离散组合；其他世界 4 类/24 种。种子不等于新职业。",
+    "cult_rule": {
+      "activity": "测风记时与避风聚会",
+      "archetype": 5,
+      "default_palette": 4,
+      "institution": "测风誓约会",
+      "layout": "frozen",
+      "material": "frost",
+      "translation": "冰壁环抱的避风聚所与转折前庭"
+    },
+    "duration_ms": 6600,
+    "options": {
+      "background": "all",
+      "count": 4,
+      "seed": 1000
+    },
+    "people": [
+      {
+        "features": {
+          "caseTitle": "握不稳刀的雕刻师",
+          "genderExpression": "feminine",
+          "materials": [
+            "染色粗布",
+            "盐蚀亚麻",
+            "氧化铜",
+            "湿润皮肤",
+            "发光潮水"
+          ],
+          "method": "2D masks + constrained cloth fields + coupled surface channels + illustrated lighting → original NPR",
+          "personSeed": 1000,
+          "pose": "护住伤手",
+          "recipe": {
+            "background": {
+              "appeal": "这单雕刻就差最后几刀，可我的伤手一直抖，连刀都握不住。求你让我把活做完。",
+              "appearanceNote": "工作围裙与检查伤手的动作；不让受伤的手稳持刻刀",
+              "caseId": "shaking_hand",
+              "context": "最后一单雕刻就差几刀。他的手抖得连自己的名字都刻不完。",
+              "frame": "body",
+              "garments": [
+                "apron",
+                "jerkin"
+              ],
+              "genderRule": "any",
+              "gestures": [
+                "injured"
+              ],
+              "goal": "恢复完成雕刻的能力",
+              "heads": [
+                "workcap",
+                "tiedhair"
+              ],
+              "material": "leather",
+              "pigment": "umber",
+              "role": "雕刻师",
+              "scene": "deprivation",
+              "title": "握不稳刀的雕刻师",
+              "workDetail": "apron",
+              "worldRule": {
+                "adaptation": "wadded",
+                "appeal_pose": "将颤抖的伤手托向上方，请求恢复手艺",
+                "case_id": "shaking_hand",
+                "garments": "apron|jerkin",
+                "gestures": "injured",
+                "heads": "workcap|tiedhair",
+                "template": "frozen"
+              }
+            },
+            "construction": {
+              "civilian": true,
+              "garment": "jerkin",
+              "gesture": "injured",
+              "head": "tiedhair",
+              "held": "none"
+            },
+            "dimensions": {
+              "border": 0.610434979759157,
+              "capRise": 0.444288288475946,
+              "cover": 0.131181329255924,
+              "crown": 6.27591260941699,
+              "dye": 0.124492357950658,
+              "elbowDrop": -3.63670639134943,
+              "elbowSpread": -2.6612752918154,
+              "gripX": 1.86678510624915,
+              "gripY": -32.0023870810401,
+              "hairTone": 0.666574416216463,
+              "handScale": 0.90554276057519,
+              "headLift": 0.846615868527442,
+              "headShift": 6.0439481344074,
+              "headTilt": 0.0672138962242752,
+              "headWidth": 0.878885061973267,
+              "height": 0.975997576848604,
+              "hem": 0.787207263056189,
+              "lean": 0.041945863480214,
+              "linen": 0.455353536875919,
+              "mantle": 24.294080787804,
+              "panel": 99.4613729177509,
+              "panelDye": 0.201774147571996,
+              "panelSlant": 5.27688729576766,
+              "presentation": 0.722286197124049,
+              "shoulderSlope": -0.088083602716215,
+              "sleeve": 0.374809434637427,
+              "tension": 1.01421459438279,
+              "veil": 0.206721187569201,
+              "viewPitch": 0.31639973198995,
+              "width": 1.0523005515722
+            },
+            "personSeed": 1000,
+            "version": "world-people-1",
+            "world": {
+              "archetype": 5,
+              "c0": "#0b0f14",
+              "c1": "#26323d",
+              "c2": "#56687a",
+              "c3": "#b8c4cc",
+              "c4": "#8fd7ff",
+              "corruption": "#60c0ff",
+              "nebula": "#3a2a4e",
+              "palette": 4,
+              "star": "#e8f4ff",
+              "styleIndex": 0,
+              "styleSid": 0,
+              "template": "frozen",
+              "version": "godot-surface-1",
+              "worldSeed": 1339
+            }
+          },
+          "role": "雕刻师",
+          "scope": "独立立绘；未绑定 Session",
+          "silhouette": "工作马甲与衬衣 · 束发与面部阴影",
+          "structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+          "worldSeed": 1339
+        },
+        "recipe": {
+          "background": {
+            "appeal": "这单雕刻就差最后几刀，可我的伤手一直抖，连刀都握不住。求你让我把活做完。",
+            "appearanceNote": "工作围裙与检查伤手的动作；不让受伤的手稳持刻刀",
+            "caseId": "shaking_hand",
+            "context": "最后一单雕刻就差几刀。他的手抖得连自己的名字都刻不完。",
+            "frame": "body",
+            "garments": [
+              "apron",
+              "jerkin"
+            ],
+            "genderRule": "any",
+            "gestures": [
+              "injured"
+            ],
+            "goal": "恢复完成雕刻的能力",
+            "heads": [
+              "workcap",
+              "tiedhair"
+            ],
+            "material": "leather",
+            "pigment": "umber",
+            "role": "雕刻师",
+            "scene": "deprivation",
+            "title": "握不稳刀的雕刻师",
+            "workDetail": "apron",
+            "worldRule": {
+              "adaptation": "wadded",
+              "appeal_pose": "将颤抖的伤手托向上方，请求恢复手艺",
+              "case_id": "shaking_hand",
+              "garments": "apron|jerkin",
+              "gestures": "injured",
+              "heads": "workcap|tiedhair",
+              "template": "frozen"
+            }
+          },
+          "construction": {
+            "civilian": true,
+            "garment": "jerkin",
+            "gesture": "injured",
+            "head": "tiedhair",
+            "held": "none"
+          },
+          "dimensions": {
+            "border": 0.610434979759157,
+            "capRise": 0.444288288475946,
+            "cover": 0.131181329255924,
+            "crown": 6.27591260941699,
+            "dye": 0.124492357950658,
+            "elbowDrop": -3.63670639134943,
+            "elbowSpread": -2.6612752918154,
+            "gripX": 1.86678510624915,
+            "gripY": -32.0023870810401,
+            "hairTone": 0.666574416216463,
+            "handScale": 0.90554276057519,
+            "headLift": 0.846615868527442,
+            "headShift": 6.0439481344074,
+            "headTilt": 0.0672138962242752,
+            "headWidth": 0.878885061973267,
+            "height": 0.975997576848604,
+            "hem": 0.787207263056189,
+            "lean": 0.041945863480214,
+            "linen": 0.455353536875919,
+            "mantle": 24.294080787804,
+            "panel": 99.4613729177509,
+            "panelDye": 0.201774147571996,
+            "panelSlant": 5.27688729576766,
+            "presentation": 0.722286197124049,
+            "shoulderSlope": -0.088083602716215,
+            "sleeve": 0.374809434637427,
+            "tension": 1.01421459438279,
+            "veil": 0.206721187569201,
+            "viewPitch": 0.31639973198995,
+            "width": 1.0523005515722
+          },
+          "personSeed": 1000,
+          "version": "world-people-1",
+          "world": {
+            "archetype": 5,
+            "c0": "#0b0f14",
+            "c1": "#26323d",
+            "c2": "#56687a",
+            "c3": "#b8c4cc",
+            "c4": "#8fd7ff",
+            "corruption": "#60c0ff",
+            "nebula": "#3a2a4e",
+            "palette": 4,
+            "star": "#e8f4ff",
+            "styleIndex": 0,
+            "styleSid": 0,
+            "template": "frozen",
+            "version": "godot-surface-1",
+            "worldSeed": 1339
+          }
+        }
+      },
+      {
+        "features": {
+          "caseTitle": "受贿书信外泄的裁判者",
+          "genderExpression": "feminine",
+          "materials": [
+            "染色粗布",
+            "盐蚀亚麻",
+            "氧化铜",
+            "湿润皮肤",
+            "发光潮水"
+          ],
+          "method": "2D masks + constrained cloth fields + coupled surface channels + illustrated lighting → original NPR",
+          "personSeed": 1001,
+          "pose": "拢臂守望",
+          "recipe": {
+            "background": {
+              "appeal": "那封受贿的信落到了申诉人手里，我会因此丢掉职位。求你替我取回它，我会让你的人进城。",
+              "appearanceNote": "裁判者的挺括衣襟与职务细节；不把申诉人持有的受贿信画回他手里",
+              "caseId": "judge_letter",
+              "context": "受贿的信落到了申诉人手里。裁判者知道自己判错了，仍舍不得那张椅子。",
+              "frame": "law",
+              "garments": [
+                "tailored",
+                "waistcoat"
+              ],
+              "genderRule": "any",
+              "gestures": [
+                "bargain",
+                "folded"
+              ],
+              "goal": "阻止贿赂书信用于复核",
+              "heads": [
+                "brim",
+                "swept_hair"
+              ],
+              "material": "cloth",
+              "pigment": "ink",
+              "role": "收受贿赂的裁判者",
+              "scene": "custody",
+              "title": "受贿书信外泄的裁判者",
+              "workDetail": "office_chain",
+              "worldRule": {
+                "adaptation": "lined",
+                "appeal_pose": "仰面陈述交换条件，仍护着自己的职位",
+                "case_id": "judge_letter",
+                "garments": "tailored|waistcoat",
+                "gestures": "bargain|folded",
+                "heads": "brim|swept_hair",
+                "template": "frozen"
+              }
+            },
+            "construction": {
+              "civilian": true,
+              "garment": "tailored",
+              "gesture": "folded",
+              "head": "swept_hair",
+              "held": "none"
+            },
+            "dimensions": {
+              "border": 0.293285567476414,
+              "capRise": 0.783616434782743,
+              "cover": 0.676484741969034,
+              "crown": 2.94484710786492,
+              "dye": 0.583624780876562,
+              "elbowDrop": -7.75205250643194,
+              "elbowSpread": -6.22989397542551,
+              "gripX": -4.32260270789266,
+              "gripY": -27.7610047135968,
+              "hairTone": 0.623806073796004,
+              "handScale": 0.916529125533998,
+              "headLift": 0.600472919200547,
+              "headShift": -9.71254557743669,
+              "headTilt": 0.0924345492571592,
+              "headWidth": 0.901462399098773,
+              "height": 0.961611240576021,
+              "hem": 0.644346451386809,
+              "lean": 0.0633369082631543,
+              "linen": 0.155567528679967,
+              "mantle": 135.374828093685,
+              "panel": 98.5081095306668,
+              "panelDye": 0.929097768384963,
+              "panelSlant": -5.64163589850068,
+              "presentation": 0.66735437233001,
+              "shoulderSlope": -0.0898989391885698,
+              "sleeve": 0.966498140012845,
+              "tension": 1.03369918912649,
+              "veil": 0.092963180039078,
+              "viewPitch": 0.34423965472728,
+              "width": 1.07072367473038
+            },
+            "personSeed": 1001,
+            "version": "world-people-1",
+            "world": {
+              "archetype": 5,
+              "c0": "#0b0f14",
+              "c1": "#26323d",
+              "c2": "#56687a",
+              "c3": "#b8c4cc",
+              "c4": "#8fd7ff",
+              "corruption": "#60c0ff",
+              "nebula": "#3a2a4e",
+              "palette": 4,
+              "star": "#e8f4ff",
+              "styleIndex": 0,
+              "styleSid": 0,
+              "template": "frozen",
+              "version": "godot-surface-1",
+              "worldSeed": 1339
+            }
+          },
+          "role": "收受贿赂的裁判者",
+          "scope": "独立立绘；未绑定 Session",
+          "silhouette": "挺括翻领外衣 · 侧分发与面部阴影",
+          "structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+          "worldSeed": 1339
+        },
+        "recipe": {
+          "background": {
+            "appeal": "那封受贿的信落到了申诉人手里，我会因此丢掉职位。求你替我取回它，我会让你的人进城。",
+            "appearanceNote": "裁判者的挺括衣襟与职务细节；不把申诉人持有的受贿信画回他手里",
+            "caseId": "judge_letter",
+            "context": "受贿的信落到了申诉人手里。裁判者知道自己判错了，仍舍不得那张椅子。",
+            "frame": "law",
+            "garments": [
+              "tailored",
+              "waistcoat"
+            ],
+            "genderRule": "any",
+            "gestures": [
+              "bargain",
+              "folded"
+            ],
+            "goal": "阻止贿赂书信用于复核",
+            "heads": [
+              "brim",
+              "swept_hair"
+            ],
+            "material": "cloth",
+            "pigment": "ink",
+            "role": "收受贿赂的裁判者",
+            "scene": "custody",
+            "title": "受贿书信外泄的裁判者",
+            "workDetail": "office_chain",
+            "worldRule": {
+              "adaptation": "lined",
+              "appeal_pose": "仰面陈述交换条件，仍护着自己的职位",
+              "case_id": "judge_letter",
+              "garments": "tailored|waistcoat",
+              "gestures": "bargain|folded",
+              "heads": "brim|swept_hair",
+              "template": "frozen"
+            }
+          },
+          "construction": {
+            "civilian": true,
+            "garment": "tailored",
+            "gesture": "folded",
+            "head": "swept_hair",
+            "held": "none"
+          },
+          "dimensions": {
+            "border": 0.293285567476414,
+            "capRise": 0.783616434782743,
+            "cover": 0.676484741969034,
+            "crown": 2.94484710786492,
+            "dye": 0.583624780876562,
+            "elbowDrop": -7.75205250643194,
+            "elbowSpread": -6.22989397542551,
+            "gripX": -4.32260270789266,
+            "gripY": -27.7610047135968,
+            "hairTone": 0.623806073796004,
+            "handScale": 0.916529125533998,
+            "headLift": 0.600472919200547,
+            "headShift": -9.71254557743669,
+            "headTilt": 0.0924345492571592,
+            "headWidth": 0.901462399098773,
+            "height": 0.961611240576021,
+            "hem": 0.644346451386809,
+            "lean": 0.0633369082631543,
+            "linen": 0.155567528679967,
+            "mantle": 135.374828093685,
+            "panel": 98.5081095306668,
+            "panelDye": 0.929097768384963,
+            "panelSlant": -5.64163589850068,
+            "presentation": 0.66735437233001,
+            "shoulderSlope": -0.0898989391885698,
+            "sleeve": 0.966498140012845,
+            "tension": 1.03369918912649,
+            "veil": 0.092963180039078,
+            "viewPitch": 0.34423965472728,
+            "width": 1.07072367473038
+          },
+          "personSeed": 1001,
+          "version": "world-people-1",
+          "world": {
+            "archetype": 5,
+            "c0": "#0b0f14",
+            "c1": "#26323d",
+            "c2": "#56687a",
+            "c3": "#b8c4cc",
+            "c4": "#8fd7ff",
+            "corruption": "#60c0ff",
+            "nebula": "#3a2a4e",
+            "palette": 4,
+            "star": "#e8f4ff",
+            "styleIndex": 0,
+            "styleSid": 0,
+            "template": "frozen",
+            "version": "godot-surface-1",
+            "worldSeed": 1339
+          }
+        }
+      },
+      {
+        "features": {
+          "caseTitle": "守着高烧孩子的父亲",
+          "genderExpression": "masculine",
+          "materials": [
+            "染色粗布",
+            "盐蚀亚麻",
+            "氧化铜",
+            "湿润皮肤",
+            "发光潮水"
+          ],
+          "method": "2D masks + constrained cloth fields + coupled surface channels + illustrated lighting → original NPR",
+          "personSeed": 1002,
+          "pose": "伸掌求援",
+          "recipe": {
+            "background": {
+              "appeal": "女儿烧得连我都认不出来了，我怕她撑不过去。求你让她退烧，让她活下来。",
+              "appearanceNote": "普通生活衣物与紧握双手；父亲身份有原文依据但职业未被指定",
+              "caseId": "fever_child",
+              "context": "孩子烧得认不出父亲。父亲握着她的手，一遍遍报自己的名字。",
+              "frame": "body",
+              "garments": [
+                "jerkin",
+                "workshirt"
+              ],
+              "genderRule": "male",
+              "gestures": [
+                "entreat"
+              ],
+              "goal": "解除孩子的此次病危",
+              "heads": [
+                "workcap",
+                "short_hair"
+              ],
+              "material": "cloth",
+              "pigment": "slate",
+              "role": "孩子的父亲",
+              "scene": "hazard",
+              "title": "守着高烧孩子的父亲",
+              "workDetail": "repair",
+              "worldRule": {
+                "adaptation": "wadded",
+                "appeal_pose": "伸掌向上求援，另一手贴近胸口",
+                "case_id": "fever_child",
+                "garments": "jerkin|workshirt",
+                "gestures": "entreat",
+                "heads": "workcap|short_hair",
+                "template": "frozen"
+              }
+            },
+            "construction": {
+              "civilian": true,
+              "garment": "workshirt",
+              "gesture": "entreat",
+              "head": "workcap",
+              "held": "none"
+            },
+            "dimensions": {
+              "border": 0.498514635069296,
+              "capRise": 0.464876807527617,
+              "cover": 0.850509504787624,
+              "crown": 4.10446138121188,
+              "dye": 0.1188533406239,
+              "elbowDrop": 5.2265708707273,
+              "elbowSpread": -15.486549960915,
+              "gripX": -17.0187365459278,
+              "gripY": -9.47648960887454,
+              "hairTone": 0.964340241858736,
+              "handScale": 0.998285154532641,
+              "headLift": 0.599570499407127,
+              "headShift": -2.38049140200019,
+              "headTilt": -0.149021677281708,
+              "headWidth": 0.961825254793244,
+              "height": 1.00651935640257,
+              "hem": 0.870797829236835,
+              "lean": -0.0473171711922623,
+              "linen": 0.535370034398511,
+              "mantle": 26.1212544441223,
+              "panel": 60.0380655727349,
+              "panelDye": 0.123287606285885,
+              "panelSlant": 25.3345063095912,
+              "presentation": 0.258574227336794,
+              "shoulderSlope": 0.0715690577728674,
+              "sleeve": 0.0727276161778718,
+              "tension": 1.13082600631751,
+              "veil": 0.214393336093053,
+              "viewPitch": 0.290446645524353,
+              "width": 1.09140891453443
+            },
+            "personSeed": 1002,
+            "version": "world-people-1",
+            "world": {
+              "archetype": 5,
+              "c0": "#0b0f14",
+              "c1": "#26323d",
+              "c2": "#56687a",
+              "c3": "#b8c4cc",
+              "c4": "#8fd7ff",
+              "corruption": "#60c0ff",
+              "nebula": "#3a2a4e",
+              "palette": 4,
+              "star": "#e8f4ff",
+              "styleIndex": 0,
+              "styleSid": 0,
+              "template": "frozen",
+              "version": "godot-surface-1",
+              "worldSeed": 1339
+            }
+          },
+          "role": "孩子的父亲",
+          "scope": "独立立绘；未绑定 Session",
+          "silhouette": "日常衬衣 · 劳作软帽",
+          "structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+          "worldSeed": 1339
+        },
+        "recipe": {
+          "background": {
+            "appeal": "女儿烧得连我都认不出来了，我怕她撑不过去。求你让她退烧，让她活下来。",
+            "appearanceNote": "普通生活衣物与紧握双手；父亲身份有原文依据但职业未被指定",
+            "caseId": "fever_child",
+            "context": "孩子烧得认不出父亲。父亲握着她的手，一遍遍报自己的名字。",
+            "frame": "body",
+            "garments": [
+              "jerkin",
+              "workshirt"
+            ],
+            "genderRule": "male",
+            "gestures": [
+              "entreat"
+            ],
+            "goal": "解除孩子的此次病危",
+            "heads": [
+              "workcap",
+              "short_hair"
+            ],
+            "material": "cloth",
+            "pigment": "slate",
+            "role": "孩子的父亲",
+            "scene": "hazard",
+            "title": "守着高烧孩子的父亲",
+            "workDetail": "repair",
+            "worldRule": {
+              "adaptation": "wadded",
+              "appeal_pose": "伸掌向上求援，另一手贴近胸口",
+              "case_id": "fever_child",
+              "garments": "jerkin|workshirt",
+              "gestures": "entreat",
+              "heads": "workcap|short_hair",
+              "template": "frozen"
+            }
+          },
+          "construction": {
+            "civilian": true,
+            "garment": "workshirt",
+            "gesture": "entreat",
+            "head": "workcap",
+            "held": "none"
+          },
+          "dimensions": {
+            "border": 0.498514635069296,
+            "capRise": 0.464876807527617,
+            "cover": 0.850509504787624,
+            "crown": 4.10446138121188,
+            "dye": 0.1188533406239,
+            "elbowDrop": 5.2265708707273,
+            "elbowSpread": -15.486549960915,
+            "gripX": -17.0187365459278,
+            "gripY": -9.47648960887454,
+            "hairTone": 0.964340241858736,
+            "handScale": 0.998285154532641,
+            "headLift": 0.599570499407127,
+            "headShift": -2.38049140200019,
+            "headTilt": -0.149021677281708,
+            "headWidth": 0.961825254793244,
+            "height": 1.00651935640257,
+            "hem": 0.870797829236835,
+            "lean": -0.0473171711922623,
+            "linen": 0.535370034398511,
+            "mantle": 26.1212544441223,
+            "panel": 60.0380655727349,
+            "panelDye": 0.123287606285885,
+            "panelSlant": 25.3345063095912,
+            "presentation": 0.258574227336794,
+            "shoulderSlope": 0.0715690577728674,
+            "sleeve": 0.0727276161778718,
+            "tension": 1.13082600631751,
+            "veil": 0.214393336093053,
+            "viewPitch": 0.290446645524353,
+            "width": 1.09140891453443
+          },
+          "personSeed": 1002,
+          "version": "world-people-1",
+          "world": {
+            "archetype": 5,
+            "c0": "#0b0f14",
+            "c1": "#26323d",
+            "c2": "#56687a",
+            "c3": "#b8c4cc",
+            "c4": "#8fd7ff",
+            "corruption": "#60c0ff",
+            "nebula": "#3a2a4e",
+            "palette": 4,
+            "star": "#e8f4ff",
+            "styleIndex": 0,
+            "styleSid": 0,
+            "template": "frozen",
+            "version": "godot-surface-1",
+            "worldSeed": 1339
+          }
+        }
+      },
+      {
+        "features": {
+          "caseTitle": "遭到报复的作证车夫",
+          "genderExpression": "feminine",
+          "materials": [
+            "染色粗布",
+            "盐蚀亚麻",
+            "氧化铜",
+            "湿润皮肤",
+            "发光潮水"
+          ],
+          "method": "2D masks + constrained cloth fields + coupled surface channels + illustrated lighting → original NPR",
+          "personSeed": 1003,
+          "pose": "抚胸伸掌",
+          "recipe": {
+            "background": {
+              "appeal": "我按他们的要求作了证，答应保护我的人却不见了，仇家已经找到住处。求你帮我躲过这次报复。",
+              "appearanceNote": "车夫的短外衣与工作挎带；躲避报复而非自动成为教徒",
+              "caseId": "protected_witness",
+              "context": "车夫按要求作了证。答应保护他的人不见了，仇家却已经找到他住的巷子。",
+              "frame": "law",
+              "garments": [
+                "drivercoat",
+                "jerkin"
+              ],
+              "genderRule": "any",
+              "gestures": [
+                "guarded",
+                "appeal"
+              ],
+              "goal": "兑现证人保护并避免眼前报复",
+              "heads": [
+                "workcap",
+                "brim"
+              ],
+              "material": "leather",
+              "pigment": "umber",
+              "role": "已作证的车夫",
+              "scene": "obligation",
+              "title": "遭到报复的作证车夫",
+              "workDetail": "harness",
+              "worldRule": {
+                "adaptation": "storm",
+                "appeal_pose": "缩肩护住胸前，侧身向上方诉说恐惧",
+                "case_id": "protected_witness",
+                "garments": "drivercoat|jerkin",
+                "gestures": "guarded|appeal",
+                "heads": "workcap|brim",
+                "template": "frozen"
+              }
+            },
+            "construction": {
+              "civilian": true,
+              "garment": "jerkin",
+              "gesture": "appeal",
+              "head": "brim",
+              "held": "none"
+            },
+            "dimensions": {
+              "border": 0.591140360652935,
+              "capRise": 0.761007867753506,
+              "cover": 0.378009465755895,
+              "crown": 11.9730571936816,
+              "dye": 0.703455273527652,
+              "elbowDrop": -5.91589989513159,
+              "elbowSpread": -6.2174766487442,
+              "gripX": -2.6591312866658,
+              "gripY": 12.4377116966061,
+              "hairTone": 0.272723381174728,
+              "handScale": 0.880970776407048,
+              "headLift": 0.369596816389821,
+              "headShift": -3.46506167761981,
+              "headTilt": -0.102618897305802,
+              "headWidth": 0.908706930885018,
+              "height": 0.987820844734088,
+              "hem": 0.967678351094946,
+              "lean": -0.00895949048921466,
+              "linen": 0.267015951685607,
+              "mantle": 62.4121885448694,
+              "panel": 46.7745583052747,
+              "panelDye": 0.652597253909335,
+              "panelSlant": 18.7683049030602,
+              "presentation": 0.845146117964759,
+              "shoulderSlope": -0.0792454975470901,
+              "sleeve": 0.0360111836344004,
+              "tension": 0.925807041209191,
+              "veil": 0.830493432236835,
+              "viewPitch": 0.325636625848711,
+              "width": 0.876863654671564
+            },
+            "personSeed": 1003,
+            "version": "world-people-1",
+            "world": {
+              "archetype": 5,
+              "c0": "#0b0f14",
+              "c1": "#26323d",
+              "c2": "#56687a",
+              "c3": "#b8c4cc",
+              "c4": "#8fd7ff",
+              "corruption": "#60c0ff",
+              "nebula": "#3a2a4e",
+              "palette": 4,
+              "star": "#e8f4ff",
+              "styleIndex": 0,
+              "styleSid": 0,
+              "template": "frozen",
+              "version": "godot-surface-1",
+              "worldSeed": 1339
+            }
+          },
+          "role": "已作证的车夫",
+          "scope": "独立立绘；未绑定 Session",
+          "silhouette": "工作马甲与衬衣 · 压低帽檐",
+          "structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+          "worldSeed": 1339
+        },
+        "recipe": {
+          "background": {
+            "appeal": "我按他们的要求作了证，答应保护我的人却不见了，仇家已经找到住处。求你帮我躲过这次报复。",
+            "appearanceNote": "车夫的短外衣与工作挎带；躲避报复而非自动成为教徒",
+            "caseId": "protected_witness",
+            "context": "车夫按要求作了证。答应保护他的人不见了，仇家却已经找到他住的巷子。",
+            "frame": "law",
+            "garments": [
+              "drivercoat",
+              "jerkin"
+            ],
+            "genderRule": "any",
+            "gestures": [
+              "guarded",
+              "appeal"
+            ],
+            "goal": "兑现证人保护并避免眼前报复",
+            "heads": [
+              "workcap",
+              "brim"
+            ],
+            "material": "leather",
+            "pigment": "umber",
+            "role": "已作证的车夫",
+            "scene": "obligation",
+            "title": "遭到报复的作证车夫",
+            "workDetail": "harness",
+            "worldRule": {
+              "adaptation": "storm",
+              "appeal_pose": "缩肩护住胸前，侧身向上方诉说恐惧",
+              "case_id": "protected_witness",
+              "garments": "drivercoat|jerkin",
+              "gestures": "guarded|appeal",
+              "heads": "workcap|brim",
+              "template": "frozen"
+            }
+          },
+          "construction": {
+            "civilian": true,
+            "garment": "jerkin",
+            "gesture": "appeal",
+            "head": "brim",
+            "held": "none"
+          },
+          "dimensions": {
+            "border": 0.591140360652935,
+            "capRise": 0.761007867753506,
+            "cover": 0.378009465755895,
+            "crown": 11.9730571936816,
+            "dye": 0.703455273527652,
+            "elbowDrop": -5.91589989513159,
+            "elbowSpread": -6.2174766487442,
+            "gripX": -2.6591312866658,
+            "gripY": 12.4377116966061,
+            "hairTone": 0.272723381174728,
+            "handScale": 0.880970776407048,
+            "headLift": 0.369596816389821,
+            "headShift": -3.46506167761981,
+            "headTilt": -0.102618897305802,
+            "headWidth": 0.908706930885018,
+            "height": 0.987820844734088,
+            "hem": 0.967678351094946,
+            "lean": -0.00895949048921466,
+            "linen": 0.267015951685607,
+            "mantle": 62.4121885448694,
+            "panel": 46.7745583052747,
+            "panelDye": 0.652597253909335,
+            "panelSlant": 18.7683049030602,
+            "presentation": 0.845146117964759,
+            "shoulderSlope": -0.0792454975470901,
+            "sleeve": 0.0360111836344004,
+            "tension": 0.925807041209191,
+            "veil": 0.830493432236835,
+            "viewPitch": 0.325636625848711,
+            "width": 0.876863654671564
+          },
+          "personSeed": 1003,
+          "version": "world-people-1",
+          "world": {
+            "archetype": 5,
+            "c0": "#0b0f14",
+            "c1": "#26323d",
+            "c2": "#56687a",
+            "c3": "#b8c4cc",
+            "c4": "#8fd7ff",
+            "corruption": "#60c0ff",
+            "nebula": "#3a2a4e",
+            "palette": 4,
+            "star": "#e8f4ff",
+            "styleIndex": 0,
+            "styleSid": 0,
+            "template": "frozen",
+            "version": "godot-surface-1",
+            "worldSeed": 1339
+          }
+        }
+      }
+    ],
+    "request": {
+      "palette": 4,
+      "seed": 1339,
+      "style": 0,
+      "template": "frozen"
+    },
+    "reused_world": false,
+    "revision": "native-godot-surface-1",
+    "scope": "Godot 本体内独立生成；未接 Session",
+    "world_params": {
+      "animate": false,
+      "archetype": 5,
+      "aspect": 1,
+      "composition": 1,
+      "corruption": 0.2,
+      "count": 0,
+      "eyes": 0.0,
+      "glyphs": 0.0,
+      "madness": 0.06,
+      "nebula": 0.25,
+      "palette": 4,
+      "quality": 1,
+      "rings": 2,
+      "scene": 0,
+      "seed": 1339,
+      "show_frame": false,
+      "show_labels": false,
+      "show_swatch": false,
+      "show_title": false,
+      "star_type": -1,
+      "style": 0,
+      "tentacles": 0.0,
+      "wonder": -1
+    },
+    "world_recipe": {
+      "archetype": 5,
+      "c0": "#0b0f14",
+      "c1": "#26323d",
+      "c2": "#56687a",
+      "c3": "#b8c4cc",
+      "c4": "#8fd7ff",
+      "corruption": "#60c0ff",
+      "nebula": "#3a2a4e",
+      "palette": 4,
+      "star": "#e8f4ff",
+      "styleIndex": 0,
+      "styleSid": 0,
+      "template": "frozen",
+      "version": "godot-surface-1",
+      "worldSeed": 1339
+    }
+  },
+  {
+    "counts_note": "潮汐 6 类/48 种离散组合；其他世界 4 类/24 种。种子不等于新职业。",
+    "cult_rule": {
+      "activity": "吊运炉料与守炉仪式",
+      "archetype": 4,
+      "default_palette": 6,
+      "institution": "余烬守炉会",
+      "layout": "fire",
+      "material": "basalt",
+      "translation": "高炉后壁与下沉炉井围合的工坊"
+    },
+    "duration_ms": 6379,
+    "options": {
+      "background": "all",
+      "count": 4,
+      "seed": 1000
+    },
+    "people": [
+      {
+        "features": {
+          "caseTitle": "握不稳刀的雕刻师",
+          "genderExpression": "feminine",
+          "materials": [
+            "染色粗布",
+            "盐蚀亚麻",
+            "氧化铜",
+            "湿润皮肤",
+            "发光潮水"
+          ],
+          "method": "2D masks + constrained cloth fields + coupled surface channels + illustrated lighting → original NPR",
+          "personSeed": 1000,
+          "pose": "护住伤手",
+          "recipe": {
+            "background": {
+              "appeal": "这单雕刻就差最后几刀，可我的伤手一直抖，连刀都握不住。求你让我把活做完。",
+              "appearanceNote": "工作围裙与检查伤手的动作；不让受伤的手稳持刻刀",
+              "caseId": "shaking_hand",
+              "context": "最后一单雕刻就差几刀。他的手抖得连自己的名字都刻不完。",
+              "frame": "body",
+              "garments": [
+                "workshirt",
+                "apron"
+              ],
+              "genderRule": "any",
+              "gestures": [
+                "injured"
+              ],
+              "goal": "恢复完成雕刻的能力",
+              "heads": [
+                "short_hair",
+                "tiedhair"
+              ],
+              "material": "leather",
+              "pigment": "umber",
+              "role": "雕刻师",
+              "scene": "deprivation",
+              "title": "握不稳刀的雕刻师",
+              "workDetail": "apron",
+              "worldRule": {
+                "adaptation": "heatwork",
+                "appeal_pose": "托起伤手展示困境，不给伤手加工具",
+                "case_id": "shaking_hand",
+                "garments": "workshirt|apron",
+                "gestures": "injured",
+                "heads": "short_hair|tiedhair",
+                "template": "fire"
+              }
+            },
+            "construction": {
+              "civilian": true,
+              "garment": "apron",
+              "gesture": "injured",
+              "head": "tiedhair",
+              "held": "none"
+            },
+            "dimensions": {
+              "border": 0.610434979759157,
+              "capRise": 0.444288288475946,
+              "cover": 0.131181329255924,
+              "crown": 6.27591260941699,
+              "dye": 0.124492357950658,
+              "elbowDrop": -3.63670639134943,
+              "elbowSpread": -2.6612752918154,
+              "gripX": 1.86678510624915,
+              "gripY": -32.0023870810401,
+              "hairTone": 0.666574416216463,
+              "handScale": 0.90554276057519,
+              "headLift": 0.846615868527442,
+              "headShift": 6.0439481344074,
+              "headTilt": 0.0672138962242752,
+              "headWidth": 0.878885061973267,
+              "height": 0.975997576848604,
+              "hem": 0.787207263056189,
+              "lean": 0.041945863480214,
+              "linen": 0.455353536875919,
+              "mantle": 24.294080787804,
+              "panel": 99.4613729177509,
+              "panelDye": 0.201774147571996,
+              "panelSlant": 5.27688729576766,
+              "presentation": 0.722286197124049,
+              "shoulderSlope": -0.088083602716215,
+              "sleeve": 0.206145189050585,
+              "tension": 1.01421459438279,
+              "veil": 0.206721187569201,
+              "viewPitch": 0.31639973198995,
+              "width": 1.0523005515722
+            },
+            "personSeed": 1000,
+            "version": "world-people-1",
+            "world": {
+              "archetype": 4,
+              "c0": "#100604",
+              "c1": "#2e120a",
+              "c2": "#5a2a16",
+              "c3": "#a0705a",
+              "c4": "#ff8a2a",
+              "corruption": "#ffd040",
+              "nebula": "#2a0e3a",
+              "palette": 6,
+              "star": "#fff0c0",
+              "styleIndex": 0,
+              "styleSid": 0,
+              "template": "fire",
+              "version": "godot-surface-1",
+              "worldSeed": 1339
+            }
+          },
+          "role": "雕刻师",
+          "scope": "独立立绘；未绑定 Session",
+          "silhouette": "皮围裙与工作衫 · 束发与面部阴影",
+          "structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+          "worldSeed": 1339
+        },
+        "recipe": {
+          "background": {
+            "appeal": "这单雕刻就差最后几刀，可我的伤手一直抖，连刀都握不住。求你让我把活做完。",
+            "appearanceNote": "工作围裙与检查伤手的动作；不让受伤的手稳持刻刀",
+            "caseId": "shaking_hand",
+            "context": "最后一单雕刻就差几刀。他的手抖得连自己的名字都刻不完。",
+            "frame": "body",
+            "garments": [
+              "workshirt",
+              "apron"
+            ],
+            "genderRule": "any",
+            "gestures": [
+              "injured"
+            ],
+            "goal": "恢复完成雕刻的能力",
+            "heads": [
+              "short_hair",
+              "tiedhair"
+            ],
+            "material": "leather",
+            "pigment": "umber",
+            "role": "雕刻师",
+            "scene": "deprivation",
+            "title": "握不稳刀的雕刻师",
+            "workDetail": "apron",
+            "worldRule": {
+              "adaptation": "heatwork",
+              "appeal_pose": "托起伤手展示困境，不给伤手加工具",
+              "case_id": "shaking_hand",
+              "garments": "workshirt|apron",
+              "gestures": "injured",
+              "heads": "short_hair|tiedhair",
+              "template": "fire"
+            }
+          },
+          "construction": {
+            "civilian": true,
+            "garment": "apron",
+            "gesture": "injured",
+            "head": "tiedhair",
+            "held": "none"
+          },
+          "dimensions": {
+            "border": 0.610434979759157,
+            "capRise": 0.444288288475946,
+            "cover": 0.131181329255924,
+            "crown": 6.27591260941699,
+            "dye": 0.124492357950658,
+            "elbowDrop": -3.63670639134943,
+            "elbowSpread": -2.6612752918154,
+            "gripX": 1.86678510624915,
+            "gripY": -32.0023870810401,
+            "hairTone": 0.666574416216463,
+            "handScale": 0.90554276057519,
+            "headLift": 0.846615868527442,
+            "headShift": 6.0439481344074,
+            "headTilt": 0.0672138962242752,
+            "headWidth": 0.878885061973267,
+            "height": 0.975997576848604,
+            "hem": 0.787207263056189,
+            "lean": 0.041945863480214,
+            "linen": 0.455353536875919,
+            "mantle": 24.294080787804,
+            "panel": 99.4613729177509,
+            "panelDye": 0.201774147571996,
+            "panelSlant": 5.27688729576766,
+            "presentation": 0.722286197124049,
+            "shoulderSlope": -0.088083602716215,
+            "sleeve": 0.206145189050585,
+            "tension": 1.01421459438279,
+            "veil": 0.206721187569201,
+            "viewPitch": 0.31639973198995,
+            "width": 1.0523005515722
+          },
+          "personSeed": 1000,
+          "version": "world-people-1",
+          "world": {
+            "archetype": 4,
+            "c0": "#100604",
+            "c1": "#2e120a",
+            "c2": "#5a2a16",
+            "c3": "#a0705a",
+            "c4": "#ff8a2a",
+            "corruption": "#ffd040",
+            "nebula": "#2a0e3a",
+            "palette": 6,
+            "star": "#fff0c0",
+            "styleIndex": 0,
+            "styleSid": 0,
+            "template": "fire",
+            "version": "godot-surface-1",
+            "worldSeed": 1339
+          }
+        }
+      },
+      {
+        "features": {
+          "caseTitle": "受贿书信外泄的裁判者",
+          "genderExpression": "feminine",
+          "materials": [
+            "染色粗布",
+            "盐蚀亚麻",
+            "氧化铜",
+            "湿润皮肤",
+            "发光潮水"
+          ],
+          "method": "2D masks + constrained cloth fields + coupled surface channels + illustrated lighting → original NPR",
+          "personSeed": 1001,
+          "pose": "拢臂守望",
+          "recipe": {
+            "background": {
+              "appeal": "那封受贿的信落到了申诉人手里，我会因此丢掉职位。求你替我取回它，我会让你的人进城。",
+              "appearanceNote": "裁判者的挺括衣襟与职务细节；不把申诉人持有的受贿信画回他手里",
+              "caseId": "judge_letter",
+              "context": "受贿的信落到了申诉人手里。裁判者知道自己判错了，仍舍不得那张椅子。",
+              "frame": "law",
+              "garments": [
+                "waistcoat",
+                "tailored"
+              ],
+              "genderRule": "any",
+              "gestures": [
+                "bargain",
+                "folded"
+              ],
+              "goal": "阻止贿赂书信用于复核",
+              "heads": [
+                "swept_hair",
+                "brim"
+              ],
+              "material": "cloth",
+              "pigment": "ink",
+              "role": "收受贿赂的裁判者",
+              "scene": "custody",
+              "title": "受贿书信外泄的裁判者",
+              "workDetail": "office_chain",
+              "worldRule": {
+                "adaptation": "vented",
+                "appeal_pose": "摊手提出交易，不画尚在申诉人手里的信",
+                "case_id": "judge_letter",
+                "garments": "waistcoat|tailored",
+                "gestures": "bargain|folded",
+                "heads": "swept_hair|brim",
+                "template": "fire"
+              }
+            },
+            "construction": {
+              "civilian": true,
+              "garment": "waistcoat",
+              "gesture": "folded",
+              "head": "brim",
+              "held": "none"
+            },
+            "dimensions": {
+              "border": 0.293285567476414,
+              "capRise": 0.783616434782743,
+              "cover": 0.676484741969034,
+              "crown": 2.94484710786492,
+              "dye": 0.583624780876562,
+              "elbowDrop": -7.75205250643194,
+              "elbowSpread": -6.22989397542551,
+              "gripX": -4.32260270789266,
+              "gripY": -27.7610047135968,
+              "hairTone": 0.623806073796004,
+              "handScale": 0.916529125533998,
+              "headLift": 0.600472919200547,
+              "headShift": -9.71254557743669,
+              "headTilt": 0.0924345492571592,
+              "headWidth": 0.901462399098773,
+              "height": 0.961611240576021,
+              "hem": 0.644346451386809,
+              "lean": 0.0633369082631543,
+              "linen": 0.155567528679967,
+              "mantle": 135.374828093685,
+              "panel": 98.5081095306668,
+              "panelDye": 0.929097768384963,
+              "panelSlant": -5.64163589850068,
+              "presentation": 0.66735437233001,
+              "shoulderSlope": -0.0898989391885698,
+              "sleeve": 0.531573977007065,
+              "tension": 1.03369918912649,
+              "veil": 0.092963180039078,
+              "viewPitch": 0.34423965472728,
+              "width": 1.07072367473038
+            },
+            "personSeed": 1001,
+            "version": "world-people-1",
+            "world": {
+              "archetype": 4,
+              "c0": "#100604",
+              "c1": "#2e120a",
+              "c2": "#5a2a16",
+              "c3": "#a0705a",
+              "c4": "#ff8a2a",
+              "corruption": "#ffd040",
+              "nebula": "#2a0e3a",
+              "palette": 6,
+              "star": "#fff0c0",
+              "styleIndex": 0,
+              "styleSid": 0,
+              "template": "fire",
+              "version": "godot-surface-1",
+              "worldSeed": 1339
+            }
+          },
+          "role": "收受贿赂的裁判者",
+          "scope": "独立立绘；未绑定 Session",
+          "silhouette": "排扣背心与衬衣 · 压低帽檐",
+          "structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+          "worldSeed": 1339
+        },
+        "recipe": {
+          "background": {
+            "appeal": "那封受贿的信落到了申诉人手里，我会因此丢掉职位。求你替我取回它，我会让你的人进城。",
+            "appearanceNote": "裁判者的挺括衣襟与职务细节；不把申诉人持有的受贿信画回他手里",
+            "caseId": "judge_letter",
+            "context": "受贿的信落到了申诉人手里。裁判者知道自己判错了，仍舍不得那张椅子。",
+            "frame": "law",
+            "garments": [
+              "waistcoat",
+              "tailored"
+            ],
+            "genderRule": "any",
+            "gestures": [
+              "bargain",
+              "folded"
+            ],
+            "goal": "阻止贿赂书信用于复核",
+            "heads": [
+              "swept_hair",
+              "brim"
+            ],
+            "material": "cloth",
+            "pigment": "ink",
+            "role": "收受贿赂的裁判者",
+            "scene": "custody",
+            "title": "受贿书信外泄的裁判者",
+            "workDetail": "office_chain",
+            "worldRule": {
+              "adaptation": "vented",
+              "appeal_pose": "摊手提出交易，不画尚在申诉人手里的信",
+              "case_id": "judge_letter",
+              "garments": "waistcoat|tailored",
+              "gestures": "bargain|folded",
+              "heads": "swept_hair|brim",
+              "template": "fire"
+            }
+          },
+          "construction": {
+            "civilian": true,
+            "garment": "waistcoat",
+            "gesture": "folded",
+            "head": "brim",
+            "held": "none"
+          },
+          "dimensions": {
+            "border": 0.293285567476414,
+            "capRise": 0.783616434782743,
+            "cover": 0.676484741969034,
+            "crown": 2.94484710786492,
+            "dye": 0.583624780876562,
+            "elbowDrop": -7.75205250643194,
+            "elbowSpread": -6.22989397542551,
+            "gripX": -4.32260270789266,
+            "gripY": -27.7610047135968,
+            "hairTone": 0.623806073796004,
+            "handScale": 0.916529125533998,
+            "headLift": 0.600472919200547,
+            "headShift": -9.71254557743669,
+            "headTilt": 0.0924345492571592,
+            "headWidth": 0.901462399098773,
+            "height": 0.961611240576021,
+            "hem": 0.644346451386809,
+            "lean": 0.0633369082631543,
+            "linen": 0.155567528679967,
+            "mantle": 135.374828093685,
+            "panel": 98.5081095306668,
+            "panelDye": 0.929097768384963,
+            "panelSlant": -5.64163589850068,
+            "presentation": 0.66735437233001,
+            "shoulderSlope": -0.0898989391885698,
+            "sleeve": 0.531573977007065,
+            "tension": 1.03369918912649,
+            "veil": 0.092963180039078,
+            "viewPitch": 0.34423965472728,
+            "width": 1.07072367473038
+          },
+          "personSeed": 1001,
+          "version": "world-people-1",
+          "world": {
+            "archetype": 4,
+            "c0": "#100604",
+            "c1": "#2e120a",
+            "c2": "#5a2a16",
+            "c3": "#a0705a",
+            "c4": "#ff8a2a",
+            "corruption": "#ffd040",
+            "nebula": "#2a0e3a",
+            "palette": 6,
+            "star": "#fff0c0",
+            "styleIndex": 0,
+            "styleSid": 0,
+            "template": "fire",
+            "version": "godot-surface-1",
+            "worldSeed": 1339
+          }
+        }
+      },
+      {
+        "features": {
+          "caseTitle": "守着高烧孩子的父亲",
+          "genderExpression": "masculine",
+          "materials": [
+            "染色粗布",
+            "盐蚀亚麻",
+            "氧化铜",
+            "湿润皮肤",
+            "发光潮水"
+          ],
+          "method": "2D masks + constrained cloth fields + coupled surface channels + illustrated lighting → original NPR",
+          "personSeed": 1002,
+          "pose": "伸掌求援",
+          "recipe": {
+            "background": {
+              "appeal": "女儿烧得连我都认不出来了，我怕她撑不过去。求你让她退烧，让她活下来。",
+              "appearanceNote": "普通生活衣物与紧握双手；父亲身份有原文依据但职业未被指定",
+              "caseId": "fever_child",
+              "context": "孩子烧得认不出父亲。父亲握着她的手，一遍遍报自己的名字。",
+              "frame": "body",
+              "garments": [
+                "workshirt",
+                "jerkin"
+              ],
+              "genderRule": "male",
+              "gestures": [
+                "entreat"
+              ],
+              "goal": "解除孩子的此次病危",
+              "heads": [
+                "short_hair",
+                "swept_hair"
+              ],
+              "material": "cloth",
+              "pigment": "slate",
+              "role": "孩子的父亲",
+              "scene": "hazard",
+              "title": "守着高烧孩子的父亲",
+              "workDetail": "repair",
+              "worldRule": {
+                "adaptation": "light",
+                "appeal_pose": "一手向上伸出，一手贴胸，求孩子活下来",
+                "case_id": "fever_child",
+                "garments": "workshirt|jerkin",
+                "gestures": "entreat",
+                "heads": "short_hair|swept_hair",
+                "template": "fire"
+              }
+            },
+            "construction": {
+              "civilian": true,
+              "garment": "jerkin",
+              "gesture": "entreat",
+              "head": "short_hair",
+              "held": "none"
+            },
+            "dimensions": {
+              "border": 0.498514635069296,
+              "capRise": 0.464876807527617,
+              "cover": 0.850509504787624,
+              "crown": 4.10446138121188,
+              "dye": 0.1188533406239,
+              "elbowDrop": 5.2265708707273,
+              "elbowSpread": -15.486549960915,
+              "gripX": -17.0187365459278,
+              "gripY": -9.47648960887454,
+              "hairTone": 0.964340241858736,
+              "handScale": 0.998285154532641,
+              "headLift": 0.599570499407127,
+              "headShift": -2.38049140200019,
+              "headTilt": -0.149021677281708,
+              "headWidth": 0.961825254793244,
+              "height": 1.00651935640257,
+              "hem": 0.870797829236835,
+              "lean": -0.0473171711922623,
+              "linen": 0.535370034398511,
+              "mantle": 26.1212544441223,
+              "panel": 60.0380655727349,
+              "panelDye": 0.123287606285885,
+              "panelSlant": 25.3345063095912,
+              "presentation": 0.258574227336794,
+              "shoulderSlope": 0.0715690577728674,
+              "sleeve": 0.0400001888978295,
+              "tension": 1.13082600631751,
+              "veil": 0.214393336093053,
+              "viewPitch": 0.290446645524353,
+              "width": 1.09140891453443
+            },
+            "personSeed": 1002,
+            "version": "world-people-1",
+            "world": {
+              "archetype": 4,
+              "c0": "#100604",
+              "c1": "#2e120a",
+              "c2": "#5a2a16",
+              "c3": "#a0705a",
+              "c4": "#ff8a2a",
+              "corruption": "#ffd040",
+              "nebula": "#2a0e3a",
+              "palette": 6,
+              "star": "#fff0c0",
+              "styleIndex": 0,
+              "styleSid": 0,
+              "template": "fire",
+              "version": "godot-surface-1",
+              "worldSeed": 1339
+            }
+          },
+          "role": "孩子的父亲",
+          "scope": "独立立绘；未绑定 Session",
+          "silhouette": "工作马甲与衬衣 · 短发与面部阴影",
+          "structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+          "worldSeed": 1339
+        },
+        "recipe": {
+          "background": {
+            "appeal": "女儿烧得连我都认不出来了，我怕她撑不过去。求你让她退烧，让她活下来。",
+            "appearanceNote": "普通生活衣物与紧握双手；父亲身份有原文依据但职业未被指定",
+            "caseId": "fever_child",
+            "context": "孩子烧得认不出父亲。父亲握着她的手，一遍遍报自己的名字。",
+            "frame": "body",
+            "garments": [
+              "workshirt",
+              "jerkin"
+            ],
+            "genderRule": "male",
+            "gestures": [
+              "entreat"
+            ],
+            "goal": "解除孩子的此次病危",
+            "heads": [
+              "short_hair",
+              "swept_hair"
+            ],
+            "material": "cloth",
+            "pigment": "slate",
+            "role": "孩子的父亲",
+            "scene": "hazard",
+            "title": "守着高烧孩子的父亲",
+            "workDetail": "repair",
+            "worldRule": {
+              "adaptation": "light",
+              "appeal_pose": "一手向上伸出，一手贴胸，求孩子活下来",
+              "case_id": "fever_child",
+              "garments": "workshirt|jerkin",
+              "gestures": "entreat",
+              "heads": "short_hair|swept_hair",
+              "template": "fire"
+            }
+          },
+          "construction": {
+            "civilian": true,
+            "garment": "jerkin",
+            "gesture": "entreat",
+            "head": "short_hair",
+            "held": "none"
+          },
+          "dimensions": {
+            "border": 0.498514635069296,
+            "capRise": 0.464876807527617,
+            "cover": 0.850509504787624,
+            "crown": 4.10446138121188,
+            "dye": 0.1188533406239,
+            "elbowDrop": 5.2265708707273,
+            "elbowSpread": -15.486549960915,
+            "gripX": -17.0187365459278,
+            "gripY": -9.47648960887454,
+            "hairTone": 0.964340241858736,
+            "handScale": 0.998285154532641,
+            "headLift": 0.599570499407127,
+            "headShift": -2.38049140200019,
+            "headTilt": -0.149021677281708,
+            "headWidth": 0.961825254793244,
+            "height": 1.00651935640257,
+            "hem": 0.870797829236835,
+            "lean": -0.0473171711922623,
+            "linen": 0.535370034398511,
+            "mantle": 26.1212544441223,
+            "panel": 60.0380655727349,
+            "panelDye": 0.123287606285885,
+            "panelSlant": 25.3345063095912,
+            "presentation": 0.258574227336794,
+            "shoulderSlope": 0.0715690577728674,
+            "sleeve": 0.0400001888978295,
+            "tension": 1.13082600631751,
+            "veil": 0.214393336093053,
+            "viewPitch": 0.290446645524353,
+            "width": 1.09140891453443
+          },
+          "personSeed": 1002,
+          "version": "world-people-1",
+          "world": {
+            "archetype": 4,
+            "c0": "#100604",
+            "c1": "#2e120a",
+            "c2": "#5a2a16",
+            "c3": "#a0705a",
+            "c4": "#ff8a2a",
+            "corruption": "#ffd040",
+            "nebula": "#2a0e3a",
+            "palette": 6,
+            "star": "#fff0c0",
+            "styleIndex": 0,
+            "styleSid": 0,
+            "template": "fire",
+            "version": "godot-surface-1",
+            "worldSeed": 1339
+          }
+        }
+      },
+      {
+        "features": {
+          "caseTitle": "遭到报复的作证车夫",
+          "genderExpression": "feminine",
+          "materials": [
+            "染色粗布",
+            "盐蚀亚麻",
+            "氧化铜",
+            "湿润皮肤",
+            "发光潮水"
+          ],
+          "method": "2D masks + constrained cloth fields + coupled surface channels + illustrated lighting → original NPR",
+          "personSeed": 1003,
+          "pose": "抚胸伸掌",
+          "recipe": {
+            "background": {
+              "appeal": "我按他们的要求作了证，答应保护我的人却不见了，仇家已经找到住处。求你帮我躲过这次报复。",
+              "appearanceNote": "车夫的短外衣与工作挎带；躲避报复而非自动成为教徒",
+              "caseId": "protected_witness",
+              "context": "车夫按要求作了证。答应保护他的人不见了，仇家却已经找到他住的巷子。",
+              "frame": "law",
+              "garments": [
+                "drivercoat",
+                "jerkin"
+              ],
+              "genderRule": "any",
+              "gestures": [
+                "guarded",
+                "appeal"
+              ],
+              "goal": "兑现证人保护并避免眼前报复",
+              "heads": [
+                "workcap",
+                "brim"
+              ],
+              "material": "leather",
+              "pigment": "umber",
+              "role": "已作证的车夫",
+              "scene": "obligation",
+              "title": "遭到报复的作证车夫",
+              "workDetail": "harness",
+              "worldRule": {
+                "adaptation": "dust",
+                "appeal_pose": "护住衣襟而微仰头，戒备着请求庇护",
+                "case_id": "protected_witness",
+                "garments": "drivercoat|jerkin",
+                "gestures": "guarded|appeal",
+                "heads": "workcap|brim",
+                "template": "fire"
+              }
+            },
+            "construction": {
+              "civilian": true,
+              "garment": "jerkin",
+              "gesture": "appeal",
+              "head": "brim",
+              "held": "none"
+            },
+            "dimensions": {
+              "border": 0.591140360652935,
+              "capRise": 0.761007867753506,
+              "cover": 0.378009465755895,
+              "crown": 11.9730571936816,
+              "dye": 0.703455273527652,
+              "elbowDrop": -5.91589989513159,
+              "elbowSpread": -6.2174766487442,
+              "gripX": -2.6591312866658,
+              "gripY": 12.4377116966061,
+              "hairTone": 0.272723381174728,
+              "handScale": 0.880970776407048,
+              "headLift": 0.369596816389821,
+              "headShift": -3.46506167761981,
+              "headTilt": -0.102618897305802,
+              "headWidth": 0.908706930885018,
+              "height": 0.987820844734088,
+              "hem": 0.967678351094946,
+              "lean": -0.00895949048921466,
+              "linen": 0.267015951685607,
+              "mantle": 62.4121885448694,
+              "panel": 46.7745583052747,
+              "panelDye": 0.652597253909335,
+              "panelSlant": 18.7683049030602,
+              "presentation": 0.845146117964759,
+              "shoulderSlope": -0.0792454975470901,
+              "sleeve": 0.0198061509989202,
+              "tension": 0.925807041209191,
+              "veil": 0.830493432236835,
+              "viewPitch": 0.325636625848711,
+              "width": 0.876863654671564
+            },
+            "personSeed": 1003,
+            "version": "world-people-1",
+            "world": {
+              "archetype": 4,
+              "c0": "#100604",
+              "c1": "#2e120a",
+              "c2": "#5a2a16",
+              "c3": "#a0705a",
+              "c4": "#ff8a2a",
+              "corruption": "#ffd040",
+              "nebula": "#2a0e3a",
+              "palette": 6,
+              "star": "#fff0c0",
+              "styleIndex": 0,
+              "styleSid": 0,
+              "template": "fire",
+              "version": "godot-surface-1",
+              "worldSeed": 1339
+            }
+          },
+          "role": "已作证的车夫",
+          "scope": "独立立绘；未绑定 Session",
+          "silhouette": "工作马甲与衬衣 · 压低帽檐",
+          "structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+          "worldSeed": 1339
+        },
+        "recipe": {
+          "background": {
+            "appeal": "我按他们的要求作了证，答应保护我的人却不见了，仇家已经找到住处。求你帮我躲过这次报复。",
+            "appearanceNote": "车夫的短外衣与工作挎带；躲避报复而非自动成为教徒",
+            "caseId": "protected_witness",
+            "context": "车夫按要求作了证。答应保护他的人不见了，仇家却已经找到他住的巷子。",
+            "frame": "law",
+            "garments": [
+              "drivercoat",
+              "jerkin"
+            ],
+            "genderRule": "any",
+            "gestures": [
+              "guarded",
+              "appeal"
+            ],
+            "goal": "兑现证人保护并避免眼前报复",
+            "heads": [
+              "workcap",
+              "brim"
+            ],
+            "material": "leather",
+            "pigment": "umber",
+            "role": "已作证的车夫",
+            "scene": "obligation",
+            "title": "遭到报复的作证车夫",
+            "workDetail": "harness",
+            "worldRule": {
+              "adaptation": "dust",
+              "appeal_pose": "护住衣襟而微仰头，戒备着请求庇护",
+              "case_id": "protected_witness",
+              "garments": "drivercoat|jerkin",
+              "gestures": "guarded|appeal",
+              "heads": "workcap|brim",
+              "template": "fire"
+            }
+          },
+          "construction": {
+            "civilian": true,
+            "garment": "jerkin",
+            "gesture": "appeal",
+            "head": "brim",
+            "held": "none"
+          },
+          "dimensions": {
+            "border": 0.591140360652935,
+            "capRise": 0.761007867753506,
+            "cover": 0.378009465755895,
+            "crown": 11.9730571936816,
+            "dye": 0.703455273527652,
+            "elbowDrop": -5.91589989513159,
+            "elbowSpread": -6.2174766487442,
+            "gripX": -2.6591312866658,
+            "gripY": 12.4377116966061,
+            "hairTone": 0.272723381174728,
+            "handScale": 0.880970776407048,
+            "headLift": 0.369596816389821,
+            "headShift": -3.46506167761981,
+            "headTilt": -0.102618897305802,
+            "headWidth": 0.908706930885018,
+            "height": 0.987820844734088,
+            "hem": 0.967678351094946,
+            "lean": -0.00895949048921466,
+            "linen": 0.267015951685607,
+            "mantle": 62.4121885448694,
+            "panel": 46.7745583052747,
+            "panelDye": 0.652597253909335,
+            "panelSlant": 18.7683049030602,
+            "presentation": 0.845146117964759,
+            "shoulderSlope": -0.0792454975470901,
+            "sleeve": 0.0198061509989202,
+            "tension": 0.925807041209191,
+            "veil": 0.830493432236835,
+            "viewPitch": 0.325636625848711,
+            "width": 0.876863654671564
+          },
+          "personSeed": 1003,
+          "version": "world-people-1",
+          "world": {
+            "archetype": 4,
+            "c0": "#100604",
+            "c1": "#2e120a",
+            "c2": "#5a2a16",
+            "c3": "#a0705a",
+            "c4": "#ff8a2a",
+            "corruption": "#ffd040",
+            "nebula": "#2a0e3a",
+            "palette": 6,
+            "star": "#fff0c0",
+            "styleIndex": 0,
+            "styleSid": 0,
+            "template": "fire",
+            "version": "godot-surface-1",
+            "worldSeed": 1339
+          }
+        }
+      }
+    ],
+    "request": {
+      "palette": 6,
+      "seed": 1339,
+      "style": 0,
+      "template": "fire"
+    },
+    "reused_world": false,
+    "revision": "native-godot-surface-1",
+    "scope": "Godot 本体内独立生成；未接 Session",
+    "world_params": {
+      "animate": false,
+      "archetype": 4,
+      "aspect": 1,
+      "composition": 1,
+      "corruption": 0.2,
+      "count": 0,
+      "eyes": 0.0,
+      "glyphs": 0.0,
+      "madness": 0.06,
+      "nebula": 0.25,
+      "palette": 6,
+      "quality": 1,
+      "rings": 2,
+      "scene": 0,
+      "seed": 1339,
+      "show_frame": false,
+      "show_labels": false,
+      "show_swatch": false,
+      "show_title": false,
+      "star_type": -1,
+      "style": 0,
+      "tentacles": 0.0,
+      "wonder": -1
+    },
+    "world_recipe": {
+      "archetype": 4,
+      "c0": "#100604",
+      "c1": "#2e120a",
+      "c2": "#5a2a16",
+      "c3": "#a0705a",
+      "c4": "#ff8a2a",
+      "corruption": "#ffd040",
+      "nebula": "#2a0e3a",
+      "palette": 6,
+      "star": "#fff0c0",
+      "styleIndex": 0,
+      "styleSid": 0,
+      "template": "fire",
+      "version": "godot-surface-1",
+      "worldSeed": 1339
+    }
+  },
+  {
+    "counts_note": "潮汐 6 类/48 种离散组合；其他世界 4 类/24 种。种子不等于新职业。",
+    "cult_rule": {
+      "activity": "拾骨记名与下降葬仪",
+      "archetype": 10,
+      "default_palette": 8,
+      "institution": "骨丘记名会",
+      "layout": "bone",
+      "material": "bone",
+      "translation": "坑缘台阶和骨拱覆盖的下沉记名庭"
+    },
+    "duration_ms": 8634,
+    "options": {
+      "background": "judge_letter",
+      "count": 1,
+      "seed": 1000
+    },
+    "people": [
+      {
+        "features": {
+          "caseTitle": "受贿书信外泄的裁判者",
+          "genderExpression": "feminine",
+          "materials": [
+            "染色粗布",
+            "盐蚀亚麻",
+            "氧化铜",
+            "湿润皮肤",
+            "发光潮水"
+          ],
+          "method": "2D masks + constrained cloth fields + coupled surface channels + illustrated lighting → original NPR",
+          "personSeed": 1000,
+          "pose": "拢臂守望",
+          "recipe": {
+            "background": {
+              "appeal": "那封受贿的信落到了申诉人手里，我会因此丢掉职位。求你替我取回它，我会让你的人进城。",
+              "appearanceNote": "裁判者的挺括衣襟与职务细节；不把申诉人持有的受贿信画回他手里",
+              "caseId": "judge_letter",
+              "context": "受贿的信落到了申诉人手里。裁判者知道自己判错了，仍舍不得那张椅子。",
+              "environment": {
+                "layer": "collar",
+                "material_note": "骨灰沉积的防尘高领与旧皮衣",
+                "template": "bone",
+                "treatment": "chalk"
+              },
+              "frame": "law",
+              "garments": [
+                "tailored",
+                "waistcoat"
+              ],
+              "genderRule": "any",
+              "gestures": [
+                "folded",
+                "bargain"
+              ],
+              "goal": "阻止贿赂书信用于复核",
+              "heads": [
+                "brim",
+                "swept_hair"
+              ],
+              "material": "cloth",
+              "pigment": "ink",
+              "role": "收受贿赂的裁判者",
+              "scene": "custody",
+              "title": "受贿书信外泄的裁判者",
+              "workDetail": "office_chain",
+              "worldRule": {
+                "adaptation": "bone",
+                "appeal_pose": "保留职务衣装，克制地陈述诉求",
+                "case_id": "judge_letter",
+                "garments": "tailored|waistcoat",
+                "gestures": "folded|bargain",
+                "heads": "brim|swept_hair",
+                "template": "bone"
+              }
+            },
+            "construction": {
+              "civilian": true,
+              "garment": "waistcoat",
+              "gesture": "folded",
+              "head": "swept_hair",
+              "held": "none"
+            },
+            "dimensions": {
+              "border": 0.610434979759157,
+              "capRise": 0.444288288475946,
+              "cover": 0.131181329255924,
+              "crown": 6.27591260941699,
+              "dye": 0.124492357950658,
+              "elbowDrop": -3.63670639134943,
+              "elbowSpread": -2.6612752918154,
+              "gripX": 1.86678510624915,
+              "gripY": -32.0023870810401,
+              "hairTone": 0.666574416216463,
+              "handScale": 0.90554276057519,
+              "headLift": 0.846615868527442,
+              "headShift": 6.0439481344074,
+              "headTilt": 0.0672138962242752,
+              "headWidth": 0.878885061973267,
+              "height": 0.975997576848604,
+              "hem": 0.787207263056189,
+              "lean": 0.041945863480214,
+              "linen": 0.455353536875919,
+              "mantle": 24.294080787804,
+              "panel": 99.4613729177509,
+              "panelDye": 0.201774147571996,
+              "panelSlant": 5.27688729576766,
+              "presentation": 0.722286197124049,
+              "shoulderSlope": -0.088083602716215,
+              "sleeve": 0.374809434637427,
+              "tension": 1.01421459438279,
+              "veil": 0.206721187569201,
+              "viewPitch": 0.31639973198995,
+              "width": 1.0523005515722
+            },
+            "personSeed": 1000,
+            "version": "unified-people-1",
+            "world": {
+              "archetype": 10,
+              "c0": "#15130f",
+              "c1": "#3b362d",
+              "c2": "#7a7262",
+              "c3": "#d8cfb8",
+              "c4": "#ffe9b0",
+              "corruption": "#ff3030",
+              "nebula": "#4a2420",
+              "palette": 8,
+              "star": "#fffaf0",
+              "styleIndex": 4,
+              "styleSid": 6,
+              "template": "bone",
+              "version": "godot-surface-1",
+              "worldSeed": 1339
+            }
+          },
+          "role": "收受贿赂的裁判者",
+          "scope": "独立立绘；未绑定 Session",
+          "silhouette": "排扣背心与衬衣 · 侧分发与面部阴影",
+          "structure": "颈肩连续披衣；肘与腕约束褶场；掌托与指缘遮挡",
+          "worldSeed": 1339
+        },
+        "recipe": {
+          "background": {
+            "appeal": "那封受贿的信落到了申诉人手里，我会因此丢掉职位。求你替我取回它，我会让你的人进城。",
+            "appearanceNote": "裁判者的挺括衣襟与职务细节；不把申诉人持有的受贿信画回他手里",
+            "caseId": "judge_letter",
+            "context": "受贿的信落到了申诉人手里。裁判者知道自己判错了，仍舍不得那张椅子。",
+            "environment": {
+              "layer": "collar",
+              "material_note": "骨灰沉积的防尘高领与旧皮衣",
+              "template": "bone",
+              "treatment": "chalk"
+            },
+            "frame": "law",
+            "garments": [
+              "tailored",
+              "waistcoat"
+            ],
+            "genderRule": "any",
+            "gestures": [
+              "folded",
+              "bargain"
+            ],
+            "goal": "阻止贿赂书信用于复核",
+            "heads": [
+              "brim",
+              "swept_hair"
+            ],
+            "material": "cloth",
+            "pigment": "ink",
+            "role": "收受贿赂的裁判者",
+            "scene": "custody",
+            "title": "受贿书信外泄的裁判者",
+            "workDetail": "office_chain",
+            "worldRule": {
+              "adaptation": "bone",
+              "appeal_pose": "保留职务衣装，克制地陈述诉求",
+              "case_id": "judge_letter",
+              "garments": "tailored|waistcoat",
+              "gestures": "folded|bargain",
+              "heads": "brim|swept_hair",
+              "template": "bone"
+            }
+          },
+          "construction": {
+            "civilian": true,
+            "garment": "waistcoat",
+            "gesture": "folded",
+            "head": "swept_hair",
+            "held": "none"
+          },
+          "dimensions": {
+            "border": 0.610434979759157,
+            "capRise": 0.444288288475946,
+            "cover": 0.131181329255924,
+            "crown": 6.27591260941699,
+            "dye": 0.124492357950658,
+            "elbowDrop": -3.63670639134943,
+            "elbowSpread": -2.6612752918154,
+            "gripX": 1.86678510624915,
+            "gripY": -32.0023870810401,
+            "hairTone": 0.666574416216463,
+            "handScale": 0.90554276057519,
+            "headLift": 0.846615868527442,
+            "headShift": 6.0439481344074,
+            "headTilt": 0.0672138962242752,
+            "headWidth": 0.878885061973267,
+            "height": 0.975997576848604,
+            "hem": 0.787207263056189,
+            "lean": 0.041945863480214,
+            "linen": 0.455353536875919,
+            "mantle": 24.294080787804,
+            "panel": 99.4613729177509,
+            "panelDye": 0.201774147571996,
+            "panelSlant": 5.27688729576766,
+            "presentation": 0.722286197124049,
+            "shoulderSlope": -0.088083602716215,
+            "sleeve": 0.374809434637427,
+            "tension": 1.01421459438279,
+            "veil": 0.206721187569201,
+            "viewPitch": 0.31639973198995,
+            "width": 1.0523005515722
+          },
+          "personSeed": 1000,
+          "version": "unified-people-1",
+          "world": {
+            "archetype": 10,
+            "c0": "#15130f",
+            "c1": "#3b362d",
+            "c2": "#7a7262",
+            "c3": "#d8cfb8",
+            "c4": "#ffe9b0",
+            "corruption": "#ff3030",
+            "nebula": "#4a2420",
+            "palette": 8,
+            "star": "#fffaf0",
+            "styleIndex": 4,
+            "styleSid": 6,
+            "template": "bone",
+            "version": "godot-surface-1",
+            "worldSeed": 1339
+          }
+        }
+      }
+    ],
+    "request": {
+      "palette": 8,
+      "seed": 1339,
+      "style": 6,
+      "template": "bone"
+    },
+    "reused_world": false,
+    "revision": "native-godot-surface-1",
+    "scope": "Godot 本体内独立生成；未接 Session",
+    "world_params": {
+      "animate": false,
+      "archetype": 10,
+      "aspect": 1,
+      "composition": 1,
+      "corruption": 0.2,
+      "count": 0,
+      "eyes": 0.0,
+      "glyphs": 0.0,
+      "madness": 0.06,
+      "nebula": 0.25,
+      "palette": 8,
+      "quality": 1,
+      "rings": 2,
+      "scene": 0,
+      "seed": 1339,
+      "show_frame": false,
+      "show_labels": false,
+      "show_swatch": false,
+      "show_title": false,
+      "star_type": -1,
+      "style": 4,
+      "tentacles": 0.0,
+      "wonder": -1
+    },
+    "world_recipe": {
+      "archetype": 10,
+      "c0": "#15130f",
+      "c1": "#3b362d",
+      "c2": "#7a7262",
+      "c3": "#d8cfb8",
+      "c4": "#ffe9b0",
+      "corruption": "#ff3030",
+      "nebula": "#4a2420",
+      "palette": 8,
+      "star": "#fffaf0",
+      "styleIndex": 4,
+      "styleSid": 6,
+      "template": "bone",
+      "version": "godot-surface-1",
+      "worldSeed": 1339
+    }
+  }
+]
