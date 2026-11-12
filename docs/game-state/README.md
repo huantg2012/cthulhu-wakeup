@@ -2,6 +2,14 @@
 
 这是现有策划的导航层，用稳定编号建立共同语言。完整规则仍以 [GDD](../gdd-core.md)、各系统 spec 和 `data/*.csv` 为准；索引摘要不能取代它们。
 
+## 当前正式 UI 操作地图（2026-11-12）
+
+[浏览操作链路](ui-operation-map.html) · [文本版](ui-operation-map.md) · [唯一数据源](ui-operation-map.json)
+
+以 `codex/ui-art-production` 的 `9cf324e` 为快照，按玩家功能归并 F01–F22，记录入口、分支、提交、结果、返回及关联界面。供制作人选择下一条打磨链路，编号不代表优先级，也不新增交互规范。每组分别注明实机观察与仅源码核对的范围；实机捕获中断造成的未验项没有标成通过。
+
+这份当前 UI 地图独立于下面的历史全貌索引，不因生成此图而重置旧 atlas 的来源基线或消除其漂移。更新 JSON 后运行 `node tools/ui-operation-map/render.mjs` 生成 HTML 和 Markdown，两份展示文件不手改。
+
 ## 文件职责
 
 - `atlas.json`：覆盖域、已确认的方向、索引文件与扫描范围。
