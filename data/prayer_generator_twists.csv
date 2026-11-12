@@ -1,0 +1,5 @@
+id,concept,compatible_goals,effects,weight
+hazard_meaning_of_outside,归属,escape_alive,twist_hazard_through|twist_hazard_indefinite,2|1
+obligation_meaning_of_complete,状态,complete_duty,twist_obligation_discharge_fixed|twist_obligation_identify,1|2
+anomaly_meaning_of_observer,对象,understand_anomaly,twist_anomaly_perception|twist_anomaly_self_observation,1|1
+calling_meaning_of_heard,对象,find_contact,twist_contact_sender|twist_contact_listener,1|2

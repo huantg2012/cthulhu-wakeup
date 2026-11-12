@@ -1,9 +1,11 @@
 extends RefCounted
 ## Finite, source-bound event eligibility. No random numbers or world writes.
+const Consequences = preload("res://src/game/prayer_consequences.gd")
 const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
 const Materials = preload("res://src/simulation/material_transfer.gd")
 const Anchors = preload("res://src/game/anchors.gd")
+const PrayerRules = preload("res://src/game/prayer_rules.gd")
 
 static func fact(state: Dictionary, id: String, index: RefCounted = null) -> Dictionary:
 	if Store.has(state.get("facts", {}), id): return Store.entry(state.facts, id)
@@ -51,6 +53,16 @@ static func actual_prayer(state: Dictionary, source: String, index: RefCounted =
 static func descriptor(state: Dictionary, source: String, content: RefCounted, index: RefCounted = null) -> Dictionary:
 	var original: Dictionary = fact(state, source, index)
 	if original.is_empty(): return {}
+	if original.kind == "prayer_space_consequence":
+		var consequence := Consequences.proof(state, original, index)
+		if consequence.is_empty(): return {}
+		var rule: Dictionary = consequence.rule
+		match rule.event:
+			"EVENT_01":
+				return _base(state, rule.event, source, consequence.institution, [original.actor], {"survivor": original.actor}, {"miracle": consequence.miracle, "callback": source}, content)
+			"EVENT_02":
+				return _base(state, rule.event, source, consequence.institution, [original.actor], {"witnesses": [original.actor]}, {"records": [source], "callback": source}, content)
+		return {}
 	if original.kind == "resistance_started":
 		var domain: Dictionary = state.domains.get(original.domain, {})
 		var plan: Dictionary = domain.get("pending_plan", {})
@@ -154,6 +166,14 @@ static func legal(state: Dictionary, descriptor: Dictionary, option: String, con
 	if not state.domains.has(domain) or not state.institutions.has(institution) or not state.institutions[institution].active: return {"ok": false, "error": "Event institution is unavailable"}
 	var subjects: Dictionary = descriptor.subjects; var facts: Dictionary = descriptor.facts
 	var allowed: bool = true
+	var trigger := fact(state, str(descriptor.source), index)
+	if trigger.get("kind") == "prayer_space_consequence":
+		var cause := Consequences.proof(state, trigger, index)
+		var participant := person(state, str(trigger.actor), index)
+		allowed = not cause.is_empty() and current(state, trigger.id, index) and participant.get("status") == "active" and participant.get("domain") == domain
+		if descriptor.content_id == "EVENT_02":
+			allowed = allowed and participant.get("institution") == institution and not (index != null and index.event_record_public(trigger.id))
+		return {"ok": allowed, "error": "" if allowed else "本次后续事件的当事人或证词已无法参与"}
 	match str(descriptor.content_id):
 		"EVENT_01": allowed = alive(state, subjects.get("survivor", ""), index)
 		"EVENT_02":
@@ -445,7 +465,7 @@ static func related_any(state: Dictionary, sources: Array, first: String, second
 
 static func successor_legal(state: Dictionary, id: String, institution: String, content: RefCounted, index: RefCounted = null) -> bool:
 	var npc: Dictionary = person(state, id, index)
-	if npc.is_empty() or npc.status != "active" or not state.institutions.has(institution) or npc.domain != state.institutions[institution].domain or int(npc.sanity) < content.integer("institution_successor_min_sanity"): return false
+	if npc.is_empty() or npc.status != "active" or not PrayerRules.can_hold_office(state, id) or not state.institutions.has(institution) or npc.domain != state.institutions[institution].domain or int(npc.sanity) < content.integer("institution_successor_min_sanity"): return false
 	var profile: Dictionary = content.tables.npc_profiles.get(npc.get("profile", ""), {})
 	if profile.is_empty() or not state.institutions[institution].role in str(profile.institution_roles).split("|"): return false
 	var domain: Dictionary = state.domains[npc.domain]

@@ -387,6 +387,8 @@ func _person(host, box: VBoxContainer, id: String, tab := "") -> void:
 		for a: Dictionary in host.projection.get("anchors", []):
 			if a.get("guardian") == id: _link(host, box, "护持 · " + host.title(a.id), "anchor", a.id)
 	if tab in ["", "ability"]:
+		for limitation: String in p.get("prayer_limitations", []): box.add_child(host.label(limitation))
+		for change: String in p.get("prayer_capabilities", []): box.add_child(host.label(change))
 		if p.get("bound_member", false):
 			box.add_child(host.label("意志 %s · 洞察 %s · 影响 %s · 适应 %s" % [p.get("will", "?"), p.get("insight", "?"), p.get("influence", "?"), p.get("adaptation", "?")]))
 			box.add_child(host.label("忠诚 %s · 理智 %s" % [p.get("loyalty", "?"), p.get("sanity", "?")]))
@@ -485,11 +487,13 @@ func _members(host, box: VBoxContainer, id: String, heading: bool = true) -> voi
 	_action(host, box, "任命领袖或护持者", "POWER_APPOINT", {"domain":c.domain, "cult":c.id})
 
 func _execution_status(host, person: Dictionary) -> String:
+	for limitation: String in person.get("prayer_limitations", []):
+		if limitation.begins_with("无法行动"): return limitation
 	if not person.get("acted_turn") is int: return "执行机会未掌握"
 	return "本轮机会已用" if int(person.acted_turn) == int(host.projection.turn) else "本轮机会未用"
 
 func _person_matches(host, person: Dictionary, query: String, unused_only: bool) -> bool:
-	if unused_only and (not person.get("acted_turn") is int or int(person.acted_turn) == int(host.projection.turn)): return false
+	if unused_only and _execution_status(host, person) != "本轮机会未用": return false
 	return query.is_empty() or (host.title(str(person.id)) + " " + str(person.id)).to_lower().contains(query.to_lower())
 
 func _person_list(host, box: VBoxContainer, people: Array, key: String, changed: Callable, selected := "", choose := Callable(), filters: VBoxContainer = null) -> void:

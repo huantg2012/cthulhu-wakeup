@@ -259,7 +259,7 @@ func _choose(world: RefCounted, domain: String, source: String, content: String,
 	var candidates: Array = []
 	for id: String in world.history.ids("active/" + domain):
 		var person: Dictionary = Store.entry(world.state.npcs, id)
-		if eligible(world.state, person, catalog) and (person.get("cult_id", "").is_empty() or person.cult_id == cult): candidates.append(person)
+		if PrayerRules.can_hold_office(world.state, id) and eligible(world.state, person, catalog) and (person.get("cult_id", "").is_empty() or person.cult_id == cult): candidates.append(person)
 	candidates.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		if a.influence != b.influence: return a.influence > b.influence
 		if a.loyalty != b.loyalty: return a.loyalty > b.loyalty

@@ -7,11 +7,13 @@ changed-this-slice: true
 
 # 技术边界与可实施性
 
-## 世界玩法卡片样板（2026-11-12）
+## 世界玩法牌桌正式接入（2026-11-12）
 
-`docs/art/visual-generation/worldplay-study/` 是独立原生样板，继承 `round_view.gd` 的 Session、顶栏、外围、字体与程序立绘。`worldplay_view.gd` 组织固定主卡、查看／执行桌面、叠牌与独立常驻底栏；`hand_fan.gd` 复用获准载体的手势与信号，以完整牌组的有界间距分配取代邻牌窗口：每张牌保留实体边缘，首尾外缘固定，展开位置随观察对象移动，交换前后层时先分开牌面。双侧名签随露出宽度承接横排文字；卡纸不透明。横向滑动使用事件坐标，向上出牌采用原生拖放。`study_card.gd` 与 `table_drop.gd` 使用原生卡身及拖放接收，`card_illustration.gd` 提供可替换的程序符画占位。行为目录来自公开投影与 ActionCatalog，在视图层按动词归并目标，不改变行动身份、规则或 CSV。
+`src/presentation/production/worldplay/view.gd` 是正式 `game_root.tscn` 的 OverlayRoot，继承 `round_view.gd` 的 Session、顶栏、外围、字体与程序立绘。`view.gd` 组织固定主卡、查看／执行桌面、叠牌与独立常驻底栏；`hand_fan.gd` 复用获准载体的手势与信号，以完整牌组的有界间距分配取代邻牌窗口：每张牌保留实体边缘，首尾外缘固定，展开位置随观察对象移动，交换前后层时先分开牌面。双侧名签随露出宽度承接横排文字；卡纸不透明。横向滑动使用事件坐标，向上出牌采用原生拖放。`study_card.gd` 与 `table_drop.gd` 使用原生卡身及拖放接收，`card_illustration.gd` 提供可替换的程序符画占位。行为目录来自公开投影与 ActionCatalog，在视图层按动词归并目标，不改变行动身份、规则或 CSV。
 
-草稿通过原选择器生成字段，具体配置用 `Session.preview_action` 复核，再显式 `execute_action` 或 `set_plan`；结果由公开投影及正式 Feedback 构成桌面回执。对象牌保持只读；底栏三类图鉴使用独立只读目录，UI 和样板命令入口双重阻止提交，返回恢复原场景草稿。目录构建不运行旧的组合穷举：确定性全目录可用性仍由 `ISSUE-WORLDPLAY-ACTION-AVAILABILITY` 跟踪，不将布局更新当作该架构问题修复。启动器复制五世界测试档到独立 user 目录，详情见[样板记录](art/visual-generation/worldplay-study/README.md)及[交互合同](specs/ui-interaction.md#worldplay-card-study)。
+草稿通过原选择器生成字段，具体配置用 `Session.preview_action` 复核，再显式 `execute_action` 或 `set_plan`；结果由公开投影及正式 Feedback 构成桌面回执。对象牌保持只读；底栏三类图鉴使用独立只读目录，UI 和执行入口双重阻止提交，返回恢复原场景草稿。目录构建不运行旧的组合穷举：确定性全目录可用性仍由 `ISSUE-WORLDPLAY-ACTION-AVAILABILITY` 跟踪，不将布局更新当作该架构问题修复。正式入口保留父宿主的新局／读档／保存及回合边界，使用 `user://production-ui-campaigns`。切换会话清空桌面记忆；刷新从新投影重取对象和动作，过期目标不保留；模态窗口期间牌堆与常驻底栏保持显示但不接受输入。牌堆使用局部兄弟绘制顺序，不越层遮盖事件。独立样板只剩复制夹具的适配入口，复用同一生产视图，详情见[样板记录](art/visual-generation/worldplay-study/README.md)及[交互合同](specs/ui-interaction.md#worldplay-card-study)。
+
+本集成分支合并 `cthulhu-wakeup@7a76bfa` 的组合祈求、能力改变和后果链，同时保留 UI 线开局供给／注意力修正。`Prayers` 统一计算旧请求与组合处境的配额，`PrayerSpace.freeze(world, new_limit)` 负责生成。牌桌从 `Session.prayer_space_choices` 动态读取回应，提交携带当前预览的处境版本与费用；只显示公开提示。合并与实机证据见[接入记录](tasks/worldplay-integration.md)。
 
 ## 正式界面美术接入（2026-11-12）
 
@@ -721,6 +723,8 @@ WorldManagement 的 `open_archive` 承接顶部跨世界检索；`open_intellige
 
 Session 统一投影新旧请求，ActionCatalog 仅提供当前正式操作。`prayer_space_view.gd` 在现有祈求场景呈现具体介入，固定标题／费用／执行区、局部纵向滚动及一次人物查阅返回。事实公开使用白名单，完整 `scene_after` 与执行 DSL 不进入玩家记录。旧卡保留原费用和结果语义。范围及验证见 `docs/tasks/prayer-space-integration.md`。
 
+2026-11-08：祈求的即时或定时结果经 `prayer_consequences.gd` 依实际变化和冻结合同登记一次后果。见证接 Anchors 和既有传递规则，后续决定接 Events 的候选、调度与来源校验。人物限制由玩家指令和自主行为共用，期限解除后在原人物资料及回执呈现。具体规则和存档边界见 [system-events §16.9](specs/system-events.md#prayer-consequence-integration)。
+
 祈求曲解的结果池仅留在规则层的冻结合同中，预览和 `space_choices` 使用公开字段白名单。新合同按单项难度生成成功目标，以唯一 D100 骰点命中合法结果的完整整数区间，支付／状态变化／骰点记录在同一事务内；旧冻结合同按原语义恢复。具体 schema 与信息边界见 system-events §16。祈求场景只显示处境身份、原话、介入方式／行动／模糊提示／费用／成功点数，结果回执展示实际骰点及紧凑后果。
 
 
@@ -737,3 +741,7 @@ Session 统一投影新旧请求，ActionCatalog 仅提供当前正式操作。`
 正式交互的返回、焦点和滚动遵循[当前合同](specs/ui-interaction.md#production-interaction-polish)。`RoundView` 管模态输入边界、共享页脚按钮和滚动提示。祈求列表与详情的来源及返回由 `PrayerView` 保存，`WorldManagement` 持有目录与所选世界的阅读位置。人物和编年史的固定检索与分列阅读由 `TaskView` 组织，仍复用 `ExperienceViews` 的公开资料。候选核对继续走 `Session`，`LockedControls` 统一带自定义内容的按钮可用状态。
 
 `Session.prayer_space_choices` 从当前已知的冻结情境投影玩家可读选项，祈求场景和行动目录共用此接口。预览和正式执行仍由原准入层与 Turn 处理。新版祈求需要重新聚焦时，注意力校验从同一冻结请求确认范围，提交审计再核对原始事实、付款与结果。
+
+祈求回应展示：`src/presentation/prayer_response_voice.gd` 从 `data/prayer_response_voice.csv` 缓存读取表达，供 PrayerSpace 的选项与预览投影调用。仅展示，不进入冻结合同版本或行动随机流；离线目录构建器使用同源数据与稳定选择规则。
+
+组合祈求在 Catalog 读取 `prayer_generator_*` 后由 `prayer_generator.gd` 只读求解，`prayer_effect_compiler.gd` 编译效果及报价。`PrayerSpace` 在正式事务内登记共享处境与独立请求，记录版本、随机游标和处境变更来源。旧 scene 沿 schema1 审计，新请求引用 schema2 共享状态。`prayer_capabilities.gd` 将实际成功回执接入人物资格与活动。作者查看器由 `tools/prayer-space/serve_viewer.py` 调用同一 Godot 生成核心。接口合同见 system-events §16.10。

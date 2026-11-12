@@ -3,6 +3,7 @@ extends RefCounted
 ## relic custody and upkeep remain owned by their existing production modules.
 const Routes = preload("res://src/game/anchor_routes.gd")
 const ID: String = "civilization_dependency/schema2/routes3"
+const Consequences = preload("res://src/game/prayer_consequences.gd")
 const Store = preload("res://src/simulation/archive_store.gd")
 const History = preload("res://src/simulation/history_index.gd")
 const SCHEMA: int = 2
@@ -126,7 +127,7 @@ static func _prayer_record(state: Dictionary, id: String, index: RefCounted = nu
 	if public_exposure:
 		if record.changes.get("public") != true or record.causal_parents.size() != 1: return {}
 		record = _fact(state, record.causal_parents[0], index)
-		if record.is_empty() or (require_current and not _current(state, record.id, index)) or not record.changes.get("tag") in PUBLIC or published.changes.get("tag") != record.changes.tag or published.changes.get("request") != record.changes.get("request"): return {}
+		if record.is_empty() or (require_current and not _current(state, record.id, index)) or not record.changes.get("tag", "") in PUBLIC or published.changes.get("tag") != record.changes.tag or published.changes.get("request") != record.changes.get("request"): return {}
 	if record.kind != "prayer_fact" or not record.changes.get("tag") is String or not record.changes.get("prayer") is String or not record.changes.get("request") is String or not record.changes.get("subjects") is Dictionary or not record.changes.get("facts") is Dictionary: return {}
 	var checked: Dictionary = {}
 	for parent: String in record.causal_parents:
@@ -639,6 +640,20 @@ static func material(state: Dictionary, id: String, content: RefCounted, index: 
 		if not id in received.knowledge: received.knowledge.append(id)
 		return received
 	var normalized: Dictionary = {"id": id, "canonical": id, "kind": "", "root": id, "turn": int(fact.turn), "institution": str(data.get("institution", "")), "owners": [], "originals": [], "knowledge": [id], "current": current, "data": {}, "causes": []}
+	if fact.kind == "prayer_space_consequence":
+		var proof := Consequences.proof(state, fact, index)
+		if proof.is_empty() or proof.rule.kind == "rescue": return {}
+		normalized.kind = proof.rule.kind
+		normalized.root = proof.result
+		normalized.owners = [fact.actor]
+		normalized.data = {"title": proof.rule.title}
+		normalized.causes = [proof.effect_source]
+		if proof.rule.kind == "evidence":
+			normalized.originals = [proof.rule.witness]
+			normalized.causes.append(proof.miracle)
+		for parent: String in normalized.causes:
+			normalized.current = normalized.current and _current(state, parent, index)
+		return _received_owners(state, normalized, content, index)
 	if fact.kind == "route_material":
 		if data.get("issuer") != "progression_routes" or data.get("version") != state.get("progression_routes", {}).get("version") or not data.get("tag") is String or not data.get("originals") is Array or not data.get("data") is Dictionary: return {}
 		normalized.kind = data.tag; normalized.originals = data.originals.duplicate(); normalized.owners = data.originals.duplicate(); normalized.data = data.data.duplicate(true); normalized.causes = data.get("dependencies", []).duplicate()

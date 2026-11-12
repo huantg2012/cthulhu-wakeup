@@ -73,6 +73,9 @@ func open_archive(id := "", on_return := Callable()) -> void:
 	_show_archive("ArchiveSearch" if id.is_empty() else "WorldRecord_" + id)
 
 func open_cult(domain: String, on_return := Callable()) -> void:
+	if host.has_method("open_cult_table"):
+		host.open_cult_table(domain)
+		return
 	if not _start(on_return.is_valid()): return
 	_external_return = on_return
 	_domain = domain
@@ -355,6 +358,9 @@ func _metric(body: VBoxContainer, world: Dictionary, field: String) -> void:
 	label.tooltip_text = host._views.metric_help_text(world, field)
 
 func _enter_cult_from_archive() -> void:
+	if host.has_method("open_cult_table"):
+		host.open_cult_table(_domain)
+		return
 	_archive_scroll = _list.scroll_vertical
 	_from_archive = true
 	_plan_notice = ""

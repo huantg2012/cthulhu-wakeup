@@ -104,7 +104,7 @@ func respond(row: Dictionary, choice: Dictionary, confirmed: bool) -> void:
 	var before: Dictionary = host.projection
 	host._busy = true
 	var selection: Dictionary = parent._draft().inputs.get(str(choice.id), {}).duplicate(true)
-	var result: Dictionary = host.session.execute_action(row.key, selection, confirmed)
+	var result: Dictionary = host.session.execute_action(row.key, selection, confirmed, "", row.get("preview", {}).get("preview", {}))
 	host._busy = false
 	if result.get("confirmation", false):
 		parent._remember_return("Respond")
@@ -145,14 +145,18 @@ func _cost_text(price: Dictionary) -> String:
 	if int(price.get("first_upkeep", 0)) > 0: text += " · 生效另付 %s 信仰" % price.first_upkeep
 	return text
 
+func _upkeep_text(price: Dictionary) -> String:
+	var fee := int(price.get("first_upkeep", 0))
+	var turns := int(price.get("upkeep_turns", price.get("maintenance_turns", 0)))
+	if fee<=0: return ""
+	if turns <= 0: return "生效另付 %d 信仰" % fee
+	var text := "生效即付首期 · 每轮 %d 信仰，共 %d 期" % [fee, turns]
+	var stop := str(price.get("upkeep_stop", ""))
+	return text if stop.is_empty() else text + "。" + stop
+
 func _check_text(price: Dictionary) -> String:
 	var target := int(price.get("success_target", price.get("probability", -1)))
 	return "掷出 1–%d 成功" % target if target >= 0 else "按原约定生效"
-
-func _upkeep_text(choice: Dictionary) -> String:
-	var turns := int(choice.get("maintenance_turns", 0))
-	if turns < 2: return ""
-	return "生效后需供奉 %d 轮（含本轮），停供则中断。" % turns
 
 func _receipt(result: Dictionary, before: Dictionary, after: Dictionary, action: String) -> Array[String]:
 	var lines: Array[String] = []

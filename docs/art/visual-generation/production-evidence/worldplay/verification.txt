@@ -1,0 +1,47 @@
+worldplay-generator.log
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PRAYER_GENERATOR_SESSION_OK 34 checks
+
+worldplay-capability.log
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+CAPABILITY_FIXTURE seed=6 profile=CIV_02 prior_office=false
+PRAYER_CAPABILITY_OK seed=6 prior_office=false operation=ROUTE_CALENDAR_KEEPING outcome=success
+
+worldplay-formal-probe.log
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+GENERATED_RESPONSES ["施恩 · 应允所求","交易 · 先许愿，再还债","曲解 · 愿望归他，解释归你","不再回应"]
+MATURE_SAVE_TABLE cards=41 worlds=5 people=16
+WORLDPLAY_FORMAL_OK 223 checks; fresh dynamic prayer committed, new save replayed, mature save/cult/catalog/modal/turn verified
+
+worldplay-event.log
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+WORLDPLAY_EVENT_OK natural event turn=9; modal block, Esc, choice and actual confirmation
+
+worldplay-native.log
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+FOUR_ZONE_INPUT front_click true
+FOUR_ZONE_INPUT native_drag true
+FOUR_ZONE_INPUT upward_drop true
+FOUR_ZONE_INPUT sideways_scroll_without_play true
+FOUR_ZONE_INPUT dock_reference true
+FOUR_ZONE_INPUT keyboard_reference true
+FOUR_ZONE_INPUT no_mutation true
+
+worldplay-pack-probe.log
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+WORLDPLAY_PACK_OK formal root, fresh Session, procedural art, no study fixture
+
+worldplay-cult-route.log
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WORLDPLAY_CULT_ROUTE_OK 3 cults; scope and master identity correct; no mutation

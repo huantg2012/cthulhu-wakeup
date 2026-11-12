@@ -43,6 +43,7 @@ static func resolve(state: Dictionary, source: String, content: RefCounted, read
 	var actual: Dictionary = _fact(state, canonical, reader)
 	var selector: String = ""
 	if actual.get("kind") == "prayer_fact": selector = "prayer:" + str(actual.changes.get("tag", ""))
+	elif actual.get("kind") == "prayer_space_consequence" and material.kind == "evidence": selector = "prayer:public_witness"
 	elif actual.get("kind") == "route_material": selector = "route:" + str(actual.changes.get("tag", ""))
 	elif actual.get("kind") == "miracle" and actual.changes.get("power") == "POWER_DREAM": selector = "power:POWER_DREAM/miracle"
 	var family: Dictionary = {}

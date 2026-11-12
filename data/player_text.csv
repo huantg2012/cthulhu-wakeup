@@ -76,7 +76,7 @@ institutions,CIV_05/interpretation,name,解析中枢
 institutions,CIV_05/propagation,name,通讯枢纽
 institutions,CIV_05/order,name,巡检站
 civilization_profiles,CIV_06,name,塔尔梅西亚
-civilization_profiles,CIV_06,entry_route,回应未履行的誓约，或安排一份记录的保管约定。
+civilization_profiles,CIV_06,entry_route,回应未履行的誓约，或约定将证据交给当地机构。
 civilization_profiles,CIV_06,spread_route,借神迹履行契约，或让双方分轮完成记录交付。
 civilization_profiles,CIV_06,anchor_route,保全履约见证；双向约定必须由双方完成。
 civilization_profiles,CIV_06,resistance_style,撤销圣物使用资格，争夺圣物。
@@ -129,8 +129,8 @@ progression_route_operations,ROUTE_MEMORY_PRACTICE,name,重温共同记忆
 progression_route_operations,ROUTE_MEMORY_PRACTICE,description,由原来的参加者跨轮回忆同一件事，保留共同见证。
 progression_route_operations,ROUTE_DISSENT_PRACTICE,name,保留分歧
 progression_route_operations,ROUTE_DISSENT_PRACTICE,description,让原来的参加者跨轮保留互相矛盾的记忆。
-progression_route_operations,ROUTE_PACT_AGREEMENT,name,订立保管契约
-progression_route_operations,ROUTE_PACT_AGREEMENT,description,约定由谁保管哪份记录，为履约祈求做准备。
+progression_route_operations,ROUTE_PACT_AGREEMENT,name,约定交付证据
+progression_route_operations,ROUTE_PACT_AGREEMENT,description,约定谁来交付哪份证据。对方履约时可回应其祈求。
 progression_route_operations,ROUTE_PACT_PERFORMANCE,name,履行契约
 progression_route_operations,ROUTE_PACT_PERFORMANCE,description,通过祈求回应履行既有契约。
 progression_route_operations,ROUTE_RECIPROCAL_COVENANT,name,互换记录
@@ -192,14 +192,14 @@ event_effects,EVENT_01/A,on_choose,幸存者理智 +5，本次不发生变异。
 event_effects,EVENT_01/A,irreversible_cost,支付信仰；不会额外招募信众。
 event_effects,EVENT_01/B,on_choose,信仰 +4，幸存者发生变异。
 event_effects,EVENT_01/B,irreversible_cost,幸存者理智 −10；当地察觉 +4。
-event_effects,EVENT_02/A,on_choose,由原持有人继续秘密保管证言。
+event_effects,EVENT_02/A,on_choose,暂不公开证词。
 event_effects,EVENT_02/A,irreversible_cost,不公开证言；原有锚定条件仍可使用。
 event_effects,EVENT_02/B,on_choose,公开收录这份证言。
 event_effects,EVENT_02/B,irreversible_cost,当地察觉 +6，见证者可能遭到调查。
 event_effects,EVENT_03/A,on_choose,由合作方接任空缺职位。
 event_effects,EVENT_03/A,irreversible_cost,当地察觉 +2，并欠继任者一次人情。
 event_effects,EVENT_03/B,on_choose,由合格对手接任；没有人选则继续空缺。
-event_effects,EVENT_03/B,irreversible_cost,更换或失去记录保管者，可能影响该机构的锚点。
+event_effects,EVENT_03/B,irreversible_cost,更换代表后，机构可能失去维系锚点所需的证据。
 event_effects,EVENT_04/B,on_choose,有合格的异端接收者时，新增 4 信众。
 event_effects,EVENT_04/B,irreversible_cost,原机构公开否认此次神迹解释。
 event_effects,EVENT_05/A,on_choose,解除双方被神迹强制履行的契约。

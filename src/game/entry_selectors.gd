@@ -5,6 +5,7 @@ const Store = preload("res://src/simulation/archive_store.gd")
 const Anchors = preload("res://src/game/anchors.gd")
 const Materials = preload("res://src/simulation/material_transfer.gd")
 const Knowledge = preload("res://src/game/player_knowledge.gd")
+const Capabilities = preload("res://src/game/prayer_capabilities.gd")
 
 static func context(view: Dictionary, knowledge: Dictionary, modules: Dictionary, label: Callable = Callable()) -> Dictionary:
 	if view.get("reader") != null:
@@ -155,6 +156,9 @@ static func _power_fields(context: Dictionary, power: String, selection: Diction
 			fields.append(_field("preparation_relic", "圣物准备", _options(_objects(context, "relics", domain)), true))
 		return fields
 	var fields: Array = _base_fields(context, selection, power != "POWER_LISTEN")
+	if power in ["POWER_APPOINT", "POWER_ANCHOR"]:
+		fields[1].options = fields[1].options.filter(func(option: Dictionary) -> bool:
+			return Capabilities.allows(context.world, str(option.id), Capabilities.OFFICE_HOLDING))
 	var domain: String = str(_selected(selection, "domain", fields[0].options))
 	var npc: String = str(_selected(selection, "npc", fields[1].options)) if power != "POWER_LISTEN" else ""
 	var rule: String = {"POWER_LISTEN": "listen", "POWER_DREAM": "dream", "POWER_BREACH": "weakness", "POWER_SEED": "spread", "POWER_VEIL": "evidence", "POWER_SACRIFICE": "tenure"}.get(power, "")
@@ -229,7 +233,9 @@ static func _route_fields(context: Dictionary, selection: Dictionary) -> Array:
 			var output_route: String = {"record_practice": "record_dependency", "calendar_keeping": "calendar_dependency", "memory_practice": "memory_practice", "dissent_practice": "dissent_practice", "pact_agreement": "contract_performance", "reciprocal_covenant": "contract_reciprocal", "network_exchange": "network_exchange", "ritual_transmission": "ritual_practice", "axiom_probe": "axiom_nodes", "axiom_recheck": "axiom_nodes", "axiom_repeat": "axiom_archive"}.get(row.mode, "")
 			if not domain.is_empty() and not output_route.is_empty() and context.catalog.tables.anchor_route_rules[output_route].profile != context.world.domains[domain].profile: continue
 			if not domain.is_empty() and row.mode == "memory_circle" and not context.catalog.tables.anchor_route_rules.values().any(func(route: Dictionary) -> bool: return route.selector == "memory_circle" and route.profile == context.world.domains[domain].profile): continue
-			if not person.is_empty() and row.mode in ["record_practice", "calendar_keeping"] and not "record_keeper" in person.role_tags: continue
+			if not person.is_empty() and row.mode in Capabilities.RECORD_ROUTES and not "record_keeper" in person.role_tags:
+				var grant := Capabilities.grant_source(context.world, npc, Capabilities.RECORD_PRACTICE)
+				if grant.is_empty() or not _known(context, grant): continue
 			if not person.is_empty() and row.mode == "calendar_rite" and not "ritual_keeper" in person.role_tags: continue
 			if not person.is_empty() and row.mode == "ritual_transmission" and not "ritual_keeper" in person.role_tags and lessons.is_empty(): continue
 			if not person.is_empty() and row.mode == "covert_gathering" and not person.get("bound_member", false): continue
@@ -259,7 +265,13 @@ static func _route_fields(context: Dictionary, selection: Dictionary) -> Array:
 			fields.append(_field("second_record", "另一端的记录", _options(records), true))
 			fields.append(_field("stage", "履行进度", [_choice("prepare", "固定两项约定"), _choice("perform", "履行下一项交付")]))
 	if mode in ["axiom_recheck", "axiom_repeat"]: fields.append(_field("target", "同一实际例外", _options(_kind(context, "exception"))))
-	fields.append(_field("source", "当前来源", _source_options(context, domain)))
+	var sources: Array = _source_options(context, domain)
+	if mode in Capabilities.RECORD_ROUTES:
+		var capability_source := Capabilities.grant_source(context.world, npc, Capabilities.RECORD_PRACTICE)
+		var source: Dictionary = _fact(context, capability_source) if _known(context, capability_source) else {}
+		if source.get("domain") == domain and not capability_source.is_empty():
+			sources.append(_choice(capability_source, "回应后的能力变化"))
+	fields.append(_field("source", "当前来源", sources))
 	return fields
 
 static func _transfer_fields(context: Dictionary, available: Array, selection: Dictionary) -> Array:

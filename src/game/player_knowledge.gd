@@ -63,7 +63,7 @@ static func command_roots(world_state: Dictionary, turn_context: Dictionary, led
 	return load("res://src/game/player_knowledge.gd").new(world_state, turn_context, ledger, content, index)._command_knowledge_roots(request)
 
 static func _internal_fact(kind: String) -> bool:
-	return kind.begins_with("opportunity_") or kind in ["cult_pollution_settlement", "route_attempt", "route_progress", "prayer_call", "prayer_call_basis", "prayer_need_selected", "prayer_dispatch_tick", "prayer_contact_selected", "prayer_producer_update", "identity_notice_selected", "deity_identified", "deity_identity_received", "prayer_bootstrap"]
+	return kind.begins_with("opportunity_") or kind.begins_with("prayer_generator_") or kind in ["cult_pollution_settlement", "route_attempt", "route_progress", "prayer_call", "prayer_call_basis", "prayer_need_selected", "prayer_dispatch_tick", "prayer_contact_selected", "prayer_producer_update", "identity_notice_selected", "deity_identified", "deity_identity_received", "prayer_bootstrap"]
 
 static func validate_ledger(state: Dictionary, ledger: Dictionary, catalog: RefCounted) -> Array[String]:
 	if not ledger.get("cursor") is int or ledger.cursor < 1 or ledger.cursor > int(state.next_fact): return ["Invalid player knowledge cursor"]
@@ -270,8 +270,14 @@ func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionar
 		# Automatically derived qualifications are never command disclosures. Their
 		# exact original fact must already be known before availability can expose it.
 		if fact.kind in ["power_qualification", "world_observation"]: continue
-		if fact.kind == "prayer_space_progress" and fact.changes.has("manifestation_of"):
-			if _known_facts.has(fact.changes.manifestation_of): _learn(source)
+		if fact.kind == "prayer_space_progress" and (fact.changes.has("manifestation_of") or fact.changes.has("consequence_of")):
+			if _known_facts.has(fact.changes.get("manifestation_of", fact.changes.get("consequence_of"))): _learn(source)
+			continue
+		if fact.kind == "prayer_space_consequence":
+			if _known_facts.has(fact.changes.effect_source): _learn(source)
+			continue
+		if fact.kind == "prayer_space_recovered":
+			if _known_people.has(fact.actor) and fact.changes.restored.values().any(func(parent: String) -> bool: return _known_facts.has(parent)): _learn(source)
 			continue
 		if fact.kind == "miracle" and fact.changes.has("prayer_space_source"):
 			if _known_facts.has(fact.changes.prayer_space_source): _learn(source)
