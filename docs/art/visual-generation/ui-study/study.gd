@@ -201,15 +201,17 @@ func _capture_motion() -> void:
   fan.set_focus(5, false)
  atmosphere.paused = true
  await create_timer(0.4).timeout
- for frame in 144:
-  atmosphere.set_sample_time(float(frame) / 12.0)
+ var frames_per_second := 60
+ var frame_count := int(Atmosphere.LOOP_SECONDS * frames_per_second)
+ # The extra endpoint is for the continuity check, not part of the encoded loop.
+ for frame in frame_count + 1:
+  atmosphere.set_sample_time(float(frame) / float(frames_per_second))
   await process_frame
   RenderingServer.force_draw(false)
-  await RenderingServer.frame_post_draw
-  var error := root.get_texture().get_image().save_png(motion_output.path_join("frame-%03d.png" % frame))
+  var error := root.get_texture().get_image().save_png(motion_output.path_join("frame-%04d.png" % frame))
   if error != OK:
    push_error("Could not write motion frame")
    quit(1)
    return
- print("PERIPHERAL_MOTION_CAPTURE frames=144 fps=12 duration=12s")
+ print("PERIPHERAL_MOTION_CAPTURE frames=", frame_count, " fps=", frames_per_second, " duration=", Atmosphere.LOOP_SECONDS, "s endpoint=1")
  quit()

@@ -1,11 +1,17 @@
 ---
 status: PROPOSED_WITH_PARTIAL_TECHNICAL_EVIDENCE
 created-by: code agent
-last-modified-date: 2026-11-06
+last-modified-date: 2026-11-12
 changed-this-slice: true
 ---
 
 # 技术边界与可实施性
+
+## 已批准界面美术与待接入边界（2026-11-12）
+
+`docs/art/visual-generation/ui-study/` 当前母版已获制作人通过；`UI视觉探索.command` 仍是独立展示入口，样牌、夹具、扫树覆写和 F 键切换不进入正常游戏。正式根仍为 `production/game_root.tscn`，本次没有新增运行时组件；此前已按制作人指示在 `round_view.gd` 移除游戏内常驻标题并左移轮次。
+
+全游戏迁移职责、源码提取与生命周期约束见[美术规范 §8](art/visual-generation/ui-art-standard.md#8-从样板到正式组件)，实施者完成各批后在本处补真实生产路径。共享视觉、对象图像提供者与外围时钟为接入要求，当前不能写成已存在的 API；图像参数绑定／保存／队列仍须按生成 spec 补合同。现阶段不改变交互宿主、业务接口或默认场景。
 
 ## 原生立绘生成（2026-11-11）
 

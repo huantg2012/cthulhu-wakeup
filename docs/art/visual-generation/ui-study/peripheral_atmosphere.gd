@@ -1,39 +1,52 @@
 extends Control
 ## Painted aperture around the exploration scene, with a shared capture clock.
 const VeilShader = preload("res://docs/art/visual-generation/ui-study/peripheral_veil.gdshader")
-const Tendrils = preload("res://docs/art/visual-generation/ui-study/peripheral_tendrils.gd")
+const SurfaceShader = preload("res://docs/art/visual-generation/ui-study/peripheral_surface.gdshader")
+const MistShader = preload("res://docs/art/visual-generation/ui-study/peripheral_mist.gdshader")
+const Carrier = preload("res://docs/art/visual-generation/ui-study/peripheral_tendrils.gd")
+const LOOP_SECONDS := 24.0
 var paused := false
 var elapsed := 0.0
-var _veil: ShaderMaterial
-var _tendrils: Control
+var _materials: Array[ShaderMaterial] = []
+var _carrier: Control
 static var _noise_texture: ImageTexture
 
 func _ready() -> void:
  mouse_filter = Control.MOUSE_FILTER_IGNORE
  size = Vector2(1280, 720)
+ _add_wash(VeilShader)
+ _carrier = Carrier.new()
+ _carrier.paused = true
+ _carrier.material = _make_material(SurfaceShader)
+ add_child(_carrier)
+ _add_wash(MistShader)
+ set_sample_time(elapsed)
+
+func _make_material(shader: Shader) -> ShaderMaterial:
+ var paint := ShaderMaterial.new()
+ paint.shader = shader
+ paint.set_shader_parameter("pigment_noise", _pigment())
+ _materials.append(paint)
+ return paint
+
+func _add_wash(shader: Shader) -> void:
  var wash := ColorRect.new()
  wash.size = size
  wash.mouse_filter = Control.MOUSE_FILTER_IGNORE
- _veil = ShaderMaterial.new()
- _veil.shader = VeilShader
- _veil.set_shader_parameter("pigment_noise", _pigment())
- wash.material = _veil
+ wash.material = _make_material(shader)
  add_child(wash)
- _tendrils = Tendrils.new()
- _tendrils.paused = true
- add_child(_tendrils)
- set_sample_time(elapsed)
 
 func _process(delta: float) -> void:
  if not paused:
   set_sample_time(elapsed + delta)
 
 func set_sample_time(seconds: float) -> void:
- elapsed = seconds
- if _veil != null:
-  _veil.set_shader_parameter("elapsed", elapsed)
- if is_instance_valid(_tendrils):
-  _tendrils.set_sample_time(elapsed)
+ # Every moving field closes over this period, including its velocity.
+ elapsed = fposmod(seconds, LOOP_SECONDS)
+ for paint in _materials:
+  paint.set_shader_parameter("elapsed", elapsed)
+ if is_instance_valid(_carrier):
+  _carrier.set_sample_time(elapsed)
 
 static func _pigment() -> ImageTexture:
  if _noise_texture != null:

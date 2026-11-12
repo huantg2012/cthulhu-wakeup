@@ -1,7 +1,7 @@
 ---
 status: IMPLEMENTED_PENDING_VISUAL_REVIEW
 created-by: Codex
-last-modified-date: 2026-11-11
+last-modified-date: 2026-11-12
 interfaces-with: [system-events, system-civilizations]
 exposes: [ArtGenerationService.generate, ArtGenerationService.export_result, NativeArtWorkbench]
 interface-changed: true
@@ -10,6 +10,8 @@ interface-changed: true
 TL;DR：世界、教团与人物立绘在游戏本体 Godot 工程内生成。独立工作台直接运行，无浏览器、Node、Python、Web 服务或第二个 Godot 工程依赖；不接 Session，不创建游戏世界、机构或 NPC，不改变默认游戏入口。
 
 # 范围与入口
+
+2026-11-12：界面承载母版已获制作人通过，全游戏展示与身份接入要求见[界面美术规范 A13–A16](../art/visual-generation/ui-art-standard.md#6-立绘身份运行时与资产)。本服务当前能力仍以下文为准；UI 母版通过不表示 Session 身份、队列、持久缓存或存档绑定已实现。后续正式接入先在本文件原地补齐对应合同，不另建第二份生成 spec。
 
 `诸界立绘生成.command` 启动 `res://src/art_generation/workbench/workbench.tscn`。原世界／教团／同世界人物／跨世界人物及旧程序画法启动器统一转向该场景。历史 HTML、JavaScript、服务器与图片保留为只读迁移参考，已退出当前生成链。
 

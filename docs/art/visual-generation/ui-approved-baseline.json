@@ -1,0 +1,234 @@
+{
+  "schema": "cthulhu-ui-approved-baseline/1",
+  "recorded_date": "2026-11-12",
+  "approval": {
+    "by": "producer",
+    "quote": "很好，这版游戏界面、美术设计 pass。",
+    "decision": "docs/progress/decisions-log.md#dec-064",
+    "scope": [
+      "粗印竖卡与既有平铺/叠放/翻动",
+      "粗印标题与文楷正文",
+      "分层灰绿绘画背景",
+      "背景与卡面高维注视暗纹",
+      "浓雾/暗膜/卷形/附着异形眼整合动态",
+      "游戏内移除常驻标题、轮次左移"
+    ]
+  },
+  "authority": "docs/art/visual-generation/ui-art-standard.md",
+  "git_context": {
+    "branch": "codex/visual-generation-exploration",
+    "base_commit": "c17b9039a9907580df6761d6314580dd491011ed",
+    "approved_files_include_uncommitted_changes": true,
+    "note": "base_commit 是获准工作树的提交起点，不表示该提交包含这些文件版本。以逐文件指纹与保留的证据识别母版。"
+  },
+  "scope_limits": [
+    "除游戏内顶栏调整外，UI 皮肤仍在独立样板，全部正式场景未接入。",
+    "12/24 卡为明确标注的排布样牌，重复已生成立绘，不是真实新增世界。",
+    "F4 为三类立绘承载对照，不是已完成的教团/人物正式页面。",
+    "图像参数和真实对象的绑定、生成调度及持久化尚未实现。"
+  ],
+  "canvas": {
+    "logical": [
+      1280,
+      720
+    ],
+    "review_display": [
+      1920,
+      1080
+    ]
+  },
+  "source_files": [
+    {
+      "path": "docs/art/visual-generation/ui-study/card_fan.gd",
+      "sha256": "6a02cad0bcde187ce8db83fc79f5fb7d273c1a5b9cfb85d8d5bb0a2e23793f98",
+      "bytes": 8727
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/occult_marks.gd",
+      "sha256": "30eeedbbe48ef734c4534e620d5883501c2ac38f797630f99d214e0fa76b88b9",
+      "bytes": 5033
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/painted_backdrop.gd",
+      "sha256": "682817b5717dc587541470ffb3e4b7d36e5a3d7ba4032dc4b8d9fdfcc97a3c2d",
+      "bytes": 7870
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/painted_card.gd",
+      "sha256": "e6006116d1196c2c59ee2f9061309eeec86c4d08919b2e4d8a6f2dc69f300635",
+      "bytes": 2981
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/painted_material.gd",
+      "sha256": "1e1777e4763fe4cab41f5db03c7f040297815debdce79e762984896aa03b0081",
+      "bytes": 7876
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/peripheral_atmosphere.gd",
+      "sha256": "f67efb8cccf60c4db29eaea16fca1a526fd61d7022483bcb57e0e0b381a0e3b6",
+      "bytes": 2669
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/peripheral_fields.gdshaderinc",
+      "sha256": "4b55e548a38debce2ad8e5c10e24e064a50669421d36ce582a061e11ab51f1f1",
+      "bytes": 2887
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/peripheral_mist.gdshader",
+      "sha256": "735e74612a5ec2cd4f525fcc3d47ece87ac84c56cb842b79ada0843235ba082d",
+      "bytes": 199
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/peripheral_surface.gdshader",
+      "sha256": "dd32cb40055cb5ec28fbf9dd5208b8b654d045d1713e4597fb7c0ad6b44aa9e7",
+      "bytes": 1328
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/peripheral_tendrils.gd",
+      "sha256": "8b3c941e5c2f8594991067b5cb7d90f0479897bd01c9e16513051956b639eda8",
+      "bytes": 4960
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/peripheral_veil.gdshader",
+      "sha256": "75f9707f4a09926a3778d387cd5a207a7243b194293de932b32d6b01ec8acd35",
+      "bytes": 2285
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/study.gd",
+      "sha256": "28710bd6792df0c6e216c658d681d28923400394841c6ea1c1915612c025ccac",
+      "bytes": 10736
+    },
+    {
+      "path": "UI视觉探索.command",
+      "sha256": "f72e1915021520bb1a0a686e59dab951ed312aa9e59e8cbc729d0d91cf519354",
+      "bytes": 598
+    },
+    {
+      "path": "src/presentation/production/round_view.gd",
+      "sha256": "95fbc05e4d4ba96aab50162aa7ff1281bde30103c22e750676101a066f326217",
+      "bytes": 54867
+    }
+  ],
+  "fonts": [
+    {
+      "path": "docs/art/visual-generation/ui-study/type/fusion-pixel-12px-proportional-zh_hans.ttf",
+      "sha256": "7e93fedda2c55bb37badb2262aaf43b08e3cb5976a0e3de2d90986ce59fe902e",
+      "bytes": 7316996
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/type/LXGWWenKaiScreen.ttf",
+      "sha256": "abd13364163e3cd84372b333f2fdcee9efb848634668f1c0ce5788dcd059ee61",
+      "bytes": 26095590
+    }
+  ],
+  "font_licenses": [
+    {
+      "path": "docs/art/visual-generation/ui-study/type/LICENSES/ark-pixel/OFL.txt",
+      "sha256": "3ab41567e68e3988ba1ef16dd2644eca95ca5648ea12e7d46e6287fc0bbe5aee",
+      "bytes": 4412
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/type/LICENSES/cubic-11/OFL.txt",
+      "sha256": "2b6e5938e5cffa0b9e183bd05f8c363e174e7ebed1a0556e2855fd1707fa2188",
+      "bytes": 5364
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/type/LICENSES/galmuri/LICENSE.txt",
+      "sha256": "86a3ee9495f942f0243f18c103da9faca27adb88142613edb8bb852e56c892c1",
+      "bytes": 4360
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/type/LXGWWenKaiScreen-OFL.txt",
+      "sha256": "ba38832f9d7e0ad601a1ab90d58f251ba957532885ef80dca050a611962fd8b6",
+      "bytes": 6027
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/type/OFL.txt",
+      "sha256": "bc518cf64b8032c07690f33cc270c35c179255a6ac8efa7c165ebae7e8f76a63",
+      "bytes": 4418
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "docs/art/visual-generation/ui-study/evidence/01-three-worlds.png",
+      "sha256": "3d74933dbe84ab8cf07251e3648bb06e3960fd7e50d0f011b6e138e4d45dde28",
+      "bytes": 1565486,
+      "kind": "godot_screenshot",
+      "width": 1920,
+      "height": 1080,
+      "sample_seconds": 4
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/evidence/02-twelve-worlds.png",
+      "sha256": "0dd619cf50fdebeb4bab47aec3fe77bb10a55a465724978fca48918638beb884",
+      "bytes": 1573387,
+      "kind": "godot_screenshot",
+      "width": 1920,
+      "height": 1080,
+      "sample_seconds": 4
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/evidence/03-twenty-four-worlds.png",
+      "sha256": "7f392ad631fe36a7ee312a4aa4aaccec1b4eff96f50fd94033e24207221c2ef4",
+      "bytes": 1525892,
+      "kind": "godot_screenshot",
+      "width": 1920,
+      "height": 1080,
+      "sample_seconds": 4
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/evidence/04-shared-world-art.png",
+      "sha256": "1fbf7a8bc19f2e0cff7d3fd11546244ead18f9c306cba5081a5894bca31a03b9",
+      "bytes": 1459101,
+      "kind": "godot_screenshot",
+      "width": 1920,
+      "height": 1080,
+      "sample_seconds": 4
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/evidence/peripheral-motion.mp4",
+      "sha256": "c50dbd6777243853944b7dbd623572145768805bbc9e7131ec61f137028251a2",
+      "bytes": 2069365,
+      "kind": "full_cycle_animation",
+      "width": 1280,
+      "height": 720,
+      "fps": 60,
+      "frames": 1440,
+      "duration_seconds": 24
+    },
+    {
+      "path": "docs/art/visual-generation/ui-study/evidence/peripheral-motion.webp",
+      "sha256": "55315b1b06a87780a2ff60e849a91fe4204ca311578bb4722760e9d54e0a49ad",
+      "bytes": 75288654,
+      "kind": "full_cycle_animation",
+      "width": 1280,
+      "height": 720,
+      "fps": 60,
+      "frames": 1440,
+      "duration_seconds": 24
+    }
+  ],
+  "illustration_parameters": [
+    {
+      "path": "docs/art/visual-generation/procedural-study/native-evidence/tide/parameters.json",
+      "sha256": "c274d03d7956ca75573d95ee49a634f780cc63b7963fae5a905314743a5d0559",
+      "bytes": 7172
+    },
+    {
+      "path": "docs/art/visual-generation/procedural-study/native-evidence/fire/parameters.json",
+      "sha256": "32484c6bed042d67c207ddb16d22d04124ccbec38e44a4e5b6af0738cffb4f05",
+      "bytes": 27182
+    },
+    {
+      "path": "docs/art/visual-generation/procedural-study/native-evidence/frozen/parameters.json",
+      "sha256": "ca09ddce3e850720d540b67bdc43898ad52cc50dafcfff4b6e7597c0a41a7f03",
+      "bytes": 27160
+    },
+    {
+      "path": "docs/art/visual-generation/procedural-study/native-evidence/bone-watercolor/parameters.json",
+      "sha256": "1b7b2b3db9c4b51e145a57dfc9569c0f989e66ee0eab8caa2535c6947e1e04cc",
+      "bytes": 8338
+    }
+  ],
+  "maintenance": "保留获准证据；新场景另存。迁移不要求生产源码字节与样板完全一致，须对照本规范、实际画面与对应输入。不要为消除指纹差异静默重签本清单。"
+}

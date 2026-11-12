@@ -197,10 +197,8 @@ func _refresh() -> void:
 
 func _build_top() -> void:
 	var top := _region(_stage, "Top", Rect2(Vector2.ZERO, VIEW))
-	_reference(top, "GameTitle", "邪神苏醒", Rect2(46, 36, 140, 37), 23, Color("#bdc8c7"), true, 7)
 	if projection.get("active", false):
-		_ui.fill(top, "TurnRule", Layout.box(Rect2(193, 44, 1, 22)), UI.LINE)
-		_reference(top, "Turn", "第 %s 轮 · %s" % [projection.turn, projection.phase_title], Rect2(218, 37, 438, 37), 15, UI.MUTED, false, 2)
+		_reference(top, "Turn", "第 %s 轮 · %s" % [projection.turn, projection.phase_title], Rect2(46, 37, 438, 37), 15, UI.MUTED, false, 2)
 		var whispers := str(projection.whispers)
 		var faith := str(projection.faith)
 		var awakening := str(projection.awakening)

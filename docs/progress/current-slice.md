@@ -1,4 +1,13 @@
-# Current Work: Echoes Production UI Integration
+# Current Work: Approved UI Art Baseline and Full-game Rollout
+
+
+## 当前：全游戏界面美术规范交付（2026-11-12）
+
+制作人已明确 PASS 当前「粗印画牌＋有机窥视窗口」整合母版，见 [DEC-064](decisions-log.md#dec-064)。本轮将阅览器收为单一图文正文，删除图册与正文的重复展示；增加[实施疑难反馈协议](../art/visual-generation/ui-art-standard.md#art-feedback)和[单一问题台账](../art/visual-generation/ui-art-feedback.md)，由规范维护 agent 接手新控件／场景缺口，解释、补规范或实景打样。此前补齐[图文阅览版](../art/visual-generation/ui-guide/index.html)和原生控件示例，并清理失效的旧视觉引用；衍生输入／反馈控件单列待审，不冒充已获准母版。此前完成[全游戏美术执行规范](../art/visual-generation/ui-art-standard.md)：获准参数与素材基线、S01–S12 场景覆盖、B01–B10 接入顺序和有限验收。正常入口、共享控件及状态按实际代码盘点；旧全貌索引有格式与时效缺口，不作为当前场景覆盖证明。
+
+当前是**母版通过／规范已交／全游戏接入未启动**。下一实施批为规范 B01 共享主题、材料与外围生命周期，再接正式图像身份与真实世界卡；既有交互框架、规则与两项技能禁令保持。具体程序职责以当前 spec 为准，不把同源图像工作台误写成已接 Session。
+
+下方旧日期的当前、待审和方向未定描述保留历史背景；本节与 [UI 开工路由](stage-priorities.md#game-ui-routing)优先。
 
 ## 当前：独立界面结构设计，待制作人审阅（2026-11-06）
 

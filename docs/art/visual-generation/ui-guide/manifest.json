@@ -1,0 +1,271 @@
+{
+  "schema": "cthulhu-ui-visual-guide/1",
+  "updated": "2026-11-12",
+  "canonical_standard": "docs/art/visual-generation/ui-art-standard.md",
+  "approved_baseline": "docs/art/visual-generation/ui-approved-baseline.json",
+  "status_rule": "已批准图像 ≠ 每个代码状态已批准；衍生样张不得自动升为母版。",
+  "exhibits": [
+    {
+      "id": "G04",
+      "image": "images/overview-annotated.png",
+      "title": "画面主次：客体、决定、环境",
+      "status": "获准截图·文档标注",
+      "rules": "A01 / A02",
+      "caption": "编号定位视觉职责；游戏里的文字、立绘与材料均来自原始获准截图。",
+      "provenance": "1600×1160；源图1920×1080等比缩至1440×810；棕色标记只属于文档。",
+      "sources": [
+        "docs/art/visual-generation/ui-study/evidence/02-twelve-worlds.png",
+        "docs/art/visual-generation/ui-study/study.gd"
+      ],
+      "not_for": "不是可直接覆盖游戏的背景素材；不作为挪动控件的授权。",
+      "image_sha256": "0cf61e1dd4fcbc609aa72afc09dedaf25fe7356fe767d7ba19858c07ed9dfdac"
+    },
+    {
+      "id": "T01",
+      "image": "images/type-approved.png",
+      "title": "字体实物：实际字号与过滤",
+      "status": "现有原生实现复现",
+      "rules": "A05",
+      "caption": "标题用粗印像素，正文与数字保持完整笔形；不让像素标题决定整幅图像的过滤。",
+      "provenance": "1920×1080原生Godot板；逻辑字号以图注为准。",
+      "sources": [
+        "docs/art/visual-generation/ui-study/painted_material.gd",
+        "docs/art/visual-generation/ui-study/type/README.md",
+        "docs/art/visual-generation/ui-guide/specimens.gd"
+      ],
+      "not_for": "不证明全游戏缺字覆盖、大字模式和每个长名称均已验证。",
+      "image_sha256": "337d6efea8c3592f7499840fea8dd953918e4ddd6a68e5e5b2092abf35fe899d"
+    },
+    {
+      "id": "G05",
+      "image": "images/palette-material.png",
+      "title": "参数与材料：颜色只是绘画的起点",
+      "status": "源码色值＋获准截图局部",
+      "rules": "A06",
+      "caption": "上排为代码端点，下排为实际卡边、压纹与主按钮；不能只取端点做纯色界面。",
+      "provenance": "1600×1000；实机局部2×最近邻放大，未重新绘制。",
+      "sources": [
+        "docs/art/visual-generation/ui-study/painted_material.gd",
+        "docs/art/visual-generation/ui-study/painted_card.gd",
+        "docs/art/visual-generation/ui-study/evidence/02-twelve-worlds.png"
+      ],
+      "not_for": "不是一张用于整页贴底的图，不添加旧规范颜色。",
+      "image_sha256": "c497c571f8a7cf4c0e2bb56981551d9fab217644a2973b6380f795f5da4e6f0a"
+    },
+    {
+      "id": "K01",
+      "image": "images/cards-approved.png",
+      "title": "画牌实物：完整图窗与焦点",
+      "status": "现有原生组件复现",
+      "rules": "A07 / A08",
+      "caption": "同一张星球立绘比较普通与焦点状态；角部短亮边与卡头印记表达关注，主体RGB不改。",
+      "provenance": "1920×1080；tide / 原型0 / sid0 / 色板0 / 世界种子1339。非Session正式对象映射。",
+      "sources": [
+        "docs/art/visual-generation/ui-study/painted_card.gd",
+        "docs/art/visual-generation/ui-study/painted_material.gd",
+        "docs/art/visual-generation/procedural-study/native-evidence/tide/parameters.json",
+        "docs/art/visual-generation/ui-guide/specimens.gd"
+      ],
+      "not_for": "不允许将所有经营/资料页改成卡扇，也不承诺全部长名都适合母尺寸。",
+      "image_sha256": "de63e801174b3c36a1913088311c856da734ce0a178509bb82dc5cb63033cbc9"
+    },
+    {
+      "id": "C01",
+      "image": "images/controls-approved.png",
+      "title": "按钮实物：角色与状态",
+      "status": "代码复现·非逐态审美验收",
+      "rules": "A09",
+      "caption": "normal、hover、focus、pressed、disabled并置。真实focus含正常底材与焦点叠层，不能用hover图片冒充。 建立状态后重施母版皮肤，排除正式 focus 回调的旧框，不证明该回调已正式迁移。",
+      "provenance": "1920×1080原生Godot截图；直接复用生产Button宿主后施加母版材料。",
+      "sources": [
+        "docs/art/visual-generation/ui-study/painted_material.gd",
+        "src/presentation/production/locked_controls.gd",
+        "docs/art/visual-generation/ui-guide/specimens.gd"
+      ],
+      "not_for": "未覆盖的继承冷蓝/禁用文字等残留不作为新主题色依据；不要将本页所有状态宣称获准。",
+      "image_sha256": "e3959126b0c618861bd8b8cfd3271258f0c03ac3cf639a4d7898a9b575150aab"
+    },
+    {
+      "id": "X03",
+      "image": "images/controls-extension.png",
+      "title": "按钮状态补齐：与实际继承结果对照",
+      "status": "衍生设计·待制作人审阅",
+      "rules": "A09",
+      "caption": "三种角色、五种状态沿用母版底材，明确补齐焦点／按下／禁用文字；禁用原因保留可读。与C01对照识别需要统一的继承残留。",
+      "provenance": "1920×1080原生Godot板；常态／焦点／按下#d9d7be，悬停#eee8cc，禁用#b4bdaa且不透明。仅存在于图册脚本。",
+      "sources": [
+        "docs/art/visual-generation/ui-guide/specimens.gd",
+        "docs/art/visual-generation/ui-study/painted_material.gd",
+        "src/presentation/production/locked_controls.gd"
+      ],
+      "not_for": "是同源补齐样例，不是已批准新token；不证明生产状态回调已换肤，不改变命中、焦点或资格规则。",
+      "image_sha256": "cdcc1039d18294f3b5e7ca876c4b96397da20540c4a8893a647f5dfc52679cce"
+    },
+    {
+      "id": "X01",
+      "image": "images/fields-extension.png",
+      "title": "输入与选择：同源补齐示例",
+      "status": "衍生设计·待制作人审阅",
+      "rules": "A09",
+      "caption": "展示输入、选择、列表等母版未定型控件的具体做法；只补视觉，不改变操作或业务。",
+      "provenance": "1920×1080原生Godot板；仅存在于图册脚本。",
+      "sources": [
+        "docs/art/visual-generation/ui-guide/specimens.gd",
+        "docs/art/visual-generation/ui-study/painted_material.gd"
+      ],
+      "not_for": "未获准，不直接升级为生产组件或全局token；没有新增玩法。",
+      "image_sha256": "49d88e451dffe8dadd681f27d92252d7396e49f817d7ab5337996738a027c08c"
+    },
+    {
+      "id": "X02",
+      "image": "images/fields-feedback.png",
+      "title": "反馈与限制：清晰表达优先",
+      "status": "衍生设计·待制作人审阅",
+      "rules": "A09 / V02 / V04",
+      "caption": "警告、错误、锁定与空态用同源材料和完整文字表达；氛围不能掩盖必要原因。",
+      "provenance": "1920×1080原生Godot板；非真实Session结算。",
+      "sources": [
+        "docs/art/visual-generation/ui-guide/specimens.gd",
+        "docs/art/visual-generation/ui-study/painted_material.gd"
+      ],
+      "not_for": "不定义费用、门槛或新状态规则；颜色与组件仍待实际审阅。",
+      "image_sha256": "22268f43c262e142b5b15519d86bafd6ec3cd887495dbce9871799b404a86a3d"
+    },
+    {
+      "id": "G06",
+      "image": "images/layers-reading.png",
+      "title": "图层顺序与阅读保护",
+      "status": "获准截图标注＋结构示意",
+      "rules": "A11 / A12",
+      "caption": "雾在暗膜和卷形前方，整套外围仍在交互内容下方；保护区必须适配实际文本与弹层。",
+      "provenance": "1600×1080；金色标出shader当前四角quiet box，其余框与右图是解释层。",
+      "sources": [
+        "docs/art/visual-generation/ui-study/peripheral_fields.gdshaderinc",
+        "docs/art/visual-generation/ui-study/peripheral_atmosphere.gd",
+        "docs/art/visual-generation/ui-study/study.gd",
+        "docs/art/visual-generation/ui-study/evidence/02-twelve-worlds.png"
+      ],
+      "not_for": "右侧纯色层块不是游戏资产；中央保护区扩展尚未实现。",
+      "image_sha256": "f1a633ff7215b27fb21ddf11ca0d36663cfaa821303e2d40da2c6edd32d3fb73"
+    },
+    {
+      "id": "G07",
+      "image": "images/motion-attachment.png",
+      "title": "固定观察窗：眼与载体同动",
+      "status": "获准动态抽帧",
+      "rules": "A11 / V06",
+      "caption": "0/6/12/18秒比较同一屏幕裁切；雾遮住整个表面，眼不独立漂移。",
+      "provenance": "1600×950；从获准无损WebP抽帧，2×最近邻放大。",
+      "sources": [
+        "docs/art/visual-generation/ui-study/evidence/peripheral-motion.webp",
+        "docs/art/visual-generation/ui-study/peripheral_tendrils.gd",
+        "docs/art/visual-generation/ui-study/peripheral_surface.gdshader",
+        "docs/art/visual-generation/ui-study/peripheral_veil.gdshader"
+      ],
+      "not_for": "四张静帧不能替代24秒完整动态，也不证明正式运行性能。",
+      "image_sha256": "9b196965239b019b87ed740e76b97a75cbeb9ef4d00fb1aa43157a444523b51d"
+    }
+  ],
+  "references": [
+    {
+      "id": "R01",
+      "title": "获准母版及证据",
+      "status": "已核对·当前美术基线",
+      "path": "docs/art/visual-generation/ui-approved-baseline.json",
+      "checked_date": "2026-11-12",
+      "sha256": "da06297b33d28854fc2a8df833f5b661fdfc0da522d87346e5e76104f0ecb10e",
+      "allowed": "按本清单的已批准图像、动态、字体、源码识别母版；引用DEC-064的实际批准范围。",
+      "excluded": "其他未审状态、全游戏接入与生成器全部组合通过。"
+    },
+    {
+      "id": "R02",
+      "title": "现行交互合同",
+      "status": "已核对·功能合同",
+      "path": "docs/specs/ui-interaction.md",
+      "checked_date": "2026-11-12",
+      "sha256": "8e60471b50087bec8cc0c90f589332429c49b021b52fbd507280908398e47db8",
+      "allowed": "locked-interaction-production至current-ui-contract-end及正式交互精修原则；其他现行机制按对应功能引用。",
+      "excluded": "旧echoes-home、F5/D4/V2/V6美术指令、旧tokens、旧视觉待选状态。旧强制视觉引用已纠正。"
+    },
+    {
+      "id": "R03",
+      "title": "原生立绘生成",
+      "status": "已核对·接口合同",
+      "path": "docs/specs/system-art-generation.md",
+      "checked_date": "2026-11-12",
+      "sha256": "7ba7c28ec7e36f0f8fb0b89013cdcb558c74dea103adf11b1e68efb9db28c1e2",
+      "allowed": "原生Godot服务、最终图/中间层、版本/缓存/Session尚未接入的边界。",
+      "excluded": "旧JS/HTML/服务器运行链；工作台成功不等于图像身份或持久化完成。"
+    },
+    {
+      "id": "R04",
+      "title": "当前样板源码与复现",
+      "status": "已核对·限定范围",
+      "path": "docs/art/visual-generation/ui-study/README.md",
+      "checked_date": "2026-11-12",
+      "sha256": "b8ee9eb31052398c533c00b0a14bf7839f89e5ce0fe94395d063ec6a86d3b4eb",
+      "allowed": "当前入口、当前画法、外围动态、原图参数、证据边界；代码仅通过现行母版清单锁定。",
+      "excluded": "before-refinement及astral-gold/ash-paper/violet-glass；历史外部类比不是现行样式标准。"
+    },
+    {
+      "id": "R05",
+      "title": "字体原件与许可",
+      "status": "已核对·限定章节",
+      "path": "docs/art/visual-generation/ui-study/type/README.md",
+      "checked_date": "2026-11-12",
+      "sha256": "1ea2216e23b9e05854656fddc2ed2936d6cf14851eb5a1dcba0dd66b1b8cbb5f",
+      "allowed": "当前字体来源、完整许可证和当前渲染设置；原件指纹见获准清单。",
+      "excluded": "上一轮点阵方案的旧正文尺寸与试验建议；该节明确标历史。"
+    },
+    {
+      "id": "R06",
+      "title": "生产组件源",
+      "status": "已核对·实际实现，不自动成为视觉规则",
+      "path": "src/presentation/production/locked_controls.gd",
+      "checked_date": "2026-11-12",
+      "sha256": "72ba01fa6d568c49c1a9b0dda51debe4f1a759c250b5c305eb37adb484b6489c",
+      "allowed": "按钮真实状态/焦点绘制的宿主，C01暴露其实际继承结果；正式输入结构保持。",
+      "excluded": "残留冷蓝、旧字色或默认控件并非获准新主题，不从生产旧样式反推美术标准。"
+    },
+    {
+      "id": "R07",
+      "title": "旧交互设计",
+      "status": "条件有效·仅行为与未被替代几何",
+      "path": "docs/art/presentation-rebuild/interface-design.md",
+      "checked_date": "2026-11-12",
+      "sha256": "bfe3fd86237f9ab335fa61f8ea4d2e12b1b03fa78d4a7997320dd76425e6d3c7",
+      "allowed": "仅当前交互spec明确引用的§19.1当地几何、§19.2尚有效空间/返回关系；不作为本图册美术输入。",
+      "excluded": "旧诸界三世界构图、顶栏保留品牌、§6和§15–§18视觉候选、图片/字体/颜色建议。"
+    },
+    {
+      "id": "R08",
+      "title": "旧美术规范",
+      "status": "形式参考·具体内容禁用",
+      "path": "docs/art/echoes-ui/visual-system.md",
+      "checked_date": "2026-11-12",
+      "sha256": "b145d311378aebbfe6511a748cc2d4af942b0db25b233fa84f67fd36aec7f609",
+      "allowed": "仅通过脚本统计标题层级和图/表/代码/链接的组织：523行、40标题、5嵌图、2表、2代码块、33带链接行。",
+      "excluded": "不读取或复制具体规范内容、数值、控件、图、色彩、字体、动效；不作为当前制作依据。"
+    },
+    {
+      "id": "R09",
+      "title": "当前开工路由",
+      "status": "已核对·最新段优先",
+      "path": "docs/progress/stage-priorities.md",
+      "checked_date": "2026-11-12",
+      "sha256": "22a55284da1adf628147537bf2b87f24a22fa6a4c4e678a85480d89b3d7a4932",
+      "allowed": "game-ui-routing后2026-11-12当前段及持续技能禁令。",
+      "excluded": "后续历史路由的旧视觉规范入口、旧待审/待选状态。"
+    }
+  ],
+  "builders": [
+    {
+      "path": "docs/art/visual-generation/ui-guide/specimens.gd",
+      "sha256": "e206c3ea40d30274d304c0464f6847032d24d7293ed6604b5e9a29eabfdd9285"
+    },
+    {
+      "path": "docs/art/visual-generation/ui-guide/build_guide.py",
+      "sha256": "7a226cca6d3210e68202e719ba3b90228a72239fec9f0eb20b9e0909ae418207"
+    }
+  ]
+}
