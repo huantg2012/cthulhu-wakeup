@@ -1,0 +1,17 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+TABLE_CHECK deck_18_objects_24_verbs true
+TABLE_CHECK one_verb_many_targets true
+TABLE_CHECK dropped_object_read_only true
+TABLE_CHECK cult_order_inline true
+TABLE_CHECK cult_order_actual_submit true
+TABLE_CHECK world_pile_restored true
+TABLE_CHECK maintenance_inline_supply true
+TABLE_CHECK relic_target_selects_formal_command true
+TABLE_CHECK anchor_all_required_slots_on_play true
+TABLE_CHECK missing_anchor_conditions_disabled true
+TABLE_CHECK real_dream_candidate true
+TABLE_CHECK selected_choices_enable_execution true
+TABLE_CHECK real_action_and_receipt_inline true
+TABLE_CHECK recall_preserves_hand true
+TABLE_CHECKS 14

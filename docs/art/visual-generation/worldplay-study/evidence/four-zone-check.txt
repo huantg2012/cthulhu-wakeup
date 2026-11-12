@@ -1,0 +1,27 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+FOUR_ZONE main_card_removed_from_hand_no_pages true
+FOUR_ZONE all_cards_in_continuous_fan true
+FOUR_ZONE last_card_reachable true
+FOUR_ZONE zones_0_1_separate true
+FOUR_ZONE zones_0_2_separate true
+FOUR_ZONE zones_0_3_separate true
+FOUR_ZONE zones_1_2_separate true
+FOUR_ZONE zones_1_3_separate true
+FOUR_ZONE zones_2_3_separate true
+FOUR_ZONE readonly_power_deck true
+FOUR_ZONE readonly_power_no_execute_dock_present true
+FOUR_ZONE readonly_power_guarded true
+FOUR_ZONE readonly_relic_deck true
+FOUR_ZONE readonly_relic_no_execute_dock_present true
+FOUR_ZONE readonly_relic_guarded true
+FOUR_ZONE readonly_person_deck true
+FOUR_ZONE readonly_person_no_execute_dock_present true
+FOUR_ZONE readonly_person_guarded true
+FOUR_ZONE return_restores_execution_draft true
+FOUR_ZONE cult_permanent_main_card true
+FOUR_ZONE search_reaches_card_without_paging true
+FOUR_ZONE cult_order_remains_executable true
+FOUR_ZONE return_restores_cult_and_search true
+FOUR_ZONE dock_remains_above_history true
+FOUR_ZONE_CHECKS 24

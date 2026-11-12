@@ -7,6 +7,12 @@ changed-this-slice: true
 
 # 技术边界与可实施性
 
+## 世界玩法卡片样板（2026-11-12）
+
+`docs/art/visual-generation/worldplay-study/` 是独立原生样板，继承 `round_view.gd` 的 Session、顶栏、外围、字体与程序立绘。`worldplay_view.gd` 组织固定主卡、查看／执行桌面、叠牌与独立常驻底栏；`hand_fan.gd` 复用获准载体的手势与信号，以完整牌组的有界间距分配取代邻牌窗口：每张牌保留实体边缘，首尾外缘固定，展开位置随观察对象移动，交换前后层时先分开牌面。双侧名签随露出宽度承接横排文字；卡纸不透明。横向滑动使用事件坐标，向上出牌采用原生拖放。`study_card.gd` 与 `table_drop.gd` 使用原生卡身及拖放接收，`card_illustration.gd` 提供可替换的程序符画占位。行为目录来自公开投影与 ActionCatalog，在视图层按动词归并目标，不改变行动身份、规则或 CSV。
+
+草稿通过原选择器生成字段，具体配置用 `Session.preview_action` 复核，再显式 `execute_action` 或 `set_plan`；结果由公开投影及正式 Feedback 构成桌面回执。对象牌保持只读；底栏三类图鉴使用独立只读目录，UI 和样板命令入口双重阻止提交，返回恢复原场景草稿。目录构建不运行旧的组合穷举：确定性全目录可用性仍由 `ISSUE-WORLDPLAY-ACTION-AVAILABILITY` 跟踪，不将布局更新当作该架构问题修复。启动器复制五世界测试档到独立 user 目录，详情见[样板记录](art/visual-generation/worldplay-study/README.md)及[交互合同](specs/ui-interaction.md#worldplay-card-study)。
+
 ## 正式界面美术接入（2026-11-12）
 
 `production/game_root.tscn` 的 `GameRoot/Presentation/CanvasLayer/OverlayRoot` 继续持有唯一正式 Session，原启动器使用同一入口。其常驻 `PaintedEnvironment` 位于重建的 `Perception` 与弹层 `Decision` 之下；外围由 `production/painted/peripheral_atmosphere.gd` 管连续时钟、阅读保护和强度，不接触 Session 或输入。

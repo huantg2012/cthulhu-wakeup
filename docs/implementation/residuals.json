@@ -3,6 +3,23 @@
   "scope": "只登记未规划/待作者决策/阻塞性的真正未决；普通已排期工作记录在taskReviews.planned，不混入items统计。",
   "items": [
     {
+      "id": "ISSUE-WORLDPLAY-ACTION-AVAILABILITY",
+      "title": "世界玩法操作资格查询超时后无法确定可用性（高优先级程序／架构缺陷）",
+      "originTask": "TASK-UI",
+      "owner": "code",
+      "category": "unplanned",
+      "status": "open",
+      "description": "2026-11-12 制作人试玩发现，显示「待选对象」的操作进入准备后无法执行。可从五世界样板进入灰海，查看权能中的任命、迁引，等待后台核对。既有记录显示这两项在 15 秒内未得出结论，样板停止查询并将不确定性留给玩家试选。这项记录证明查询未收敛，未判明两项实际资格。制作人要求消除这种终态，按程序／架构缺陷处理。",
+      "nextAction": "分析现有候选查询的枚举成本，修正资格查询以在实际内容规模下得出确定结论，并与准备、提交共用现有资格规则。用五世界灰海复现及大规模候选复核：存在合法组合时给出「可准备」，确定无合法组合时给出「缺条件」或明确的规则限制，具体选项的核对与执行一致，查询期间操作流畅。验收要求消除「待选对象」及任何等价的不确定终态，超时不能冒充缺条件。",
+      "sources": [
+        "docs/art/visual-generation/worldplay-study/action_model.gd",
+        "docs/art/visual-generation/worldplay-study/evidence/model-check.json",
+        "docs/qa/ui-manifest/saves/local-contacts-five-worlds.json",
+        "src/presentation/action_availability.gd"
+      ],
+      "blockedTasks": []
+    },
+    {
       "id": "ISSUE-BALANCE-NATURAL-SOURCES",
       "title": "整体自然链与策略验收转为长期待验，不再阻塞当前阶段",
       "originTask": "TASK-BALANCE",
@@ -1557,7 +1574,9 @@
           ]
         }
       ],
-      "issues": []
+      "issues": [
+        "ISSUE-WORLDPLAY-ACTION-AVAILABILITY"
+      ]
     },
     {
       "task": "TASK-BALANCE",

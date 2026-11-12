@@ -1,0 +1,61 @@
+{
+	"cancelled_readers": 3,
+	"deferred": [
+		{
+			"available": false,
+			"id": "POWER_APPOINT",
+			"reason": "组合较多，尚未确定可用性；选定具体对象后由正式准备核对。"
+		},
+		{
+			"available": false,
+			"id": "POWER_TRANSFER",
+			"reason": "组合较多，尚未确定可用性；选定具体对象后由正式准备核对。"
+		}
+	],
+	"elapsed_ms": 15357,
+	"failures": [],
+	"observed_readers": 22,
+	"rows": 33,
+	"samples": [
+		{
+			"elapsed_ms": 1010,
+			"finished": 18,
+			"groups": {
+				"anchor": 3,
+				"power": 2,
+				"prayer": 1,
+				"relic": 12
+			}
+		},
+		{
+			"elapsed_ms": 3018,
+			"finished": 30,
+			"groups": {
+				"activity": 5,
+				"anchor": 3,
+				"power": 9,
+				"prayer": 1,
+				"relic": 12
+			}
+		},
+		{
+			"elapsed_ms": 10018,
+			"finished": 31,
+			"groups": {
+				"activity": 6,
+				"anchor": 3,
+				"power": 9,
+				"prayer": 1,
+				"relic": 12
+			}
+		}
+	],
+	"states": {
+		"可准备": 19,
+		"已建立": 3,
+		"待回应": 1,
+		"待选对象": 2,
+		"查看仪式": 1,
+		"缺条件": 7
+	}
+}

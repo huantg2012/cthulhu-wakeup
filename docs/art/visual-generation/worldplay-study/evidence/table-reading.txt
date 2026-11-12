@@ -1,0 +1,7 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+READING_CHECK prayer_choices_and_inline 2 true
+READING_CHECK history_returns_card true
+READING_CHECK no_mutation true
+WORLDPLAY_CAPTURE /Users/yilungao/.codex/worktrees/ui-art-production/cthulhu-wakeup/docs/art/visual-generation/worldplay-study/evidence/table-person.png 0
