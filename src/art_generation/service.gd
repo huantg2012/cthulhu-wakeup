@@ -39,35 +39,78 @@ func generate(request: Dictionary, options: Dictionary) -> Dictionary:
 	busy=true
 	var started=Time.get_ticks_msec()
 	var w=catalog.world_recipe(request)
-	var key=JSON.stringify([REVISION,request.template,request.seed,request.style,request.palette])
-	var reused=cache_key==key and not cached_context.is_empty()
-	if not reused:
-		progress.emit("生成原作星球与天空…")
-		var source=await celestial.generate(w)
-		var planet=await post.apply(source.world,w,null,false)
-		progress.emit("构建教团的二维轮廓与材质场…")
-		var rule=catalog.cult_rule(w)
-		var draw=Tide.sanctuary(w.worldSeed,w) if w.archetype==0 else Cults.newCult(w,rule)
-		draw.p.world=w
-		draw.p.styleSid=w.styleSid
-		if w.archetype==0:_tide_palette(draw.p,w)
-		var passes=await surfaces.render(draw.p)
-		var final=await post.apply(passes.lit,w,source.sky,true)
-		cached_context={"world_image":planet,"sky_image":source.sky,"cult_image":final,"cult_passes":passes,"rule":rule,"world_recipe":w,"request":request.duplicate(true),"world_params":source.params,"cult_features":draw.features}
-		cache_key=key
+	var reused = cache_key == _key(request) and cached_context.has("cult_passes")
+	await _ensure_world(request, w)
+	await _ensure_cult(w)
 	var items=[]
 	for i in int(count):
 		progress.emit("绘制人物 %d/%d…"%[i+1,count])
 		await get_tree().process_frame
-		var recipe=People.recipe((int(person_seed)+i)&0xffffffff,w,backgrounds[i%backgrounds.size()])
-		var draw=People.generate(recipe)
-		var passes=await surfaces.render(draw.p)
-		progress.emit("人物 %d/%d：原作 NPR 后期…"%[i+1,count])
-		var final=await post.apply(passes.lit,w,cached_context.sky_image,true)
-		items.append({"image":final,"passes":passes,"recipe":recipe,"features":draw.features})
+		items.append(await _draw_person((int(person_seed)+i)&0xffffffff, w, backgrounds[i%backgrounds.size()]))
 	busy=false
 	progress.emit("生成完成 · %.1f 秒"%((Time.get_ticks_msec()-started)/1000.0))
 	return {"context":cached_context,"people":items,"reused_world":reused,"duration_ms":Time.get_ticks_msec()-started,"revision":REVISION,"options":options.duplicate(true)}
+## A single final illustration for a formal object slot; the workbench keeps its passes.
+func generate_subject(kind: String, request: Dictionary, options := {}) -> Dictionary:
+	if busy: return {"error": "生成器正忙"}
+	var error: String = catalog.validate(request)
+	if not error.is_empty(): return {"error": error}
+	if kind not in ["world", "cult", "person"]: return {"error": "未知立绘种类"}
+	var background: Dictionary = {}
+	if kind == "person":
+		var seed_value = options.get("seed", -1)
+		if not People.is_integer(seed_value) or seed_value < 0 or seed_value > 0xffffffff:
+			return {"error": "人物种子须为 uint32"}
+		background = catalog.formal_background(request.template, str(options.get("profile", "")))
+		if background.is_empty(): return {"error": "当前世界不支持这个人物背景"}
+	busy = true
+	var w: Dictionary = catalog.world_recipe(request)
+	await _ensure_world(request, w)
+	var image: Image
+	match kind:
+		"world": image = cached_context.world_image
+		"cult":
+			await _ensure_cult(w)
+			image = cached_context.cult_image
+		"person":
+			var person: Dictionary = await _draw_person(int(options.seed), w, background)
+			image = person.image
+	busy = false
+	return {"image": image, "revision": REVISION}
+
+func _key(request: Dictionary) -> String:
+	return JSON.stringify([REVISION, request.template, request.seed, request.style, request.palette])
+
+func _ensure_world(request: Dictionary, w: Dictionary) -> void:
+	var key := _key(request)
+	if cache_key == key and not cached_context.is_empty(): return
+	progress.emit("生成原作星球与天空…")
+	var source: Dictionary = await celestial.generate(w)
+	var planet: Image = await post.apply(source.world, w, null, false)
+	cached_context = {"world_image": planet, "sky_image": source.sky, "world_recipe": w,
+		"request": request.duplicate(true), "world_params": source.params}
+	cache_key = key
+
+func _ensure_cult(w: Dictionary) -> void:
+	if cached_context.has("cult_image"): return
+	progress.emit("构建教团的二维轮廓与材质场…")
+	var rule: Dictionary = catalog.cult_rule(w)
+	var draw: Dictionary = Tide.sanctuary(w.worldSeed, w) if w.archetype == 0 else Cults.newCult(w, rule)
+	draw.p.world = w
+	draw.p.styleSid = w.styleSid
+	if w.archetype == 0: _tide_palette(draw.p, w)
+	var passes: Dictionary = await surfaces.render(draw.p)
+	var final: Image = await post.apply(passes.lit, w, cached_context.sky_image, true)
+	cached_context.merge({"cult_image": final, "cult_passes": passes, "rule": rule, "cult_features": draw.features})
+
+func _draw_person(seed_value: int, w: Dictionary, background: Dictionary) -> Dictionary:
+	var recipe = People.recipe(seed_value, w, background)
+	var draw = People.generate(recipe)
+	var passes: Dictionary = await surfaces.render(draw.p)
+	progress.emit("人物：原作 NPR 后期…")
+	var final: Image = await post.apply(passes.lit, w, cached_context.sky_image, true)
+	return {"image": final, "passes": passes, "recipe": recipe, "features": draw.features}
+
 func _tide_palette(plan,w):
 	if w.palette==0:return
 	for e in plan.emitters:e.color=_palette(e.color,w)

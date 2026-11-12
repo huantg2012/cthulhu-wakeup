@@ -174,6 +174,8 @@ func render_comparison(host, box: VBoxContainer, entries: Array) -> void:
 		if subject.has("domain"): _pair(host, column, "世界", host.title(str(subject.domain)))
 		match kind:
 			"person":
+				if host is RefCounted and host.has_method("_person_art"):
+					host._person_art(column, id, Vector2(96, 96))
 				_pair(host, column, "职责", _role(host, subject))
 				_pair(host, column, "处境", _state(subject.get("status", "未掌握")))
 				column.add_child(host.label(_execution_status(host, subject)))
@@ -235,7 +237,10 @@ func _object_link(host, box: VBoxContainer, title_value: String, detail: String,
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	box.add_child(card)
 	var sign: String = "relic" if kind == "relic" else icon
-	root._ui.icon(card, "SubjectSign", sign, Rect2(8, 12, 32, 32))
+	if kind in ["person", "world", "cult"] and root.has_method("_object_art"):
+		root._object_art(card, "ObjectThumbnail", Rect2(8, 12, 32, 32), kind, id)
+	else:
+		root._ui.icon(card, "SubjectSign", sign, Rect2(8, 12, 32, 32))
 	var title_line: Label = root._text(card, title_value, Rect2(48, 4, 70, 23), 16)
 	var detail_line: Label = root._text(card, detail, Rect2(48, 29, 70, 22), 13, root._ui.get_script().get_script_constant_map().MUTED)
 	for line: Label in [title_line, detail_line]:
@@ -899,7 +904,7 @@ func _attention(host, box: VBoxContainer, id: String) -> void:
 		_pair(host, box, {"focus":"关注世界", "members":"正式成员", "people":"临时人物"}[key], str(values.get(key, 0)) + " / " + str(limits.get(key, "?")))
 	for w: Dictionary in host.projection.get("domains", []):
 		if w.get("focused", false):
-			_object_link(host, box, host.title(w.id), "已关注 · 场景示意", "world", w.id, "world")
+			_object_link(host, box, host.title(w.id), "已关注", "world", w.id, "world")
 			if values.get("scheduled_release", {}).has(w.id):
 				box.add_child(host.label("已安排释放 · 最早第 %s 轮，仍承担责任则延后" % values.scheduled_release[w.id]))
 			else: _action(host, box, "安排下轮释放", "attention/release_focus", {"domain":w.id})

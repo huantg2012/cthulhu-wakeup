@@ -265,7 +265,7 @@ func render_selector(box: VBoxContainer, field: Dictionary, selection: Dictionar
 			captions.append(host._actions._option_title(self, option))
 	var expanded: bool = draft.get("expanded_field", "") == key
 	var caption := str(field.label).replace("时空", "世界") + " · " + ("请选择" if captions.is_empty() else "、".join(captions))
-	var opener := button(caption + ("  ▴" if expanded else "  ▾"), func() -> void:
+	var opener := button(caption + ("  ↑" if expanded else "  ↓"), func() -> void:
 		draft.expanded_field = "" if expanded else key
 		render_workbench())
 	opener.name = "Field_" + key
@@ -551,12 +551,15 @@ func _render_subject(page: Dictionary) -> void:
 		"relics": _render_relic_comparison(id)
 		"self": _render_progress()
 		"ending":
+			_subject_stamp(host._body, "history", "封存印记")
 			host._line(host._body, "结局 · " + describe(projection.outcome), 19, UI.GOLD_HI)
 			if projection.has("ending_reason"):
 				host._line(host._body, "原因 · " + describe(projection.ending_reason))
 			host._line(host._body, "第 %s 轮 · 最终苏醒 %s" % [projection.turn, projection.awakening])
 			host._line(host._body, "本局只读。可查阅已知资料，或返回菜单开始新局。", 16, UI.MUTED)
-			host._body.add_child(button("回顾编年史", show_subject.bind("history", "")))
+			var records := button("回顾编年史", show_subject.bind("history", ""))
+			records.name = "ReviewEndingHistory"
+			host._body.add_child(records)
 			host._body.add_child(button("返回游戏菜单", host._show_menu))
 		"comparison": host._views.render_comparison(self, host._body, _comparison)
 		"cults":
@@ -568,9 +571,9 @@ func _render_subject(page: Dictionary) -> void:
 	if kind in ["person", "relic", "anchor"] and not id.is_empty() and not _reading_origin.get("action", false):
 		host._body.add_child(button("留作对照", _pin_comparison.bind(kind, id)))
 		if not _comparison.is_empty(): host._body.add_child(button("查看对照", show_subject.bind("comparison", "")))
-	var caption := str(page.get("return_caption", "返回当前场景 ↩"))
-	if _reading_origin.get("action", false): caption = "返回行动 ↩"
-	if page.has("original_record"): caption = "返回原记录 ↩"
+	var caption := str(page.get("return_caption", "返回当前场景 ←"))
+	if _reading_origin.get("action", false): caption = "返回行动 ←"
+	if page.has("original_record"): caption = "返回原记录 ←"
 	host._footer_button("ReturnSubject", caption, back).grab_focus()
 	_restore_page(page)
 	scan_candidates()
@@ -579,7 +582,7 @@ func _person_art(parent: VBoxContainer, id: String, extent: Vector2) -> void:
 	var slot := Control.new()
 	slot.custom_minimum_size.y = extent.y
 	parent.add_child(slot)
-	host._ui.image(slot, "PersonPlaceholder", Rect2(Vector2.ZERO, extent), host._interaction.picture("person_portrait")).set_meta("subject_id", id)
+	host._object_art(slot, "PersonArt", Rect2(Vector2.ZERO, extent), "person", id, true)
 
 func _render_people(page: Dictionary) -> void:
 	var directory := Layout.box(Rect2(82, 400, 350, 296))
@@ -601,7 +604,7 @@ func _render_people(page: Dictionary) -> void:
 	if id.is_empty():
 		host._reference(host._surface, "NoPerson", "尚无匹配人物。", Rect2(487, 294, 500, 49), 17, UI.MUTED)
 		return
-	host._ui.image(host._surface, "DirectoryPortrait", Layout.box(Rect2(487, 294, 270, 365)), host._interaction.picture("person_portrait")).set_meta("subject_id", id)
+	host._object_art(host._surface, "DirectoryPortrait", Layout.box(Rect2(487, 294, 270, 365)), "person", id, true)
 	host._reference(host._surface, "DirectoryPerson", title(id), Rect2(787, 294, 731, 47), 29, UI.BONE, true, 2)
 	var reading: VBoxContainer = host._surface_column(host._surface, Rect2(787, 393, 731, 303))
 	var person_tab: String = str(page.get("person_tab", "duties"))
@@ -632,10 +635,12 @@ func _render_relic_comparison(domain: String) -> void:
 		var column := VBoxContainer.new()
 		column.custom_minimum_size.x = 300
 		grid.add_child(column)
-		var figure := Control.new()
+		var figure := Panel.new()
 		figure.custom_minimum_size.y = 90
+		figure.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		figure.add_theme_stylebox_override("panel", UI.Paint.reading_plate(0.72))
 		column.add_child(figure)
-		host._ui.icon(figure, "RelicPlaceholder", "relic", Rect2(0, 0, 90, 90))
+		host._ui.icon(figure, "RelicImprint", "relic", Rect2(17, 13, 64, 64), UI.BOUND)
 		host._line(column, title(item.id), 20)
 		var definition: Dictionary = session.catalog.display_tables.relics.get(str(item.get("type", "")), {})
 		host._line(column, str(definition.get("anchor_role", "")), 14, UI.MUTED)
@@ -651,6 +656,7 @@ func _render_progress() -> void:
 	var current := _summary_column(columns, "当前苏醒", str(projection.awakening))
 	host._line(current, host._views.next_power_hint(session.catalog, int(projection.awakening)), 14)
 	var rest := button("查看敛息与恢复代价", request_rest)
+	rest.name = "ReviewRest"
 	rest.disabled = projection.phase != "actions" or projection.get("terminal", false)
 	current.add_child(rest)
 	var sources := _summary_column(columns, "现实依托", "苏醒来源")
@@ -666,15 +672,21 @@ func _summary_column(parent: HBoxContainer, eyebrow: String, value: String) -> V
 	parent.add_child(column)
 	host._line(column, eyebrow, 13, UI.CYAN)
 	var amount: Label = host._line(column, value, 25, UI.GOLD)
-	amount.add_theme_font_override("font", host._ui.reference_font(true, 1.0))
+	var numeric := value.is_valid_int()
+	amount.add_theme_font_override("font", host._ui.reference_font(not numeric))
+	amount.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR if numeric else CanvasItem.TEXTURE_FILTER_NEAREST
 	return column
+
+func _subject_stamp(parent: VBoxContainer, icon: String, node_name: String) -> void:
+	var stamp := Control.new()
+	stamp.custom_minimum_size.y = 48
+	stamp.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	parent.add_child(stamp)
+	host._ui.icon(stamp, node_name, icon, Rect2(3, 3, 42, 42), UI.BOUND)
 
 func _render_relic_icon(id: String) -> void:
 	if host._views._find(self, "relics", id).is_empty(): return
-	var symbol := Control.new()
-	symbol.custom_minimum_size.y = 56
-	host._body.add_child(symbol)
-	host._ui.icon(symbol, "RelicSymbol", "relic", Rect2(0, 0, 46, 46))
+	_subject_stamp(host._body, "relic", "RelicSymbol")
 
 func _open_cult(domain: String) -> void:
 	var page := _page_position(_subject)
@@ -849,6 +861,7 @@ func _render_budget() -> void:
 		var state: String = "本轮停供" if id in plan.refuse_anchors else ("轮末待结算" if forecast.is_empty() else ("%s 信仰" % forecast.get("fee", 0) if reason.is_empty() else host._views._economy_reason(self, reason)))
 		var caption := "%d · %s" % [known.find(id) + 1, title(id)]
 		var entry := button("", _pick_budget_anchor.bind(id))
+		entry.name = "BudgetAnchor_" + id.replace("/", "_")
 		entry.custom_minimum_size.y = 64
 		entry.tooltip_text = caption + " · " + state
 		host._ui.select_entry(entry, id == _budget_anchor)
@@ -871,7 +884,7 @@ func _render_budget() -> void:
 		var label: Label = host._line(words, caption, 16, UI.GOLD_HI if id == _budget_anchor else UI.BONE)
 		label.autowrap_mode = TextServer.AUTOWRAP_OFF
 		label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-		host._line(words, state, 14, UI.MUTED)
+		host._line(words, state, 14, UI.RISK if id in plan.refuse_anchors or not reason.is_empty() else UI.MUTED)
 		if id == _budget_anchor:
 			right.add_child(button("查阅锚点", show_subject.bind("anchor", id)))
 			if projection.phase == "actions":
@@ -880,6 +893,7 @@ func _render_budget() -> void:
 				var up := button("上移", _edit_supply.bind(id, -1))
 				var down := button("下移", _edit_supply.bind(id, 1))
 				var toggle := button("恢复供奉" if id in plan.refuse_anchors else "本轮停供", _edit_supply.bind(id, 0))
+				toggle.name = "ToggleSupply"
 				up.disabled = known.find(id) == 0
 				down.disabled = known.find(id) == known.size() - 1
 				for control: Button in [up, down, toggle]:
@@ -949,12 +963,23 @@ func _render_history(page: Dictionary) -> void:
 	var facts: Dictionary = host._views._history_slice(self, filter, offset, 12, str(page.get("query", "")))
 	for fact: Dictionary in facts.facts:
 		var text: Dictionary = preload("res://src/presentation/player_record_text.gd").summarize(self, fact)
-		var caption := "第%s轮 · %s\n%s" % [fact.turn, text.title, text.summary]
-		var entry := button(caption, _select_record.bind(fact.id))
+		var caption := "第%s轮 · %s" % [fact.turn, text.title]
+		var entry := button("", _select_record.bind(fact.id))
 		entry.name = "Record_" + str(fact.id)
-		entry.alignment = HORIZONTAL_ALIGNMENT_LEFT
-		host._ui.select_entry(entry, fact.id == page.get("record", ""))
+		entry.accessibility_name = caption
+		entry.tooltip_text = caption + "\n" + str(text.summary)
+		entry.custom_minimum_size.y = 49 + host._size(0)
 		host._body.add_child(entry)
+		host._ui.select_entry(entry, fact.id == page.get("record", ""))
+		host._ui.icon(entry, "RecordImprint", "history", Rect2(9, 10, 27, 27), UI.BOUND)
+		for line: Label in [
+			host._text(entry, caption, Rect2(44, 3, 70, 22), 16),
+			host._text(entry, str(text.summary), Rect2(44, 25, 70, 22), 14, UI.MUTED),
+		]:
+			line.anchor_right = 1
+			line.offset_right = -12
+			line.autowrap_mode = TextServer.AUTOWRAP_OFF
+			line.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	if facts.facts.is_empty(): host._line(host._body, "没有匹配的已知记录。", 16, UI.MUTED)
 	if offset > 0: host._button(tools, "HistoryNewer", "较新", Rect2(), _history_page.bind(page, offset - 12, "HistoryNewer"))
 	if facts.has_older: host._button(tools, "HistoryOlder", "更早", Rect2(), _history_page.bind(page, offset + 12, "HistoryOlder"))
@@ -1085,7 +1110,9 @@ func _render_anchor_goal(institution: String, focus := "ReturnAnchorGoal") -> vo
 		var part: Array = summary[index]
 		var x: float = 384 + index * 251
 		host._ui.fill(host._surface, "AnchorRule_" + part[0], Layout.box(Rect2(x, 526, 224, 1)), UI.LINE)
-		host._reference(host._surface, "AnchorLabel_" + part[0], part[1], Rect2(x, 535, 224, 30), 16, UI.CYAN, false, 1)
+		var symbol: String = {"Materials":"evidence", "Guardian":"person", "Relic":"relic", "Cult":"cult"}[part[0]]
+		host._ui.icon(host._surface, "AnchorImprint_" + part[0], symbol, Layout.box(Rect2(x + 194, 539, 23, 23)), UI.BOUND)
+		host._reference(host._surface, "AnchorLabel_" + part[0], part[1], Rect2(x, 535, 188, 30), 16, UI.CYAN, false, 1)
 		var value: Label = host._text(host._surface, part[2], Layout.box(Rect2(x, 570, 224, 53)), 16)
 		value.name = "AnchorStatus_" + part[0]
 		value.vertical_alignment = VERTICAL_ALIGNMENT_TOP
@@ -1149,7 +1176,7 @@ func _anchor_details(institution: String, conditions: Array, focus: String) -> v
 	else:
 		host._line(body, "向下查看材料、护持和教团的具体条件。", 14, UI.MUTED)
 		host._actions.RequirementList.render(body, conditions, host._size(16) > 16, host._ui)
-	host._stage_button(host._surface, "ReturnAnchorMaterials", "回到机构 ↩", Rect2(1130, 661, 393, 38), back).grab_focus()
+	host._stage_button(host._surface, "ReturnAnchorMaterials", "回到机构 ←", Rect2(1130, 661, 393, 38), back).grab_focus()
 
 func _resume_anchor_goal(institution: String, focus := "ReturnAnchorGoal") -> Callable:
 	return _restore_anchor_goal.bind(institution, focus, _anchor_return, _anchor_initial.duplicate())

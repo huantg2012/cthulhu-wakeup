@@ -4,7 +4,8 @@ const Paths = preload("res://src/art_generation/rendering/paths.gd")
 const Fields = preload("res://src/art_generation/rendering/field_compiler.gd")
 const MAT = {"hair":1,"leather":2,"canvas":3,"cloth":4,"stone":5,"masonry":6,"water":7,"metal":8,"skin":9}
 const FIELD = {"ridge":1,"flesh":2,"fungus":3,"basalt":4,"frost":5,"prism":6,"sand":7,"flux":8,"shell":9,"bone":10,"ivory":11,"wood":12,"silk":13,"lava":14,"quiet_flux":15}
-var shader_source = FileAccess.get_file_as_string("res://src/art_generation/rendering/surface.gdshader")
+const SurfaceShader = preload("res://src/art_generation/rendering/surface.gdshader")
+var shader_source: String = SurfaceShader.code
 var shader_cache = {}
 var svg_cache = {}
 var progress: Callable

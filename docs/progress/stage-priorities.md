@@ -16,7 +16,7 @@
 4. 现有规则无法决定的新控件／状态／场景适配，按[规范 §9.3](../art/visual-generation/ui-art-standard.md#art-feedback)写入[单一反馈台账](../art/visual-generation/ui-art-feedback.md)，附现场证据并实际交回规范维护 agent；其负责解释、补规则或打样。仅暂停受影响部分，涉及锁定交互或已获准方向的变更再交制作人裁决。
 5. 旧 `echoes-ui/visual-system.md` 和早期探索均只读归档。制作人持续禁令仍有效：禁用 `in-game-ux`、`visual-art-production`，包含副本、附属规则与间接委派。父 agent 将本路由及相关条目传给接手 agent，后者自行读取当前正文。
 
-状态分开：母版审美已获制作人通过；独立样板已实现；正式游戏目前仅已落实本轮点名的游戏内标题移除与轮次左移。其他场景的皮肤、对象图像绑定与生成调度仍待接入，不能因本次 PASS 宣称全游戏完成。具体获准边界见 [DEC-064](decisions-log.md#dec-064)。下方旧日期的“当前”“待选”“待审”只保留当时上下文，不覆盖本节。
+状态分开：母版审美已获制作人通过（[DEC-064](decisions-log.md#dec-064)）。独立 `codex/ui-art-production` 从 `dcaf037` 接入 B01–B10，当前实际范围、实机证据和未验证状态见[逐批交付](../tasks/ui-art-production.md)。正式场景待制作人复审；S03 主场所图见 [UIA-001](../art/visual-generation/ui-art-feedback.md#uia-001--教团当前安排的完整场所图没有独立槽)。下方旧日期的“当前”“待选”“待审”只保留当时上下文，不覆盖本节。
 
 ## 历史路由与前批事实（按日期保留）
 

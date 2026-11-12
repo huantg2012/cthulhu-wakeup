@@ -12,12 +12,17 @@ const InteractionStage = preload("res://src/presentation/production/interaction_
 const PowerStage = preload("res://src/presentation/production/power_stage.gd")
 const Motion = preload("res://src/presentation/ui/motion.gd")
 const Layout = preload("res://src/presentation/production/perception_layout.gd")
+const Paint = preload("res://src/presentation/production/painted/theme.gd")
+const Atmosphere = preload("res://src/presentation/production/painted/peripheral_atmosphere.gd")
+const WindowArt = preload("res://src/presentation/production/painted/object_window.gd")
+const Portraits = preload("res://src/presentation/production/painted/object_portraits.gd")
 const VIEW := Vector2(1280, 720)
 const DISPLAY_SETTINGS := "user://echoes-display.cfg"
 const SAVE_DIRECTORY := "user://production-ui-campaigns"
 const INTERNAL_PHASES := ["between", "evolution", "settlement", "ending"]
 
 var session: RefCounted = Session.new(SAVE_DIRECTORY)
+var display_settings_path := DISPLAY_SETTINGS
 var projection: Dictionary = {}
 var _tasks := TaskView.new(self)
 var _world_management := WorldManagement.new(self)
@@ -32,6 +37,9 @@ var _motion := Motion.new()
 var _large_text := false
 var _keyboard := false
 var _busy := false
+var _portraits: Node
+var _environment: Control
+var _atmosphere: Control
 var _stage: Control
 var _surface: Control
 var _peek_origin: Control
@@ -62,19 +70,23 @@ func _ready() -> void:
 	var window := get_window()
 	window.title = "邪神苏醒 · 幽界群像"
 	var settings := ConfigFile.new()
-	if settings.load(DISPLAY_SETTINGS) == OK:
+	if settings.load(display_settings_path) == OK:
 		_large_text = bool(settings.get_value("display", "large_text", false))
 	_apply_window_mode(bool(settings.get_value("display", "fullscreen", false)))
 	window.focus_exited.connect(func(): _set_keyboard(false))
 	_motion.params = {"scene_reveal_s": 0.32, "variant_s": 0.16, "related_s": 0.18, "opening_exit_s": 0.22}
 	add_child(_motion)
 	_ui = UI.new(null, func() -> bool: return _keyboard)
-	var base := Theme.new()
-	_apply_scroll_theme(base)
-	base.default_font = _ui.fonts.body
-	base.set_color("font_color", "Label", UI.BONE)
-	base.set_stylebox("separator", "HSeparator", StyleBoxEmpty.new())
-	theme = base
+	_portraits = Portraits.new()
+	_portraits.name = "ObjectPortraits"
+	add_child(_portraits)
+	theme = Paint.native_theme()
+	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	_environment = _region(self, "PaintedEnvironment", Rect2(Vector2.ZERO, VIEW))
+	_ui.image(_environment, "Night", Rect2(Vector2.ZERO, VIEW), Paint.MaterialSource.pigment("sky"), Color.WHITE, TextureRect.STRETCH_SCALE)
+	_atmosphere = Atmosphere.new()
+	_atmosphere.name = "OrganicWindow"
+	_environment.add_child(_atmosphere)
 	_refresh()
 	_show_menu()
 
@@ -93,7 +105,7 @@ func _write_display_settings() -> void:
 	var settings := ConfigFile.new()
 	settings.set_value("display", "large_text", _large_text)
 	settings.set_value("display", "fullscreen", get_window().mode == Window.MODE_FULLSCREEN)
-	if settings.save(DISPLAY_SETTINGS) != OK:
+	if settings.save(display_settings_path) != OK:
 		_notice_text = "无法保存显示设置。"
 
 func _show_settings() -> void:
@@ -122,20 +134,20 @@ func _size(standard: int) -> int:
 	return standard + (3 if _large_text else 0)
 
 func _text(parent: Node, value: String, bounds: Rect2, font_size: int, color: Color = UI.BONE) -> Label:
-	return _ui.label(parent, "Text", value, bounds, _size(font_size), color, font_size >= 23, true)
+	return _ui.label(parent, "Text", value, bounds, _size(maxi(font_size, 14)), color, font_size >= 23, true)
 
 func _line(parent: Container, value: String, font_size: int = 17, color: Color = UI.BONE) -> Label:
 	var line := Label.new()
 	line.text = value
 	line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	line.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	line.add_theme_font_size_override("font_size", _size(font_size))
+	line.add_theme_font_size_override("font_size", _size(maxi(font_size, 14)))
 	line.add_theme_color_override("font_color", color)
 	parent.add_child(line)
 	return line
 
-func _button(parent: Node, node_name: String, caption: String, bounds: Rect2, handler: Callable, primary := false) -> Button:
-	return _ui.button(parent, node_name, caption, bounds, handler, primary, not primary, _size(17))
+func _button(parent: Node, node_name: String, caption: String, bounds: Rect2, handler: Callable, primary := false, quiet := true) -> Button:
+	return _ui.button(parent, node_name, caption, bounds, handler, primary, quiet, _size(17))
 
 func _region(parent: Node, node_name: String, bounds: Rect2) -> Control:
 	var region := Control.new()
@@ -167,15 +179,32 @@ func _scroll_cue(scroll: ScrollContainer, parent: Control, bounds: Rect2) -> voi
 	bar.value_changed.connect(func(_value: float) -> void: update.call())
 	update.call()
 
-func _apply_scroll_theme(base: Theme) -> void:
-	var track := StyleBoxEmpty.new()
-	track.content_margin_left = 4
-	base.set_stylebox("scroll", "VScrollBar", track)
-	for state: String in ["grabber", "grabber_highlight", "grabber_pressed"]:
-		var grip := StyleBoxFlat.new()
-		grip.bg_color = Color(UI.CYAN, 0.32 if state == "grabber" else 0.68)
-		grip.content_margin_left = 4
-		base.set_stylebox(state, "VScrollBar", grip)
+func _update_atmosphere() -> void:
+	var profile := Atmosphere.Profile.FULL
+	var protected: Array[Rect2] = [
+		Layout.box(Rect2(39, 28, 382, 110)), # turn, stage and breadcrumb
+		Layout.box(Rect2(1250, 26, 312, 112)), # resources and menu
+		Layout.box(Rect2(40, 797, 494, 66)), # global tools
+		Layout.box(Rect2(1230, 797, 332, 66)), # history and phase action
+	]
+	if not _dialog.is_empty():
+		profile = Atmosphere.Profile.VEILED if _dialog in [
+			"menu", "new_game", "saved_games", "settings", "seal", "switch",
+			"receipt", "event_review", "event_context", "prayer_person", "prayer_confirm",
+			"task_confirm", "task_related", "task_plan_confirm", "task_rest_confirm", "task_switch",
+			"anchor_materials", "power_rules", "end",
+		] else Atmosphere.Profile.QUIET
+		protected.append(Layout.box(Layout.SCENE))
+	elif not _world_id.is_empty():
+		profile = Atmosphere.Profile.QUIET
+		protected.append(Layout.box(Rect2(65, 168, 295, 485)))
+	else:
+		protected.append(Layout.box(Rect2(74, 171, 300, 244)))
+		protected.append(Layout.box(Rect2(74, 543, 310, 172)))
+	_atmosphere.set_profile(profile, protected)
+	if is_instance_valid(_stage):
+		var fan := _stage.get_node_or_null("WorldFan")
+		if fan != null: fan.set_blocked(not _dialog.is_empty())
 
 func _refresh() -> void:
 	projection = session.project()
@@ -186,14 +215,14 @@ func _refresh() -> void:
 		remove_child(_stage)
 		_stage.queue_free()
 	_stage = _region(self, "Perception", Rect2(Vector2.ZERO, VIEW))
-	move_child(_stage, 0)
-	_interaction.backdrop(_stage)
+	move_child(_stage, _environment.get_index() + 1)
 	_prayers.cards.clear()
 	if projection.get("active", false):
 		_build_worlds()
 		_build_top()
 		_build_dock()
 	if not return_path.is_empty(): _return_focus = _stage.get_node_or_null(return_path) as Control
+	_update_atmosphere()
 
 func _build_top() -> void:
 	var top := _region(_stage, "Top", Rect2(Vector2.ZERO, VIEW))
@@ -212,7 +241,9 @@ func _build_top() -> void:
 	_menu_button.accessibility_name = "游戏菜单及全局目录"
 
 func _resource_width(value: String) -> float:
-	return maxf(66, 38 + (16 + _size(0)) * value.length())
+	var font: Font = _ui.fonts.body
+	var amount := font.get_string_size(value, HORIZONTAL_ALIGNMENT_LEFT, -1, _size(20)).x
+	return maxf(66, 40 + ceilf(amount / Layout.SCALE))
 
 func _resource(parent: Control, node_name: String, caption: String, value: String, x: float, callback := Callable()) -> Control:
 	var bounds := Rect2(x, 34, _resource_width(value), 40)
@@ -220,11 +251,10 @@ func _resource(parent: Control, node_name: String, caption: String, value: Strin
 	if callback.is_valid():
 		entry = _stage_button(parent, node_name, "", bounds, callback)
 		entry.accessibility_name = caption + " " + value
-		_ui.fill(entry, "ResourceRule", Layout.box(Rect2(0, 39, bounds.size.x, 1)), UI.LINE)
 	else:
 		entry = _region(parent, node_name, Layout.box(bounds))
 	_reference(entry, "ResourceName", caption, Rect2(0, 0, 36, 40), 15, UI.MUTED)
-	_reference(entry, "ResourceAmount", value, Rect2(37, -2, bounds.size.x - 37, 43), 26, UI.BONE, true)
+	_reference(entry, "ResourceAmount", value, Rect2(36, -2, bounds.size.x - 34, 43), 25, UI.BONE)
 	return entry
 
 func _reference(parent: Node, node_name: String, value: String, bounds: Rect2, px: float, color := UI.BONE, heading := false, tracking := 0.0) -> Label:
@@ -235,7 +265,6 @@ func _stage_button(parent: Node, node_name: String, caption: String, bounds: Rec
 
 func _build_dock() -> void:
 	var dock := _region(_stage, "Dock", Rect2(Vector2.ZERO, VIEW))
-	_ui.fill(dock, "HorizonRule", Layout.box(Rect2(48, 801, 1504, 1)), Color(UI.LINE, 0.55))
 	var summary := "尚有 %d 项轮初事件" % _pending_events().size() if projection.get("phase") == "events" else ""
 	if not _receipt.is_empty():
 		summary = _receipt[0] + (" · " + _resource_delta if not _resource_delta.is_empty() else "")
@@ -245,7 +274,7 @@ func _build_dock() -> void:
 	if not projection.get("active", false): return
 	var power := _stage_button(dock, "PowerIndex", "", Rect2(48, 803, 122, 53), _powers.open)
 	power.accessibility_name = "十二权能"
-	_interaction.seal(power, "PowerSeal", "⌁", Rect2(0, 10, 32, 32), 17, true)
+	_interaction.seal(power, "PowerSeal", "≈", Rect2(0, 10, 32, 32), 17, true)
 	_reference(power, "PowerTitle", "十二权能", Rect2(41, 0, 80, 53), 15)
 	_dock_entry(dock, "RelicIndex", "圣物", 177, 51, _tasks.open_subject.bind("relics", ""))
 	_dock_entry(dock, "People", "人物档案", 235, 81, _tasks.open_subject.bind("people", ""))
@@ -257,11 +286,7 @@ func _build_dock() -> void:
 	var caption: String = {"events": "处理事件", "actions": "回合责任", "ended": "回顾本局"}.get(str(projection.phase), "继续轮次")
 	_phase_plate = _stage_button(dock, "PhaseAction", "", Rect2(1410, 806, 142, 47), _phase_intent)
 	_phase_plate.accessibility_name = caption
-	var border := StyleBoxFlat.new()
-	border.bg_color = Color(UI.INK, 0.08)
-	border.border_color = UI.MUTED
-	border.set_border_width_all(1)
-	_phase_plate.add_theme_stylebox_override("normal", border)
+	_ui.style_action(_phase_plate, true)
 	_reference(_phase_plate, "PhaseTitle", caption + " →", Rect2(0, 0, 142, 47), 15, UI.BONE, false, 2).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
 func _dock_entry(parent: Control, node_name: String, caption: String, x: float, width: float, callback: Callable) -> void:
@@ -269,12 +294,23 @@ func _dock_entry(parent: Control, node_name: String, caption: String, x: float, 
 	control.accessibility_name = caption
 	_reference(control, "ToolName", caption, Rect2(0, 0, width, 41), 15)
 
-func _world_picture(id: String) -> Texture2D:
-	return _interaction.world_picture(id)
+func _object_art(parent: Node, node_name: String, bounds: Rect2, kind: String, id: String, with_status := false) -> TextureRect:
+	var collection: String = {"world": "domains", "person": "people", "cult": "cults"}.get(kind, "")
+	var subject: Dictionary = _views._find(self, collection, id)
+	var world_id: String = session.visual_birthplace(id) if kind == "person" else subject.get("domain", "")
+	var world: Dictionary = subject if kind == "world" else _views._find(self, "domains", world_id)
+	var slot: TextureRect = _ui.image(parent, node_name, bounds, null)
+	WindowArt.style(slot)
+	slot.set_meta("subject_id", id)
+	var status: Label
+	if with_status:
+		status = _ui.label(parent, "ArtStatus", "", Rect2(bounds.position + Vector2(0, bounds.size.y / 2 - 12), Vector2(bounds.size.x, 24)), _size(14), UI.MUTED)
+		status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_portraits.bind(slot, _portraits.recipe(kind, session.visual_seed(), subject, world), status)
+	return slot
 
 func _build_worlds() -> void:
 	_worlds = projection.domains
-	_interaction.register_worlds(_worlds)
 	_world_buttons.clear()
 	_world_body = null
 	var world: Dictionary = _views._find(self, "domains", _world_id)
@@ -300,6 +336,7 @@ func _select_world(id: String) -> void:
 	_world_id = id
 	_refresh()
 	var target: Control = _stage.find_child("WorldOverview" if not id.is_empty() else "World_" + previous, true, false)
+	if target == null: target = _stage.get_node_or_null("WorldFan") as Control
 	if target == null: target = _stage.find_child("AllWorlds", true, false)
 	if is_instance_valid(target) and _can_focus(target): target.grab_focus()
 
@@ -344,6 +381,7 @@ func _begin_surface(kind: String, mist := true, preserve_world := false) -> void
 				remove_child(layer)
 				layer.queue_free()
 	_dialog = kind
+	_update_atmosphere()
 	_surface = _region(self, "Decision", Rect2(Vector2.ZERO, VIEW))
 	_surface.mouse_filter = Control.MOUSE_FILTER_STOP
 	if not preserve_world:
@@ -352,20 +390,15 @@ func _begin_surface(kind: String, mist := true, preserve_world := false) -> void
 
 func _scene_frame(kind: String, node_name: String, color: Color) -> Control:
 	_begin_surface(kind, false, true)
-	var frame := _region(_surface, node_name, Layout.box(Layout.SCENE))
+	var frame := _scene_plate(_surface, node_name, Layout.SCENE, color)
 	frame.clip_contents = true
-	_ui.fill(frame, "SceneBackdrop", Rect2(Vector2.ZERO, frame.size), color)
 	return frame
 
-func _scene_plate(parent: Control, node_name: String, bounds: Rect2, color: Color, edge := SIDE_TOP) -> Control:
+func _scene_plate(parent: Control, node_name: String, bounds: Rect2, color: Color, _edge := SIDE_TOP) -> Control:
 	var plate := Panel.new()
 	plate.name = node_name
 	_ui.rect(plate, Layout.box(bounds))
-	var style := StyleBoxFlat.new()
-	style.bg_color = color
-	style.border_color = Color(UI.CYAN, 0.4)
-	style.set_border_width(edge, 1)
-	plate.add_theme_stylebox_override("panel", style)
+	plate.add_theme_stylebox_override("panel", Paint.reading_plate(color.a))
 	parent.add_child(plate)
 	return plate
 
@@ -447,7 +480,7 @@ func _begin_peek(kind: String) -> void:
 	_return_focus = target
 
 func _reading_frame(eyebrow: String, heading: String) -> void:
-	_scene_plate(_surface, "ReadingField", Layout.SCENE, Color("#09131df8"))
+	_scene_plate(_surface, "ReadingField", Layout.SCENE, Paint.READING)
 	_reference(_surface, "ReadingEyebrow", eyebrow, Rect2(82, 176, 1300, 21), 12, UI.CYAN, false, 3)
 	_reference(_surface, "ReadingHeading", heading, Rect2(82, 201, 1380, 48), 31, UI.BONE, true, 4)
 	_ui.fill(_surface, "ReadingRule", Layout.box(Rect2(82, 708, 1436, 1)), UI.LINE)
@@ -468,8 +501,9 @@ func _ritual_placeholder(frame: Control) -> void:
 
 func _event_frame(kind: String, eyebrow: String, heading: String) -> void:
 	_begin_surface(kind, false, true)
-	_ui.fill(_surface, "EventField", Layout.box(Layout.EVENT), Color("#050b14eb"))
-	_ui.image(_surface, "SceneSlot", Layout.box(Layout.EVENT_ART), _interaction.picture("world"), Color(1, 1, 1, 0.55))
+	_scene_plate(_surface, "EventField", Layout.EVENT, Paint.READING)
+	var event_mark := Layout.EVENT_ART.get_center()
+	_ui.icon(_surface, "EventImprint", "evidence", Layout.box(Rect2(event_mark - Vector2(53, 53), Vector2(106, 106))), Color(Paint.ACCENT, 0.55))
 	_reference(_surface, "EventStage", eyebrow, Rect2(565, 143, 910, 24), 13, UI.GOLD, false, 3)
 	_reference(_surface, "EventTitle", heading, Rect2(565, 176, 910, 65), 38, UI.BONE, true, 5)
 	_set_reading(Layout.EVENT_COPY)
@@ -505,6 +539,7 @@ func _remove_surface(fade: bool) -> void:
 		_surface.queue_free()
 	_surface = null
 	_dialog = ""
+	_update_atmosphere()
 	if is_instance_valid(_world_body): _world_body.show()
 
 func _close_surface() -> void:
@@ -524,7 +559,7 @@ func _show_event(return_to_option := false) -> void:
 	var event: Dictionary = events[0]
 	var choices: Array = session.action_catalog({}, str(event.key) + "/")
 	_open_surface("event", "第 %s 轮 · 待处理事件 %d 项" % [projection.turn, events.size()], event.title, true)
-	_surface.get_node("SceneSlot").set_meta("subject_id", event.id)
+	_surface.get_node("EventImprint").set_meta("subject_id", event.id)
 	_event_options(choices, "")
 	var waiting := _footer_button("ConfirmEvent", "确认处理此事件 →", func(): pass, true)
 	waiting.custom_minimum_size.x = 183
@@ -773,9 +808,8 @@ func _show_receipt(on_return := Callable(), contact := "", anchor_receipt := fal
 			_reference(_surface, "ReceiptOutcome", _receipt[0], Rect2(86, 259, 405, 54), 28, UI.BONE, true, 2)
 			_set_reading(Rect2(86, 324, 375, 359))
 			var person: Dictionary = _views._find(self, "people", contact)
-			var texture: Texture2D = _interaction.picture("person_portrait") if not person.is_empty() else _world_picture(contact)
 			_ui.image(_surface, "ReceiptRings", Layout.box(Rect2(619, 506, 361, 97)), _interaction.picture("rings"), Color.WHITE, TextureRect.STRETCH_SCALE)
-			_ui.image(_surface, "SceneSlot", Layout.box(Rect2(631, 217, 340, 405)), texture).set_meta("subject_id", contact)
+			_object_art(_surface, "SceneSlot", Layout.box(Rect2(641, 224, 320, 340)), "world" if person.is_empty() else "person", contact, true)
 			_reference(_surface, "ReceiptContact", title(contact), Rect2(550, 583, 500, 48), 23, UI.BONE, true).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			var cost := _surface_column(_surface, Rect2(1163, 325, 352, 316))
 			_line(cost, "实际支付与当前资源", 19, UI.GOLD)
@@ -798,7 +832,7 @@ func _show_menu(focus_name := "") -> void:
 	if not focus_name.is_empty(): _focus_surface_control(focus_name)
 
 func _title_menu() -> void:
-	_reference(_surface, "TitleBrand", "邪神苏醒", Rect2(460, 183, 680, 86), 57, UI.BONE, true, 10).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_reference(_surface, "TitleBrand", "邪神苏醒", Rect2(460, 183, 680, 86), 45, UI.BONE, true).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_reference(_surface, "TitleSubtitle", "幽界群像", Rect2(460, 269, 680, 35), 17, UI.CYAN, false, 7).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var options := _surface_column(_surface, Rect2(640, 348, 320, 338))
 	var focus: Button
@@ -817,7 +851,7 @@ func _title_menu() -> void:
 func _pause_menu() -> void:
 	_ui.fill(_surface, "PauseShade", Rect2(Vector2.ZERO, VIEW), Color(UI.INK, 0.46))
 	_scene_plate(_surface, "PauseField", Rect2(300, 152, 1000, 591), Color("#0c1721fd"))
-	_reference(_surface, "PauseHeading", "游戏暂停", Rect2(350, 186, 900, 64), 38, UI.BONE, true, 4)
+	_reference(_surface, "PauseHeading", "游戏暂停", Rect2(350, 186, 900, 64), 45, UI.BONE, true)
 	_reference(_surface, "PauseTurn", "第 %s 轮 · %s" % [projection.turn, projection.phase_title], Rect2(350, 250, 900, 31), 17, UI.MUTED)
 	_ui.fill(_surface, "PauseRule", Layout.box(Rect2(350, 298, 900, 1)), UI.LINE)
 	var current := _surface_column(_surface, Rect2(350, 325, 394, 376))
@@ -833,6 +867,8 @@ func _pause_menu() -> void:
 		var seal := _menu_action(current, "SealGame", "主动封存本局…", _show_seal)
 		seal.add_theme_color_override("font_color", UI.RISK)
 		seal.add_theme_color_override("font_focus_color", UI.RISK)
+		seal.add_theme_color_override("font_hover_color", UI.RISK)
+		seal.add_theme_color_override("font_pressed_color", UI.RISK)
 	var tools := _surface_column(_surface, Rect2(838, 325, 412, 394))
 	tools.add_theme_constant_override("separation", 2)
 	_line(tools, "本局资料", 16, UI.CYAN)
@@ -1065,8 +1101,7 @@ func _set_notice(result: Dictionary) -> void:
 func _set_keyboard(value: bool) -> void:
 	_keyboard = value
 	var focus := get_viewport().gui_get_focus_owner()
-	if focus is Button and focus != _phase_plate: _ui.sync_focus_style(focus)
-	if is_instance_valid(_phase_plate): _phase_plate.queue_redraw()
+	if focus is Button: _ui.sync_focus_style(focus)
 
 func _focus_surface_control(node_name: String) -> void:
 	var control := _surface.find_child(node_name, true, false) as Control
@@ -1082,6 +1117,7 @@ func _input(event: InputEvent) -> void:
 	match event.keycode:
 		KEY_ESCAPE:
 			if event.echo: return
+			_set_keyboard(true)
 			get_viewport().set_input_as_handled()
 			match _dialog:
 				"event": pass

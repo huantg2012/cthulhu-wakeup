@@ -165,7 +165,7 @@ func _anchor_candidates(task, rows: VBoxContainer, list: ScrollContainer, field:
 		figure.custom_minimum_size.y = 90
 		column.add_child(figure)
 		if kind == "person":
-			host._ui.image(figure, "CandidatePortrait", Rect2(106, 0, 90, 90), host._interaction.picture("person_portrait"))
+			host._object_art(figure, "CandidatePortrait", Rect2(106, 0, 90, 90), "person", str(option.id))
 		else:
 			host._ui.icon(figure, "CandidateMark", kind, Rect2(106, 0, 90, 90))
 		host._line(column, actions._option_title(task, option), 18)
@@ -266,8 +266,7 @@ func _option(task, parent: VBoxContainer, list: ScrollContainer, tab: String, fi
 	card.custom_minimum_size.y = 64
 	card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	card.tooltip_text = actions._option_title(task, option)
-	if selected:
-		card.add_theme_stylebox_override("normal", task.host._ui.button_style("hover", false, true))
+	task.host._ui.select_entry(card, selected)
 	parent.add_child(card)
 	var content := HBoxContainer.new()
 	content.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -281,7 +280,7 @@ func _option(task, parent: VBoxContainer, list: ScrollContainer, tab: String, fi
 		artwork.custom_minimum_size = Vector2(70, 50)
 		artwork.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		content.add_child(artwork)
-		if kind == "world": task.host._ui.image(artwork, "WorldArt", Rect2(0, 0, 70, 50), task.host._world_picture(str(option.id)))
+		if kind in ["world", "person", "cult"]: task.host._object_art(artwork, "CandidateArt", Rect2(0, 0, 70, 50), kind, str(option.id))
 		elif kind == "relic":
 			task.host._ui.icon(artwork, "RelicSymbol", "relic", Rect2(12, 4, 42, 42))
 		else:
@@ -305,8 +304,7 @@ func _option(task, parent: VBoxContainer, list: ScrollContainer, tab: String, fi
 		card.custom_minimum_size.y = 90
 	if kind == "person":
 		var person: Dictionary = task.host._views._find(task, "people", str(option.id))
-		task.host._line(words, str(person.get("role_name", "身份待了解")) + " · 符号示意", 12, UI.MUTED)
-	elif kind == "world": task.host._line(words, "世界情境示意", 12, UI.MUTED)
+		task.host._line(words, str(person.get("role_name", "身份待了解")), 12, UI.MUTED)
 	if kind == "fact":
 		var record: Dictionary = actions.source_info(task, str(option.id))
 		if not record.is_empty():

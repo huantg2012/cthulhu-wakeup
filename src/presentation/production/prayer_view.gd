@@ -91,12 +91,9 @@ func build_contact(parent: Control, domain: String, requests: Array) -> void:
 	if host.projection.get("prayer_response_spent", false): detail = "本轮回应机会已用 · 仍可查阅"
 	var callback := browse.bind(domain)
 	if requests.size() == 1: callback = func(): open(request, cards.get(request.id))
-	var entry: Button = host._interaction.pin(parent, "PrayerIndex", summary, detail, "⌁", Layout.PIN_PRAYER, callback)
+	var entry: Button = host._interaction.pin(parent, "PrayerIndex", summary, detail, "≈", Layout.PIN_PRAYER, callback)
 	entry.disabled = host.projection.get("phase") != "actions"
 	if requests.size() == 1: cards[request.id] = entry
-
-func picture(_prayer: Dictionary) -> Texture2D:
-	return host._interaction.picture("person_portrait")
 
 func _identity(prayer: Dictionary) -> String:
 	if prayer.descriptor.get("space", false):
@@ -144,7 +141,7 @@ func open(prayer: Dictionary, source: Button) -> void:
 	_stage("prayer_detail", true)
 	if is_instance_valid(source) and host._stage.is_ancestor_of(source): host._return_focus = source
 	for id: String in cards:
-		cards[id].add_theme_stylebox_override("normal", host._ui.world_row_style("normal", id == prayer.id))
+		host._ui.select_entry(cards[id], id == prayer.id)
 	_update_detail(("SpaceChoice_" if _is_space() else "Mode_") + _draft().mode)
 
 func _is_space() -> bool:
@@ -186,7 +183,6 @@ func prayer_scene(kind: String, reveal: bool) -> Control:
 	if not appeal.is_empty():
 		var quote: Label = host._line(context, "“" + appeal + "”", 15, UI.BONE)
 		quote.name = "PetitionerAppeal"
-		quote.add_theme_font_override("font", host._ui.reference_font(true))
 		quote.add_theme_constant_override("line_spacing", 8)
 	if data.get("crisis", {}).has("due") and int(data.crisis.due) != int(_prayer.card.get("due_turn", -1)):
 		host._line(context, "第 %s 轮前，事情将恶化" % data.crisis.due, 13, UI.RISK)
@@ -222,7 +218,7 @@ func response_card(body: VBoxContainer, id: String, caption: String, notes: Arra
 	var height: float = 20 + font.get_multiline_string_size(caption, HORIZONTAL_ALIGNMENT_LEFT, width, host._size(16)).y
 	for line: String in notes:
 		if not line.is_empty():
-			height += 4 + font.get_multiline_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, width, host._size(12)).y
+			height += 4 + font.get_multiline_string_size(line, HORIZONTAL_ALIGNMENT_LEFT, width, host._size(14)).y
 	control.custom_minimum_size.y = maxf(Layout.type_size(109), height)
 	return control
 
@@ -236,9 +232,8 @@ func response_footer(panel: Control, summary: String, caption: String, handler: 
 func _scene_art(parent: Control, id: String, bounds: Rect2) -> TextureRect:
 	var prayer: Dictionary = host._views._find(host, "prayers", id)
 	if prayer.is_empty() and str(_prayer.get("id", "")) == id: prayer = _prayer
-	var art: TextureRect = host._ui.image(parent, "SceneSlot", bounds, picture(prayer), Color.WHITE, TextureRect.STRETCH_KEEP_ASPECT_COVERED)
-	art.set_meta("subject_id", id)
-	return art
+	var person: String = prayer.get("descriptor", {}).get("subjects", {}).get("petitioner", "")
+	return host._object_art(parent, "SceneSlot", bounds, "person", person, true)
 
 func _draft() -> Dictionary:
 	if not _drafts.has(_prayer.id):
@@ -411,7 +406,7 @@ func _show_person(person: Dictionary, origin: String) -> void:
 	host._begin_peek("prayer_person")
 	_right = null
 	var body: VBoxContainer = host._peek_content("祈求 / 关联查阅", host.title(person.id))
-	host._ui.image(host._surface, "PeekPortrait", Layout.box(Rect2(1387, 278, 130, 170)), picture(_prayer)).set_meta("subject_id", person.id)
+	host._object_art(host._surface, "PeekPortrait", Layout.box(Rect2(1387, 278, 130, 170)), "person", person.id)
 	var role: String = str(_prayer.descriptor.get("petitioner_role", "")) if person.id == _prayer.descriptor.get("subjects", {}).get("petitioner") else ""
 	host._line(body, "在这次祈求中 · " + role if not role.is_empty() else "与本次祈求相关的人物", 16, UI.CYAN)
 	if person.has("已知范围"): host._line(body, person["已知范围"], 16, UI.MUTED)
@@ -451,7 +446,7 @@ func close(restore_list := true) -> void:
 	clear_stale_cards()
 	_remember_scroll()
 	for card: Button in cards.values():
-		card.add_theme_stylebox_override("normal", host._ui.world_row_style("normal", false))
+		host._ui.select_entry(card, false)
 	var return_to_list := _from_list and restore_list
 	_from_list = false
 	if return_to_list: _render_list(str(_prayer.id))

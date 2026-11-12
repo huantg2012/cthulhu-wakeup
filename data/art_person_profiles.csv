@@ -1,0 +1,7 @@
+profile_id,cut_basis,gestures,pigment
+NPC_PROFILE_01,judge_letter,folded|guarded,ink
+NPC_PROFILE_02,fever_child,folded|prayer,slate
+NPC_PROFILE_03,protected_witness,guarded|folded,ochre
+NPC_PROFILE_04,shaking_hand,folded|guarded,umber
+NPC_PROFILE_05,judge_letter,guarded|folded,slate
+NPC_PROFILE_06,fever_child,folded|appeal,linen

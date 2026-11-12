@@ -3,15 +3,15 @@ status: IMPLEMENTED_PENDING_VISUAL_REVIEW
 created-by: Codex
 last-modified-date: 2026-11-12
 interfaces-with: [system-events, system-civilizations]
-exposes: [ArtGenerationService.generate, ArtGenerationService.export_result, NativeArtWorkbench]
+exposes: [ArtGenerationService.generate, ArtGenerationService.export_result, NativeArtWorkbench, ArtGenerationService.generate_subject, ObjectPortraits.bind]
 interface-changed: true
 ---
 
-TL;DR：世界、教团与人物立绘在游戏本体 Godot 工程内生成。独立工作台直接运行，无浏览器、Node、Python、Web 服务或第二个 Godot 工程依赖；不接 Session，不创建游戏世界、机构或 NPC，不改变默认游戏入口。
+TL;DR：世界、教团与人物立绘在游戏本体 Godot 工程内生成。独立工作台直接运行，无浏览器、Node、Python、Web 服务或第二个 Godot 工程依赖；正式呈现从公开对象推导绘画身份并按需出图；绘画服务不创建游戏世界、机构或 NPC。
 
 # 范围与入口
 
-2026-11-12：界面承载母版已获制作人通过，全游戏展示与身份接入要求见[界面美术规范 A13–A16](../art/visual-generation/ui-art-standard.md#6-立绘身份运行时与资产)。本服务当前能力仍以下文为准；UI 母版通过不表示 Session 身份、队列、持久缓存或存档绑定已实现。后续正式接入先在本文件原地补齐对应合同，不另建第二份生成 spec。
+2026-11-12：界面承载母版已获制作人通过，全游戏展示与身份接入要求见[界面美术规范 A13–A16](../art/visual-generation/ui-art-standard.md#6-立绘身份运行时与资产)。工作台与正式对象呈现分别使用下方接口；独立工作台参数不参与正式分配。
 
 `诸界立绘生成.command` 启动 `res://src/art_generation/workbench/workbench.tscn`。原世界／教团／同世界人物／跨世界人物及旧程序画法启动器统一转向该场景。历史 HTML、JavaScript、服务器与图片保留为只读迁移参考，已退出当前生成链。
 
@@ -28,13 +28,22 @@ TL;DR：世界、教团与人物立绘在游戏本体 Godot 工程内生成。�
 
 `service.generate(request, options)` 是异步方法。成功返回 `context`（世界图、天空、教团图、三阶段图、世界参数、候选教团规则）、`people`（最终图、三阶段图、recipe、features）、版本、耗时和是否复用世界；输入错误返回 `{error: String}`。同一实例不允许并发生成。缓存仅保留当前世界／教团，键包含实现版本与四个世界参数；只换人物不重建它们。“同参重绘”主动清缓存。当前无持久化生成缓存，不污染游戏存档。
 
+# 正式对象绘画身份 · v1
+
+- **世界**：只接受公开投影中带文明 profile 的世界；仅有请求线索时留中性图槽。用 `data/art_world_templates.csv` 的 `civilization_id` 唯一索引选取原型和固定画风 sid，色板取同原型的 `cult_visual_rules.csv:default_palette`。每世界的种子取 SHA-256（JSON 数组 `["world", 开局种子字符串, 世界 ID]`）首 32 位模 1,000,000。配方使用原玩法稳定 ID，不用显示名、排序或观察次数。
+- **教团**继承其公开所属世界的原型、种子、sid 和色板；仅已知仍可展示的组织可绑定。图像由本世界的场所绘画规则生成，领袖变化不替换其场所图。
+- **人物**仅给公开已识别的真实角色画图，继承其出生世界画法；人物种子从 SHA-256（`["person", 开局种子字符串, 人物 ID]`）首 32 位取 uint32。人物根据不可变的 `identity_source` 得到已知出生世界；未知出生世界不提前显示其画风。背景以 `data/art_person_profiles.csv` 的 profile 选择同模板已有裁剪/衣帽基型，使用中性姿势和材质、去掉具体病况及道具，不把样板处境当正式事实。缺少可靠对应保留中性图槽。祈求页用同一身份，当前祈求处境不重抽外貌。尚未知身份、仅有线索的对象不触发渲染。
+- 以上种子仅用于绘画，取自 Session 已保存的生成种子，不读取随机流位置或消耗任何玩法随机数。v1 兼容旧档，不增加存档字段。若未来改变已分配的原型或画风，须保留 v1 的还原规则并明确选择配方版本。
+- `generate_subject(kind, request, options)` 按需产出一张带天空的最终 960×960 Image，不为一个世界卡先画教团和人物。正式呈现根持有唯一 `ObjectPortraits` 实例；串行提交、同键合并，只在可见图槽请求。回调检查弱引用、仍在树中和当前绑定键；离场或更换对象不贴回迟到的图。
+- 持久缓存键包含视觉身份版本、生成实现版本、对象 ID、完整绘画参数和背景键；磁盘缓存是可丢弃的 PNG（128 MiB 上限），内存保留有限最近纹理。错误或缺参时保留静态图槽，不影响游戏操作；缓存损坏按缺失处理。不因悬停、切页或读档重抽绘画身份。
+
 # 替换策略与约束
 
 - 改人物构造／教团结构：改对应 `algorithms/` 文件，继续输出绘画计划；消费者不改。实际修改配方语义时升级 recipe／实现版本，不静默复用旧缓存。
 - 改材质或照明：替换 `SurfaceRenderer.render(plan)`，保留三阶段 Image 合同。世界材料场与衣料材料场分离，不能将一种石纹铺满所有对象。
 - 改 NPR：替换 `Post.apply`，保留独立参数、世界与二维尺度区分；不改规则、构图或游戏展示。
 - 改最终展示：从生成结果构造 Texture2D，展示者决定裁切、尺寸、过渡与释放。透明 `lit` 阶段可供未来新合成器使用；当前 `image` 是带天空的最终方图。
-- 当前未做每回合调度、异步队列、跨帧分摊完整策略、持久缓存、存档迁移、人物身份绑定或正式卡片接入。后续 Session 接入须另行授权，不在这里通过自动加载单例偷接。
+- 正式生成按可见图槽调度，不因回合推进重生成，也不以全量世界预生成阻塞启动。
 - 原始 2D 方法已移植为可直接编辑的 GDScript 与 Godot shader，不加载旧 JS、不解释 JavaScript、不调用旧服务器，也不调用浏览器截图。
 
 # 迁移差异与证据边界

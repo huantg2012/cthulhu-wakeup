@@ -36,9 +36,11 @@ func open(id := "", focus_name := "") -> void:
 		var control: Button = host._stage_button(surface, "Sigil_" + key, "", Rect2(origin, Vector2(94, 92)), open.bind(key))
 		control.accessibility_name = str(definition.name)
 		var locked: bool = int(definition.unlock_awakening) > int(host.projection.awakening)
-		var tint := UI.GOLD if key == _selected else Color(UI.CYAN, 0.55) if locked else UI.CYAN
+		host._ui.select_entry(control, key == _selected)
+		var tint := UI.BONE if key == _selected else UI.MUTED if locked else UI.BONE
+		control.accessibility_description = ("需苏醒 %s" % definition.unlock_awakening) if locked else "已解锁"
 		host._ui.icon(control, "Sigil", icon, Layout.box(Rect2(23.5, 9, 47, 47)), tint)
-		host._reference(control, "PowerName", str(definition.name), Rect2(0, 59, 94, 28), 17, tint, true, 3).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		host._reference(control, "PowerName", str(definition.name), Rect2(0, 59, 94, 28), 17, tint).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		control.tooltip_text = "需苏醒 %s" % definition.unlock_awakening if locked else str(definition.name)
 		if key == _selected: active = control
 	var selected: Dictionary = definitions[_selected]
@@ -61,7 +63,7 @@ func _rules() -> void:
 	var body: VBoxContainer = host._peek_content("十二权能 / 完整规则", str(definition.name))
 	for field: String in ["target_requirement", "always_cost", "success", "failure", "disaster", "notes"]:
 		if not str(definition.get(field, "")).is_empty(): host._line(body, str(definition[field]), 14)
-	host._stage_button(host._surface, "ClosePowerRules", "返回权能全览 ↩", Rect2(1130, 661, 393, 38), close_rules).grab_focus()
+	host._stage_button(host._surface, "ClosePowerRules", "返回权能全览 ←", Rect2(1130, 661, 393, 38), close_rules).grab_focus()
 
 func close_rules() -> void:
 	open(_selected, "PowerRules")

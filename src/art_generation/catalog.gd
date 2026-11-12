@@ -6,6 +6,7 @@ var cults = []
 var contexts = []
 var world_rules = []
 var environments = []
+var person_profiles: Dictionary = {}
 func _init():
 	templates = read_csv("res://data/art_world_templates.csv")
 	cults = read_csv("res://data/cult_visual_rules.csv")
@@ -16,6 +17,8 @@ func _init():
 	for row in read_csv("res://data/portrait_context_rules.csv"):
 		var source = cases[row.case_id]
 		contexts.append({"caseId":source.id,"role":source.petitioner,"frame":source.frame,"scene":source.scene,"title":source.title,"context":source.context,"appeal":source.appeal,"goal":source.goal,"garments":Array(row.garments.split("|")),"heads":Array(row.heads.split("|")),"gestures":Array(row.gestures.split("|")),"material":row.material,"pigment":row.pigment,"workDetail":row.work_detail,"genderRule":row.gender_rule,"appearanceNote":row.appearance_note})
+	for row: Dictionary in read_csv("res://data/art_person_profiles.csv"):
+		person_profiles[row.profile_id] = row
 	for row in cults:
 		row.archetype = int(row.archetype)
 		row.default_palette = int(row.default_palette)
@@ -46,6 +49,20 @@ func backgrounds(template: String) -> Array:
 				if e.template == template: b.environment = e.duplicate(true)
 			out.append(b)
 	return out
+func formal_background(template: String, profile: String) -> Dictionary:
+	if not person_profiles.has(profile): return {}
+	var rule: Dictionary = person_profiles[profile]
+	for candidate: Dictionary in backgrounds(template):
+		if candidate.caseId != rule.cut_basis: continue
+		candidate.gestures = Array(str(rule.gestures).split("|"))
+		candidate.pigment = rule.pigment
+		candidate.workDetail = ""
+		candidate.genderRule = "any"
+		candidate.role = profile
+		candidate.title = ""
+		return candidate
+	return {}
+
 func counts(template: String) -> Dictionary:
 	var all = backgrounds(template)
 	var combos = 0

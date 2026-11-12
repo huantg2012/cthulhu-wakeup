@@ -251,9 +251,22 @@ func _archive_rows() -> void:
 		if not query.is_empty() and not (str(world.title) + " " + str(world.id)).to_lower().contains(query): continue
 		matched += 1
 		var source := "已关注" if world.get("focused", false) else ("仅请求线索" if world.has("已知范围") else "未关注")
-		var row := _action(_rows, "WorldRecord_" + world.id, "%s\n%s" % [world.title, source], _pick_world.bind(world.id))
+		var row := _action(_rows, "WorldRecord_" + world.id, "", _pick_world.bind(world.id))
 		row.custom_minimum_size.y = 57
-		row.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		row.accessibility_name = str(world.title) + " · " + source
+		row.tooltip_text = world.title
+		host._object_art(row, "ArchiveWorldArt", Rect2(9, 6, 44, 44), "world", world.id)
+		var copy := VBoxContainer.new()
+		copy.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		row.add_child(copy)
+		copy.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		copy.offset_left = 62
+		copy.offset_top = 3
+		copy.offset_right = -8
+		copy.add_theme_constant_override("separation", 0)
+		for line: Label in [host._line(copy, world.title, 16), host._line(copy, source, 14, UI.MUTED)]:
+			line.autowrap_mode = TextServer.AUTOWRAP_OFF
+			line.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		if _domain.is_empty():
 			var rule := HSeparator.new()
 			_rows.add_child(rule)
@@ -278,7 +291,7 @@ func _pick_world(id: String) -> void:
 func _update_selection(id: String) -> void:
 	for key: String in _list_buttons:
 		var button: Button = _list_buttons[key]
-		button.add_theme_stylebox_override("normal", host._ui.world_row_style("normal", key == id))
+		host._ui.select_entry(button, key == id)
 
 func _world_details() -> void:
 	var body := _right()
@@ -504,7 +517,7 @@ func _open_roster() -> void:
 		var figure := Control.new()
 		figure.custom_minimum_size.y = 92
 		card.add_child(figure)
-		host._ui.image(figure, "MemberPlaceholder", Rect2(0, 0, 91, 92), host._interaction.picture("person")).set_meta("subject_id", person.id)
+		host._object_art(figure, "MemberArt", Rect2(0, 0, 91, 92), "person", person.id)
 		host._line(card, host.title(person.id), 20)
 		host._line(card, host._views._role(host, person), 15, UI.MUTED)
 		host._line(card, host._views._execution_status(host, person), 14, UI.MUTED)
@@ -547,7 +560,7 @@ func _member_details(focus_name: String, scroll_position := 0) -> void:
 			_action(body, "Carried_" + item.id, host.title(item.id), _read_relic.bind(item.id))
 	host._stage_button(_column, "MemberDuties", "职责", Rect2(29, 103, 135, 36), _choose_tab.bind("duties", "MemberDuties"))
 	host._stage_button(_column, "MemberCarried", "携带物", Rect2(173, 103, 147, 36), _choose_tab.bind("carried", "MemberCarried"))
-	host._stage_button(_column, "CloseMemberPeek", "收起查阅 ↩", Rect2(29, 447, 392, 35), _open_roster)
+	host._stage_button(_column, "CloseMemberPeek", "收起查阅 ←", Rect2(29, 447, 392, 35), _open_roster)
 	_reading.set_deferred("scroll_vertical", scroll_position)
 	if not focus_name.is_empty(): _focus(focus_name)
 

@@ -4,12 +4,13 @@ extends RefCounted
 const UI = preload("res://src/presentation/production/locked_controls.gd")
 
 const Layout = preload("res://src/presentation/production/perception_layout.gd")
-const ISLANDS = preload("res://src/presentation/production/realm_placeholders.gd").SHAPES
-const METRIC_SIGNS := {"barrier": "⬡", "pollution": "◉", "alert": "◈", "stability": "▥"}
+const Fan = preload("res://src/presentation/production/painted/card_fan.gd")
+const Card = preload("res://src/presentation/production/painted/world_card.gd")
+const METRIC_SIGNS := {"barrier": "◇", "pollution": "◉", "alert": "◆", "stability": "▥"}
 
 var _host: WeakRef
 var _textures := {}
-var _world_shapes := {}
+var _overview_focus := ""
 var host: Control:
 	get: return _host.get_ref()
 
@@ -23,11 +24,6 @@ func picture(kind: String) -> Texture2D:
 	match kind:
 		"atmosphere":
 			shape = ""
-		"person", "person_portrait":
-			if kind == "person_portrait": extent = 'width="270" height="330" viewBox="165 45 270 330"'
-			shape = '<circle cx="300" cy="121" r="47" fill="#7b8d9a"/><path d="M193 333l14-68q20-76 93-76t93 76l14 68z" fill="#405666"/>'
-		"cult":
-			shape = '<path d="M123 290h354l-38 34H162zM159 265V157l46-22 46 22v108m44 0V98l54-27 55 27v167" fill="#395764" stroke="#78939f" stroke-width="2"/>'
 		"contact":
 			shape = '<ellipse cx="300" cy="250" rx="178" ry="44" fill="none" stroke="#779cae" stroke-opacity=".6"/><ellipse cx="300" cy="250" rx="144" ry="32" fill="none" stroke="#779cae" stroke-opacity=".3"/><path d="M300 68v144" stroke="#a4bec8" stroke-opacity=".6"/>'
 		"rings":
@@ -36,28 +32,12 @@ func picture(kind: String) -> Texture2D:
 		_:
 			shape = '<path d="M92 249l125-57 153 4 138 52-97 61-126 44-105-46z" fill="#253d4a" stroke="#658895"/><path d="M92 249l205 49 211-50M297 298l-12 55" fill="none" stroke="#698591"/><path d="M164 237v-62l53-25 48 26v77l-48 19zM330 239V98l61-31 58 32v157l-58 28z" fill="#4b6573"/><path d="M391 67v217l58-28V99zM217 150v122l48-19v-77z" fill="#314957"/><path d="M153 173l64-33 59 34-59 31zM318 98l73-39 70 40-70 38z" fill="#8298a1"/>'
 	var halo := '<defs><radialGradient id="h"><stop stop-color="#638798" stop-opacity=".26"/><stop offset="1" stop-color="#638798" stop-opacity="0"/></radialGradient></defs><ellipse cx="300" cy="205" rx="296" ry="174" fill="url(#h)"/>'
-	var svg := '<svg xmlns="http://www.w3.org/2000/svg" %s>%s%s</svg>' % [extent, "" if kind in ["person_portrait", "rings"] else halo, shape]
+	var svg := '<svg xmlns="http://www.w3.org/2000/svg" %s>%s%s</svg>' % [extent, "" if kind == "rings" else halo, shape]
 	var image := Image.new()
 	if image.load_svg_from_string(svg) != OK:
 		image = Image.create(1, 1, false, Image.FORMAT_RGBA8)
 	_textures[kind] = ImageTexture.create_from_image(image)
 	return _textures[kind]
-
-func backdrop(parent: Control) -> void:
-	var sky: Texture2D = _textures.get("sky")
-	if sky == null:
-		var shapes := PackedStringArray()
-		var seed_value := 71
-		for index: int in 230:
-			var values := PackedFloat64Array()
-			for field: int in 4:
-				seed_value = (seed_value * 16807) % 2147483647
-				values.append(float(seed_value) / 2147483647.0)
-			shapes.append('<circle cx="%.1f" cy="%.1f" r="%.2f" fill="#a3bec7" opacity="%.3f"/>' % [values[0] * 1600, values[1] * 900, values[2] * 1.1 + 0.2, values[3] * 0.23 + 0.025])
-		for index: int in 5:
-			shapes.append('<ellipse cx="800" cy="480" rx="%d" ry="%d" transform="rotate(-11.46 800 480)" stroke="#96b0bc" stroke-opacity=".04" fill="none"/>' % [560 + 65 * index, 200 + 30 * index])
-		sky = _svg("sky", '<defs><radialGradient id="sky" cx="47%%" cy="52%%" r="62%%"><stop stop-color="#1c2c38"/><stop offset=".68" stop-color="#0b1420"/><stop offset="1" stop-color="#080e18"/></radialGradient></defs><rect width="1600" height="900" fill="url(#sky)"/>%s' % "".join(shapes))
-	host._ui.image(parent, "Night", Rect2(0, 0, 1280, 720), sky, Color.WHITE, TextureRect.STRETCH_SCALE)
 
 func _svg(key: String, drawing: String) -> Texture2D:
 	var bitmap := Image.new()
@@ -70,7 +50,7 @@ func _svg(key: String, drawing: String) -> Texture2D:
 func overview() -> void:
 	var stage: Control = host._stage
 	var requests: Array = host._pending_prayers()
-	_render_worlds(stage, _ranked_worlds(requests), false)
+	_world_fan(stage, _ranked_worlds(requests))
 	_crumb(stage)
 	_title(stage, "界外 / 神意未至", "诸界态势", "机会尚未消失，责任仍在延续。\n先决定，把你的意志投向哪里。")
 	var anchors: Array = host.projection.get("anchors", [])
@@ -81,8 +61,51 @@ func overview() -> void:
 	_obligation(stage, "PrayerIndex", summary, 576, host._prayers.browse)
 	_obligation(stage, "ResistanceIndex", "%d 处已知反制待查" % plans.size() if not plans.is_empty() else "暂无已知反制", 604, host._world_management.open_archive)
 	var archive := _link(stage, "AllWorlds", "展开全部已知世界 →", Rect2(79, 666, 183, 39), host._world_management.open_archive)
-	host._ui.fill(archive, "LinkRule", Layout.box(Rect2(0, 38, 141, 1)), UI.LINE)
-	_label(stage, "MetricLegend", "⬡ 屏障　◉ 污染　◈ 察觉　▥ 稳定", Rect2(79, 708, 350, 26), 14, UI.MUTED)
+	host._ui.style_action(archive, false, false)
+
+func _world_fan(stage: Control, worlds: Array) -> void:
+	if worlds.is_empty():
+		_label(stage, "NoWorlds", "尚未感知可查看的世界", Rect2(548, 402, 790, 52), 21, UI.MUTED)
+		return
+	var fan := Fan.new()
+	fan.name = "WorldFan"
+	fan.position = Vector2(318, 126)
+	fan.size = Vector2(920, 450)
+	fan.accessibility_name = "已知世界"
+	stage.add_child(fan)
+	var counter: Label = host._ui.label(stage, "WorldCardPosition", "", Rect2(345, 558, 870, 28), host._size(16), UI.BONE)
+	counter.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	var cards: Array[Control] = []
+	var ids: Array[String] = []
+	var names: Array[String] = []
+	var tips: Array[String] = []
+	for world: Dictionary in worlds:
+		var id: String = world.id
+		ids.append(id)
+		names.append(world.title)
+		tips.append(host._views.world_metrics_text(host, id, true))
+		var data := {"id": id, "title": world.title, "status": _world_status(world),
+			"relation": "已关注" if world.get("focused", false) else world.get("已知范围", "已知联系"),
+			"tier_title": {"planet": "星球", "system": "星系", "cosmic": "宇宙"}.get(world.get("tier", ""), "层级未明"),
+			"art_recipe": host._portraits.recipe("world", host.session.visual_seed(), world, world)}
+		var metrics: Array[String] = []
+		for field: String in ["barrier", "pollution", "alert", "stability"]:
+			metrics.append("%s%s" % [host._views.WORLD_METRICS[field], host._views.metric_display(world, field).value])
+		data.metrics = ["  ".join(metrics.slice(0, 2)), "  ".join(metrics.slice(2, 4))]
+		var card := Card.new()
+		card.build(host._ui, data, cards.size(), host._size(0), host._portraits)
+		cards.append(card)
+	var previous := ids.find(_overview_focus)
+	fan.card_chosen.connect(func(index: int) -> void: host._inspect_world(ids[index]))
+	var update := func(index: int) -> void:
+		_overview_focus = ids[index]
+		counter.text = "‹   %02d / %02d   ›" % [index + 1, ids.size()]
+		fan.accessibility_description = names[index] + "。左右键浏览，确认进入。"
+		fan.tooltip_text = names[index] + "\n" + tips[index]
+	fan.focus_changed.connect(update)
+	fan.configure(cards)
+	fan.set_focus(maxi(0, previous), false)
+	update.call(fan.focus_index)
 
 func _ranked_worlds(requests: Array) -> Array:
 	var worlds: Array = host._worlds.duplicate()
@@ -100,51 +123,49 @@ func _priority(world: Dictionary, requests: Array) -> int:
 	return priority
 
 func reset_worlds() -> void:
-	_world_shapes.clear()
+	_overview_focus = ""
 
-func register_worlds(worlds: Array) -> void:
-	for world: Dictionary in worlds:
-		var id: String = world.id
-		if not _world_shapes.has(id): _world_shapes[id] = _world_shapes.size() % ISLANDS.size()
-
-func world_picture(id: String) -> Texture2D:
-	var index: int = int(_world_shapes.get(id, 0))
-	var key := "island/" + str(index)
-	if not _textures.has(key):
-		var bitmap := Image.new()
-		bitmap.load_svg_from_string(ISLANDS[index].strip_edges())
-		_textures[key] = ImageTexture.create_from_image(bitmap)
-	return _textures[key]
-
-func _render_worlds(parent: Control, worlds: Array, local_view: bool) -> void:
-	var frames: Array = Layout.LOCAL_REALMS if local_view else Layout.OVERVIEW_REALMS
-	var captions: Array = Layout.LOCAL_CAPTIONS if local_view else Layout.OVERVIEW_CAPTIONS
+func _render_worlds(parent: Control, worlds: Array) -> void:
+	var frames: Array = Layout.LOCAL_REALMS
+	var captions: Array = Layout.LOCAL_CAPTIONS
 	for index: int in mini(worlds.size(), frames.size()):
-		_world_fragment(parent, worlds[index], frames[index], captions[index], index, local_view)
+		_world_fragment(parent, worlds[index], frames[index], captions[index], index)
 
-func _world_fragment(parent: Control, world: Dictionary, frame: Rect2, caption: Rect2, index: int, local_view: bool) -> void:
+func _world_fragment(parent: Control, world: Dictionary, frame: Rect2, caption: Rect2, index: int) -> void:
 	var id: String = world.id
-	var tint := Color(1, 1, 1, [1.0, 0.42, 0.42][index] if local_view else [1.0, 0.75, 0.62][index])
-	var art: TextureRect = host._ui.image(parent, "SceneSlot" if local_view and index == 0 else "WorldPlaceholder_" + id, Layout.box(frame), world_picture(id))
-	art.modulate = tint
-	art.set_meta("subject_id", id)
-	if local_view and index == 0: return
+	var tint := Color(1, 1, 1, [1.0, 0.74, 0.74][index])
+	var art_box := Layout.box(frame)
+	if index == 0:
+		# Keep the existing focal centre. Leave the left rail, header and footer clear
+		# even when the complete square illustration has a bright paper background.
+		art_box = Rect2(art_box.get_center() - Vector2(178, 178), Vector2(356, 356))
+		host._scene_plate(parent, "LocalWorldStock", Rect2(art_box.grow(7).position / Layout.SCALE, art_box.grow(7).size / Layout.SCALE), UI.FIELD)
+	else:
+		art_box = Rect2(Layout.box(caption).position - Vector2(0, 83), Vector2(80, 80))
+	host._object_art(parent, "SceneSlot" if index == 0 else "WorldThumbnail_" + id, art_box, "world", id, index == 0)
+	# Neighbour copy remains subordinate; generated image colours are unmodified.
+	if index == 0: return
 	# Hit target starts at the visible world and ends after the metric strip.
 	var hit := Rect2(frame.position.x, maxf(frame.position.y, 138), minf(frame.size.x, 1600 - frame.position.x), maxf(frame.end.y, caption.end.y) - maxf(frame.position.y, 138))
 	var button: Button = host._button(parent, "World_" + id, "", Layout.box(hit), host._inspect_world.bind(id))
+	# The old transparent hit area remains while B02 replaces it with the card carrier.
+	for state: String in ["normal", "hover", "pressed"]:
+		button.add_theme_stylebox_override(state, StyleBoxEmpty.new())
 	button.accessibility_name = str(world.title)
 	button.tooltip_text = host._views.world_metrics_text(host, id, true)
-	var ratio := frame.size.x / 590.0
 	var at := caption.position - hit.position
 	var origin := str({"planet": "星球", "system": "星系", "cosmic": "宇宙"}.get(world.get("tier", ""), "层级未明"))
 	var relation := "已关注" if world.get("focused", false) else str(world.get("已知范围", "已知联系"))
-	_label(button, "WorldOverline", relation + " / " + origin, Rect2(at, Vector2(caption.size.x, 17 * ratio)), 12 * ratio, UI.CYAN, false, 3 * ratio).modulate = tint
-	_label(button, "WorldName", str(world.title), Rect2(at + Vector2(0, 25 * ratio), Vector2(caption.size.x, 38 * ratio)), 27 * ratio, UI.BONE, true, 4 * ratio).modulate = tint
-	_label(button, "WorldStatus", _world_status(world), Rect2(at + Vector2(0, 64 * ratio), Vector2(caption.size.x, 24 * ratio)), 14 * ratio, UI.MUTED).modulate = tint
+	var width := minf(160.0, 1600.0 - caption.position.x)
+	_label(button, "WorldName", str(world.title), Rect2(at, Vector2(width, 26)), 18, UI.BONE).modulate = tint
+	_label(button, "WorldOverline", relation + " / " + origin, Rect2(at + Vector2(0, 25), Vector2(width, 23)), 14, UI.MUTED).modulate = tint
 	var reads := PackedStringArray()
 	for field: String in host._views.WORLD_METRICS:
-		reads.append("%s %s" % [METRIC_SIGNS[field], host._views.metric_display(world, field).value])
-	_label(button, "WorldMetrics", "   ".join(reads), Rect2(at + Vector2(0, 99 * ratio), Vector2(caption.size.x, 27 * ratio)), 15 * ratio, UI.MUTED).modulate = tint
+		reads.append("%s%s" % [METRIC_SIGNS[field], host._views.metric_display(world, field).value])
+	for row: int in 2:
+		var pair := "  ".join(reads.slice(2 * row, 2 * row + 2))
+		_label(button, "WorldMetrics%d" % row, pair, Rect2(at + Vector2(0, 50 + 23 * row), Vector2(width, 23)), 14, UI.MUTED).modulate = tint
+	button.tooltip_text = _world_status(world) + "\n" + button.tooltip_text
 	host._world_buttons[id] = button
 
 func _world_status(world: Dictionary) -> String:
@@ -166,7 +187,7 @@ func local(world: Dictionary) -> void:
 	var worlds := _ranked_worlds(host._pending_prayers())
 	worlds.erase(world)
 	worlds.push_front(world)
-	_render_worlds(body, worlds, true)
+	_render_worlds(body, worlds)
 	_crumb(body, str(world.title))
 	_title(body, "通过梦与见证所知", str(world.title), "联系仍在延续。你的干预，将从这里开始。")
 	_intelligence(body, world)
@@ -181,18 +202,18 @@ func local(world: Dictionary) -> void:
 	var thread_key := "threads/" + str(threads)
 	var thread: Texture2D = _textures.get(thread_key)
 	if thread == null:
-		thread = _svg(thread_key, '<path d="%s" fill="none" stroke="#809ca0" stroke-opacity=".25" stroke-dasharray="3 8"/>' % " ".join(threads))
+		thread = _svg(thread_key, '<path d="%s" fill="none" stroke="#829078" stroke-opacity=".25" stroke-dasharray="3 8"/>' % " ".join(threads))
 	host._ui.image(body, "Threads", Rect2(0, 0, 1280, 720), thread, Color.WHITE, TextureRect.STRETCH_SCALE)
 	var anchor_title: String = "锚点与护持" if institutions.size() != 1 else host.title(str(institutions[0].id))
 	var anchor_status := "查看机构与锚定条件" if anchors.is_empty() else "%d 处锚点 · 查看状态" % anchors.size()
-	pin(body, "AnchorIndex", anchor_title, anchor_status, "⌂", Layout.PIN_ANCHOR, host._tasks.open_subject.bind("anchors", id), true)
+	pin(body, "AnchorIndex", anchor_title, anchor_status, "anchor_status", Layout.PIN_ANCHOR, host._tasks.open_subject.bind("anchors", id), true)
 	if not cult.is_empty():
-		pin(body, "LocalCult", host._views._cult_name(host, cult), "%s 名信众 · 凝聚 %s" % [cult.followers, cult.cohesion], "♧", Layout.PIN_CULT, host._world_management.open_cult.bind(id))
+		pin(body, "LocalCult", host._views._cult_name(host, cult), "%s 名信众 · 凝聚 %s" % [cult.followers, cult.cohesion], "cult", Layout.PIN_CULT, host._world_management.open_cult.bind(id))
 	var opportunities: Array = host._views.current_opportunities(host, id)
 	var relic_name := "WorldOpportunities" if not opportunities.is_empty() else "LocalRelics"
-	var relic_status := "%d 项限时机会 · 查看获取条件" % opportunities.size() if not opportunities.is_empty() else "持有与绑定状态"
+	var relic_status := "%d 项机会 · 查看条件" % opportunities.size() if not opportunities.is_empty() else "持有与绑定状态"
 	pin(body, relic_name, "当地圣物", relic_status, "◇", Layout.PIN_RELIC, host._tasks.open_subject.bind("relics", id))
-	pin(body, "Activities", "持续活动", "安排活动 · 继续已有进展", "⋈", Layout.PIN_ACTIVITY, host._tasks.open_activities.bind(id))
+	pin(body, "Activities", "持续活动", "安排活动 · 继续已有进展", "ritual", Layout.PIN_ACTIVITY, host._tasks.open_activities.bind(id))
 	host._prayers.build_contact(body, id, requests)
 
 func _local_rows(collection: String, id: String) -> Array:
@@ -239,13 +260,14 @@ func _crumb(parent: Control, world := "") -> void:
 
 func _title(parent: Control, eyebrow: String, title_value: String, premise: String) -> void:
 	_label(parent, "Perspective", eyebrow, Rect2(78, 181, 440, 18), 13, UI.CYAN, false, 5)
-	_label(parent, "PerceptionTitle", title_value, Rect2(78, 215, 500, 59), 42, UI.BONE, true, 7)
+	_label(parent, "PerceptionTitle", title_value, Rect2(78, 215, 500, 59), 45, UI.BONE, true, 7)
 	var lines := premise.split("\n")
 	for index: int in lines.size():
 		_label(parent, "PerceptionPremise", lines[index], Rect2(78, 290 + 29 * index, 420, 29), 16, UI.MUTED)
 
 func _obligation(parent: Control, node_name: String, text_value: String, y: float, callback: Callable) -> void:
 	var row := _link(parent, node_name, "", Rect2(79, y, 301, 28), callback)
+	host._ui.style_action(row, false, false)
 	row.accessibility_name = text_value
 	host._ui.icon(row, "Marker", "attention_dot", Layout.box(Rect2(0, 11, 6, 6)), UI.GOLD)
 	_label(row, "Obligation", text_value, Rect2(18, 0, 278, 28), 15, UI.MUTED)
@@ -262,6 +284,13 @@ func _label(parent: Node, node_name: String, value: String, bounds: Rect2, px: f
 
 func pin(parent: Control, node_name: String, caption: String, detail: String, sign: String, at: Vector2, callback: Callable, warn := false) -> Button:
 	var button: Button = host._button(parent, node_name, "", Layout.box(Rect2(at, Vector2(278, 64))), callback)
+	var stock: Panel = Panel.new()
+	host._ui.rect(stock, Rect2(Vector2.ZERO, button.size))
+	stock.add_theme_stylebox_override("panel", UI.Paint.reading_plate(0.98))
+	# The stock is opaque over the illustration; draw interaction state on top of it.
+	parent.add_child(stock)
+	stock.position = button.position
+	parent.move_child(stock, button.get_index())
 	button.accessibility_name = caption + " · " + detail
 	button.tooltip_text = detail
 	seal(button, "Seal", sign, Rect2(12, 10.5, 43, 43), 23)
@@ -271,7 +300,7 @@ func pin(parent: Control, node_name: String, caption: String, detail: String, si
 
 func seal(parent: Control, node_name: String, sign: String, bounds: Rect2, px: int, quiet := false) -> void:
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color.TRANSPARENT if quiet else Color("#10212a")
+	style.bg_color = Color.TRANSPARENT if quiet else Color(UI.FIELD, 0.95)
 	style.border_color = Color(UI.LINE, 0.8) if quiet else UI.CYAN
 	style.set_border_width_all(1)
 	style.set_corner_radius_all(ceil(Layout.box(bounds).size.x / 2))
@@ -279,7 +308,10 @@ func seal(parent: Control, node_name: String, sign: String, bounds: Rect2, px: i
 	host._ui.rect(plate, Layout.box(bounds))
 	plate.add_theme_stylebox_override("panel", style)
 	parent.add_child(plate)
-	_label(parent, node_name, sign, bounds, px).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	if sign in ["anchor_status", "cult", "ritual"]:
+		host._ui.icon(parent, node_name, sign, Layout.box(bounds.grow(-8)), UI.BONE)
+	else:
+		_label(parent, node_name, sign, bounds, px).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 
 func action_layout(task, box: VBoxContainer, row: Dictionary, selection: Dictionary, actions, note: String) -> Dictionary:
 	var canvas := Control.new()
@@ -314,15 +346,15 @@ func action_layout(task, box: VBoxContainer, row: Dictionary, selection: Diction
 		subject = value
 		chosen = str(task.title(value))
 		subject_kind = "person" if field in ["npc", "actor", "guardian"] else "world" if field == "domain" else field
-		if subject_kind == "person": texture = picture("person")
-		elif field == "cult": texture = picture("cult")
-		elif field == "domain": texture = world_picture(value)
-		else: texture = picture("contact")
+		if subject_kind not in ["person", "cult", "world"]: texture = picture("contact")
 		break
 	var ring := Rect2(Vector2(592, 471) - origin, Vector2(416, 151))
 	host._ui.image(canvas, "ContactRings", Layout.box(ring), picture("rings"), Color.WHITE, TextureRect.STRETCH_SCALE)
-	if texture != null:
-		host._ui.image(canvas, "ContactTarget", Layout.box(Rect2(Vector2(631, 217) - origin, Vector2(340, 405))), texture)
+	var art_rect := Layout.box(Rect2(Vector2(641, 224) - origin, Vector2(320, 332)))
+	if subject_kind in ["person", "cult", "world"]:
+		host._object_art(canvas, "ContactTarget", art_rect, subject_kind, subject, true)
+	elif texture != null:
+		host._ui.image(canvas, "ContactTarget", art_rect, texture)
 	else:
 		host._reference(canvas, "EmptyContact", "先选择一处真实联系", Rect2(Vector2(620, 350) - origin, Vector2(360, 49)), 17, UI.CYAN).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	host._reference(canvas, "ContactSubject", chosen if not chosen.is_empty() else "尚未建立联系", Rect2(Vector2(550, 565) - origin, Vector2(500, 52)), 25, UI.BONE, true).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

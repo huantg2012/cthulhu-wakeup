@@ -1,6 +1,7 @@
 shader_type canvas_item;
-// Final composite: style filters + bloom + madness. TEXTURE = rendered 3D scene.
+// Final composite: style filters + bloom + madness. source_tex = rendered source composite.
 
+uniform sampler2D source_tex : filter_linear, repeat_disable;
 uniform sampler2D bloom_tex : filter_linear, repeat_disable;
 uniform int style = 0;
 uniform float madness = 0.0;
@@ -122,13 +123,13 @@ void fragment() {
 		vec2 blk = floor(uv * res / ps);
 		vec2 cuv = (blk + 0.5) * ps / res;
 		vec2 bp = ps / res;
-		c = tex(TEXTURE, cuv);
-		c = mix(c, (tex(TEXTURE, cuv + bp * vec2(0.25, 0.25)) + tex(TEXTURE, cuv - bp * vec2(0.25, 0.25))) * 0.5, 0.5);
+		c = tex(source_tex, cuv);
+		c = mix(c, (tex(source_tex, cuv + bp * vec2(0.25, 0.25)) + tex(source_tex, cuv - bp * vec2(0.25, 0.25))) * 0.5, 0.5);
 		float l0 = luma(c);
-		float l1 = luma(tex(TEXTURE, cuv + vec2(bp.x, 0.0)));
-		float l2 = luma(tex(TEXTURE, cuv + vec2(0.0, bp.y)));
-		float l3 = luma(tex(TEXTURE, cuv - vec2(bp.x, 0.0)));
-		float l4 = luma(tex(TEXTURE, cuv - vec2(0.0, bp.y)));
+		float l1 = luma(tex(source_tex, cuv + vec2(bp.x, 0.0)));
+		float l2 = luma(tex(source_tex, cuv + vec2(0.0, bp.y)));
+		float l3 = luma(tex(source_tex, cuv - vec2(bp.x, 0.0)));
+		float l4 = luma(tex(source_tex, cuv - vec2(0.0, bp.y)));
 		float edge = step(0.18, max(max(l1, l2), max(l3, l4)) - l0) * step(l0, 0.25);
 		c += btex(cuv) * bloom_amt * 0.6;
 		float dth = bayer4(blk) - 0.5;
@@ -137,21 +138,21 @@ void fragment() {
 		c = mix(c, ink * 0.5, edge * 0.85);
 		fc = blk;
 	} else if (style == 0) {
-		c = kuwahara(TEXTURE, uv, px * 1.2);
+		c = kuwahara(source_tex, uv, px * 1.2);
 		float stroke = fbm(vec2(fc.x * 0.05 + fc.y * 0.12, fc.y * 0.05 - fc.x * 0.02) / px_scale + seed);
 		c *= 0.93 + 0.14 * stroke;
 		c = sat(c, 1.1);
 	} else if (style == 1) {
-		c = tex(TEXTURE, uv);
-		float e = sobel(TEXTURE, uv, px * 1.1);
+		c = tex(source_tex, uv);
+		float e = sobel(source_tex, uv, px * 1.1);
 		float l = luma(c);
 		float lq = floor(l * 4.0 + 0.5) / 4.0;
 		c = c * clamp(mix(1.0, (lq + 0.04) / (l + 0.04), 0.55), 0.6, 1.6);
 		c = sat(c, 1.25);
 		c = mix(c, ink * 0.25, smoothstep(0.25, 0.6, e) * 0.9);
 	} else if (style == 2) {
-		vec3 src = tex(TEXTURE, uv);
-		float e = sobel(TEXTURE, uv, px * 1.5);
+		vec3 src = tex(source_tex, uv);
+		float e = sobel(source_tex, uv, px * 1.5);
 		float l = clamp(pow(luma(src), 0.7) * 1.2, 0.0, 1.0);
 		float sp = 5.0 * px_scale;
 		float wob = (fbm(fc * 0.02 / px_scale) - 0.5) * 2.0;
@@ -170,13 +171,13 @@ void fragment() {
 		float s = length(src - vec3(luma(src))) * 2.0;
 		c = mix(c, c * (src / max(luma(src), 0.05)) * 0.9, clamp(s, 0.0, 0.8));
 	} else if (style == 3) {
-		c = tex(TEXTURE, uv);
+		c = tex(source_tex, uv);
 		c = floor(c * 14.0 + 0.5) / 14.0;
 		c = sat(c, 1.08);
 	} else if (style == 5) {
 		float ca = 1.6 * px_scale;
 		vec2 dir = normalize(uv - 0.5 + 0.0001) * TEXTURE_PIXEL_SIZE * ca;
-		c = vec3(tex(TEXTURE, uv + dir).r, tex(TEXTURE, uv).g, tex(TEXTURE, uv - dir).b);
+		c = vec3(tex(source_tex, uv + dir).r, tex(source_tex, uv).g, tex(source_tex, uv - dir).b);
 		c *= 0.82 + 0.18 * sin(fc.y / px_scale * 1.6);
 		float flick = 0.94 + 0.06 * sin(t * 13.0) * sin(t * 7.3);
 		float band = smoothstep(0.0, 0.02, abs(fract(uv.y * 0.6 - t * 0.12) - 0.5) - 0.48);
@@ -186,11 +187,11 @@ void fragment() {
 	} else if (style == 6) {
 		vec2 wob = (vec2(fbm(fc * 0.012 / px_scale + seed), fbm(fc * 0.012 / px_scale + seed + 7.0)) - 0.5) * 6.0 * px;
 		vec2 wuv = uv + wob;
-		c = tex(TEXTURE, wuv);
+		c = tex(source_tex, wuv);
 		vec3 b = vec3(0.0);
 		for (int k = 0; k < 8; k++) {
 			float a = float(k) * 0.785;
-			b += tex(TEXTURE, wuv + vec2(cos(a), sin(a)) * px * 4.0);
+			b += tex(source_tex, wuv + vec2(cos(a), sin(a)) * px * 4.0);
 		}
 		b /= 8.0;
 		float edge = smoothstep(0.03, 0.18, length(c - b));
@@ -201,13 +202,13 @@ void fragment() {
 		c = sat(c, 0.85);
 		float pap = 0.93 + 0.07 * fbm(fc * 0.02 / px_scale + seed * 3.0);
 		c *= pap;
-		float e = sobel(TEXTURE, wuv + wob * 0.5, px * 0.9);
+		float e = sobel(source_tex, wuv + wob * 0.5, px * 0.9);
 		c = mix(c, ink * 0.9 + c * 0.1, smoothstep(0.3, 0.7, e) * 0.55);
 	} else {
 		// pulp magazine: CMYK halftone + misregistration + heavy ink
 		float cell = 5.0 * px_scale;
-		vec3 src = pow(tex(TEXTURE, uv), vec3(0.75)) * 1.2;
-		vec3 srcm = pow(tex(TEXTURE, uv + vec2(1.5, -1.0) * px), vec3(0.75)) * 1.2;
+		vec3 src = pow(tex(source_tex, uv), vec3(0.75)) * 1.2;
+		vec3 srcm = pow(tex(source_tex, uv + vec2(1.5, -1.0) * px), vec3(0.75)) * 1.2;
 		src += btex(uv) * bloom_amt * 0.5;
 		float k = 1.0 - max(max(src.r, src.g), src.b);
 		vec3 cmy = (1.0 - vec3(srcm.r, src.g, src.b) - k) / max(1.0 - k, 0.001);
@@ -221,7 +222,7 @@ void fragment() {
 		c *= 1.0 - vec3(0.0, 0.8, 0.0) * dm;
 		c *= 1.0 - vec3(0.0, 0.0, 0.85) * dy;
 		c *= 1.0 - 0.9 * dk;
-		float e = sobel(TEXTURE, uv, px * 1.3);
+		float e = sobel(source_tex, uv, px * 1.3);
 		c = mix(c, ink * 0.6, smoothstep(0.3, 0.6, e));
 	}
 
@@ -260,7 +261,7 @@ void fragment() {
 		float rim = smoothstep(len * 0.6, len * 0.85, edge_d + wob) * (1.0 - smoothstep(len * 0.85, len * 1.05, edge_d + wob));
 		c += accent * rim * 0.45 * madness;
 		// sickly desaturation + chromatic split
-		vec3 split = vec3(tex(TEXTURE, uv + d * 0.006 * madness).r, c.g, tex(TEXTURE, uv - d * 0.006 * madness).b);
+		vec3 split = vec3(tex(source_tex, uv + d * 0.006 * madness).r, c.g, tex(source_tex, uv - d * 0.006 * madness).b);
 		if (style == 0 || style == 1 || style == 3 || style == 5) {
 			c = mix(c, mix(c, split, 0.5), madness * (1.0 - m));
 		}

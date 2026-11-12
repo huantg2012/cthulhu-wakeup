@@ -193,9 +193,9 @@
       "status": "已核对·接口合同",
       "path": "docs/specs/system-art-generation.md",
       "checked_date": "2026-11-12",
-      "sha256": "7ba7c28ec7e36f0f8fb0b89013cdcb558c74dea103adf11b1e68efb9db28c1e2",
-      "allowed": "原生Godot服务、最终图/中间层、版本/缓存/Session尚未接入的边界。",
-      "excluded": "旧JS/HTML/服务器运行链；工作台成功不等于图像身份或持久化完成。"
+      "sha256": "10f4fd345c8f948ccce3948d9229ec12d28020120ad0490051ba1e2cab9fdfee",
+      "allowed": "原生 Godot 服务、最终图/中间层与正式身份 v1、公开对象边界、调度和缓存合同。",
+      "excluded": "旧 JS/HTML/服务器运行链；工作台效果不等于正式场景获准。"
     },
     {
       "id": "R04",
@@ -223,9 +223,9 @@
       "status": "已核对·实际实现，不自动成为视觉规则",
       "path": "src/presentation/production/locked_controls.gd",
       "checked_date": "2026-11-12",
-      "sha256": "72ba01fa6d568c49c1a9b0dda51debe4f1a759c250b5c305eb37adb484b6489c",
-      "allowed": "按钮真实状态/焦点绘制的宿主，C01暴露其实际继承结果；正式输入结构保持。",
-      "excluded": "残留冷蓝、旧字色或默认控件并非获准新主题，不从生产旧样式反推美术标准。"
+      "sha256": "5b63f9596cbd7cb74e54bbb9f559038e46acdb9817b640fb2f656aee82e14c01",
+      "allowed": "正式原生按钮、选择与焦点宿主；当前生产材料参见规范 §8。C01 的截图固定于 dcaf037 的原宿主。",
+      "excluded": "C01 暴露的旧色不作为新主题输入；正式补齐的焦点、按下、禁用状态仍待制作人复审。"
     },
     {
       "id": "R07",
@@ -253,8 +253,8 @@
       "status": "已核对·最新段优先",
       "path": "docs/progress/stage-priorities.md",
       "checked_date": "2026-11-12",
-      "sha256": "22a55284da1adf628147537bf2b87f24a22fa6a4c4e678a85480d89b3d7a4932",
-      "allowed": "game-ui-routing后2026-11-12当前段及持续技能禁令。",
+      "sha256": "72e1853f7eb3f9f46746644293cef44ed621719823e54cf970eeb89333f51a4c",
+      "allowed": "2026-11-12 的当前路由、持续禁令和正式接入交付状态。",
       "excluded": "后续历史路由的旧视觉规范入口、旧待审/待选状态。"
     }
   ],

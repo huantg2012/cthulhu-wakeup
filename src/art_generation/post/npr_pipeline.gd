@@ -30,10 +30,11 @@ func _ready():
 	var final_rect=_rect(final)
 	final_rect.texture=composite.get_texture()
 	post=_material(BASE+"post.gdshader")
+	post.set_shader_parameter("source_tex",composite.get_texture())
 	post.set_shader_parameter("bloom_tex",blur.get_texture())
 	final_rect.material=post
 func _viewport(size: Vector2i) -> SubViewport:
-	var v=SubViewport.new();v.size=size;v.render_target_update_mode=SubViewport.UPDATE_ALWAYS;v.transparent_bg=false;add_child(v);return v
+	var v=SubViewport.new();v.size=size;v.render_target_update_mode=SubViewport.UPDATE_DISABLED;v.transparent_bg=false;add_child(v);return v
 func _rect(v: SubViewport) -> TextureRect:
 	var r=TextureRect.new();r.size=Vector2(v.size);r.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;r.stretch_mode=TextureRect.STRETCH_SCALE;v.add_child(r);return r
 func _material(path: String) -> ShaderMaterial:

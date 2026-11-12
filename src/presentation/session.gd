@@ -646,6 +646,18 @@ func _cult_pollution_preview(cult: Dictionary, strategy: String) -> Dictionary:
 				break
 	return _pollution_report(cult.domain, produced, decay, domain.pollution_revision, world.state.next_fact)
 
+## Stable seed for presentation. Reading it does not advance gameplay RNG.
+func visual_seed() -> String:
+	return str(world.randoms.generation.seed) if world != null else ""
+
+## A portrait must not disclose an undiscovered birthplace or a request-only identity.
+func visual_birthplace(id: String) -> String:
+	if not _known_people.has(id): return ""
+	var person: Dictionary = Store.entry(world.state.npcs, id, {})
+	var source: Dictionary = Store.entry(world.state.facts, str(person.get("identity_source", "")), {})
+	var origin: String = source.get("domain", "")
+	return origin if _known_domains.has(origin) else ""
+
 func project() -> Dictionary:
 	if turn == null: return {"ok": false, "active": false, "error": last_error}
 	var state: Dictionary = world.state

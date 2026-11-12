@@ -194,8 +194,7 @@ func _options(task, parent: VBoxContainer, list: ScrollContainer, tab: String, f
 		card.custom_minimum_size.y = 42 if tab == "attribute" else 64
 		card.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		card.tooltip_text = actions._option_title(task, option)
-		if selected:
-			card.add_theme_stylebox_override("normal", task.host._ui.button_style("hover", false, true))
+		task.host._ui.select_entry(card, selected)
 		parent.add_child(card)
 		var interior := HBoxContainer.new()
 		interior.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -208,8 +207,7 @@ func _options(task, parent: VBoxContainer, list: ScrollContainer, tab: String, f
 			art.custom_minimum_size = Vector2(70, 50)
 			art.mouse_filter = Control.MOUSE_FILTER_IGNORE
 			interior.add_child(art)
-			if tab == "domain": task.host._ui.image(art, "WorldArt", Rect2(0, 0, 70, 50), task.host._world_picture(str(option.id)))
-			else: task.host._ui.icon(art, "PersonSymbol", "person", Rect2(12, 4, 42, 42), UI.CYAN)
+			task.host._object_art(art, "CandidateArt", Rect2(0, 0, 70, 50), "world" if tab == "domain" else "person", str(option.id))
 		var words := VBoxContainer.new()
 		words.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		words.mouse_filter = Control.MOUSE_FILTER_IGNORE

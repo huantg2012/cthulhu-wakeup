@@ -7,15 +7,17 @@ changed-this-slice: true
 
 # 技术边界与可实施性
 
-## 已批准界面美术与待接入边界（2026-11-12）
+## 正式界面美术接入（2026-11-12）
 
-`docs/art/visual-generation/ui-study/` 当前母版已获制作人通过；`UI视觉探索.command` 仍是独立展示入口，样牌、夹具、扫树覆写和 F 键切换不进入正常游戏。正式根仍为 `production/game_root.tscn`，本次没有新增运行时组件；此前已按制作人指示在 `round_view.gd` 移除游戏内常驻标题并左移轮次。
+`production/game_root.tscn` 的 `GameRoot/Presentation/CanvasLayer/OverlayRoot` 继续持有唯一正式 Session，原启动器使用同一入口。其常驻 `PaintedEnvironment` 位于重建的 `Perception` 与弹层 `Decision` 之下；外围由 `production/painted/peripheral_atmosphere.gd` 管连续时钟、阅读保护和强度，不接触 Session 或输入。
 
-全游戏迁移职责、源码提取与生命周期约束见[美术规范 §8](art/visual-generation/ui-art-standard.md#8-从样板到正式组件)，实施者完成各批后在本处补真实生产路径。共享视觉、对象图像提供者与外围时钟为接入要求，当前不能写成已存在的 API；图像参数绑定／保存／队列仍须按生成 spec 补合同。现阶段不改变交互宿主、业务接口或默认场景。
+`locked_controls.gd` 保留原生控件、焦点与状态回调，通过 `production/painted/theme.gd` 共用随包字体、颜料、色值和阅读底板。诸界 `world_card.gd` / `card_fan.gd` 复用获准卡身和卡扇几何／手势，适配正式公开对象、焦点和弹层绘制顺序。`object_window.gd` 负责最终图像等比和边缘 alpha；`object_portraits.gd` 从可见槽串行调度确定配方，缓存图片并检查返回对象身份。源文件、规则与验证分别见[美术规范](art/visual-generation/ui-art-standard.md#8-从样板到正式组件)、[立绘生成合同](specs/system-art-generation.md)和[逐批交付](tasks/ui-art-production.md)。
+
+`tools/ui-art-production/export_pack.sh` 从隔离的制作输入目录生成正式 PCK，保留正式 CSV 原文、字体及上游许可证；样板入口、展示夹具、文档证据不进包。独立母版在 `dcaf037` 的探索工作树复现；正式分支保留其冻结图册、动态及指纹。
 
 ## 原生立绘生成（2026-11-11）
 
-`src/art_generation/` 是游戏 Godot 工程内独立的立绘生成模块，当前通过 `workbench/workbench.tscn` 运行，不接 Session，不改默认游戏入口。参数／CSV、二维构图算法、材质与受光渲染、原作星球适配器、NPR 后期及结果展示分层；接口、替换方式、迁移差异与检查范围唯一正文为 [system-art-generation.md](specs/system-art-generation.md)。当前立绘生成启动器均转向 Godot，旧浏览器探索保留作历史证据，退出运行链。
+`src/art_generation/` 是游戏 Godot 工程内独立的立绘生成模块，独立工作台通过 `workbench/workbench.tscn` 运行；正式呈现按上一节请求单图，绘画服务本身不接 Session。参数／CSV、二维构图算法、材质与受光渲染、原作星球适配器、NPR 后期及结果展示分层；接口、替换方式、迁移差异与检查范围唯一正文为 [system-art-generation.md](specs/system-art-generation.md)。当前立绘生成启动器均转向 Godot，旧浏览器探索保留作历史证据，退出运行链。
 
 ## 独立表现方向比较（2026-11-06，DEC-063）
 
