@@ -5,13 +5,16 @@
 @media print{aside,.reader-note{display:none}main{margin:0;padding:0}h2{break-before:page}body{background:white}}
 </style></head><body><aside><strong>邪神苏醒<br>图文美术规范</strong><nav class="quick-nav"><a href="#1-母版证据与冻结方式">母版</a><a href="#4-卡片与控件家族">卡片与控件</a><a href="#5-有机外围与运动">动态</a><a href="#9-分批接入与-agent-交接">实施与反馈</a><a href="#references">引用范围</a></nav><details><summary>全部章节</summary><nav><a href="#0-开工入口与权威边界">0. 开工入口与权威边界</a><a href="#1-母版证据与冻结方式">1. 母版、证据与冻结方式</a><a href="#2-美术立意与统一尺度">2. 美术立意与统一尺度</a><a href="#3-基础视觉参数">3. 基础视觉参数</a><a href="#4-卡片与控件家族">4. 卡片与控件家族</a><a href="#5-有机外围与运动">5. 有机外围与运动</a><a href="#6-立绘身份运行时与资产">6. 立绘身份、运行时与资产</a><a href="#7-全场景适配清单">7. 全场景适配清单</a><a href="#8-从样板到正式组件">8. 从样板到正式组件</a><a href="#9-分批接入与-agent-交接">9. 分批接入与 agent 交接</a><a href="#10-可否证验收与收尾">10. 可否证验收与收尾</a></nav></details></aside><main>
 <div class="reader-note">单一图文正文 · 图片可点开原尺寸，来源附于原图下方 · <a href="../ui-art-standard.md">Markdown 源文</a></div>
-<article id="rules"><p>TL;DR：以制作人已通过的「粗印画牌＋有机窥视窗口」为全游戏界面美术母版，在锁定交互框架上迁移材质、字体、立绘承载和动效。本文件是这一版 UI 美术的唯一执行正文；母版获准不等于所有场景已接入或已验收。</p>
+<article id="rules"><p>TL;DR：以制作人已锁定的「连续印面＋左肩签＋薄卡体」和已通过的有机窥视窗口为正式游戏卡片与外围基线，在现行交互合同上统一材质、字体、立绘承载和动效。本文件是这一版 UI 美术的唯一执行正文；母版获准不等于所有场景已接入或已验收。</p>
 <h1 id="邪神苏醒--全游戏界面美术规范">邪神苏醒 · 全游戏界面美术规范</h1>
 <p><a href="../ui-guide/index.html">打开图文阅览版</a> · <a href="../ui-guide/manifest.json">示例与引用有效性清单</a> · <a href="../ui-art-feedback.md">实施问题台账</a></p>
-<p><strong>阅读方式：</strong> 下图是获准实机，随后各规则附近直接放对应实物。图册中「获准母版」是制作人已通过的画面；「实现复现」只说明代码实际长什么样；「衍生待审」是本轮补齐而尚未获制作人确认的控件，不能偷升为基线。</p>
+<p><strong>阅读方式：</strong> 先看当前锁定卡面，再看保留的外围母版；随后各规则附近放对应实物。图册中「获准母版」是制作人已通过的画面；「实现复现」只说明代码实际长什么样；「衍生待审」是本轮补齐而尚未获制作人确认的控件，不能偷升为基线。</p>
+<p><a class="enlarge" href="../card-design-study/card-thickness/full-and-hand.png" target="_blank" rel="noopener" title="打开原尺寸"><img src="../card-design-study/card-thickness/full-and-hand.png" alt="当前锁定卡面：连续印面、左肩签、薄卡体" loading="lazy" /></a></p>
+<p><em>制作人已锁定的卡面样板；它确定卡片材料与浏览方向，不代表正式 Session 各场景均已核对。</em></p>
 <p><a class="enlarge" href="../ui-study/evidence/02-twelve-worlds.png" target="_blank" rel="noopener" title="打开原尺寸"><img src="../ui-study/evidence/02-twelve-worlds.png" alt="获准母版：12张画牌与有机窥视窗口" loading="lazy" /></a></p>
-<p><em>G00 · 制作人已通过；1920×1080 实机。12 张是排布样牌，并非新增 12 个真实世界。</em></p>
+<p><em>G00 · 已通过的有机外围与历史实机，1920×1080。12 张是排布样牌；其中旧灰绿卡面与焦点置顶排布已由当前锁定卡面替代。</em></p>
 <h2 id="0-开工入口与权威边界">0. 开工入口与权威边界</h2>
+<p>**2026-11-13 最新裁决：**制作人明确「卡片设计已经锁定，将其完整接入游戏 session，不要遗漏」，并要求覆盖从轮间「诸界回响」开始的正式流程。锁定实物是<a href="../card-design-study/card-thickness/full-and-hand.png">完整卡／手牌及厚度</a>。A06–A08 约束所有完整卡：回响、诸界导航、世界／教团／图鉴主卡、手牌、查看执行卡、行为候选与关联主体图。目录微型图沿 A08 缩略处理。此授权允许载体和尺寸适配，保留现行导航、草稿、选择、提交及知情规则；实现状态与真实 Session 证据见<a href="../../../tasks/worldplay-integration.md">接入记录</a>。样板设计锁定与正式各场景待复审分开记录。</p>
 <p>**2026-11-12 后续授权：**制作人要求把当地联系重新设计为「世界玩法」，按信息、对象卡、执行卡组织，外露具体操作，教团可下沉一级。制作人已通过四区样板 <code>a64712d</code> 并授权正式接入。该范围依<a href="../../../specs/ui-interaction.md#worldplay-card-study">交互合同</a>重新设计场景几何和卡片收纳。本文 A01–A03、A05–A06、A08 的图像处理、A11–A14 继续作为画法依据。下文沿旧布局、图槽和入口迁移的限制由此在世界玩法样板范围内放开，正式世界／教团和底栏图鉴使用该四区合同，组件在 <code>src/presentation/production/worldplay/</code>，不再沿旧当地联系的坐标迁移。<a href="../../../tasks/worldplay-integration.md">正式接入与实机证据</a>记录实际范围；独立夹具入口仍见<a href="../worldplay-study/README.md">样板记录</a>。</p>
 <p><strong>制作人裁决，2026-11-12：</strong>「很好，这版游戏界面、美术设计 pass」，并要求建立指导实操 agent 推广到全游戏的规范。获准对象是本分支 <code>ui-study</code> 当前的竖卡、粗印标题、文楷正文、分层背景、高维注视暗纹，以及浓雾／暗膜／卷形／附着异形眼构成的完整动态。</p>
 <p>阅读顺序：</p>
@@ -25,7 +28,7 @@
 <p>旧 <code>docs/art/echoes-ui/visual-system.md</code> 及旧图册保留只读；其中的颜色、控件、几何、字体、动效和旧检查脚本不是本版接入标准。本轮只用脚本统计它的图文组织形式，不读取或继承具体规范内容。</p>
 <p><code>presentation-rebuild/interface-design.md</code> 不再作为本文的整体参考入口。只有现行交互合同明确引用的 §19.1 当地几何及 §19.2 未被替代的空间／返回关系可用于保持交互；§19.1 的旧三世界构图和“顶栏保留品牌”已失效，§6、§15–§18 的美术候选不得进入本图册。优先从当前交互合同和实际生产组件核对，而不是通读旧方案自行混合。</p>
 <p>引用需同时满足路径有效、适用章节有效、未被后续裁决替代、与实际源码相符。逐项允许／排除范围记录于 <a href="../ui-guide/manifest.json">图册 manifest 的 references</a>。外部游戏例子只解释历史设计缘由，不是当前视觉制作输入。</p>
-<p><strong>标记约定：</strong>「母版事实」是实际存在且此次获准的样板；「推广规则」是为全场景实施而确定的延伸要求，尚须在对应场景验证；「缺口」是未实现项。三者不能互换。本轮只交规范和证据基线，不执行全游戏换肤、不升级存档、不宣称完成量产。</p>
+<p><strong>标记约定：</strong>「母版事实」是实际存在且此次获准的样板；「推广规则」是为全场景实施而确定的延伸要求，尚须在对应场景验证；「缺口」是未实现项。三者不能互换。初版规范交付只冻结证据；当前完整 Session 卡面推广按本节最新授权执行，不升级存档，不将接入等同于内容量产。</p>
 <h2 id="1-母版证据与冻结方式">1. 母版、证据与冻结方式</h2>
 <ul>
 <li>运行母版：在冻结版本 <code>dcaf037</code> 的探索工作树打开仓库根目录 <code>UI视觉探索.command</code>。正式接入分支的正式根已演进，图册仍呈现原获准证据。F1 三世界，F2 十二张排布样牌，F3 二十四张样牌，F4 同世界三类立绘，F5 暂停外围。</li>
@@ -39,7 +42,7 @@
 <p><a class="enlarge" href="../ui-study/evidence/01-three-worlds.png" target="_blank" rel="noopener" title="打开原尺寸"><img src="../ui-study/evidence/01-three-worlds.png" alt="三世界平铺" loading="lazy" /></a></p>
 <p><em>G01 · 获准母版，少量世界平铺；插图是图槽映射，正式对象仍须正确绑定。</em></p>
 <p><a class="enlarge" href="../ui-study/evidence/03-twenty-four-worlds.png" target="_blank" rel="noopener" title="打开原尺寸"><img src="../ui-study/evidence/03-twenty-four-worlds.png" alt="二十四张世界样牌叠放" loading="lazy" /></a></p>
-<p><em>G02 · 获准母版，超量收叠；保持焦点完整，不缩小所有牌。</em></p>
+<p><em>G02 · 冻结历史母版，记录超量收叠的问题背景；当前排布以 DEC-068 固定右压左、浏览只抬起为准。</em></p>
 <p><a class="enlarge" href="../ui-study/evidence/04-shared-world-art.png" target="_blank" rel="noopener" title="打开原尺寸"><img src="../ui-study/evidence/04-shared-world-art.png" alt="同世界的星球教团人物" loading="lazy" /></a></p>
 <p><em>G03 · 获准材质对照，潮汐世界／听潮密会／裁判者；不是三种正式任务页面。</em></p>
 <h2 id="2-美术立意与统一尺度">2. 美术立意与统一尺度</h2>
@@ -80,11 +83,11 @@
 <p>1920×1080原生Godot板；逻辑字号以图注为准。</p><p>不适用：不证明全游戏缺字覆盖、大字模式和每个长名称均已验证。</p><ul><li><a href="../../../../docs/art/visual-generation/ui-study/painted_material.gd">docs/art/visual-generation/ui-study/painted_material.gd</a></li><li><a href="../../../../docs/art/visual-generation/ui-study/type/README.md">docs/art/visual-generation/ui-study/type/README.md</a></li><li><a href="../../../../docs/art/visual-generation/ui-guide/specimens.gd">docs/art/visual-generation/ui-guide/specimens.gd</a></li></ul>
 </details>
 <h3 id="a06--色彩与材质">A06 · 色彩与材质</h3>
-<p>**当前增量（DEC-068）：**连续印面整体风格已获准，类型识别采用方案 2「肩位」。肩签只在左侧；两字类别竖排，紧凑牌约 26×46px、14px 字级，不截成单字。保留克制类别印色与碎齿印边，禁止恢复镜像右签；牌堆固定右盖左，浏览不置顶，详见<a href="../card-design-study/README.md#category-identity">当前交互样板</a>。最窄牌缘只提供颜色/轮廓线索，完整肩签随轻抬显露，牌名在侧沿和牌堆提示行分工。不得为类别识别重新压暗整张卡、染色原立绘或增加内框。正式手牌与执行卡逐步复用同一载体；首页及尚未适配场景不宣称已完成迁移。</p>
+<p>**当前增量（DEC-068）：**连续印面整体风格已获准，类型识别采用方案 2「肩位」。肩签只在左侧；两字类别竖排，紧凑牌约 26×46px、14px 字级，不截成单字。保留克制类别印色与碎齿印边，禁止恢复镜像右签；牌堆固定右盖左，浏览不置顶，详见<a href="../card-design-study/README.md#category-identity">当前交互样板</a>。最窄牌缘只提供颜色/轮廓线索，完整肩签随轻抬显露，牌名在侧沿和牌堆提示行分工。不得为类别识别重新压暗整张卡、染色原立绘或增加内框。正式完整卡共用同一载体；完整推广覆盖回响、诸界导航、主卡、手牌、上桌、候选和关联主体图。实机覆盖与未验状态单列于接入记录，不用样板代替验收。</p>
 <p><a class="enlarge" href="../card-design-study/shoulder-hand/hand-18.png" target="_blank" rel="noopener" title="打开原尺寸"><img src="../card-design-study/shoulder-hand/hand-18.png" alt="单向牌堆与选定肩签的原生样板" loading="lazy" /></a></p>
-<p><em>DEC-068 实现图：固定右盖左，抬牌只露上部。肩位方向已选；本次落地画面与手感待制作人复审。<a href="../card-design-study/shoulder-hand/browse-and-drag.mp4">动态演示</a>为同一正式控制器的原生录制。</em></p>
-<p>**卡体薄厚度（2026-11-13）：**制作人认可上一轮单向肩位牌堆后，要求增加真实卡片的薄厚度。共用载体在原碎齿 alpha 后绘制下偏右的哑光纸芯切面；148×198手牌厚1.8逻辑像素，大卡上限约2.4像素，纸芯取本卡承色压深28%。接触阴影贴近切面，抬牌仅增加约1.4像素影距，实体厚度恒定。原图、肩签、字区和原顺序保持同一张卡；切面不能扩成四边亮框、双重轮廓或密叠亮栅栏。实物见<a href="../card-design-study/card-thickness/full-and-hand.png">完整卡与抬牌</a>、<a href="../card-design-study/card-thickness/dense-cards.png">48张密叠</a>。厚度增量待制作人复审。</p>
-<p>**2026-11-13 当前复审结论：**制作人接受卡片与暗环境分层及类别印色，但否定规整裁边、纸托图框、空白说明板及随后近白纸卡。粗印碎齿保留，卡体风格须克制以兼容不同画风；“克制”不等于白色。亮度分配以原立绘为主体、字区可读、卡缘可辨、环境最暗为目标，不能出现密叠白墙或通过全卡压灰处理。按<a href="../card-design-study/README.md">重设计合同</a>用真实黑底、白底和彩色原图验证；连续印面整体风格现已获准，肩位方案已选，落地视觉与手感待复审。原图文件及主体 RGB、有机外围、正式玩法与交互保持。以下母版颜色源值只作历史基准；不能恢复大片灰绿或压暗卡身。</p>
+<p><em>DEC-068 实现图：固定右盖左，抬牌只露上部。肩位、单向浏览与含厚度的最终卡面已由制作人锁定；正式场景适配另验。<a href="../card-design-study/shoulder-hand/browse-and-drag.mp4">动态演示</a>为同一正式控制器的原生录制。</em></p>
+<p>**卡体薄厚度（2026-11-13）：**制作人认可上一轮单向肩位牌堆后，要求增加真实卡片的薄厚度。共用载体在原碎齿 alpha 后绘制下偏右的哑光纸芯切面；148×198手牌厚1.8逻辑像素，大卡上限约2.4像素，纸芯取本卡承色压深28%。接触阴影贴近切面，抬牌仅增加约1.4像素影距，实体厚度恒定。原图、肩签、字区和原顺序保持同一张卡；切面不能扩成四边亮框、双重轮廓或密叠亮栅栏。实物见<a href="../card-design-study/card-thickness/full-and-hand.png">完整卡与抬牌</a>、<a href="../card-design-study/card-thickness/dense-cards.png">48张密叠</a>。此厚度已纳入制作人锁定的卡面设计。</p>
+<p>**2026-11-13 当前复审结论：**制作人接受卡片与暗环境分层及类别印色，但否定规整裁边、纸托图框、空白说明板及随后近白纸卡。粗印碎齿保留，卡体风格须克制以兼容不同画风；“克制”不等于白色。亮度分配以原立绘为主体、字区可读、卡缘可辨、环境最暗为目标，不能出现密叠白墙或通过全卡压灰处理。按<a href="../card-design-study/README.md">重设计合同</a>用真实黑底、白底和彩色原图验证；连续印面、肩位和薄卡体现已锁定，正式场景适配按 V01–V08 的受影响条目核对。原图文件及主体 RGB、有机外围、正式玩法与交互保持。以下母版颜色源值只作历史基准；不能恢复大片灰绿或压暗卡身。</p>
 <p>以下是母版源值，不是截图取色；材质噪声会使最终像素不同：</p>
 <ul>
 <li>墨底 <code>#101719</code>；主文字骨白 <code>#d9d7be</code>；次文字 <code>#b4bdaa</code>；卡片焦点短亮边 <code>#b1c09b</code>；按钮 hover 文字 <code>#eee8cc</code>。源内 <code>ACCENT=#b7c3a0</code> 仅为未消费声明，不作为已显示的选中色移植。</li>
@@ -94,7 +97,7 @@
 </ul>
 <p>正式化将这些语义角色集中到一处主题／资源，禁止每页手写近似色。原始算法在 <code>painted_material.gd</code>；不要把颜色端点当成纯色填充就声称还原。</p>
 <p><strong>推广规则：</strong> 警告、损失、成功、未知必须保留文字和既有状态语义；可用克制的暖灰赭、冷灰等补充，不能把所有语义色洗成同一种灰绿。新语义色在首次实际状态里核对再入共享主题，本母版未覆盖的颜色不冒称获准 token。装饰的黑暗不能让禁用理由和必要数值消失。</p>
-<p>世界玩法牌桌沿同一粗印卡纸分色，轮初事件为砖赭，祈求为灰藤紫，教团为苔绿，权能为靛蓝，活动为烟金，人物为暖灰，锚点为铜青，剩余行为为深褐，圣物对象为铅灰。牌缘与竖排名签随色，人物和世界原立绘保留原色。诸界世界卡、手牌、上桌牌与候选牌复用 <code>production/painted/card_hover.gd</code>，悬停微亮、上抬轻弹，压叠牌的前后层级不随悬停换位。手牌和候选牌的选中印记采用短段干刷压在纸缘上，露出卡面时能认出当前牌。颜色与本次状态细化待制作人复审。</p>
+<p>世界玩法牌桌沿同一粗印卡纸分色，轮初事件为砖赭，祈求为灰藤紫，教团为苔绿，权能为靛蓝，活动为烟金，人物为暖灰，锚点为铜青，剩余行为为深褐，圣物对象为铅灰。牌缘与竖排名签随色，人物和世界原立绘保留原色。诸界与手牌共用 <code>production/worldplay/hand_fan.gd</code> 的连续抬牌，独立上桌／候选卡通过 <code>production/painted/card_hover.gd</code> 微亮轻弹，压叠牌的前后层级不随悬停换位。手牌和候选牌的选中印记采用短段干刷压在纸缘上，露出卡面时能认出当前牌。类别印色沿锁定肩签，具体场景的状态可辨性仍须实机核对。</p>
 <p>底材生成一次后缓存；同一控件不能刷新就重新抽颗粒。九宫格保留角部和边缘比例，长面板内部扩展安静色面，不能把 240×40 按钮纹理整块拉成巨大墙纸。插图、底材、文字各自处理采样，不用一个全屏像素化或噪声后期覆盖所有层。</p>
 <p id="ex-G05" class="illustration"><a class="enlarge" href="../ui-guide/images/palette-material.png" target="_blank" rel="noopener" title="打开原尺寸"><img src="../ui-guide/images/palette-material.png" alt="色彩端点和真实颜料局部" loading="lazy" /></a></p>
 <p class="figure-caption"><em>G05 · 上部是源码色值，下部是获准截图局部；纯色参数不能替代带方向的颜料组织。</em></p>
@@ -104,13 +107,13 @@
 </details>
 <h2 id="4-卡片与控件家族">4. 卡片与控件家族</h2>
 <h3 id="a07--三种插图载体共用一种材料">A07 · 三种插图载体，共用一种材料</h3>
-<p><strong>世界卡：</strong> 保留母版纵向画牌、名称和状态；图像来源仍为方图，但不得把方形文件边界直接呈现成卡内图框（最新规则见 A08）。焦点牌清楚显示主体。放得下时平铺，放不下时沿现行交互合同完整压叠，不能隐藏远牌或缩小所有牌塞一屏；原世界档案搜索／筛选入口保留。</p>
+<p><strong>世界卡：</strong> 保留母版纵向画牌、名称和状态；图像来源仍为方图，但不得把方形文件边界直接呈现成卡内图框（最新规则见 A08）。浏览只轻抬且保持遮挡顺序，完整主体在进入世界或拖出查阅后呈现。放得下时平铺，放不下时沿现行交互合同完整压叠，不能隐藏远牌或缩小所有牌塞一屏；原世界档案搜索／筛选入口保留。</p>
 <p><strong>教团卡：</strong> 显示完整盆景式宗教场所，底座、主要建筑与场景关系必须可读；不要替换为领袖头像，也不为套竖卡切掉底座或改视角。现有经营页的图槽限制与适配见 S03。</p>
 <p><strong>人物卡：</strong> 沿祈求／人物／权能当前主体槽显示半身与手势，保留头、肩、关键道具及身份特征。跨页图像身份按 A13 保持。长篇处境仍在原阅读区，不压在人物身上。不要让所有人占满同一桶形轮廓或强行加兜帽。</p>
 <p>世界、教团、人物共用卡边、图窗收边与说明底材，允许适配既有横／竖插槽。<strong>卡片是观看客体的视觉语言，不是把所有页面改成同一套翻牌交互的许可。</strong> 教团和人物列表仍沿原导航，除非制作人另外授权。</p>
 <h3 id="a08--图窗与文字底板">A08 · 图窗与文字底板</h3>
 <p>当前最终生成图是含背景的 960×960 方图。<strong>制作人最新禁令：立绘不得以横平竖直的正方形方框呈现在卡内；“保护原图”不能被解释为保护矩形文件轮廓。</strong> 可用与卡体共轮廓、非均匀渐变和干刷 alpha 使图与文字区接成连续印面。不能只将四条硬边等宽羽化成柔光方框。星球环、主要建筑／底座、人物帽冠／手与道具仍须核对，不按亮度抠除原白底／黑底，不让背景处理侵入主体。原图文件和内部 RGB 不改；过渡区的显示色来自 alpha 合成。禁止毛玻璃、重复 NPR、统一染色或额外锐化。透明 <code>lit</code> 中间层不是默认最终图，若改生成侧合成须按生成合同另验。</p>
-<p>历史世界母版图窗为 <code>(10,35,240,240)</code>，卡名区 <code>(22,284,222,32)</code>，副文区 <code>(22,316,218,20)</code>，指标 y=339／358；旧 UV 0–0.04 收边现在不再是新卡面的限制。新设计仍使用 linear 采样和原生文字，但须满足上方无独立方框的规则；具体遮罩宽度与图文位置待设计确认后推广。像素标题的 nearest 不能扩成全局过滤；长名字在完整资料入口仍须能读全。</p>
+<p>历史世界母版图窗为 <code>(10,35,240,240)</code>，卡名区 <code>(22,284,222,32)</code>，副文区 <code>(22,316,218,20)</code>，指标 y=339／358；旧 UV 0–0.04 收边现在不再是新卡面的限制。新设计仍使用 linear 采样和原生文字，但须满足上方无独立方框的规则；实际遮罩与图文位置以共享 <code>painted/card_carrier/card.gd</code> 和锁定实物为准，尺寸适配不得重建硬方框。像素标题的 nearest 不能扩成全局过滤；长名字在完整资料入口仍须能读全。</p>
 <p>**已否定的卡面细化：**固定浅纸托、规整裁边、附加内框及独立方形贴图均不能沿用。原图、程序符号及缺图状态应遵守同一图文占位与主体保护原则，而不是共用一个可见方框。文字、纹样与侧名属于同一张完整卡面；不能用半透明牌脊矩形遮住不相容分色，也不能用外加框掩盖图形越界。当前图面设计见上述重设计合同。</p>
 <p>卡头的眼形印记只反馈现有悬停／焦点，不能表示不存在的警戒、污染或可操作状态。说明板暗压纹在实际文字行下进一步压低，长文本页不能把母版固定行号遮罩照搬过去。完整眼徽标、亮符号不得出现在阅读中心。</p>
 <p id="ex-K01" class="illustration"><a class="enlarge" href="../ui-guide/images/cards-approved.png" target="_blank" rel="noopener" title="打开原尺寸"><img src="../ui-guide/images/cards-approved.png" alt="原生画牌完整与焦点状态" loading="lazy" /></a></p>
@@ -120,6 +123,7 @@
 <p>1920×1080；tide / 原型0 / sid0 / 色板0 / 世界种子1339。非Session正式对象映射。</p><p>不适用：不允许将所有经营/资料页改成卡扇，也不承诺全部长名都适合母尺寸。</p><ul><li><a href="../../../../docs/art/visual-generation/ui-study/painted_card.gd">docs/art/visual-generation/ui-study/painted_card.gd</a></li><li><a href="../../../../docs/art/visual-generation/ui-study/painted_material.gd">docs/art/visual-generation/ui-study/painted_material.gd</a></li><li><a href="../../../../docs/art/visual-generation/procedural-study/native-evidence/tide/parameters.json">docs/art/visual-generation/procedural-study/native-evidence/tide/parameters.json</a></li><li><a href="../../../../docs/art/visual-generation/ui-guide/specimens.gd">docs/art/visual-generation/ui-guide/specimens.gd</a></li></ul>
 </details>
 <p><a id="关键信息与控件状态"></a></p>
+<p>**微型图与既有主体槽：**旧任务、资料或速览的主体图通过 <code>painted/portrait_carrier.gd</code> 适配同一完整卡面，维持原对象和入口。目录中的微型头像／世界缩略图只用非矩形 alpha 收边，旁边已有名称与状态时不再塞入缩小肩签或微型文字；不能为了外观统一改变列表、候选和操作语义。</p>
 <h3 id="a09--按钮选择输入滚动与浮层">A09 · 按钮、选择、输入、滚动与浮层</h3>
 <p>母版按钮用不均匀颜料块而非精确几何外框。普通导航退后，责任入口次之，主要确认具有相对完整色块。当前按钮底材 alpha：普通 0.16、责任 0.38、主操作 0.88；hover/focus 普通与责任 0.66、主操作 0.93；pressed 1；disabled 0.10。它们仅是底材强度，不能把整段文字也乘成 0.10。</p>
 <p><strong>推广规则：</strong> 将 normal、hover、keyboard focus、selected、pressed、disabled、locked 分清。鼠标和键盘焦点都清楚可见；禁用项保留原因；锁定项保留条件，不能只变暗。Selected 保留稳定印边／标记，hover 不覆盖它。危险确认沿原确认步骤明确后果，不能借气氛省略文字或自动执行。</p>
@@ -187,15 +191,15 @@
 <h3 id="a13--图像不制造游戏事实">A13 · 图像不制造游戏事实</h3>
 <p>美术层只消费玩家可知的对象与现有参数。未知世界、未识别人物、死亡或离场、联系中断、无教团等状态分别沿现有投影呈现；不能因为生成器能画就提前显示隐藏组织、衣饰身份或材料。缺图不代表对象不存在，未生成不等于未发现。</p>
 <p>世界使用确定的模板／原型、画风、色板和世界种子；教团继承所属世界的画风与配色；同世界人物继承该世界语言，同时用独立人物种子、身份与受约束 recipe 产生可见差异。对象身份、图像版本与生成参数绑定，翻页、悬停、再次打开、读档不能重新抽签。人物身体、轮廓、衣装、姿势和道具的差异由现有生成器负责，UI 不靠随机色框冒充人物差异。</p>
-<h3 id="a14--正式接入的待补合同">A14 · 正式接入的待补合同</h3>
+<h3 id="a14--正式图像身份与准备合同">A14 · 正式图像身份与准备合同</h3>
 <p>母版时期只支持独立工作台。正式身份 v1、文明映射、异步队列及持久缓存以<a href="../../../specs/system-art-generation.md#%E6%AD%A3%E5%BC%8F%E5%AF%B9%E8%B1%A1%E7%BB%98%E7%94%BB%E8%BA%AB%E4%BB%BD--v1">生成合同</a>为准；不得把未填项、工作台默认或样板图槽当作正式世界分配规则。</p>
 <p>后续生成接入批次必须先在 <code>system-art-generation.md</code> 原地确定：真实 ID 到模板的来源；世界与人物视觉种子及独立随机流；已有对象如何稳定兼容；recipe／实现版本；缓存键、失效与生命周期。不得悄悄修改 Session schema 或消费玩法 RNG。需要新增世界映射／身份规则时，数据仍从 CSV 起步，不在界面按名称硬写。</p>
-<p>展示只消费最终 Texture2D／图像与元数据，不依赖工作台控件、不调用旧 JS／浏览器服务器，不在 <code>_draw</code> 或每帧 <code>_process</code> 中启动生成。同一 service 不并发调用；切换对象时用请求身份防止迟到图贴错牌。依制作人 2026-11-13 的性能要求，当前公开立绘在进入游戏及轮间过渡中准备并驻留，牌桌出现时即可显示；行动新增身份也经过同一准备边界。过渡用现有分层灰绿背景、随包字库、低对比进度和玩家已知的诸界情报，不伪造世界推演叙事。缺参／失败用同源静态底板保留名称和已知信息，不冒用别人的图，也不无限等待。正式卡纸共用原诸界卡的四张程序底纹，分类颜色及立绘各自保持，不逐对象同步重画整张卡纸。</p>
+<p>展示只消费最终 Texture2D／图像与元数据，不依赖工作台控件、不调用旧 JS／浏览器服务器，不在 <code>_draw</code> 或每帧 <code>_process</code> 中启动生成。同一 service 不并发调用；切换对象时用请求身份防止迟到图贴错牌。依制作人 2026-11-13 的性能要求，当前公开立绘在进入游戏及轮间过渡中准备并驻留，牌桌出现时即可显示；行动新增身份也经过同一准备边界。过渡用现有分层灰绿背景、随包字库、低对比进度和玩家已知的诸界情报，不伪造世界推演叙事。缺参／失败用同源静态底板保留名称和已知信息，不冒用别人的图，也不无限等待。正式卡面共用 <code>assets/ui/cards/continuous-stock.png</code> 和 <code>painted/card_carrier/</code> 的材质／图像合成；分类肩签与立绘各自保持，不逐对象同步重画整张卡纸。</p>
 <p>资产由代码／源数据可复现，保留版本、参数、许可与导入设置。UI 自身干刷／噪声／暗纹保持程序化或由同一源导出的可再生纹理，不能用整张截图作界面。字库和插图不能只在编辑器缓存存在而漏进发布包。首批迁移即验证正常入口和实际打包资源路径。</p>
-<h3 id="a15--轮初回响演出2026-11-13衍生待审">A15 · 轮初回响演出（2026-11-13，衍生待审）</h3>
-<p>依制作人新增授权，在轮间立绘准备结束后呈现本轮待处理与新增的牌。仍以邪神感知中的客体卡承载信息，复用现行分类粗印卡纸、原立绘、正文和标题字体；不叠加高清光框、彩色爆闪、庆祝粒子或新的眼睛。事件用原行为符印，不能编造事件立绘或隐藏结果。数据与去重唯一正文为交互合同的“轮初回响”。</p>
+<h3 id="a15--轮初回响演出2026-11-13">A15 · 轮初回响演出（2026-11-13）</h3>
+<p>依制作人新增授权，在轮间立绘准备结束后呈现本轮待处理与新增的牌。仍以邪神感知中的客体卡承载信息，从演出的第一张牌起复用锁定的连续卡面、左肩签、薄切面、原立绘和字库；不叠加高清光框、彩色爆闪、庆祝粒子或新的眼睛。事件用原行为符印，不能编造事件立绘或隐藏结果。数据与去重唯一正文为交互合同的“轮初回响”。</p>
 <p>演出层临时收起底下的操作面，保留原外围的连续环境时钟。整层 0.26 秒显现；牌堆从下方 20px 移入，0.65 秒归位。当前大牌从下方 15px、约 −1° 归正，0.62 秒完成，伴随 0.85 秒的灰绿雾膜消散；正文延迟 0.12 秒后用 0.35 秒显现，随后静止供阅读。每次翻看换牌复用这一小幅显影，人物图像本身不重染色、不重复 NPR。大牌／正文、下方完整叠牌和类别计数、进入本轮的按钮使用固定 1280×720 逻辑画布；牌多时沿已有完整压叠规则，不截断远牌。</p>
-<p>所有牌在演出前取得已就绪纹理，卡面和进入按钮可立即操作；不为播放动画强迫等待。空内容不播演出。未知位置、身份用知情范围内措辞，不能用内部 ID 补成具体事实。原互动规则下的事件仍需玩家正式确认，演出只预告。以下为本次实现证据，不是制作人已批准的新母版。</p>
+<p>所有牌在演出前取得已就绪纹理，卡面和进入按钮可立即操作；不为播放动画强迫等待。空内容不播演出。未知位置、身份用知情范围内措辞，不能用内部 ID 补成具体事实。原互动规则下的事件仍需玩家正式确认，演出只预告。下方是早期演出的实现证据，只证明其时序与信息关系；当前卡面以 A06 锁定实物为准，正式新证据见接入记录。</p>
 <p id="ex-D15" class="illustration"><a class="enlarge" href="../production-evidence/round-arrival/prayer.png" target="_blank" rel="noopener" title="打开原尺寸"><img src="../production-evidence/round-arrival/prayer.png" alt="轮初回响：祈求与所属世界" loading="lazy" /></a></p>
 <details class="specimen-source">
 <summary>D15 · 衍生待审 · A15 · 来源与尺寸</summary>
@@ -204,7 +208,7 @@
 <p><a href="../production-evidence/round-arrival/arrival.webp">打开约 4.4 秒的原生演出动态</a>。动态来自固定 30 FPS 的 Godot Movie Maker，只用于展示动效，不作为运行帧率证据。<a href="../../../tasks/worldplay-integration.md#round-arrival-delivery">事件与新知人物的核对记录</a>包含实际来源、已验范围与边界。</p>
 <h2 id="7-全场景适配清单">7. 全场景适配清单</h2>
 <p>本节依据正式入口调用盘点；每项是实施范围，不是已完成勾选。具体函数、批次与遗漏核对见后续条目。所有界面共用 §3–§6，不重复创造主题。</p>
-<p>以下代码文件未写前缀时均在 <code>src/presentation/production/</code>；共享 <code>experience_*</code> 文件另写完整仓库路径。正常入口是 <code>project.godot</code> → <code>game_root.tscn</code> → <code>round_view.gd</code>。</p>
+<p>以下代码文件未写前缀时均在 <code>src/presentation/production/</code>；共享 <code>experience_*</code> 文件另写完整仓库路径。正常入口是 <code>project.godot</code> → <code>game_root.tscn</code> → <code>worldplay/view.gd</code>，后者继承 <code>round_view.gd</code>。</p>
 <h3 id="s01--诸界当地与常驻外框">S01 · 诸界、当地与常驻外框</h3>
 <p>来源：<code>interaction_stage.gd:overview()/local()</code>；<code>round_view.gd:_build_top()/_build_dock()/_build_worlds()</code>。</p>
 <p>诸界使用批准的卡扇、背景和 <code>full</code> 外围；当地保留原世界主体、四维、教团／活动／锚点／圣物机会／祈求联系的构图，采用 <code>quiet</code>。顶栏轮次阶段、资源及原游戏菜单入口保留，只撤常驻游戏名；底栏原入口完整。正式图像由 <code>object_portraits.gd</code> 按已知对象 ID 提供；仅有请求线索时保留中性图槽。</p>
@@ -254,7 +258,7 @@
 <p><code>ui-study/</code> 是母版实现源，正式化提取其画法而不是让游戏运行 <code>study.gd</code>：</p>
 <ul>
 <li><code>painted_material.gd</code>：字体加载、色值、底材、卡面暗纹；<code>occult_marks.gd</code>：同源干笔眼形；<code>painted_backdrop.gd</code>：背景层次。</li>
-<li><code>painted_card.gd</code> 和 <code>card_fan.gd</code>：插图槽、焦点／邻卡外观和已获准翻卡行为。将纹理与对象输入改为正式公开数据，不保留示例路径和假世界。</li>
+<li>旧 <code>painted_card.gd</code>／<code>card_fan.gd</code> 仅是冻结母版来源。当前完整卡复用生产 <code>painted/card_carrier/</code>；牌堆由生产 <code>worldplay/hand_fan.gd</code> 管理，诸界导航适配其几何和激活。不能恢复旧焦点置顶、邻牌隐藏或镜像两侧签。</li>
 <li><code>peripheral_atmosphere.gd</code>、<code>peripheral_tendrils.gd</code>、三份外围 shader 及 <code>peripheral_fields.gdshaderinc</code>：共享时钟、固定拓扑、雾和附着眼。整组迁移，不能只复制一张雾图或一个 shader。</li>
 </ul>
 <p><strong>必须替换的样板技术：</strong><code>Paint.style_buttons()</code> 通过节点名和旧文字亮度全树覆写字号／字色；正式化应改为明确的文字角色、按钮角色、状态角色，尊重大字模式与语义色。不要把样板的 <code>find_children</code> 扫树染色作为全游戏主题。</p>
@@ -269,7 +273,7 @@
 </ol>
 <p>迁移时先看 <code>production/locked_controls.gd</code>，以及 <code>round_view.gd</code> 的 <code>_scene_plate/_reading_frame/_peek_content/_make_footer/_scroller/_scroll_cue</code>。同时覆盖 <code>src/presentation/experience_views.gd</code>、<code>experience_actions.gd</code> 与 <code>ui/requirement_list.gd</code> 的正式调用链。共享视图继续传入生产 <code>host._ui</code>，不能遗漏后落回旧 UI。沿 <code>GameRoot/Presentation/CanvasLayer/OverlayRoot</code> 的正式空间组织接入，装饰节点鼠标穿透，不另搭业务宿主或改世界坐标。</p>
 <p><code>RoundView._refresh()</code> 会重建 <code>_stage</code>，任务／弹层另有 <code>_surface</code>。外围时钟由不会随每次 UI 刷新销毁的呈现宿主持有，或明确传递持续时间；不改业务刷新语义。保持 <code>ui/motion.gd</code> 现有转场和输入时序，别把慢雾动画变成阻塞确认的等待。</p>
-<p>先让一个正式场景使用提取出的共同实现与母版相符，再扩展消费者。不得留一份样板画法、另一份相似的生产手抄版持续分叉。当前生产映射：<code>production/locked_controls.gd</code> 接 <code>production/painted/theme.gd</code>；<code>painted/world_card.gd</code> 与 <code>painted/card_fan.gd</code> 从冻结实现继承画法与手势；<code>painted/object_window.gd</code> 共用最终图窗。外围由 <code>painted/peripheral_atmosphere.gd</code> 在正式宿主长期持有，继承同一时钟、卷形与噪声，生产 shader 增加强度和阅读范围。图像入口为 <code>painted/object_portraits.gd</code>。各批状态见<a href="../../../tasks/ui-art-production.md">交付记录</a>。母版证据与原指纹继续保留。</p>
+<p>先让一个正式场景使用提取出的共同实现与母版相符，再扩展消费者。不得留一份样板画法、另一份相似的生产手抄版持续分叉。当前生产映射：<code>production/locked_controls.gd</code> 接 <code>production/painted/theme.gd</code>；<code>painted/world_card.gd</code>、<code>worldplay/study_card.gd</code> 与 <code>painted/portrait_carrier.gd</code> 统一使用 <code>painted/card_carrier/</code>；<code>painted/card_fan.gd</code> 继承正式 HandFan，保留世界导航语义；<code>painted/object_window.gd</code> 只处理目录缩略图的非矩形边缘。外围由 <code>painted/peripheral_atmosphere.gd</code> 在正式宿主长期持有，继承同一时钟、卷形与噪声，生产 shader 增加强度和阅读范围。图像入口为 <code>painted/object_portraits.gd</code>。各批状态见<a href="../../../tasks/ui-art-production.md">交付记录</a>。母版证据与原指纹继续保留。</p>
 <h2 id="9-分批接入与-agent-交接">9. 分批接入与 agent 交接</h2>
 <h3 id="91-接入批次">9.1 接入批次</h3>
 <p>当前状态：<strong>B01–B10 已接入代表路径，正式场景待制作人复审。</strong> <a href="../../../tasks/ui-art-production.md#%E5%AE%9E%E6%9C%BA%E8%AF%81%E6%8D%AE%E4%B8%8E%E5%89%A9%E4%BD%99%E8%8C%83%E5%9B%B4">逐批交付</a>登记各 S 项的验证和缺口；S03 经营主体大图按 UIA-001 暂留原构图。下列批次定义保留作执行与复审范围。</p>
@@ -329,7 +333,7 @@
 <h2 id="10-可否证验收与收尾">10. 可否证验收与收尾</h2>
 <h3 id="每批适用的-v-条目">每批适用的 V 条目</h3>
 <ul>
-<li><strong>V01 母版一致性：</strong> 同一逻辑尺寸、同类内容并置比较，仍读作灰绿绘画载体、粗印标题和连续笔形正文；没有引入金线、玻璃、纯色软件框或全屏等密度纹理。机器检查不能签此项审美。</li>
+<li><strong>V01 母版一致性：</strong> 同一逻辑尺寸、同类内容并置比较，仍读作锁定的连续绘画卡面、类别肩签、薄卡体、粗印标题和连续笔形正文；没有引入金线、玻璃、纯色软件框或全屏等密度纹理。机器检查不能签此项审美。</li>
 <li><strong>V02 主次与阅读：</strong> 当前客体／行动／代价能先于背景眼形被读到；最长实际名称、相关长文和最大现实数值不遮挡／截断必要信息。标准与大字模式均保留完整提交区，正文不以缩小掩盖溢出。</li>
 <li><strong>V03 对象绘画：</strong> 原图等比且主体完整，未重复 NPR 或染色；同 ID 的列表、详情、祈求画面身份一致。至少用本批涉及的冷、暖或高亮图核对，复用母版已有材料证据，不为换肤跑全部生成组合。</li>
 <li><strong>V04 输入与状态：</strong> 本批正常、hover、键盘焦点、选择、禁用／锁定、空／加载／失败等实际存在状态可辨；原入口、一次返回、草稿、滚动和确认行为保持。装饰不拦截，拖动松手不误入；只查本批改动影响到的路径。</li>
@@ -345,5 +349,5 @@
 <h3 id="本次规范交付的验证边界">本次规范交付的验证边界</h3>
 <p>本轮仅核对规范、原生示例、图文阅览版与引用有效性；构建和核对方式见 <a href="../ui-guide/README.md">图册 README</a>。没有更改或重测游戏功能。§7 的场景覆盖依据当前生产调用与交互合同；过时且存在格式缺口的 <code>game-state</code> 索引不作为覆盖或完成证明。</p>
 </article>
-<section id="references"><h2>附录 · 引用有效范围</h2><p>每份来源仅在登记范围内生效。展开查看允许与排除项；指纹及完整记录见 <a href="manifest.json">来源清单</a>。</p><details class="reference"><summary>R01 · 获准母版及证据 <span class="muted">已核对·当前美术基线</span></summary><p>允许：按本清单的已批准图像、动态、字体、源码识别母版；引用DEC-064的实际批准范围。</p><p>排除：其他未审状态、全游戏接入与生成器全部组合通过。</p><a href="../../../../docs/art/visual-generation/ui-approved-baseline.json">查看来源</a></details><details class="reference"><summary>R02 · 现行交互合同 <span class="muted">已核对·功能合同</span></summary><p>允许：worldplay-card-study（含DEC-068固定单向牌堆/抬牌/拖放、轮初回响及立绘准备边界）、locked-interaction-production至current-ui-contract-end及正式交互精修原则；其他现行机制按对应功能引用。</p><p>排除：旧echoes-home、F5/D4/V2/V6美术指令、旧tokens、旧视觉待选状态。旧强制视觉引用已纠正。</p><a href="../../../../docs/specs/ui-interaction.md">查看来源</a></details><details class="reference"><summary>R03 · 原生立绘生成 <span class="muted">已核对·接口合同</span></summary><p>允许：原生 Godot 服务、最终图/中间层与正式身份 v1、公开对象边界、调度和缓存合同。</p><p>排除：旧 JS/HTML/服务器运行链；工作台效果不等于正式场景获准。</p><a href="../../../../docs/specs/system-art-generation.md">查看来源</a></details><details class="reference"><summary>R04 · 当前样板源码与复现 <span class="muted">已核对·限定范围</span></summary><p>允许：当前入口、当前画法、外围动态、原图参数、证据边界；代码仅通过现行母版清单锁定。</p><p>排除：before-refinement及astral-gold/ash-paper/violet-glass；历史外部类比不是现行样式标准。</p><a href="../../../../docs/art/visual-generation/ui-study/README.md">查看来源</a></details><details class="reference"><summary>R05 · 字体原件与许可 <span class="muted">已核对·限定章节</span></summary><p>允许：当前字体来源、完整许可证和当前渲染设置；原件指纹见获准清单。</p><p>排除：上一轮点阵方案的旧正文尺寸与试验建议；该节明确标历史。</p><a href="../../../../docs/art/visual-generation/ui-study/type/README.md">查看来源</a></details><details class="reference"><summary>R06 · 生产组件源 <span class="muted">已核对·实际实现，不自动成为视觉规则</span></summary><p>允许：正式原生按钮、选择与焦点宿主；当前生产材料参见规范 §8。C01 的截图固定于 dcaf037 的原宿主。</p><p>排除：C01 暴露的旧色不作为新主题输入；正式补齐的焦点、按下、禁用状态仍待制作人复审。</p><a href="../../../../src/presentation/production/locked_controls.gd">查看来源</a></details><details class="reference"><summary>R07 · 旧交互设计 <span class="muted">条件有效·仅行为与未被替代几何</span></summary><p>允许：仅当前交互spec明确引用的§19.1当地几何、§19.2尚有效空间/返回关系；不作为本图册美术输入。</p><p>排除：旧诸界三世界构图、顶栏保留品牌、§6和§15–§18视觉候选、图片/字体/颜色建议。</p><a href="../../../../docs/art/presentation-rebuild/interface-design.md">查看来源</a></details><details class="reference"><summary>R08 · 旧美术规范 <span class="muted">形式参考·具体内容禁用</span></summary><p>允许：仅通过脚本统计标题层级和图/表/代码/链接的组织：523行、40标题、5嵌图、2表、2代码块、33带链接行。</p><p>排除：不读取或复制具体规范内容、数值、控件、图、色彩、字体、动效；不作为当前制作依据。</p><a href="../../../../docs/art/echoes-ui/visual-system.md">查看来源</a></details><details class="reference"><summary>R09 · 当前开工路由 <span class="muted">已核对·最新段优先</span></summary><p>允许：2026-11-13 DEC-068单向牌堆/肩位及薄厚度增量、DEC-067连续印面认可、方框禁令及轮初增量；2026-11-12当前路由与持续禁令。</p><p>排除：后续历史路由的旧视觉规范入口、旧待审/待选状态。</p><a href="../../../../docs/progress/stage-priorities.md">查看来源</a></details></section>
+<section id="references"><h2>附录 · 引用有效范围</h2><p>每份来源仅在登记范围内生效。展开查看允许与排除项；指纹及完整记录见 <a href="manifest.json">来源清单</a>。</p><details class="reference"><summary>R01 · 获准母版及证据 <span class="muted">已核对·外围与历史母版</span></summary><p>允许：DEC-064的外围、字体及历史证据；当前卡面以R10锁定实物和规范A06–A08为准。</p><p>排除：旧灰绿卡面、双侧焦点置顶排布以及未审全游戏状态。</p><a href="../../../../docs/art/visual-generation/ui-approved-baseline.json">查看来源</a></details><details class="reference"><summary>R02 · 现行交互合同 <span class="muted">已核对·功能合同</span></summary><p>允许：worldplay-card-study（含DEC-068固定单向牌堆/抬牌/拖放、轮初回响及立绘准备边界）、locked-interaction-production至current-ui-contract-end及正式交互精修原则；其他现行机制按对应功能引用。</p><p>排除：旧echoes-home、F5/D4/V2/V6美术指令、旧tokens、旧视觉待选状态。旧强制视觉引用已纠正。</p><a href="../../../../docs/specs/ui-interaction.md">查看来源</a></details><details class="reference"><summary>R03 · 原生立绘生成 <span class="muted">已核对·接口合同</span></summary><p>允许：原生 Godot 服务、最终图/中间层与正式身份 v1、公开对象边界、调度和缓存合同。</p><p>排除：旧 JS/HTML/服务器运行链；工作台效果不等于正式场景获准。</p><a href="../../../../docs/specs/system-art-generation.md">查看来源</a></details><details class="reference"><summary>R04 · 当前样板源码与复现 <span class="muted">已核对·限定范围</span></summary><p>允许：当前入口、当前画法、外围动态、原图参数、证据边界；代码仅通过现行母版清单锁定。</p><p>排除：before-refinement及astral-gold/ash-paper/violet-glass；历史外部类比不是现行样式标准。</p><a href="../../../../docs/art/visual-generation/ui-study/README.md">查看来源</a></details><details class="reference"><summary>R05 · 字体原件与许可 <span class="muted">已核对·限定章节</span></summary><p>允许：当前字体来源、完整许可证和当前渲染设置；原件指纹见获准清单。</p><p>排除：上一轮点阵方案的旧正文尺寸与试验建议；该节明确标历史。</p><a href="../../../../docs/art/visual-generation/ui-study/type/README.md">查看来源</a></details><details class="reference"><summary>R06 · 生产组件源 <span class="muted">已核对·实际实现，不自动成为视觉规则</span></summary><p>允许：正式原生按钮、选择与焦点宿主；当前生产材料参见规范 §8。C01 的截图固定于 dcaf037 的原宿主。</p><p>排除：C01 暴露的旧色不作为新主题输入；正式补齐的焦点、按下、禁用状态仍待制作人复审。</p><a href="../../../../src/presentation/production/locked_controls.gd">查看来源</a></details><details class="reference"><summary>R07 · 旧交互设计 <span class="muted">条件有效·仅行为与未被替代几何</span></summary><p>允许：仅当前交互spec明确引用的§19.1当地几何、§19.2尚有效空间/返回关系；不作为本图册美术输入。</p><p>排除：旧诸界三世界构图、顶栏保留品牌、§6和§15–§18视觉候选、图片/字体/颜色建议。</p><a href="../../../../docs/art/presentation-rebuild/interface-design.md">查看来源</a></details><details class="reference"><summary>R08 · 旧美术规范 <span class="muted">形式参考·具体内容禁用</span></summary><p>允许：仅通过脚本统计标题层级和图/表/代码/链接的组织：523行、40标题、5嵌图、2表、2代码块、33带链接行。</p><p>排除：不读取或复制具体规范内容、数值、控件、图、色彩、字体、动效；不作为当前制作依据。</p><a href="../../../../docs/art/echoes-ui/visual-system.md">查看来源</a></details><details class="reference"><summary>R09 · 当前开工路由 <span class="muted">已核对·最新段优先</span></summary><p>允许：最新完整Session卡面接入授权，DEC-068单向肩位及已锁定薄厚度、DEC-067连续印面、方框禁令和轮初回响；持续技能禁令。</p><p>排除：后续历史路由的旧视觉规范入口、旧待审/待选状态。</p><a href="../../../../docs/progress/stage-priorities.md">查看来源</a></details><details class="reference"><summary>R10 · 当前锁定卡面实物 <span class="muted">制作人锁定·卡面及单向肩位牌堆</span></summary><p>允许：连续印面、原图融接、单左肩签、实体薄厚度、稳定右压左的牌堆；由制作人以附件明确锁定。</p><p>排除：样本名字、占位文案、临时按钮及固定静态卡图；不以样板证明正式业务接入或全场景通过。</p><a href="../../../../docs/art/visual-generation/card-design-study/card-thickness/full-and-hand.png">查看来源</a></details></section>
 </main></body></html>

@@ -5,6 +5,7 @@ const Paint = preload("res://src/presentation/production/painted/theme.gd")
 const Surface = preload("res://src/presentation/production/painted/card_carrier/stock_surface.gdshader")
 const Blend = preload("res://src/presentation/production/painted/card_carrier/art_blend.gdshader")
 const CategoryMarks = preload("res://src/presentation/production/painted/card_carrier/category_marks.gd")
+const SelectionMark = preload("res://src/presentation/production/painted/card_carrier/selection_mark.gd")
 const Edge = preload("res://src/presentation/production/painted/card_carrier/card_edge.gdshader")
 const INK := Color("#211c20")
 const DETAIL := Color("#302a29")
@@ -34,6 +35,8 @@ var _edge: TextureRect
 var _substrate: TextureRect
 var _picture: TextureRect
 var _marks: Control
+var _selection_mark: Control
+var art_status: Label
 var _header: Label
 var _heading: Label
 var _information_one: Label
@@ -63,16 +66,20 @@ func configure(sample: Dictionary, stock: Texture2D, artwork: Texture2D,
 	_edge.position = Vector2(-4.0, -4.0)
 	_edge.size = size + Vector2(8.0, 8.0)
 	_edge.texture = stock
+	_edge_material.set_shader_parameter("card_mask", stock)
 	_edge_material.set_shader_parameter("face_size", size)
 	_edge_material.set_shader_parameter("thickness", clampf(size.x / 148.0, 1.0, 1.33) * 1.8)
 	_substrate.size = size
 	_substrate.texture = stock
 	_picture.position = Vector2.ZERO
-	_picture.size = Vector2.ONE * size.x
+	var art_height := float(options.get("art_height", size.x))
+	_picture.size = Vector2(size.x, art_height)
 	_picture.texture = artwork
-	_picture.visible = true
+	_picture.visible = bool(options.get("show_art", true))
 	_blend.set_shader_parameter("carrier_mask", stock)
-	_blend.set_shader_parameter("art_card_fraction", size.x / maxf(size.y, 1.0))
+	_blend.set_shader_parameter("art_card_fraction", art_height / maxf(size.y, 1.0))
+	_blend.set_shader_parameter("source_aspect", size.x / maxf(art_height, 1.0))
+	_surface.set_shader_parameter("reading_onset", float(options.get("reading_onset", 0.52)))
 	_blend.set_shader_parameter("fade_bottom", float(options.get("fade_bottom", 0.29)))
 	_blend.set_shader_parameter("grain_scale", float(options.get("grain_scale", 8.0)))
 	_blend.set_shader_parameter("seed_value", float(options.get("seed_value", sample.get("seed_value", 4.0))))
@@ -88,6 +95,10 @@ func configure(sample: Dictionary, stock: Texture2D, artwork: Texture2D,
 	_blend.set_shader_parameter("protected_center", options.get("protected_center", center))
 	_blend.set_shader_parameter("protected_radius", options.get("protected_radius", radius))
 	_marks.configure(_category_id, _identity_variant, size)
+	_marks.visible = bool(options.get("show_identity", true))
+	_selection_mark.size = size
+	art_status.position = Vector2(10, minf(art_height * 0.52, size.y * 0.4))
+	art_status.size = Vector2(size.x - 20, 28)
 	_layout_copy()
 	_update_paper()
 	set_exposure(0, size.x)
@@ -131,7 +142,7 @@ func _ensure_nodes() -> void:
 	_picture = TextureRect.new()
 	_picture.name = "OriginalImage"
 	_picture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	_picture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_picture.stretch_mode = TextureRect.STRETCH_SCALE
 	_picture.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	_picture.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_blend = ShaderMaterial.new()
@@ -150,21 +161,29 @@ func _ensure_nodes() -> void:
 	_left_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_left_name.add_theme_constant_override("line_spacing", -1)
 	_left_name.visible = false
+	art_status = _new_label("ArtStatus")
+	art_status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	art_status.add_theme_font_size_override("font_size", 14)
+	art_status.add_theme_color_override("font_color", Color("#e8d9bc"))
+	_selection_mark = SelectionMark.new()
+	_selection_mark.name = "SelectionImprint"
+	add_child(_selection_mark)
 
 
 func _layout_copy() -> void:
 	var compact := size.x < 170.0
 	var full_size := size.x >= 250.0
-	var margin := 13.0 if compact else 16.0
+	var margin := float(_options.get("text_margin", 13.0 if compact else 16.0))
 	var extra := int(_options.get("font_extra", 0))
 	var title_px := (24 if size.x >= 220.0 else (20 if not compact else 18)) + extra
 	title_px = int(_options.get("title_font_size", title_px))
-	var text_px := (16 if full_size else 14) + extra
-	var title_width := size.x - margin * 2.0
+	var text_px := int(_options.get("body_font_size", (16 if full_size else 14) + extra))
+	var title_left := float(_options.get("title_left", margin))
+	var title_width := size.x - title_left - margin
 	var title := str(_sample.get("title", ""))
 	var maximum_lines := int(_options.get("title_max_lines", 1 if compact else 2))
 	var long_title: bool = maximum_lines > 1 and Paint.fonts().heading.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, title_px).x > title_width
-	var title_height := float(title_px * 2 + 4) if long_title else float(title_px + 6)
+	var title_height := float(title_px * maximum_lines + 4) if long_title else float(title_px + 6)
 	var line1 := str(_sample.get("line1", ""))
 	var body_row_height: float = ceilf(Paint.fonts().body.get_height(text_px))
 	var long_info: bool = _identity_variant != 0 and ("\n" in line1 or Paint.fonts().body.get_string_size(line1, HORIZONTAL_ALIGNMENT_LEFT, -1, text_px).x > title_width)
@@ -176,7 +195,7 @@ func _layout_copy() -> void:
 		title_y = 287.0 if full_size else (211.0 if not compact else 140.0)
 		info_y = 326.0 if full_size else (241.0 if not compact else 165.0)
 	else:
-		title_height = maxf(title_height, ceilf(Paint.fonts().heading.get_height(title_px)) * (2.0 if long_title else 1.0))
+		title_height = maxf(title_height, ceilf(Paint.fonts().heading.get_height(title_px)) * (float(maximum_lines) if long_title else 1.0))
 		# The full-width square image usually ends its blend before 90% of its
 		# width. Executing / arrival cards use their actual height, not 190x285.
 		title_y = maxf(title_y, size.x * 0.88 + 6.0)
@@ -191,9 +210,9 @@ func _layout_copy() -> void:
 	_set_label_box(_header, Rect2(34.0 if _identity_variant != 0 else margin, 10.0 if not compact else 7.0,
 		size.x - (34.0 if _identity_variant != 0 else margin) - margin, 19.0), (13 if not compact else 12) + extra)
 	_heading.text = title
-	_heading.max_lines_visible = 2 if long_title else 1
+	_heading.max_lines_visible = maximum_lines if long_title else 1
 	_heading.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART if long_title else TextServer.AUTOWRAP_OFF
-	_set_label_box(_heading, Rect2(margin, title_y, title_width, title_height), title_px)
+	_set_label_box(_heading, Rect2(title_left, title_y, title_width, title_height), title_px)
 	_heading.add_theme_color_override("font_color", INK)
 	_information_one.text = line1
 	_information_one.max_lines_visible = 2 if long_info else 1
@@ -213,6 +232,8 @@ func _layout_copy() -> void:
 		characters.append("…")
 	_left_name.text = "\n".join(characters)
 	_set_label_box(_left_name, Rect2(6.0, spine_y, 18.0, maxf(1.0, size.y - spine_y - 10.0)), 13)
+	if not bool(_options.get("show_copy", true)):
+		for label: Label in _copy: label.hide()
 
 
 func _new_label(label_name: String, heading := false) -> Label:
@@ -275,6 +296,12 @@ func set_exposure(side: int, exposed: float) -> void:
 		label.modulate.a = reading
 	_left_name.visible = _side != 0 and _exposed >= 23.0 and reading < 0.96
 	_left_name.modulate.a = 1.0 - reading
+
+
+func set_selected(value: bool) -> void:
+	if is_instance_valid(_selection_mark):
+		_selection_mark.chosen = value
+		_selection_mark.queue_redraw()
 
 
 func set_card_hover(hovered: bool) -> void:

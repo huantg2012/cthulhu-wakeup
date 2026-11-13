@@ -15,6 +15,7 @@ const Layout = preload("res://src/presentation/production/perception_layout.gd")
 const Paint = preload("res://src/presentation/production/painted/theme.gd")
 const Atmosphere = preload("res://src/presentation/production/painted/peripheral_atmosphere.gd")
 const WindowArt = preload("res://src/presentation/production/painted/object_window.gd")
+const PortraitCarrier = preload("res://src/presentation/production/painted/portrait_carrier.gd")
 const Portraits = preload("res://src/presentation/production/painted/object_portraits.gd")
 const PortraitTransition = preload("res://src/presentation/production/painted/portrait_transition.gd")
 const VIEW := Vector2(1280, 720)
@@ -345,14 +346,30 @@ func _object_art(parent: Node, node_name: String, bounds: Rect2, kind: String, i
 	var subject: Dictionary = _views._find(self, collection, id)
 	var world_id: String = session.visual_birthplace(id) if kind == "person" else subject.get("domain", "")
 	var world: Dictionary = subject if kind == "world" else _views._find(self, "domains", world_id)
-	var slot: TextureRect = _ui.image(parent, node_name, bounds, null)
-	WindowArt.style(slot)
+	var recipe: Dictionary = _portraits.recipe(kind, session.visual_seed(), subject, world)
+	var slot: TextureRect
+	var card: Control
+	if minf(bounds.size.x, bounds.size.y) > 110.0:
+		card = PortraitCarrier.new()
+		card.name = node_name + "Carrier"
+		parent.add_child(card)
+		slot = card.build(bounds, kind, str(subject.get("title", title(id))), recipe, _size(0))
+		slot.name = node_name
+	else:
+		# Tiny directory images are identifiers inside existing rows, not a
+		# second complete card with unreadably small shoulders and text.
+		slot = _ui.image(parent, node_name, bounds, null)
+		WindowArt.style(slot)
 	slot.set_meta("subject_id", id)
 	var status: Label
-	if with_status:
+	if card != null:
+		status = card.carrier.art_status
+	elif with_status:
 		status = _ui.label(parent, "ArtStatus", "", Rect2(bounds.position + Vector2(0, bounds.size.y / 2 - 12), Vector2(bounds.size.x, 24)), _size(14), UI.MUTED)
 		status.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_portraits.bind(slot, _portraits.recipe(kind, session.visual_seed(), subject, world), status)
+	_portraits.bind(slot, recipe, status)
+	if card != null:
+		card.adapt_portrait_backing(str(recipe.get("key", "")), int(recipe.get("request", {}).get("style", -1)))
 	return slot
 
 func _build_worlds() -> void:

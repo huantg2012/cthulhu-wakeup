@@ -7,6 +7,7 @@ uniform sampler2D carrier_mask : filter_linear, repeat_disable;
 uniform float art_card_fraction : hint_range(0.1, 1.0, 0.001) = 0.666667;
 uniform float fade_bottom : hint_range(0.04, 0.45, 0.005) = 0.28;
 uniform float grain_scale : hint_range(3.0, 16.0, 0.25) = 7.0;
+uniform float source_aspect = 1.0;
 uniform float seed_value = 0.0;
 
 // This is an opacity floor for the subject, never a visible crop silhouette.
@@ -36,12 +37,16 @@ float stable_noise(vec2 p) {
 void fragment() {
 	// One unshifted sample: no blur, recolouring, colour key, or RGB-dependent
 	// coverage. Existing white, dark, and halftone backgrounds remain imagery.
-	vec4 source = texture(TEXTURE, UV);
-	vec2 p = UV;
+	// The compact selector retains the entire square source, centred in its
+	// shorter slot; normal upright cards keep the exact original UV.
+	vec2 source_uv = (UV - vec2(0.5)) * vec2(max(source_aspect, 1.0), max(1.0 / source_aspect, 1.0)) + vec2(0.5);
+	vec4 source = texture(TEXTURE, clamp(source_uv, vec2(0.0), vec2(1.0)));
+	float source_bounds = step(0.0, source_uv.x) * step(source_uv.x, 1.0) * step(0.0, source_uv.y) * step(source_uv.y, 1.0);
+	vec2 p = source_uv;
 	float seed = fract(seed_value * 0.61803398875) * 43.0;
 	float scale = max(grain_scale, 1.0);
 	float bottom = max(fade_bottom, 0.005);
-	float carrier_alpha = texture(carrier_mask, vec2(p.x, p.y * art_card_fraction)).a;
+	float carrier_alpha = texture(carrier_mask, vec2(UV.x, UV.y * art_card_fraction)).a;
 
 	// Only the lower boundary moves inside the picture. Two broad fields and
 	// a slight one-sided drift form a few unequal washes, not a picket of
@@ -68,5 +73,15 @@ void fragment() {
 	protection *= 1.0 - smoothstep(0.90, 0.985, p.y);
 	coverage = max(coverage, protection);
 
-	COLOR = vec4(source.rgb, source.a * source_opacity * coverage * carrier_alpha);
+	// Small landscape selectors need irregular lateral absorption as well:
+	// never leave a miniature square photograph floating on the card.
+	float lateral = 1.0;
+	if (abs(source_aspect - 1.0) > 0.01) {
+		float left_wash = 0.055 + 0.10 * stable_noise(vec2(p.y*3.1+seed, 5.6));
+		float right_wash = 0.045 + 0.08 * stable_noise(vec2(p.y*4.2+seed, 19.8));
+		float crown_wash = 0.035 + 0.04 * stable_noise(vec2(p.x*3.6+seed, 9.2));
+		lateral = smoothstep(0.0, left_wash, p.x) * smoothstep(0.0, right_wash, 1.0-p.x);
+		lateral *= smoothstep(0.0, crown_wash, p.y);
+	}
+	COLOR = vec4(source.rgb, source.a * source_opacity * coverage * carrier_alpha * source_bounds * lateral);
 }

@@ -1,0 +1,50 @@
+Card carrier formal Session rollout — 2026-11-13
+Branch: cthulhu-wakeup; source save read-only SHA-256: 9c709560d228f836d672cb237d7367b6d4e3fc64986153839ca8d8af295824c4
+The 684/163 counts include per-node material/texture assertions, not independent gameplay features.
+The real turn-10 path has no newly unlocked power; initial-unlock evidence comes from a separate normal new game.
+Export: tools/ui-art-production/export_pack.sh /tmp/cthulhu-card-rollout.pck (exit 0).
+PCK smoke: Godot --headless --path /tmp --main-pack /tmp/cthulhu-card-rollout.pck --script /tmp/card-pack-check.gd
+An initial headless shader error passing builtin TEXTURE to a helper was fixed by explicit card_mask sampler; the final export/smoke below is after that fix.
+Earlier visual fixes: pre-tree hot-cache binding; inherited shader alpha; stretched master-card ratio; compact square art kept in its original aspect; opaque candidate selection ink.
+Representative paths only; not an all-actions/all-resolutions gameplay certification.
+
+--- card-rollout-arrival.log ---
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+ROUND_ARRIVAL counts={ "event": 2, "prayer": 3, "person": 1, "unlock": 0 } turn=10
+ACTION_PHASE_NEW_PRAYERS []
+ROUND_ARRIVAL_OK 80 checks; public sources, prayer priority, unlock diff, read-only/skip/replay, preloaded art, actual event/action handoff
+
+--- card-rollout.log ---
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+CARD_SESSION_ROLLOUT_OK 684 checks; turn-10 arrival, event handoff, five worlds, action choices, cult, libraries, legacy prayer; source save unchanged
+
+--- card-rollout-new.log ---
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+CARD_INITIAL_UNLOCKS_OK 36
+
+--- card-rollout-details.log ---
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+HOVER_CANDIDATE Choice_npc_0:<Button#246708963447> expected=Choice_npc_0:<Button#246708963447> at=(546.0, 243.0) scale=(1.014, 1.014) amount=1.0 enabled=true
+CARD_COMPACT_DETAILS_OK 163 checks; opaque selection ink, empty drop slot, hover, no action commit
+
+--- card-rollout-pack-check.log ---
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+CARD_PACK_OK stock/shaders/fonts/formal-root loaded from isolated PCK
+
+--- card-rollout-review.log ---
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+CARD_REVIEW_READY turn=10 save_copy=user://ui-art-production-probe/15593-1760205
+
+Final native export log contains no SCRIPT ERROR / ERROR entries.
+Source, hot cache and guide checks are described in docs/tasks/worldplay-integration.md#card-carrier-rollout.

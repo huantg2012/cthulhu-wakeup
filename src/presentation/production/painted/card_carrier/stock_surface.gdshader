@@ -1,11 +1,15 @@
 shader_type canvas_item;
 render_mode unshaded;
+varying float carrier_opacity;
+void vertex() { carrier_opacity = COLOR.a; }
 
 // One continuous print substrate. The original illustration never uses this
 // material: only the paper is coloured here.
 uniform vec4 reading_colour : source_color = vec4(0.63, 0.51, 0.36, 1.0);
 uniform vec4 ink_colour : source_color = vec4(0.15, 0.12, 0.13, 1.0);
 uniform vec4 edge_colour : source_color = vec4(0.62, 0.48, 0.32, 1.0);
+
+uniform float reading_onset = 0.52;
 
 float hash21(vec2 p) {
     return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
@@ -24,7 +28,7 @@ void fragment() {
     float fibre = dot(paper.rgb, vec3(0.299, 0.587, 0.114));
     float cloud = noise21(UV * vec2(5.0, 7.0));
     float grain = noise21(UV * vec2(170.0, 240.0));
-    float onset = 0.52 + (cloud - 0.5) * 0.11
+    float onset = reading_onset + (cloud - 0.5) * 0.11
         + 0.035 * sin(UV.x * 7.0 + 1.4);
     float reading = smoothstep(onset, onset + 0.22, UV.y);
     vec3 pigment = mix(ink_colour.rgb, reading_colour.rgb, reading);
@@ -40,5 +44,5 @@ void fragment() {
     pigment = mix(pigment, ink_colour.rgb, sweep * 0.16);
     pigment *= 1.0 + (fibre - 0.82) * 0.75 + (cloud - 0.5) * 0.12;
     pigment += vec3((grain - 0.5) * 0.026);
-    COLOR = vec4(pigment, paper.a);
+    COLOR = vec4(pigment, paper.a * carrier_opacity);
 }

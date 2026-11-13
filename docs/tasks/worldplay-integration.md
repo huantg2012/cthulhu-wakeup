@@ -137,3 +137,35 @@
 5/18/48张全牌缘命中、固定横距和层级、点击不出牌、原生上拖落牌已核对；真实五世界第9轮隔离档验证祈求落牌、模态阻断及Session快照不变。样板输入双转发与正式误用旧底纹导致变暗均已据实机证据修正。本批画面及手感仍待制作人复审，未做全游戏再验收。
 
 **卡体薄厚度增量。**制作人认可上述交付后要求增加一点真实卡厚；本批只改共用Card的薄纸芯与贴近阴影，拖影和正式已适配场景自动复用。规范为A06薄厚度条目；交互/Session/生成器合同无变更，未增加功能回归。`finish_preview.gd` 原生捕获5张平铺、48张密叠与完整卡/抬牌，shader正常编译，静态复核未见亮栅栏、双轮廓或文字遮盖；[材质证据](../art/visual-generation/card-design-study/card-thickness/full-and-hand.png)待制作人复审。架构登记在同一Card条目，无独立新系统spec。
+
+
+<a id="card-carrier-rollout"></a>
+
+### 2026-11-13 锁定卡面完整接入正式 Session
+
+制作人锁定 `card-thickness/full-and-hand.png` 后要求完整接入，特别指定从轮间「诸界回响」开始。当前工作位于项目主目录 `cthulhu-wakeup` 分支。设计批准沿用原图；本节记录正式接入与代表路径核对，未替制作人签署所有场景的审美验收。
+
+**实际覆盖，按玩家流程：**
+
+- 轮间准备后的诸界回响：事件、祈求、新知人物、新启权能／行为的下方牌堆及上方展示牌均使用同一连续载体；雾膜按真实卡缘消散。回看仍只读，不跳过事件。
+- 事件专桌与诸界：首页世界牌替换旧灰绿壳，牌堆固定右压左、全部在桌，点击／Enter 保持世界导航。世界数量增加不再触发旧的远牌隐藏。仅请求线索且无生成参数的世界明确显示缺图状态，不伪造立绘。
+- 世界／教团四区：主卡、对象与行为手牌、拖影、上桌卡及空落牌位统一；左侧主卡维持纵向比例，核心四维／教团信息在其下方常驻。
+- 执行候选：人物、世界、教团、圣物、锚点等小候选使用同材质和不规则融接；回应选择保留实际名称／代价。候选已选压印、空槽／已填槽、独立卡 hover 与手牌抬升保持各自输入边界。
+- 底栏权能／人物／圣物图鉴：主卡、手牌和只读查看卡统一；未解锁牌仍不入堆。
+- 尚保留的祈求详情、关联人物、准备与回执主体：经 `_object_art()` 统一为同一完整载体；小于等于110逻辑像素的资料缩略仅用同源不规则收边，不塞不可读的肩签和文字。它们仍是原资料行，不被改成新的行动入口。
+
+**接入修复。** 热缓存图像曾因世界卡构建时尚未挂树而被 `_display()` 拒绝，后续也没有重新绑定；现允许挂树前赋值，保留弱引用／待删除节点／身份key保护。卡纸、纸芯切面和缩略图shader保留宿主alpha，使显影与空位淡化真实生效。卡面纹理加入独立生产PCK打包脚本，避免只在项目目录可用。独立包检查暴露的内建TEXTURE采样器传参编译问题已改为显式card_mask采样器，重导出后无shader错误。
+
+![真实第10轮诸界回响](../art/visual-generation/production-evidence/card-rollout/arrival-prayer.png)
+
+[事件](../art/visual-generation/production-evidence/card-rollout/arrival-event.png) · [新知人物](../art/visual-generation/production-evidence/card-rollout/arrival-person.png) · [新局初启权能](../art/visual-generation/production-evidence/card-rollout/arrival-initial-unlocks.png) · [诸界导航](../art/visual-generation/production-evidence/card-rollout/world-overview.png) · [教团牌桌](../art/visual-generation/production-evidence/card-rollout/cult-table.png)
+
+[最新空落牌位](../art/visual-generation/production-evidence/card-rollout/empty-drop-slot.png) · [候选填入与hover](../art/visual-generation/production-evidence/card-rollout/candidate-filled-hover.png) · [人物图鉴](../art/visual-generation/production-evidence/card-rollout/library-person.png) · [权能图鉴](../art/visual-generation/production-evidence/card-rollout/library-power.png) · [圣物图鉴](../art/visual-generation/production-evidence/card-rollout/library-relic.png) · [保留的关联祈求窗口](../art/visual-generation/production-evidence/card-rollout/related-prayer.png)
+
+**有限核对及边界。** `session_rollout_probe.gd` 使用真实正式主场景，通过正常存档菜单加载隔离副本，从第9轮确认结束本轮，进入第10轮，实际出现2件事件、3声祈求、1位去重人物。逐项查看后真实确认两个事件，再进入诸界、世界、教团、候选、三类图鉴和旧祈求入口；导航／查阅／选候选未改变Session快照，也未新增立绘生成。全路径684项断言主要含逐节点的共享材质／已就绪纹理检查，不代表684个独立玩法。之后仅为新修的空位和紧凑候选补163项定向检查，包含真实hover与已选压印；新局初始解锁补36项。输入探针的物理鼠标使用viewport stretch换算，避免1920窗口的坐标误判。旧第10轮局没有发生一次新的权能解锁，故新启类用真实新局的初始解锁核对，不冒充中途解锁事实。
+
+所有截图为1920×1080、1280×720逻辑画幅，源存档为 `1794500154-3541809.json`，SHA-256 `9c709560d228f836d672cb237d7367b6d4e3fc64986153839ca8d8af295824c4`，原文件未写入。第10轮首页多出的「求告所涉世界」属于公开请求线索，不是造了第六个完整世界。新／旧冻结祈求沿原合同展示，未改变生成系统。
+
+源码解析、热缓存绑定／过期回调定向检查、独立PCK资源加载及图文规范构建通过；日志见[checks.txt](../art/visual-generation/production-evidence/card-rollout/checks.txt)。不重测各行动全部结算分支、大字极值和任意生成种子；关联微型缩略及旧准备分支通过共享入口代码核对，代表实机为旧祈求主体，并未宣称逐个旧页面实走。
+
+**收尾登记。** 架构已更新卡面单源、导航适配、旧主体图适配及绑定修复；交互spec原地记录完整覆盖，规则／数据/schema无变化；美术A06–A08、A15与图文规范引用已更新。适用V01–V05、V07–V08；有机外围未改，不重录既有周期。上列是本批UI清单与实际证据，正式各场景仍交制作人复审。

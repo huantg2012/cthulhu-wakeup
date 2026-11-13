@@ -186,12 +186,12 @@
     {
       "id": "R01",
       "title": "获准母版及证据",
-      "status": "已核对·当前美术基线",
+      "status": "已核对·外围与历史母版",
       "path": "docs/art/visual-generation/ui-approved-baseline.json",
       "checked_date": "2026-11-12",
       "sha256": "da06297b33d28854fc2a8df833f5b661fdfc0da522d87346e5e76104f0ecb10e",
-      "allowed": "按本清单的已批准图像、动态、字体、源码识别母版；引用DEC-064的实际批准范围。",
-      "excluded": "其他未审状态、全游戏接入与生成器全部组合通过。"
+      "allowed": "DEC-064的外围、字体及历史证据；当前卡面以R10锁定实物和规范A06–A08为准。",
+      "excluded": "旧灰绿卡面、双侧焦点置顶排布以及未审全游戏状态。"
     },
     {
       "id": "R02",
@@ -199,7 +199,7 @@
       "status": "已核对·功能合同",
       "path": "docs/specs/ui-interaction.md",
       "checked_date": "2026-11-13",
-      "sha256": "1710c4a580fb81ee5a968fdad8292bf6ba098b06da528704a240542d847499cc",
+      "sha256": "189af294670dbadee67c56e75d163d084394eac8312bde2ace008c982def5a43",
       "allowed": "worldplay-card-study（含DEC-068固定单向牌堆/抬牌/拖放、轮初回响及立绘准备边界）、locked-interaction-production至current-ui-contract-end及正式交互精修原则；其他现行机制按对应功能引用。",
       "excluded": "旧echoes-home、F5/D4/V2/V6美术指令、旧tokens、旧视觉待选状态。旧强制视觉引用已纠正。"
     },
@@ -269,9 +269,19 @@
       "status": "已核对·最新段优先",
       "path": "docs/progress/stage-priorities.md",
       "checked_date": "2026-11-13",
-      "sha256": "9f6af14767fd3abaafaebad8ff43fe42fdf63838290a0e5677415499d22ac71b",
-      "allowed": "2026-11-13 DEC-068单向牌堆/肩位及薄厚度增量、DEC-067连续印面认可、方框禁令及轮初增量；2026-11-12当前路由与持续禁令。",
+      "sha256": "43283145d953d7b8647f3c0956b8d5cdab51bcda68873e178220447a6b6fa935",
+      "allowed": "最新完整Session卡面接入授权，DEC-068单向肩位及已锁定薄厚度、DEC-067连续印面、方框禁令和轮初回响；持续技能禁令。",
       "excluded": "后续历史路由的旧视觉规范入口、旧待审/待选状态。"
+    },
+    {
+      "id": "R10",
+      "title": "当前锁定卡面实物",
+      "status": "制作人锁定·卡面及单向肩位牌堆",
+      "path": "docs/art/visual-generation/card-design-study/card-thickness/full-and-hand.png",
+      "checked_date": "2026-11-13",
+      "sha256": "7aa4c6fd77b6c5658e6e3f55a4f06d8788d9077b4780c7b9eccc784caf52c607",
+      "allowed": "连续印面、原图融接、单左肩签、实体薄厚度、稳定右压左的牌堆；由制作人以附件明确锁定。",
+      "excluded": "样本名字、占位文案、临时按钮及固定静态卡图；不以样板证明正式业务接入或全场景通过。"
     }
   ],
   "builders": [

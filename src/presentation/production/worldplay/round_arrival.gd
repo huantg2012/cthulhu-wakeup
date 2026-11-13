@@ -102,7 +102,7 @@ func _select(index: int) -> void:
 	var card: Dictionary = _cards[index]
 	# The artwork is smaller, the type is not. The complete title also stays
 	# beside it in the reading area; this face retains its 24px heading.
-	var face: Control = host._face(_hero,card,Rect2(22,0,200,250),{"title_font_size":24,"title_max_lines":1})
+	var face: Control = host._face(_hero,card,Rect2(38,0,168,250),{"title_font_size":24,"title_max_lines":1})
 	face.payload = {}
 	face.hover_enabled = false
 	face.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -110,11 +110,12 @@ func _select(index: int) -> void:
 	# The same continuous carrier adapts its image and reading area to this
 	# larger face. No second image rectangle or label offsets are overlaid.
 	var veil := ColorRect.new()
-	veil.position = Vector2(7,-11)
-	veil.size = Vector2(230,272)
+	veil.position = face.position
+	veil.size = face.size
 	veil.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var material := ShaderMaterial.new()
 	material.shader = Veil
+	material.set_shader_parameter("carrier_mask", face.CARRIER_STOCK)
 	veil.material = material
 	_hero.add_child(veil)
 	var tint: Color = face.stock_tint().lerp(Color.WHITE,.75) * Paint.BONE

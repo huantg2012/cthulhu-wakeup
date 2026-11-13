@@ -198,7 +198,11 @@ func _drain() -> void:
 
 func _display(target: WeakRef, note: WeakRef, key: String, texture: Texture2D) -> void:
 	var slot := target.get_ref() as TextureRect
-	if slot == null or not slot.is_inside_tree() or slot.is_queued_for_deletion() or slot.get_meta("art_key", "") != key: return
+	# Cards may bind a ready texture while being built, before the fan adopts
+	# them. Off-tree assignment is valid and must remain synchronous on a cache
+	# hit; otherwise bind() returns with a permanently empty prebuilt card.
+	# Retired and rebound nodes are still protected from late async delivery.
+	if slot == null or slot.is_queued_for_deletion() or slot.get_meta("art_key", "") != key: return
 	slot.texture = texture
 	var status := note.get_ref() as Label if note != null else null
 	if status != null:

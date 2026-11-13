@@ -1,6 +1,11 @@
 # Current Work: Approved UI Art Baseline and Full-game Rollout
 
 
+## 当前：锁定卡面完整接入正式 Session（2026-11-13）
+
+制作人已锁定连续印面、左肩签、薄卡体与单向牌堆。当前 `cthulhu-wakeup` 正式主场景从轮间诸界回响开始统一卡面，覆盖诸界、事件、世界／教团主卡、候选、图鉴和关联主体；缩略图保留无框身份标识。实际第9→10轮、代表导航与输入已核对，原存档保持。范围、证据及未验边界统一见[接入记录](../tasks/worldplay-integration.md#card-carrier-rollout)。设计锁定与正式场景复审分开；本批未修改玩法规则或生成器。
+
+
 ## 当前：世界玩法牌桌正式接入（2026-11-12）
 
 制作人通过整叠在桌的四区样板后授权接入。独立 `codex/worldplay-integration` 基于 `a64712d`，合并主线 `7a76bfa` 的组合祈求、后果与能力生成；正式根接 `production/worldplay/view.gd`，原工作树保留。新局、续档、世界／教团、只读图鉴与实际提交共用正式 Session。交付及证据见[接入记录](../tasks/worldplay-integration.md)。当前是运行接入完成、制作人实机复审待进行；全目录可用性 `ISSUE-WORLDPLAY-ACTION-AVAILABILITY` 仍 open，不称全游戏界面全部完成。

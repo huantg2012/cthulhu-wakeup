@@ -99,7 +99,7 @@ func _world_fan(stage: Control, worlds: Array) -> void:
 	fan.card_chosen.connect(func(index: int) -> void: host._inspect_world(ids[index]))
 	var update := func(index: int) -> void:
 		_overview_focus = ids[index]
-		counter.text = "‹   %02d / %02d   ›" % [index + 1, ids.size()]
+		counter.text = "%s  ·  ‹ %02d / %02d ›" % [names[index], index + 1, ids.size()]
 		fan.accessibility_description = names[index] + "。左右键浏览，确认进入。"
 		fan.tooltip_text = names[index] + "\n" + tips[index]
 	fan.focus_changed.connect(update)

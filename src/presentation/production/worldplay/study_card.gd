@@ -17,7 +17,11 @@ const STOCK := {
 }
 var seed_value := 0
 var palette := ""
-var selected := false
+var selected := false:
+	set(value):
+		selected = value
+		if is_instance_valid(carrier): carrier.set_selected(value)
+		queue_redraw()
 var payload: Dictionary = {}
 var hover_enabled := true
 var _hover := Hover.new()
@@ -27,15 +31,16 @@ static var _paper_backings: Dictionary = {}
 var _backing_key := ""
 
 ## The Button retains gameplay input; the carrier owns the continuous print.
-## Choice buttons and the empty slot can still use the original painted stock.
+## Every physical card uses this carrier; empty slots omit its category/copy.
 func configure_carrier(sample: Dictionary, artwork: Texture2D = null, options: Dictionary = {}) -> TextureRect:
 	carrier = Carrier.new()
 	carrier.name = "PrintedFace"
 	carrier.configure(sample, CARRIER_STOCK, artwork, size, options)
 	carrier.payload = payload
 	add_child(carrier)
+	carrier.set_selected(selected)
 	queue_redraw()
-	return carrier.get_node("OriginalImage") as TextureRect
+	return carrier.art
 
 func adapt_portrait_backing(art_key: String, style_sid: int) -> void:
 	# Engraving and watercolor have a paper ground by definition. Pulp can
@@ -49,7 +54,7 @@ func _process(_delta: float) -> void:
 	if _backing_key.is_empty() or not is_instance_valid(carrier):
 		set_process(false)
 		return
-	var image_slot := carrier.get_node("OriginalImage") as TextureRect
+	var image_slot: TextureRect = carrier.art
 	if image_slot.texture == null: return
 	if not _paper_backings.has(_backing_key):
 		# Read once per actual portrait, never on hover and never modify pixels.
@@ -92,20 +97,23 @@ func _ready() -> void:
 		_stock.set_texture_margin(side, 9)
 	mouse_entered.connect(set_card_hover.bind(true))
 	mouse_exited.connect(set_card_hover.bind(false))
-	focus_entered.connect(queue_redraw)
-	focus_exited.connect(queue_redraw)
+	focus_entered.connect(_update_focus)
+	focus_exited.connect(_update_focus)
 	resized.connect(apply_card_hover)
 	pivot_offset = size * Vector2(0.5, 0.70)
 
+func _update_focus() -> void:
+	if is_instance_valid(carrier):
+		carrier.set_meta("keyboard_focus", has_focus())
+		carrier.set_selected(selected)
+	queue_redraw()
+
 func apply_card_hover() -> void:
-	if is_instance_valid(carrier): return
-	_hover.apply_transform(self)
+	if hover_enabled: _hover.apply_transform(self)
+	if is_instance_valid(carrier): carrier.set_peek_amount(clampf(_hover.amount, 0.0, 1.0))
 	queue_redraw()
 
 func set_card_hover(value: bool) -> void:
-	if is_instance_valid(carrier):
-		carrier.set_card_hover(value and hover_enabled)
-		return
 	_hover.set_hover(self, value and hover_enabled, apply_card_hover)
 
 func stock_tint() -> Color:

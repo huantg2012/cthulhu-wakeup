@@ -13,6 +13,8 @@ study="docs/art/visual-generation/ui-study"
 mkdir -p "$staging/data" "$staging/$study" "$(dirname -- "$destination")"
 cp "$root/project.godot" "$root/export_presets.cfg" "$staging/"
 cp -R "$root/src" "$staging/"
+# Shared physical card stock is a production dependency, not an exploration asset.
+cp -R "$root/assets" "$staging/"
 cp "$root/data/"*.csv "$staging/data/"
 cp -R "$root/$study/type" "$staging/$study/"
 for resource in card_fan.gd painted_card.gd painted_backdrop.gd painted_material.gd occult_marks.gd peripheral_atmosphere.gd peripheral_tendrils.gd peripheral_fields.gdshaderinc peripheral_mist.gdshader peripheral_veil.gdshader peripheral_surface.gdshader; do

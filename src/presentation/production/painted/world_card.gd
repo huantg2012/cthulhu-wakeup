@@ -1,25 +1,12 @@
-extends "res://docs/art/visual-generation/ui-study/painted_card.gd"
-## A07/A08 painted carrier for one public world. No input or Session calls.
+extends "res://src/presentation/production/worldplay/study_card.gd"
+## One public world on the approved continuous carrier. Session and navigation
+## remain with the host; the same portrait identity and preload cache are bound.
 const UI = preload("res://src/presentation/production/locked_controls.gd")
-const WindowArt = preload("res://src/presentation/production/painted/object_window.gd")
 const Fan = preload("res://src/presentation/production/painted/card_fan.gd")
-const Hover = preload("res://src/presentation/production/painted/card_hover.gd")
-var _hover := Hover.new()
+var ordinal := 0
+var _metric_labels: Array[Label] = []
 var art: TextureRect:
-	get: return _art
-
-func _ready() -> void:
-	# The production constructor supplies a bound TextureRect and public copy.
-	pass
-
-func set_card_hover(hovered: bool) -> void:
-	_hover.set_hover(self, hovered, apply_card_hover)
-
-func apply_card_hover() -> void:
-	_hover.apply_transform(self)
-	var light := _hover.light()
-	# Only the stock and seal brighten. The original planet texture is a child.
-	self_modulate = Color(light, light, light)
+	get: return carrier.art if is_instance_valid(carrier) else null
 
 func build(controls: RefCounted, world: Dictionary, number: int, extra: int, portraits: Node) -> void:
 	ordinal = number
@@ -28,27 +15,48 @@ func build(controls: RefCounted, world: Dictionary, number: int, extra: int, por
 	accessibility_name = world.title
 	size = Fan.CARD_SIZE
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	texture_filter = TEXTURE_FILTER_NEAREST
-	controls.label(self, "Ordinal", "%02d" % (ordinal + 1), Rect2(17, 9, 32, 24), 14 + extra, UI.MUTED)
-	var kind := "%s / %s" % [world.relation, world.tier_title]
-	var tag: Label = controls.label(self, "Category", kind, Rect2(94, 9, 149, 24), 14 + extra, UI.MUTED)
-	tag.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	tag.clip_text = true
-	controls.fill(self, "WaitingStock", Rect2(14, 39, 232, 232), Color("#121d1f"))
-	var note: Label = controls.label(self, "ArtStatus", "", Rect2(16, 139, 228, 24), 14 + extra, UI.MUTED)
-	note.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_art = controls.image(self, "WorldArt", Rect2(10, 35, 240, 240), null)
-	WindowArt.style(art)
+	focus_mode = Control.FOCUS_NONE
+	palette = "world"
+	seed_value = absi(str(world.id).hash()) % 1000
 	var title_px := 24 + extra
-	var title_width: float = controls.fonts.heading.get_string_size(world.title, HORIZONTAL_ALIGNMENT_LEFT, -1, title_px).x
-	var title: Label = controls.label(self, "WorldName", world.title, Rect2(19, 283, 224, 33), title_px if title_width <= 224 else 18 + extra, UI.BONE, title_width <= 224)
-	title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	title.clip_text = true
-	var subtitle: Label = controls.label(self, "WorldStatus", world.status, Rect2(21, 316, 220, 20), 14 + extra, UI.MUTED)
-	subtitle.clip_text = true
-	subtitle.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
-	_details.assign([title, subtitle])
+	var width: float = controls.fonts.heading.get_string_size(world.title, HORIZONTAL_ALIGNMENT_LEFT, -1, title_px).x
+	var recipe: Dictionary = world.art_recipe
+	var sample := {"category_id":"world", "kind":"世界", "art_kind":"world",
+		"title":world.title, "line1":"%s · %s\n%s" % [world.relation, world.tier_title, world.status],
+		"line2":"", "paper_backed":int(recipe.get("request", {}).get("style", -1)) in [2,6]}
+	configure_carrier(sample, null, {"title_y":263.0, "info_y":298.0,
+		"title_font_size":title_px if width <= 228.0 else 18 + extra,
+		"title_max_lines":1, "font_extra":extra})
+	# Dense public readings fit below the title without becoming a separate panel.
+	# They inherit the same exposure as the carrier's printed copy when stacked.
+	var body: Label = carrier.get_node("InformationOne")
+	body.add_theme_font_size_override("font_size",14 + extra)
+	body.size.y = 38 + extra * 2
 	for i: int in world.metrics.size():
-		var line: Label = controls.label(self, "WorldMetrics%d" % i, world.metrics[i], Rect2(21, 338 + 19 * i, 224, 22), 14 + extra)
-		_details.append(line)
-	portraits.bind(art, world.art_recipe, note)
+		var line: Label = controls.label(carrier, "WorldMetrics%d" % i, world.metrics[i], Rect2(16, 341 + 20 * i, 228, 23), 14 + extra, Color("#302a29"))
+		line.clip_text = true
+		line.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		_metric_labels.append(line)
+	var note: Label = carrier.art_status
+	note.position = Vector2(28,120)
+	note.size = Vector2(210,38)
+	note.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	note.add_theme_color_override("font_shadow_color",Color(0,0,0,0.8))
+	note.add_theme_constant_override("shadow_offset_y",1)
+	art.set_meta("subject_id",world.id)
+	portraits.bind(art,recipe,note)
+	adapt_portrait_backing(str(recipe.get("key","")),int(recipe.get("request",{}).get("style",-1)))
+	tooltip_text = str(world.title) + "\n" + str(world.status) + "\n" + "\n".join(world.metrics)
+
+func set_exposure(side: int, exposed: float) -> void:
+	super.set_exposure(side,exposed)
+	# Broad overview overlaps still expose enough paper to read fragments as
+	# an actual printed card. Keep that ink; the next sibling occludes it.
+	# Only genuinely narrow spines switch to the vertical short-name treatment.
+	var reading := 1.0 if side == 0 or exposed >= 70.0 else 0.0
+	for label_name: String in ["Title","InformationOne","InformationTwo"]:
+		carrier.get_node(label_name).modulate.a = reading
+	if exposed >= 70.0:
+		carrier.get_node("LeftSideName").visible = false
+	for line: Label in _metric_labels:
+		line.modulate.a = reading

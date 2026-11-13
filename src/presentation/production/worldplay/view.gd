@@ -461,7 +461,7 @@ func _face(parent: Node, card: Dictionary, bounds: Rect2, visual_options: Dictio
 	var image := face.configure_carrier(sample, artwork, visual_options)
 	if not art_kind.is_empty():
 		image.set_meta("subject_id", subject_id)
-		_portraits.bind(image, recipe)
+		_portraits.bind(image, recipe, face.carrier.art_status)
 		face.adapt_portrait_backing(str(recipe.get("key","")), int(recipe.get("request",{}).get("style",-1)))
 	face.tooltip_text = str(card.title)+"\n"+detail+"\n"+str(card.get("effect",""))+"\n"+str(card.get("requirement",""))+"\n"+str(card.get("risk",""))
 	face.accessibility_name = str(card.title)
@@ -495,14 +495,6 @@ func _symbol_texture(motif: String, seed_value: int) -> Texture2D:
 	var texture: Texture2D = viewport.get_texture()
 	_symbol_textures[key] = texture
 	return texture
-
-func _paint_study(parent: Node, bounds: Rect2, motif: String, seed_value: int) -> void:
-	var art := ArtStudy.new()
-	art.position = bounds.position
-	art.size = bounds.size
-	art.motif = motif
-	art.seed_value = seed_value
-	parent.add_child(art)
 
 func _card_unlocked(card: Dictionary) -> bool:
 	return ActionModel.unlocked(card, session.catalog, projection)
@@ -566,12 +558,13 @@ func _render_table() -> void:
 		ghost.position = Vector2(12,8)
 		ghost.size = Vector2(148,234)
 		ghost.seed_value = 804
-		ghost.modulate.a = .32
 		ghost.hover_enabled = false
 		ghost.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		_table.add_child(ghost)
+		ghost.configure_carrier({"category_id":"action","identity_variant":0,"title":"落牌处","line1":"拖入卡牌","line2":""}, null,
+			{"show_copy":false,"show_header":false,"show_identity":false,"show_art":false})
+		ghost.carrier.modulate.a = .22
 		_text(ghost,"↓",Rect2(50,84,48,40),28,UI.MUTED).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		_text(ghost,"落牌处",Rect2(28,133,92,30),17,UI.MUTED).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		_text(_table,"拖一张牌到这里",Rect2(220,39,850,45),26)
 		if _library == "power" and _deck.size() < session.catalog.display_tables.powers.size():
 			_render_power_thresholds()
@@ -981,16 +974,31 @@ func _render_picker(field: Dictionary, y: float) -> void:
 			if not _views._find(self,pair[0],subject).is_empty(): kind = pair[1]; break
 		var is_prayer: bool = field.key=="__prayer"
 		card.palette = "prayer" if is_prayer else (kind if not kind.is_empty() else ("relic" if field.key=="relic" else str(_played.get("group",""))))
-		if is_prayer:
-			var cost: String = str(option.get("price",""))
-			var badge := "当前不可回应" if not str(option.get("reason","")).is_empty() else cost
-			_text(card,badge,Rect2(9,79,106,25),12,Paint.WARM if not str(option.get("reason","")).is_empty() else UI.MUTED)
-		elif kind.is_empty(): _paint_study(card,Rect2(22,7,80,59),"relic" if field.key=="relic" else "anchor",hash(subject))
-		else: _object_art(card,"ChoiceArt",Rect2(22,6,80,60),kind,subject,false)
-		var label := _text(card,_option_caption(option),Rect2(9,8,106,67) if is_prayer else Rect2(9,66,106,40),14)
+		# Compact choices use the same stock, shoulder, alpha edge and cut-paper
+		# thickness as the hand. Their unchanged hit area leaves the action
+		# footer and mandatory slots reachable while two text lines stay legible.
+		var recipe := _face_recipe(kind,subject) if not kind.is_empty() else {}
+		var sample := {"category_id":card.palette,"art_kind":kind,"title":_option_caption(option),"line1":"","line2":"",
+			"paper_backed":int(recipe.get("request",{}).get("style",-1)) in [2,6]}
+		var artwork: Texture2D = null if not recipe.is_empty() or is_prayer else _symbol_texture("relic" if field.key=="relic" else "anchor",hash(subject))
+		var image := card.configure_carrier(sample,artwork,{"show_copy":false,"show_art":not is_prayer,
+			"art_height":67.0,"reading_onset":-0.25 if is_prayer else 0.36})
+		if not recipe.is_empty():
+			image.set_meta("subject_id",subject)
+			_portraits.bind(image,recipe,card.carrier.art_status)
+			card.adapt_portrait_backing(str(recipe.get("key","")),int(recipe.get("request",{}).get("style",-1)))
+		var caption_box := Rect2(36,8,79,67) if is_prayer else Rect2(9,71,106,38)
+		var label := _text(card,_option_caption(option),caption_box,14,StudyCard.Carrier.INK)
 		label.name = "ChoiceCaption"
 		label.max_lines_visible = 3 if is_prayer else 2
 		label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		if is_prayer:
+			var cost: String = str(option.get("price",""))
+			var badge := "当前不可回应" if not str(option.get("reason","")).is_empty() else cost
+			var price_label := _text(card,badge,Rect2(9,82,106,24),14,Color("#642e29") if not str(option.get("reason","")).is_empty() else StudyCard.Carrier.DETAIL)
+			price_label.max_lines_visible = 1
+			price_label.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+
 		card.tooltip_text = _option_caption(option)+"\n"+str(option.get("detail","点击放入 · 不会执行行动"))
 		var chosen: Variant = _entry if field.key=="__prayer" else _selection.get(field.key)
 		card.selected = option.id==chosen or (chosen is Array and option.id in chosen)
@@ -1195,32 +1203,39 @@ func _library_title() -> String:
 	return str({"power":"十二权能","relic":"圣物档案","person":"人物档案"}.get(_library,"万物档案"))
 
 func _build_master() -> void:
+	# The scope is a real card, followed by its persistent public facts. Keeping
+	# the same card proportions avoids stretching a small print into a tall panel.
+	var events := _event_table()
+	var subject: Dictionary = {"id":"round/events","title":"轮初事件","kind":"event","type":"object"} if events else _master_card()
+	var kind: String = str(subject.kind)
+	var context := "第 %s 轮 · %s 件待处理" % [projection.turn,_deck.size()] if events else ("万物档案 · 查阅" if not _library.is_empty() else ("所属世界 · "+title(_world_id) if kind=="cult" else "当前世界"))
 	_master = StudyCard.new()
 	_master.name = "MasterCard"
 	_master.position = Vector2(32,83)
-	_master.size = Vector2(250,552)
+	_master.size = Vector2(250,375)
 	_master.seed_value = 472
+	_master.palette = kind
 	_master.mouse_filter = Control.MOUSE_FILTER_PASS
 	_master.focus_mode = Control.FOCUS_NONE
-	if _event_table():
-		_master.palette = "event"
-		_world_body.add_child(_master)
-		_text(_master,"第 %s 轮" % projection.turn,Rect2(16,12,218,24),14,UI.MUTED)
-		_text(_master,"轮初事件",Rect2(16,40,218,55),26)
-		_paint_study(_master,Rect2(15,103,220,220),"event",472)
-		_text(_master,"%s 件待处理" % _deck.size(),Rect2(16,340,218,42),18)
-		return
-	var subject: Dictionary = _master_card()
-	_master.palette = str(subject.kind)
-	_world_body.add_child(_master)
-	var kind: String = str(subject.kind)
-	_text(_master,"万物档案 · 查阅" if not _library.is_empty() else ("所属世界 · "+title(_world_id) if kind=="cult" else "当前世界"),Rect2(16,12,218,24),14,UI.MUTED)
-	var heading := _text(_master,str(subject.title),Rect2(16,40,218,55),26)
-	heading.max_lines_visible = 2
-	heading.tooltip_text = str(subject.title)
 	_master.set_meta("scope_id",subject.id)
-	if _library.is_empty(): _object_art(_master,"ScopeArt",Rect2(15,103,220,220),kind,str(subject.subject.id),true)
-	else: _paint_study(_master,Rect2(15,103,220,220),_library,472)
+	_master.payload = subject if not events and _library.is_empty() else {}
+	_world_body.add_child(_master)
+	var recipe := _face_recipe(kind,str(subject.subject.id)) if not events and _library.is_empty() else {}
+	var sample := {"title":str(subject.title),"line1":context,"line2":"","category_id":kind,"art_kind":kind,
+		"paper_backed":int(recipe.get("request",{}).get("style",-1)) in [2,6]}
+	var artwork: Texture2D = _symbol_texture(kind,472) if recipe.is_empty() else null
+	var slot := _master.configure_carrier(sample,artwork,{"title_y":267.0,"info_y":328.0,"title_font_size":22,"title_max_lines":2}) as TextureRect
+	if not recipe.is_empty():
+		slot.set_meta("subject_id",str(subject.subject.id))
+		_portraits.bind(slot,recipe,_master.carrier.art_status)
+		_master.adapt_portrait_backing(str(recipe.get("key","")),int(recipe.get("request",{}).get("style",-1)))
+	_master.tooltip_text = str(subject.title)+"\n"+context+("\n将主卡拖到右侧查阅完整资料" if not _master.payload.is_empty() else "")
+	_master.accessibility_name = str(subject.title)
+	var information := _region(_world_body,"ScopeInformation",Rect2(32,473,250,179))
+	if events:
+		_text(information,"将事件牌拖到上方，\n逐一决定本轮的回应。",Rect2(10,0,230,61),17,UI.MUTED)
+		_text(information,"处理完后进入神意行动",Rect2(10,91,230,34),15,UI.MUTED)
+		return
 	var summaries: Array = []
 	if _library=="power":
 		summaries = ["当前苏醒  %s" % projection.awakening,"已解锁  %s / %s" % [_deck.size(),session.catalog.display_tables.powers.size()],"查看条件、代价与作用","执行请回世界牌桌"]
@@ -1236,18 +1251,16 @@ func _build_master() -> void:
 		var cult: Dictionary = subject.subject
 		summaries = ["信众  %s · 凝聚  %s" % [cult.get("followers","?"),cult.get("cohesion","?")],"领袖 · "+title(str(cult.get("leader",""))),"具名成员  %s" % _views._members_for(self,cult).size(),"本轮 · "+_views._strategy_name(projection.economy_plan.get("strategies",{}).get(cult.id,cult.get("strategy","hold")))]
 	for index: int in summaries.size():
-		var line := _text(_master,str(summaries[index]),Rect2(16,340+index*32,218,31),16,UI.MUTED)
+		var line := _text(information,str(summaries[index]),Rect2(10,index*27,230,26),16,UI.MUTED)
 		line.max_lines_visible = 1
 		line.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 		line.tooltip_text = str(summaries[index])+"\n"+(_views.metric_help_text(subject.subject,["barrier","pollution","alert","stability"][index]) if _library.is_empty() and kind=="world" else "")
 		line.mouse_filter = Control.MOUSE_FILTER_PASS
-	if _library.is_empty() and kind=="world": _text(_master,"已知情报 · 悬停查看观测时点",Rect2(16,471,218,22),14,UI.MUTED)
+	if _library.is_empty() and kind=="world": _text(information,"已知情报 · 悬停查看观测时点",Rect2(10,112,230,22),14,UI.MUTED)
 	if _library.is_empty():
-		_master.payload = subject
-		_master.tooltip_text = "将主卡拖到右侧查阅完整资料"
-		_text(_master,"拖到右侧查阅完整资料 →",Rect2(16,499,218,34),16,UI.MUTED)
+		_text(information,"拖到右侧查阅完整资料 →",Rect2(10,140,230,30),15,UI.MUTED)
 	else:
-		_button(_master,"BackToTable","返回牌桌 →",Rect2(16,499,218,34),_close_library)
+		_button(information,"BackToTable","返回牌桌 →",Rect2(10,137,230,34),_close_library)
 
 func _master_card() -> Dictionary:
 	if not _library.is_empty(): return {"id":"library/"+_library,"title":_library_title(),"kind":_library,"type":"object"}
