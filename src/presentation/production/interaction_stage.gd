@@ -11,6 +11,8 @@ const METRIC_SIGNS := {"barrier": "◇", "pollution": "◉", "alert": "◆", "st
 var _host: WeakRef
 var _textures := {}
 var _overview_focus := ""
+var _attention_kind := ""
+var _attention_worlds: Array[String] = []
 var host: Control:
 	get: return _host.get_ref()
 
@@ -55,13 +57,66 @@ func overview() -> void:
 	_title(stage, "界外 / 神意未至", "诸界态势", "机会尚未消失，责任仍在延续。\n先决定，把你的意志投向哪里。")
 	var anchors: Array = host.projection.get("anchors", [])
 	var plans: Array = host.projection.get("resistance", [])
-	_obligation(stage, "AllAnchors", "尚无已知锚点" if anchors.is_empty() else "%d 处锚点与供奉责任" % anchors.size(), 548, host._tasks.open_subject.bind("anchors", ""))
+	_obligation(stage, "AllAnchors", "尚无已知锚点" if anchors.is_empty() else "%d 处锚点与供奉责任" % anchors.size(), 548, _highlight_worlds.bind("anchor"))
 	var summary := "%d 声祈求尚未回应" % requests.size() if not requests.is_empty() else "尚无待回应的祈求"
-	if host.projection.get("prayer_response_spent", false): summary = "本轮回应机会已用"
-	_obligation(stage, "PrayerIndex", summary, 576, host._prayers.browse)
-	_obligation(stage, "ResistanceIndex", "%d 处已知反制待查" % plans.size() if not plans.is_empty() else "暂无已知反制", 604, host._world_management.open_archive)
-	var archive := _link(stage, "AllWorlds", "展开全部已知世界 →", Rect2(79, 666, 183, 39), host._world_management.open_archive)
-	host._ui.style_action(archive, false, false)
+	if host.projection.get("prayer_response_spent", false) and not requests.is_empty(): summary = "%d 声祈求 · 本轮回应已用" % requests.size()
+	_obligation(stage, "PrayerIndex", summary, 576, _highlight_worlds.bind("prayer"))
+	_obligation(stage, "ResistanceIndex", "%d 项反制预告" % plans.size() if not plans.is_empty() else "暂无反制预告", 604, _highlight_worlds.bind("resistance"))
+	for item: Array in [["AllAnchors","anchor"],["PrayerIndex","prayer"],["ResistanceIndex","resistance"]]:
+		var control: Button = stage.find_child(item[0],true,false)
+		control.disabled = _related_worlds(item[1]).is_empty()
+		control.tooltip_text = "标出对应世界；再次点击逐个定位" if not control.disabled else "暂无对应世界"
+	var hint := _label(stage,"WorldAttentionHint","",Rect2(425,757,1000,25),14,UI.MUTED)
+	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_link(stage,"ClearWorldAttention","收起标记 ×",Rect2(1000,789,170,26),_clear_world_attention).visible = false
+	_apply_world_attention()
+
+func _related_worlds(kind: String) -> Array[String]:
+	var result: Array[String] = []
+	var rows: Array = host._pending_prayers() if kind == "prayer" else host.projection.get("anchors" if kind == "anchor" else "resistance",[])
+	for row: Dictionary in rows:
+		var domain := str(row.get("descriptor",{}).get("domain",row.get("card",{}).get("domain",""))) if kind == "prayer" else str(row.get("domain",""))
+		if not domain.is_empty() and not result.has(domain) and host._worlds.any(func(w: Dictionary) -> bool: return w.id == domain): result.append(domain)
+	return result
+
+func _highlight_worlds(kind: String) -> void:
+	var fan: Control = host._stage.get_node_or_null("WorldFan")
+	if fan == null or fan._blocked: return
+	var related := _related_worlds(kind)
+	if related.is_empty(): return
+	var candidates: Array[int] = []
+	for i: int in fan.cards.size():
+		if related.has(str(fan.cards[i].get_meta("subject_id"))): candidates.append(i)
+	if candidates.is_empty(): return
+	var index := candidates[0]
+	if _attention_kind == kind:
+		var current := candidates.find(fan.focus_index)
+		index = candidates[(current+1)%candidates.size()]
+	_attention_kind = kind
+	_apply_world_attention()
+	fan.set_focus(index)
+	fan.grab_focus()
+
+func _apply_world_attention() -> void:
+	var fan: Control = host._stage.get_node_or_null("WorldFan")
+	if fan == null: return
+	_attention_worlds.clear()
+	if not _attention_kind.is_empty(): _attention_worlds.assign(_related_worlds(_attention_kind))
+	if _attention_worlds.is_empty(): _attention_kind = ""
+	for card: Control in fan.cards:
+		card.set_attention(_attention_kind if _attention_worlds.has(str(card.get_meta("subject_id"))) else "")
+	var hint: Label = host._stage.find_child("WorldAttentionHint",true,false)
+	if hint != null:
+		var label := str({"anchor":"锚点","prayer":"祈求","resistance":"反制预告"}.get(_attention_kind,""))
+		hint.text = "已标出 %d 个%s所在世界 · 再点摘要逐个定位，确认进入世界" % [_attention_worlds.size(),label] if not _attention_kind.is_empty() else ""
+	var clear: Control = host._stage.find_child("ClearWorldAttention",true,false)
+	if clear != null: clear.visible = not _attention_kind.is_empty()
+
+func _clear_world_attention() -> void:
+	_attention_kind = ""
+	_apply_world_attention()
+	var fan: Control = host._stage.get_node_or_null("WorldFan")
+	if fan != null: fan.grab_focus()
 
 func _world_fan(stage: Control, worlds: Array) -> void:
 	if worlds.is_empty():
@@ -124,6 +179,8 @@ func _priority(world: Dictionary, requests: Array) -> int:
 
 func reset_worlds() -> void:
 	_overview_focus = ""
+	_attention_kind = ""
+	_attention_worlds.clear()
 
 func _render_worlds(parent: Control, worlds: Array) -> void:
 	var frames: Array = Layout.LOCAL_REALMS
@@ -171,7 +228,7 @@ func _world_fragment(parent: Control, world: Dictionary, frame: Rect2, caption: 
 func _world_status(world: Dictionary) -> String:
 	var id: String = world.id
 	var plans: Array = host._views.world_plans(host, id)
-	if not plans.is_empty(): return host._tasks.crisis_summary(plans[0])
+	if not plans.is_empty(): return "反制预告 · " + host._tasks.crisis_summary(plans[0])
 	var anchors: Array = _local_rows("anchors", id)
 	if not anchors.is_empty(): return "%d 处已知锚点 · 可查看维系状态" % anchors.size()
 	var requests: Array = host._prayers.local_requests(id)

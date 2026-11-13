@@ -162,6 +162,12 @@ events,EVENT_06,title,相互矛盾的记忆
 events,EVENT_07,title,先知的私言
 events,EVENT_11,title,现实的反扑
 resistance_plans,RESIST_SEIZE,name,扣押圣物
+resistance_plans,RESIST_TRACE,preview_impact,证据确认 / 匿名保护失效
+resistance_plans,RESIST_PURGE,preview_impact,信众流失 / 凝聚削弱
+resistance_plans,RESIST_SEIZE,preview_impact,圣物扣押 / 锚点休眠
+resistance_plans,RESIST_REPAIR,preview_impact,屏障修复 / 净化污染
+resistance_plans,RESIST_ERASE,preview_impact,锚点摧毁
+resistance_plans,RESIST_REWRITE,preview_impact,本体创伤 / 净化污染
 npc_behaviors,NPC_RECOVER,name,休整
 npc_behaviors,NPC_EXAMINE,name,查证异常
 prayer_facts,PRAYER_01,failure_fact,亲属仍然病危；此次失败不会立即致死。

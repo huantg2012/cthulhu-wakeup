@@ -6,8 +6,10 @@ func setup(args: PackedStringArray) -> bool:
 	var isolated := "user://ui-art-production-probe/%d-%d" % [OS.get_process_id(), Time.get_ticks_usec()]
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(isolated))
 	var fixture := ""
+	var initial_seed := "1"
 	for arg: String in args:
 		if arg.begins_with("--save="): fixture = arg.trim_prefix("--save=")
+		if arg.begins_with("--seed="): initial_seed = arg.trim_prefix("--seed=")
 	if not fixture.is_empty():
 		var path := isolated.path_join("1793836800-7001.json")
 		if not require(DirAccess.copy_absolute(ProjectSettings.globalize_path(fixture), ProjectSettings.globalize_path(path)) == OK, "Could not copy save"): return false
@@ -28,7 +30,7 @@ func setup(args: PackedStringArray) -> bool:
 		if not await click("SavedGame_0"): return false
 	else:
 		if not await click("NewGameOptions"): return false
-		(app.find_child("Seed", true, false) as LineEdit).text = "1"
+		(app.find_child("Seed", true, false) as LineEdit).text = initial_seed
 		if not await click("NewGame"): return false
 	var deadline := Time.get_ticks_msec() + 180000
 	while app._portraits.preparing and Time.get_ticks_msec() < deadline: await process_frame
@@ -109,7 +111,8 @@ func local_archive_cult() -> bool:
 		await press_key(KEY_ESCAPE)
 		await press_key(KEY_ESCAPE)
 	await press_key(KEY_ESCAPE)
-	if not await click("AllWorlds"): return false
+	if not await click("Menu"): return false
+	if not await click("WorldArchive"): return false
 	var field := app.find_child("ArchiveSearch", true, false) as LineEdit
 	field.text = "無此名稱"
 	field.text_changed.emit(field.text)
@@ -118,6 +121,7 @@ func local_archive_cult() -> bool:
 	if not await click("ClearArchiveSearch"): return false
 	if not await click("WorldRecord_" + first_id): return false
 	await capture("archive")
+	await press_key(KEY_ESCAPE)
 	await press_key(KEY_ESCAPE)
 	await press_key(KEY_ESCAPE)
 	return require(app._world_id.is_empty() and app._dialog.is_empty() and app.session.turn.snapshot() == before, "Archive mutated or changed scope")
@@ -137,7 +141,8 @@ func people_and_prayer() -> bool:
 
 func prayer_only() -> bool:
 	var before: String = app.session.turn.snapshot()
-	if not await click("PrayerIndex"): return false
+	if not await click("PhaseAction"): return false
+	if not await click("ReviewPrayers"): return false
 	if app._dialog == "prayer_intro":
 		var buttons: Array[Node] = app._surface.find_children("IntroPrayer_*", "Button", true, false)
 		if not require(not buttons.is_empty(), "No prayer in current save"): return false

@@ -126,7 +126,8 @@ func run() -> void:
 	for step: int in 5:
 		if app._world_id.is_empty(): break
 		await press_key(KEY_ESCAPE)
-	if not await click("PrayerIndex"): return
+	if not await click("PhaseAction"): return
+	if not await click("ReviewPrayers"): return
 	if app._dialog == "prayer_intro":
 		var intro: Array = app._surface.find_children("IntroPrayer_*", "Button", true, false)
 		if not require(not intro.is_empty(), "No retained prayer entry"): return

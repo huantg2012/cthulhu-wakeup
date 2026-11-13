@@ -2,6 +2,7 @@ extends Control
 ## Fixed right-over-left deck. Browsing changes only lift, never order or x.
 signal focus_changed(index: int)
 signal card_hovered(index: int)
+const CardCarrier = preload("res://src/presentation/production/painted/card_carrier/card.gd")
 
 const HAND_SIZE := Vector2(148, 198)
 const TABLE_MARGIN := 8.0
@@ -224,7 +225,7 @@ func _layout_cards() -> void:
 
 
 func _legacy_exposure(card: Control, side: int, exposed: float) -> void:
-	var reading := smoothstep(HAND_SIZE.x - 40.0, HAND_SIZE.x, exposed)
+	var reading := 1.0 if CardCarrier.face_copy_visible(side, exposed) else 0.0
 	for label_name: String in ["CardType", "CardTitle", "CardDetail"]:
 		var label := card.get_node_or_null(label_name) as Control
 		if label != null:
@@ -232,8 +233,8 @@ func _legacy_exposure(card: Control, side: int, exposed: float) -> void:
 	for side_name: String in ["LeftSpine", "RightSpine"]:
 		var spine := card.get_node_or_null(side_name) as Control
 		if spine != null:
-			spine.visible = side < 0 and side_name == "LeftSpine" and exposed >= 24.0
-			spine.modulate.a = 1.0 - reading
+			spine.visible = side < 0 and side_name == "LeftSpine" and exposed >= 24.0 and reading == 0.0
+			spine.modulate.a = 1.0
 
 
 func _card_at(pointer: Vector2) -> int:

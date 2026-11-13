@@ -8,7 +8,8 @@ const SpaceView = preload("res://src/presentation/production/prayer_space_view.g
 const Availability = preload("res://src/presentation/action_availability.gd")
 const ArrivalModel = preload("res://src/presentation/production/worldplay/round_arrival_model.gd")
 const ArrivalView = preload("res://src/presentation/production/worldplay/round_arrival.gd")
-const GROUPS := [["all","全部"],["event","事件"],["cult","教团"],["power","权能"],["activity","活动"],["person","人物"],["anchor","锚点"],["action","行为"]]
+const ResistanceCards = preload("res://src/presentation/production/worldplay/resistance_cards.gd")
+const GROUPS := [["all","全部"],["event","事件"],["resistance","预告"],["cult","教团"],["power","权能"],["activity","活动"],["person","人物"],["anchor","锚点"],["action","行为"]]
 var _placed_event := ""
 var _study_cult := ""
 var _deck: Array = []
@@ -319,6 +320,7 @@ func _build_deck() -> void:
 		var item: Dictionary = object.subject
 		_deck.append({"id":str(object.kind)+"/"+str(item.id),"title":session.cult_title(_world_id) if object.kind=="cult" else title(str(item.id)),"type":"object","group":object.kind,"kind":object.kind,"subject":item,"detail":_object_status(object)})
 	_deck.append_array(_model.cards(session,projection,_world_id,_study_cult))
+	if _study_cult.is_empty(): _deck.append_array(ResistanceCards.cards(session,projection,_world_id))
 
 	var ordered: Array = []
 	for category: Array in GROUPS.slice(1):
@@ -437,7 +439,7 @@ func _face(parent: Node, card: Dictionary, bounds: Rect2, visual_options: Dictio
 	face.size = bounds.size
 	face.custom_minimum_size = bounds.size
 	face.seed_value = absi(str(card.id).hash())%1000
-	face.palette = _category_of(card) if card.group != "prayer" else "prayer"
+	face.palette = str(card.group) if card.group in ["prayer", "resistance"] else _category_of(card)
 	face.payload = card
 	parent.add_child(face)
 	var kind: String = str(card.get("kind",card.group))
@@ -451,7 +453,7 @@ func _face(parent: Node, card: Dictionary, bounds: Rect2, visual_options: Dictio
 		if not subject_id.is_empty(): art_kind = "person"
 	var recipe := _face_recipe(art_kind, subject_id) if not art_kind.is_empty() else {}
 	var type_name: String = {"event":"事件","prayer":"祈求","cult":"教团","power":"权能","activity":"活动",
-		"person":"人物","anchor":"锚点","relic":"圣物","action":"行为","world":"世界"}.get(face.palette,"行为")
+		"person":"人物","anchor":"锚点","relic":"圣物","action":"行为","world":"世界","resistance":"预告"}.get(face.palette,"行为")
 	var detail: String = str(card.get("detail",card.get("cost","")))
 	if card.has("targets"): detail = "%s 处目标" % card.targets.size()
 	var sample := {"kind":type_name,"art_kind":art_kind,"category_id":face.palette,"identity_variant":2,
@@ -582,6 +584,7 @@ func _render_table() -> void:
 	if not _result_text.is_empty():
 		_reading(_result_text)
 		_button(_table,"Done","收回卡牌",Rect2(973,223,220,36),_recall,true)
+	elif _played.get("kind")=="resistance": _render_resistance()
 	elif _played.get("kind")=="power" and _played.type=="object": _render_power_record()
 	elif _played.type=="object": _render_object()
 	elif _played.get("kind")=="order": _render_plan()
@@ -603,13 +606,42 @@ func _reading(value: String) -> void:
 	scroll.add_child(box)
 	_line(box,value,17)
 
+func _render_resistance() -> void:
+	var plan: Dictionary = _played.subject
+	_text(_table, str(_played.detail), Rect2(220,38,960,30),18,UI.GOLD)
+	var scroll := _scroller(_table,Rect2(220,76,960,188))
+	var box := VBoxContainer.new()
+	box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	box.add_theme_constant_override("separation",10)
+	scroll.add_child(box)
+	_forecast_field(box,"来源",title(str(plan.domain)))
+	_forecast_field(box,"执行机构",title(str(plan.get("institution",""))))
+	var evidence := str(plan.get("evidence_subject",""))
+	if not evidence.is_empty() and evidence != str(plan.get("target","")):
+		_forecast_field(box,"追查线索",title(evidence))
+	_forecast_field(box,"预计影响",str(_played.effect))
+	_line(box,"预告不会因查阅或收回而解除。到期仍满足条件时结算；降低察觉不会撤回这项计划。",15,UI.MUTED)
+	if plan.get("rule") == "RESIST_REWRITE" or (plan.get("rule") == "RESIST_TRACE" and projection.get("relics",[]).any(func(r: Dictionary) -> bool: return r.id == plan.get("target"))):
+		_line(box,"若到期进入轮初事件，按该事件提供的选项处理；未获处置时执行预告后果。",15,UI.MUTED)
+
+func _forecast_field(parent: Container, caption: String, value: String) -> void:
+	var row := HBoxContainer.new()
+	row.name = "Forecast_" + caption
+	row.add_theme_constant_override("separation",14)
+	parent.add_child(row)
+	var label := _line(row,caption,17,UI.GOLD)
+	label.custom_minimum_size.x = 78
+	label.autowrap_mode = TextServer.AUTOWRAP_OFF
+	label.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
+	_line(row,value,17,UI.BONE).size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
 func _render_object() -> void:
 	var item: Dictionary = _played.subject
 	var lines := PackedStringArray()
 	match str(_played.kind):
 		"world":
 			lines.append(_views.world_metrics_text(self,str(item.id),true))
-			lines.append(_views.world_resistance_text(self,str(item.id)))
+			lines.append(_views.world_resistance_text(_tasks,str(item.id)))
 			for metric: String in ["barrier","pollution","alert","stability"]: lines.append(_views.metric_help_text(item,metric))
 			_button(_table,"History","查阅编年史",Rect2(973,223,220,36),_read_history)
 		"person":
@@ -1042,6 +1074,7 @@ func _choose_inline(field: Dictionary,value: Variant) -> void:
 	_render_table()
 
 func _execute() -> void:
+	if _played.get("type") == "information": return
 	if _table_blocked() or not _library.is_empty() or not _result_text.is_empty() or projection.get("phase") != "actions": return
 	var prepared: Dictionary = session.preview_action(_entry,_selection)
 	if not prepared.get("ok",false): _render_table(); return

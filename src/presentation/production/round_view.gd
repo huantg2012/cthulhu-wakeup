@@ -399,8 +399,8 @@ func _select_world(id: String) -> void:
 	_world_id = id
 	_refresh()
 	var target: Control = _stage.find_child("WorldOverview" if not id.is_empty() else "World_" + previous, true, false)
-	if target == null: target = _stage.get_node_or_null("WorldFan") as Control
-	if target == null: target = _stage.find_child("AllWorlds", true, false)
+	if not is_instance_valid(target) or not _can_focus(target): target = _stage.get_node_or_null("WorldFan") as Control
+	if not is_instance_valid(target) or not _can_focus(target): target = _menu_button
 	if is_instance_valid(target) and _can_focus(target): target.grab_focus()
 
 func _update_metric_hint() -> void:

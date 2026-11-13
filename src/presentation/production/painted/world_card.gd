@@ -3,6 +3,8 @@ extends "res://src/presentation/production/worldplay/study_card.gd"
 ## remain with the host; the same portrait identity and preload cache are bound.
 const UI = preload("res://src/presentation/production/locked_controls.gd")
 const Fan = preload("res://src/presentation/production/painted/card_fan.gd")
+const Attention = preload("res://src/presentation/production/painted/world_attention.gd")
+var _attention: Control
 var ordinal := 0
 var _metric_labels: Array[Label] = []
 var art: TextureRect:
@@ -47,16 +49,21 @@ func build(controls: RefCounted, world: Dictionary, number: int, extra: int, por
 	portraits.bind(art,recipe,note)
 	adapt_portrait_backing(str(recipe.get("key","")),int(recipe.get("request",{}).get("style",-1)))
 	tooltip_text = str(world.title) + "\n" + str(world.status) + "\n" + "\n".join(world.metrics)
+	_attention = Attention.new()
+	_attention.name = "WorldAttention"
+	_attention.size = size
+	add_child(_attention)
+
+func set_attention(kind: String) -> void:
+	set_meta("attention_kind",kind)
+	_attention.mark(kind)
 
 func set_exposure(side: int, exposed: float) -> void:
 	super.set_exposure(side,exposed)
-	# Broad overview overlaps still expose enough paper to read fragments as
-	# an actual printed card. Keep that ink; the next sibling occludes it.
-	# Only genuinely narrow spines switch to the vertical short-name treatment.
-	var reading := 1.0 if side == 0 or exposed >= 70.0 else 0.0
-	for label_name: String in ["Title","InformationOne","InformationTwo"]:
-		carrier.get_node(label_name).modulate.a = reading
-	if exposed >= 70.0:
-		carrier.get_node("LeftSideName").visible = false
+	if is_instance_valid(_attention):
+		_attention.exposure = exposed
+		_attention.queue_redraw()
+	# Extra world metrics follow the same shared reading state as all copy.
+	var reading := 1.0 if Carrier.face_copy_visible(side,exposed) else 0.0
 	for line: Label in _metric_labels:
 		line.modulate.a = reading

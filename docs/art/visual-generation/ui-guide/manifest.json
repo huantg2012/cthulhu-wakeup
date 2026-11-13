@@ -199,8 +199,8 @@
       "status": "已核对·功能合同",
       "path": "docs/specs/ui-interaction.md",
       "checked_date": "2026-11-13",
-      "sha256": "189af294670dbadee67c56e75d163d084394eac8312bde2ace008c982def5a43",
-      "allowed": "worldplay-card-study（含DEC-068固定单向牌堆/抬牌/拖放、轮初回响及立绘准备边界）、locked-interaction-production至current-ui-contract-end及正式交互精修原则；其他现行机制按对应功能引用。",
+      "sha256": "7a2ab1dd36bc103ac06bb2d8116eecbdcaa589beda3cc3b8dd688981f6cc8ab2",
+      "allowed": "worldplay-card-study（含预告独立分类／诸界摘要定位、DEC-068固定单向牌堆/抬牌/拖放、轮初回响及立绘准备边界）、locked-interaction-production至current-ui-contract-end及正式交互精修原则；其他现行机制按对应功能引用。",
       "excluded": "旧echoes-home、F5/D4/V2/V6美术指令、旧tokens、旧视觉待选状态。旧强制视觉引用已纠正。"
     },
     {
@@ -269,8 +269,8 @@
       "status": "已核对·最新段优先",
       "path": "docs/progress/stage-priorities.md",
       "checked_date": "2026-11-13",
-      "sha256": "43283145d953d7b8647f3c0956b8d5cdab51bcda68873e178220447a6b6fa935",
-      "allowed": "最新完整Session卡面接入授权，DEC-068单向肩位及已锁定薄厚度、DEC-067连续印面、方框禁令和轮初回响；持续技能禁令。",
+      "sha256": "2722d731f2d5985b0df3262c1984e2eb87f9dc78a9f7394869e08b8378895af1",
+      "allowed": "当前游戏 UI 执行路由与持续禁令；包括反制预告卡、诸界摘要定位的制作人授权。",
       "excluded": "后续历史路由的旧视觉规范入口、旧待审/待选状态。"
     },
     {

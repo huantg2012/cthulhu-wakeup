@@ -11,7 +11,7 @@ const FIELDS := {
 	"prayers": ["title", "appeal", "shallow_hint", "deep_hint"], "prayer_facts": ["failure_fact"],
 	"powers": ["name", "target_requirement", "notes"],
 	"event_effects": ["on_choose", "irreversible_cost"],
-	"resistance_plans": ["name"], "npc_behaviors": ["name"],
+	"resistance_plans": ["name", "preview_impact"], "npc_behaviors": ["name"],
 	"institutions": ["name"], "world_names": ["name", "cult_name"],
 }
 var tables: Dictionary = {}

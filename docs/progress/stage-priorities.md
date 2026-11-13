@@ -4,6 +4,8 @@
 
 ## 游戏 UI 执行路由
 
+**2026-11-13 当前增量：反制预告卡与诸界定位。**制作人授权将当前反制计划卡牌化：世界牌堆紧接祈求，独立分类与肩签称「预告」，不是玩家行为；诸界锚点／祈求／反制预告摘要统一标出相关世界。按[当前交互合同](../specs/ui-interaction.md#worldplay-card-study)和美术 A06 增量实施，不改抵抗结算规则。实机与验收边界见[本批记录](../tasks/worldplay-integration.md#resistance-preview-delivery)。
+
 **2026-11-13 当前授权：卡面锁定，完整接入 Session。**制作人以[含厚度的完整卡／手牌图](../art/visual-generation/card-design-study/card-thickness/full-and-hand.png)确认设计锁定，要求从轮间「诸界回响」开始，不遗漏正式游戏卡片。实施统一使用连续印面、左肩签、薄纸芯切面与单向稳定牌堆，覆盖诸界导航、世界／教团主卡、查看执行区、行为候选、图鉴和关联主体图；微型缩略图只收边，不强塞完整卡文案。正式入口、真实 Session、祈求生成器、规则与存档语义不变。依据仍为[美术 A06–A08／A15](../art/visual-generation/ui-art-standard.md)、[交互合同](../specs/ui-interaction.md#worldplay-card-study)；批次证据与未验范围写入[接入记录](../tasks/worldplay-integration.md)。卡面接入及代表实机核对已完成，正式场景交制作人复审；不把锁定样板当作全场景验收。下文此前「尚未迁移」「待卡面复审」仅记录历史状态；两项技能禁令持续。
 
 **2026-11-13 最新授权（DEC-068）：**制作人选定方案 2「肩位」，要求扩大并显示完整类别名；同时重构牌堆为固定右牌压左牌，浏览只抬起部分卡面、不置顶、不重排横距。只留左侧肩签，完整查看须拖到上方桌面。连续印面、有机外围与游戏规则保留；实作按[交互合同](../specs/ui-interaction.md#worldplay-card-study)与[当前样板](../art/visual-generation/card-design-study/README.md#category-identity)。以下三方案待选状态已结束，历史图只留作记录。制作人随后认可此轮交付，仅要求增加一点真实卡厚；当前按A06薄厚度条目补哑光切面与接触影，不再抽卡面方向。两项技能禁令持续。

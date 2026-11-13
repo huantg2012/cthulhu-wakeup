@@ -285,17 +285,26 @@ func set_artwork(texture: Texture2D, paper_backed_override: Variant = null) -> v
 		_update_paper()
 
 
+static func face_copy_visible(side: int, exposed: float) -> bool:
+	# Match the accepted overview's readable fragments: a broad exposed face
+	# retains solid printed ink, naturally occluded by its right-hand neighbour.
+	# Only a genuinely narrow edge switches to the vertical name treatment.
+	return side == 0 or exposed >= 70.0
+
+
 func set_exposure(side: int, exposed: float) -> void:
 	_side = -1 if side != 0 else 0
 	_exposed = maxf(0.0, exposed)
 	if not is_instance_valid(_picture):
 		return
 	_marks.set_exposure(_side, _exposed)
-	var reading := 1.0 if _side == 0 else smoothstep(size.x - 37.0, size.x - 3.0, _exposed)
+	# Exposure is a layout state, NOT an opacity. At 9 arrival cards the old
+	# smoothstep left 118px visible but erased 89% of every covered card's ink.
+	var reading := 1.0 if face_copy_visible(_side, _exposed) else 0.0
 	for label: Label in _copy:
 		label.modulate.a = reading
-	_left_name.visible = _side != 0 and _exposed >= 23.0 and reading < 0.96
-	_left_name.modulate.a = 1.0 - reading
+	_left_name.visible = _side != 0 and _exposed >= 23.0 and reading == 0.0
+	_left_name.modulate.a = 1.0
 
 
 func set_selected(value: bool) -> void:

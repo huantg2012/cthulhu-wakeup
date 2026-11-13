@@ -9,6 +9,8 @@ changed-this-slice: true
 
 ## 世界玩法牌桌正式接入（2026-11-12）
 
+反制预告由 `production/worldplay/resistance_cards.gd` 从 Session 的 `projection.resistance` 派生，使用已公告计划身份，不新增存档字段或结算模块。`view.gd` 将它收纳为独立「预告」信息卡，统一拖放、只读、过期草稿核对；来源取计划 domain，预计影响取 player_text.csv 的展示字段 preview_impact，规则表与存档指纹不变；现有 World／Events 保持唯一计划生命周期。`interaction_stage.gd` 将诸界三条摘要映射到公开世界集合，`painted/world_attention.gd` 在卡内绘制单侧颜料提示；只有查看状态，不更改关注、知识或牌序。
+
 `src/presentation/production/worldplay/view.gd` 是正式 `game_root.tscn` 的 OverlayRoot，继承 `round_view.gd` 的 Session、顶栏、外围、字体与程序立绘。`view.gd` 组织固定主卡、查看／执行桌面、叠牌与独立常驻底栏；`hand_fan.gd` 以完整牌组的均匀有界间距分配取代邻牌窗口：所有牌始终在桌面，固定右牌压左牌，牌序、横距和兄弟遮挡顺序不随焦点改变。浏览只抬起部分卡面，临界阻尼保留运动速度；左肩签和窄边竖名承担识别，不再使用双侧名签。卡纸不透明。横向滑动使用事件坐标，向上出牌采用原生拖放。`study_card.gd` 与 `table_drop.gd` 使用原生卡身及拖放接收，`card_illustration.gd` 提供可替换的程序符画占位。行为目录来自公开投影与 ActionCatalog，在视图层按动词归并目标，不改变行动身份、规则或 CSV。
 
 草稿通过原选择器生成字段，具体配置用 `Session.preview_action` 复核，再显式 `execute_action` 或 `set_plan`；结果由公开投影及正式 Feedback 构成桌面回执。对象牌保持只读；底栏三类图鉴使用独立只读目录，UI 和执行入口双重阻止提交，返回恢复原场景草稿。目录构建不运行旧的组合穷举：确定性全目录可用性仍由 `ISSUE-WORLDPLAY-ACTION-AVAILABILITY` 跟踪，不将布局更新当作该架构问题修复。正式入口保留父宿主的新局／读档／保存及回合边界，使用 `user://production-ui-campaigns`。切换会话清空桌面记忆；刷新从新投影重取对象和动作，过期目标不保留；模态窗口期间牌堆与常驻底栏保持显示但不接受输入。牌堆使用局部兄弟绘制顺序，不越层遮盖事件。独立样板只剩复制夹具的适配入口，复用同一生产视图，详情见[样板记录](art/visual-generation/worldplay-study/README.md)及[交互合同](specs/ui-interaction.md#worldplay-card-study)。
@@ -761,3 +763,5 @@ DEC-067 已认可连续印面整体风格，确切图与源码归档于 `card-de
 ### DEC-068：单向手牌与连续印面
 
 `production/worldplay/hand_fan.gd` 独立于首页fan，负责固定右压左顺序、稳定牌缘命中、连续阻尼抬牌及原生拖放；不再通过焦点重排层级或横距。`production/painted/card_carrier/` 为卡面单源；其中 `card_edge.gdshader` 仅沿原alpha绘制薄切面，阴影在Card中随抬牌变化。StudyCard以可选适配器组合原图、类别肩签与文字；样板仅转接这套正式组件。stock原纹理在 `assets/ui/cards/continuous-stock.png`，动作图按类别/少量wash缓存，立绘继续绑定已准备的正式recipe。轮初回响与四区手牌复用；首页导航fan保持自身交互合同。输入、画法细则见 ui-interaction 的 DEC-068 及 ui-art-standard A06，避免这里重复参数。
+
+叠牌文字由 Card 的 `face_copy_visible()` 单源决定宽露面／窄牌缘状态；世界额外指标与旧卡适配也调用此方法，禁止各自按露出比例淡出文字。回响与手牌直接继承，不再依赖 WorldCard 的局部补丁。定向回归为 `tools/card-carrier-study/text_visibility_probe.gd`，验证真实九牌回响、分类往返与只读拖放，并以独立呈现夹具覆盖不同密度。

@@ -22,6 +22,19 @@ func _draw() -> void:
 		draw_arc(c, r + i * 0.7, -2.7, 2.1, 40, Color(ink, 0.06), 1.5, false)
 	var points := PackedVector2Array()
 	match motif:
+		"resistance":
+			# An interrupted ward enclosing a struck centre: forewarning, not an
+			# action sigil or another human eye. Same dry print as the other verbs.
+			ink = Color("#be8b70")
+			for segment: int in 5:
+				points = PackedVector2Array()
+				for i: int in 12:
+					var angle := float(segment)*TAU/5.0+float(i)/11.0*0.90
+					points.append(c+Vector2.from_angle(angle)*r)
+				_stroke(points)
+			_stroke(PackedVector2Array([c+Vector2(-r*.35,-r*.7),c+Vector2(r*.13,-r*.13),c+Vector2(-r*.12,r*.12),c+Vector2(r*.35,r*.7)]))
+			for side: int in [-1,1]:
+				_stroke(PackedVector2Array([c+Vector2(side*r*1.25,-r*.2),c+Vector2(side*r*.65,0),c+Vector2(side*r*1.25,r*.2)]))
 		"event":
 			var top := c + Vector2(0,-r)
 			var bottom := c + Vector2(0,r)

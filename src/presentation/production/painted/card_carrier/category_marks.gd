@@ -2,7 +2,7 @@ extends Control
 ## Selected left-shoulder category imprint; no stock, image, or input ownership.
 ## Coordinates remain in the host card's logical pixels, including 9 px slivers.
 const Paint = preload("res://src/presentation/production/painted/theme.gd")
-const IDS := ["world", "event", "prayer", "cult", "power", "activity", "person", "anchor", "relic", "action"]
+const IDS := ["world", "event", "prayer", "cult", "power", "activity", "person", "anchor", "relic", "action", "resistance"]
 const CATEGORIES := {
 	"world": {"label": "世界", "short": "世界", "colour": Color("#c6a471")},
 	"event": {"label": "事件", "short": "事件", "colour": Color("#b35d4b")},
@@ -14,6 +14,7 @@ const CATEGORIES := {
 	"anchor": {"label": "锚点", "short": "锚点", "colour": Color("#55a8ad")},
 	"relic": {"label": "圣物", "short": "圣物", "colour": Color("#9897b3")},
 	"action": {"label": "行为", "short": "行为", "colour": Color("#8c6143")},
+	"resistance": {"label": "预告", "short": "预告", "colour": Color("#b27157")},
 }
 const DARK_INK := Color("#26272a")
 const PALE_INK := Color("#e0d6bd")
@@ -49,7 +50,7 @@ func _init() -> void:
 
 func configure(category_id: String, variant: int, card_size: Vector2) -> void:
 	_category_id = category_id if CATEGORIES.has(category_id) else "action"
-	_index = IDS.find(_category_id)
+	_index = 1 if _category_id == "resistance" else IDS.find(_category_id)
 	_colour = info(_category_id).colour
 	# 1 / 3 are retired candidates; only 0 (reference) and 2 remain live.
 	_variant = 0 if variant == 0 else 2
