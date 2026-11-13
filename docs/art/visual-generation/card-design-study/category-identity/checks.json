@@ -1,0 +1,26 @@
+{
+  "scope": "只核对识别层独立性、原图字节与几何边界；不代替审美或玩家识别速度判断",
+  "baseline": {
+    "mixed-styles.png": {
+      "approved_sha256": "52f7043ea3fa03fdd0f8c55ad9b6772e6f00d42a39d6a9f18d4bec13adcf8c12",
+      "reproduced_sha256": "52f7043ea3fa03fdd0f8c55ad9b6772e6f00d42a39d6a9f18d4bec13adcf8c12",
+      "identical": true
+    },
+    "stacked-cards.png": {
+      "approved_sha256": "cd7fc3b97c1a9a89cc665a1321ed7052df4adbff7e1b65d4212e5cf2d6e8f1ac",
+      "reproduced_sha256": "cd7fc3b97c1a9a89cc665a1321ed7052df4adbff7e1b65d4212e5cf2d6e8f1ac",
+      "identical": true
+    }
+  },
+  "source_images_unchanged": true,
+  "comparison": {
+    "variants": 3,
+    "cards_per_stack": 18,
+    "focus": 8,
+    "stack_width": 936,
+    "card_width": 148,
+    "same_order": true,
+    "minimum_gap_px": 9,
+    "chinese_category_exposure_threshold_px": 23
+  }
+}

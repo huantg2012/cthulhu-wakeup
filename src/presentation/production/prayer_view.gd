@@ -178,8 +178,7 @@ func prayer_scene(kind: String, reveal: bool) -> Control:
 	heading.custom_minimum_size.y = 43
 	heading.add_theme_font_override("font", host._ui.reference_font(true, 3.0))
 	var data: Dictionary = _prayer.descriptor
-	var wording: Dictionary = host.session.catalog.display_tables.prayers.get(str(_prayer.card.get("content_id", "")), {})
-	var appeal := str(data.get("appeal", wording.get("appeal", "")))
+	var appeal: String = host.session.prayer_appeal(data, _prayer.card)
 	if not appeal.is_empty():
 		var quote: Label = host._line(context, "“" + appeal + "”", 15, UI.BONE)
 		quote.name = "PetitionerAppeal"

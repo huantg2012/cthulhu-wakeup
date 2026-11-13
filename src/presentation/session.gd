@@ -443,14 +443,48 @@ func prayer_title(descriptor: Dictionary, card: Dictionary = {}) -> String:
 		return str(catalog.prayer_space.tables.cases.get(content, {}).get("title", descriptor.get("title", "求告者")))
 	return str(catalog.display_tables.prayers.get(content, {}).get("title", "求告者"))
 
+func prayer_appeal(descriptor: Dictionary, card: Dictionary = {}) -> String:
+	var content: String = str(descriptor.get("content_id", card.get("content_id", "")))
+	if descriptor.get("space", false):
+		var wording: Dictionary = catalog.prayer_space.tables.cases.get(content, {})
+		return _public_string(str(wording.get("appeal", descriptor.get("appeal", ""))))
+	var wording: Dictionary = catalog.display_tables.prayers.get(content, {})
+	if content == "PRAYER_08":
+		var mode: Dictionary = catalog.display_tables.prayer_addressing_modes.get(str(descriptor.get("addressing", "undirected")), {})
+		return _public_string(str(mode.get("devotion_text", wording.get("appeal", ""))))
+	return _public_string(str(descriptor.get("appeal", wording.get("appeal", ""))))
+
+func prayer_response_choices(id: String) -> Array:
+	if turn == null or not _known_prayers.has(id): return []
+	var current := prayer_entry(id)
+	if current.get("status") != "open": return []
+	var prefix := "prayer/" + id + "/"
+	if current.descriptor.get("space", false):
+		var choices := prayer_space_choices(id)
+		choices.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+			if int(a.get("intensity", 0)) != int(b.get("intensity", 0)):
+				return int(a.get("intensity", 0)) < int(b.get("intensity", 0))
+			return str(a.id) < str(b.id))
+		for choice: Dictionary in choices: choice["key"] = prefix + str(choice.id)
+		return choices
+	var wording: Dictionary = catalog.display_tables.prayers.get(str(current.card.content_id), {})
+	var choices: Array = []
+	for variant: String in ["shallow", "deep"]:
+		var key := prefix + variant
+		choices.append({"id": variant, "key": key, "label": "浅触" if variant == "shallow" else "深干预",
+			"hint": str(wording.get(variant + "_gain", wording.get(variant + "_hint", ""))),
+			"tradeoff": str(wording.get(variant + "_cost", ""))})
+	return _public(choices)
+
 func _prayer_projection(value: Dictionary) -> Dictionary:
 	var result: Dictionary = {}
 	for field: String in ["id", "content_id", "domain", "visible_turn", "due_turn", "status", "addressing", "space", "title", "appeal", "petitioner_role"]:
 		if value.has(field): result[field] = _public(value[field])
 	if value.get("space", false):
-		var wording: Dictionary = catalog.prayer_space.tables.cases.get(str(value.get("content_id", "")), {})
-		if wording.has("appeal"): result["appeal"] = wording.appeal
 		result["title"] = prayer_title(value)
+	if value.has("subjects") or value.has("appeal"):
+		var appeal := prayer_appeal(value)
+		if not appeal.is_empty(): result["appeal"] = appeal
 	var subjects: Dictionary = request_subjects(value)
 	if not subjects.is_empty(): result["subjects"] = _public(subjects)
 	if value.get("crisis") is Dictionary and value.crisis.has("due"): result["crisis"] = {"due": value.crisis.due}

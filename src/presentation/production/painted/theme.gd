@@ -19,6 +19,15 @@ enum Role { NAVIGATION, RESPONSIBILITY, PRIMARY }
 static var _styles: Dictionary = {}
 static var _fonts: Dictionary = {}
 
+static func prime_card_stock() -> void:
+	# Share the four original world-card substrates. Object identity belongs
+	# to the illustration, not another 100,000 CPU-painted stock pixels.
+	for seed_value: int in range(31, 35):
+		MaterialSource.pigment("card", seed_value)
+
+static func card_stock(seed_value: int) -> Texture2D:
+	return MaterialSource.pigment("card", 31 + posmod(seed_value - 31, 4))
+
 static func fonts() -> Dictionary:
 	if _fonts.is_empty():
 		var body := _font_file(BODY_FACE)
@@ -138,3 +147,12 @@ static func _reading_stock() -> Texture2D:
 static func field_style(state: String) -> StyleBox:
 	if state == "focus": return button_style("focus", Role.RESPONSIBILITY)
 	return reading_plate(0.92 if state == "normal" else 0.65)
+
+static func action_slot_style(state: String, filled: bool) -> StyleBoxTexture:
+	if not filled: return reading_plate(0.78 if state == "normal" else 1.0)
+	var key := ["action-slot", state]
+	if not _styles.has(key):
+		var stock := _paint_box(0.88 if state == "normal" else 1.0)
+		stock.modulate_color = Color(0.85, 1.01, 0.82, stock.modulate_color.a)
+		_styles[key] = stock
+	return _styles[key]

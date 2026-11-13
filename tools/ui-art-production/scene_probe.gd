@@ -30,6 +30,12 @@ func setup(args: PackedStringArray) -> bool:
 		if not await click("NewGameOptions"): return false
 		(app.find_child("Seed", true, false) as LineEdit).text = "1"
 		if not await click("NewGame"): return false
+	var deadline := Time.get_ticks_msec() + 180000
+	while app._portraits.preparing and Time.get_ticks_msec() < deadline: await process_frame
+	if not require(not app._portraits.preparing, "Public portraits did not finish preparing"): return false
+	await process_frame
+	if "--keep-arrival" not in args and app.get("_arrival") != null and app._arrival.visible:
+		await press_key(KEY_ENTER)
 	return require(app.projection.get("active", false), "Campaign didn't load: " + app._notice_text)
 
 func capture(file_name: String) -> void:

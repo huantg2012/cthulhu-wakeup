@@ -1,0 +1,26 @@
+[
+  {
+    "palette": 0,
+    "original_art_exact": true,
+    "paper_brightness": 0.204,
+    "green_paper_fraction": 0.995,
+    "grain_spread": 0.0196,
+    "card_background_contrast": 1.41,
+    "contrast": {
+      "primary": 8.49,
+      "secondary": 6.1
+    }
+  },
+  {
+    "palette": 1,
+    "original_art_exact": true,
+    "paper_brightness": 0.3721,
+    "green_paper_fraction": 0.0,
+    "grain_spread": 0.0406,
+    "card_background_contrast": 3.06,
+    "contrast": {
+      "primary": 5.46,
+      "secondary": 4.66
+    }
+  }
+]

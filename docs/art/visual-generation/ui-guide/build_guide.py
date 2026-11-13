@@ -10,6 +10,7 @@ from __future__ import annotations
 import hashlib
 import html
 import json
+import posixpath
 import re
 from pathlib import Path
 
@@ -168,7 +169,7 @@ def render_reader(raw, manifest):
     raw=re.sub(r'^---\n.*?\n---\n','',raw,flags=re.S)
     md=MarkdownIt('commonmark',{'html':True})
     tokens=md.parse(raw)
-    exhibits={'ui-guide/'+item['image']:item for item in manifest['exhibits']}
+    exhibits={posixpath.normpath('ui-guide/'+item['image']):item for item in manifest['exhibits']}
     toc=[];seen={};images={};insert_after={}
     for i,t in enumerate(tokens):
         if t.type=='heading_open':

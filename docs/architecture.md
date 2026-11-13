@@ -13,15 +13,19 @@ changed-this-slice: true
 
 草稿通过原选择器生成字段，具体配置用 `Session.preview_action` 复核，再显式 `execute_action` 或 `set_plan`；结果由公开投影及正式 Feedback 构成桌面回执。对象牌保持只读；底栏三类图鉴使用独立只读目录，UI 和执行入口双重阻止提交，返回恢复原场景草稿。目录构建不运行旧的组合穷举：确定性全目录可用性仍由 `ISSUE-WORLDPLAY-ACTION-AVAILABILITY` 跟踪，不将布局更新当作该架构问题修复。正式入口保留父宿主的新局／读档／保存及回合边界，使用 `user://production-ui-campaigns`。切换会话清空桌面记忆；刷新从新投影重取对象和动作，过期目标不保留；模态窗口期间牌堆与常驻底栏保持显示但不接受输入。牌堆使用局部兄弟绘制顺序，不越层遮盖事件。独立样板只剩复制夹具的适配入口，复用同一生产视图，详情见[样板记录](art/visual-generation/worldplay-study/README.md)及[交互合同](specs/ui-interaction.md#worldplay-card-study)。
 
+2026-11-13 牌桌细化。轮初事件牌由公开事件投影构建，拖入后复用事件复核与提交。手牌和主卡只通过原生拖放进入桌面。牌堆在分类、计数和寻牌之前过滤未解锁牌，落点再次核对当前牌及门槛。祈求卡按请求 ID 调用 Session 的公开原话和回应查询，组合请求从生成器保存的选择读取，预览及提交仍由当前合同验证。诸界与牌桌共用 `painted/card_hover.gd`，牌扇按未缩放布局命中，悬停不改变堆叠顺序。
+
 本集成分支合并 `cthulhu-wakeup@7a76bfa` 的组合祈求、能力改变和后果链，同时保留 UI 线开局供给／注意力修正。`Prayers` 统一计算旧请求与组合处境的配额，`PrayerSpace.freeze(world, new_limit)` 负责生成。牌桌从 `Session.prayer_space_choices` 动态读取回应，提交携带当前预览的处境版本与费用；只显示公开提示。合并与实机证据见[接入记录](tasks/worldplay-integration.md)。
 
 ## 正式界面美术接入（2026-11-12）
 
 `production/game_root.tscn` 的 `GameRoot/Presentation/CanvasLayer/OverlayRoot` 继续持有唯一正式 Session，原启动器使用同一入口。其常驻 `PaintedEnvironment` 位于重建的 `Perception` 与弹层 `Decision` 之下；外围由 `production/painted/peripheral_atmosphere.gd` 管连续时钟、阅读保护和强度，不接触 Session 或输入。
 
-`locked_controls.gd` 保留原生控件、焦点与状态回调，通过 `production/painted/theme.gd` 共用随包字体、颜料、色值和阅读底板。诸界 `world_card.gd` / `card_fan.gd` 复用获准卡身和卡扇几何／手势，适配正式公开对象、焦点和弹层绘制顺序。`object_window.gd` 负责最终图像等比和边缘 alpha；`object_portraits.gd` 从可见槽串行调度确定配方，缓存图片并检查返回对象身份。源文件、规则与验证分别见[美术规范](art/visual-generation/ui-art-standard.md#8-从样板到正式组件)、[立绘生成合同](specs/system-art-generation.md)和[逐批交付](tasks/ui-art-production.md)。
+`locked_controls.gd` 保留原生控件、焦点与状态回调，通过 `production/painted/theme.gd` 共用随包字体、颜料、色值和阅读底板。诸界 `world_card.gd` / `card_fan.gd` 复用获准卡身和卡扇几何／手势，适配正式公开对象、焦点和弹层绘制顺序。`object_window.gd` 负责最终图像等比和边缘 alpha；`object_portraits.gd` 在公开投影更新后按世界分组准备可展示身份并驻留纹理，图槽绑定直接取就绪结果。`portrait_transition.gd` 在缺图时覆盖牌桌及输入，展示公开诸界情报与真实准备进度，完毕恢复原阶段交接；可见槽请求仅作回退。PNG 读解码／原子写入和纯绘画计划使用 WorkerThreadPool，GPU／节点操作留在主线程分帧，正式调用省去工作台诊断图。卡纸在初始化准备四份原诸界程序底纹，所有卡共享，避免翻牌时逐对象生成。源文件、规则与验证分别见[美术规范](art/visual-generation/ui-art-standard.md#8-从样板到正式组件)、[立绘生成合同](specs/system-art-generation.md)和[接入记录](tasks/worldplay-integration.md)。
 
 `tools/ui-art-production/export_pack.sh` 从隔离的制作输入目录生成正式 PCK，保留正式 CSV 原文、字体及上游许可证；样板入口、展示夹具、文档证据不进包。独立母版在 `dcaf037` 的探索工作树复现；正式分支保留其冻结图册、动态及指纹。
+
+**轮初回响（2026-11-13）。** `worldplay/round_arrival_model.gd` 在公开轮次边界登记已知人物与已纳入目录的动作身份，按事件、祈求、新人物、解锁组织只读提示，按求告者 ID 去重。`action_model.gd:cards/unlocked` 是正式牌堆与提示的共同准入／动词归并入口，不拿费用预览冒充解锁。此登记只在呈现会话内存在，读档以当前投影初始化基线，不扩充 Session schema。`round_arrival.gd` 的 CanvasLayer 19 位于立绘准备层 20 之下，等当前图像就绪才显现，输入期间隔离原牌桌；关闭后回原 `_enter_boundary`，不绕过事件。共享卡身／完整 HandFan 用只读模式，`painted/arrival_veil.gdshader` 仅消散卡前的灰绿雾层；不新建图像生成服务或重启外围时钟。顶部 RoundEcho 回看保存的轮初公开记录，不提交也不改草稿。交互与视觉唯一正文分别为 UI 世界玩法合同及美术 A15。
 
 ## 原生立绘生成（2026-11-11）
 
@@ -745,3 +749,15 @@ Session 统一投影新旧请求，ActionCatalog 仅提供当前正式操作。`
 祈求回应展示：`src/presentation/prayer_response_voice.gd` 从 `data/prayer_response_voice.csv` 缓存读取表达，供 PrayerSpace 的选项与预览投影调用。仅展示，不进入冻结合同版本或行动随机流；离线目录构建器使用同源数据与稳定选择规则。
 
 组合祈求在 Catalog 读取 `prayer_generator_*` 后由 `prayer_generator.gd` 只读求解，`prayer_effect_compiler.gd` 编译效果及报价。`PrayerSpace` 在正式事务内登记共享处境与独立请求，记录版本、随机游标和处境变更来源。旧 scene 沿 schema1 审计，新请求引用 schema2 共享状态。`prayer_capabilities.gd` 将实际成功回执接入人物资格与活动。作者查看器由 `tools/prayer-space/serve_viewer.py` 调用同一 Godot 生成核心。接口合同见 system-events §16.10。
+
+### 配色与卡面实景对照（2026-11-13，独立入口）
+
+`配色对照.command` → `tools/palette-study/preview.gd` 复制真实五世界存档并挂载同一正式场景；`controller.gd` 给卡纸、印版和卡内文字加可切换材料，读取既有牌堆连续深度与 hover 进度调整纸面投影和微亮，不改变位置或输入。`pigment.gdshader` 仅对卡纸纹理整理裁边；`image_edge.gdshader` 仅收窄图窗的 alpha 边缘，内部 RGB 保持；`card_finish.gd` 在原插图／文字下绘制纸托、局部套印与短分隔，避开实际字形，既不接管输入也不增加状态。背景与外围 shader 保留，Session 不写入配色数据。正常入口不加载这些控制器与材料。
+
+上述卡面细化已被制作人否定，控制器只保留历史探索用途，不作为实施母版。当前做[连续印面设计](art/visual-generation/card-design-study/README.md)：`tools/card-carrier-study/` 复用正式字体与有机外围，整牌／叠牌共用组件；不实例化 Session、不保存、不注册正式入口。`stock_surface.gdshader` 用现有纸纹组织中间明度卡材质；`art_blend.gdshader` 只改原图呈现 alpha，上／侧共用卡体轮廓，下缘非均匀融入字区。它不改原 PNG 或内部 RGB、不按亮度抠图、不替换程序立绘。主体保护按三类设置，但当前只验证样本；正式实施仍需覆盖符号／缺图、所有类别及交互状态。设计板未改变正式组件；DEC-066 不代表新构图已获批准。
+
+DEC-067 已认可连续印面整体风格，确切图与源码归档于 `card-design-study/accepted-blended/`。后续识别增量为可选 `category_marks.gd`，缺省 variant=0 完全不加标记；关闭后两张原设计图的 PNG 指纹与获准稿一致。`category_preview.gd` 复用同一 Card、背景及压叠几何，比照三种类别识别组合；行动／圣物示例图复用正式 `card_illustration.gd`，不重画生成立绘。独立 `.command` 只提供方案切换和翻阅，无 Session／执行／保存入口；类别标签与标记色不是新的玩法数据源。
+
+### DEC-068：单向手牌与连续印面
+
+`production/worldplay/hand_fan.gd` 独立于首页fan，负责固定右压左顺序、稳定牌缘命中、连续阻尼抬牌及原生拖放；不再通过焦点重排层级或横距。`production/painted/card_carrier/` 为卡面单源；其中 `card_edge.gdshader` 仅沿原alpha绘制薄切面，阴影在Card中随抬牌变化。StudyCard以可选适配器组合原图、类别肩签与文字；样板仅转接这套正式组件。stock原纹理在 `assets/ui/cards/continuous-stock.png`，动作图按类别/少量wash缓存，立绘继续绑定已准备的正式recipe。轮初回响与四区手牌复用；首页导航fan保持自身交互合同。输入、画法细则见 ui-interaction 的 DEC-068 及 ui-art-standard A06，避免这里重复参数。

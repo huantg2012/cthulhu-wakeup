@@ -22,6 +22,14 @@ func _draw() -> void:
 		draw_arc(c, r + i * 0.7, -2.7, 2.1, 40, Color(ink, 0.06), 1.5, false)
 	var points := PackedVector2Array()
 	match motif:
+		"event":
+			var top := c + Vector2(0,-r)
+			var bottom := c + Vector2(0,r)
+			for cap: Vector2 in [top,bottom]:
+				_stroke(PackedVector2Array([cap-Vector2(r*.7,0),cap+Vector2(r*.7,0)]))
+			_stroke(PackedVector2Array([top+Vector2(-r*.55,0),c,bottom+Vector2(r*.55,0)]))
+			_stroke(PackedVector2Array([top+Vector2(r*.55,0),c,bottom+Vector2(-r*.55,0)]))
+			draw_circle(c+Vector2(0,r*.55),r*.16,Color(ink,.65))
 		"anchor":
 			points = PackedVector2Array([c+Vector2(-r*.8,r*.8), c+Vector2(0,-r), c+Vector2(r*.8,r*.8), c+Vector2(-r*.8,r*.8)])
 			_stroke(points)

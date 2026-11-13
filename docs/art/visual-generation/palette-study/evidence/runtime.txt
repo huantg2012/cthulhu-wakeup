@@ -1,0 +1,7 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+PALETTE_READY: turn=9 public_worlds=5 copy=user://ui-art-production-probe/83193-1904337
+PALETTE_STUDY: printed card finish; portrait RGB preserved, alpha rim narrowed; Session unchanged.
+PORTRAITS_BEFORE { "generated": 0, "disk_reads": 17 }
+PORTRAITS_AFTER { "generated": 0, "disk_reads": 17 }

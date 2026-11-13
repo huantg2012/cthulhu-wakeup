@@ -1,0 +1,10 @@
+{
+  "checks": "5/18/48; all edges hit; fixed x/z; click does not play; native upward drop",
+  "failures": [],
+  "motion_samples": 2653,
+  "cancel_drop_and_escape": "native input passed; return ghost appears and clears",
+  "production": "copied five-world turn9 save; 179 assertions; no Session mutation",
+  "source_save_sha256": "9c709560d228f836d672cb237d7367b6d4e3fc64986153839ca8d8af295824c4",
+  "stock_identical": true,
+  "motion": "697-frame 60fps engine recording; fixed-step capture is not a runtime frame-rate benchmark"
+}

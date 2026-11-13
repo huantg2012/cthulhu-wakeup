@@ -71,17 +71,18 @@ func _svg(path: String, bounds: Rect2, stroke_width: float, clips: Array) -> Tex
 	svg_cache[key]=texture
 	return texture
 
-func render(painter) -> Dictionary:
+func render(painter, include_passes := true) -> Dictionary:
 	shader_cache.clear()
 	svg_cache.clear()
 	var viewport = SubViewport.new()
 	viewport.size = Vector2i(960,960)
 	viewport.transparent_bg = true
-	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	viewport.render_target_update_mode = SubViewport.UPDATE_DISABLED
 	viewport.canvas_item_default_texture_filter = Viewport.DEFAULT_CANVAS_ITEM_TEXTURE_FILTER_LINEAR
 	add_child(viewport)
 	var items = []
 	var i = 0
+	var slice_start := Time.get_ticks_usec()
 	for cmd in painter.commands:
 		var item = TextureRect.new()
 		item.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -121,11 +122,13 @@ func render(painter) -> Dictionary:
 		viewport.add_child(item)
 		items.append({"node":item,"command":cmd,"bounds":bounds})
 		i+=1
-		if i%48==0:
+		if Time.get_ticks_usec() - slice_start >= 4000:
 			if progress.is_valid(): progress.call("合成二维图层 %d/%d"%[i,painter.commands.size()])
 			await get_tree().process_frame
+			slice_start = Time.get_ticks_usec()
 	var out = {}
-	for pass_index in 3:
+	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
+	for pass_index in (3 if include_passes else 1):
 		for row in items:
 			var cmd=row.command
 			row.node.visible=not (pass_index!=0 and cmd.op in ["stroke","glow"]) and not (pass_index==1 and cmd.op=="shadow")

@@ -18,6 +18,7 @@ var post: Node
 var busy = false
 var cached_context: Dictionary = {}
 var cache_key = ""
+var _plan_task := -1
 const REVISION = "native-godot-surface-1"
 func _ready():
 	if surfaces == null: surfaces=SurfaceRenderer.new()
@@ -70,10 +71,10 @@ func generate_subject(kind: String, request: Dictionary, options := {}) -> Dicti
 	match kind:
 		"world": image = cached_context.world_image
 		"cult":
-			await _ensure_cult(w)
+			await _ensure_cult(w, false)
 			image = cached_context.cult_image
 		"person":
-			var person: Dictionary = await _draw_person(int(options.seed), w, background)
+			var person: Dictionary = await _draw_person(int(options.seed), w, background, false)
 			image = person.image
 	busy = false
 	return {"image": image, "revision": REVISION}
@@ -91,25 +92,37 @@ func _ensure_world(request: Dictionary, w: Dictionary) -> void:
 		"request": request.duplicate(true), "world_params": source.params}
 	cache_key = key
 
-func _ensure_cult(w: Dictionary) -> void:
-	if cached_context.has("cult_image"): return
+func _ensure_cult(w: Dictionary, include_passes := true) -> void:
+	if cached_context.has("cult_image") and (not include_passes or cached_context.cult_passes.has("form")): return
 	progress.emit("构建教团的二维轮廓与材质场…")
 	var rule: Dictionary = catalog.cult_rule(w)
-	var draw: Dictionary = Tide.sanctuary(w.worldSeed, w) if w.archetype == 0 else Cults.newCult(w, rule)
+	var draw: Dictionary = await _build_plan(func() -> Dictionary:
+		return Tide.sanctuary(w.worldSeed, w) if w.archetype == 0 else Cults.newCult(w, rule))
 	draw.p.world = w
 	draw.p.styleSid = w.styleSid
 	if w.archetype == 0: _tide_palette(draw.p, w)
-	var passes: Dictionary = await surfaces.render(draw.p)
+	var passes: Dictionary = await surfaces.render(draw.p, include_passes)
 	var final: Image = await post.apply(passes.lit, w, cached_context.sky_image, true)
-	cached_context.merge({"cult_image": final, "cult_passes": passes, "rule": rule, "cult_features": draw.features})
+	cached_context.merge({"cult_image": final, "cult_passes": passes, "rule": rule, "cult_features": draw.features}, true)
 
-func _draw_person(seed_value: int, w: Dictionary, background: Dictionary) -> Dictionary:
+func _draw_person(seed_value: int, w: Dictionary, background: Dictionary, include_passes := true) -> Dictionary:
 	var recipe = People.recipe(seed_value, w, background)
-	var draw = People.generate(recipe)
-	var passes: Dictionary = await surfaces.render(draw.p)
+	var draw: Dictionary = await _build_plan(func() -> Dictionary: return People.generate(recipe))
+	var passes: Dictionary = await surfaces.render(draw.p, include_passes)
 	progress.emit("人物：原作 NPR 后期…")
 	var final: Image = await post.apply(passes.lit, w, cached_context.sky_image, true)
 	return {"image": final, "passes": passes, "recipe": recipe, "features": draw.features}
+
+func _build_plan(builder: Callable) -> Dictionary:
+	var result := {}
+	_plan_task = WorkerThreadPool.add_task(func() -> void: result.plan = builder.call(), false, "Compose portrait drawing")
+	while not WorkerThreadPool.is_task_completed(_plan_task): await get_tree().process_frame
+	WorkerThreadPool.wait_for_task_completion(_plan_task)
+	_plan_task = -1
+	return result.plan
+
+func _exit_tree() -> void:
+	if _plan_task >= 0: WorkerThreadPool.wait_for_task_completion(_plan_task)
 
 func _tide_palette(plan,w):
 	if w.palette==0:return

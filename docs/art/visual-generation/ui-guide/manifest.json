@@ -1,6 +1,6 @@
 {
   "schema": "cthulhu-ui-visual-guide/1",
-  "updated": "2026-11-12",
+  "updated": "2026-11-13",
   "canonical_standard": "docs/art/visual-generation/ui-art-standard.md",
   "approved_baseline": "docs/art/visual-generation/ui-approved-baseline.json",
   "status_rule": "已批准图像 ≠ 每个代码状态已批准；衍生样张不得自动升为母版。",
@@ -164,6 +164,22 @@
       ],
       "not_for": "四张静帧不能替代24秒完整动态，也不证明正式运行性能。",
       "image_sha256": "9b196965239b019b87ed740e76b97a75cbeb9ef4d00fb1aa43157a444523b51d"
+    },
+    {
+      "id": "D15",
+      "image": "../production-evidence/round-arrival/prayer.png",
+      "title": "轮初回响：祈求显影",
+      "status": "衍生待审",
+      "rules": "A15",
+      "caption": "实际第 10 轮；图像预载后只读预告，祈求优先去重人物。",
+      "provenance": "1920×1080 原生窗口；真实存档副本正常换轮。",
+      "sources": [
+        "src/presentation/production/worldplay/round_arrival.gd",
+        "src/presentation/production/worldplay/round_arrival_model.gd",
+        "src/presentation/production/painted/arrival_veil.gdshader"
+      ],
+      "not_for": "不作为制作人已批准母版；不证明本次真实发生了新权能解锁。",
+      "image_sha256": "f8e0560f000f6d313df24c2f9dd98638878d5a7319e2f98dcb92feb31a136c1f"
     }
   ],
   "references": [
@@ -182,9 +198,9 @@
       "title": "现行交互合同",
       "status": "已核对·功能合同",
       "path": "docs/specs/ui-interaction.md",
-      "checked_date": "2026-11-12",
-      "sha256": "8e60471b50087bec8cc0c90f589332429c49b021b52fbd507280908398e47db8",
-      "allowed": "locked-interaction-production至current-ui-contract-end及正式交互精修原则；其他现行机制按对应功能引用。",
+      "checked_date": "2026-11-13",
+      "sha256": "1710c4a580fb81ee5a968fdad8292bf6ba098b06da528704a240542d847499cc",
+      "allowed": "worldplay-card-study（含DEC-068固定单向牌堆/抬牌/拖放、轮初回响及立绘准备边界）、locked-interaction-production至current-ui-contract-end及正式交互精修原则；其他现行机制按对应功能引用。",
       "excluded": "旧echoes-home、F5/D4/V2/V6美术指令、旧tokens、旧视觉待选状态。旧强制视觉引用已纠正。"
     },
     {
@@ -192,8 +208,8 @@
       "title": "原生立绘生成",
       "status": "已核对·接口合同",
       "path": "docs/specs/system-art-generation.md",
-      "checked_date": "2026-11-12",
-      "sha256": "10f4fd345c8f948ccce3948d9229ec12d28020120ad0490051ba1e2cab9fdfee",
+      "checked_date": "2026-11-13",
+      "sha256": "7fbcb342aec7fa7abfc93072319ca59aa257a99eac1e62a1b52b35fc6d5693f6",
       "allowed": "原生 Godot 服务、最终图/中间层与正式身份 v1、公开对象边界、调度和缓存合同。",
       "excluded": "旧 JS/HTML/服务器运行链；工作台效果不等于正式场景获准。"
     },
@@ -252,9 +268,9 @@
       "title": "当前开工路由",
       "status": "已核对·最新段优先",
       "path": "docs/progress/stage-priorities.md",
-      "checked_date": "2026-11-12",
-      "sha256": "72e1853f7eb3f9f46746644293cef44ed621719823e54cf970eeb89333f51a4c",
-      "allowed": "2026-11-12 的当前路由、持续禁令和正式接入交付状态。",
+      "checked_date": "2026-11-13",
+      "sha256": "9f6af14767fd3abaafaebad8ff43fe42fdf63838290a0e5677415499d22ac71b",
+      "allowed": "2026-11-13 DEC-068单向牌堆/肩位及薄厚度增量、DEC-067连续印面认可、方框禁令及轮初增量；2026-11-12当前路由与持续禁令。",
       "excluded": "后续历史路由的旧视觉规范入口、旧待审/待选状态。"
     }
   ],

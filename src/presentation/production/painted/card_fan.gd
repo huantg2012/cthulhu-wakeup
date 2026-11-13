@@ -12,10 +12,23 @@ func set_blocked(value: bool) -> void:
 		_clear_hover()
 
 func _gui_input(event: InputEvent) -> void:
-	if not _blocked: super._gui_input(event)
+	if _blocked: return
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		_clear_hover()
+	super._gui_input(event)
 
 func _layout_cards() -> void:
 	super._layout_cards()
+	var stacked := is_stacked()
+	for index: int in cards.size():
+		var card: Control = cards[index]
+		var hovered := card.visible and index == _hovered_card
+		# The painted carrier used to lift a flat card in one step on entry.
+		# Leave the hover lift to the tween and retain its keyboard focus offset.
+		if hovered and not stacked and index != focus_index:
+			card.position.y = maxf(0.0, (size.y - CARD_SIZE.y) * 0.5)
+		card.set_card_hover(hovered)
+		card.apply_card_hover()
 	var drawing_order: Array[Control] = cards.filter(func(card: Control) -> bool: return card.visible)
 	drawing_order.sort_custom(func(a: Control, b: Control) -> bool:
 		return a.z_index < b.z_index if a.z_index != b.z_index else cards.find(a) < cards.find(b))
@@ -28,6 +41,7 @@ func _card_at(pointer: Vector2) -> int:
 	for order: int in range(get_child_count() - 1, -1, -1):
 		var card := get_child(order) as Control
 		if card == null or not card.visible or card.modulate.a < 0.2: continue
-		var local := card.get_transform().affine_inverse() * pointer
-		if Rect2(Vector2.ZERO, card.size).has_point(local): return cards.find(card)
+		# The hit box follows the card layout, so the bounce itself cannot
+		# steal the pointer from a neighbouring exposed edge.
+		if Rect2(card.position, card.size).has_point(pointer): return cards.find(card)
 	return -1

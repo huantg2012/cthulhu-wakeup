@@ -1,0 +1,41 @@
+{
+  "purpose": "真实原生成图的混合画风卡面设计验证；不是新 Session，也不是新立绘生成",
+  "vibrant_world": {
+    "path": "res://docs/art/visual-generation/card-design-study/neutral-carrier/vibrant-world.png",
+    "title": "维沙罗寰宇联邦",
+    "notes": "血肉之星 · 怪奇杂志 / 原型 2 · 画风 7 · 色板 2 · 世界种子 223018",
+    "source": "object-portraits/v1/53b458088bf7101ecc131eac5f54ad8dd27e0d81e2ff8e65528c82d62bf04d33.png",
+    "campaign": "1794500154-3541809.json / DOMAIN-011"
+  },
+  "tide": {
+    "directory": "res://docs/art/visual-generation/procedural-study/native-evidence/tide/",
+    "world_title": "溺亡之海",
+    "cult_title": "听潮密会",
+    "person_title": "收受贿赂的裁判者",
+    "archetype": 0,
+    "styleSid": 0,
+    "paletteId": 0,
+    "worldSeed": 1339,
+    "personSeed": 1000
+  },
+  "bone_watercolor": {
+    "directory": "res://docs/art/visual-generation/procedural-study/native-evidence/bone-watercolor/",
+    "world_title": "骸骨之月",
+    "cult_title": "骨丘记名会",
+    "person_title": "收受贿赂的裁判者",
+    "archetype": 10,
+    "styleSid": 6,
+    "paletteId": 8,
+    "worldSeed": 1339,
+    "personSeed": 1000
+  },
+  "original_png_sha256": {
+    "docs/art/visual-generation/procedural-study/native-evidence/tide/world.png": "1a514e4e1d020a4b3dfb095443cf5af441199b8d98ac09f4dbbe48c5a2aee38c",
+    "docs/art/visual-generation/procedural-study/native-evidence/tide/cult.png": "cc39461d7e3c06560e61c4ea7785a0699c18438311c0bfe8d0b4607c01f933cc",
+    "docs/art/visual-generation/procedural-study/native-evidence/tide/person-0-1000.png": "6bf3837eaa47817594e85bc78df9d74e1546547690fe9b83af81c022b7fe61b7",
+    "docs/art/visual-generation/procedural-study/native-evidence/bone-watercolor/world.png": "62fb16859c8c807dd4ee65f790730227dca89f6db6b02722a96d5e5d7db2466f",
+    "docs/art/visual-generation/procedural-study/native-evidence/bone-watercolor/cult.png": "41838382563cca8718a17f67b624c08a1b8f51f8045bf4592995f4818bc45879",
+    "docs/art/visual-generation/procedural-study/native-evidence/bone-watercolor/person-0-1000.png": "f0aad25ba016f7ee02764e8895ea682692a1267bb5bbdbdafa4c348f79461d6b",
+    "docs/art/visual-generation/card-design-study/neutral-carrier/vibrant-world.png": "931f2e95dcbe92d8caebee3380df1c1069275f690f44b4314430cd3fcc7f0265"
+  }
+}

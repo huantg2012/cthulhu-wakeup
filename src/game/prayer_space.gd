@@ -500,7 +500,11 @@ func freeze(world: RefCounted, new_limit: int) -> bool:
 		if not _alive(world.state, scene.actors, scene.domain) or _obsolete(scene):
 			scene.status = "unavailable"
 			_snapshot(world, scene, "prayer_space_closed", [scene.last_event], {"reason": "subject_or_situation_changed"})
-		elif scene.due >= world.state.turn and data.offered.size() < limit: data.offered.append(id)
+		elif scene.due >= world.state.turn and data.offered.size() < limit:
+			# Keep the frozen request for later turns. A request whose actors or
+			# world cannot fit this turn's attention must leave room for a new one.
+			var need: Dictionary = world.attention.preview(world.state, {"focus": [scene.domain], "people": scene.actors, "members": [], "identities": []})
+			if need.get("ok", false): data.offered.append(id)
 	if data.offered.size() < limit and generation.get("attempted_turn", -1) != world.state.turn:
 		var recent: Array = generation.recent.filter(func(item: Dictionary) -> bool: return int(item.turn) + content.parameter("recent_memory") >= int(world.state.turn))
 		generation.recent = recent

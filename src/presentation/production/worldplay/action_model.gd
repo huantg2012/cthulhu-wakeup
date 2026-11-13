@@ -63,8 +63,9 @@ func _prayers() -> void:
 		row.status = "本轮已用" if _projection.get("prayer_response_spent", false) else "待回应"
 		row.cost = "随回应核算"
 		row.requirement = "第 %s 轮到期" % card.due_turn if card.has("due_turn") else "查看求告处境与回应条件"
-		row["context"] = (str(descriptor.get("context",""))+"\n"+str(descriptor.get("goal",""))).strip_edges()
-		row.effect = str(descriptor.get("appeal", "选择回应，查看其作用与代价。"))
+		row["petitioner"] = str(descriptor.get("subjects", {}).get("petitioner", ""))
+		row["space"] = bool(descriptor.get("space", false))
+		row.effect = _session.prayer_appeal(descriptor, card)
 		row.reason = "本轮回应机会已用，仍可查阅。" if _projection.get("prayer_response_spent", false) else "比较实际回应后，再决定如何介入。"
 
 func _powers() -> void:
@@ -82,14 +83,7 @@ func _powers() -> void:
 		row["risk"] = str(power.always_cost)
 		if key == "POWER_MANIFEST":
 			row.title = "降临 · 跨世界"
-			row.status = "查看仪式"
 			row.selection = {}
-			row.reason = "从本体查看两级锚点、仪式进度及本轮续付。"
-			continue
-		if int(_projection.get("awakening", 0)) < int(power.unlock_awakening):
-			row.status = "未解锁"
-			row.reason = "苏醒 %s / %s" % [_projection.get("awakening", 0), power.unlock_awakening]
-			continue
 		_check(row)
 
 func _activities() -> void:
@@ -210,3 +204,44 @@ static func cult_relic(projection: Dictionary, relic: Dictionary, cult_id: Strin
 	if not holder.is_empty() and holder.get("cult_id", "") == cult_id: return true
 	var anchor: Dictionary = Requirements.find(projection, "anchors", str(relic.get("anchor", "")))
 	return not anchor.is_empty() and anchor.get("cult", "") == cult_id
+
+func cards(session: RefCounted, projection: Dictionary, world_id: String, cult_id := "") -> Array:
+	var result: Array = []
+	var rows: Array = build(session,projection,world_id,cult_id)
+	var grouped := {}
+	for row: Dictionary in rows:
+		if row.group in ["anchor","relic"]:
+			var action_id: String
+			var caption: String
+			if row.group == "anchor":
+				action_id = "maintain" if row.status in ["已建立","维系不足"] else "bind"
+				caption = "维系" if action_id=="maintain" else "锚定"
+			else:
+				action_id = str(row.entry).get_slice("/",2) if str(row.entry).begins_with("opportunity/") else str(row.entry).get_slice("/",1)
+				caption = {"equip":"携带","unequip":"卸下","unbind":"解绑","recover":"回收","disassemble":"分解","public":"公开","wait":"等待"}.get(action_id,action_id)
+			var key: String = str(row.group)+"/"+action_id
+			if not grouped.has(key):
+				var card := row.duplicate(true)
+				card.merge({"id":key,"title":caption,"type":"action","targets":[]},true)
+				grouped[key] = card
+				result.append(card)
+			grouped[key].targets.append(row.duplicate(true))
+		else:
+			var card := row.duplicate(true)
+			card.type = "action"
+			result.append(card)
+	# The verb remains discoverable when every existing anchor is established.
+	if not grouped.has("anchor/bind"):
+		var power: Dictionary = session.catalog.display_tables.powers.POWER_ANCHOR
+		result.append({"id":"anchor/bind","title":"锚定","type":"action","group":"anchor","kind":"action","entry":"POWER_ANCHOR","selection":{"domain":world_id},"targets":[],"cost":_price(int(power.faith),int(power.whispers)),"effect":str(power.success),"requirement":str(power.target_requirement),"risk":str(power.always_cost)})
+
+	return result.filter(func(card: Dictionary) -> bool: return unlocked(card, session.catalog, projection))
+
+static func unlocked(card: Dictionary, catalog: RefCounted, projection: Dictionary) -> bool:
+	if card.get("status") == "未解锁": return false
+	var power_id := ""
+	if card.get("group") == "power":
+		power_id = str(card.subject.id) if card.type == "object" else str(card.entry)
+	elif card.id == "anchor/bind":
+		power_id = "POWER_ANCHOR"
+	return power_id.is_empty() or int(projection.get("awakening", 0)) >= int(catalog.display_tables.powers[power_id].unlock_awakening)

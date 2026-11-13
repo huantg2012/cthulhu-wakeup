@@ -1,0 +1,31 @@
+{
+  "worlds": [
+    {
+      "palette": 0,
+      "original_art_exact": true,
+      "paper_brightness": 0.204,
+      "body_luminance_relative_to_anchor": 0.304,
+      "grain_spread": 0.0196,
+      "card_background_contrast": 1.41,
+      "contrast": {
+        "primary": 8.49,
+        "secondary": 6.1
+      }
+    },
+    {
+      "palette": 1,
+      "original_art_exact": true,
+      "paper_brightness": 0.847,
+      "body_luminance_relative_to_anchor": 5.97,
+      "grain_spread": 0.0157,
+      "card_background_contrast": 12.26,
+      "contrast": {
+        "primary": 12.03,
+        "secondary": 9.58
+      }
+    }
+  ],
+  "paper_style_world_and_person_exact": true,
+  "sampled_background_exact": true,
+  "scope": "Sampled card separation, text and portrait integrity only; not aesthetic approval."
+}

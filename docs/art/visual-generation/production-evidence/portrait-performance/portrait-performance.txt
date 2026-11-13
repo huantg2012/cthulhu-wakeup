@@ -1,0 +1,23 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+PORTRAITS_COLD ms=10917 generated=17 loaded=17 frame_p95=17.591 max=472.623
+PORTRAITS_NAVIGATION worlds=5 people=11 generate_delta=0 read_delta=0 max_world_ms=199
+PORTRAITS_DISK ms=458 generated=0 reads=17
+WARNING: Not a PNG file
+     at: check_error (drivers/png/png_driver_common.cpp:57)
+     GDScript backtrace (most recent call first):
+         [0] <anonymous lambda> (res://src/presentation/production/painted/object_portraits.gd:162)
+ERROR: Condition "!success" is true. Returning: ERR_FILE_CORRUPT
+   at: png_to_image (drivers/png/png_driver_common.cpp:70)
+   GDScript backtrace (most recent call first):
+       [0] <anonymous lambda> (res://src/presentation/production/painted/object_portraits.gd:162)
+ERROR: Error loading image: 'user://portrait-performance-probe/15450/95f12b36237d32550634db2a08fb0180b48b1d9df1b1e6ada163fb3f4ef9b208.png'.
+   at: load_image (core/io/image_loader.cpp:102)
+   GDScript backtrace (most recent call first):
+       [0] <anonymous lambda> (res://src/presentation/production/painted/object_portraits.gd:162)
+ERROR: Failed to load image. Error 16
+   at: load_from_file (core/io/image.cpp:2787)
+   GDScript backtrace (most recent call first):
+       [0] <anonymous lambda> (res://src/presentation/production/painted/object_portraits.gd:162)
+PORTRAITS_READY_OK 272 checks; cold, disk, all worlds/people, pinning, corrupted cache, gameplay identity

@@ -1,0 +1,35 @@
+[
+  {
+    "palette": 0,
+    "original_art_exact": true,
+    "paper_brightness": 0.204,
+    "green_paper_fraction": 0.995,
+    "grain_spread": 0.0196,
+    "contrast": {
+      "primary": 8.49,
+      "secondary": 6.1
+    }
+  },
+  {
+    "palette": 1,
+    "original_art_exact": true,
+    "paper_brightness": 0.0787,
+    "green_paper_fraction": 0.0,
+    "grain_spread": 0.0106,
+    "contrast": {
+      "primary": 13.84,
+      "secondary": 9.59
+    }
+  },
+  {
+    "palette": 2,
+    "original_art_exact": true,
+    "paper_brightness": 0.0889,
+    "green_paper_fraction": 0.0,
+    "grain_spread": 0.0112,
+    "contrast": {
+      "primary": 14.42,
+      "secondary": 9.94
+    }
+  }
+]

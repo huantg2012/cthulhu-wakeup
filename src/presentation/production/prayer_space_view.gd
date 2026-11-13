@@ -14,11 +14,7 @@ func _init(owner: RefCounted) -> void:
 	_parent = weakref(owner)
 
 func choices() -> Array:
-	var result: Array = host.session.prayer_space_choices(str(parent._prayer.id))
-	result.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
-		if int(a.get("intensity", 0)) != int(b.get("intensity", 0)): return int(a.get("intensity", 0)) < int(b.get("intensity", 0))
-		return str(a.id) < str(b.id))
-	return result
+	return host.session.prayer_response_choices(str(parent._prayer.id))
 
 func update(focus_name := "", scroll_position := -1) -> void:
 	host._tasks.begin_candidates()

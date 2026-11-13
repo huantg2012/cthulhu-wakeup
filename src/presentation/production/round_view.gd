@@ -16,6 +16,7 @@ const Paint = preload("res://src/presentation/production/painted/theme.gd")
 const Atmosphere = preload("res://src/presentation/production/painted/peripheral_atmosphere.gd")
 const WindowArt = preload("res://src/presentation/production/painted/object_window.gd")
 const Portraits = preload("res://src/presentation/production/painted/object_portraits.gd")
+const PortraitTransition = preload("res://src/presentation/production/painted/portrait_transition.gd")
 const VIEW := Vector2(1280, 720)
 const DISPLAY_SETTINGS := "user://echoes-display.cfg"
 const SAVE_DIRECTORY := "user://production-ui-campaigns"
@@ -38,6 +39,8 @@ var _large_text := false
 var _keyboard := false
 var _busy := false
 var _portraits: Node
+var _portrait_transition: CanvasLayer
+var _art_boundary_pending := false
 var _environment: Control
 var _atmosphere: Control
 var _stage: Control
@@ -80,7 +83,12 @@ func _ready() -> void:
 	_portraits = Portraits.new()
 	_portraits.name = "ObjectPortraits"
 	add_child(_portraits)
+	_portrait_transition = PortraitTransition.new()
+	add_child(_portrait_transition)
+	_portraits.preparation_progress.connect(_portrait_transition.report)
+	_portraits.preparation_finished.connect(_finish_portraits)
 	theme = Paint.native_theme()
+	Paint.prime_card_stock()
 	texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
 	_environment = _region(self, "PaintedEnvironment", Rect2(Vector2.ZERO, VIEW))
 	_ui.image(_environment, "Night", Rect2(Vector2.ZERO, VIEW), Paint.MaterialSource.pigment("sky"), Color.WHITE, TextureRect.STRETCH_SCALE)
@@ -204,10 +212,11 @@ func _update_atmosphere() -> void:
 	_atmosphere.set_profile(profile, protected)
 	if is_instance_valid(_stage):
 		var fan := _stage.get_node_or_null("WorldFan")
-		if fan != null: fan.set_blocked(not _dialog.is_empty())
+		if fan != null: fan.set_blocked(_portraits.preparing or not _dialog.is_empty())
 
 func _refresh() -> void:
 	projection = session.project()
+	_prepare_portraits()
 	var return_path := NodePath()
 	if is_instance_valid(_stage):
 		if is_instance_valid(_return_focus) and _stage.is_ancestor_of(_return_focus):
@@ -222,6 +231,43 @@ func _refresh() -> void:
 		_build_top()
 		_build_dock()
 	if not return_path.is_empty(): _return_focus = _stage.get_node_or_null(return_path) as Control
+	_update_atmosphere()
+
+func _prepare_portraits() -> void:
+	if not projection.get("active", false): return
+	var arts: Array = []
+	var observations: Array = []
+	var seed_value: String = session.visual_seed()
+	var people_by_world := {}
+	for person: Dictionary in projection.get("people", []):
+		var birthplace: String = session.visual_birthplace(str(person.id))
+		if not people_by_world.has(birthplace): people_by_world[birthplace] = []
+		people_by_world[birthplace].append(person)
+	for world: Dictionary in projection.get("domains", []):
+		var local: Array = [_portraits.recipe("world", seed_value, world, world)]
+		for cult: Dictionary in projection.get("cults", []):
+			if cult.get("domain") == world.id: local.append(_portraits.recipe("cult", seed_value, cult, world))
+		for person: Dictionary in people_by_world.get(world.id, []):
+			local.append(_portraits.recipe("person", seed_value, person, world))
+		for art: Dictionary in local:
+			if art.is_empty(): continue
+			art["world_id"] = world.id
+			arts.append(art)
+		var metrics := PackedStringArray()
+		for metric: String in ["barrier", "pollution", "alert", "stability"]:
+			metrics.append(str(_views.WORLD_METRICS[metric]) + " " + str(_views.metric_display(world, metric).value))
+		observations.append({"id": world.id, "title": world.title, "observation": "    ".join(metrics)})
+	_portraits.prepare(arts)
+	if _portraits.preparing:
+		_portrait_transition.begin(projection, observations)
+	else:
+		_portrait_transition.hide()
+
+func _finish_portraits() -> void:
+	_portrait_transition.hide()
+	if _art_boundary_pending:
+		_art_boundary_pending = false
+		_enter_boundary.call_deferred()
 	_update_atmosphere()
 
 func _build_top() -> void:
@@ -326,7 +372,7 @@ func _close_inline() -> void:
 	elif _dialog in ["prayer_detail", "prayer_person", "prayer_result"]: _prayers.close(false)
 
 func _inspect_world(id: String) -> void:
-	if _busy or projection.get("phase") == "events": return
+	if _busy or _portraits.preparing or projection.get("phase") == "events": return
 	_close_inline()
 	if is_instance_valid(_surface): return
 	_select_world(id)
@@ -550,13 +596,17 @@ func _close_surface() -> void:
 	if is_instance_valid(target) and _can_focus(target): target.grab_focus()
 	_return_focus = null
 
+func _current_event() -> Dictionary:
+	var events := _pending_events()
+	return events[0] if not events.is_empty() else {}
+
 func _show_event(return_to_option := false) -> void:
 	if _busy or projection.get("phase") != "events": return
 	var events := _pending_events()
 	if events.is_empty():
 		_advance()
 		return
-	var event: Dictionary = events[0]
+	var event := _current_event()
 	var choices: Array = session.action_catalog({}, str(event.key) + "/")
 	_open_surface("event", "第 %s 轮 · 待处理事件 %d 项" % [projection.turn, events.size()], event.title, true)
 	_surface.get_node("EventImprint").set_meta("subject_id", event.id)
@@ -633,7 +683,7 @@ func _review_event(row: Dictionary, reset: bool) -> void:
 	if reset: _event_scroll = _body_scroll.scroll_vertical
 	_event_key = row.key
 	var selection: Dictionary = _event_selection.get(row.key, {})
-	var event: Dictionary = _pending_events()[0]
+	var event := _current_event()
 	_open_surface("event_review", "轮初事件 / 确认处理", event.title)
 	_event_options(session.action_catalog({}, str(event.key) + "/"), row.key)
 	_set_reading(Rect2(565, 602, 910, 217))
@@ -788,6 +838,9 @@ func _advance(confirmed := false, rest := false) -> void:
 	if result.get("ok", false): _enter_boundary()
 
 func _enter_boundary() -> void:
+	if _portraits.preparing:
+		_art_boundary_pending = true
+		return
 	match str(projection.get("phase", "")):
 		"events":
 			if _pending_events().is_empty(): _advance()
@@ -1045,6 +1098,7 @@ func _open_campaign(result: Dictionary) -> void:
 		_show_menu()
 		return
 	_receipt.clear()
+	_art_boundary_pending = false
 	_receipt_requirements.clear()
 	_resource_delta = ""
 	_world_id = ""
@@ -1111,6 +1165,9 @@ func _can_focus(control: Control) -> bool:
 	return control.is_visible_in_tree() and control.focus_mode == Control.FOCUS_ALL and (not control is Button or not control.disabled)
 
 func _input(event: InputEvent) -> void:
+	if _portraits.preparing:
+		if event is InputEventKey: get_viewport().set_input_as_handled()
+		return
 	if event is InputEventMouseButton and event.pressed:
 		_set_keyboard(false)
 	if not event is InputEventKey or not event.pressed: return

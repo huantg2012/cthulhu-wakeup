@@ -3,12 +3,23 @@ extends "res://docs/art/visual-generation/ui-study/painted_card.gd"
 const UI = preload("res://src/presentation/production/locked_controls.gd")
 const WindowArt = preload("res://src/presentation/production/painted/object_window.gd")
 const Fan = preload("res://src/presentation/production/painted/card_fan.gd")
+const Hover = preload("res://src/presentation/production/painted/card_hover.gd")
+var _hover := Hover.new()
 var art: TextureRect:
 	get: return _art
 
 func _ready() -> void:
 	# The production constructor supplies a bound TextureRect and public copy.
 	pass
+
+func set_card_hover(hovered: bool) -> void:
+	_hover.set_hover(self, hovered, apply_card_hover)
+
+func apply_card_hover() -> void:
+	_hover.apply_transform(self)
+	var light := _hover.light()
+	# Only the stock and seal brighten. The original planet texture is a child.
+	self_modulate = Color(light, light, light)
 
 func build(controls: RefCounted, world: Dictionary, number: int, extra: int, portraits: Node) -> void:
 	ordinal = number

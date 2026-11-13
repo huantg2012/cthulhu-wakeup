@@ -51,7 +51,8 @@ func _context(session: RefCounted, descriptor: Dictionary, card: Dictionary) -> 
 			var subject: Variant = descriptor.subjects[role]
 			details[roles[role]] = subject.map(func(id: Variant) -> String: return session.object_title(str(id))) if subject is Array else session.object_title(str(subject))
 		details["所在时空"] = session.object_title(str(descriptor.get("domain", card.get("domain", ""))))
-		if content == "PRAYER_08": details["本次求告"] = session.catalog.display_tables.prayer_addressing_modes[str(descriptor.get("addressing", "undirected"))].devotion_text
+		var appeal: String = session.prayer_appeal(descriptor, card)
+		if not appeal.is_empty(): details["本次求告"] = appeal
 		if card.has("due_turn"): details["请求期限"] = "第 %d 轮" % int(card.due_turn)
 		if descriptor.get("crisis", {}).has("due"): details["原危机期限"] = "第 %d 轮" % int(descriptor.crisis.due)
 		return session._public(details)
