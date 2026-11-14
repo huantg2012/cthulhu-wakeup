@@ -1,0 +1,34 @@
+{
+  "style": "Selected B refinement; approved six unchanged",
+  "prompts": [
+    "Create a PRODUCTION illustration atlas continuing the selected B occult gouache style in the reference. EXACTLY 4 columns x 6 rows of separate square images, 1024x1536 output, 256px each cell. No grid, borders, labels, letters, text, UI or card frames. Every subject isolated within its cell with 15% dark margin. Near-black #070e12 backdrop. Reference is STYLE only: broad irregular layered opaque paint patches, limited muted indigo/olive/ochre, local pale accents, partially disappearing edges. Simple large readable silhouettes at small card scale, NOT delicate grey smoke, not shiny rendered objects, no wireframe diagram, no thin magic circles. POWERS are single intangible supernatural sigils/negative spaces; ACTIVITIES are 3-5 marks relating by convergence, repetition, exchange, interruption. RELICS are identifiable painted items. Never make every subject a sculpted emblem: no rock runes, extrusions, bevels, pedestals, shadows, metallic edge lights. No physical paper in activities. Different silhouettes for EACH subject. No human faces or actual readable writing. Keep brushwork simple like reference rather than detailed realism. Ordered left to right then top to bottom:\nRow1 POWERS: listening (asymmetric broken concentric sound waves dissolving); dream (skewed dark oval in blue-violet pigment); oracle (three diverging irregular pale prophetic strokes); bestow (small pale mark descending into larger dark open crescent).\nRow2 POWERS: appoint (one upright blunt glyph bearing a small crownlike bifurcation, not literal crown object); sacrifice (red-ochre thick severed stroke dissolving upward); breach (vertical dark tear in pale pigment); seed (branching dark growth mark inside a pale seedlike stain).\nRow3 POWERS: anchor (three heavy descending strokes converging into a rooted pointed symbol, intangible); veil (dark void partially covered by disconnected translucent curves); transfer (two interlocking displaced broken crescents); manifest (large asymmetric radiating tear, pale center, black interruptions).\nRow4 ACTIVITIES: private devotion (three small bowed brush marks converging to empty region); joint work (four interlocking separated ochre marks); secret gathering (four different strokes converging into an empty place); calendar rite (five irregular timed repeated marks around an OPEN broken arc).\nRow5 ACTIVITIES: study records (three repeated changing glyph impressions in a staggered path, no pages); keeping calendar (five broad uneven short registers accumulating notches, not a list); ritual teaching (one large glyph echoes into two smaller off-axis glyphs); memory circle (three distinct traces sharing a missing center, not a medallion).\nRow6 ACTIVITIES: memory practice (repeated impression with one progressively surviving notch); dissent practice (three aligned symbols with fourth displaced in violet interruption); pact (two distinct glyph groups lean toward a shared pale stroke); reciprocal covenant (two opposed loose clusters, exchanged ochre/pale traces).",
+    "Create a PRODUCTION illustration atlas continuing the selected B occult gouache style in the reference. EXACTLY 4 columns x 6 rows of separate square images, 1024x1536 output, 256px each cell. No grid, borders, labels, letters, text, UI or card frames. Every subject isolated within its cell with 15% dark margin. Near-black #070e12 backdrop. Reference is STYLE only: broad irregular layered opaque paint patches, limited muted indigo/olive/ochre, local pale accents, partially disappearing edges. Simple large readable silhouettes at small card scale, NOT delicate grey smoke, not shiny rendered objects, no wireframe diagram, no thin magic circles. POWERS are single intangible supernatural sigils/negative spaces; ACTIVITIES are 3-5 marks relating by convergence, repetition, exchange, interruption. RELICS are identifiable painted items. Never make every subject a sculpted emblem: no rock runes, extrusions, bevels, pedestals, shadows, metallic edge lights. No physical paper in activities. Different silhouettes for EACH subject. No human faces or actual readable writing. Keep brushwork simple like reference rather than detailed realism. Ordered left to right then top to bottom:\nRow1 ACTIVITIES: axiom probe (three tentative marks approaching a dark boundary); axiom recheck (same blunt glyph repeated either side of gap with a small changed notch); axiom repeat (four short repeated footprints of abstract ink in a clear rhythm); network exchange (four paired clusters exchanging broad pigment traces, no line diagram).\nRow2 RELICS: dream bell (aged ochre bell, dark mouth and clapper, purple tie); witness lens (a cracked dark-blue glass disk in simple old bronze handle, painterly physical game icon); hollow seal (small dark carved seal with ochre rubbed stamp base, physical item); heretical scripture (open dark oxblood book, broad ash page planes and violet stain).\nRow3 RELICS and resistance: root nail (long bent rust-dark ritual nail with coarse notched head, tangible); last ember (small charred ember held within broken dull bronze cup, tiny pale amber core); repair barrier (two broad opposing blue-ash strokes reconnect over a dark fissure, abstract); purify corruption (ochre wash pushes violet blot to dispersed flecks, abstract).\nRow4 RESISTANCE: trace (three increasingly distinct broken imprint marks leading toward a hooked dark sign); seize (two large ochre abstract hooked strokes close around small dark void); raid (three slanted blunt red-grey slash marks interrupt scattered pale glyphs); exclude (asymmetric broken glyph erased on one side by dark pigment).\nRow5 ACTIONS: upkeep (three descending pale strokes reinforced by shorter ochre mark); unbind (two severed joined loop marks recoil apart); recover (small ochre sign folds inward into large indigo crescent); disassemble (one strong glyph separates into three readable pieces).\nRow6 ACTIONS: wait (two suspended curved ash strokes with tiny trailing pigment); event (irregular ochre fracture revealing violet trace, singular sign); cult order (three small glyphs arranged beneath a broad directional sweep); carry (small ochre physical wrapped relic bundle tied with purple cord, iconic not sculptural)."
+  ],
+  "atlases": [
+    "core.png",
+    "extra.png"
+  ],
+  "cell": [
+    256,
+    256
+  ],
+  "row_origins": {
+    "core": [
+      0,
+      248,
+      500,
+      736,
+      976,
+      1220
+    ],
+    "extra": [
+      0,
+      256,
+      512,
+      770,
+      1002,
+      1240
+    ]
+  },
+  "note": "Inspected blank gutters determine square region starts. Semantic order is Library.CORE / EXTRA; six Library.SAMPLES use original b-refined 512px art. Imported Texture2D supports packaged resources. Existing rules/data untouched."
+}

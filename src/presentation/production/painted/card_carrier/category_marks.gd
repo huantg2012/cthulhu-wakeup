@@ -101,20 +101,21 @@ func _draw() -> void:
 	for point: Vector2 in normalized:
 		points.append(origin + point * Vector2(26.0, 46.0))
 	draw_colored_polygon(points, Color(_colour, 0.96))
-	# A lifted card reveals the complete shoulder vertically even when its
-	# horizontal sliver is narrow. Fade the print in with that motion; the
-	# unchanged sibling overlap still supplies the actual physical occlusion.
-	var text_visibility := 1.0 if _side == 0 else maxf(
-		smoothstep(19.0, 23.0, _exposed), smoothstep(0.12, 0.72, _peek_amount))
+	# Fit solid ink into the visible left edge instead of erasing it at a
+	# density threshold. Keep this layout stable throughout the lift; siblings
+	# supply physical occlusion and uncover both characters as the card rises.
+	# Below a readable glyph width we retain real ink, rather than shrinking
+	# it indefinitely or pretending that every resting sliver remains legible.
+	var print_width := 26.0 if _side == 0 else clampf(_exposed - 4.0, 13.0, 26.0)
+	var font_size := int(clampf(floorf(print_width - 1.0), 12.0, 14.0))
 	var font: Font = Paint.fonts().body
 	var label: String = info(_category_id).label
 	var ink := _contrasting_ink()
-	ink.a *= text_visibility
 	for index: int in mini(2, label.length()):
 		var character := label.substr(index, 1)
-		var width := font.get_string_size(character, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x
-		draw_string(font, origin + Vector2((26.0 - width) * 0.5, 18.0 + 18.0 * float(index)),
-			character, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, ink)
+		var width := font.get_string_size(character, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size).x
+		draw_string(font, origin + Vector2((print_width - width) * 0.5, 18.0 + 18.0 * float(index)),
+			character, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size, ink)
 
 
 func _contrasting_ink() -> Color:

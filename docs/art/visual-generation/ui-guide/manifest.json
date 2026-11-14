@@ -1,6 +1,6 @@
 {
   "schema": "cthulhu-ui-visual-guide/1",
-  "updated": "2026-11-13",
+  "updated": "2026-11-14",
   "canonical_standard": "docs/art/visual-generation/ui-art-standard.md",
   "approved_baseline": "docs/art/visual-generation/ui-approved-baseline.json",
   "status_rule": "已批准图像 ≠ 每个代码状态已批准；衍生样张不得自动升为母版。",
@@ -180,6 +180,22 @@
       ],
       "not_for": "不作为制作人已批准母版；不证明本次真实发生了新权能解锁。",
       "image_sha256": "f8e0560f000f6d313df24c2f9dd98638878d5a7319e2f98dcb92feb31a136c1f"
+    },
+    {
+      "id": "D01",
+      "image": "../production-evidence/dice-resolution/result.png",
+      "title": "刻骨掷骰：真实落点与实际后果",
+      "status": "正式接入衍生·待制作人复审",
+      "rules": "A17 / dice-resolution-contract",
+      "caption": "seed 5 真实新局祈求：骰点 7，上限 64，深刻成功；来源牌与完整手牌仍在原桌面。",
+      "provenance": "1920×1080 原生 Godot；真实 Session 提交，不改骰流与规则。动态另见 A17。",
+      "sources": [
+        "tools/dice-presentation/native_probe.gd",
+        "src/presentation/production/dice/presentation.gd",
+        "src/presentation/production/dice/dice_pair.gd"
+      ],
+      "not_for": "不代表制作人审美通过、成功终局或全部窗口尺寸已经实走。 图中旧“代价”栏已移除，当前字段见 A17 的修补后实机。",
+      "image_sha256": "ffcffd0b4a9a3d02a26ac0fa384326b7ac78c3e8261f140e398ac110d44f004a"
     }
   ],
   "references": [
@@ -198,9 +214,9 @@
       "title": "现行交互合同",
       "status": "已核对·功能合同",
       "path": "docs/specs/ui-interaction.md",
-      "checked_date": "2026-11-13",
-      "sha256": "7a2ab1dd36bc103ac06bb2d8116eecbdcaa589beda3cc3b8dd688981f6cc8ab2",
-      "allowed": "worldplay-card-study（含预告独立分类／诸界摘要定位、DEC-068固定单向牌堆/抬牌/拖放、轮初回响及立绘准备边界）、locked-interaction-production至current-ui-contract-end及正式交互精修原则；其他现行机制按对应功能引用。",
+      "checked_date": "2026-11-14",
+      "sha256": "b7c93a91068ced4106c430205b81bf277159f50e8eec4043d77900f09e36c902",
+      "allowed": "dice-resolution-contract（真实回执掷骰、批次回看及交接）；worldplay-card-study（含祈求三态与真实检定回执、预告独立分类／诸界摘要定位、DEC-068固定单向牌堆/抬牌/拖放、轮初回响及立绘准备边界）、locked-interaction-production至current-ui-contract-end及正式交互精修原则；其他现行机制按对应功能引用。",
       "excluded": "旧echoes-home、F5/D4/V2/V6美术指令、旧tokens、旧视觉待选状态。旧强制视觉引用已纠正。"
     },
     {
@@ -268,9 +284,9 @@
       "title": "当前开工路由",
       "status": "已核对·最新段优先",
       "path": "docs/progress/stage-priorities.md",
-      "checked_date": "2026-11-13",
-      "sha256": "2722d731f2d5985b0df3262c1984e2eb87f9dc78a9f7394869e08b8378895af1",
-      "allowed": "当前游戏 UI 执行路由与持续禁令；包括反制预告卡、诸界摘要定位的制作人授权。",
+      "checked_date": "2026-11-14",
+      "sha256": "6250033dd0cc31a6bbe67831f3acaf35d9ec24f242e72ead3bb75487571e53d9",
+      "allowed": "当前游戏 UI 执行路由与持续禁令；包括反制预告、诸界摘要定位及全卡片字段分色、祈求三态精修及共享掷骰演出的制作人授权。",
       "excluded": "后续历史路由的旧视觉规范入口、旧待审/待选状态。"
     },
     {

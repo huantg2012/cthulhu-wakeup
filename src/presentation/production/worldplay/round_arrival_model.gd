@@ -1,5 +1,6 @@
 extends RefCounted
 ## A presentation ledger of public identities, never a gameplay participant.
+const Fields = preload("res://src/presentation/production/painted/card_fields.gd")
 const Actions = preload("res://src/presentation/production/worldplay/action_model.gd")
 var turn := -1
 var seen_people := {}
@@ -38,9 +39,9 @@ func observe(session: RefCounted, projection: Dictionary) -> bool:
 		var actor_name: String = session.object_title(actor) if not actor.is_empty() else ""
 		var story := "待裁决 · " + " / ".join(names)
 		if not actor_name.is_empty(): story = "涉及 · " + actor_name + "\n" + story
-		_add({"id": event.key, "title": event.title, "type": "action", "group": "event", "kind": "event",
+		_add({"id": event.key, "title": event.title, "type": "action", "group": "event", "kind": "event", "content_id":event.descriptor.get("content_id",""),
 			"detail": actor_name if not actor_name.is_empty() else "本轮待决", "domain": place, "arrival": "event", "eyebrow": "世界异动 · 需要裁决",
-			"story": story, "guidance": "进入本轮后，先处理世界事件。此处只作预告，不选择结果。"})
+			"story": story, "story_fields":([Fields.field("涉及",actor_name),"\n"] if not actor_name.is_empty() else [])+[Fields.field("待裁决"," / ".join(names))], "guidance": "进入本轮后，先处理世界事件。此处只作预告，不选择结果。"})
 	var petitioners := {}
 	for prayer: Dictionary in projection.get("prayers", []):
 		if prayer.status != "open": continue
@@ -65,7 +66,7 @@ func observe(session: RefCounted, projection: Dictionary) -> bool:
 		_add({"id": "person/"+str(person.id), "title": person.title, "type": "object", "group": "person", "kind": "person",
 			"subject": person, "domain": person.get("domain", ""), "detail": role,
 			"arrival": "person", "eyebrow": "新知人物 · " + ("信徒" if person.get("bound_member", false) else "已知联系"),
-			"story": "身份已进入你的视野。\n" + role,
+			"story": "身份已进入你的视野。\n" + role, "story_fields":["身份已进入你的视野。\n",Fields.field("身份",role)],
 			"guidance": "人物牌可查阅其已知身份与关系。已知联系并不因此成为信徒。"})
 	for action: Dictionary in action_cards:
 		var fresh: bool = not seen_actions.has(action.id)
@@ -77,6 +78,7 @@ func observe(session: RefCounted, projection: Dictionary) -> bool:
 		item.eyebrow = ("初醒权能" if first else "新启权能") if power else ("初始行为" if first else "新添行为")
 		item.detail = item.eyebrow
 		item.story = str(item.get("effect", ""))
+		if item.story.begins_with("成功时 · "): item.story_fields = [Fields.field("成功时",item.story.trim_prefix("成功时 · "))]
 		item.guidance = "已纳入牌桌。施行时仍须选择对象，并核对条件与代价。"
 		_add(item)
 	return not cards.is_empty()

@@ -185,7 +185,6 @@ func _fact_line(host, fact: Dictionary, old: Dictionary, current: Dictionary) ->
 		if not actual.is_empty(): return "\n".join(actual)
 		if data.get("outcome") in ["deep", "success", "deterministic"]:
 			var summary: String = str(data.get("effect", ""))
-			if not str(data.get("tradeoff", "")).is_empty(): summary += "\n" + str(data.tradeoff)
 			if int(data.get("maintenance_remaining", 0)) > 0: summary += "\n约定 · 还需 %d 轮" % int(data.maintenance_remaining)
 			return summary
 		return ""

@@ -1,0 +1,22 @@
+Real new Session, seed 5, native 30 FPS frame capture
+$ /Applications/Godot.app/Contents/MacOS/Godot --path . --fixed-fps 30 --script tools/dice-presentation/native_probe.gd -- /tmp/dice-record 5 --record
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+DICE_NATIVE_OK 27 seed=5 roll=7 target=64 outcome=deep recorded=true
+
+Real new Session, seed 1, acceleration during motion
+$ /Applications/Godot.app/Contents/MacOS/Godot --path . --script tools/dice-presentation/native_probe.gd -- /tmp/dice-failure 1 --accelerate
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+DICE_NATIVE_OK 28 seed=1 roll=51 target=50 outcome=failure recorded=false
+
+Standalone procedural art component; mapping and native frames
+$ /Applications/Godot.app/Contents/MacOS/Godot --path . --script tools/dice-presentation/art_probe.gd -- /tmp/dice-art
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+DICE_ART_OK: 100 face mappings and native frames
+
+WebP is encoded from 85 native PNG frames, fixed 30 FPS + 2s final hold. No audio track. Not a performance benchmark.

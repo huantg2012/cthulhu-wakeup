@@ -1,0 +1,7 @@
+$ /Applications/Godot.app/Contents/MacOS/Godot --headless --path . --script tools/dice-presentation/receipt_probe.gd
+Godot Engine v4.7.2.stable.official.ed1daf0bf
+DICE_RECEIPT_OK 26
+Exit code: 0
+
+$ /Applications/Godot.app/Contents/MacOS/Godot --headless --path . --script src/presentation/production/worldplay/view.gd --check-only
+Exit code: 0

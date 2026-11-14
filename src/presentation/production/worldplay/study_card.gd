@@ -3,6 +3,7 @@ extends Button
 const Paint = preload("res://src/presentation/production/painted/theme.gd")
 const Hover = preload("res://src/presentation/production/painted/card_hover.gd")
 const Carrier = preload("res://src/presentation/production/painted/card_carrier/card.gd")
+const FieldText = preload("res://src/presentation/production/painted/card_fields.gd")
 const CARRIER_STOCK = preload("res://assets/ui/cards/continuous-stock.png")
 const STOCK := {
 	"event": Color(1.82, 0.89, 0.83),  # 砖赭
@@ -23,12 +24,24 @@ var selected := false:
 		if is_instance_valid(carrier): carrier.set_selected(value)
 		queue_redraw()
 var payload: Dictionary = {}
+var tooltip_parts: Array = []
 var hover_enabled := true
 var _hover := Hover.new()
 var _stock: StyleBoxTexture
 var carrier: Control
 static var _paper_backings: Dictionary = {}
 var _backing_key := ""
+
+func _make_custom_tooltip(for_text: String) -> Object:
+	var box := VBoxContainer.new()
+	box.custom_minimum_size.x = 390
+	box.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var words := FieldText.line(box,tooltip_parts if not tooltip_parts.is_empty() else [for_text],14)
+	# Tooltip sizing happens before the container's first layout. Give the rich
+	# text its wrapping width now, so its initial height isn't one word per line.
+	words.custom_minimum_size.x = 390
+	words.size.x = 390
+	return box
 
 ## The Button retains gameplay input; the carrier owns the continuous print.
 ## Every physical card uses this carrier; empty slots omit its category/copy.

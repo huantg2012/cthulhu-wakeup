@@ -144,8 +144,11 @@ func _world_fan(stage: Control, worlds: Array) -> void:
 			"tier_title": {"planet": "星球", "system": "星系", "cosmic": "宇宙"}.get(world.get("tier", ""), "层级未明"),
 			"art_recipe": host._portraits.recipe("world", host.session.visual_seed(), world, world)}
 		var metrics: Array[String] = []
+		var metric_fields: Array = []
 		for field: String in ["barrier", "pollution", "alert", "stability"]:
 			metrics.append("%s%s" % [host._views.WORLD_METRICS[field], host._views.metric_display(world, field).value])
+			metric_fields.append({"caption":host._views.WORLD_METRICS[field],"value":host._views.metric_display(world, field).value})
+		data.metric_fields = [[metric_fields[0],"  ",metric_fields[1]],[metric_fields[2],"  ",metric_fields[3]]]
 		data.metrics = ["  ".join(metrics.slice(0, 2)), "  ".join(metrics.slice(2, 4))]
 		var card := Card.new()
 		card.build(host._ui, data, cards.size(), host._size(0), host._portraits)

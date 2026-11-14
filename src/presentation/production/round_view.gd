@@ -1,4 +1,5 @@
 extends Control
+const Fields = preload("res://src/presentation/production/painted/card_fields.gd")
 ## Production view. Decisions and persistence go through Session.
 const Session = preload("res://src/presentation/session.gd")
 const TaskView = preload("res://src/presentation/production/task_view.gd")
@@ -18,6 +19,8 @@ const WindowArt = preload("res://src/presentation/production/painted/object_wind
 const PortraitCarrier = preload("res://src/presentation/production/painted/portrait_carrier.gd")
 const Portraits = preload("res://src/presentation/production/painted/object_portraits.gd")
 const PortraitTransition = preload("res://src/presentation/production/painted/portrait_transition.gd")
+const DicePresentation = preload("res://src/presentation/production/dice/presentation.gd")
+const DiceResult = preload("res://src/presentation/production/dice/result_model.gd")
 const VIEW := Vector2(1280, 720)
 const DISPLAY_SETTINGS := "user://echoes-display.cfg"
 const SAVE_DIRECTORY := "user://production-ui-campaigns"
@@ -42,6 +45,12 @@ var _busy := false
 var _portraits: Node
 var _portrait_transition: CanvasLayer
 var _art_boundary_pending := false
+var _dice: CanvasLayer
+var _dice_session: RefCounted
+var _dice_context: Dictionary = {}
+var _dice_before: Dictionary = {}
+var _dice_boundary_pending := false
+var _dice_return := Callable()
 var _environment: Control
 var _atmosphere: Control
 var _stage: Control
@@ -60,6 +69,7 @@ var _world_id := ""
 var _world_body: Control
 var _world_buttons: Dictionary = {}
 var _receipt: Array[String] = []
+var _receipt_checks: Array = []
 var _receipt_requirements: Array = []
 var _resource_delta := ""
 var _notice: Label
@@ -81,6 +91,10 @@ func _ready() -> void:
 	_motion.params = {"scene_reveal_s": 0.32, "variant_s": 0.16, "related_s": 0.18, "opening_exit_s": 0.22}
 	add_child(_motion)
 	_ui = UI.new(null, func() -> bool: return _keyboard)
+	_dice = DicePresentation.new()
+	add_child(_dice)
+	_dice.finished.connect(_dice_finished)
+	_connect_dice_session()
 	_portraits = Portraits.new()
 	_portraits.name = "ObjectPortraits"
 	add_child(_portraits)
@@ -98,6 +112,56 @@ func _ready() -> void:
 	_environment.add_child(_atmosphere)
 	_refresh()
 	_show_menu()
+
+func _connect_dice_session() -> void:
+	if _dice_session == session: return
+	if _dice_session != null and _dice_session.checks_committed.is_connected(_on_checks_committed):
+		_dice_session.checks_committed.disconnect(_on_checks_committed)
+	_dice_session = session
+	if _dice_session != null:
+		_dice_session.checks_committed.connect(_on_checks_committed)
+
+func _dice_active() -> bool:
+	return is_instance_valid(_dice) and _dice.is_active()
+
+func _set_dice_context(caption: String, card: Dictionary = {}) -> void:
+	_connect_dice_session()
+	if not _dice_active(): _dice_return = Callable()
+	_dice_context = {"title":caption,"card":card.duplicate(true)}
+	# Each actual command gets its own public baseline, including internal
+	# phases with no dice between two checked phases of a round transition.
+	_dice_before = session.project()
+
+func _set_dice_return(callback: Callable) -> void:
+	if _dice_active(): _dice_return = callback
+
+func _on_checks_committed(response: Dictionary) -> void:
+	var after: Dictionary = session.project()
+	var before: Dictionary = _dice_before if not _dice_before.is_empty() else projection
+	var batch: Dictionary = DiceResult.build(self,response,before,after,_dice_context)
+	# Context belongs to this committed command, not the next signal. Each
+	# internal phase captures a fresh baseline before it submits.
+	_dice_context = {}
+	_dice_before = {}
+	if batch.is_empty(): return
+	_dice.enqueue(self,batch)
+	_update_atmosphere()
+
+func _dice_finished() -> void:
+	var continuation := _dice_return
+	_dice_return = Callable()
+	_update_atmosphere()
+	if not _dice_boundary_pending:
+		# The performance already displayed the complete receipt. Return to the
+		# source instead of demanding a second dismissal of the hidden result.
+		if continuation.is_valid(): continuation.call()
+		return
+	_dice_boundary_pending = false
+	# A phase transition takes precedence over an old action's return route.
+	if _portraits.preparing:
+		_art_boundary_pending = true
+	else:
+		_enter_boundary.call_deferred()
 
 func _apply_window_mode(fullscreen: bool) -> void:
 	if DisplayServer.get_name() == "headless": return
@@ -196,7 +260,10 @@ func _update_atmosphere() -> void:
 		Layout.box(Rect2(40, 797, 494, 66)), # global tools
 		Layout.box(Rect2(1230, 797, 332, 66)), # history and phase action
 	]
-	if not _dialog.is_empty():
+	if _dice_active():
+		profile = Atmosphere.Profile.VEILED
+		protected.append(Layout.box(Layout.SCENE))
+	elif not _dialog.is_empty():
 		profile = Atmosphere.Profile.VEILED if _dialog in [
 			"menu", "new_game", "saved_games", "settings", "seal", "switch",
 			"receipt", "event_review", "event_context", "prayer_person", "prayer_confirm",
@@ -213,9 +280,10 @@ func _update_atmosphere() -> void:
 	_atmosphere.set_profile(profile, protected)
 	if is_instance_valid(_stage):
 		var fan := _stage.get_node_or_null("WorldFan")
-		if fan != null: fan.set_blocked(_portraits.preparing or not _dialog.is_empty())
+		if fan != null: fan.set_blocked(_dice_active() or _portraits.preparing or not _dialog.is_empty())
 
 func _refresh() -> void:
+	_connect_dice_session()
 	projection = session.project()
 	_prepare_portraits()
 	var return_path := NodePath()
@@ -233,6 +301,7 @@ func _refresh() -> void:
 		_build_dock()
 	if not return_path.is_empty(): _return_focus = _stage.get_node_or_null(return_path) as Control
 	_update_atmosphere()
+	if _dice_active(): _dice.cover_current(self)
 
 func _prepare_portraits() -> void:
 	if not projection.get("active", false): return
@@ -266,6 +335,11 @@ func _prepare_portraits() -> void:
 
 func _finish_portraits() -> void:
 	_portrait_transition.hide()
+	if _dice_active():
+		_dice_boundary_pending = _dice_boundary_pending or _art_boundary_pending
+		_art_boundary_pending = false
+		_update_atmosphere()
+		return
 	if _art_boundary_pending:
 		_art_boundary_pending = false
 		_enter_boundary.call_deferred()
@@ -421,7 +495,7 @@ func _pending_events() -> Array:
 	return projection.get("events", []).filter(func(event: Dictionary) -> bool: return not event.resolved)
 
 func _phase_intent() -> void:
-	if _busy: return
+	if _busy or _dice_active(): return
 	_close_inline()
 	if is_instance_valid(_surface): return
 	match str(projection.get("phase", "")):
@@ -672,9 +746,10 @@ func _event_options(choices: Array, selected: String) -> void:
 		words.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		button.add_child(words)
 		_line(words, str(details["选项名称"]), 15)
-		_line(words, note, 12, UI.MUTED)
+		Fields.line(words,[Fields.field("消耗","%s 信仰" % details["信仰费用"]),"\n",Fields.field("后果",details["选择后果"])],_size(14))
+		if not row.available and row.fields.is_empty(): _line(words,session.explain_error(str(row.preview.get("error",""))),14,UI.RISK)
 		var irreversible := str(details.get("不可逆代价", ""))
-		if not irreversible.is_empty(): _line(words, irreversible, 12, UI.GOLD)
+		if not irreversible.is_empty(): Fields.line(words,[Fields.field("不可逆代价",irreversible)],_size(14))
 
 func _show_event_context() -> void:
 	if projection.get("phase") != "events": return
@@ -747,9 +822,9 @@ func _review_event(row: Dictionary, reset: bool) -> void:
 			if selected and not reset: choice.grab_focus()
 		if not selection.has(field.key): complete = false
 	var preview: Dictionary = session.preview_action(row.key, selection) if complete else {}
-	_reference(_surface, "EventCost", "支付 %s 信仰 · 确定结算" % preview.get("preview", {}).get("faith_cost", row.details["信仰费用"]), Rect2(565, 538, 410, 44), 17, UI.GOLD)
-	_line(_body, str(row.details["选择后果"]))
-	_line(_body, str(row.details["不可逆代价"]), 17, UI.RISK)
+	Fields.at(_surface,"EventCost",[Fields.field("支付","%s 信仰" % preview.get("preview",{}).get("faith_cost",row.details["信仰费用"]))," · 确定结算"],Layout.box(Rect2(565,538,410,44)),_size(17))
+	Fields.row(_body,"选择后果",str(row.details["选择后果"]),_size(17))
+	Fields.row(_body,"不可逆代价",str(row.details["不可逆代价"]),_size(17))
 	if complete and not preview.get("ok", false):
 		_line(_body, session.explain_error(str(preview.get("error", ""))), 17, UI.RISK)
 	elif not complete:
@@ -763,9 +838,10 @@ func _review_event(row: Dictionary, reset: bool) -> void:
 	_tasks.scan_candidates()
 
 func _commit_event(row: Dictionary, selection: Dictionary, expected_turn: int) -> void:
-	if _busy or _dialog != "event_review" or projection.get("turn") != expected_turn or projection.get("phase") != "events": return
+	if _busy or _dice_active() or _dialog != "event_review" or projection.get("turn") != expected_turn or projection.get("phase") != "events": return
 	_busy = true
 	var before := projection
+	_set_dice_context(str(row.details["选项名称"]))
 	var result: Dictionary = session.execute_action(row.key, selection, true)
 	_busy = false
 	if not result.get("ok", false):
@@ -776,6 +852,7 @@ func _commit_event(row: Dictionary, selection: Dictionary, expected_turn: int) -
 	_event_key = ""
 	var after: Dictionary = session.project()
 	_receipt_requirements = []
+	_receipt_checks = result.get("result", {}).get("checks", []).duplicate(true)
 	_receipt = _feedback.build(self, result, before, after, row.details["选项名称"])
 	_resource_delta = _feedback.resource_summary(before, after)
 	_set_notice(result)
@@ -818,21 +895,26 @@ func _commit_end(expected_turn: int) -> void:
 	_advance(true)
 
 func _advance(confirmed := false, rest := false) -> void:
-	if _busy: return
+	if _busy or _dice_active(): return
 	# Session's finish_events can resolve defaults. B01 calls it only when all
 	# actual decisions are already resolved, including an empty opening queue.
 	if projection.get("phase") == "events" and not _pending_events().is_empty(): return
 	_busy = true
 	var before := projection
+	var dice_title := "第 %s 轮 · 轮末检定" % before.get("turn", "")
+	_set_dice_context(dice_title)
 	var result: Dictionary = session.rest(true) if rest else session.progress(confirmed)
 	var facts: Array = result.get("facts", []).duplicate()
+	var checks: Array = result.get("result", {}).get("checks", []).duplicate(true)
 	var cult_records: Array = result.get("cult_settlement", []).duplicate()
 	var save_failed: bool = _save_warning(result)
 	var after: Dictionary = session.project()
 	var steps := 0
 	while result.get("ok", false) and str(after.get("phase", "")) in INTERNAL_PHASES and steps < INTERNAL_PHASES.size():
+		_set_dice_context(dice_title)
 		result = session.progress()
 		facts.append_array(result.get("facts", []))
+		checks.append_array(result.get("result", {}).get("checks", []))
 		cult_records.append_array(result.get("cult_settlement", []))
 		save_failed = save_failed or _save_warning(result)
 		after = session.project()
@@ -844,6 +926,8 @@ func _advance(confirmed := false, rest := false) -> void:
 		var caption := "敛息 · 第 %s 轮结算" % before.turn if rest else ("第 %s 轮结算" % before.turn if confirmed else "已进入第 %s 轮" % after.turn)
 		if not result.get("ok", false): caption = "第 %s 轮 · 已实际发生的变化" % before.turn
 		_receipt_requirements = []
+		_receipt_checks = checks
+		# A last check's failure is not a failure of the entire turn settlement.
 		_receipt = _feedback.build(self, {"ok": true, "facts": facts, "cult_settlement": cult_records}, before, after, caption)
 		_world_management.record_settlement(cult_records)
 		_resource_delta = _feedback.resource_summary(before, after)
@@ -855,6 +939,9 @@ func _advance(confirmed := false, rest := false) -> void:
 	if result.get("ok", false): _enter_boundary()
 
 func _enter_boundary() -> void:
+	if _dice_active():
+		_dice_boundary_pending = true
+		return
 	if _portraits.preparing:
 		_art_boundary_pending = true
 		return
@@ -888,6 +975,10 @@ func _show_receipt(on_return := Callable(), contact := "", anchor_receipt := fal
 	else:
 		_open_surface("receipt", "近况 · 实际结果", _receipt[0])
 	_actions.RequirementList.render(_body, _receipt_requirements, _size(16) > 16, _ui)
+	for index: int in _receipt_checks.size():
+		var check: Dictionary = _receipt_checks[index]
+		if int(check.get("roll", 0)) <= 0: continue
+		Fields.line(_body,[Fields.field("掷骰" if _receipt_checks.size()==1 else "检定 %d" % (index+1),str(check.roll)+" 点"),"    ",Fields.field("成功条件","骰点 ≤ %s" % check.get("probability",check.get("success_target",0)))],_size(16))
 	for line: String in _receipt.slice(1): _line(_body, line)
 	if _receipt.size() == 1: _line(_body, "当前可见资源与对象状态没有变化。")
 	if anchor_receipt: _line(_body, "本处供奉状态可在机构查看。全局顺序在底栏「供奉与收支」安排。", 14, UI.MUTED)
@@ -1022,6 +1113,7 @@ func _seal() -> void:
 		return
 	if _save_warning(result): _notice_text = "自动保存未完成，请从菜单手动保存。"
 	_receipt.clear()
+	_receipt_checks.clear()
 	_receipt_requirements.clear()
 	_refresh()
 	_enter_boundary()
@@ -1114,7 +1206,14 @@ func _open_campaign(result: Dictionary) -> void:
 	if not result.get("ok", false):
 		_show_menu()
 		return
+	_dice.reset()
+	_dice_context = {}
+	_dice_before = {}
+	_dice_boundary_pending = false
+	_dice_return = Callable()
+	_connect_dice_session()
 	_receipt.clear()
+	_receipt_checks.clear()
 	_art_boundary_pending = false
 	_receipt_requirements.clear()
 	_resource_delta = ""
@@ -1182,6 +1281,9 @@ func _can_focus(control: Control) -> bool:
 	return control.is_visible_in_tree() and control.focus_mode == Control.FOCUS_ALL and (not control is Button or not control.disabled)
 
 func _input(event: InputEvent) -> void:
+	if _dice_active():
+		_dice.handle_input(event)
+		return
 	if _portraits.preparing:
 		if event is InputEventKey: get_viewport().set_input_as_handled()
 		return

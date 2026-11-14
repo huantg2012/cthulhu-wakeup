@@ -2,6 +2,7 @@ extends Control
 ## Continuous carrier with one selected left shoulder and one left side name.
 ## Parent controllers own overlap, movement, drag submission and game state.
 const Paint = preload("res://src/presentation/production/painted/theme.gd")
+const Fields = preload("res://src/presentation/production/painted/card_fields.gd")
 const Surface = preload("res://src/presentation/production/painted/card_carrier/stock_surface.gdshader")
 const Blend = preload("res://src/presentation/production/painted/card_carrier/art_blend.gdshader")
 const CategoryMarks = preload("res://src/presentation/production/painted/card_carrier/category_marks.gd")
@@ -39,10 +40,10 @@ var _selection_mark: Control
 var art_status: Label
 var _header: Label
 var _heading: Label
-var _information_one: Label
-var _information_two: Label
+var _information_one: RichTextLabel
+var _information_two: RichTextLabel
 var _left_name: Label
-var _copy: Array[Label] = []
+var _copy: Array[Control] = []
 
 
 ## The four original arguments remain valid. Optional host overrides include
@@ -154,8 +155,8 @@ func _ensure_nodes() -> void:
 	add_child(_marks)
 	_header = _new_label("Category")
 	_heading = _new_label("Title", true)
-	_information_one = _new_label("InformationOne")
-	_information_two = _new_label("InformationTwo")
+	_information_one = Fields.at(self,"InformationOne",[],Rect2(),14,true)
+	_information_two = Fields.at(self,"InformationTwo",[],Rect2(),14,true)
 	_copy = [_header, _heading, _information_one, _information_two]
 	_left_name = _new_label("LeftSideName")
 	_left_name.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -214,12 +215,11 @@ func _layout_copy() -> void:
 	_heading.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART if long_title else TextServer.AUTOWRAP_OFF
 	_set_label_box(_heading, Rect2(title_left, title_y, title_width, title_height), title_px)
 	_heading.add_theme_color_override("font_color", INK)
-	_information_one.text = line1
-	_information_one.max_lines_visible = 2 if long_info else 1
+	_information_one.content(_sample.get("line1_fields",[line1]),text_px,true)
 	_information_one.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART if long_info else TextServer.AUTOWRAP_OFF
 	_set_label_box(_information_one, Rect2(margin, info_y, title_width, maxf(info_height, float(text_px + 6)) if _identity_variant == 0 else info_height), text_px)
 	_information_one.add_theme_color_override("font_color", DETAIL)
-	_information_two.text = str(_sample.get("line2", ""))
+	_information_two.content(_sample.get("line2_fields",[str(_sample.get("line2", ""))]),text_px,true)
 	var second_y := info_y + (float(text_px + 7) if _identity_variant == 0 else info_height + 3.0)
 	_information_two.visible = not _information_two.text.is_empty() and second_y + body_row_height <= size.y - 5.0
 	_set_label_box(_information_two, Rect2(margin, second_y, title_width, body_row_height), text_px)
@@ -233,7 +233,7 @@ func _layout_copy() -> void:
 	_left_name.text = "\n".join(characters)
 	_set_label_box(_left_name, Rect2(6.0, spine_y, 18.0, maxf(1.0, size.y - spine_y - 10.0)), 13)
 	if not bool(_options.get("show_copy", true)):
-		for label: Label in _copy: label.hide()
+		for label: Control in _copy: label.hide()
 
 
 func _new_label(label_name: String, heading := false) -> Label:
@@ -249,8 +249,8 @@ func _new_label(label_name: String, heading := false) -> Label:
 	return label
 
 
-func _set_label_box(label: Label, rect: Rect2, px: int) -> void:
-	label.add_theme_font_size_override("font_size", px)
+func _set_label_box(label: Control, rect: Rect2, px: int) -> void:
+	label.add_theme_font_size_override("normal_font_size" if label is RichTextLabel else "font_size", px)
 	label.position = rect.position
 	label.size = rect.size
 
@@ -301,7 +301,7 @@ func set_exposure(side: int, exposed: float) -> void:
 	# Exposure is a layout state, NOT an opacity. At 9 arrival cards the old
 	# smoothstep left 118px visible but erased 89% of every covered card's ink.
 	var reading := 1.0 if face_copy_visible(_side, _exposed) else 0.0
-	for label: Label in _copy:
+	for label: Control in _copy:
 		label.modulate.a = reading
 	_left_name.visible = _side != 0 and _exposed >= 23.0 and reading == 0.0
 	_left_name.modulate.a = 1.0

@@ -6,7 +6,7 @@ const Fan = preload("res://src/presentation/production/painted/card_fan.gd")
 const Attention = preload("res://src/presentation/production/painted/world_attention.gd")
 var _attention: Control
 var ordinal := 0
-var _metric_labels: Array[Label] = []
+var _metric_labels: Array[RichTextLabel] = []
 var art: TextureRect:
 	get: return carrier.art if is_instance_valid(carrier) else null
 
@@ -31,13 +31,11 @@ func build(controls: RefCounted, world: Dictionary, number: int, extra: int, por
 		"title_max_lines":1, "font_extra":extra})
 	# Dense public readings fit below the title without becoming a separate panel.
 	# They inherit the same exposure as the carrier's printed copy when stacked.
-	var body: Label = carrier.get_node("InformationOne")
-	body.add_theme_font_size_override("font_size",14 + extra)
+	var body: RichTextLabel = carrier.get_node("InformationOne")
+	body.add_theme_font_size_override("normal_font_size",14 + extra)
 	body.size.y = 38 + extra * 2
 	for i: int in world.metrics.size():
-		var line: Label = controls.label(carrier, "WorldMetrics%d" % i, world.metrics[i], Rect2(16, 341 + 20 * i, 228, 23), 14 + extra, Color("#302a29"))
-		line.clip_text = true
-		line.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+		var line: RichTextLabel = carrier.Fields.at(carrier,"WorldMetrics%d" % i,world.get("metric_fields",[])[i] if world.has("metric_fields") else [world.metrics[i]],Rect2(16,341+20*i,228,23),14+extra,true)
 		_metric_labels.append(line)
 	var note: Label = carrier.art_status
 	note.position = Vector2(28,120)
@@ -49,6 +47,8 @@ func build(controls: RefCounted, world: Dictionary, number: int, extra: int, por
 	portraits.bind(art,recipe,note)
 	adapt_portrait_backing(str(recipe.get("key","")),int(recipe.get("request",{}).get("style",-1)))
 	tooltip_text = str(world.title) + "\n" + str(world.status) + "\n" + "\n".join(world.metrics)
+	tooltip_parts = [str(world.title),"\n",str(world.status)]
+	for parts: Array in world.get("metric_fields",[]): tooltip_parts.append_array(["\n"]+parts)
 	_attention = Attention.new()
 	_attention.name = "WorldAttention"
 	_attention.size = size
@@ -65,5 +65,5 @@ func set_exposure(side: int, exposed: float) -> void:
 		_attention.queue_redraw()
 	# Extra world metrics follow the same shared reading state as all copy.
 	var reading := 1.0 if Carrier.face_copy_visible(side,exposed) else 0.0
-	for line: Label in _metric_labels:
+	for line: RichTextLabel in _metric_labels:
 		line.modulate.a = reading

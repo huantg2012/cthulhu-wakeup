@@ -458,10 +458,11 @@ func result_return_caption() -> String:
 
 func _respond(row: Dictionary, selection: Dictionary, confirmed: bool) -> void:
 	var expected := "prayer_confirm" if confirmed else "prayer_detail"
-	if host._busy or host._dialog != expected or row.is_empty() or row.key != _prayer.key + "/" + _draft().mode: return
+	if host._busy or host._dice_active() or host._dialog != expected or row.is_empty() or row.key != _prayer.key + "/" + _draft().mode: return
 	if not row.preview.get("ok", false) or not host._actions._missing_fields(row.fields, selection).is_empty(): return
 	host._busy = true
 	var before: Dictionary = host.projection
+	host._set_dice_context(str(row.title))
 	var result: Dictionary = host.session.execute_action(row.key, selection, confirmed)
 	host._busy = false
 	if result.get("confirmation", false):
@@ -486,6 +487,7 @@ func _respond(row: Dictionary, selection: Dictionary, confirmed: bool) -> void:
 	var after: Dictionary = host.session.project()
 	_drafts.erase(_prayer.id)
 	host._receipt_requirements = []
+	host._receipt_checks = result.get("result", {}).get("checks", []).duplicate(true)
 	host._receipt = host._feedback.build(host, result, before, after, row.title)
 	for check: Dictionary in result.get("result", {}).get("checks", []):
 		if int(check.get("roll", -1)) > 0:
@@ -502,3 +504,5 @@ func _respond(row: Dictionary, selection: Dictionary, confirmed: bool) -> void:
 		host._line(body, host._receipt[index], 20 if index == 0 else 17, UI.GOLD_HI if index == 0 else UI.BONE)
 	host._line(body, "本轮回应机会已用。", 16, UI.CYAN)
 	host._button(host._surface, "ClosePrayerResult", result_return_caption(), Layout.box(Rect2(1078, 594, 415, 44)), close).grab_focus()
+	host._set_dice_return(close)
+	if host._dice_active(): host._dice.cover_current(host)

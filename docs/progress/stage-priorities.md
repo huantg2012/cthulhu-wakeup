@@ -4,6 +4,14 @@
 
 ## 游戏 UI 执行路由
 
+**2026-11-14 非生成卡片立绘正式接入 B（DEC-069）：**制作人已授权“接入游戏，然后提交+push”。正式共享卡片入口默认使用 B，保留六张精修并铺齐权能／活动／圣物／预告／处置／事件语义。64 个目录条目复用 48 个可用主题；轮间回响、牌堆、查看区、选择器和图鉴共用缓存贴图，独立 PCK 资源已核对。原生成器、锁定卡壳、规则及存档保持。范围和新增图复审边界见 [接入记录](../art/visual-generation/card-illustration-study/README.md)。A／C 已退出；两项技能禁令持续。
+
+**2026-11-14 共享掷骰演出：**制作人授权为所有真实行动检定增加符合当前卡牌气氛的骰子运动、真实点数及实际后果。沿[共享掷骰合同](../specs/ui-interaction.md#dice-resolution-contract)与[美术 A17](../art/visual-generation/ui-art-standard.md#dice-art-contract)实施；提交一次，公开回执按序揭晓，轮末检定优先于回响和终局交接。现有规则／骰流／存档不变，确定性事件不加骰。全入口审计、代表实机及未验范围见[接入记录](../tasks/dice-presentation.md)；衍生演出待制作人复审，两项技能禁令持续。
+
+**2026-11-14 祈求牌精修：**制作人要求消除浏览／准备／结果三态的重复字段与控件；准备按 Esc 回回应选择，结果给真实骰点并用单一氛围化出口。按现行交互合同的“祈求三态”和美术 A08 实施；不改 D100 小点成功规则、组合祈求生成器或提交／存档语义。实机与未验范围见[本批记录](../tasks/worldplay-integration.md#prayer-flow-refinement)。
+
+**2026-11-14 字段显示统一：**制作人要求把预告卡“字段名单列并用强调色”的规则推广到所有卡片。执行按美术 A08 与交互合同“字段显示”，覆盖卡纸、查看执行区、输入槽及回响。字段与值结构化分开，长文沿原滚动区；名称和原话不自动拆分。交付范围及实机见[本批记录](../tasks/worldplay-integration.md#card-fields-delivery)。
+
 **2026-11-13 当前增量：反制预告卡与诸界定位。**制作人授权将当前反制计划卡牌化：世界牌堆紧接祈求，独立分类与肩签称「预告」，不是玩家行为；诸界锚点／祈求／反制预告摘要统一标出相关世界。按[当前交互合同](../specs/ui-interaction.md#worldplay-card-study)和美术 A06 增量实施，不改抵抗结算规则。实机与验收边界见[本批记录](../tasks/worldplay-integration.md#resistance-preview-delivery)。
 
 **2026-11-13 当前授权：卡面锁定，完整接入 Session。**制作人以[含厚度的完整卡／手牌图](../art/visual-generation/card-design-study/card-thickness/full-and-hand.png)确认设计锁定，要求从轮间「诸界回响」开始，不遗漏正式游戏卡片。实施统一使用连续印面、左肩签、薄纸芯切面与单向稳定牌堆，覆盖诸界导航、世界／教团主卡、查看执行区、行为候选、图鉴和关联主体图；微型缩略图只收边，不强塞完整卡文案。正式入口、真实 Session、祈求生成器、规则与存档语义不变。依据仍为[美术 A06–A08／A15](../art/visual-generation/ui-art-standard.md)、[交互合同](../specs/ui-interaction.md#worldplay-card-study)；批次证据与未验范围写入[接入记录](../tasks/worldplay-integration.md)。卡面接入及代表实机核对已完成，正式场景交制作人复审；不把锁定样板当作全场景验收。下文此前「尚未迁移」「待卡面复审」仅记录历史状态；两项技能禁令持续。

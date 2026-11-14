@@ -1,0 +1,98 @@
+{
+  "status": "B direction selected by producer; refinement awaiting visual review; only six subjects",
+  "decision": "DEC-069",
+  "date": "2026-11-14",
+  "tool": "built-in ImageGen",
+  "current": "b-refined.png",
+  "baseline": "b-before.png",
+  "source": "/Users/yilungao/.codex/generated_images/01a1c36a-22d3-7812-8780-1a6926622c14/exec-99df5df8-21d3-4c00-8ff3-950d88328982.png",
+  "prompt": "Use case: style-transfer / stylized-concept. Refine the SELECTED B illustration direction, do not invent another art direction.\nINPUT ROLES: Image 1 is the six-icon B atlas to repaint. Images 2, 3, 4 are the game's accepted procedural world, cult and person paintings: STYLE REFERENCES ONLY. Borrow their broad correlated mottled paint patches, restrained local lights, simple powerful values, and quiet dark ground. Do not draw their subjects, don't turn runes into buildings or people. Do not copy the planet sphere or a green tint onto everything.\nOUTPUT: one landscape 1536x1024 atlas, EXACTLY three equal 512px columns and two equal 512px rows. Six independently centered square paintings on a uniform near-black ground #070e12, no grid, no text, no letters, no card frames or UI. Every subject contained within its cell: 14% dark safety margin on ALL sides. Keep substantial negative space; no neighbor crossover.\nRETAIN B: intangible ink/gouache apparitions, lost edges, quiet dread, dark negative spaces, handmade flat painting, differing silhouettes and category identities. REPAINT rather than merely recolor. Replace the overly fine cloudy strands and delicate watercolor detail with 3-5 deliberate value families, overlapping medium-size opaque gouache patches mixed with quieter translucent pigment. The painterly patches are soft irregular brush daubs, NOT a tessellation, polygons, rocks or scales. Strong coherent midtone shape first, a few broken edges, diffuse peripheral traces second. Sparse grain only, no uniform noise overlay. At 150px high the main symbol must remain legible.\nCATEGORY LANGUAGE:\nLEFT = powers, ONE dominant intangible supernatural mark. Neither stone objects nor metal/wood artifacts. Absolutely no bevels, extruded strokes, 3D model, directional sculptural rim, cast shadows, pedestal, contour wireframe or magic-circle diagram.\nMIDDLE = activities, 3 to 5 clearly separated but related thicker rune impressions, MULTIPLE marks form a ritual action. Improve visibility significantly over image1's dark thin traces by using stronger opaque warm-ash/ochre/bone midtones with a few cool accents. NOT a large single central glyph. No literal page, object, person, scene, letter, question mark, trident cluster or list bullets.\nRIGHT = relics, recognizable painted physical items, simplified to the same broad paint scale as the reference person. Just enough object volume for recognition. No micro rust, realistic metal shine, realistic high detail, elaborate page edges, 3D render or engraving style.\nSUBJECTS (keep positions):\nTOP LEFT DREAM: retain a large skewed dark oval/crescent void opening in spreading pigment. Substantial muted indigo/ash-blue and desaturated teal patches make an open discontinuous halo, with a small warm pale arc, dark inside. Suggest an intrusion into sleep, not an anatomical eye, not a stone eye ring. The soft edge and missing portions must make it intangible.\nBOTTOM LEFT BREACH: retain a tall asymmetric negative-space slit through a broad wash, painted as interlocking ragged pale-ash and blue-green pigment masses. Pale localized core that dies into black, no continuous glowing outline and no rock rubble.\nTOP MIDDLE SECRET GATHERING: four different short blunt occult brush marks with hooks and severed curves, approaching one shared EMPTY dark region from distinct directions. Unequal distances, asymmetric balance, open diagonal composition. Several separate marks, a quiet convergence rather than a round medallion; no thin joining lines. Fewer marks, much bolder than original.\nBOTTOM MIDDLE STUDY MIRACLE RECORDS: repeat ONE distinctive short forked/looped occult impression three times in a staggered path, each changing, accumulating a small surviving notch or echo; one stronger original and two still-readable ghosts. The visual means repeated practice and retained mark. No paper rectangles, pages or book; no UI checklist. NOT the same arrangement as gathering.\nTOP RIGHT DREAM BELL: small aged bronze bell with handle, dark mouth and a single clear clapper. Short faded violet-blue tie, 4-6 broad ochre/olive/black paint patches, one pale green reflected patch and one small broken rune stain. Simplify to a hand-painted icon at the reference person's detail scale; no speckled realistic patina or metallic edge shine.\nBOTTOM RIGHT HERETICAL SCRIPTURE: an open dark oxblood/indigo bound book; two broad grey-ochre page planes with a few large, broken unreadable strokes, slightly asymmetric folds. One subdued violet ink stain and small loose tie, simple coarse brush planes, no stacked detailed paper layers, no human writing. Only this cell may show a book.\nLIGHT AND COLOUR: unify the six with common dark values, olive-ash undertones, tiny pale-cream accents and desaturated indigo-violet. Powers retain cool dominance; activities have slightly warmer pale pigment and more distributed marks; relics keep local ochre/oxblood material hues. Do not wash everything grey-green; do not globally lower contrast. No bright neon outlines, game loot glow, white background, shiny commercial game icons. Keep the selected B's unsettling quiet, while making its shape organization and brush scale belong beside these specific references.",
+  "references": [
+    {
+      "role": "edit target",
+      "file": "b-before.png"
+    },
+    {
+      "role": "accepted procedural painting style reference only",
+      "file": "docs/art/visual-generation/procedural-study/native-evidence/tide/world.png",
+      "world": {
+        "template": "tide",
+        "archetype": 0,
+        "style": 0,
+        "palette": 0,
+        "seed": 1339
+      },
+      "person_seed": null
+    },
+    {
+      "role": "accepted procedural painting style reference only",
+      "file": "docs/art/visual-generation/procedural-study/native-evidence/tide/cult.png",
+      "world": {
+        "template": "tide",
+        "archetype": 0,
+        "style": 0,
+        "palette": 0,
+        "seed": 1339
+      },
+      "person_seed": null
+    },
+    {
+      "role": "accepted procedural painting style reference only",
+      "file": "docs/art/visual-generation/procedural-study/native-evidence/tide/person-0-1000.png",
+      "world": {
+        "template": "tide",
+        "archetype": 0,
+        "style": 0,
+        "palette": 0,
+        "seed": 1339
+      },
+      "person_seed": 1000
+    }
+  ],
+  "atlas": {
+    "size": [
+      1536,
+      1024
+    ],
+    "columns": 3,
+    "rows": 2,
+    "cell": [
+      512,
+      512
+    ],
+    "order": [
+      "dream",
+      "gathering",
+      "relic_bell",
+      "breach",
+      "records",
+      "relic_book"
+    ],
+    "source_rgb_preserved": true
+  },
+  "visible_pigment": {
+    "metric": "fraction of source cell pixels with weighted sRGB channels .2126R+.7152G+.0722B >= .24; not linear luminance or aesthetic score",
+    "before": {
+      "gathering": 0.0285,
+      "records": 0.0392
+    },
+    "current": {
+      "gathering": 0.1039,
+      "records": 0.0668
+    },
+    "regression_minimum": {
+      "gathering": 0.06,
+      "records": 0.04
+    }
+  },
+  "invariants": [
+    "production card stock",
+    "font",
+    "left shoulder",
+    "thickness",
+    "shader",
+    "card fan and drag mechanics",
+    "gameplay data and saves"
+  ],
+  "scope_limit": "Not procedural output. Original world/cult/person generators unchanged. Other semantic illustrations and all-game activation remain out of this six-sample refinement."
+}

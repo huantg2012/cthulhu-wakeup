@@ -183,9 +183,9 @@ func run() -> void:
 	for request: Dictionary in app.projection.prayers:
 		if request.status != "open" or request.descriptor.get("space",false) or request.descriptor.domain != "DOMAIN-001": continue
 		if not await play(str(request.key)): return
-		var story: Label = app._table.find_child("PrayerStory",true,false)
+		var story: RichTextLabel = app._table.find_child("PrayerStory",true,false)
 		var quote: String = app.session.prayer_appeal(request.descriptor,request.card)
-		if not require(story != null and not quote.is_empty() and quote in story.text, "Legacy request lost its displayed appeal"): return
+		if not require(story != null and not quote.is_empty() and quote in story.get_parsed_text(), "Legacy request lost its displayed appeal"): return
 		app._recall()
 		break
 	if not inspect_hand(): return
@@ -298,8 +298,8 @@ func verify_current_save(path: String) -> void:
 	if not require(app._table.get_node("Slot_role").accessibility_description.begins_with("已填入"), "Selected role did not update slot state"): return
 	app._recall()
 	if not await play(str(active.key)): return
-	var prayer_story: Label = app._table.find_child("PrayerStory",true,false)
-	if not require(prayer_story != null and str(ledger.scenes[active.id].appeal) in prayer_story.text, "Prayer story does not come from the generated request"): return
+	var prayer_story: RichTextLabel = app._table.find_child("PrayerStory",true,false)
+	if not require(prayer_story != null and str(ledger.scenes[active.id].appeal) in prayer_story.get_parsed_text(), "Prayer story does not come from the generated request"): return
 	var options: Array = app._prayer_options()
 	var expected: Array = app.session.prayer_response_choices(active.id)
 	if not require(options.size()==expected.size() and not options.is_empty(), "Prayer picker diverges from the contract"): return

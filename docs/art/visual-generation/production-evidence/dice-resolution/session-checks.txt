@@ -1,0 +1,6 @@
+$ /Applications/Godot.app/Contents/MacOS/Godot --headless --path . --script tools/dice-presentation/session_signal_probe.gd
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+DICE_SIGNAL_OK new_commit=1 replay=0 no_dice=0 observer_isolation=1
+
+Exit code: 0

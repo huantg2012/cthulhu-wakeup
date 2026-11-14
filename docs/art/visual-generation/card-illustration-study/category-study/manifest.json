@@ -1,0 +1,51 @@
+{
+  "status": "Historical A/B/C round closed: producer selected B (DEC-069); A/C rejected, not valid implementation references",
+  "date": "2026-11-14",
+  "scope": "6 actual-definition examples per variant; no production default change",
+  "engine_region": {
+    "columns": 3,
+    "rows": 2,
+    "width": 512,
+    "height": 512,
+    "alpha_keying": false,
+    "shader_uv": "0..1 of full image region"
+  },
+  "subjects": [
+    "dream",
+    "gathering",
+    "relic_bell",
+    "breach",
+    "records",
+    "relic_book"
+  ],
+  "common_prompt": "Use case: stylized-concept. Create a new high-quality 2D illustration atlas for an occult/Cthulhu card game, landscape 1536x1024, EXACTLY 3 equal columns and 2 equal rows, six square cells of 512x512, no grid, borders, writing, labels or UI. Each illustration is separate, centered in its cell, no contact with other cells; keep 15% clear dark margin around each. Uniform near-black blue ground #080d14 across the sheet. These will be placed in an existing rough card carrier; do NOT draw cards or paper sheets.\nABSOLUTE requirement: FLAT DRAWN / PRINTED IMAGES. No sculptural glyphs, no stone, coral, fossils, metal rune ornaments, embossed strokes, bevels, faceted surfaces, cast shadow, object pedestal, isometric depth, model rendering, or glossy 3D. Powers and activities must remain symbols, NOT people/places/scenes. Only the right column contains tangible item illustrations.\nCategory distinction has to be visible even in grayscale:\nLEFT COLUMN POWERS = a single dominant, large supernatural glyph or anomaly mark, bold negative space, 1 main mass.\nMIDDLE COLUMN ACTIVITIES = smaller repeated rune impressions arranged as a rite or sequence: 3 to 7 distinct unequal marks separated by intentional dark intervals, composed as a broader multi-part arrangement, no large central emblem. These are rhythmic ritual traces, NOT a thin-line magic circle/diagram.\nRIGHT COLUMN RELICS = a recognizable bell or book as a hand-painted flat game-item icon with one small ritual feature, structurally different from a glyph. No enclosing circle.\nExact positions:\nTOP LEFT: POWER DREAM (入梦).\nTOP MIDDLE: ACTIVITY SECRET GATHERING (秘密集会).\nTOP RIGHT: RELIC DREAM BELL (唤梦铃).\nBOTTOM LEFT: POWER BREACH (穿隙).\nBOTTOM MIDDLE: ACTIVITY STUDY MIRACLE RECORDS (研习神迹记录).\nBOTTOM RIGHT: RELIC HERETICAL SCRIPTURE (异端经书).\nNo visual category text, category classification must come from silhouette and composition. Careful artwork with legible rhythm at small size. Restraint, menace and ancient blasphemy; not childish, not modern corporate logos.\n",
+  "variants": [
+    {
+      "name": "A 禁典套印",
+      "prompt": "A completely flat occult stencil / ink-impression direction. Heavy irregular dry black-paper printing, very limited opaque ivory and faded cinnabar ink. Extremely strong positive/negative shapes, skipped ink and broken pressure edges WITHIN a flat pigment layer. No dimensional shading, no bright rim light. Think worn sacred signs pressed by hand, each artwork composed in a graphic 2D plane.\nDream: ONE broad ivory crescent-like closed-lid glyph with a dark spiral void cut into its heavy stroke, horizontal and quiet; a single tiny faded-red dash, not a literal eyeball.\nBreach: ONE tall heavy ivory split stroke, a wide jagged dark absence that cuts it in two, no fragments of stone.\nGathering: five small brick-red seal impressions, each a different short blunt glyph, loosely gathering along an incomplete horizontal crescent, accompanied by three tiny ivory witness ticks. Empty center, distributed rather than a badge.\nStudy records: three short ivory horizontal clusters of stamped glyph strokes, with a small red repeat mark offset to their left, irregular register rhythm; no alphabet, no book illustration in this cell.\nBell: full bell silhouette in dull tarnished-ochre ink, a black hollow mouth and ivory clapper, short simple handle, flat print and a tiny red seal impression.\nScripture: a flat umber/ivory closed ragged book drawn three-quarter just enough to identify cover and pages, black clasp, one small red smear. No sculptural shading; worn book illustration, not a rune shaped like a book.",
+      "file": "a.png",
+      "source": "/Users/yilungao/.codex/generated_images/01a1c36a-22d3-7812-8780-1a6926622c14/exec-2eb2672a-ba91-4357-8e1c-29f5514c75a6.png",
+      "initial_reference_images": []
+    },
+    {
+      "name": "B 梦中残迹",
+      "prompt": "An atmospheric 2D ink-wash / gouache direction. The image lives as liquid pigment and spectral absence on dark ground: translucent washes, feathered diffusions, a few sharp broken ink marks and empty voids. Midnight indigo, cold ash-blue and a few pale sickly-yellow ink accents. No solid rock/metal bodies, no volume constructed with rim highlights, no long hard shadows. Values form large soft masses punctuated by tiny crisp details, NOT vector/stencil style.\nDream: an off-center dark almond-shaped void formed by spreading grey-blue cloudy ink; one thin disconnected pale crescent grazes it; an unreadable wispy sigil in the void. It must feel intangible and stained, never an eye ornament.\nBreach: a tall narrow black tear WITHIN a diffuse vertical pool of pale grey ink, the wash splitting and dissolving sideways into two ragged smears; no hard objects.\nGathering: seven dim small ritual ink marks arranged in two overlapping horizontal waves of varying height, three slightly brighter whispered marks in their wake. Multiple separate marks; no central large sigil or geometric circle.\nStudy records: a staggered trail of four fading rectangular brush impressions containing broken ink notches, each echo increasingly dissolved, tiny yellow repeat stroke alongside; flat ghost-writing, not a book.\nBell: recognizable small old brass bell painted in loose brown-ochre gouache, black interior and small cold reflected patch, body edges partly lost into ink; tangible illustrated relic, not translucent rune.\nScripture: partly open faded brown-bound book with pale charcoal-stained pages, one violet ink blot leaking off the page. Broad painterly silhouettes, modest detail, never a sculpture.",
+      "file": "b.png",
+      "source": "/Users/yilungao/.codex/generated_images/01a1c36a-22d3-7812-8780-1a6926622c14/exec-41b570e3-c62f-4b17-95f2-234f04d6cf01.png",
+      "initial_reference_images": []
+    },
+    {
+      "name": "C 异端剪影",
+      "prompt": "A bold hand-cut occult screenprint / painted-paper collage direction, entirely two-dimensional. Purposeful asymmetric interlocking flat shapes, blunt torn silhouettes, restrained old vermilion, smoked turquoise, bone and charcoal. Internal color fields are flat and matte, without light-direction modeling. Sparse handmade surface variation, not distressed noise everywhere. A mature ominous folk-icon / blasphemous manuscript character; no clean vector edges or soft wash. Distinct from an ivory single-color stencil: larger color planes, stacked vertical arrangements and expressive cutout negative spaces.\nDream: a large asymmetric stepped black spiral cut through two overlapping flat bone and smoked-blue crescent blocks, with a tiny red square intrusion. Compact diagonal balance, not an eyeball, not circular medallion.\nBreach: a broad diagonal lightning-shaped absence separating two flat vermilion and bone chevrons that interlock like a torn forbidden sign. Hard graphic hierarchy, absolutely no rock texture.\nGathering: three vertically staggered rows of 2,3,2 small squat rune cutouts, some red and some turquoise, their negative spaces point toward each other. This reads as a collective rite formed by multiple participants' marks; no bodies or faces.\nStudy records: a vertical stack of three broad short cutout bars bearing small repeated notches, a side column of three tiny red tally blocks, deliberate register composition; no actual characters or paper/book objects.\nBell: a broad squat dull-ochre bell silhouette, exaggerated hooked handle, flat black mouth and small red clapper, geometric color planes make a painted medieval game-item illustration.\nScripture: closed dark turquoise prayer book, three irregular ivory page-edge stripes, bold red cloth tie and one small off-center bone mark. Flat illustrated object with no bevels or highlights. Bell and book should obviously be items, not abstract power glyphs.",
+      "file": "c.png",
+      "source": "/Users/yilungao/.codex/generated_images/01a1c36a-22d3-7812-8780-1a6926622c14/exec-5ab465af-bb47-46aa-9135-0f9d66d7a6be.png",
+      "initial_reference_images": []
+    }
+  ],
+  "correction": {
+    "variant": "B",
+    "initial_source": "/Users/yilungao/.codex/generated_images/01a1c36a-22d3-7812-8780-1a6926622c14/exec-cb9ad4eb-90d1-4527-90cc-7dc7ebf5e9e7.png",
+    "reason": "活动研习记录被画成实体纸张，和圣物混淆；集会改为斜向汇聚痕迹，区分 A/C 居中符号群。",
+    "operation": "ImageGen edit of only middle column. Retain left power and right relic; eliminate page silhouettes, use intangible repeated/shifted glyph traces."
+  }
+}

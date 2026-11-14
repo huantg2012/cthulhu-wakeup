@@ -1,0 +1,12 @@
+$ /Applications/Godot.app/Contents/MacOS/Godot --headless --path . --script tools/dice-presentation/integration_probe.gd
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+DICE_PATH_OK board_generated_prayer
+DICE_PATH_OK modern_prayer_overlay
+DICE_PATH_OK task_power
+DICE_PATH_OK frozen_prayer_overlay
+DICE_PATH_OK final_manifestation phase=events check={ "probability": 15, "roll": 52, "outcome": "failure" }
+DICE_PATH_OK deterministic_event turn=9
+DICE_INTEGRATION_OK 101
+
+Exit code: 0

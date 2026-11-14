@@ -205,3 +205,55 @@
 ![真实九张回响修复后的实机](../art/visual-generation/production-evidence/card-text-visibility/arrival-after.png)
 
 [世界人物分类实机](../art/visual-generation/production-evidence/card-text-visibility/world-person-cards.png)。复现：Godot `--path . --script tools/card-carrier-study/text_visibility_probe.gd -- <输出目录>`；探针从隔离新局按正常控件路径运行，完成输出 `CARD_TEXT_VISIBILITY_OK`。
+
+<a id="card-fields-delivery"></a>
+
+## 全卡片字段层级统一（2026-11-14）
+
+制作人要求把预告卡的字段名／内容分列、分色推广至所有卡片。本批沿 A08 实施共用 `painted/card_fields.gd`：深色查看区用暖色字段名、骨白内容；纸面用深赭字段名、深墨内容。字段由显式结构传入，叙事和祈求原话保留整句，数据中的富文本标记按字面显示。所有文字组件不截获卡片拖拽。
+
+**接入清单：**诸界世界卡及其指标；世界／教团主卡信息；人物、教团、圣物、锚点、权能的卡面与上桌资料；祈求来源、求告者、期限、回应代价及原话；行为槽标题、费用、成功点数和结果说明；教团指令预估与锚点供奉；事件选项与确认；轮初回响的来源、人物身份与权能说明；卡片悬停资料。沿原阅读区换行／滚动，名称、叙事、状态短句不强拆字段。预告的定性影响规则保留，未修改 Session、资格、生成器或存档格式。
+
+![人物卡与资料字段](../art/visual-generation/production-evidence/card-fields/person.png)
+
+[祈求回应与原话](../art/visual-generation/production-evidence/card-fields/prayer-response.png) · [教团指令预估](../art/visual-generation/production-evidence/card-fields/cult-order.png) · [权能图鉴](../art/visual-generation/production-evidence/card-fields/power-library.png) · [悬停字段](../art/visual-generation/production-evidence/card-fields/person-hover.png) · [轮初九张回响](../art/visual-generation/production-evidence/card-fields/arrival-after.png)
+
+**有限实机核对。**当前五世界第 9 轮存档的隔离副本覆盖诸界、世界、人物、教团、祈求及回应选择、活动、权能图鉴和教团指令；原生拖拽后只查阅／配置，未执行，前后 Session 快照相同。此档没有公开圣物／锚点对象，另用仓库旧五世界存档的隔离副本核对[圣物](../art/visual-generation/production-evidence/card-fields/legacy-object-fixture/relic.png)和[锚点](../art/visual-generation/production-evidence/card-fields/legacy-object-fixture/anchor.png)字段；旧档只用于这两类对象排版，不能当作当前祈求或生成内容验收。新局 seed=5 的九张回响、类别切换、回看，以及 1／5／8／9／10／12／18／48 张呈现夹具通过原文字可见性探针。源码解析通过。事件选项／确认通过代码检查，本批未实走全部事件和行动结算分支，也未穷举大字极值。
+
+复现：`tools/card-carrier-study/fields_probe.gd -- <输出目录> <真实存档路径>`，成功输出 `CARD_FIELDS_OK`；共享文字回归仍用 `text_visibility_probe.gd`，本批输出 `CARD_TEXT_VISIBILITY_OK 878`。截图均为正式主场景 1920×1080，原存档不写入。架构、交互合同、A08 和图文规范引用同步更新；本批效果待制作人复审。
+
+## 密叠肩签文字消失修复（2026-11-14）
+
+**原因与修复。**肩签的字曾单独使用 `smoothstep(19,23,露边宽度)` 淡出；密叠未抬起时，19px 以下被抹成零透明度，21px 也只剩半透明，彩色签底却仍在。这与卡面正文的宽／窄切换是两处代码，之前正文检查没有覆盖程序绘制的肩签字。本次改为实墨常驻，将字横向排进实际露边，字号在 12–14px 内适配；抬牌期间排字位置／字号稳定，只由相邻实体卡自然遮挡。极密露边不足一个字时不能保证静止全名可读，仍可抬起查看。未改牌序、横距、输入或阻尼动画。
+
+![正式场景41张牌的肩签](../art/visual-generation/production-evidence/dense-shoulder-labels/forty-one-cards.png)
+
+本图沿用旧五世界存档的隔离副本，仅用于复现 41 张密叠布局，不代表最新生成内容。诸界进入世界、原生拖拽、类别切换／图鉴返回与只读快照检查通过（`CARD_FIELDS_OK 62`）。共享肩签覆盖世界、事件、祈求、教团、权能、活动、人物、锚点、圣物、行为、预告 11 类；另以 16／19／21／23／26／32px 露边渲染到离屏画布，在两个汉字区域分别查实际墨色像素，共 132 项：原实现 66 项失败，修复后零失败。16px 包含目前手牌区 48 张密叠的宽度区间；这是呈现夹具，不是向 Session 增加对象。
+
+复现像素检查：`tools/card-carrier-study/shoulder_ink_probe.gd -- <输出PNG>`；第二参数可给原版脚本以复现失败。[字宽夹具](../art/visual-generation/production-evidence/dense-shoulder-labels/glyph-widths.png)与[检查日志](../art/visual-generation/production-evidence/dense-shoulder-labels/pixel-check.txt)。架构、美术 A08 与交互合同同步；本批未重跑规则结算或任意极端牌量。
+
+<a id="prayer-flow-refinement"></a>
+
+## 祈求牌浏览、准备与真实回执精修（2026-11-14）
+
+制作人指出来源与当前世界重复、准备态重复身份／原话／费用与回应槽、结果态重复标题和收卡按钮且缺实掷点数。本批调整正式世界／教团牌桌三态，保留既定卡体、字段配色、四区与 Session 执行边界。
+
+- 浏览态：去掉来源，保留求告者、期限、原话与该请求实际提供的回应小牌。
+- 准备态：所选回应为单行说明，去掉绿色回应选择槽及重复原话／身份。保留真实必需槽和可选辅助，费用只显示一次；Esc／“返回 · Esc”回同一祈求的回应列表，不收牌、不提交。条件缺口与不可逆确认继续沿正式预览。
+- 判定：实际规则为 D100 小点成功，即 `roll ≤ probability`；64 表示 1–64 成功，不是“至少 64”。预览写“成功条件 骰点 ≤ 64”，确定性回应明确无需掷骰。
+- 结果态：信息区只一份祈求标题，突出实际结果与掷骰／成功上限；影响、后续代价及资源变化各自显示。完成卡的副文改为本次结果；只有“让回响散去”一个出口，Esc 同义。它关闭回执，并不把已回答的祈求放回牌堆。失败也按原规则结算实际消耗、结束请求，不伪造保留。
+- 回执来源：新 `prayer_receipt.gd` 只读 Session 公开 facts／checks 与提交前后公开投影；不读隐藏 state、不重新掷骰，不拿准备预览冒充执行。公开回执缺失检定时不能默认成功或声称无需掷骰。未知曲解仍称“已显现”，不把检定成功说成救助成功；确定性回应依公开的零骰点／负概率标志显示无需掷骰。旧冻结请求保留旧公开事实兼容，生成器、数值、存档格式均未改。
+
+### 实机清单与证据
+
+![回应准备：一次费用与正确的成功上限](../art/visual-generation/production-evidence/prayer-flow/prepare.png)
+
+![回应结果：实掷7点，上限64，深刻成功](../art/visual-generation/production-evidence/prayer-flow/success.png)
+
+[浏览态](../art/visual-generation/production-evidence/prayer-flow/browse.png) · [失败：51点／上限50](../art/visual-generation/production-evidence/prayer-flow/failure.png) · [不再回应](../art/visual-generation/production-evidence/prayer-flow/dismiss.png) · [可选辅助](../art/visual-generation/production-evidence/prayer-flow/optional-inputs.png) · [检查日志](../art/visual-generation/production-evidence/prayer-flow/checks.txt)
+
+原生正式主场景 1920×1080，隔离新局 seed=1、5，均由当前组合祈求生成器实际生成；未注入响应或骰点、未写玩家存档。探针实走拖入、选回应、辅助展开、Esc 退回并检查快照未变、真实回应、单次提交、结果骰点与实际已提交检查相同、不可重复执行、图鉴往返保留回执，以及 Esc 退出。seed=1 得到失败 51／50（41 项），seed=5 得到深刻成功 7／64（41 项）；另从 seed=1 独立新局验证不再回应、确认前取消无写入、关闭未掷骰且不占回应次数（42 项）。
+
+另用 `prayer_receipt_probe.gd` 对公开回执结构做 6 项定向检查：成功／失败、确定性无骰、未知曲解、缺失骰点和缺失结果；这是展示合同夹具，不冒充这些分支的实机游玩。
+
+复现：Godot `--path . --script tools/worldplay-integration/prayer_flow_probe.gd -- <输出目录> <种子>`，关闭分支追加 `--dismiss`。未穷举全部回应配方、灾变、大字极值或旧冻结请求的实机提交；旧全局覆盖层保持原合同，本批不宣称同步重做。架构登记、交互 spec、美术 A08、执行路由及功能地图 F03 已原地更新；上述清单是本批 UI 覆盖范围。按 V01–V05、V07 核对代表状态，未改外围或重录原周期；制作人审美复审待进行。

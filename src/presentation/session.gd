@@ -1,5 +1,7 @@
 extends RefCounted
 ## Presentation owns no rule values. Every lasting input is a Turn request.
+## Emitted only for a newly committed public receipt, never a durable replay.
+signal checks_committed(response: Dictionary)
 const Catalog = preload("res://src/simulation/catalog.gd")
 const WorldNames = preload("res://src/content/world_names.gd")
 const World = preload("res://src/simulation/world.gd")
@@ -260,7 +262,10 @@ func _submit(op: String, fields: Dictionary = {}, durable_id: String = "") -> Di
 		last_error = explain_error(str(result.get("error", "输入被拒绝")))
 		result["error"] = last_error
 	_busy = false
-	return _public(result)
+	var public_result: Dictionary = _public(result)
+	if public_result.get("ok", false) and not public_result.get("result", {}).get("checks", []).is_empty():
+		checks_committed.emit(public_result.duplicate(true))
+	return public_result
 
 func progress(confirm_end: bool = false) -> Dictionary:
 	if turn == null: return _failure("尚未开启一局")

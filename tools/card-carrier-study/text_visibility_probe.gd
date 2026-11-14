@@ -54,7 +54,7 @@ func check_fan(fan: Control) -> bool:
 	for card: Control in fan.cards:
 		var carrier: Control = card.carrier
 		for field: String in ["Title","InformationOne","InformationTwo"]:
-			var label: Label = carrier.get_node(field)
+			var label: Control = carrier.get_node(field)
 			if not require(label.modulate.a==0.0 or label.modulate.a==1.0,"Partially erased card ink: "+field+" "+str(carrier._exposed)): return false
 			if carrier._side==0 or carrier._exposed>=70.0:
 				if not require(label.modulate.a==1.0,"Readable face lost its copy: "+label.text): return false

@@ -1,0 +1,295 @@
+{
+  "status": "REJECTED by producer: visually similar; sculptural symbols; classes flattened",
+  "source": "image_gen builtin",
+  "generatedOn": "2026-11-14",
+  "grid": {
+    "columns": 4,
+    "rows": 6,
+    "cellSize": [
+      256,
+      256
+    ],
+    "nominalRequestedSize": [
+      2048,
+      3072
+    ],
+    "actualSize": [
+      1024,
+      1536
+    ],
+    "extraRowStarts": {
+      "a": [
+        0,
+        256,
+        512,
+        758,
+        986,
+        1235
+      ],
+      "b": [
+        0,
+        256,
+        512,
+        767,
+        996,
+        1243
+      ],
+      "c": [
+        0,
+        256,
+        512,
+        757,
+        989,
+        1242
+      ]
+    },
+    "regionNote": "Exact square source regions selected between actual row gaps. No RGB/alpha alteration or recolouring."
+  },
+  "variants": [
+    {
+      "name": "A 潮蚀幽印",
+      "text": "STYLE A: abyssal pigment and corroded sea-green ritual impressions. Match the reference world's painterly cellular/impasto material: interlocked mottled moss/teal pigment facets, inky broken contours, tiny yellow-green mineral highlights, deep blue-black voids. The sigils have broad solid irregular painted bodies, not stone sculptures. A few edges breathe dull turquoise phosphorescence, most remain matte and dimensional through pigment layering. The central voids feel as though something watches from behind them. Controlled two-value structure; no uniform haze."
+    },
+    {
+      "name": "B 烬骨秘篆",
+      "text": "STYLE B: prehuman ritual brands in bone-ochre ash and dried cinnabar. Dense matte antique bone pigment and smoky bronze-gold flecks form the thick uneven rune strokes; charred wine-black recesses and a tiny amount of old vermilion bind the symbols. Painterly old print with torn stencil edges and actual granular gouache deposits. Strong silhouettes, dark inner voids, asymmetry and broad broken masses. Not woodcut hatching, not line engraving, not parchment background, not ornate precious metal. Scarred ritual mark seen on a darkened occult card."
+    },
+    {
+      "name": "C 梦魇残章",
+      "text": "STYLE C: dream-poison ink marks in tarnished silver-lavender and midnight indigo. Broad irregular pale-lilac/ashen pigment strokes with dark purple bloodlike pooling, fractured soft-edged dissolves and a few sharp near-white slivers. The sigils are painted absences and dense fluid stains, with layered brush clumps like an old gouache horror painting. Distinct memorable shapes with convincing substance; no regular polygons, no hard cast shadows or floor, no tiny statue. Calm restrained edge light, never bright neon. Haunting alien calligraphy."
+    }
+  ],
+  "core": [
+    [
+      "listen",
+      "a doubled inward-hooked wave receiving three tiny motes"
+    ],
+    [
+      "dream",
+      "a closed split almond with a small suspended void and two uneven tidal bars"
+    ],
+    [
+      "oracle",
+      "a three-forked downward utterance stroke breaking into three short seed-marks"
+    ],
+    [
+      "bestow",
+      "an open two-pronged cup-rune holding one angular luminous seed"
+    ],
+    [
+      "appoint",
+      "a forked crown-mark joined to a single downward stem"
+    ],
+    [
+      "sacrifice",
+      "a heavy tapering drop pierced by three short hooked cuts"
+    ],
+    [
+      "breach",
+      "two massive broken painted strokes framing an irregular vertical absence"
+    ],
+    [
+      "seed",
+      "one hard seed mark opening into three asymmetric branching roots"
+    ],
+    [
+      "anchor",
+      "a long weighted vertical stroke tightly bound by three thick cross-knots"
+    ],
+    [
+      "veil",
+      "three broad overlapping oblique feather-marks concealing a small dark point"
+    ],
+    [
+      "transfer",
+      "two opposing inward hooks connected by a single twisted broad ribbon"
+    ],
+    [
+      "manifest",
+      "a colossal black-centered irregular many-lobed sigil with three heavy descending strokes"
+    ],
+    [
+      "devotion",
+      "two inward bowing short strokes below one suspended seed"
+    ],
+    [
+      "joint_work",
+      "three thick interlocking asymmetric hooked strokes"
+    ],
+    [
+      "gathering",
+      "five blunt wedge marks quietly converging toward an empty center"
+    ],
+    [
+      "rite",
+      "three upright flame-like marks over a broad split crescent"
+    ],
+    [
+      "records",
+      "four stacked broken strokes retaining one small angular void"
+    ],
+    [
+      "calendar",
+      "seven uneven lunar tally cuts orbiting an off-center crescent, not a complete circle"
+    ],
+    [
+      "teach",
+      "one large forked mark releasing two smaller echoes"
+    ],
+    [
+      "memory_circle",
+      "three asymmetrical double loops sharing one dark center"
+    ],
+    [
+      "memory_practice",
+      "one nested angular echo repeated three times with diminishing weight"
+    ],
+    [
+      "dissent",
+      "one off-axis stroke separated from three parallel leaning strokes"
+    ],
+    [
+      "pact",
+      "two hooked halves joined at a deep red central notch"
+    ],
+    [
+      "reciprocal",
+      "two blunt crossing loops exchanging two tiny seeds"
+    ]
+  ],
+  "extra": [
+    [
+      "axiom_probe",
+      "a sharp probing wedge entering one broken incomplete ring"
+    ],
+    [
+      "axiom_recheck",
+      "two separated mirror-eye runes with a single tiny common point"
+    ],
+    [
+      "axiom_repeat",
+      "three ascending notched chevrons repeating one anomaly mark"
+    ],
+    [
+      "network",
+      "four solid irregular node-seeds connected by thick hooked bridges"
+    ],
+    [
+      "relic_bell",
+      "RELIC ICON: a small antique ritual handbell, swollen asymmetrical bell body, dark hollow mouth, one drooping strange clapper, an occult groove; recognizable real bell merged with a sigil silhouette"
+    ],
+    [
+      "relic_lens",
+      "RELIC ICON: a cracked oval divination lens in a simple irregular dark metal grip; its glass contains a narrow unnatural slit, no human eye"
+    ],
+    [
+      "relic_seal",
+      "RELIC ICON: a heavy nameless seal stamp, a thick handle and broad scarred stamp face, one unreadable organic void rune"
+    ],
+    [
+      "relic_book",
+      "RELIC ICON: a single partly-open forbidden book, aged dark covers, one dominant intrusive rune bleeding into pages, thick painterly edges; no readable words"
+    ],
+    [
+      "relic_nail",
+      "RELIC ICON: a long ritual iron nail with a broad worn uneven head and three binding grooves; heavy sharp silhouette, one tiny red tie"
+    ],
+    [
+      "relic_ember",
+      "RELIC ICON: a charred irregular fragment of ritual coal glowing quietly from a deep inner fissure, suspended above a few ashes, not a bonfire"
+    ],
+    [
+      "ward",
+      "a broad asymmetric angular enclosing sigil whose broken gap is closed by one heavy cross-stroke"
+    ],
+    [
+      "purify",
+      "three downward scraping gouge marks removing a clustered black stain"
+    ],
+    [
+      "trace",
+      "a forked hooked searching glyph curling around three separated small traces"
+    ],
+    [
+      "seize",
+      "two thick opposing pincer glyphs closing around a small angular seed"
+    ],
+    [
+      "raid",
+      "a broad descending wedge splitting three huddled blunt rune marks"
+    ],
+    [
+      "exclude",
+      "a heavy diagonal erasure crossing one broken reality-knot, not a modern prohibition sign"
+    ],
+    [
+      "upkeep",
+      "one upright binding rune nourished by two inward flowing short channels"
+    ],
+    [
+      "unbind",
+      "two separated curled bands with fresh torn ends facing each other"
+    ],
+    [
+      "recover",
+      "one rising hooked stroke returning a small seed to a sheltering crescent"
+    ],
+    [
+      "disassemble",
+      "one central asymmetric rune breaking cleanly into three distinct substantial pieces"
+    ],
+    [
+      "wait",
+      "two heavy opposing horizontal crescents enclosing a slowly falling single seed, not an hourglass object"
+    ],
+    [
+      "event",
+      "an irregular cleft disc with one out-of-axis intrusion and three tiny falling fragments"
+    ],
+    [
+      "cult_order",
+      "three unequal bowed strokes converging below a larger overriding mark"
+    ],
+    [
+      "carry",
+      "a lower broad hook supporting a small upright shard"
+    ]
+  ],
+  "corePrompt": "Use case: stylized-concept. Asset type: production illustration sprite atlas for a Chinese Cthulhu card game. Create a HIGH QUALITY 2048 by 3072 portrait image, exactly 4 columns by 6 rows of 24 equally sized SQUARE sprite cells (each nominally 512 square), no gaps, no borders, no headings or text. Uniform almost-black matte ground across the entire sheet. Each separate symbol occupies 65-72% of its own cell, centered, with at least 14% dark safe margin on every side. Nothing crosses cell boundaries. Do not draw the grid. This image will be sampled into individual game cards, not displayed as a poster.\nReference images are solely palette/material/brushwork and horror atmosphere references; do not draw planets, people or buildings from them.\nCritical art direction: supernatural POWERS and ritual ACTIVITIES are abstract occult SIGILS and RUNES, NOT small illustrative scenes, NOT human figures, NOT realistic ears/hands/faces, NOT wireframes, NOT thin geometric outlines, NOT technical diagrams. Bold filled organic brush-mass symbols with purposeful negative spaces and genuine tactile painterly material, simple enough to recognize at 100 pixels but rich at 512. Each symbol has a distinct outer silhouette and balance. Invented prehuman sacred writing, not existing religious symbols. No readable lettering, pseudo-writing around the outside, labels, circular medallion frames, gilded card frames, UI, 3D objects or model render. No laser neon. Sparse textured marks and restrained bloom only where style calls for them. Painterly cutout graphic art, not polished vector iconography.\nExact row-major subject order, 4 per row:\n1. listen: a doubled inward-hooked wave receiving three tiny motes\n2. dream: a closed split almond with a small suspended void and two uneven tidal bars\n3. oracle: a three-forked downward utterance stroke breaking into three short seed-marks\n4. bestow: an open two-pronged cup-rune holding one angular luminous seed\n5. appoint: a forked crown-mark joined to a single downward stem\n6. sacrifice: a heavy tapering drop pierced by three short hooked cuts\n7. breach: two massive broken painted strokes framing an irregular vertical absence\n8. seed: one hard seed mark opening into three asymmetric branching roots\n9. anchor: a long weighted vertical stroke tightly bound by three thick cross-knots\n10. veil: three broad overlapping oblique feather-marks concealing a small dark point\n11. transfer: two opposing inward hooks connected by a single twisted broad ribbon\n12. manifest: a colossal black-centered irregular many-lobed sigil with three heavy descending strokes\n13. devotion: two inward bowing short strokes below one suspended seed\n14. joint_work: three thick interlocking asymmetric hooked strokes\n15. gathering: five blunt wedge marks quietly converging toward an empty center\n16. rite: three upright flame-like marks over a broad split crescent\n17. records: four stacked broken strokes retaining one small angular void\n18. calendar: seven uneven lunar tally cuts orbiting an off-center crescent, not a complete circle\n19. teach: one large forked mark releasing two smaller echoes\n20. memory_circle: three asymmetrical double loops sharing one dark center\n21. memory_practice: one nested angular echo repeated three times with diminishing weight\n22. dissent: one off-axis stroke separated from three parallel leaning strokes\n23. pact: two hooked halves joined at a deep red central notch\n24. reciprocal: two blunt crossing loops exchanging two tiny seeds\n",
+  "extraPrompt": "Use case: stylized-concept. Asset type: second sprite atlas for the same Cthulhu card game. Generate exactly 4 columns by 6 rows of 24 separate equally sized SQUARE cells in a 2:3 portrait image, nominally 2048x3072. No visible grid, no borders, no headings or letters. Uniform almost-black matte backdrop. Each symbol centered in its own cell occupies 65-72% of cell with 14%+ empty safe margin, nothing crosses the cells. Reference image is THE FIRST ATLAS: match its painting medium, dark ground, relative scale, substantial brushwork, outline wear and value balance. It is not an image to edit; create the NEXT 24 symbols below in exactly this new order.\nMost cells are thick organic ritual SYMBOLS and RUNES, NOT illustrative scenes, people, ears, faces, wireframe diagrams, geometric thin outlines or existing religious emblems. Filled painterly marks with strong distinct silhouettes, tactile pigment and negative space. Cells 5 through 10 are RELICS: readable game-item silhouettes fused with ritual symbolism, still painted as bold iconic images, not tiny 3D models. No card frames, ornamental medallions or ground shadows. No bright laser glow, no shiny plastic, no polished vector icons. Keep the images comprehensible at small hand-card sizes.\nExact row-major order:\n1. axiom_probe: a sharp probing wedge entering one broken incomplete ring\n2. axiom_recheck: two separated mirror-eye runes with a single tiny common point\n3. axiom_repeat: three ascending notched chevrons repeating one anomaly mark\n4. network: four solid irregular node-seeds connected by thick hooked bridges\n5. relic_bell: RELIC ICON: a small antique ritual handbell, swollen asymmetrical bell body, dark hollow mouth, one drooping strange clapper, an occult groove; recognizable real bell merged with a sigil silhouette\n6. relic_lens: RELIC ICON: a cracked oval divination lens in a simple irregular dark metal grip; its glass contains a narrow unnatural slit, no human eye\n7. relic_seal: RELIC ICON: a heavy nameless seal stamp, a thick handle and broad scarred stamp face, one unreadable organic void rune\n8. relic_book: RELIC ICON: a single partly-open forbidden book, aged dark covers, one dominant intrusive rune bleeding into pages, thick painterly edges; no readable words\n9. relic_nail: RELIC ICON: a long ritual iron nail with a broad worn uneven head and three binding grooves; heavy sharp silhouette, one tiny red tie\n10. relic_ember: RELIC ICON: a charred irregular fragment of ritual coal glowing quietly from a deep inner fissure, suspended above a few ashes, not a bonfire\n11. ward: a broad asymmetric angular enclosing sigil whose broken gap is closed by one heavy cross-stroke\n12. purify: three downward scraping gouge marks removing a clustered black stain\n13. trace: a forked hooked searching glyph curling around three separated small traces\n14. seize: two thick opposing pincer glyphs closing around a small angular seed\n15. raid: a broad descending wedge splitting three huddled blunt rune marks\n16. exclude: a heavy diagonal erasure crossing one broken reality-knot, not a modern prohibition sign\n17. upkeep: one upright binding rune nourished by two inward flowing short channels\n18. unbind: two separated curled bands with fresh torn ends facing each other\n19. recover: one rising hooked stroke returning a small seed to a sheltering crescent\n20. disassemble: one central asymmetric rune breaking cleanly into three distinct substantial pieces\n21. wait: two heavy opposing horizontal crescents enclosing a slowly falling single seed, not an hourglass object\n22. event: an irregular cleft disc with one out-of-axis intrusion and three tiny falling fragments\n23. cult_order: three unequal bowed strokes converging below a larger overriding mark\n24. carry: a lower broad hook supporting a small upright shard\n",
+  "originalFiles": {
+    "core": [
+      [
+        "/Users/yilungao/.codex/generated_images/01a1c36a-22d3-7812-8780-1a6926622c14/exec-7744ff3e-ee31-4dcf-9d61-201b56313ee2.png",
+        "a-core.png"
+      ],
+      [
+        "/Users/yilungao/.codex/generated_images/01a1c36a-22d3-7812-8780-1a6926622c14/exec-5e8214ae-42e1-4bc0-aa1b-7097d7c56b2f.png",
+        "b-core.png"
+      ],
+      [
+        "/Users/yilungao/.codex/generated_images/01a1c36a-22d3-7812-8780-1a6926622c14/exec-141a9315-2d45-4fdc-8464-05df619054c4.png",
+        "c-core.png"
+      ]
+    ],
+    "extra": [
+      [
+        "/Users/yilungao/.codex/generated_images/01a1c36a-22d3-7812-8780-1a6926622c14/exec-19a6be54-1b6a-43f5-ac6b-a90948853d5e.png",
+        "a-extra.png"
+      ],
+      [
+        "/Users/yilungao/.codex/generated_images/01a1c36a-22d3-7812-8780-1a6926622c14/exec-4f3d99d6-9547-40f7-84c3-54c9d286cc6b.png",
+        "b-extra.png"
+      ],
+      [
+        "/Users/yilungao/.codex/generated_images/01a1c36a-22d3-7812-8780-1a6926622c14/exec-1d46702e-73cb-42b1-93d2-f2651ac959bd.png",
+        "c-extra.png"
+      ]
+    ]
+  },
+  "referenceImages": [
+    "docs/art/visual-generation/procedural-study/native-evidence/tide/world.png",
+    "docs/art/visual-generation/procedural-study/native-evidence/tide/cult.png",
+    "docs/art/visual-generation/procedural-study/native-evidence/tide/person-0-1000.png"
+  ]
+}

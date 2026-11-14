@@ -95,11 +95,12 @@ func _reveal_choice(control: Control, scroll: ScrollContainer) -> void:
 	scroll.scroll_vertical = maxi(0, int(control.position.y) - 28)
 
 func respond(row: Dictionary, choice: Dictionary, confirmed: bool) -> void:
-	if host._busy or row.is_empty() or choice.is_empty() or host._dialog != ("prayer_confirm" if confirmed else "prayer_detail"): return
+	if host._busy or host._dice_active() or row.is_empty() or choice.is_empty() or host._dialog != ("prayer_confirm" if confirmed else "prayer_detail"): return
 	if row.key != parent._prayer.key + "/" + str(parent._draft().mode): return
 	var before: Dictionary = host.projection
 	host._busy = true
 	var selection: Dictionary = parent._draft().inputs.get(str(choice.id), {}).duplicate(true)
+	host._set_dice_context(str(choice.label))
 	var result: Dictionary = host.session.execute_action(row.key, selection, confirmed, "", row.get("preview", {}).get("preview", {}))
 	host._busy = false
 	if result.get("confirmation", false):
@@ -126,6 +127,7 @@ func respond(row: Dictionary, choice: Dictionary, confirmed: bool) -> void:
 	var after: Dictionary = host.session.project()
 	parent._drafts.erase(parent._prayer.id)
 	host._receipt_requirements = []
+	host._receipt_checks = result.get("result", {}).get("checks", []).duplicate(true)
 	host._receipt = _receipt(result, before, after, str(choice.label))
 	host._resource_delta = host._feedback.resource_summary(before, after)
 	host._set_notice(result)
@@ -135,6 +137,8 @@ func respond(row: Dictionary, choice: Dictionary, confirmed: bool) -> void:
 	for index: int in host._receipt.size(): host._line(body, host._receipt[index], 20 if index == 0 else 17, UI.GOLD_HI if index == 0 else UI.BONE)
 	host._reference(host._surface, "ResponseSpent", "本轮回应机会已用。", Rect2(1078, 568, 415, 24), 14, UI.CYAN)
 	host._button(host._surface, "ClosePrayerResult", parent.result_return_caption(), Layout.box(Rect2(1078, 594, 415, 44)), parent.close).grab_focus()
+	host._set_dice_return(parent.close)
+	if host._dice_active(): host._dice.cover_current(host)
 
 func _cost_text(price: Dictionary) -> String:
 	var text := "低语 %s · 信仰 %s" % [price.get("whispers", 0), price.get("faith", price.get("faith_cost", 0))]
@@ -166,11 +170,8 @@ func _receipt(result: Dictionary, before: Dictionary, after: Dictionary, action:
 		lines.append(action + " · " + status)
 		if int(data.get("roll", -1)) > 0:
 			lines.append("骰点 %s · 成功点数 1–%s" % [data.roll, data.get("success_target", data.get("probability", 0))])
-		var aftermath: Array[String] = []
-		for field: String in ["effect", "tradeoff"]:
-			var text := str(data.get(field, ""))
-			if not text.is_empty() and not aftermath.has(text): aftermath.append(text)
-		if not aftermath.is_empty(): lines.append(" ".join(aftermath))
+		var effect := str(data.get("effect", ""))
+		if not effect.is_empty(): lines.append(effect)
 		var numbers: Array[String] = []
 		for field: String in data.get("actual_deltas", {}):
 			var amount := int(data.actual_deltas[field])
@@ -208,6 +209,7 @@ func _dismiss(key: String) -> void:
 	parent._drafts.erase(parent._prayer.id)
 	host._set_notice(result)
 	host._receipt_requirements = []
+	host._receipt_checks = []
 	host._receipt.assign(["已断开这声祈求", "这声祈求已关闭，本轮回应机会未受影响。"])
 	host._resource_delta = ""
 	host._refresh()

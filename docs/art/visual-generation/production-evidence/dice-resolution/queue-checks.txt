@@ -1,0 +1,7 @@
+$ /Applications/Godot.app/Contents/MacOS/Godot --headless --path . --script tools/dice-presentation/queue_probe.gd
+Scope: explicit public-receipt presentation fixtures on actual Production host; not natural gameplay.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+DICE_QUEUE_OK 18 public_receipt_fixtures=2 checks=3 real_rolls_claimed=0 settlements=3 finished=1
+
+Exit code: 0

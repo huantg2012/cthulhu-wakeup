@@ -1,6 +1,7 @@
 extends CanvasLayer
 ## An arrival of public cards, above the existing living atmosphere. Read-only.
 const Paint = preload("res://src/presentation/production/painted/theme.gd")
+const Fields = preload("res://src/presentation/production/painted/card_fields.gd")
 const Fan = preload("res://src/presentation/production/worldplay/hand_fan.gd")
 const Veil = preload("res://src/presentation/production/painted/arrival_veil.gdshader")
 const NAMES := {"event":"世界异动", "prayer":"祈求", "person":"新知人物", "unlock":"新启权能／行为"}
@@ -124,19 +125,13 @@ func _select(index: int) -> void:
 	var place: String = host.title(world) if not world.is_empty() else "诸界之间"
 	if place.strip_edges().is_empty(): place = "尚未知晓的世界"
 	if card.arrival == "unlock" and (card.group == "power" or card.id == "anchor/bind"): place = "你的神意，触及更远处"
-	host._text(_reading,place,Rect2(0,34,788,25),15,Paint.MUTED)
+	Fields.at(_reading,"ArrivalSource",[place] if card.arrival=="unlock" and (card.group=="power" or card.id=="anchor/bind") else [Fields.field("来源",place)],Rect2(0,34,788,25),host._size(15))
 	var title: Label = host._text(_reading,str(card.title),Rect2(0,70,788,64),27)
 	title.max_lines_visible = 2
 	title.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	var scroll: ScrollContainer = host._scroller(_reading,Rect2(0,140,788,56))
-	var text := Label.new()
+	var text: RichTextLabel = Fields.line(scroll,card.get("story_fields",[str(card.story)]),host._size(18))
 	text.name = "ArrivalStory"
-	text.text = str(card.story)
-	text.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	text.add_theme_font_size_override("font_size",host._size(18))
-	text.add_theme_color_override("font_color",Paint.BONE)
-	scroll.add_child(text)
 	host._text(_reading,str(card.guidance),Rect2(0,205,788,36),15,Paint.MUTED)
 	_hint.text = "%02d / %02d   ·   横向翻阅，或点选上方类别   ·   此处只查阅" % [index+1,_cards.size()]
 	_hero.position = Vector2(98,146)

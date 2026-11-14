@@ -399,7 +399,7 @@ func _scan_candidates(generation: int, dialog: String) -> void:
 
 func run_action(key: String, selection: Dictionary, confirmed := false, review := -1) -> void:
 	var expected := "task_confirm" if confirmed else "task_action"
-	if host._busy or host._dialog != expected or draft.get("key") != key: return
+	if host._busy or host._dice_active() or host._dialog != expected or draft.get("key") != key: return
 	if not confirmed and draft.selection != selection: return
 	if confirmed and review != _review: return
 	var prepared: Dictionary = session.preview_action(key, selection)
@@ -434,6 +434,7 @@ func run_action(key: String, selection: Dictionary, confirmed := false, review :
 	var requirement_before: Array = host._actions.requirement_groups(self, before, session.action_entry(key, selection), selection)
 	var caption := _action_title(key)
 	host._busy = true
+	host._set_dice_context(caption)
 	var result: Dictionary = session.execute_action(key, selection, confirmed)
 	host._busy = false
 	host._set_notice(result)
@@ -445,6 +446,7 @@ func run_action(key: String, selection: Dictionary, confirmed := false, review :
 		host._body.add_child(label(session.explain_error(str(result.get("error", "")))))
 		return
 	var after: Dictionary = session.project()
+	host._receipt_checks = result.get("result", {}).get("checks", []).duplicate(true)
 	host._receipt = host._feedback.build(host, result, before, after, caption)
 	var requirement_after: Array = host._actions.requirement_groups(self, after, session.action_entry(key, selection), selection)
 	host._receipt_requirements = host._actions.Requirements.changes(requirement_before, requirement_after)
@@ -461,6 +463,8 @@ func run_action(key: String, selection: Dictionary, confirmed := false, review :
 	if anchor_action and not host._views._find(self, "domains", domain).is_empty(): host._world_id = domain
 	host._refresh()
 	host._show_receipt(receipt_return, domain if anchor_action else str(selection.get("npc", domain)) if key.begins_with("POWER_") else "", anchor_action)
+	host._set_dice_return(host._receipt_return)
+	if host._dice_active(): host._dice.cover_current(host)
 
 func show_subject(kind: String, id := "") -> void:
 	if not projection.get("active", false): return
