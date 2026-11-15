@@ -1,0 +1,7 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+CUES_COLD ms=33929 generated=11 expected=11 frame_p95=25.357
+CUES_WARM ms=263 disk_reads=11 generated=0
+CUES_ROUND turn=4 prepared=12 new_generated=1
+PORTRAIT_CUES_OK 121 checks; anonymous identity, cold/warm, birth/discovery stability, no knowledge/RNG mutation, no click-time generation, real next round

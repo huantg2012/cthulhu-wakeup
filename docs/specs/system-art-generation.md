@@ -1,13 +1,13 @@
 ---
 status: IMPLEMENTED_PENDING_VISUAL_REVIEW
 created-by: Codex
-last-modified-date: 2026-11-12
+last-modified-date: 2026-11-15
 interfaces-with: [system-events, system-civilizations]
-exposes: [ArtGenerationService.generate, ArtGenerationService.export_result, NativeArtWorkbench, ArtGenerationService.generate_subject, ObjectPortraits.bind]
+exposes: [ArtGenerationService.generate, ArtGenerationService.export_result, NativeArtWorkbench, ArtGenerationService.generate_subject, Session.portrait_identity, ObjectPortraits.manifest, ObjectPortraits.for_subject, ObjectPortraits.bind]
 interface-changed: true
 ---
 
-TL;DR：世界、教团与人物立绘在游戏本体 Godot 工程内生成。独立工作台直接运行，无浏览器、Node、Python、Web 服务或第二个 Godot 工程依赖；正式呈现从公开对象推导绘画身份并按需出图；绘画服务不创建游戏世界、机构或 NPC。
+TL;DR：世界、教团与人物立绘在游戏本体 Godot 工程内生成。正式呈现将当前可见卡片（含仅有求告线索的对象）纳入统一外观清单，在开局／读档／轮间／行动新增对象时完成生成与纹理准备后再展示；绘画服务不创建玩法对象、不增加玩家情报。独立工作台无浏览器或第二个 Godot 工程依赖。
 
 # 范围与入口
 
@@ -30,13 +30,13 @@ TL;DR：世界、教团与人物立绘在游戏本体 Godot 工程内生成。�
 
 # 正式对象绘画身份 · v1
 
-- **世界**：只接受公开投影中带文明 profile 的世界；仅有请求线索时留中性图槽。用 `data/art_world_templates.csv` 的 `civilization_id` 唯一索引选取原型和固定画风 sid，色板取同原型的 `cult_visual_rules.csv:default_palette`。每世界的种子取 SHA-256（JSON 数组 `["world", 开局种子字符串, 世界 ID]`）首 32 位模 1,000,000。配方使用原玩法稳定 ID，不用显示名、排序或观察次数。
-- **教团**继承其公开所属世界的原型、种子、sid 和色板；仅已知仍可展示的组织可绑定。图像由本世界的场所绘画规则生成，领袖变化不替换其场所图。
-- **人物**仅给公开已识别的真实角色画图，继承其出生世界画法；人物种子从 SHA-256（`["person", 开局种子字符串, 人物 ID]`）首 32 位取 uint32。人物根据不可变的 `identity_source` 得到已知出生世界；未知出生世界不提前显示其画风。背景以 `data/art_person_profiles.csv` 的 profile 选择同模板已有裁剪/衣帽基型，使用中性姿势和材质、去掉具体病况及道具，不把样板处境当正式事实。缺少可靠对应保留中性图槽。祈求页用同一身份，当前祈求处境不重抽外貌。尚未知身份、仅有线索的对象不触发渲染。
+- **世界**：公开已知或作为求告线索已出现的真实世界均有立绘。`Session.portrait_identity(kind, id)` 验证对象可见性后，只返回绘画所需的稳定 ID、真实文明 profile 与人物背景 profile；不返回隐藏名称、数值、机构、关系或资格，也不把该世界加入已知集合。用 `data/art_world_templates.csv` 的 `civilization_id` 唯一索引选取原型和固定画风 sid，色板取同原型的 `cult_visual_rules.csv:default_palette`。每世界种子取 SHA-256（JSON 数组 `["world", 开局种子字符串, 世界 ID]`）首 32 位模 1,000,000；不依赖显示名、排序或观察次数。
+- **教团**继承其所属世界的原型、种子、sid 和色板；仅已进入公开投影的组织可绑定。图像由本世界的场所绘画规则生成，领袖变化不替换场所图；公开档案中的毁灭状态也不删除其原立绘，状态仍由文字表达。
+- **人物**：公开人物和求告所涉人物均绘制，继承不可变 `identity_source` 指向的真实出生世界画法，不以玩家是否已知出生地作为生成门槛。人物种子从 SHA-256（`["person", 开局种子字符串, 人物 ID]`）首 32 位取 uint32。背景以 `data/art_person_profiles.csv` 的 profile 选择同模板已有裁剪／衣帽基型，使用中性姿势和材质、去掉具体病况及道具，不把样板处境当正式事实。祈求、人物档案和关联查阅共用同一图像；从匿名到识别、迁移和离场都不重抽。完全未进入视野的对象仍拒绝请求，不预画全宇宙。
 - 以上种子仅用于绘画，取自 Session 已保存的生成种子，不读取随机流位置或消耗任何玩法随机数。v1 兼容旧档，不增加存档字段。若未来改变已分配的原型或画风，须保留 v1 的还原规则并明确选择配方版本。
 - `generate_subject(kind, request, options)` 产出一张带天空的最终 960×960 Image，不为世界卡额外画教团或人物。正式调用只渲染 lit 和最终 NPR，不生成工作台专用的 material／form 两张诊断图；工作台 `generate` 默认仍交付三阶段。纯二维构图在 WorkerThreadPool 中建立，场景节点、材质和 GPU 渲染仍在主线程，按约 4 ms 的命令构建时间片让出帧。同一 service 串行生成。
-- 正式呈现根持有唯一 `ObjectPortraits`。新局、读档、回合交接及行动更新公开投影后，按世界分组准备当前全部可展示的世界、教团与已识别人物；不预生成未知身份或未知出生世界。内存命中直接就绪，其余在过渡页完成读盘／生成和 GPU 纹理上传，再交还牌桌。可见图槽请求仅作为漏项的防御回退，正常翻牌不得依赖它。回调检查弱引用、仍在树中和当前绑定键；离场或更换对象不贴回迟到的图。
-- 持久缓存键包含视觉身份版本、生成实现版本、对象 ID、完整绘画参数和背景键；磁盘缓存是可丢弃的 PNG（128 MiB 上限），读解码和原子写盘在工作线程。当前公开对象纹理驻留，不受原 24 张上限淘汰；额外闲置纹理最多保留 24 张。换轮只补新增或缺失图，不重复生成。缓存损坏只重画该图；生成失败结束该项等待并显示静态不可用状态，缺参仍保留中性图槽。不因悬停、切页或读档重抽绘画身份。
+- 正式呈现根持有唯一 `ObjectPortraits`。新局、读档、回合交接及行动更新公开投影后，`manifest` 遍历全部可见世界、教团、人物（包括求告线索），通过和卡面相同的 `for_subject` 解析身份，不把人物限制在公开出生世界的分组内。过渡按公开当前位置分组，不显示隐藏出生地。内存命中直接就绪，其余在过渡页完成读盘／生成和 GPU 纹理上传，再交还诸界回响和牌桌。可见图槽请求仅作为漏项的防御回退，正常翻牌不得依赖它。回调检查弱引用、未待删除和当前绑定键；允许尚未挂树的预构卡同步取缓存，离场或换对象不贴回迟到的图。
+- 持久缓存键包含视觉身份版本、生成实现版本、对象 ID、完整绘画参数和背景键；磁盘缓存是可丢弃的 PNG（128 MiB 上限），读解码和原子写盘在工作线程。当前可见对象纹理驻留，不受原 24 张上限淘汰；额外闲置纹理最多保留 24 张。换轮只补新增或缺失图，不重复生成。匿名对象沿用同一 v1 配方，已有正确缓存无须整体失效。缓存损坏只重画该图；真正的缺参／生成失败显示技术不可用状态并记录，不再用“尚无可靠图像”把漏生成解释成未知情报。验证须检查每个 `portrait_required` 图槽：空配方也属于失败，不能只检查已有非空 `art_key` 的槽。
 
 # 替换策略与约束
 

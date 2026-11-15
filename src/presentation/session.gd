@@ -718,13 +718,43 @@ func _cult_pollution_preview(cult: Dictionary, strategy: String) -> Dictionary:
 func visual_seed() -> String:
 	return str(world.randoms.generation.seed) if world != null else ""
 
-## A portrait must not disclose an undiscovered birthplace or a request-only identity.
+## Public birthplace information remains knowledge-gated; art uses the separate
+## cosmetic adapter below and must not print its hidden origin as intelligence.
 func visual_birthplace(id: String) -> String:
 	if not _known_people.has(id): return ""
 	var person: Dictionary = Store.entry(world.state.npcs, id, {})
 	var source: Dictionary = Store.entry(world.state.facts, str(person.get("identity_source", "")), {})
 	var origin: String = source.get("domain", "")
 	return origin if _known_domains.has(origin) else ""
+
+## Cosmetic inputs for an already visible card, separate from knowledge about it.
+## A request cue is enough to see an impression; it does not disclose names,
+## attributes, affiliations or make its birthplace an actionable/known world.
+## Use the immutable birth record so discovery, travel and death cannot reroll art.
+func portrait_identity(kind: String, id: String) -> Dictionary:
+	if world == null or id.is_empty(): return {}
+	var state: Dictionary = world.state
+	var subject := {"id": id}
+	var origin := ""
+	match kind:
+		"world":
+			if not (_known_domains.has(id) or _request_domains.has(id)): return {}
+			origin = id
+		"person":
+			if not (_known_people.has(id) or _request_people.has(id)): return {}
+			var person: Dictionary = Store.entry(state.npcs, id, {})
+			var birth: Dictionary = Store.entry(state.facts, str(person.get("identity_source", "")), {})
+			origin = str(birth.get("domain", ""))
+			subject["profile"] = str(person.get("profile", ""))
+		"cult":
+			var cult: Dictionary = state.cults.get(id, {})
+			if cult.is_empty() or not (_known_facts.has(cult.established_source) or _known_people.has(cult.leader)): return {}
+			origin = str(cult.domain)
+		_:
+			return {}
+	var domain: Dictionary = state.domains.get(origin, {})
+	if domain.is_empty(): return {}
+	return {"subject": subject, "world": {"id": origin, "profile": domain.profile}}
 
 func project() -> Dictionary:
 	if turn == null: return {"ok": false, "active": false, "error": last_error}

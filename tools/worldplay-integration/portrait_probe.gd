@@ -30,7 +30,8 @@ func wait_preparation() -> bool:
 
 func complete_slots() -> bool:
 	for slot: Node in app.find_children("*", "TextureRect", true, false):
-		if not str(slot.get_meta("art_key", "")).is_empty():
+		if slot.get_meta("portrait_required", false):
+			if not require(not str(slot.get_meta("art_key", "")).is_empty(), "Visible portrait omitted from art identities: " + str(slot.get_path())): return false
 			if not require(slot.texture != null, "A bound portrait was empty on scene construction: "+str(slot.get_path())): return false
 	return true
 
@@ -41,6 +42,7 @@ func run() -> void:
 	DirAccess.make_dir_recursive_absolute(output)
 	if not await setup(PackedStringArray(["--save="+args[0]])): return
 	var snapshot: String = app.session.turn.snapshot()
+	var expected: int = app.projection.domains.size() + app.projection.people.size() + app.projection.cults.size()
 	scratch = "user://portrait-performance-probe/%s" % OS.get_process_id()
 	replace_provider()
 	var started := Time.get_ticks_msec()
@@ -54,7 +56,7 @@ func run() -> void:
 	measuring = false
 	frame_ms.sort()
 	print("PORTRAITS_COLD ms=",Time.get_ticks_msec()-started," generated=",app._portraits.generated_count," loaded=",app._portraits._textures.size()," frame_p95=",frame_ms[int(frame_ms.size()*.95)]," max=",frame_ms[-1])
-	if not require(app._portraits.generated_count==17 and app._portraits._textures.size()==17,"Five-world public cast was incomplete"): return
+	if not require(app._portraits.generated_count==expected and app._portraits._textures.size()==expected,"Visible cast was incomplete"): return
 	if not complete_slots(): return
 	await capture("ready-worlds")
 	var generated: int = app._portraits.generated_count
@@ -89,7 +91,7 @@ func run() -> void:
 	app._refresh()
 	if not await wait_preparation(): return
 	print("PORTRAITS_DISK ms=",Time.get_ticks_msec()-started," generated=",app._portraits.generated_count," reads=",app._portraits.disk_read_count)
-	if not require(app._portraits.generated_count==0 and app._portraits.disk_read_count==17,"Warm entry regenerated portraits"): return
+	if not require(app._portraits.generated_count==0 and app._portraits.disk_read_count==expected,"Warm entry regenerated portraits"): return
 	if not complete_slots(): return
 	var key: String = app._portraits._textures.keys()[0]
 	var file := FileAccess.open(scratch.path_join(key+".png"),FileAccess.WRITE)

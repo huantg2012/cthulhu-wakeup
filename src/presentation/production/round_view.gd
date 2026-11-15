@@ -305,24 +305,9 @@ func _refresh() -> void:
 
 func _prepare_portraits() -> void:
 	if not projection.get("active", false): return
-	var arts: Array = []
+	var arts: Array = _portraits.manifest(session, projection)
 	var observations: Array = []
-	var seed_value: String = session.visual_seed()
-	var people_by_world := {}
-	for person: Dictionary in projection.get("people", []):
-		var birthplace: String = session.visual_birthplace(str(person.id))
-		if not people_by_world.has(birthplace): people_by_world[birthplace] = []
-		people_by_world[birthplace].append(person)
 	for world: Dictionary in projection.get("domains", []):
-		var local: Array = [_portraits.recipe("world", seed_value, world, world)]
-		for cult: Dictionary in projection.get("cults", []):
-			if cult.get("domain") == world.id: local.append(_portraits.recipe("cult", seed_value, cult, world))
-		for person: Dictionary in people_by_world.get(world.id, []):
-			local.append(_portraits.recipe("person", seed_value, person, world))
-		for art: Dictionary in local:
-			if art.is_empty(): continue
-			art["world_id"] = world.id
-			arts.append(art)
 		var metrics := PackedStringArray()
 		for metric: String in ["barrier", "pollution", "alert", "stability"]:
 			metrics.append(str(_views.WORLD_METRICS[metric]) + " " + str(_views.metric_display(world, metric).value))
@@ -418,9 +403,7 @@ func _dock_entry(parent: Control, node_name: String, caption: String, x: float, 
 func _object_art(parent: Node, node_name: String, bounds: Rect2, kind: String, id: String, with_status := false) -> TextureRect:
 	var collection: String = {"world": "domains", "person": "people", "cult": "cults"}.get(kind, "")
 	var subject: Dictionary = _views._find(self, collection, id)
-	var world_id: String = session.visual_birthplace(id) if kind == "person" else subject.get("domain", "")
-	var world: Dictionary = subject if kind == "world" else _views._find(self, "domains", world_id)
-	var recipe: Dictionary = _portraits.recipe(kind, session.visual_seed(), subject, world)
+	var recipe: Dictionary = _portraits.for_subject(session, kind, id)
 	var slot: TextureRect
 	var card: Control
 	if minf(bounds.size.x, bounds.size.y) > 110.0:

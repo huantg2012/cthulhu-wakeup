@@ -142,7 +142,7 @@ func _world_fan(stage: Control, worlds: Array) -> void:
 		var data := {"id": id, "title": world.title, "status": _world_status(world),
 			"relation": "已关注" if world.get("focused", false) else world.get("已知范围", "已知联系"),
 			"tier_title": {"planet": "星球", "system": "星系", "cosmic": "宇宙"}.get(world.get("tier", ""), "层级未明"),
-			"art_recipe": host._portraits.recipe("world", host.session.visual_seed(), world, world)}
+			"art_recipe": host._portraits.for_subject(host.session, "world", id)}
 		var metrics: Array[String] = []
 		var metric_fields: Array = []
 		for field: String in ["barrier", "pollution", "alert", "stability"]:

@@ -506,11 +506,7 @@ func _card_detail_parts(card: Dictionary, fallback: String) -> Array:
 	return [fallback]
 
 func _face_recipe(kind: String, id: String) -> Dictionary:
-	var collection: String = {"world":"domains","person":"people","cult":"cults"}.get(kind, "")
-	var subject: Dictionary = _views._find(self, collection, id)
-	var world_id: String = session.visual_birthplace(id) if kind == "person" else subject.get("domain", "")
-	var world: Dictionary = subject if kind == "world" else _views._find(self,"domains",world_id)
-	return _portraits.recipe(kind, session.visual_seed(), subject, world)
+	return _portraits.for_subject(session, kind, id)
 
 func _symbol_texture(motif: String, _seed_value: int, card: Dictionary = {}, variant := -1) -> Texture2D:
 	if variant<0: variant = _illustration_variant

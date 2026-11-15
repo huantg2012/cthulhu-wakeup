@@ -66,8 +66,28 @@ func _trim_memory() -> void:
 		_recent.erase(key)
 		_textures.erase(key)
 
+## All production consumers use this resolver, including anonymous request cards.
+## Knowledge projection intentionally omits their profiles; it is not an art recipe.
+func for_subject(session: RefCounted, kind: String, id: String) -> Dictionary:
+	var identity: Dictionary = session.portrait_identity(kind, id)
+	if identity.is_empty(): return {}
+	return recipe(kind, session.visual_seed(), identity.subject, identity.world)
+
+func manifest(session: RefCounted, projection: Dictionary) -> Array:
+	var arts: Array = []
+	for pair: Array in [["world", "domains"], ["cult", "cults"], ["person", "people"]]:
+		for subject: Dictionary in projection.get(pair[1], []):
+			var art := for_subject(session, pair[0], str(subject.id))
+			if art.is_empty():
+				push_error("Missing portrait identity: %s/%s" % [pair[0], subject.id])
+				continue
+			# Progress describes the public current location, never a hidden birthplace.
+			art["world_id"] = str(subject.id) if pair[0] == "world" else str(subject.get("domain", ""))
+			arts.append(art)
+	arts.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return str(a.world_id) < str(b.world_id))
+	return arts
+
 func recipe(kind: String, campaign_seed: String, subject: Dictionary, world: Dictionary) -> Dictionary:
-	if kind == "cult" and subject.get("status", "") == "destroyed": return {}
 	var profile: String = world.get("profile", "")
 	if campaign_seed.is_empty() or not _profiles.has(profile) or not subject.has("id"):
 		return {}
@@ -90,7 +110,9 @@ func bind(slot: TextureRect, art: Dictionary, status: Label = null) -> void:
 	slot.texture = null
 	var key: String = art.get("key", "")
 	slot.set_meta("art_key", key)
-	if status != null: status.text = "尚无可靠图像" if key.is_empty() else "正在显影…"
+	# Missing art inputs are a technical fault, not an in-world knowledge state.
+	slot.set_meta("portrait_required", true)
+	if status != null: status.text = "图像暂不可用" if key.is_empty() else "正在显影…"
 	if key.is_empty(): return
 	var target: WeakRef = weakref(slot)
 	var note: WeakRef = weakref(status) if status != null else null

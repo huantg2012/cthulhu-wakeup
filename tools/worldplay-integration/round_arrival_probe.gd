@@ -3,7 +3,8 @@ const ArrivalModel = preload("res://src/presentation/production/worldplay/round_
 
 func check_ready() -> bool:
 	for slot: Node in app._arrival.find_children("*","TextureRect",true,false):
-		if not str(slot.get_meta("art_key", "")).is_empty() and not require(slot.texture != null,"Arrival exposed an unprepared portrait"): return false
+		if slot.get_meta("portrait_required", false):
+			if not require(not str(slot.get_meta("art_key", "")).is_empty() and slot.texture != null,"Arrival exposed an omitted or unprepared portrait"): return false
 	return true
 
 func check_delta() -> bool:
