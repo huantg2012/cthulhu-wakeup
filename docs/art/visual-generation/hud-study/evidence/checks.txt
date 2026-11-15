@@ -1,0 +1,10 @@
+2026-11-15 · 上下栏原生对照
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+HUD_STUDY_OK: both native variants; default/large readability; no save mutation from variants/demos/responsibilities/cancel; real next turn; protected card area.
+
+作用域：隔离 seed 1 正式 Session；两个展示方案；标准／大字；只读责任；结束确认及真实推进。
+未覆盖：后期多教团长局、终局全部分支。
+动态文件复核：A103／B96编码帧（相同帧合并），各7504ms；已核对实际像素随时间变化。
+独立试玩入口 HUD_STUDY_READY；1/2和G可用，保持开启供制作人审阅。

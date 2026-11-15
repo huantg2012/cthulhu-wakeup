@@ -10,6 +10,7 @@ const ArrivalModel = preload("res://src/presentation/production/worldplay/round_
 const ArrivalView = preload("res://src/presentation/production/worldplay/round_arrival.gd")
 const CardFields = preload("res://src/presentation/production/painted/card_fields.gd")
 const PrayerReceipt = preload("res://src/presentation/production/worldplay/prayer_receipt.gd")
+const SessionHud = preload("res://src/presentation/production/painted/session_hud.gd")
 const ResistanceCards = preload("res://src/presentation/production/worldplay/resistance_cards.gd")
 const GROUPS := [["all","全部"],["event","事件"],["resistance","预告"],["cult","教团"],["power","权能"],["activity","活动"],["person","人物"],["anchor","锚点"],["action","行为"]]
 var _placed_event := ""
@@ -52,8 +53,12 @@ var _illustration_variant := 0
 func _ready() -> void:
 	_model = ActionModel.new()
 	_arrival = ArrivalView.new()
+var _hud: Node
 	add_child(_arrival)
 	_arrival.finished.connect(_arrival_finished)
+	_hud = SessionHud.new()
+	_hud.host = self
+	add_child(_hud)
 	super._ready()
 
 func _start_new(seed_value: int) -> void:
@@ -67,6 +72,7 @@ func _open_campaign(result: Dictionary) -> void:
 		_arrival_pending = false
 		_arrival_resume_boundary = false
 		_arrival.hide()
+		if _hud != null: _hud.reset()
 		_library = ""
 		_placed_event = ""
 		_library_memory.clear()
@@ -136,6 +142,7 @@ func _update_atmosphere() -> void:
 		if worlds != null: worlds.set_blocked(blocked)
 		var echo := _stage.find_child("RoundEcho",true,false)
 		if echo != null: echo.disabled = blocked or _arrival_model.cards.is_empty()
+	if _hud != null: _hud.sync_input(blocked or projection.get("phase")=="events")
 	if is_instance_valid(_fan): _fan.set_blocked(blocked)
 	if is_instance_valid(_persistent_dock):
 		for button: Node in _persistent_dock.find_children("*", "Button", true, false):
@@ -236,6 +243,11 @@ func _build_worlds() -> void:
 	if events:
 		_reset_draft()
 		_deck.clear()
+		var old_crumb := _stage.get_node_or_null("WorldOverview")
+		if old_crumb != null:
+			_stage.remove_child(old_crumb)
+			old_crumb.queue_free()
+		_hud.build_path(_stage,[{"name":"WorldOverview","caption":"◯ 诸界"}])
 		var pending := _pending_events()
 		for index: int in pending.size():
 			var event: Dictionary = pending[index]
@@ -250,13 +262,14 @@ func _build_worlds() -> void:
 	_deck = _deck.filter(_card_unlocked)
 	if not events:
 		_reconcile_played()
-		_button(_world_body,"Overview","◯ 诸界",Rect2(32,44,92,26),_go_overview)
+		var path := [{"name":"Overview","caption":"◯ 诸界","callback":_go_overview}]
 		if _library.is_empty():
-			_button(_world_body,"WorldScope",title(_world_id),Rect2(138,44,164,26),_leave_cult)
-			_text(_world_body,"›  "+(session.cult_title(_world_id) if not _study_cult.is_empty() else "世界玩法"),Rect2(319,44,540,26),17)
+			path.append({"name":"WorldScope","caption":title(_world_id),"callback":_leave_cult})
+			path.append({"name":"CurrentScope","caption":session.cult_title(_world_id) if not _study_cult.is_empty() else "世界玩法"})
 		else:
-			_button(_world_body,"ReturnTable","← 返回牌桌",Rect2(140,44,164,26),_close_library)
-			_text(_world_body,"›  "+_library_title()+" · 查阅",Rect2(319,44,540,26),17)
+			path.append({"name":"ReturnTable","caption":"返回牌桌","callback":_close_library})
+			path.append({"name":"CurrentScope","caption":_library_title()+" · 查阅"})
+		_hud.build_path(_world_body,path)
 	_build_master()
 	_table = DropTable.new()
 	_table.name = "PlayArea"
@@ -271,28 +284,54 @@ func _build_worlds() -> void:
 	_render_hand()
 
 func _build_top() -> void:
-	var top := _region(_stage,"Top",Rect2(0,0,1280,49))
-	_text(top,"第 %s 轮 · %s" % [projection.turn,projection.phase_title],Rect2(32,10,550,28),16,UI.MUTED)
-	_text(top,"低语 %s    信仰 %s    苏醒 %s" % [projection.whispers,projection.faith,projection.awakening],Rect2(871,8,369,32),20).horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	_menu_button = _button(top,"Menu","⋯",Rect2(1204,44,36,26),_show_menu)
-	_menu_button.disabled = _event_table()
-	var echo := _button(top,"RoundEcho","本轮回响",Rect2(352,12,94,25),_show_arrival.bind(true))
-	echo.add_theme_font_size_override("font_size",14)
+	_hud.build_top(_stage)
 
 func _build_dock() -> void:
 	if is_instance_valid(_persistent_dock):
 		remove_child(_persistent_dock)
 		_persistent_dock.queue_free()
-	_persistent_dock = _region(self,"PersistentDock",Rect2(32,671,1208,36))
-	_ui.fill(_persistent_dock,"DockShade",Rect2(-7,-6,1222,47),Color(UI.INK,.8))
-	for item: Array in [["PowerIndex","十二权能",0,112,"power"],["RelicIndex","圣物",124,68,"relic"],["People","人物档案",204,102,"person"]]:
-		var button := _button(_persistent_dock,item[0],item[1],Rect2(item[2],0,item[3],34),_open_library.bind(item[4]))
-		_ui.choice_style(button,_library==item[4])
-		button.tooltip_text = "只读图鉴 · 行动从世界或教团的行为牌发起"
-	_button(_persistent_dock,"Budget","供奉与收支",Rect2(320,0,122,34),_dock_subject.bind("budget"))
-	_button(_persistent_dock,"Self","苏醒与降临",Rect2(456,0,122,34),_dock_subject.bind("self"))
-	_button(_persistent_dock,"History","编年史",Rect2(948,0,90,34),_dock_subject.bind("history"))
-	_phase_plate = _button(_persistent_dock,"PhaseAction","回合责任 →",Rect2(1052,0,156,34),_phase_intent,true)
+	_persistent_dock = _region(self,"PersistentDock",Rect2(32,662,1208,52))
+	_hud.build_dock(_persistent_dock)
+
+func _show_hud_responsibilities(focus_name := "Cancel") -> void:
+	if _busy or _dice_active() or _portraits.preparing: return
+	_open_surface("round_responsibilities","第 %s 轮 / 回合责任" % projection.turn,"回看已有安排 · 不会推进时间")
+	_line(_body,_views.budget_summary(self),19)
+	var context := {"return_caption":"返回回合责任"}
+	_responsibility("ReviewSupply","锚点与供奉","%d 处已知锚点 · 轮末先付责任" % projection.anchors.size(),_tasks.open_subject.bind("budget","",_show_hud_responsibilities.bind("ReviewSupply"),context))
+	_responsibility("ReviewPrayers","待回应祈求","%d 项尚未回应" % _pending_prayers().size(),_prayers.browse.bind("",_show_hud_responsibilities.bind("ReviewPrayers")))
+	_responsibility("ReviewCult","组织计划","查看已登记指令和当地组织",_tasks.open_subject.bind("cults","",_show_hud_responsibilities.bind("ReviewCult"),context))
+	_footer_button("Cancel","返回牌桌",_close_surface).grab_focus()
+	_focus_surface_control(focus_name)
+
+func _show_hud_next_turn() -> void:
+	if _table_blocked(): return
+	if projection.phase == "ended": _phase_intent(); return
+	if projection.phase != "actions": return
+	var preview: Dictionary = session.progress()
+	_begin_surface("hud_end",false,true)
+	var pane := _region(_surface,"EndTurnConfirm",Rect2(802,464,426,190))
+	var backing := Panel.new()
+	backing.size = pane.size
+	backing.add_theme_stylebox_override("panel",Paint.reading_plate(1.0))
+	backing.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	pane.add_child(backing)
+	_text(pane,"结束第 %s 轮？" % projection.turn,Rect2(22,12,380,36),24,UI.BONE)
+	var due := _pending_prayers().filter(func(prayer: Dictionary)->bool:
+		var turn_due := int(prayer.get("card",{}).get("due_turn",prayer.get("descriptor",{}).get("due_turn",-1)))
+		return turn_due >= 0 and turn_due <= int(projection.turn))
+	var warning := "剩余 %s 低语不会结转。" % projection.whispers
+	if not due.is_empty(): warning += "\n%d 声祈求将到期。" % due.size()
+	if not preview.get("preview",{}).get("ok",false): warning = session.explain_error(str(preview.get("preview",{}).get("error",preview.get("error",""))))
+	_text(pane,warning,Rect2(22,58,380,61),16,UI.MUTED)
+	_button(pane,"Cancel","留在本轮",Rect2(20,137,140,34),_close_surface).grab_focus()
+	var next := _button(pane,"ConfirmEnd","下一回合 →",Rect2(207,132,198,42),_commit_hud_end.bind(int(projection.turn)),true)
+	next.disabled = not preview.get("confirmation",false) or not preview.get("preview",{}).get("ok",false)
+
+func _commit_hud_end(expected_turn: int) -> void:
+	if _busy or _dice_active() or _dialog != "hud_end" or int(projection.turn)!=expected_turn or projection.phase!="actions": return
+	_close_surface()
+	_advance(true)
 
 func _begin_surface(kind: String,mist:=true,preserve_world:=false) -> void:
 	super._begin_surface(kind,mist,preserve_world)
