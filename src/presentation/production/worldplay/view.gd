@@ -520,7 +520,7 @@ func _card_unlocked(card: Dictionary) -> bool:
 	return ActionModel.unlocked(card, session.catalog, projection)
 
 func _power_unlocked(definition: Dictionary) -> bool:
-	return int(projection.get("awakening", 0)) >= int(definition.unlock_awakening)
+	return projection.get("card_unlocks", {}).has(str(definition.id))
 
 func _can_place_card(card: Dictionary) -> bool:
 	if _table_blocked(): return false
@@ -1543,20 +1543,28 @@ func _close_library() -> void:
 	_refresh()
 
 func _render_power_thresholds() -> void:
-	_text(_table, "尚未解锁 · 所需苏醒", Rect2(220, 106, 680, 25), 16, UI.MUTED)
-	var index := 0
+	_text(_table, "尚未开放 · 苏醒与实际前提均须具备", Rect2(220, 106, 680, 25), 16, UI.MUTED)
+	var scroll := ScrollContainer.new()
+	scroll.name = "LockedPowerRequirements"
+	scroll.position = Vector2(220, 137)
+	scroll.size = Vector2(690, 112)
+	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	_table.add_child(scroll)
+	var column := VBoxContainer.new()
+	column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	column.add_theme_constant_override("separation", 6)
+	scroll.add_child(column)
 	for key: String in _power_record_order():
 		var definition: Dictionary = session.catalog.display_tables.powers[key]
 		if _power_unlocked(definition): continue
-		var column := index % 3
-		var row := floori(index / 3.0)
-		_text(_table, "%s  %s" % [definition.name, definition.unlock_awakening], Rect2(220 + column * 204, 138 + row * 25, 197, 23), 15, UI.MUTED)
-		index += 1
+		var condition: String = str(session.card_unlock_policy.rules.get(key, {}).get("description", ""))
+		CardFields.line(column,[str(definition.name)," · ",CardFields.field("苏醒",definition.unlock_awakening)," · ",condition],15)
 
 func _render_power_record() -> void:
 	var definition: Dictionary = _played.subject
 	var lines: Array = []
-	lines.append(CardFields.field("解锁苏醒","%s / %s" % [projection.awakening,definition.unlock_awakening]))
+	lines.append(CardFields.field("施行所需苏醒","%s / %s" % [projection.awakening,definition.unlock_awakening]))
+	lines.append(CardFields.field("首次开放",session.card_unlock_policy.rules.get(str(definition.id),{}).get("description","")))
 	lines.append(CardFields.field("基础消耗",_model._price(int(definition.faith),int(definition.whispers))))
 	for pair: Array in [["target_requirement","所需条件"],["always_cost","必付代价"],["success","成功作用"],["deep_success","深刻成功"],["failure","失败"],["disaster","灾变"]]:
 		if not str(definition.get(pair[0],"")).is_empty(): lines.append(CardFields.field(pair[1],definition[pair[0]]))

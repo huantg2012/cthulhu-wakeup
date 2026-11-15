@@ -26,6 +26,7 @@ const WorldIntelligence = preload("res://src/game/world_intelligence.gd")
 const Opportunities = preload("res://src/game/opportunity_service.gd")
 const Eligibility = preload("res://src/game/opportunity_eligibility.gd")
 const EntrySelectors = preload("res://src/game/entry_selectors.gd")
+const CardUnlocks = preload("res://src/presentation/card_unlocks.gd")
 const Materials = preload("res://src/simulation/material_transfer.gd")
 const Progression = preload("res://src/game/progression_routes.gd")
 const SAVE_SCHEMA: int = 2
@@ -57,6 +58,8 @@ var _known_events: Dictionary = {}
 var _request_domains: Dictionary = {}
 var _request_people: Dictionary = {}
 var _request_objects: Dictionary = {}
+var _card_unlocks: Dictionary = {}
+var card_unlock_policy := CardUnlocks.new()
 var save_directory: String
 var latest_path: String
 var _identity_pattern: RegEx
@@ -196,6 +199,7 @@ func start_new(seed_value: int) -> Dictionary:
 	_campaign = "%d-%d" % [Time.get_unix_time_from_system(), Time.get_ticks_usec()]
 	slot = save_directory + "/" + _campaign + ".json"
 	_request_sequence = 1; _knowledge_cursor = 1
+	_card_unlocks = {}
 	_known_domains = {}; _known_people = {}; _known_facts = {}; _known_kinds = {}; _known_relics = {}; _domain_intelligence = {}; _known_prayers = {}; _known_events = {}; _request_domains = {}; _request_people = {}; _request_objects = {}; _action_inputs = {}; last_result = opened.duplicate(true)
 	_refresh_knowledge(false)
 	var autosave: Dictionary = save_game()
@@ -439,6 +443,7 @@ func _command_knowledge_roots(request: Dictionary) -> Dictionary:
 
 func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionary = {}) -> void:
 	_adopt_knowledge(knowledge_snapshot())
+	card_unlock_policy.observe(self, project(), _card_unlocks)
 
 
 func prayer_title(descriptor: Dictionary, card: Dictionary = {}) -> String:
@@ -794,7 +799,7 @@ func project() -> Dictionary:
 	for plan: Dictionary in modules.resistance.preview(turn).get("plans", []):
 		if _known_domains.has(plan.domain): resistance.append(_public(plan))
 	var terminal: Dictionary = Store.entry(state.facts, str(state.ending_system.get("terminal", "")), {})
-	return {"ok": true, "active": true, "turn": turn.context.turn, "phase": turn.context.phase, "phase_title": {"between": "轮间", "events": "轮初事件", "actions": "神意行动", "evolution": "共同演化", "settlement": "轮末结算", "ending": "终局检查", "ended": "本局封存"}.get(str(turn.context.phase), ""), "busy": _busy, "terminal": turn.context.phase == "ended", "outcome": turn.context.outcome, "ending_reason": terminal.get("changes", {}).get("reason", ""), "awakening": state.awakening, "awakening_sources": awakening_sources, "faith": state.faith, "capacity": Economy.capacity(state, catalog), "whispers": state.whispers, "insight": state.insight, "wounds": state.wounds, "disconnected": state.ending_system.disconnected, "manifest": _public(state.power_system.manifest), "domains": domains, "institutions": institutions, "people": people, "relics": _public(relics), "cults": _public(cults), "anchors": _public(anchors), "prayers": prayers, "prayer_response_spent": int(turn.context.responses) >= catalog.integer("prayer_response_limit"), "events": events, "resistance": resistance, "attention": attention, "last_result": _public(last_result), "economy_plan": _public(turn.context.plans.get("economy", {})), "summary_income": _public(economy), "slot": slot}
+	return {"ok": true, "active": true, "turn": turn.context.turn, "phase": turn.context.phase, "phase_title": {"between": "轮间", "events": "轮初事件", "actions": "神意行动", "evolution": "共同演化", "settlement": "轮末结算", "ending": "终局检查", "ended": "本局封存"}.get(str(turn.context.phase), ""), "busy": _busy, "terminal": turn.context.phase == "ended", "outcome": turn.context.outcome, "ending_reason": terminal.get("changes", {}).get("reason", ""), "awakening": state.awakening, "awakening_sources": awakening_sources, "faith": state.faith, "capacity": Economy.capacity(state, catalog), "whispers": state.whispers, "insight": state.insight, "wounds": state.wounds, "disconnected": state.ending_system.disconnected, "manifest": _public(state.power_system.manifest), "card_unlocks": _card_unlocks.duplicate(true), "domains": domains, "institutions": institutions, "people": people, "relics": _public(relics), "cults": _public(cults), "anchors": _public(anchors), "prayers": prayers, "prayer_response_spent": int(turn.context.responses) >= catalog.integer("prayer_response_limit"), "events": events, "resistance": resistance, "attention": attention, "last_result": _public(last_result), "economy_plan": _public(turn.context.plans.get("economy", {})), "summary_income": _public(economy), "slot": slot}
 
 func history_page(cursor: int = 0, limit: int = 20) -> Dictionary:
 	if turn == null or cursor < 0 or limit < 1 or limit > 100: return _failure("无效历史页")
@@ -811,6 +816,7 @@ func save_game(path: String = "") -> Dictionary:
 	if turn == null or _busy: return _failure("当前不能保存")
 	var destination: String = slot if path.is_empty() else path
 	var body: Dictionary = {"schema": SAVE_SCHEMA, "campaign": _campaign, "request_sequence": _request_sequence, "snapshot": turn.snapshot(), "action_inputs": _action_inputs, "material_version": catalog.material_transfer_version(), "eligibility_version": Eligibility.VERSION, "knowledge": {"domains": known_domains(), "people": known_people(), "facts": known_sources(), "cursor": _knowledge_cursor}}
+	body["card_unlocks"] = {"version": CardUnlocks.VERSION, "entries": _card_unlocks.duplicate(true)}
 	body["knowledge_version"] = PlayerKnowledge.VERSION
 	body["display_names"] = {"version":WorldNames.VERSION, "worlds":_world_names.duplicate(true), "backgrounds":_world_name_backgrounds.duplicate(true)}
 	body["opportunity_version"] = Opportunities.version(catalog)
@@ -886,6 +892,7 @@ func continue_game(path: String = "") -> Dictionary:
 	var built: Dictionary = _build(1, powers_revision, sustained_pollution)
 	if not built.ok: return _failure(built.error)
 	if not built.turn.restore(body.snapshot): return _failure(built.turn.last_error)
+	if body.has("card_unlocks") and not card_unlock_policy.valid(body.card_unlocks, int(built.turn.context.turn), built.world.state.domains): return _failure("存档功能牌开放记录不正确")
 	var name_payload: Variant = body.get("display_names")
 	if not body.has("display_names"):
 		# Pre-naming campaigns keep their authored identities, then freeze them
@@ -941,7 +948,9 @@ func continue_game(path: String = "") -> Dictionary:
 	_world_name_backgrounds = naming.backgrounds
 	_campaign = body.campaign; _request_sequence = body.request_sequence; _knowledge_cursor = knowledge.cursor; slot = source
 	_action_inputs = body.get("action_inputs", {}).duplicate(true)
+	_card_unlocks = body.get("card_unlocks", {}).get("entries", {}).duplicate(true)
 	_rebuild_knowledge(knowledge)
+	card_unlock_policy.observe(self, project(), _card_unlocks)
 	last_result = {}; last_error = ""
 	return {"ok": true, "path": source, "turn": turn.context.turn, "phase": turn.context.phase}
 

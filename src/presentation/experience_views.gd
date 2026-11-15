@@ -1035,8 +1035,8 @@ static func next_power_hint(catalog: RefCounted, awakening: int) -> String:
 		var threshold := int(power.unlock_awakening)
 		if threshold > awakening and (next.is_empty() or threshold < int(next.unlock_awakening)):
 			next = power
-	if next.is_empty(): return "全部权能已解锁"
-	return "下一权能 · %s　苏醒 %s 解锁 · 还差 %d" % [next.name, next.unlock_awakening, int(next.unlock_awakening) - awakening]
+	if next.is_empty(): return "苏醒门槛均已达到；功能牌仍须具备各自的实际前提。"
+	return "下一苏醒门槛 · %s　%s · 还差 %d\n首次开放还需具备对应的人物、组织或材料。" % [next.name, next.unlock_awakening, int(next.unlock_awakening) - awakening]
 
 func _self(host, box: VBoxContainer, ritual_only := false) -> void:
 	if not host is RefCounted: _heading(host, box, "本体与苏醒")
@@ -1050,8 +1050,13 @@ func _self(host, box: VBoxContainer, ritual_only := false) -> void:
 
 	var manifest: Dictionary = host.projection.get("manifest", {})
 	if manifest.is_empty():
-		box.add_child(host.label("尚未开始降临。"))
-		_action(host, box, "查看降临条件", "POWER_MANIFEST")
+		if host.projection.get("card_unlocks", {}).has("POWER_MANIFEST"):
+			box.add_child(host.label("尚未开始降临。"))
+			_action(host, box, "查看降临条件", "POWER_MANIFEST")
+		else:
+			box.add_child(host.label("降临尚未开放。"))
+			_pair(host, box, "苏醒门槛", host.session.catalog.display_tables.powers.POWER_MANIFEST.unlock_awakening)
+			_pair(host, box, "首次开放", host.session.card_unlock_policy.rules.POWER_MANIFEST.description)
 	else:
 		_heading(host, box, "降临进行中")
 		RequirementList.render(box, [Requirements.group("实际进展", [Requirements.quantity("manifest_paid", "仪式实付轮次", int(manifest.get("progress", 0)), host.session.catalog.integer("manifest_duration")), Requirements.condition("manifest_last", "最近实付", "info", "第 %s 轮" % manifest.get("paid_turn", "?"))])], host.host._size(16) > 16 if host is RefCounted else false, (host.host._ui if host is RefCounted else null))

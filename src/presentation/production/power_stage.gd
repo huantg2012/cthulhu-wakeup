@@ -35,19 +35,19 @@ func open(id := "", focus_name := "") -> void:
 		var origin := Vector2(753 + cos(theta) * 537, 388 + sin(theta) * 208)
 		var control: Button = host._stage_button(surface, "Sigil_" + key, "", Rect2(origin, Vector2(94, 92)), open.bind(key))
 		control.accessibility_name = str(definition.name)
-		var locked: bool = int(definition.unlock_awakening) > int(host.projection.awakening)
+		var locked: bool = not host.projection.get("card_unlocks", {}).has(key)
 		host._ui.select_entry(control, key == _selected)
 		var tint := UI.BONE if key == _selected else UI.MUTED if locked else UI.BONE
-		control.accessibility_description = ("需苏醒 %s" % definition.unlock_awakening) if locked else "已解锁"
+		control.accessibility_description = ("需苏醒 %s；%s" % [definition.unlock_awakening,host.session.card_unlock_policy.rules[key].description]) if locked else "已开放；施行仍需核对当前条件"
 		host._ui.icon(control, "Sigil", icon, Layout.box(Rect2(23.5, 9, 47, 47)), tint)
 		host._reference(control, "PowerName", str(definition.name), Rect2(0, 59, 94, 28), 17, tint).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		control.tooltip_text = "需苏醒 %s" % definition.unlock_awakening if locked else str(definition.name)
+		control.tooltip_text = control.accessibility_description if locked else str(definition.name)
 		if key == _selected: active = control
 	var selected: Dictionary = definitions[_selected]
 	host._reference(surface, "PowerPremise", "梦与醒之间" if _selected == "POWER_DREAM" else "由现实联系抵达", Rect2(530, 305, 540, 22), 13, UI.CYAN, false, 5).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	host._reference(surface, "SelectedPower", str(selected.name), Rect2(530, 340, 540, 69), 49, UI.BONE, true, 15).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	host._text(surface, str(selected.target_requirement), Layout.box(Rect2(580, 421, 440, 62)), 13, UI.MUTED).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var locked: bool = int(selected.unlock_awakening) > int(host.projection.awakening)
+	var locked: bool = not host.projection.get("card_unlocks", {}).has(_selected)
 	var price := "需苏醒 %s · 当前 %s" % [selected.unlock_awakening, host.projection.awakening] if locked else "%s 低语 · %s 信仰" % [selected.whispers, selected.faith]
 	var enter: Button = host._stage_button(surface, "PreparePower", ("查看要求" if locked else "进入") + " " + str(selected.name) + " →", Rect2(689, 490, 222, 49), _prepare.bind(_selected), 19)
 	host._ui.scene_submit(enter)
@@ -61,6 +61,7 @@ func _rules() -> void:
 	var definition: Dictionary = host.session.catalog.display_tables.powers[_selected]
 	host._begin_peek("power_rules")
 	var body: VBoxContainer = host._peek_content("十二权能 / 完整规则", str(definition.name))
+	host._line(body, "首次开放 · 苏醒 %s；%s" % [definition.unlock_awakening,host.session.card_unlock_policy.rules[_selected].description],14)
 	for field: String in ["target_requirement", "always_cost", "success", "failure", "disaster", "notes"]:
 		if not str(definition.get(field, "")).is_empty(): host._line(body, str(definition[field]), 14)
 	host._stage_button(host._surface, "ClosePowerRules", "返回权能全览 ←", Rect2(1130, 661, 393, 38), close_rules).grab_focus()
@@ -69,6 +70,9 @@ func close_rules() -> void:
 	open(_selected, "PowerRules")
 
 func _prepare(id: String) -> void:
+	if not host.projection.get("card_unlocks", {}).has(id):
+		_rules()
+		return
 	var return_to := open.bind(id, "PreparePower")
 	if id == "POWER_MANIFEST":
 		host._tasks.open_subject("self", "", return_to)

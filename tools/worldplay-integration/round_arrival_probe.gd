@@ -12,11 +12,14 @@ func check_delta() -> bool:
 	var source: Dictionary = app.session.project()
 	ledger.observe(app.session,source)
 	if not require(ledger.counts.person==0 and ledger.counts.unlock==0,"Resume advertised historical identities as new"): return false
-	# Explicit projection fixtures exercise threshold and identity comparisons;
+	# Explicit projection fixtures exercise discovery and identity comparisons;
 	# they are never installed in Session or rendered as actual game events.
 	var after := source.duplicate(true)
 	after.turn += 1
 	after.awakening = 100
+	# Explicit discovery fixture: awakening alone no longer unlocks these cards.
+	after.card_unlocks["POWER_BESTOW"] = {"turn": after.turn, "domain": source.domains[0].id}
+	after.card_unlocks["POWER_MANIFEST"] = {"turn": after.turn, "domain": source.domains[0].id}
 	var petitioner: Dictionary = after.people.filter(func(p: Dictionary) -> bool:return not p.has("已知范围"))[0].duplicate(true)
 	petitioner.id = "arrival-fixture-petitioner"
 	after.people.append(petitioner)
@@ -33,7 +36,7 @@ func check_delta() -> bool:
 	ledger.observe(app.session,after)
 	if not require(ledger.counts.person==1 and ledger.cards.filter(func(c: Dictionary) -> bool:return c.arrival=="person")[0].subject.id==person.id,"Prayer priority or unknown-person exclusion failed"): return false
 	var unlocks := ledger.cards.filter(func(c: Dictionary) -> bool:return c.arrival=="unlock")
-	if not require(unlocks.any(func(c: Dictionary) -> bool:return c.id=="POWER_BESTOW") and unlocks.any(func(c: Dictionary) -> bool:return c.id=="POWER_MANIFEST"),"Actual power thresholds didn't produce new unlock cards"): return false
+	if not require(unlocks.any(func(c: Dictionary) -> bool:return c.id=="POWER_BESTOW") and unlocks.any(func(c: Dictionary) -> bool:return c.id=="POWER_MANIFEST"),"Recorded power discovery did not produce new unlock cards"): return false
 	if not require(not ledger.observe(app.session,after),"Same-round refresh repeated arrival"): return false
 	after.turn += 1
 	after.faith += 100

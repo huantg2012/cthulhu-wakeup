@@ -1,11 +1,17 @@
 ---
 status: PROPOSED_WITH_PARTIAL_TECHNICAL_EVIDENCE
 created-by: code agent
-last-modified-date: 2026-11-14
+last-modified-date: 2026-11-15
 changed-this-slice: true
 ---
 
 # 技术边界与可实施性
+
+## 功能牌首次开放（2026-11-15）
+
+`presentation/card_unlocks.gd` 消费 `data/card_unlocks.csv`，在 Session 成功提交后的公开知识边界以隔离只读 view 检查实际结构前提；复用正式资格来源、能力与降临配置查询，不提交行动、不消耗 RNG。`Session._card_unlocks` 保存首次开放的功能 ID／轮次／世界，公开投影向 `ActionModel.unlocked`、只读权能图鉴与轮初回响提供同一口径。活动卡目录在事件阶段也可查询世界类型范围，显式不指定人物，避免进入执行选择器的阶段限制或单人物自动选中隐去已开放活动。费用、冷却、苏醒回落和失去对象由正式 preview／execute 继续处理，已开放牌保持可查。不是确定性全目录“可立即执行”求解器，也不替代该项待办。
+
+Session 外壳的可选 `card_unlocks` 带独立版本并受原 checksum 保护，加载校验 ID、轮次和世界；旧档无字段时只按载入时真实条件建立基线，不推测历史。不变更 Turn/World schema、规则签名或旧 powers 曲线。规则唯一正文：[功能牌首次开放](specs/system-powers-cults.md#functional-card-discovery)；范围与证据：[交付记录](tasks/card-unlock-pacing.md)。
 
 ## 世界玩法牌桌正式接入（2026-11-12）
 
@@ -27,7 +33,7 @@ changed-this-slice: true
 
 `tools/ui-art-production/export_pack.sh` 从隔离的制作输入目录生成正式 PCK，保留正式 CSV 原文、字体及上游许可证；样板入口、展示夹具、文档证据不进包。独立母版在 `dcaf037` 的探索工作树复现；正式分支保留其冻结图册、动态及指纹。
 
-**轮初回响（2026-11-13）。** `worldplay/round_arrival_model.gd` 在公开轮次边界登记已知人物与已纳入目录的动作身份，按事件、祈求、新人物、解锁组织只读提示，按求告者 ID 去重。`action_model.gd:cards/unlocked` 是正式牌堆与提示的共同准入／动词归并入口，不拿费用预览冒充解锁。此登记只在呈现会话内存在，读档以当前投影初始化基线，不扩充 Session schema。`round_arrival.gd` 的 CanvasLayer 19 位于立绘准备层 20 之下，等当前图像就绪才显现，输入期间隔离原牌桌；关闭后回原 `_enter_boundary`，不绕过事件。从轮间立绘准备后的第一处回响起，共享连续卡身／完整 HandFan 用只读模式，`painted/arrival_veil.gdshader` 仅消散卡前的灰绿雾层；不新建图像生成服务或重启外围时钟。顶部 RoundEcho 回看保存的轮初公开记录，不提交也不改草稿。交互与视觉唯一正文分别为 UI 世界玩法合同及美术 A15。2026-11-13 制作人锁定含厚度的卡面并授权完整 Session 接入；本批实现覆盖与实机状态见[接入记录](tasks/worldplay-integration.md)，不以样板认可代替全部正式场景验收。
+**轮初回响（2026-11-13）。** `worldplay/round_arrival_model.gd` 在公开轮次边界登记已知人物与已纳入目录的动作身份，按事件、祈求、新人物、解锁组织只读提示，按求告者 ID 去重。`action_model.gd:cards/unlocked` 是正式牌堆与提示的共同准入／动词归并入口，不拿费用预览冒充解锁。回响的“本轮已播报”登记只在呈现会话内存在，读档以当前投影初始化播报基线；功能是否已首次开放另由上方 Session 持久记录决定。`round_arrival.gd` 的 CanvasLayer 19 位于立绘准备层 20 之下，等当前图像就绪才显现，输入期间隔离原牌桌；关闭后回原 `_enter_boundary`，不绕过事件。从轮间立绘准备后的第一处回响起，共享连续卡身／完整 HandFan 用只读模式，`painted/arrival_veil.gdshader` 仅消散卡前的灰绿雾层；不新建图像生成服务或重启外围时钟。顶部 RoundEcho 回看保存的轮初公开记录，不提交也不改草稿。交互与视觉唯一正文分别为 UI 世界玩法合同及美术 A15。2026-11-13 制作人锁定含厚度的卡面并授权完整 Session 接入；本批实现覆盖与实机状态见[接入记录](tasks/worldplay-integration.md)，不以样板认可代替全部正式场景验收。
 
 ## 统一掷骰与实际结果（2026-11-14）
 

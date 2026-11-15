@@ -87,10 +87,7 @@ func _powers() -> void:
 		_check(row)
 
 func _activities() -> void:
-	var choices: Dictionary = _session.action_choices("route/context", {"domain": _world})
-	var operations: Array = []
-	for field: Dictionary in choices.get("fields", []):
-		if field.key == "operation": operations = field.options
+	var operations: Array = _session.card_unlock_policy.activity_options(_session, _world)
 	for option: Dictionary in operations:
 		var definition: Dictionary = _session.catalog.display_tables.progression_route_operations.get(option.id, {})
 		var row := _row(str(option.id), str(option.label), "activity", "route/context", {"domain": _world, "operation": option.id})
@@ -238,10 +235,11 @@ func cards(session: RefCounted, projection: Dictionary, world_id: String, cult_i
 	return result.filter(func(card: Dictionary) -> bool: return unlocked(card, session.catalog, projection))
 
 static func unlocked(card: Dictionary, catalog: RefCounted, projection: Dictionary) -> bool:
-	if card.get("status") == "未解锁": return false
 	var power_id := ""
 	if card.get("group") == "power":
 		power_id = str(card.subject.id) if card.type == "object" else str(card.entry)
 	elif card.id == "anchor/bind":
 		power_id = "POWER_ANCHOR"
-	return power_id.is_empty() or int(projection.get("awakening", 0)) >= int(catalog.display_tables.powers[power_id].unlock_awakening)
+	if not power_id.is_empty(): return projection.get("card_unlocks", {}).has(power_id)
+	if card.get("group") == "activity": return projection.get("card_unlocks", {}).has(str(card.id))
+	return card.get("status") != "未解锁"
