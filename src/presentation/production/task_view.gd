@@ -547,7 +547,9 @@ func _render_subject(page: Dictionary) -> void:
 			else:
 				var right := _right_column()
 				_person_art(host._body, id, Vector2(326, 232))
-				host._views.render(self, right, kind, id)
+				if page.get("read_only",false):
+					for tab: String in ["duties","ability","carried"]: host._views._person(self,right,id,tab)
+				else: host._views.render(self, right, kind, id)
 		"relic":
 			_render_relic_icon(id)
 			host._views.render(self, host._body, kind, id)
@@ -1174,7 +1176,8 @@ func _anchor_details(institution: String, conditions: Array, focus: String) -> v
 	var body: VBoxContainer = host._peek_content("锚定", "费用与风险" if risks else "锚定条件")
 	if risks:
 		var definition: Dictionary = session.catalog.display_tables.powers.POWER_ANCHOR
-		for field: Array in [["基础支出", "%s 低语 · %s 信仰" % [definition.whispers, definition.faith]], ["必付", definition.always_cost], ["失败", definition.failure], ["灾变", definition.disaster]]:
+		for field: Array in [["基础支出", "%s 低语 · %s 信仰" % [definition.whispers, definition.faith]], ["施行影响", host._actions.cost_context(str(definition.always_cost))], ["失败", definition.failure], ["灾变", definition.disaster]]:
+			if str(field[1]).is_empty(): continue
 			host._line(body, field[0], 13, UI.CYAN)
 			host._line(body, field[1], 14)
 	else:

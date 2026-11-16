@@ -2,7 +2,7 @@ extends "res://tools/worldplay-integration/probe.gd"
 const Library = preload("res://src/presentation/production/worldplay/illustrations/library.gd")
 const Catalogue = preload("res://tools/card-illustration-study/catalogue.gd")
 func run() -> void:
-	output = "res://docs/art/visual-generation/card-illustration-study/production"
+	output = "res://docs/art/visual-generation/card-illustration-study/painted-deck/native"
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(output))
 	auto_arrivals = false
 	if not await setup(PackedStringArray(["--seed=5","--keep-arrival"])): return
@@ -13,8 +13,10 @@ func run() -> void:
 		var subject := Library.identity(card,str(card.group))
 		var texture := Library.texture(0,subject)
 		if not require(texture!=null and texture.get_width()>=256,"Missing illustration "+str(card.id)): return
-	for subject: String in Library.SAMPLES:
-		if not require(Library.texture(0,subject)==Library.texture(2,subject),"Approved sample replaced "+subject): return
+	for subject: String in Library.Registry.KEYS:
+		var texture := Library.texture(0,subject)
+		if not require(texture!=null and texture.get_width()==512 and texture.resource_path.ends_with(".res"),"Not a baked texture: "+subject): return
+		if not require(texture==Library.texture(0,subject),"Texture reloaded: "+subject): return
 	if not require(app._arrival.visible,"Expected first-turn arrival"): return
 	await capture("arrival")
 	await press_key(KEY_ENTER)
@@ -38,5 +40,5 @@ func run() -> void:
 		for i: int in 16:
 			app._face(panel,cards[page_no*16+i],Rect2(18+(i%8)*157,15+(i/8)*345,144,216))
 		await capture("catalogue-%d" % page_no)
-	print("PRODUCTION_ART_OK: ",cards.size()," definitions; approved six preserved; arrival/world/hand/drag; Session unchanged")
+	print("PRODUCTION_ART_OK: ",cards.size()," definitions; 71 saved resources cached; arrival/world/hand/drag; Session unchanged")
 	quit()

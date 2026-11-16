@@ -27,6 +27,7 @@ const Opportunities = preload("res://src/game/opportunity_service.gd")
 const Eligibility = preload("res://src/game/opportunity_eligibility.gd")
 const EntrySelectors = preload("res://src/game/entry_selectors.gd")
 const CardUnlocks = preload("res://src/presentation/card_unlocks.gd")
+const EffectReceipt = preload("res://src/presentation/action_effect_receipt.gd")
 const Materials = preload("res://src/simulation/material_transfer.gd")
 const Progression = preload("res://src/game/progression_routes.gd")
 const SAVE_SCHEMA: int = 2
@@ -58,6 +59,8 @@ var _known_events: Dictionary = {}
 var _request_domains: Dictionary = {}
 var _request_people: Dictionary = {}
 var _request_objects: Dictionary = {}
+const PersonDiscovery = preload("res://src/presentation/person_discovery.gd")
+var _person_discovery: Dictionary = {}
 var _card_unlocks: Dictionary = {}
 var card_unlock_policy := CardUnlocks.new()
 var save_directory: String
@@ -200,6 +203,7 @@ func start_new(seed_value: int) -> Dictionary:
 	slot = save_directory + "/" + _campaign + ".json"
 	_request_sequence = 1; _knowledge_cursor = 1
 	_card_unlocks = {}
+	_person_discovery = {}
 	_known_domains = {}; _known_people = {}; _known_facts = {}; _known_kinds = {}; _known_relics = {}; _domain_intelligence = {}; _known_prayers = {}; _known_events = {}; _request_domains = {}; _request_people = {}; _request_objects = {}; _action_inputs = {}; last_result = opened.duplicate(true)
 	_refresh_knowledge(false)
 	var autosave: Dictionary = save_game()
@@ -225,6 +229,7 @@ func _submit(op: String, fields: Dictionary = {}, durable_id: String = "") -> Di
 	var knowledge_roots: Dictionary = _command_knowledge_roots(request)
 	var resources_before: Dictionary = {}
 	for field: String in ["faith", "whispers", "awakening", "insight", "wounds"]: resources_before[field] = world.state[field]
+	var effect_before := EffectReceipt.capture(self, request)
 	var result: Dictionary = turn.submit(request)
 	if result.ok:
 		_request_sequence += 1
@@ -255,6 +260,7 @@ func _submit(op: String, fields: Dictionary = {}, durable_id: String = "") -> Di
 						if row.has(field): record[field] = row[field]
 					cult_settlement.append(record)
 		result["changes"] = changes; result["facts"] = facts
+		result["action_effects"] = EffectReceipt.collect(self, request, effect_before, first_fact)
 		if not cult_settlement.is_empty(): result["cult_settlement"] = cult_settlement
 		last_result = result.duplicate(true)
 		if turn.context.phase in ["between", "ended"]:
@@ -443,6 +449,7 @@ func _command_knowledge_roots(request: Dictionary) -> Dictionary:
 
 func _refresh_knowledge(own_action: bool, first_fact: int = -1, roots: Dictionary = {}) -> void:
 	_adopt_knowledge(knowledge_snapshot())
+	PersonDiscovery.observe(self, _person_discovery)
 	card_unlock_policy.observe(self, project(), _card_unlocks)
 
 
@@ -770,7 +777,10 @@ func project() -> Dictionary:
 	for id: String in _request_domains:
 		if not _known_domains.has(id): domains.append({"id": id, "title": object_title(id), "已知范围": "仅本次请求线索"})
 	for id: String in _request_people:
-		if not _known_people.has(id): people.append({"id": id, "title": object_title(id), "domain": _request_people[id], "已知范围": "仅本次请求线索"})
+		if not _known_people.has(id):
+			var clue := {"id": id, "title": object_title(id), "domain": _request_people[id], "已知范围": "仅本次请求线索"}
+			PersonDiscovery.decorate(clue, _person_discovery, int(turn.context.turn))
+			people.append(clue)
 	for id: String in _request_objects:
 		var cue: Dictionary = _request_objects[id]
 		if cue.kind == "relic" and not _known_relics.has(id): relics.append({"id": id, "title": object_title(id), "domain": cue.domain, "已知范围": "仅本次请求线索"})
@@ -791,7 +801,9 @@ func project() -> Dictionary:
 			limitations.append(label if due < 0 else "%s · 剩余%d轮" % [label, maxi(1, due - int(state.turn))])
 		row["prayer_limitations"] = limitations
 		row["prayer_capabilities"] = PrayerRules.Capabilities.known_status(state, id, _known_facts, catalog)
-		row["title"] = person_title(person); row["role_name"] = catalog.display_tables.npc_profiles[person.profile].name; people.append(row)
+		row["title"] = person_title(person); row["role_name"] = catalog.display_tables.npc_profiles[person.profile].name
+		PersonDiscovery.decorate(row, _person_discovery, int(turn.context.turn))
+		people.append(row)
 	for id: String in known_relics():
 		var item: Dictionary = Store.entry(state.relics, id)
 		relics.append(item.duplicate(true))
@@ -846,6 +858,7 @@ func save_game(path: String = "") -> Dictionary:
 	if turn == null or _busy: return _failure("当前不能保存")
 	var destination: String = slot if path.is_empty() else path
 	var body: Dictionary = {"schema": SAVE_SCHEMA, "campaign": _campaign, "request_sequence": _request_sequence, "snapshot": turn.snapshot(), "action_inputs": _action_inputs, "material_version": catalog.material_transfer_version(), "eligibility_version": Eligibility.VERSION, "knowledge": {"domains": known_domains(), "people": known_people(), "facts": known_sources(), "cursor": _knowledge_cursor}}
+	body["person_discovery"] = _person_discovery.duplicate(true)
 	body["card_unlocks"] = {"version": CardUnlocks.VERSION, "entries": _card_unlocks.duplicate(true)}
 	body["knowledge_version"] = PlayerKnowledge.VERSION
 	body["display_names"] = {"version":WorldNames.VERSION, "worlds":_world_names.duplicate(true), "backgrounds":_world_name_backgrounds.duplicate(true)}
@@ -922,6 +935,7 @@ func continue_game(path: String = "") -> Dictionary:
 	var built: Dictionary = _build(1, powers_revision, sustained_pollution)
 	if not built.ok: return _failure(built.error)
 	if not built.turn.restore(body.snapshot): return _failure(built.turn.last_error)
+	if body.has("person_discovery") and not PersonDiscovery.valid(body.person_discovery, built.world.state, int(built.turn.context.turn)): return _failure("存档人物发现记录不正确")
 	if body.has("card_unlocks") and not card_unlock_policy.valid(body.card_unlocks, int(built.turn.context.turn), built.world.state.domains): return _failure("存档功能牌开放记录不正确")
 	var name_payload: Variant = body.get("display_names")
 	if not body.has("display_names"):
@@ -978,8 +992,10 @@ func continue_game(path: String = "") -> Dictionary:
 	_world_name_backgrounds = naming.backgrounds
 	_campaign = body.campaign; _request_sequence = body.request_sequence; _knowledge_cursor = knowledge.cursor; slot = source
 	_action_inputs = body.get("action_inputs", {}).duplicate(true)
+	_person_discovery = body.get("person_discovery", {}).duplicate(true)
 	_card_unlocks = body.get("card_unlocks", {}).get("entries", {}).duplicate(true)
 	_rebuild_knowledge(knowledge)
+	PersonDiscovery.observe(self, _person_discovery, true)
 	card_unlock_policy.observe(self, project(), _card_unlocks)
 	last_result = {}; last_error = ""
 	return {"ok": true, "path": source, "turn": turn.context.turn, "phase": turn.context.phase}

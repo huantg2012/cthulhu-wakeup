@@ -2,7 +2,7 @@ extends RefCounted
 ## Shared labels for game state and historical records.
 const WORDS: Dictionary = {
 	"faith":"信仰", "whispers":"低语", "awakening":"苏醒", "insight":"洞见", "wounds":"创伤",
-	"gain":"所得", "cost":"代价", "always":"必付后果", "deep":"深刻成功", "success":"成功", "failure":"失败", "disaster":"灾变",
+	"gain":"所得", "cost":"代价", "always":"施行影响", "deep":"深刻成功", "success":"成功", "failure":"失败", "disaster":"灾变",
 	"requirement":"所需条件", "due":"祈求期限", "effect":"选择后果", "faith_cost":"信仰费用", "probability":"综合成功率",
 	"will":"意志", "influence":"影响", "adaptation":"适应", "before":"此前", "after":"此后", "delta":"变化",
 	"title":"名称", "id":"身份", "domain":"所在时空", "name":"姓名", "state":"状态", "status":"状态", "tier":"层级",

@@ -80,6 +80,7 @@ func configure(sample: Dictionary, stock: Texture2D, artwork: Texture2D,
 	_blend.set_shader_parameter("carrier_mask", stock)
 	_blend.set_shader_parameter("art_card_fraction", art_height / maxf(size.y, 1.0))
 	_blend.set_shader_parameter("source_aspect", size.x / maxf(art_height, 1.0))
+	_blend.set_shader_parameter("reading_limit", 1.0)
 	_surface.set_shader_parameter("reading_onset", float(options.get("reading_onset", 0.52)))
 	_blend.set_shader_parameter("fade_bottom", float(options.get("fade_bottom", 0.29)))
 	_blend.set_shader_parameter("grain_scale", float(options.get("grain_scale", 8.0)))
@@ -183,8 +184,19 @@ func _layout_copy() -> void:
 	var title_width := size.x - title_left - margin
 	var title := str(_sample.get("title", ""))
 	var maximum_lines := int(_options.get("title_max_lines", 1 if compact else 2))
+	if _category_id == "prayer":
+		# A prayer's situation is its identity. Measure at the actual face width
+		# (including arrival / result cards), instead of truncating compact faces
+		# or shrinking their type. Match WORD_SMART line breaks before the Label
+		# enters the tree (its own line count is not shaped yet at configure time).
+		var font: Font = Paint.fonts().heading
+		var wrapped := font.get_multiline_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, title_width, title_px, -1,
+			TextServer.BREAK_MANDATORY | TextServer.BREAK_WORD_BOUND | TextServer.BREAK_ADAPTIVE)
+		maximum_lines = maxi(1, ceili(wrapped.y / font.get_height(title_px)))
 	var long_title: bool = maximum_lines > 1 and Paint.fonts().heading.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, title_px).x > title_width
 	var title_height := float(title_px * maximum_lines + 4) if long_title else float(title_px + 6)
+	if _category_id == "prayer":
+		title_height = maxf(title_height, Paint.fonts().heading.get_height(title_px) * maximum_lines + _heading.get_theme_constant("line_spacing") * (maximum_lines - 1))
 	var line1 := str(_sample.get("line1", ""))
 	var body_row_height: float = ceilf(Paint.fonts().body.get_height(text_px))
 	var long_info: bool = _identity_variant != 0 and ("\n" in line1 or Paint.fonts().body.get_string_size(line1, HORIZONTAL_ALIGNMENT_LEFT, -1, text_px).x > title_width)
@@ -215,6 +227,12 @@ func _layout_copy() -> void:
 	_heading.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART if long_title else TextServer.AUTOWRAP_OFF
 	_set_label_box(_heading, Rect2(title_left, title_y, title_width, title_height), title_px)
 	_heading.add_theme_color_override("font_color", INK)
+	if _category_id == "prayer" and long_title:
+		# Reserve real reading space, rather than laying the extra title lines
+		# over the petitioner's body. Keep the full-bleed original at its existing
+		# scale; its lower pigment retires before the title instead of turning
+		# the portrait into an inset square picture.
+		_blend.set_shader_parameter("reading_limit", minf(1.0, title_y / maxf(_picture.size.y, 1.0)))
 	_information_one.content(_sample.get("line1_fields",[line1]),text_px,true)
 	_information_one.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART if long_info else TextServer.AUTOWRAP_OFF
 	_set_label_box(_information_one, Rect2(margin, info_y, title_width, maxf(info_height, float(text_px + 6)) if _identity_variant == 0 else info_height), text_px)

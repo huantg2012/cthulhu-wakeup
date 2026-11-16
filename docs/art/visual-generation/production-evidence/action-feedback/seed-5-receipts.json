@@ -1,0 +1,87 @@
+{
+	"check": [
+		{
+			"outcome": "deep",
+			"probability": 52,
+			"roll": 7
+		}
+	],
+	"dream": {
+		"deltas": [
+			{
+				"delta": 3,
+				"field": "pollution",
+				"subject": "DOMAIN-001"
+			},
+			{
+				"delta": 1,
+				"field": "alert",
+				"subject": "DOMAIN-001"
+			},
+			{
+				"delta": -6,
+				"field": "sanity",
+				"subject": "NPC-00000004"
+			},
+			{
+				"delta": 15,
+				"field": "loyalty",
+				"subject": "NPC-00000004"
+			}
+		],
+		"developments": [],
+		"revealed": []
+	},
+	"listen": {
+		"deltas": [
+			{
+				"delta": 1,
+				"field": "alert",
+				"subject": "DOMAIN-001"
+			}
+		],
+		"developments": [],
+		"revealed": [
+			{
+				"actor": "",
+				"causal_parents": [
+					"FACT-00000001"
+				],
+				"changes": {
+					"cult": "",
+					"first_contact": true,
+					"metrics": {
+						"alert": 0,
+						"barrier": 35,
+						"pollution": 0,
+						"stability": 40
+					},
+					"observer": "",
+					"phase": "between",
+					"roots": [
+						"FACT-00000001"
+					],
+					"sources": [
+						"FACT-00000001"
+					],
+					"sources_version": "a17b3cb19dee50008386625f4240449eb2d818385de8ac6975149805e163151c"
+				},
+				"domain": "DOMAIN-001",
+				"id": "FACT-00000062",
+				"kind": "world_observation",
+				"targets": [],
+				"turn": 0
+			}
+		]
+	},
+	"shown": [
+		{
+			"caption": "人物变化",
+			"value": "罗安·佩里\n理智 -6 · 忠诚 +15"
+		},
+		{
+			"caption": "世界变化",
+			"value": "纳巴希邦联\n污染 +3 · 察觉 +1"
+		}
+	]
+}

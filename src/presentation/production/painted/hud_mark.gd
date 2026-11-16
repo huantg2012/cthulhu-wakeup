@@ -11,6 +11,7 @@ var count := 3
 var slots := 3
 var energies: Array[float] = []
 var muted := false
+var pressed := false
 var _vertices := PackedVector3Array()
 var _colors := PackedColorArray()
 var _mesh := ArrayMesh.new()
@@ -77,12 +78,9 @@ func _draw() -> void:
 	else: modulate.a = 1.0
 	match motif:
 		"epoch":
-			_wash(Rect2(0,4,size.x,37),.8,dark)
-			_stroke(PackedVector2Array([Vector2(3,39),Vector2(65,40),Vector2(size.x*.63,38),Vector2(size.x,37)]),1.8,Color(ash,.35))
 			for i: int in 4:
 				_stroke(PackedVector2Array([Vector2(10+i*5,12-i),Vector2(8+i*5,28+i)]),2.3,Color(warm,.4+i*.1))
 		"faith":
-			_wash(Rect2(3,5,size.x-6,37),.86,dark)
 			_arc(Vector2(24,20),Vector2(13,13),.13,PI-.13,5.,Color(ash,.85))
 			_stroke(PackedVector2Array([Vector2(17,36),Vector2(25,32),Vector2(33,35)]),3.,Color(warm,.58))
 			_polygon(PackedVector2Array([Vector2(25,6),Vector2(29,17),Vector2(24,22),Vector2(21,17)]),warm)
@@ -124,18 +122,7 @@ func _draw() -> void:
 				_polygon(points,Color(ash.lerp(warm,glow),.17+glow*(.65+.08*sin(elapsed*.8+i))))
 				_stroke(PackedVector2Array([Vector2(x,8),Vector2(x-1,18)]),1.3,Color(Paint.BONE,.6*glow))
 		"turn":
-			_wash(Rect2(2,4,size.x-5,size.y-8),.97,Paint.WARM.lerp(Paint.INK,.52-hover*.1))
-			_wash(Rect2(5,6,size.x-11,size.y-15),.85,dark.lerp(Paint.WARM,.11+hover*.1))
-			_stroke(PackedVector2Array([Vector2(12,size.y-6),Vector2(size.x*.5,size.y-4),Vector2(size.x-9,size.y-7)]),2.2,Color(warm,.7))
-			var c := Vector2(size.x-26.,size.y*.5)
-			_arc(c,Vector2(12,14),-.7,3.9,3.5,Color(warm,.9))
-			_stroke(PackedVector2Array([c+Vector2(0,-7),c+Vector2(7,0),c+Vector2(0,7)]),4.,Paint.BONE)
-		"navigation":
-			# Discontinuous rubbed ledge: never a flat rectangle across the screen.
-			_stroke(PackedVector2Array([Vector2(0,36),Vector2(size.x*.15,37),Vector2(size.x*.4,35),Vector2(size.x*.67,37),Vector2(size.x,35)]),2.,Color(ash,.22))
-			for i: int in 6:
-				var x := 6.+float(i)*(size.x-12)/6.
-				_stroke(PackedVector2Array([Vector2(x,37),Vector2(x+3,40),Vector2(x+7,37)]),2.,Color(warm,.28))
+			_draw_turn_gate()
 	if not _vertices.is_empty():
 		var arrays := []
 		arrays.resize(Mesh.ARRAY_MAX)
@@ -144,3 +131,41 @@ func _draw() -> void:
 		_mesh.clear_surfaces()
 		_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES,arrays)
 		draw_mesh(_mesh,null)
+
+
+func _draw_turn_gate() -> void:
+	# The player parts a boundary from outside the worlds. This is a pressure
+	# mark in the same membrane as the HUD, not a cult's altar, seal or talisman.
+	var dark := Paint.INK.darkened(.62)
+	var bone := Paint.MUTED.lerp(Paint.WARM,.20)
+	var reveal := hover*(.55 if pressed else 1.)
+	var body := dark.lerp(Paint.LINE,.36+reveal*.12)
+	var bed := PackedVector2Array([
+		Vector2(3,15),Vector2(12,8),Vector2(36,6),Vector2(68,7),
+		Vector2(98,5),Vector2(128,6),Vector2(151,3),Vector2(176,3),
+		Vector2(189,9),Vector2(194,20),Vector2(188,32),Vector2(174,39),
+		Vector2(147,37),Vector2(120,36),Vector2(88,38),Vector2(52,36),
+		Vector2(23,37),Vector2(7,30)])
+	_polygon(bed,body)
+	# Two low, unequal strata lead into the aperture. They never close into
+	# a rectangular frame; the area behind the caption remains quiet.
+	_stroke(PackedVector2Array([Vector2(2,14),Vector2(19,7),Vector2(49,7),Vector2(86,8),Vector2(118,6),Vector2(146,6),Vector2(160,3)]),7.0,Color(bone,.30+reveal*.16))
+	_stroke(PackedVector2Array([Vector2(7,32),Vector2(28,37),Vector2(59,37),Vector2(91,36),Vector2(119,38),Vector2(143,35),Vector2(157,38)]),4.6,Color(dark,.95))
+	_stroke(PackedVector2Array([Vector2(18,35),Vector2(40,37),Vector2(66,36),Vector2(95,37),Vector2(126,35),Vector2(149,36)]),3.6,Color(bone,.24+reveal*.13))
+	for i: int in 5:
+		var y := 11.+i*5.
+		_stroke(PackedVector2Array([Vector2(9,y+1),Vector2(35,y),Vector2(81,y+1),Vector2(124,y),Vector2(148,y-2)]),4.,Color(bone,.018))
+	# A single interrupted orbit: broad rubbed pigment around a dark opening.
+	# No arrow, ritual writing or miniature tick-ring. Its negative space widens
+	# gently on hover; all fragments keep their positions and visual center.
+	var c := Vector2(171,21)
+	var arcs := [Vector2(-1.38,-.08),Vector2(.20,1.38),Vector2(1.70,2.96),Vector2(3.27,4.46)]
+	for i: int in arcs.size():
+		var sector: Vector2 = arcs[i]
+		_arc(c+Vector2(0,1),Vector2(16,16),sector.x,sector.y,6.0,Color(dark,.96),i*.3)
+		_arc(c,Vector2(16,16),sector.x,sector.y,5.1,Color(bone,.52+reveal*.23),i*.3)
+		_arc(c+Vector2(-.5,-.5),Vector2(16,16),sector.x+.12,sector.y-.13,1.8,Color(Paint.BONE,.23+reveal*.20),i*.3)
+	var open := 1.2+reveal*1.7
+	_polygon(PackedVector2Array([c+Vector2(-1,-12),c+Vector2(-open-2,-3),c+Vector2(-open,3),c+Vector2(-1,12),c+Vector2(open+2,4),c+Vector2(open,-4)]),dark)
+	_stroke(PackedVector2Array([c+Vector2(1,-11),c+Vector2(open+1,-4),c+Vector2(open+3,3),c+Vector2(1,12)]),2.6,Color(Paint.WARM,.66+reveal*.25))
+	_stroke(PackedVector2Array([c+Vector2(-3,-8),c+Vector2(-open-3,1),c+Vector2(-2,9)]),3.4,Color(bone,.38+reveal*.22))

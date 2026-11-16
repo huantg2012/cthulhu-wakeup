@@ -70,7 +70,7 @@ func warning(catalog: RefCounted, content: String, variant: String) -> String:
 		if (row.operation == "record" and row.field in SUCCESS_WARNINGS) or row.operation == "vacate" or (row.operation == "withdraw" and row.field == "support") or (row.operation == "learn" and row.subject == "rival"):
 			risks.append(effect_text(catalog, row, variant))
 	var result: Array[String] = []
-	if not paid.is_empty(): result.append("必付：" + "；".join(paid))
+	if not paid.is_empty(): result.append("施行影响：" + "；".join(paid))
 	if not risks.is_empty(): result.append("成功也会：" + "；".join(risks))
 	return "\n".join(result)
 

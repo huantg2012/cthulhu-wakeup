@@ -1,0 +1,11 @@
+2026-11-15 · 四维百分比呈现
+正式入口主场景；隔离 seed 3 第 3 轮存档；未改写玩家存档。
+核对：移除量程标题；已知区间百分号；未知保持未掌握。
+标准／大字卡面文字无裁切；主卡拖放／Esc／档案返回；Session 快照不变。
+大字模式长区间曾换行，已使四维两行按最长行统一适配字号；复查通过。
+人工查看：overview-large.png、reading-large.png。
+
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+WORLD_PERCENT_UI_OK: real prayer-only and known worlds; standard/large; native master drag; archive; Session unchanged

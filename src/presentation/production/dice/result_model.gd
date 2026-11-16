@@ -82,8 +82,9 @@ static func _consequences(host, response: Dictionary, before: Dictionary, after:
 	# publicly reported object change once, including costs of a failed attempt.
 	var additional := response.duplicate(true)
 	additional.facts = facts.filter(func(fact: Dictionary)->bool:return fact.get("kind")!="prayer_space_result")
-	for line: String in host._feedback.build(host,additional,before,after,""):
-		if line!=resources and line!="行动已执行。" and not line in lines: lines.append(line)
+	for line: Variant in host._feedback.presentation_rows(host,additional,before,after):
+		if line is String and (line==resources or line=="行动已执行。"): continue
+		if not line in lines: lines.append(line)
 	var ending := str(response.get("result",{}).get("outcome",""))
 	if ending=="awakened": lines.append(Fields.field("终局","降临已成，神意苏醒。"))
 	elif ending=="extinction": lines.append(Fields.field("终局","维系已断，本局归于寂灭。"))

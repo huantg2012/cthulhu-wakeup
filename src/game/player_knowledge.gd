@@ -133,7 +133,12 @@ func _learn(source: String, restoring: bool = false, explicit_observation: bool 
 	var request_only: bool = _request_domains.has(fact.domain) and not _known_domains.has(fact.domain) and fact.kind != "world_origin"
 	if not request_only: _discover_domain(str(fact.domain), source, restoring)
 	# Knowledge never follows causal parents or another person's memory.
-	for person: String in [str(fact.get("actor", ""))] + fact.get("targets", []):
+	var disclosed: Array = [str(fact.get("actor", ""))] + fact.get("targets", [])
+	# Scene roles describe simulation participants, not disclosed identities.
+	# Effects that actually reveal another person have their own public receipt.
+	if str(fact.kind).begins_with("prayer_space_"):
+		disclosed = [str(fact.get("actor", ""))]
+	for person: String in disclosed:
 		if not request_only and Store.has(state.npcs, person): _known_people[person] = true
 		if Store.has(state.relics, person): _known_relics[person] = true
 	for field: String in ["relic", "relic_id"]:

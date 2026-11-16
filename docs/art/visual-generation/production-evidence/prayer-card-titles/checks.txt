@@ -1,0 +1,16 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+TITLE 愿接下差事的调查员 lines=2 visible=2 box=[P: (13.0, 103.0), S: (122.0, 53.0)] info=[P: (13.0, 159.0), S: (122.0, 34.0)]
+TITLE 等着履行约定的信使 lines=2 visible=2 box=[P: (13.0, 103.0), S: (122.0, 53.0)] info=[P: (13.0, 159.0), S: (122.0, 34.0)]
+TITLE 愿接下差事的调查员 lines=2 visible=2 box=[P: (13.0, 141.0), S: (142.0, 67.0)] info=[P: (13.0, 211.0), S: (142.0, 34.0)]
+TITLE 愿接下差事的调查员 lines=2 visible=2 box=[P: (13.0, 120.0), S: (122.0, 53.0)] info=[P: (13.0, 176.0), S: (122.0, 17.0)]
+TITLE 等着履行约定的信使 lines=2 visible=2 box=[P: (13.0, 120.0), S: (122.0, 53.0)] info=[P: (13.0, 176.0), S: (122.0, 17.0)]
+TITLE 愿接下差事的调查员 lines=2 visible=2 box=[P: (13.0, 156.0), S: (122.0, 53.0)] info=[P: (13.0, 212.0), S: (122.0, 17.0)]
+TITLE 渴望回应的求道者 lines=2 visible=2 box=[P: (13.0, 120.0), S: (122.0, 53.0)] info=[P: (13.0, 176.0), S: (122.0, 17.0)]
+TITLE 渴望回应的求道者 lines=2 visible=2 box=[P: (13.0, 156.0), S: (122.0, 53.0)] info=[P: (13.0, 212.0), S: (122.0, 17.0)]
+TITLE 渴望回应的求道者 lines=2 visible=2 box=[P: (13.0, 158.0), S: (142.0, 67.0)] info=[P: (13.0, 228.0), S: (142.0, 17.0)]
+TITLE 女儿被排除在族谱外的养母 lines=2 visible=2 box=[P: (13.0, 120.0), S: (122.0, 53.0)] info=[P: (13.0, 176.0), S: (122.0, 17.0)]
+TITLE 女儿被排除在族谱外的养母 lines=2 visible=2 box=[P: (13.0, 156.0), S: (122.0, 53.0)] info=[P: (13.0, 212.0), S: (122.0, 17.0)]
+TITLE 女儿被排除在族谱外的养母 lines=3 visible=3 box=[P: (13.0, 123.0), S: (142.0, 102.0)] info=[P: (13.0, 228.0), S: (142.0, 17.0)]
+PRAYER_TITLE_OK 55

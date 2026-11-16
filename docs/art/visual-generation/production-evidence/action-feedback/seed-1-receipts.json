@@ -1,0 +1,77 @@
+{
+	"check": [
+		{
+			"outcome": "failure",
+			"probability": 48,
+			"roll": 51
+		}
+	],
+	"dream": {
+		"deltas": [
+			{
+				"delta": 2,
+				"field": "alert",
+				"subject": "DOMAIN-001"
+			},
+			{
+				"delta": -2,
+				"field": "sanity",
+				"subject": "NPC-00000003"
+			}
+		],
+		"developments": [],
+		"revealed": []
+	},
+	"listen": {
+		"deltas": [
+			{
+				"delta": 1,
+				"field": "alert",
+				"subject": "DOMAIN-001"
+			}
+		],
+		"developments": [],
+		"revealed": [
+			{
+				"actor": "",
+				"causal_parents": [
+					"FACT-00000001"
+				],
+				"changes": {
+					"cult": "",
+					"first_contact": true,
+					"metrics": {
+						"alert": 0,
+						"barrier": 75,
+						"pollution": 0,
+						"stability": 70
+					},
+					"observer": "",
+					"phase": "between",
+					"roots": [
+						"FACT-00000001"
+					],
+					"sources": [
+						"FACT-00000001"
+					],
+					"sources_version": "a17b3cb19dee50008386625f4240449eb2d818385de8ac6975149805e163151c"
+				},
+				"domain": "DOMAIN-001",
+				"id": "FACT-00000062",
+				"kind": "world_observation",
+				"targets": [],
+				"turn": 0
+			}
+		]
+	},
+	"shown": [
+		{
+			"caption": "人物变化",
+			"value": "塞拉·科尔\n理智 -2"
+		},
+		{
+			"caption": "世界变化",
+			"value": "托尔文共和国\n察觉 +2"
+		}
+	]
+}

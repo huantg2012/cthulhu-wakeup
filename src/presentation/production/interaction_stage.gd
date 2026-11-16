@@ -124,11 +124,11 @@ func _world_fan(stage: Control, worlds: Array) -> void:
 		return
 	var fan := Fan.new()
 	fan.name = "WorldFan"
-	fan.position = Vector2(318, 126)
-	fan.size = Vector2(920, 450)
+	fan.position = Vector2(272, 126)
+	fan.size = Vector2(1002, 450)
 	fan.accessibility_name = "已知世界"
 	stage.add_child(fan)
-	var counter: Label = host._ui.label(stage, "WorldCardPosition", "", Rect2(345, 558, 870, 28), host._size(16), UI.BONE)
+	var counter: Label = host._ui.label(stage, "WorldCardPosition", "", Rect2(272, 558, 1002, 28), host._size(16), UI.BONE)
 	counter.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	var cards: Array[Control] = []
 	var ids: Array[String] = []
@@ -319,14 +319,14 @@ func _crumb(parent: Control, world := "") -> void:
 	else: button.focus_mode = Control.FOCUS_NONE
 
 func _title(parent: Control, eyebrow: String, title_value: String, premise: String) -> void:
-	_label(parent, "Perspective", eyebrow, Rect2(78, 181, 440, 18), 13, UI.CYAN, false, 5)
-	_label(parent, "PerceptionTitle", title_value, Rect2(78, 215, 500, 59), 45, UI.BONE, true, 7)
+	_label(parent, "Perspective", eyebrow, Rect2(20, 181, 320, 18), 13, UI.CYAN, false, 5)
+	_label(parent, "PerceptionTitle", title_value, Rect2(20, 215, 320, 59), 45, UI.BONE, true, 7)
 	var lines := premise.split("\n")
 	for index: int in lines.size():
-		_label(parent, "PerceptionPremise", lines[index], Rect2(78, 290 + 29 * index, 420, 29), 16, UI.MUTED)
+		_label(parent, "PerceptionPremise", lines[index], Rect2(20, 290 + 29 * index, 320, 29), 16, UI.MUTED)
 
 func _obligation(parent: Control, node_name: String, text_value: String, y: float, callback: Callable) -> void:
-	var row := _link(parent, node_name, "", Rect2(79, y, 301, 28), callback)
+	var row := _link(parent, node_name, "", Rect2(7.5, y, 310, 28), callback)
 	host._ui.style_action(row, false, false)
 	row.accessibility_name = text_value
 	host._ui.icon(row, "Marker", "attention_dot", Layout.box(Rect2(0, 11, 6, 6)), UI.GOLD)
@@ -439,8 +439,8 @@ func action_cost(task, pane: VBoxContainer, row: Dictionary, selection: Dictiona
 		var whispers: int = int(summary.get("whispers", definition.get("whispers", 0)))
 		var faith: int = int(summary.get("faith", summary.get("faith_cost", definition.get("faith", 0))))
 		host._line(pane, "%s 低语 · %s 信仰%s" % [whispers, faith, " · 基础费用" if summary.is_empty() else ""], 16, UI.GOLD)
-	var always: String = actions._always_cost(task, row, selection)
-	if not always.is_empty(): _contact_note(pane, "必付 · " + always)
+	var always: String = actions.cost_context(actions._always_cost(task, row, selection))
+	if not always.is_empty(): _contact_note(pane, "施行影响 · " + always)
 	if not definition.is_empty():
 		var effects: Dictionary = actions._outcome_effects(task, row, selection)
 		for outcome: String in ["failure", "disaster"]:

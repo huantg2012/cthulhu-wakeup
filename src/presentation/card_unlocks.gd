@@ -6,6 +6,7 @@ const Selectors = preload("res://src/game/entry_selectors.gd")
 const Knowledge = preload("res://src/game/prayer_knowledge.gd")
 const Capabilities = preload("res://src/game/prayer_capabilities.gd")
 const Materials = preload("res://src/simulation/material_transfer.gd")
+const RitualIntervention = preload("res://src/game/ritual_intervention.gd")
 const VERSION := 1
 var rules: Dictionary = {}
 var _sources: Dictionary = {}
@@ -136,7 +137,7 @@ func _ready(context: Dictionary, projection: Dictionary, domain: String, cult: D
 		"devotion":
 			return people.any(func(p: Dictionary) -> bool: return (p.get("bound_member", false) or int(p.loyalty) >= context.catalog.integer("loyalty_follower_threshold")) and Knowledge.known(context.world, str(p.id), {}, context.reader).get("known", false))
 		"gathering": return not members.is_empty() and int(context.world.domains[domain].unnamed_nonfollowers) > 0
-		"ritual": return people.any(func(p: Dictionary) -> bool: return "ritual_keeper" in p.role_tags)
+		"ritual": return people.any(func(p: Dictionary) -> bool: return not RitualIntervention.sources(context.world, p, context.knowledge.known_facts, context.catalog, context.reader).is_empty())
 		"record_keeper":
 			for person: Dictionary in people:
 				if "record_keeper" in person.role_tags: return true

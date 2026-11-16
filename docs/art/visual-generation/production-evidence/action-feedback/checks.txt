@@ -1,0 +1,27 @@
+反馈边界（含人工夹具；非成熟权能实机）
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ACTION_FEEDBACK_BOUNDARY PASS 133 checks
+
+新局 seed 1：聆听／入梦失败
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+ACTION_FEEDBACK_NATIVE_OK 31 checks
+
+新局 seed 5：聆听／入梦深刻成功
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+ACTION_FEEDBACK_NATIVE_OK 32 checks
+
+共享祈求演出
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+DICE_NATIVE_OK 28 seed=5 roll=7 target=64 outcome=deep recorded=false
+
+Session：幂等／无骰／信号隔离
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+DICE_SIGNAL_OK new_commit=1 replay=0 no_dice=0 observer_isolation=1

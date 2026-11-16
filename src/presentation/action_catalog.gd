@@ -271,7 +271,14 @@ func _route_details(session: RefCounted, selection: Dictionary, fields: Array) -
 	var record: String = str(entry.get("record", chosen.get("record", "")))
 	if not record.is_empty(): details["原记录"] = session.object_title(record) if session.is_known_source(record) else "尚未知晓的记录"
 	var required: int = int(row.repeat_turns) if not str(row.repeat_turns).is_empty() else 0
-	if row.mode == "calendar_rite": required = session.catalog.integer("ritual_required_turns")
+	if row.mode == "calendar_rite":
+		required = session.catalog.integer("ritual_required_turns") if session.catalog.tables.anchor_route_rules.calendar_rites.profile == session.world.state.domains[person.domain].profile else 0
+		var source: Dictionary = Store.entry(session.world.state.facts,str(chosen.get("source","")),{})
+		details["介入"] = "忠诚的祭仪者承接你的神意。"
+		if source.get("kind")=="prayer_space_situation": details["介入"] = "此人正在向你求告，你可循这段联系浸染祭仪。"
+		elif source.get("kind")=="power_result": details["介入"] = "你曾成功触及此人的梦境，可循梦中留下的联系介入。"
+		if required > 0: details["实践用途"] = "完成跨轮祭仪实践，留下此文明锚定所需的见证。"
+		elif session.catalog.tables.anchor_route_rules.ritual_keeper.profile == session.world.state.domains[person.domain].profile: details["实践用途"] = "本次祭仪见证可成为祭仪者锚定条件；不会直接建立锚点。"
 	if required > 0 and not row.mode in ["ritual_transmission", "reciprocal_covenant"]:
 		details["成功回合"] = entry.get("uses", []).size()
 		details["所需成功回合"] = required

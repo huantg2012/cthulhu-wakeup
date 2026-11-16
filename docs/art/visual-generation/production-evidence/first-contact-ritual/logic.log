@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+RITUAL_REAL 2 [{ "probability": 60, "roll": 45, "outcome": "success" }] effects={ "deltas": [{ "subject": "NPC-00000002", "field": "sanity", "delta": -2 }, { "subject": "DOMAIN-001", "field": "pollution", "delta": 2 }, { "subject": "DOMAIN-001", "field": "alert", "delta": 4 }, { "subject": "DOMAIN-001", "field": "followers", "delta": 3 }], "revealed": [], "developments": [{ "kind": "activity", "text": "祭仪已受你的影响，3 名普通居民转向你的信仰。未直接建立教团或锚点。\n跨轮祭仪实践 1 / 2；可用于准备此文明的锚定。" }] }
+RITUAL_REAL 7 [{ "probability": 62, "roll": 85, "outcome": "failure" }] effects={ "deltas": [{ "subject": "NPC-00000004", "field": "sanity", "delta": -2 }, { "subject": "DOMAIN-001", "field": "alert", "delta": 4 }], "revealed": [], "developments": [{ "kind": "activity", "text": "祭仪未能转化信众，也未积累成功实践；本次施行的消耗与影响已经发生。" }] }
+FIRST_CONTACT_RITUAL 114 checks, 0 failures; outcomes={ "success": { "seed": 2, "roll": 45, "target": 60, "outcome": "success" }, "failure": { "seed": 7, "roll": 85, "target": 62, "outcome": "failure" } }

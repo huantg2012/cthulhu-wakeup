@@ -86,10 +86,10 @@ func metric_display(world: Dictionary, field: String) -> Dictionary:
 	var value := "未掌握"
 	var observation := ""
 	if precision == "range" and metric.get("lower") is int and metric.get("upper") is int:
-		value = "%d–%d" % [metric.lower, metric.upper]
+		value = "%d–%d%%" % [metric.lower, metric.upper]
 		observation = "估计"
 	elif precision == "exact" and metric.get("value") is int:
-		value = str(metric.value)
+		value = "%d%%" % metric.value
 		observation = "确知"
 	var source := "未有记录"
 	if not observation.is_empty():
@@ -102,7 +102,7 @@ func metric_text(world: Dictionary, field: String) -> String:
 
 func metric_help_text(world: Dictionary, field: String) -> String:
 	var display := metric_display(world, field)
-	if not display.known: return WORLD_METRICS[field] + "尚未掌握；查看不会获得新情报。"
+	if not display.known: return WORLD_METRICS[field] + " · 尚未掌握；查看不会获得新情报。"
 	return "%s · %s；可能已变化，查看不会刷新。" % [WORLD_METRICS[field], str(display.source).replace("估计", "估计范围")]
 
 func world_metrics_text(host, domain: String, two_rows: bool = false) -> String:
@@ -381,6 +381,7 @@ func _person(host, box: VBoxContainer, id: String, tab := "") -> void:
 		box.add_child(host.label("尚未取得这个人物的身份资料。")); return
 	if not host is RefCounted: _heading(host, box, host.title(id))
 	if tab in ["", "duties"]:
+		_pair(host, box, "结识", str(p.get("discovery", "此前已与你建立联系。")))
 		_pair(host, box, "职责", _role(host, p))
 		_pair(host, box, "处境", _state(p.get("status", "仅有请求线索")))
 		if not str(p.get("cult_id", "")).is_empty(): _link(host, box, "所属教团与全体成员", "cult", p.cult_id)

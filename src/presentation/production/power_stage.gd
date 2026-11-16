@@ -62,7 +62,10 @@ func _rules() -> void:
 	host._begin_peek("power_rules")
 	var body: VBoxContainer = host._peek_content("十二权能 / 完整规则", str(definition.name))
 	host._line(body, "首次开放 · 苏醒 %s；%s" % [definition.unlock_awakening,host.session.card_unlock_policy.rules[_selected].description],14)
-	for field: String in ["target_requirement", "always_cost", "success", "failure", "disaster", "notes"]:
+	host._line(body, "基础消耗 · %s 低语 · %s 信仰" % [definition.whispers, definition.faith], 14)
+	var consequence: String = host._actions.cost_context(str(definition.get("always_cost", "")))
+	if not consequence.is_empty(): host._line(body, "施行影响 · " + consequence, 14)
+	for field: String in ["target_requirement", "success", "failure", "disaster", "notes"]:
 		if not str(definition.get(field, "")).is_empty(): host._line(body, str(definition[field]), 14)
 	host._stage_button(host._surface, "ClosePowerRules", "返回权能全览 ←", Rect2(1130, 661, 393, 38), close_rules).grab_focus()
 

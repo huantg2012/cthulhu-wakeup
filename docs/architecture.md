@@ -7,6 +7,14 @@ changed-this-slice: true
 
 # 技术边界与可实施性
 
+## 初识承载与祭仪共用资格（2026-11-16）
+
+`PlayerKnowledge` 仍是公开认知的唯一权威；祈求情境事实只直接披露求告者，不沿后台目标集泛化授予知情。`presentation/person_discovery.gd` 在认知更新后记录公开来历和首次祈求承载，不写 World、不给资格。Session 外壳可选 `person_discovery` 受 checksum 保护并验证人物、来源与轮次；旧档无字段时保留原知情和事实，只恢复可证实基线。世界／教团手牌、回响和人物资料读同一投影字段，候选与立绘预热继续使用完整公开人物。
+
+`game/ritual_intervention.gd` 读取 `data/ritual_interventions.csv`，由 CardUnlocks、EntrySelectors、ProgressionRoutes 共用资格规则；非消耗性因果字段标为 automatic，两种正式配置入口都隐藏该槽，但真实提交保留并校验来源。实际材料选择不经过这个自动化分支。ActionEffectReceipt 只比较本次活动已提交的参与者和当地变化，生成公开后果；不能补掷骰、补奖励、刷新秘密属性总量或另造进度。
+
+规则：[事件 §14.11](specs/system-events.md)、[权能与教团 §5.1](specs/system-powers-cults.md#51-首团之前的实际组织活动)、[交互承载](specs/ui-interaction.md#first-contact-carrier)。实施与有限核验：[整改任务](tasks/first-contact-and-ritual-refinement.md)。
+
 ## 功能牌首次开放（2026-11-15）
 
 `presentation/card_unlocks.gd` 消费 `data/card_unlocks.csv`，在 Session 成功提交后的公开知识边界以隔离只读 view 检查实际结构前提；复用正式资格来源、能力与降临配置查询，不提交行动、不消耗 RNG。`Session._card_unlocks` 保存首次开放的功能 ID／轮次／世界，公开投影向 `ActionModel.unlocked`、只读权能图鉴与轮初回响提供同一口径。活动卡目录在事件阶段也可查询世界类型范围，显式不指定人物，避免进入执行选择器的阶段限制或单人物自动选中隐去已开放活动。费用、冷却、苏醒回落和失去对象由正式 preview／execute 继续处理，已开放牌保持可查。不是确定性全目录“可立即执行”求解器，也不替代该项待办。
@@ -23,13 +31,17 @@ Session 外壳的可选 `card_unlocks` 带独立版本并受原 checksum 保护�
 
 2026-11-13 牌桌细化。轮初事件牌由公开事件投影构建，拖入后复用事件复核与提交。手牌和主卡只通过原生拖放进入桌面。牌堆在分类、计数和寻牌之前过滤未解锁牌，落点再次核对当前牌及门槛。祈求卡按请求 ID 调用 Session 的公开原话和回应查询，组合请求从生成器保存的选择读取，预览及提交仍由当前合同验证。诸界与牌桌牌堆共用 `worldplay/hand_fan.gd` 的驻留、连续抬升和稳定牌缘命中；独立候选／查看卡使用 `painted/card_hover.gd`，悬停不改变堆叠顺序。
 
+2026-11-15 牌桌筛选贴近手牌。`view.gd` 将筛选和寻牌放在 `HandFan` 抬牌带内的底层，给查看执行区增加 40 逻辑像素。仅牌桌启用抬牌带命中穿透：调用实际牌面命中，露出的牌接收浏览与拖拽，空白传给下层控件。诸界及回响维持各自命中范围。
+
+2026-11-15 费用说明去重。`experience_actions.gd.cost_context` 仅在呈现层去掉与数值费用重复的资源描述，其余影响沿原定义保留；世界／教团行动、权能图鉴、关联准备及确认共用此规则。无新系统、数据接口或支付／结算改动。
+
 本集成分支合并 `cthulhu-wakeup@7a76bfa` 的组合祈求、能力改变和后果链，同时保留 UI 线开局供给／注意力修正。`Prayers` 统一计算旧请求与组合处境的配额，`PrayerSpace.freeze(world, new_limit)` 负责生成。牌桌从 `Session.prayer_space_choices` 动态读取回应，提交携带当前预览的处境版本与费用；只显示公开提示。合并与实机证据见[接入记录](tasks/worldplay-integration.md)。
 
 ## 正式界面美术接入（2026-11-12）
 
 `production/game_root.tscn` 的 `GameRoot/Presentation/CanvasLayer/OverlayRoot` 继续持有唯一正式 Session，原启动器使用同一入口。其常驻 `PaintedEnvironment` 位于重建的 `Perception` 与弹层 `Decision` 之下；外围由 `production/painted/peripheral_atmosphere.gd` 管连续时钟、阅读保护和强度，不接触 Session 或输入。
 
-`locked_controls.gd` 保留原生控件、焦点与状态回调，通过 `production/painted/theme.gd` 共用随包字体、颜料、色值和阅读底板。`painted/card_carrier/category_marks.gd` 按实际露边排实墨肩签（12–14px），不以露边或抬升量控制字透明度；几何遮挡仍由相邻卡承担。`painted/card_carrier/card.gd` 是锁定连续卡面的唯一实现，拥有原图 alpha 融接、阅读承色、左肩签和薄纸芯切面；正式纹理为 `assets/ui/cards/continuous-stock.png`。`study_card.gd` 保留输入包装，轮初回响、世界／教团主卡、手牌、查看／执行卡、图鉴与候选卡均复用该载体。诸界 `world_card.gd` 绑定公开世界数据，`card_fan.gd` 继承同一 HandFan，只适配大卡尺寸和点击／Enter 导航。旧任务中的主体图经 `painted/portrait_carrier.gd` 转接同一载体；微型目录缩略图仍由 `object_window.gd` 等比显示，用非矩形 alpha 收边，不塞入不可读的小肩签与文字。`object_portraits.gd` 在公开投影更新后，通过 `Session.portrait_identity` 与统一 `manifest/for_subject` 准备所有可见世界、教团、人物（含仅求告线索与未知出生地的人物），并驻留纹理；卡面与预加载使用同一解析器，图槽绑定直接取就绪结果。外观参数不改变名称、数值、关系、资格及知情投影，也不为完全未出现的对象生成图像。`portrait_transition.gd` 在缺图时覆盖牌桌及输入，展示公开诸界情报与真实准备进度，完毕恢复原阶段交接；可见槽请求仅作回退。PNG 读解码／原子写入和纯绘画计划使用 WorkerThreadPool，GPU／节点操作留在主线程分帧，正式调用省去工作台诊断图。卡面共享同一连续印面纹理和 shader，不逐对象同步生成底材；旧程序底纹仅服务尚有用途的普通颜料控件，不再决定正式卡面。源文件、规则与验证分别见[美术规范](art/visual-generation/ui-art-standard.md#8-从样板到正式组件)、[立绘生成合同](specs/system-art-generation.md)和[接入记录](tasks/worldplay-integration.md)。
+`locked_controls.gd` 保留原生控件、焦点与状态回调，通过 `production/painted/theme.gd` 共用随包字体、颜料、色值和阅读底板。`painted/card_carrier/category_marks.gd` 按实际露边排实墨肩签（12–14px），不以露边或抬升量控制字透明度；几何遮挡仍由相邻卡承担。`painted/card_carrier/card.gd` 按实际字体换行度量祈求标题，统一手牌／回响／上桌的完整名称；`art_blend.gdshader` 的 `reading_limit` 只在多行祈求卡启用，控制图像下缘退出文字区，默认关闭。该载体是锁定连续卡面的唯一实现，拥有原图 alpha 融接、阅读承色、左肩签和薄纸芯切面；正式纹理为 `assets/ui/cards/continuous-stock.png`。`study_card.gd` 保留输入包装，轮初回响、世界／教团主卡、手牌、查看／执行卡、图鉴与候选卡均复用该载体。诸界 `world_card.gd` 绑定公开世界数据，`card_fan.gd` 继承同一 HandFan，只适配大卡尺寸和点击／Enter 导航。旧任务中的主体图经 `painted/portrait_carrier.gd` 转接同一载体；微型目录缩略图仍由 `object_window.gd` 等比显示，用非矩形 alpha 收边，不塞入不可读的小肩签与文字。`object_portraits.gd` 在公开投影更新后，通过 `Session.portrait_identity` 与统一 `manifest/for_subject` 准备所有可见世界、教团、人物（含仅求告线索与未知出生地的人物），并驻留纹理；卡面与预加载使用同一解析器，图槽绑定直接取就绪结果。外观参数不改变名称、数值、关系、资格及知情投影，也不为完全未出现的对象生成图像。`portrait_transition.gd` 在缺图时覆盖牌桌及输入，展示公开诸界情报与真实准备进度，完毕恢复原阶段交接；可见槽请求仅作回退。PNG 读解码／原子写入和纯绘画计划使用 WorkerThreadPool，GPU／节点操作留在主线程分帧，正式调用省去工作台诊断图。卡面共享同一连续印面纹理和 shader，不逐对象同步生成底材；旧程序底纹仅服务尚有用途的普通颜料控件，不再决定正式卡面。源文件、规则与验证分别见[美术规范](art/visual-generation/ui-art-standard.md#8-从样板到正式组件)、[立绘生成合同](specs/system-art-generation.md)和[接入记录](tasks/worldplay-integration.md)。
 
 `tools/ui-art-production/export_pack.sh` 从隔离的制作输入目录生成正式 PCK，保留正式 CSV 原文、字体及上游许可证；样板入口、展示夹具、文档证据不进包。独立母版在 `dcaf037` 的探索工作树复现；正式分支保留其冻结图册、动态及指纹。
 
@@ -40,6 +52,8 @@ Session 外壳的可选 `card_unlocks` 带独立版本并受原 checksum 保护�
 `Session._submit()` 在真实的新提交完成并经过公开信息过滤后，对非空 `result.checks` 发出 `checks_committed` 深拷贝；失败提交、无骰操作及 durable ID 重放不发出。规则事务、费用、RNG 顺序、自动保存和存档 schema 均不因演出改变。`production/dice/result_model.gd` 是只读公开回执的纯展示模型：保持每枚骰点、阈值和档位的原序，用数量／顺序都吻合的公开 `turn_check` 与因果父事实补主体和后果；不以点数唯一关联、不读取隐藏状态、不从事实重复生成骰子。结果文字复用 Feedback 与 CardFields，祈求结果省去“代价”栏及 tradeoff 泛化文案，保留影响、后续供奉及实际资源变化，未知曲解仍称“已显现”。
 
 `production/round_view.gd` 持有唯一演出协调器。五个即时提交口 `worldplay/view.gd::_execute`、`TaskView.run_action`、`RoundView._commit_event`、`PrayerView._respond`、`PrayerSpaceView.respond` 只登记公开来源与返回回调，统一由 Session 信号排队。自动 `RoundView._advance` 为每次内部阶段提交分别保存公开资源基线，捕获降临终检及到期检定，不依赖推进循环的最后一次回执。当前确定性世界事件、反制和经济结算不会因此出现假骰子；七处规则产生点及覆盖边界见[本批记录](tasks/dice-presentation.md)。
+
+`action_effect_receipt.gd` 在 Session `_submit` 的事务前后建立有界、只读的效果回执：执行前只摘取本权能人物及所属教团的属性；提交成功、知情刷新后计算净增减。人物未公开总量不对外提供；世界变化直接取本次已知事实中的 actual，已独立报告的神迹反应从人物净差中扣除。另从已提交权能、合法知情和实际排队状态提取聆听原记录、谕言准备、任命排期、证据失效和降临进度。不会遍历复制全世界或改写情报。新可选字段 `action_effects` 随即时回执、last_result 及既有持久输入缓存传递，不改变 Turn 规则事实、骰流或存档 schema；旧响应没有该字段时仍可阅读。`experience_feedback.presentation_rows` 为牌桌与掷骰提供同一字段／值数组，legacy `build` 保留文本适配。结果只表示本次作用，不把陈旧观测改写成实时世界总量。
 
 `production/dice/presentation.gd` 以 CanvasLayer 30 承载来源卡、检定与后果，`dice_pair.gd` 绘制两枚刻骨 D10 的运动与真实 D100 落点。进入时保存公开主卡、来源卡及整叠手牌，手牌保持完整并冻结输入；原场景刷新重建的层也被隔离。演出不执行游戏命令，按原批次顺序揭示，回看不重掷。骰子运动中的 Esc 只加速，结果确认后继续；最终退出调用原来源回调，不再让玩家关闭一次隐藏的旧回执。轮初回响、立绘过渡和终局交接让位，演出结束后再接续实际阶段，外围时钟不中断。输入、节奏及衍生画法的唯一正文为[掷骰交互合同](specs/ui-interaction.md#dice-resolution-contract)与[美术 A17](art/visual-generation/ui-art-standard.md#dice-art-contract)。
 
@@ -155,7 +169,7 @@ v0.2把纯几何与视觉处理分离：`skin.css`管理材质/颜色/状态，`
 
 事件、不可逆确认和深层编年史采用临时窗口；选择重建通过稳定控件名恢复焦点，延迟聚焦须检查节点仍在树内。回合推进自动越过纯内部evolution/settlement/ending/between阶段，止于events/actions/ended；保留between自动保存，不自动提交真实事件选项。祈求供给按DEC-040改正式规则链，来源与保存合同见system-events及供给专项，表现层不生成替代卡。
 
-DEC-041只扩展原型的决策信息与查询质量，不复制概念图场景结构。`experience_semantics.gd`只读CSV效果阶段/条件/缩放并翻译祈求语义；`experience_feedback.gd`只读执行前后公开projection和本次known facts，构成具名实际结果，禁止从requested delta或未知世界状态推导实际量。结果内嵌当前主体，全文及最多两对象对照复用单个临时窗。教团策略比较复用Session.preview_plan，人物检索保留范围，历史在公开分页上先精确匹配关联再按匹配记录分页；以上均不消费随机或修改正式状态。
+DEC-041只扩展原型的决策信息与查询质量，不复制概念图场景结构。`experience_semantics.gd`只读CSV效果阶段/条件/缩放并翻译祈求语义；`experience_feedback.gd`只读公开 projection、已知事实和 Session 公开的实际行动效果回执，构成具名实际结果；不得从 requested delta 或预览承诺推导实际量。结果内嵌当前主体，全文及最多两对象对照复用单个临时窗。教团策略比较复用Session.preview_plan，人物检索保留范围，历史在公开分页上先精确匹配关联再按匹配记录分页；以上均不消费随机或修改正式状态。
 
 `src/game/prayer_supply.gd`维护独立的`prayer-supply/1`政策启用、有限尝试及当轮可见授权，接入正式prayer_freeze，轮初事件结束后也重查合法回应。旧会话先按原CSV/模块签名完整恢复，再从合法advance或finish_events事务追加政策事实，原历史不重写。自然来源游标保持原节拍；供给使用现有Knowledge/Producers/World固定及同一Prayers offered链，失败整事务回滚。供给断言与UI集成证据分开，不把拒绝非法来源误称任意极端局面可继续。
 
@@ -731,7 +745,7 @@ World独立恢复只有状态与RNG头，核确定性初生配方、图/投影�
 
 **2026-11-06 玩家信息组织：** 正式中央世界区提供当地活动/锚点直达和限时圣物机会；WorldManagement严格区分世界环境与教团经营。ExperienceViews将活动按真实事项和参与资格组织，圣物机会按取得/放弃取舍展示。`player_record_text.gd`从已有公开记录、投影与目录生成事件语义，不展开私有事实图；记录页原处解释已知原因，无递归前因导航。行动配置省去唯一强制依据的伪选择，保留真实多候选和规则预览。以上均属于呈现层，不改变游戏规则或知识/存档权威。
 
-WorldManagement 的 `open_archive` 承接顶部跨世界检索；`open_intelligence` 承接中央当前世界情报，两者不再共用页面。当地机构/反制直接展开；独立观察依据栏目和档案观察来源跳转已撤销。`ExperienceViews.metric_help_text` 从已有指标精度/轮次生成短说明，主场景四维悬停/聚焦时就地显示。世界情报滚动记忆与档案筛选独立，没有新增业务接口或存档字段。
+WorldManagement 的 `open_archive` 承接顶部跨世界检索；`open_intelligence` 承接中央当前世界情报，两者不再共用页面。当地机构/反制直接展开；独立观察依据栏目和档案观察来源跳转已撤销。`ExperienceViews.metric_help_text` 从已有指标精度/轮次生成短说明，主场景四维悬停/聚焦时就地显示。 `ExperienceViews.metric_display` 将公开观察中的四维区间／确值统一格式化为「50–74%」／「63%」，未知保留「未掌握」；诸界 world_card、世界玩法主卡／阅读区、WorldManagement 与关联情报页共用。不另设量程标题，不增加业务状态或隐藏总值读取。世界情报滚动记忆与档案筛选独立，没有新增业务接口或存档字段。
 
 **2026-11-06 可执行候选：**`Session.action_candidate` 封装 `action_availability.gd` 的按需、可取消只读查询；控件只得到状态、玩家可读拒绝原因和经过原 Eligibility.query 验证的完整候选证据，不读取 StateView。单个活动配置替代事项页+准备页重复路径。候选搜索按当前字段展开，原 Powers/Progression/Relics 的部分输入检查只用于提前排除确定失败，完整执行仍沿原 prepare/handle、Admission、Attention 与 Turn。多选人数来自正式 CSV；数值类型不转字符串。每帧有限查询，离开关闭 reader，状态改变废弃缓存；不修改费用、概率、消费、存档或随机序列。
 
@@ -778,13 +792,16 @@ DEC-067 已认可连续印面整体风格，确切图与源码归档于 `card-de
 
 ### DEC-068：单向手牌与连续印面
 
-**非生成立绘 B 正式模块（2026-11-14，DEC-069）：**`worldplay/illustrations/library.gd` 按稳定语义 ID 映射 64 目录条目；默认 variant 0 读取 `assets/ui/card-illustrations/production/` 的 B 扩展图集，六个已确认主题直接复用 `b-refinement/b-refined.png`。48 可用图义按格缓存独立 ImageTexture；从导入 Texture2D 获取图像，独立 PCK 可用。共享 `_face` 覆盖轮间、牌堆、上桌、图鉴；选择器传递实际圣物类型。正式符画不再创建 SubViewport。variant 1/2 只供历史 B 前后比较；原生成器、卡壳和玩法数据不变。正式新局与全目录证据见[交付](art/visual-generation/card-illustration-study/README.md)。
+**非生成立绘固化模块（2026-11-15，DEC-070）：**`worldplay/illustrations/library.gd` 按稳定语义映射64条目及8支持图面；默认 variant 0 读取 `assets/ui/card-illustrations/painted-deck/` 的71个压缩原生 Texture2D 资源并缓存。`registry.gd` 由获准全目录清单生成，事件、预告、经营与处置逐卡对应；档案封面、锚点对象、来源证据、机构候选和结算兜底使用专门图。`tools/card-illustration-production/bake.gd` 仅开发期复用原 `npr_pipeline.gd` 暗黑厚涂后期，再保存512px成品；游戏不调用制作工具、不建符画 SubViewport、不依赖探索PNG或导入缓存。共享 `_face` 覆盖轮间、牌堆、上桌、图鉴和骰子结果；选择器及主卡传入明确支持图义。variant 1/2 只供历史B比较。生成对象、卡壳、玩法数据不变。[成品与原生/PCK证据](art/visual-generation/card-illustration-study/painted-deck/README.md)。
 
 `production/worldplay/hand_fan.gd` 独立于首页fan，负责固定右压左顺序、稳定牌缘命中、连续阻尼抬牌及原生拖放；不再通过焦点重排层级或横距。`production/painted/card_carrier/` 为卡面单源；其中 `card_edge.gdshader` 仅沿原alpha绘制薄切面，阴影在Card中随抬牌变化。StudyCard以可选适配器组合原图、类别肩签与文字；样板仅转接这套正式组件。stock原纹理在 `assets/ui/cards/continuous-stock.png`，动作图按类别/少量wash缓存，立绘继续绑定已准备的正式recipe。轮初回响与四区手牌复用；首页导航fan保持自身交互合同。输入、画法细则见 ui-interaction 的 DEC-068 及 ui-art-standard A06，避免这里重复参数。
 
 `painted/card_fields.gd` 是卡片字段排版单源：明确的 caption/value 数据进入行内富文本或双列行；没有按正文标点自动拆字段。完整载体的 InformationOne/Two 为 RichTextLabel，标题和肩名继续为 Label，共用原露面可见性。世界指标、主卡说明、对象查看、执行槽、权能图鉴、祈求回应、事件选项与回响从同一组件消费颜色和转义；存档／公开投影无字段扩展。
 
+**正式上下栏（2026-11-15，DEC-071）：**`worldplay/view.gd`始终挂载`painted/session_hud.gd`，统一顶部、路径和常驻底栏，边界共用EDGE_GAP=6。供奉与收支、本体与降临的全局入口分别挂在顶部信仰和苏醒读数，继续复用既有任务查阅；底栏只构建其余入口。worldplay主卡x=6，桌面与手牌x=272、宽1002；搜索和牌堆使用实际父区宽度，执行字段经_table_box按可用宽度重排，不缩放文本或立绘。HUD按公开projection保存跨视图演出状态；`hud_mark.gd`直接绘制获选A裂隙与界外轮转印面，网格合批，`hud_pigment.gdshader`补静止颗粒。辅助／路径14px、标签16px、资源24px、推进20px；按字宽计算组内间距，支持原大字模式。回合责任与下一回合短确认分流，确认仍调用`_advance(true)`，不增Session指令或存档字段。B、候选开关及G演示已删除。`tools/worldplay-integration/hud_probe.gd`直接检查正式主场景，使用隔离存档；其多位数仅为不截图的排版夹具，结束即恢复公开投影。入口、检查和证据见[接入记录](art/visual-generation/hud-study/README.md)。
+
+`hud_boundary.gdshader`提供静止颗粒与分层内沿：上沿挂`_stage`首子节点，避免覆盖独立的ContextPath；下沿挂PersistentDock首子节点。两者忽略输入。底栏布局父区与承载层统一全宽1280px、高58px，左右端控件以6px窄边隙贴边，低语按推进按钮左缘反向排布；HUD扣除6px内沿后计算共用纵向中线，入口／低语／余焰／推进由同一定位函数排布。推进按钮由hud_mark完整绘制，原生Button只负责命中／语义，self_modulate透明避免框架焦点样式重新盖入，子标题独立显示。
+
 `worldplay/prayer_receipt.gd` 将本次 Session 公开回应中的 `prayer_space_result`／旧 `prayer_result` 与公开 checks、前后投影组织成祈求结果；不读取隐藏世界状态，不用准备预览冒充实掷结果，也不自行掷骰。`view.gd` 为祈求区分浏览、回应准备和已提交回执：准备 Esc 清回应草稿并回同一祈求；结果 Esc 只退出查阅。结构化回执随原桌面草稿在只读图鉴往返中保留，换局／换牌／收回时清理；不入存档。原 Session 的预览、不可逆确认和单次提交仍为执行边界，生成器／规则／schema 未改。原生定向验证入口为 `tools/worldplay-integration/prayer_flow_probe.gd`。
 
 叠牌文字由 Card 的 `face_copy_visible()` 单源决定宽露面／窄牌缘状态；世界额外指标与旧卡适配也调用此方法，禁止各自按露出比例淡出文字。回响与手牌直接继承，不再依赖 WorldCard 的局部补丁。定向回归为 `tools/card-carrier-study/text_visibility_probe.gd`，验证真实九牌回响、分类往返与只读拖放，并以独立呈现夹具覆盖不同密度。
-**正式上下栏（2026-11-15，DEC-071）：**`worldplay/view.gd`始终挂载`painted/session_hud.gd`，统一顶部、路径和常驻底栏。HUD按公开projection保存跨视图演出状态；`hud_mark.gd`直接绘制获选A裂隙与推进封记，网格合批，`hud_pigment.gdshader`补静止颗粒。辅助／路径14px、标签16px、资源24px、推进20px；按字宽计算组内间距，支持原大字模式。回合责任与下一回合短确认分流，确认仍调用`_advance(true)`，不增Session指令或存档字段。B、候选开关及G演示已删除。`tools/worldplay-integration/hud_probe.gd`直接检查正式主场景，使用隔离存档；其多位数仅为不截图的排版夹具，结束即恢复公开投影。入口、检查和证据见[接入记录](art/visual-generation/hud-study/README.md)。

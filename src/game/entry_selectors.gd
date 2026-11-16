@@ -5,6 +5,8 @@ const Store = preload("res://src/simulation/archive_store.gd")
 const Anchors = preload("res://src/game/anchors.gd")
 const Materials = preload("res://src/simulation/material_transfer.gd")
 const Knowledge = preload("res://src/game/player_knowledge.gd")
+const RitualIntervention = preload("res://src/game/ritual_intervention.gd")
+const DeityKnowledge = preload("res://src/game/prayer_knowledge.gd")
 const Capabilities = preload("res://src/game/prayer_capabilities.gd")
 
 static func context(view: Dictionary, knowledge: Dictionary, modules: Dictionary, label: Callable = Callable()) -> Dictionary:
@@ -214,9 +216,44 @@ static func _power_fields(context: Dictionary, power: String, selection: Diction
 		fields.append(_field("preparation_relic", "圣物准备", _options(_objects(context, "relics", domain)), true))
 	return fields
 
+static func _route_actor(context: Dictionary, id: String, mode: String) -> bool:
+	var p: Dictionary = Store.entry(context.world.npcs, id, {})
+	if p.is_empty() or p.get("status") != "active": return false
+	if mode == "calendar_rite": return not RitualIntervention.sources(context.world, p, context.knowledge.known_facts, context.catalog, context.reader).is_empty()
+	if mode in Capabilities.RECORD_ROUTES: return "record_keeper" in p.role_tags or (_known(context, Capabilities.grant_source(context.world, id, Capabilities.RECORD_PRACTICE)) and Capabilities.practice_supported(context.world, p, context.catalog, mode))
+	if mode == "private_devotion": return (p.get("bound_member", false) or int(p.loyalty) >= context.catalog.integer("loyalty_follower_threshold")) and DeityKnowledge.known(context.world, id, {}, context.reader).get("known", false)
+	if mode == "covert_gathering": return p.get("bound_member", false) and int(p.loyalty) >= context.catalog.integer("loyalty_follower_threshold")
+	if mode == "network_exchange": return p.get("bound_member", false)
+	if mode in ["joint_work","memory_practice","dissent_practice","pact_agreement","reciprocal_covenant"]:
+		return _local(context,str(p.domain)).any(func(other: String)->bool:return other!=id and _route_pair(context,p,Store.entry(context.world.npcs,other,{}),mode))
+	if mode == "memory_circle": return context.world.institutions[p.institution].role == "interpretation"
+	if mode == "ritual_transmission":
+		if "ritual_keeper" in p.role_tags: return true
+		for progress: Dictionary in context.world.progression_routes.progress.values():
+			if not progress.get("completed", false) and progress.has("lesson") and _known(context, progress.lesson) and _fact(context, progress.lesson).changes.get("data", {}).get("student") == id: return true
+		return false
+	return true
+
+static func _route_pair(context: Dictionary, a: Dictionary, b: Dictionary, mode: String) -> bool:
+	if a.is_empty() or b.is_empty() or a.id==b.id or a.domain!=b.domain: return false
+	if a.institution!=b.institution:
+		if b.institution not in context.world.institutions[a.institution].get("links",[]) or a.institution not in context.world.institutions[b.institution].get("links",[]): return false
+	if mode == "joint_work": return Array(a.need_tags).any(func(need: String)->bool:return need in b.need_tags)
+	if mode == "ritual_transmission": return "ritual_keeper" in a.role_tags and not context.reader.contact_context(a.id,b.id).is_empty() and not context.reader.relation_between(a.id,b.id,["support","cooperation"]).is_empty()
+	if mode == "network_exchange": return a.institution!=b.institution and b.get("bound_member",false)
+	if mode == "reciprocal_covenant": return a.institution!=b.institution
+	return true
+
 static func _route_fields(context: Dictionary, selection: Dictionary) -> Array:
 	var fields: Array = _base_fields(context, selection)
 	var domain: String = str(_selected(selection, "domain", fields[0].options))
+	# A played activity fixes the verb BEFORE choosing its participants.
+	var fixed_mode := str(context.catalog.tables.progression_route_operations.get(str(selection.get("operation", "")), {}).get("mode", ""))
+	if not fixed_mode.is_empty():
+		fields[1].options = fields[1].options.filter(func(option: Dictionary) -> bool: return _route_actor(context, str(option.id), fixed_mode))
+	for option: Dictionary in fields[1].options:
+		var candidate: Dictionary = Store.entry(context.world.npcs,str(option.id),{})
+		if candidate.get("acted_turn",-1)==context.world.turn: option["detail"] = "本轮已行动，下轮可再安排。"
 	var npc: String = str(_selected(selection, "npc", fields[1].options))
 	var person: Dictionary = Store.entry(context.world.npcs, npc, {})
 	var lessons: Array = []
@@ -225,22 +262,22 @@ static func _route_fields(context: Dictionary, selection: Dictionary) -> Array:
 		if entry.operation != "ROUTE_RITUAL_TRANSMISSION" or not entry.has("lesson") or entry.get("completed", false) or not _known(context, entry.lesson): continue
 		var lesson: Dictionary = _fact(context, entry.lesson)
 		if lesson.changes.data.get("student") == npc: lessons.append(_choice(key, _title(context, entry.lesson)))
-	var labels: Dictionary = {"private_devotion": "当下私祷", "joint_work": "共同工作", "covert_gathering": "秘密集会", "calendar_rite": "主持祭仪", "record_practice": "记录实践", "calendar_keeping": "历法实践", "ritual_transmission": "祭仪教习", "memory_circle": "共同见闻", "memory_practice": "共同回忆实践", "dissent_practice": "异议实践", "pact_agreement": "保管约定", "reciprocal_covenant": "互惠交付", "network_exchange": "网络交换", "axiom_probe": "观察异常", "axiom_recheck": "独立观察同一异常", "axiom_repeat": "使用同一例外"}
+	var labels: Dictionary = {"private_devotion": "当下私祷", "joint_work": "共同工作", "covert_gathering": "秘密集会", "calendar_rite": "浸染祭仪", "record_practice": "记录实践", "calendar_keeping": "历法实践", "ritual_transmission": "祭仪教习", "memory_circle": "共同见闻", "memory_practice": "共同回忆实践", "dissent_practice": "异议实践", "pact_agreement": "保管约定", "reciprocal_covenant": "互惠交付", "network_exchange": "网络交换", "axiom_probe": "观察异常", "axiom_recheck": "独立观察同一异常", "axiom_repeat": "使用同一例外"}
 	var operations: Array = []
-	if person.is_empty() or person.get("status") == "active":
+	if person.is_empty() or person.get("status") == "active" or not str(selection.get("operation", "")).is_empty():
 		for row: Dictionary in context.catalog.tables.progression_route_operations.values():
 			if not labels.has(row.mode): continue
 			var output_route: String = {"record_practice": "record_dependency", "calendar_keeping": "calendar_dependency", "memory_practice": "memory_practice", "dissent_practice": "dissent_practice", "pact_agreement": "contract_performance", "reciprocal_covenant": "contract_reciprocal", "network_exchange": "network_exchange", "ritual_transmission": "ritual_practice", "axiom_probe": "axiom_nodes", "axiom_recheck": "axiom_nodes", "axiom_repeat": "axiom_archive"}.get(row.mode, "")
 			if not domain.is_empty() and not output_route.is_empty() and context.catalog.tables.anchor_route_rules[output_route].profile != context.world.domains[domain].profile: continue
 			if not domain.is_empty() and row.mode == "memory_circle" and not context.catalog.tables.anchor_route_rules.values().any(func(route: Dictionary) -> bool: return route.selector == "memory_circle" and route.profile == context.world.domains[domain].profile): continue
-			if not person.is_empty() and row.mode in Capabilities.RECORD_ROUTES and not "record_keeper" in person.role_tags:
+			if selection.get("operation", "") != row.id and not person.is_empty() and row.mode in Capabilities.RECORD_ROUTES and not "record_keeper" in person.role_tags:
 				var grant := Capabilities.grant_source(context.world, npc, Capabilities.RECORD_PRACTICE)
 				if grant.is_empty() or not _known(context, grant): continue
-			if not person.is_empty() and row.mode == "calendar_rite" and not "ritual_keeper" in person.role_tags: continue
-			if not person.is_empty() and row.mode == "ritual_transmission" and not "ritual_keeper" in person.role_tags and lessons.is_empty(): continue
-			if not person.is_empty() and row.mode == "covert_gathering" and not person.get("bound_member", false): continue
+			if selection.get("operation", "") != row.id and not person.is_empty() and row.mode == "calendar_rite" and not "ritual_keeper" in person.role_tags: continue
+			if selection.get("operation", "") != row.id and not person.is_empty() and row.mode == "ritual_transmission" and not "ritual_keeper" in person.role_tags and lessons.is_empty(): continue
+			if selection.get("operation", "") != row.id and not person.is_empty() and row.mode == "covert_gathering" and not person.get("bound_member", false): continue
 			if not domain.is_empty() and row.mode.begins_with("axiom_") and context.world.domains[domain].tier != "cosmic": continue
-			if not person.is_empty() and row.mode == "memory_circle" and context.world.institutions[person.institution].role != "interpretation": continue
+			if selection.get("operation", "") != row.id and not person.is_empty() and row.mode == "memory_circle" and context.world.institutions[person.institution].role != "interpretation": continue
 			operations.append(_choice(row.id, labels[row.mode]))
 	fields.insert(1, _field("operation", "活动", operations))
 	var operation: String = str(_selected(selection, "operation", operations))
@@ -249,7 +286,7 @@ static func _route_fields(context: Dictionary, selection: Dictionary) -> Array:
 	if mode == "ritual_transmission" and not lessons.is_empty():
 		fields.append(_field("target", "独自施行已教祭仪", lessons, "ritual_keeper" in person.get("role_tags", [])))
 		student_performance = not str(_selected(selection, "target", lessons)).is_empty()
-	var others: Array = _local(context, domain).filter(func(id: String) -> bool: return id != npc)
+	var others: Array = _local(context, domain).filter(func(id: String) -> bool: return id != npc and (person.is_empty() or _route_pair(context,person,Store.entry(context.world.npcs,id,{}),mode)))
 	if mode in ["joint_work", "ritual_transmission", "memory_practice", "dissent_practice", "pact_agreement", "reciprocal_covenant", "network_exchange"] and not student_performance: fields.append(_field("other", "另一参加者", _options(others)))
 	if mode == "memory_circle": fields.append(_field("participants", "三位见闻参加者", _options(others), false, true))
 	if mode == "memory_circle": fields.back()["count"] = context.catalog.integer("collective_required_witnesses")
@@ -260,7 +297,13 @@ static func _route_fields(context: Dictionary, selection: Dictionary) -> Array:
 			if resolved.get("ok", false) and resolved.material.kind in ["evidence", "dream"]: records.append(id)
 		var actor_records: Array = records.filter(func(id: String) -> bool:
 			return npc.is_empty() or not Materials.possession(context.world, npc, Materials.resolve(context.world, id, context.catalog, context.reader), "custody" if mode == "pact_agreement" or (mode == "reciprocal_covenant" and selection.get("stage") == "prepare") else "knowledge", context.catalog, context.reader).is_empty())
-		fields.insert(3, _field("record", "实际记录", _options(actor_records), mode in ["memory_practice", "dissent_practice"]))
+		var originals := {}
+		var unique_records: Array = []
+		for id: String in actor_records:
+			var root: String = Materials.resolve(context.world,id,context.catalog,context.reader).material.root
+			if originals.has(root): continue
+			originals[root]=true;unique_records.append(id)
+		fields.insert(3, _field("record", "实际记录", _options(unique_records), mode in ["memory_practice", "dissent_practice"]))
 		if mode == "reciprocal_covenant":
 			fields.append(_field("second_record", "另一端的记录", _options(records), true))
 			fields.append(_field("stage", "履行进度", [_choice("prepare", "固定两项约定"), _choice("perform", "履行下一项交付")]))
@@ -271,7 +314,16 @@ static func _route_fields(context: Dictionary, selection: Dictionary) -> Array:
 		var source: Dictionary = _fact(context, capability_source) if _known(context, capability_source) else {}
 		if source.get("domain") == domain and not capability_source.is_empty():
 			sources.append(_choice(capability_source, "回应后的能力变化"))
-	fields.append(_field("source", "当前来源", sources))
+	if mode == "calendar_rite":
+		sources = _options(RitualIntervention.sources(context.world, person, context.knowledge.known_facts, context.catalog, context.reader))
+	elif mode == "private_devotion" and not person.is_empty():
+		var awareness := DeityKnowledge.known(context.world, npc, {}, context.reader)
+		if awareness.get("known", false) and _known(context, str(awareness.get("source", ""))): sources = _options([awareness.source])
+	# These records are audit causes, not consumable materials. Original records,
+	# counterparties, lessons and covenants keep their separate meaningful slots.
+	var source_field := _field("source", "可介入的联系" if mode == "calendar_rite" else "当前有效联系", sources.slice(0, 1))
+	source_field["automatic"] = true
+	fields.append(source_field)
 	return fields
 
 static func _transfer_fields(context: Dictionary, available: Array, selection: Dictionary) -> Array:

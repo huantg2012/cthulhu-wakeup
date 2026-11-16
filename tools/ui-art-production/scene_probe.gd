@@ -235,7 +235,7 @@ func economy() -> bool:
 	if not await click("RelicIndex"): return false
 	await capture("relics")
 	await press_key(KEY_ESCAPE)
-	if not await click("Budget"): return false
+	if not await click("Faith"): return false
 	if not await click_first("BudgetAnchor_*"): return false
 	if not await click_first("ToggleSupply"): return false
 	await capture("budget-draft")
@@ -247,7 +247,7 @@ func economy() -> bool:
 	await capture("attention")
 	await press_key(KEY_ESCAPE)
 	await press_key(KEY_ESCAPE)
-	if not await click("Self"): return false
+	if not await click("AwakeningReadout"): return false
 	await capture("manifest")
 	var continue_ritual := first_button("*", "继续本轮降临")
 	if continue_ritual != null:

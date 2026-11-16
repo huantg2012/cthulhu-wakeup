@@ -1,0 +1,13 @@
+{
+  "definitions": 64,
+  "support_surfaces": 8,
+  "unique_images": 71,
+  "checked": [
+    "definition-to-art mapping",
+    "native saved texture presence",
+    "PNG provenance",
+    "72 native card captures"
+  ],
+  "runtime_evidence": "native/",
+  "notes": "All-catalogue rendering is not a playthrough of every locked card."
+}

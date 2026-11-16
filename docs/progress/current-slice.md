@@ -1,5 +1,9 @@
 # Current Work: Approved UI Art Baseline and Full-game Rollout
 
+## 当前：初识人物、祈求去重与祭仪整改已接入（2026-11-16）
+
+[整改计划](../tasks/first-contact-and-ritual-refinement.md)的 B01–B04、O01–O08 已实施，逐项玩家收益、实际结果和证据已回写；[核验报告](../qa/first-contact-ritual.md)区分真实 Session、原生交互和夹具。首识求告者当轮只发祈求牌；后台参与者不泛化公开；「浸染祭仪」共用三条真实介入资格，自动内部来源，准备与实际骰子后果完整呈现。标准／大字、真实成功／失败及旧档兼容已核验。原存档和此前美术草稿保留，待制作人体验复审；全目录可用性待办仍 open。所有后续计划遵守[文档化持续要求](stage-priorities.md#documented-plans)。
+
 
 ## 当前：锁定卡面完整接入正式 Session（2026-11-13）
 

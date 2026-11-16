@@ -28,6 +28,12 @@ TL;DR：世界、教团与人物立绘在游戏本体 Godot 工程内生成。�
 
 `service.generate(request, options)` 是异步方法。成功返回 `context`（世界图、天空、教团图、三阶段图、世界参数、候选教团规则）、`people`（最终图、三阶段图、recipe、features）、版本、耗时和是否复用世界；输入错误返回 `{error: String}`。同一实例不允许并发生成。缓存仅保留当前世界／教团，键包含实现版本与四个世界参数；只换人物不重建它们。“同参重绘”主动清缓存。当前无持久化生成缓存，不污染游戏存档。
 
+# 非生成卡片的固化立绘
+
+2026-11-15：制作人认可全量手工构形，授权复用上述后期中的暗黑厚涂 sid 0。`tools/card-illustration-production/bake.gd` 是离线制作入口，读取获准色稿，输出512px原生压缩 Texture2D 和原稿/成品指纹；符号颜料的 bloom 提取阈值单独设0.90、knee0.10，其余二维厚涂参数沿原管线。它不修改世界、教团、人物的默认后期参数。
+
+正式 `worldplay/illustrations/library.gd` 只按语义读取已保存纹理并缓存，不在启动、选牌或轮间重新绘制这批符画。64真实条目＋8支持图面用71幅独立图；仅锚定权能／操作共用同一获准构形。动态实例按真实类型或操作分配，不能以本地化名字猜图，也不能拿集合封面冒充具体事件。此固化规则不适用于生成世界／教团／人物：它们仍按下节身份和预加载合同生成。[资源与验证清单](../art/visual-generation/card-illustration-study/painted-deck/README.md)。
+
 # 正式对象绘画身份 · v1
 
 - **世界**：公开已知或作为求告线索已出现的真实世界均有立绘。`Session.portrait_identity(kind, id)` 验证对象可见性后，只返回绘画所需的稳定 ID、真实文明 profile 与人物背景 profile；不返回隐藏名称、数值、机构、关系或资格，也不把该世界加入已知集合。用 `data/art_world_templates.csv` 的 `civilization_id` 唯一索引选取原型和固定画风 sid，色板取同原型的 `cult_visual_rules.csv:default_palette`。每世界种子取 SHA-256（JSON 数组 `["world", 开局种子字符串, 世界 ID]`）首 32 位模 1,000,000；不依赖显示名、排序或观察次数。

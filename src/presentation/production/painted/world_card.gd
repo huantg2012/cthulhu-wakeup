@@ -34,8 +34,15 @@ func build(controls: RefCounted, world: Dictionary, number: int, extra: int, por
 	var body: RichTextLabel = carrier.get_node("InformationOne")
 	body.add_theme_font_size_override("normal_font_size",14 + extra)
 	body.size.y = 38 + extra * 2
+	var metric_px := 14 + extra
+	# The percent unit must stay visible, including the longest pair in large type.
+	# Fit both rows together so the four readings retain one consistent text size.
+	var readings: Array = world.get("metric_fields",[])
+	for parts: Array in readings:
+		while metric_px > 12 and controls.fonts.body.get_string_size(carrier.Fields.plain(parts),HORIZONTAL_ALIGNMENT_LEFT,-1,metric_px).x > 228.0:
+			metric_px -= 1
 	for i: int in world.metrics.size():
-		var line: RichTextLabel = carrier.Fields.at(carrier,"WorldMetrics%d" % i,world.get("metric_fields",[])[i] if world.has("metric_fields") else [world.metrics[i]],Rect2(16,341+20*i,228,23),14+extra,true)
+		var line: RichTextLabel = carrier.Fields.at(carrier,"WorldMetrics%d" % i,readings[i] if not readings.is_empty() else [world.metrics[i]],Rect2(16,342+22*i,228,23),metric_px,true)
 		_metric_labels.append(line)
 	var note: Label = carrier.art_status
 	note.position = Vector2(28,120)

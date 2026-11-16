@@ -1,4 +1,5 @@
 extends RefCounted
+const RitualIntervention = preload("res://src/game/ritual_intervention.gd")
 ## Finite player decisions. Background context is created once; only actual
 ## successful uses, original participants and deliveries become route material.
 const Store = preload("res://src/simulation/archive_store.gd")
@@ -91,7 +92,7 @@ func prepare(view: Dictionary, operation: String, payload: Dictionary, partial: 
 	if people.size() > int(row.participants_max): return _deny("Participant limit exceeded")
 	for id: String in people:
 		var participant: Dictionary = _person(view, id)
-		if participant.get("status") != "active" or participant.domain != domain or participant.acted_turn == state.turn or not PrayerRules.space_allows(state, id, "can_act"): return _deny("Participant unavailable or already acted")
+		if participant.get("status") != "active" or participant.domain != domain or participant.acted_turn == state.turn or not PrayerRules.space_allows(state, id, "can_act"): return _deny("参加者本轮已行动，或暂时无法行动")
 		if id != npc and participant.institution != office:
 			var links: Array = state.institutions[office].get("links", [])
 			if not participant.institution in links or not office in state.institutions[participant.institution].get("links", []): return _deny("Current two-way contact required")
@@ -125,7 +126,8 @@ func prepare(view: Dictionary, operation: String, payload: Dictionary, partial: 
 			if not person.get("bound_member", false) or not Cults.eligible(state, person, catalog): return _deny("A loyal actual member must organize")
 			if state.domains[domain].unnamed_nonfollowers <= 0: return _deny("No actual nonfollowers remain")
 		"calendar_rite":
-			if not "ritual_keeper" in person.role_tags: return _deny("Actual ritual keeper required")
+			if not "ritual_keeper" in person.role_tags: return _deny("需要能施行祭仪的人物")
+			if not (partial and source.is_empty()) and not RitualIntervention.source_valid(state, person, source, catalog, view.get("reader")): return _deny("尚无法触及这位祭仪者：需要其正在求告、已被成功入梦触及，或已归信")
 		"record_practice", "calendar_keeping":
 			if not "record_keeper" in person.role_tags:
 				capability_source = Capabilities.grant_source(state, npc, Capabilities.RECORD_PRACTICE)

@@ -964,7 +964,7 @@ func _show_receipt(on_return := Callable(), contact := "", anchor_receipt := fal
 		Fields.line(_body,[Fields.field("掷骰" if _receipt_checks.size()==1 else "检定 %d" % (index+1),str(check.roll)+" 点"),"    ",Fields.field("成功条件","骰点 ≤ %s" % check.get("probability",check.get("success_target",0)))],_size(16))
 	for line: String in _receipt.slice(1): _line(_body, line)
 	if _receipt.size() == 1: _line(_body, "当前可见资源与对象状态没有变化。")
-	if anchor_receipt: _line(_body, "本处供奉状态可在机构查看。全局顺序在底栏「供奉与收支」安排。", 14, UI.MUTED)
+	if anchor_receipt: _line(_body, "本处供奉状态可在机构查看。点击顶部「信仰」可安排全局顺序。", 14, UI.MUTED)
 	_footer_button("Return", "返回机构" if anchor_receipt else "返回", _receipt_return).grab_focus()
 
 func _show_menu(focus_name := "") -> void:

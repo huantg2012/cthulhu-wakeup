@@ -14,7 +14,7 @@ POWER_MANIFEST,manifest,已有活跃宇宙与星系锚点及合格的宇宙护�
 ROUTE_PRIVATE_DEVOTION,devotion,有人已认出你并愿意成为信徒
 ROUTE_JOINT_WORK,joint,已有能共同工作的两位人物
 ROUTE_COVERT_GATHERING,gathering,已有忠诚具名信徒及可招募人群
-ROUTE_CALENDAR_RITE,ritual,已联系到祭仪者
+ROUTE_CALENDAR_RITE,ritual,祭仪者正在向你求告、曾被成功入梦触及或已忠诚归信
 ROUTE_RECORD_PRACTICE,record_keeper,已有记录者或获得记录实践能力的人物
 ROUTE_CALENDAR_KEEPING,record_keeper,已有记录者或获得记录实践能力的人物
 ROUTE_RITUAL_TRANSMISSION,transmission,已有祭仪者和与其合作的学习者

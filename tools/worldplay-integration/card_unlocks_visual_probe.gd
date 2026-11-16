@@ -6,7 +6,7 @@ func run() -> void:
 	auto_arrivals = false
 	if not await setup(["--seed=1", "--keep-arrival"]): return
 	if not require(app._arrival.visible, "Initial arrival did not open"): return
-	if not require(app._arrival_model.counts.unlock == 4, "Initial arrival should show two powers and two genuinely available foundation activities"): return
+	if not require(app._arrival_model.counts.unlock == 2, "Initial arrival should show two powers; undisclosed background NPCs must not open activities"): return
 	await create_timer(1.0).timeout # Capture after the accepted entrance/veil animation.
 	await capture("initial-arrival")
 	await press_key(KEY_ENTER)
@@ -19,7 +19,7 @@ func run() -> void:
 	var requirements := app.find_child("LockedPowerRequirements", true, false) as ScrollContainer
 	if not require(requirements != null and requirements.is_visible_in_tree(), "Missing locked requirement explanations"): return
 	await capture("power-requirements")
-	if not await click("Self"): return
+	if not await click("AwakeningReadout"): return
 	if not require(app._dialog == "task_subject", "Progress page did not open"): return
 	for button: Node in app._surface.find_children("*", "Button", true, false):
 		if not require(not "降临条件" in button.text and not "开始降临" in button.text, "Progress page bypassed manifestation discovery"): return

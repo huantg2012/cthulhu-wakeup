@@ -20,6 +20,7 @@ const RETURN_DURATION := 0.18
 var cards: Array[Control] = []
 var focus_index := 0
 var allow_play := true
+var pass_through_lift_band := false
 # Caller compatibility only: this value never controls x or sibling order.
 var _visual_focus := 0.0
 var _blocked := false
@@ -235,6 +236,14 @@ func _legacy_exposure(card: Control, side: int, exposed: float) -> void:
 		if spine != null:
 			spine.visible = side < 0 and side_name == "LeftSpine" and exposed >= 24.0 and reading == 0.0
 			spine.modulate.a = 1.0
+
+
+func _has_point(point: Vector2) -> bool:
+	if pass_through_lift_band and point.y < _rest_y():
+		# The filter strip shares this space. Only an exposed card shoulder
+		# should intercept it, even though the fan draws over the entire strip.
+		return _card_at(point) >= 0
+	return Rect2(Vector2.ZERO, size).has_point(point)
 
 
 func _card_at(pointer: Vector2) -> int:

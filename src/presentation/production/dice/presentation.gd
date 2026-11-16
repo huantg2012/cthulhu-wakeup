@@ -33,6 +33,7 @@ var _index := -1
 var _active := false
 var _revealed := false
 var _reveal_motion: Tween
+var _layout_motion: Tween
 var _master: Dictionary = {}
 var _hand: Array = []
 var _turn := 0
@@ -162,6 +163,7 @@ func _label(node_name: String, value: String, bounds: Rect2, px: int, color: Col
 	return label
 
 func _show_check(index: int) -> void:
+	_layout_result(false)
 	_index = clampi(index,0,_entries.size()-1)
 	var entry: Dictionary = _entries[_index]
 	var batch: Dictionary = _batches[entry.batch]
@@ -199,7 +201,7 @@ func _render_source(batch: Dictionary, detail: String) -> void:
 		child.queue_free()
 	var card: Dictionary = batch.card.duplicate(true)
 	if card.is_empty():
-		card = {"id":"dice/source","title":batch.title,"type":"action","group":"action","kind":"action"}
+		card = {"id":"fallback/resolution","title":batch.title,"type":"action","group":"action","kind":"action"}
 	card.detail = detail
 	card.erase("detail_fields")
 	card.erase("targets")
@@ -221,6 +223,7 @@ func _settled() -> void:
 	_total.text = "%02d 点" % check.roll
 	_comparison.text = "%s  %s  %s" % [check.roll,"≤" if check.roll<=check.target else ">",check.target]
 	if check.roll==100: _comparison.text += "   00 + 0 = 100"
+	_layout_result(true)
 	# A batch can contain several checks and combined effects. Do not pretend
 	# the complete batch's consequences belong to just its first die.
 	var batch_last_index: int = _index + batch.checks.size() - int(entry.check) - 1
@@ -235,6 +238,24 @@ func _settled() -> void:
 	_reveal_motion = create_tween()
 	_reveal_motion.tween_property(_reading,"modulate:a",1.0,.25)
 	_update_controls()
+
+func _layout_result(settled: bool) -> void:
+	if _layout_motion != null: _layout_motion.kill()
+	var targets: Array = [
+		[_dice_pair, "position", Vector2(920,132) if settled else Vector2(495,165)],
+		[_dice_pair, "scale", Vector2(.60,.60) if settled else Vector2.ONE],
+		[_condition, "position", Vector2(894,252) if settled else Vector2(879,172)],
+		[_outcome, "position", Vector2(894,289) if settled else Vector2(879,209)],
+		[_total, "position", Vector2(894,327) if settled else Vector2(879,253)],
+		[_comparison, "position", Vector2(894,389) if settled else Vector2(879,312)],
+	]
+	_reading_scroll.position = Vector2(484,184) if settled else Vector2(484,355)
+	_reading_scroll.size = Vector2(386,242) if settled else Vector2(750,75)
+	if not settled:
+		for target: Array in targets: target[0].set(target[1],target[2])
+		return
+	_layout_motion = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	for target: Array in targets: _layout_motion.tween_property(target[0],target[1],target[2],.30)
 
 func _update_controls() -> void:
 	if _progress==null: return
@@ -281,6 +302,7 @@ func _clear() -> void:
 	set_process(false)
 	hide()
 	if _reveal_motion!=null: _reveal_motion.kill()
+	if _layout_motion!=null: _layout_motion.kill()
 	if is_instance_valid(_body):
 		remove_child(_body)
 		_body.queue_free()

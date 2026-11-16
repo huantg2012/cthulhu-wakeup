@@ -277,3 +277,84 @@
 [匿名祈求的轮初回响实机](../art/visual-generation/production-evidence/portrait-cues/anonymous-prayer-ready.png) · [检查日志](../art/visual-generation/production-evidence/portrait-cues/checks.txt)
 
 复现：`Godot --path . --script tools/worldplay-integration/portrait_cues_probe.gd -- --seed=3 <证据目录>`，也可把 `--seed=3` 替换为包含线索世界的真实存档路径；存档和图像缓存均隔离。检查包含匿名到识别的外观键稳定、完全不可见对象拒绝、知情投影／玩法快照不变、预构卡同步取图、冷／热缓存、轮间增量。角色发现的键稳定检查使用隔离的知情适配夹具并立即复原，不冒充执行发现权能。未重跑全部原型美术、所有祈求回应或超大存档压测；本批对应 V03–V05、V07，截图用于确认缺图修复，不重开审美定型。
+
+<a id="hand-filter-strip"></a>
+
+## 筛选栏贴近手牌（2026-11-15）
+
+分类与寻牌移到静置手牌上沿，相隔 2 个逻辑像素。抬牌与筛选栏共用高度，查看执行区增加 40 个逻辑像素，供说明、回应和执行区使用。世界、教团和底栏图鉴使用同一布局。绘制和命中见[架构](../architecture.md#世界玩法牌桌正式接入2026-11-12)，行为见[世界玩法交互合同](../specs/ui-interaction.md#worldplay-card-study)。
+
+正式主场景用隔离 seed 1，标准和大字模式各完成 39 项定向检查。悬停后牌面盖住分类，点到覆盖处仍命中该牌，未被盖住的搜索可输入并过滤牌组。核对了鼠标分类、原生拖放、「聆听」执行按钮、祈求选项和准备区，以及权能图鉴的寻牌。视觉核对覆盖 V02、V04、V07；本批只验证界面与输入，未执行行动结算或另开教团存档。
+
+[静置手牌](../art/visual-generation/production-evidence/hand-filter-strip/resting.png) · [抬牌覆盖分类](../art/visual-generation/production-evidence/hand-filter-strip/raised-over-filter.png) · [聆听准备](../art/visual-generation/production-evidence/hand-filter-strip/action.png) · [祈求准备](../art/visual-generation/production-evidence/hand-filter-strip/prayer-preparation.png)
+
+<a id="cost-deduplication"></a>
+
+## 卡片费用说明去重（2026-11-15）
+
+制作人要求删除与数值「消耗」重复的「必付」栏，并遍历卡片类型。正式路径已核查：世界／人物／教团／圣物／锚点对象卡与预告为只读；权能、活动、锚定、圣物处置共用行动说明；教团指令和维系使用计划费用；祈求、轮初事件、回响及执行回执各有专用展示。清理范围包括共享行动说明、底栏权能图鉴、关联准备、锚定费用速览与不可逆确认。历史探索样板不改为新规范。
+
+资源仅保留具体消耗；原字段中的行动机会、理智损耗、察觉增加、撤职／毁物等非重复影响以「施行影响」保留，不改变原规则。共享的呈现过滤见[架构](../architecture.md#世界玩法牌桌正式接入2026-11-12)，当前规则写入[交互合同](../specs/ui-interaction.md#worldplay-card-study)；美术 A09 的固定费用称谓同步，无卡壳、字体、颜色或布局改动。
+
+全部 12 项权能及 18 项活动操作定义（含辅助操作）已核查。正式主场景用隔离 seed 1 拖出「入梦」、选择人物，查看具体消耗与可执行状态，再进入只读权能图鉴；95 项定向检查通过，前后 Session 快照相同。适用 V02／V04／V05／V07；已核对两张实际渲染图，其他卡类通过共享路径与源码覆盖检查，未逐项执行或重跑结算。原美术草稿保持在工作区。
+
+[入梦准备：已删除必付栏](../art/visual-generation/production-evidence/cost-deduplication/dream.png) · [权能图鉴：只保留基础消耗](../art/visual-generation/production-evidence/cost-deduplication/power-record.png)
+
+<a id="action-effect-feedback"></a>
+
+## 权能执行效果闭环（2026-11-15）
+
+### 根因与修正
+
+制作人实玩聆听、入梦后只有执行成败，没有“发生了什么”。根因有三层：聆听揭示的是旧事实，原 Session 回执只附本次新事实；人物数值并不全部向玩家公开、世界四维又来自历史观测，依赖公开投影差分会漏掉真实变化；掷骰正文只有 75 逻辑像素高，即使补齐数据，普通结果仍会被藏进滚动区。
+
+已接入有界、只读的行动效果回执和统一字段正文。实际 delta 优先，已知对象／状态差分补充，历史揭示与延期后续独立展示。骰子落定后连续收至右侧，中部结果可用高度增至 242；人物／教团变化在前，世界与资源随后。保留原牌、整叠手牌、外围与单一退出；无骰聆听直接使用原查看执行区。数据不取预览，不改变骰流、规则、解锁或存档 schema，不把隐藏总量变成可见情报。规则正文见[交互合同](../specs/ui-interaction.md#action-effect-feedback)，组件边界见[架构](../architecture.md)，排版见[美术 A17](../art/visual-generation/ui-art-standard.md#dice-art-contract)。
+
+### 十二项权能审查
+
+对 `powers.csv`、`power_effects.csv`、Powers.commit/_apply_rows、Cults 的任命队列及共享结果面逐类核对：
+
+- **聆听**：原记录的实际内容、世界、观测轮次；另显示本次察觉变化。只揭示本次权能确已揭示且已获知的记录。
+- **入梦／赐予**：人物实际属性增减与本域实际变化；未绑定人物也能看到自己这次施加的影响，但看不到隐藏总量。绑定人物不再重复报告同一差值；限幅后的零变化不声称得到了表中完整收益。
+- **谕言／任命**：分别读取已生成的准备（指定动作、增益、有效期、单次使用）和实际待办队列（职务、教团、复核轮次）；不得把“已排期”写成“已生效”。任命生效／取消沿已知事实反馈。
+- **献祭／穿隙／播种／掩迹**：死亡与解除关联、实际资源收益或损失、屏障／污染／察觉、教团凝聚、实际信众增减；销毁证据须有已失效记录。人口余量不足时显示实际数量或未变化，不把 authored 增员当作结果。
+- **锚定／迁引**：真实绑定／修复、成员与圣物状态、实际人物及随行信众迁移、失败／拘禁的实际影响。供奉另行安排，不声称绑定即持续有效。
+- **降临**：前两轮显示实际仪式进度和继续责任，最终检定使用既有真实骰点、完成／中断及资源、锚点结果。完成时不再追加“仪式终止、进度不保留”的错误中断文案。
+
+这份清单是规则来源及展示通路审查，不是十二项成熟路线均已实机通关。
+
+### 有限验证与证据
+
+正式主场景、1920×1080、隔离的新局 seed 1／5：拖牌执行聆听，然后从真正具备梦境联系的人物中选取目标执行入梦；不注入成功、骰点、人物或资格，不改玩家存档。seed 1 的入梦为失败（51／48），seed 5 为深刻成功（7／52）。检查实际效果随已提交骰点到达同一结果页、关闭不重执行／不重复要求关闭回执，聆听无假骰。已目视核对成功、失败与聆听三张原生截图，普通结果正文完整可读。
+
+额外验证为反馈边界夹具：隐藏人物总量、陈旧世界观测、绑定人物去重、实际零变化、旧记录与知情过滤、未实际生成的谕言准备／任命队列不能凭成功标签编造，以及全部现行效果操作类型覆盖。此类人为构造的输入只证明回执边界，不冒充成熟存档游玩。共享祈求演出以真实新局复查；持久请求复播／确定性操作无骰／信号副本隔离沿 Session 专项复查。具体日志见下方。
+
+![入梦深刻成功：人物与世界实际影响，同屏保留点数与条件](../art/visual-generation/production-evidence/action-feedback/dream-success.png)
+
+[聆听所得及观测日期](../art/visual-generation/production-evidence/action-feedback/listen.png) · [入梦失败的实际损失](../art/visual-generation/production-evidence/action-feedback/dream-failure.png) · [检查日志](../art/visual-generation/production-evidence/action-feedback/checks.txt)
+
+复现：`Godot --path . --script tools/action-feedback/native_probe.gd -- <输出目录> 1`（或种子 `5`）；边界检查为 `--headless --script tools/action-feedback/power_cases.gd`。本批对应 A08/A17、V02/V04/V05/V07；未逐一实走全部高阶权能、长期多轮链、大字极值或完整终局，新结果布局待制作人复审。美术草稿及此前未提交的筛选栏／费用清理保留。
+
+
+<a id="prayer-card-titles"></a>
+
+## 祈求卡长名称修复（2026-11-15）
+
+根因是共享卡面将小于 170px 的标题默认限制为一行，回响主卡另显式限制一行。祈求名称因此被省略，并非数据缺失。现在依据实际宽度、字体及 WORD_SMART 同口径断行计算完整高度，保留原字号，副文顺移；读取实际字体行高及行距，避免第二行底部再次裁切。立绘尺寸和 RGB 保留，只将原有下缘渐隐按标题上边界提前结束，避免新文字压住画像。未改变其他类别排版、肩签、密叠顺序或操作。
+
+架构登记在共享卡面段，美术约定在 A08；**spec 判断：纯阅读排版修复，无玩法／交互状态合同变化，UI 交互 spec 无新增规则。** 本批只包含共享卡面、渐隐参数及文档证据，不含此前未提交的功能反馈／美术草稿。
+
+从正式主场景建立隔离 seed 1 新局，检查回响主卡／牌堆、世界手牌，点击事件筛选并通过真实拖拽进入祈求查看；拖牌前后 Session 快照相同。另以布局夹具检查截图中的“渴望回应的求道者”和 CSV 最长“女儿被排除在族谱外的养母”，在 148×198、148×234、168×250 三种正式尺寸确认全部标题行可见、标题与副文不交叠、副文不越底。夹具不注入游戏数据。范围对应 V02／V04／V07；未进行全局功能重测。
+
+[手牌完整名称](../art/visual-generation/production-evidence/prayer-card-titles/prayers.png) · [轮初回响](../art/visual-generation/production-evidence/prayer-card-titles/arrival.png) · [拖上牌桌](../art/visual-generation/production-evidence/prayer-card-titles/table.png) · [检查日志](../art/visual-generation/production-evidence/prayer-card-titles/checks.txt)。
+
+
+<a id="world-metric-scale"></a>
+
+## 世界四维百分比（2026-11-15）
+
+制作人明确取消独立的「四维范围」标题，改用百分比直接表达。沿美术 A06／A08，诸界世界卡、世界玩法侧栏／主卡查看区、世界档案、情报及关联观察记录统一显示估计区间「50–74%」或历史确值「63%」。未知仍为「未掌握」，观察时点不变。正式四维0–100数据未缩放，不将四项表现为评分或进度。共享格式化登记在架构 `ExperienceViews.metric_display`；交互 spec 和美术规范原地更新，文明规则未改变。此前工作区内容保留。
+
+有限实机经正式主场景载入隔离 seed 3 自然推进至第3轮的存档副本。当前一已知世界、两仅求告线索世界；标准／大字模式逐张核对无多余量程标题、百分比和四维无裁切，实际拖动世界主卡查阅、Esc收回、经菜单进入档案，前后 Session 快照相同。没有改写玩家存档或调用隐藏当前值。V01/V02：新文字沿原卡纸／字段配色且清晰；V04：原拖牌与返回不变；V05：未知不补值；V07：正式入口和真实 Session；V08：运行日志无引擎错误、无新美术资源或每帧计算。未重新验证全部玩法、高阶解锁或外围动画。
+
+[标准诸界](../art/visual-generation/production-evidence/world-metric-percent/overview-standard.png) · [大字诸界](../art/visual-generation/production-evidence/world-metric-percent/overview-large.png) · [大字查看区](../art/visual-generation/production-evidence/world-metric-percent/reading-large.png) · [大字档案](../art/visual-generation/production-evidence/world-metric-percent/archive-large.png) · [检查日志](../art/visual-generation/production-evidence/world-metric-percent/checks.txt)。核对脚本：`tools/world-intelligence/ui_scale_probe.gd`。本批为已锁定卡壳下的信息排版增量，视觉仍交制作人复审。

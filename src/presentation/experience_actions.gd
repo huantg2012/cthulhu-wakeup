@@ -297,6 +297,7 @@ func _option_title(host, option: Dictionary) -> String:
 	if id.begins_with("ROUTE_"):
 		return str(host.session.catalog.display_tables.progression_route_operations.get(id, {}).get("name", option.get("label", "活动")))
 	if id.begins_with("FACT-"):
+		if not str(option.get("label", "")).is_empty() and option.label != id: return str(option.label)
 		var record: Dictionary = source_info(host, id)
 		if not record.is_empty(): return str(record.title) + " · 第%d轮" % int(record.get("turn", 0))
 	if id.begins_with("PRAYER/"):
@@ -367,7 +368,7 @@ func fixed_evidence(field: Dictionary) -> bool:
 	return str(field.get("key", "")) in ["source", "qualification"] and not field.get("optional", false) and not field.get("multiple", false) and field.get("options", []).size() == 1
 
 func visible_fields(fields: Array) -> Array:
-	return fields.filter(func(field: Dictionary) -> bool: return not fixed_evidence(field) and not (field.get("optional", false) and field.get("options", []).is_empty()))
+	return fields.filter(func(field: Dictionary) -> bool: return not field.get("automatic", false) and not fixed_evidence(field) and not (field.get("optional", false) and field.get("options", []).is_empty()))
 
 func source_info(host, id: String) -> Dictionary:
 	if _source_cache.has(id): return _source_cache[id]
@@ -431,11 +432,11 @@ func _render_consequences(host, box: VBoxContainer, row: Dictionary, selection: 
 	var details: Dictionary = row.get("details", {})
 	var preview: Dictionary = row.get("preview", {})
 	var costs: Dictionary = preview.get("preview", {})
-	var always: String = _always_cost(host, row, selection)
+	var always: String = cost_context(_always_cost(host, row, selection))
 	var effects: Dictionary = _outcome_effects(host, row, selection)
 	var probabilities: Dictionary = costs.get("outcomes", {})
-	if not always.is_empty() and not always in ["低语和信仰", "低语"]:
-		box.add_child(host.label("必付代价：" + always))
+	if not always.is_empty():
+		box.add_child(host.label("施行影响：" + always))
 	if not probabilities.is_empty():
 		var success: int = int(probabilities.get("deep", 0)) + int(probabilities.get("success", 0))
 		box.add_child(host.label("成功 %s%% · 失败 %s%% · 灾变 %s%%" % [success, probabilities.get("failure", 0), probabilities.get("disaster", 0)]))
@@ -455,6 +456,15 @@ func _render_consequences(host, box: VBoxContainer, row: Dictionary, selection: 
 	else:
 		if row.key in ["POWER_MANIFEST", "POWER_MANIFEST_CONTINUE"]: box.add_child(host.label(str(effects.get("success", ""))))
 		else: box.add_child(host.label(str(effects.get("success", details.get("选择后果", "")))))
+
+static func cost_context(value: String) -> String:
+	# The numeric quote already states resource costs. Keep the remaining
+	# consequences/constraints from the catalog, including irreversible losses.
+	var note := value.strip_edges()
+	for resources: String in ["低语和信仰", "低语"]:
+		if note == resources: return ""
+		if note.begins_with(resources + "且"): return note.trim_prefix(resources + "且")
+	return note
 
 func _always_cost(host, row: Dictionary, selection: Dictionary) -> String:
 	var details: Dictionary = row.get("details", {})
@@ -494,8 +504,8 @@ func confirmation_text(host, key: String, selection: Dictionary) -> String:
 	var lines: Array[String] = [str(row.title)]
 	lines.append_array(context_lines(row, selection, host.title, host))
 	lines.append("消耗 %s 低语 · %s 信仰" % [costs.get("whispers", 0), costs.get("faith", costs.get("faith_cost", 0))])
-	var always: String = _always_cost(host, row, selection)
-	if not always.is_empty(): lines.append("必付代价：" + always)
+	var always: String = cost_context(_always_cost(host, row, selection))
+	if not always.is_empty(): lines.append("施行影响：" + always)
 	var irreversible: String = _irreversible_summary(host, row, selection)
 	if not irreversible.is_empty(): lines.append(irreversible)
 	var effects: Dictionary = _outcome_effects(host, row, selection)
@@ -540,7 +550,7 @@ func _outcome_effects(host, row: Dictionary, selection: Dictionary) -> Dictionar
 		elif operation.get("mode") == "joint_work": success = "两位参加者完成结伴协作，建立当前合作联系。"
 		elif operation.get("mode") in ["covert_gathering", "calendar_rite"]:
 			var parameter: String = "gathering_followers" if operation.mode == "covert_gathering" else "rite_followers"
-			success = "从当地可接触人群转化至多 %d 名信众；首个教团仍在轮末核验形成。" % host.session.catalog.integer(parameter)
+			success = "至多 %d 名当地普通居民归信。" % host.session.catalog.integer(parameter)
 		elif operation.get("mode") in ["memory_circle", "pact_agreement"]: success = "建立本次共同情境或原约定；之后从相应祈求回应，不立即完成其后续结果。"
 		elif operation.get("mode") == "axiom_probe": success = "记录本次观察到的法则例外，为后续验证和利用留下依据。"
 		elif operation.get("mode") == "axiom_recheck": success = "在另一节点独立核验同一异常，取得第二份观察记录。"
@@ -551,7 +561,7 @@ func _outcome_effects(host, row: Dictionary, selection: Dictionary) -> Dictionar
 		elif operation.get("mode") == "ritual_transmission": success = "按当前步骤完成教习或原学徒施行；另一回合的步骤仍须原人物完成。"
 		elif operation.get("mode") == "reciprocal_covenant": success = "固定原两项约定或完成当前一项交付；剩余交付仍受原条款约束。"
 		if int(operation.get("success_pollution", 0)) > 0: success += " 当地污染 +" + str(operation.success_pollution) + "。"
-		return {"deep": success, "success": success, "failure": "本轮未取得成功进展；资源、执行机会及该活动必付后果仍消耗。", "disaster": "本轮未取得成功进展；资源、执行机会及该活动必付后果仍消耗。"}
+		return {"deep": success, "success": success, "failure": "本轮未取得成功进展；资源与执行机会仍会消耗，施行影响仍会发生。", "disaster": "本轮未取得成功进展；资源与执行机会仍会消耗，施行影响仍会发生。"}
 	return {"success": str(details.get("选择后果", details.get("取得内容", "按所选处置更新原对象，实际结果进入编年史。")))}
 
 func payment_projection(host, row: Dictionary) -> Dictionary:

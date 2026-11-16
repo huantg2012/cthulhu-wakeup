@@ -176,7 +176,7 @@ static func summarize(host, fact: Dictionary) -> Dictionary:
 			if kind == "route_material": _named(lines, "参加者", _people(host, d.get("originals", []), domain))
 		"power_qualification":
 			var ability: String = {"dream":"入梦", "oracle":"谕言", "bestow":"赐予", "appoint":"任命", "sacrifice":"献祭", "transfer":"迁引", "anchor":"锚定", "breach":"穿透", "seed":"播种", "manifest":"降临", "listen":"聆听", "spread":"传教"}.get(str(d.get("rule", "")), "相关行动")
-			result.title = ability + "的联系依据"
+			result.title = ability + " · " + (who if not who.is_empty() else "已知联系")
 			result.summary = (who if not who.is_empty() else "此对象") + "的已有联系可作为" + ability + "的依据。"
 			_add(lines, "是否能现在执行，仍取决于人物状态、所需资源与本轮机会。")
 		"economy_income":

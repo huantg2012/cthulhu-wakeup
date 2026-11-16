@@ -61,12 +61,12 @@ func observe(session: RefCounted, projection: Dictionary) -> bool:
 		if person.has("已知范围"): continue
 		var fresh: bool = not seen_people.has(person.id)
 		seen_people[person.id] = true
-		if not fresh or petitioners.has(person.id): continue
+		if not fresh or petitioners.has(person.id) or person.get("prayer_introduced", false): continue
 		var role := str(person.get("role_name", "已知人物"))
 		_add({"id": "person/"+str(person.id), "title": person.title, "type": "object", "group": "person", "kind": "person",
 			"subject": person, "domain": person.get("domain", ""), "detail": role,
 			"arrival": "person", "eyebrow": "新知人物 · " + ("信徒" if person.get("bound_member", false) else "已知联系"),
-			"story": "身份已进入你的视野。\n" + role, "story_fields":["身份已进入你的视野。\n",Fields.field("身份",role)],
+			"story": str(person.get("discovery", "此前已与你建立联系。")) + "\n" + role, "story_fields":[str(person.get("discovery", "此前已与你建立联系。"))+"\n",Fields.field("身份",role)],
 			"guidance": "人物牌可查阅其已知身份与关系。已知联系并不因此成为信徒。"})
 	for action: Dictionary in action_cards:
 		var fresh: bool = not seen_actions.has(action.id)

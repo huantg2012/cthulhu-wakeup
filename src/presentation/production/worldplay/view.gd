@@ -13,6 +13,15 @@ const PrayerReceipt = preload("res://src/presentation/production/worldplay/praye
 const SessionHud = preload("res://src/presentation/production/painted/session_hud.gd")
 const ResistanceCards = preload("res://src/presentation/production/worldplay/resistance_cards.gd")
 const GROUPS := [["all","全部"],["event","事件"],["resistance","预告"],["cult","教团"],["power","权能"],["activity","活动"],["person","人物"],["anchor","锚点"],["action","行为"]]
+const TABLE_EXTRA_HEIGHT := 40.0
+# Full-width play surface. Preserve card size; reclaimed gutters become usable
+# hand/execution width rather than scaling artwork or filling it with ornaments.
+const SCOPE_X := SessionHud.EDGE_GAP
+const SCOPE_WIDTH := 250.0
+const TABLE_X := SCOPE_X+SCOPE_WIDTH+16.0
+const TABLE_WIDTH := 1280.0-SessionHud.EDGE_GAP-TABLE_X
+# The strip sits 2px above resting cards, inside the fan's shoulder space.
+const HAND_FILTER_Y := 26.0
 var _placed_event := ""
 var _study_cult := ""
 var _deck: Array = []
@@ -35,6 +44,7 @@ var _picker_page := 0
 var _optional := false
 var _confirmed := false
 var _result_text := ""
+var _result_rows: Array = []
 var _prayer_result: Dictionary = {}
 var _scope_memory: Dictionary = {}
 var _table: Control
@@ -49,16 +59,16 @@ var _opening_new := false
 # Variant 0 is the selected production B library. Nonzero values are confined
 # to the before/current study; this presentation choice never touches Session.
 var _illustration_variant := 0
+var _hud: Node
 
 func _ready() -> void:
-	_model = ActionModel.new()
-	_arrival = ArrivalView.new()
-var _hud: Node
-	add_child(_arrival)
-	_arrival.finished.connect(_arrival_finished)
 	_hud = SessionHud.new()
 	_hud.host = self
 	add_child(_hud)
+	_model = ActionModel.new()
+	_arrival = ArrivalView.new()
+	add_child(_arrival)
+	_arrival.finished.connect(_arrival_finished)
 	super._ready()
 
 func _start_new(seed_value: int) -> void:
@@ -68,11 +78,11 @@ func _start_new(seed_value: int) -> void:
 
 func _open_campaign(result: Dictionary) -> void:
 	if result.get("ok", false):
+		if _hud != null: _hud.reset()
 		_arrival_model.reset(_opening_new)
 		_arrival_pending = false
 		_arrival_resume_boundary = false
 		_arrival.hide()
-		if _hud != null: _hud.reset()
 		_library = ""
 		_placed_event = ""
 		_library_memory.clear()
@@ -94,6 +104,7 @@ func _reset_draft() -> void:
 	_optional = false
 	_confirmed = false
 	_result_text = ""
+	_result_rows = []
 	_prayer_result = {}
 	_quoted = {}
 
@@ -137,12 +148,12 @@ func _table_blocked() -> bool:
 func _update_atmosphere() -> void:
 	super._update_atmosphere()
 	var blocked := _table_blocked()
+	if _hud != null: _hud.sync_input(blocked or projection.get("phase")=="events")
 	if is_instance_valid(_stage):
 		var worlds := _stage.find_child("WorldFan",true,false)
 		if worlds != null: worlds.set_blocked(blocked)
 		var echo := _stage.find_child("RoundEcho",true,false)
 		if echo != null: echo.disabled = blocked or _arrival_model.cards.is_empty()
-	if _hud != null: _hud.sync_input(blocked or projection.get("phase")=="events")
 	if is_instance_valid(_fan): _fan.set_blocked(blocked)
 	if is_instance_valid(_persistent_dock):
 		for button: Node in _persistent_dock.find_children("*", "Button", true, false):
@@ -188,7 +199,8 @@ func open_cult_table(domain: String) -> void:
 
 # Reflow only the execution controls' bounds, never scale text or illustrations.
 func _table_box(bounds: Rect2) -> Rect2:
-	return Rect2(180+(bounds.position.x-220)*.765,bounds.position.y,bounds.size.x*.765,bounds.size.y)
+	var ratio := (_table.size.x-180.0-6.0)/980.0
+	return Rect2(180+(bounds.position.x-220)*ratio,bounds.position.y,bounds.size.x*ratio,bounds.size.y)
 
 func _text(parent: Node,value: String,bounds: Rect2,font_size: int,color: Color=UI.BONE) -> Label:
 	return super._text(parent,value,_table_box(bounds) if parent==_table else bounds,font_size,color)
@@ -238,16 +250,16 @@ func _build_worlds() -> void:
 	var events := _event_table()
 	if not events and _world_id.is_empty() and _library.is_empty():
 		super._build_worlds()
-		return
-	_world_body = _region(_stage,"WorldTable",Rect2(Vector2.ZERO,VIEW))
-	if events:
-		_reset_draft()
-		_deck.clear()
 		var old_crumb := _stage.get_node_or_null("WorldOverview")
 		if old_crumb != null:
 			_stage.remove_child(old_crumb)
 			old_crumb.queue_free()
 		_hud.build_path(_stage,[{"name":"WorldOverview","caption":"◯ 诸界"}])
+		return
+	_world_body = _region(_stage,"WorldTable",Rect2(Vector2.ZERO,VIEW))
+	if events:
+		_reset_draft()
+		_deck.clear()
 		var pending := _pending_events()
 		for index: int in pending.size():
 			var event: Dictionary = pending[index]
@@ -273,13 +285,13 @@ func _build_worlds() -> void:
 	_build_master()
 	_table = DropTable.new()
 	_table.name = "PlayArea"
-	_table.position = Vector2(304,83)
-	_table.size = Vector2(936,260)
+	_table.position = Vector2(TABLE_X,83)
+	_table.size = Vector2(TABLE_WIDTH,260+TABLE_EXTRA_HEIGHT)
 	_table.mouse_filter = Control.MOUSE_FILTER_STOP
 	_table.accepts_card = _can_place_card
 	_table.card_dropped.connect(_play_card)
 	_world_body.add_child(_table)
-	_hand = _region(_world_body,"Hand",Rect2(304,353,936,310))
+	_hand = _region(_world_body,"Hand",Rect2(TABLE_X,383,TABLE_WIDTH,280))
 	_render_table()
 	_render_hand()
 
@@ -290,7 +302,7 @@ func _build_dock() -> void:
 	if is_instance_valid(_persistent_dock):
 		remove_child(_persistent_dock)
 		_persistent_dock.queue_free()
-	_persistent_dock = _region(self,"PersistentDock",Rect2(32,662,1208,52))
+	_persistent_dock = _region(self,"PersistentDock",Rect2(0,662,1280,58))
 	_hud.build_dock(_persistent_dock)
 
 func _show_hud_responsibilities(focus_name := "Cancel") -> void:
@@ -398,23 +410,24 @@ func _render_hand() -> void:
 			var count: int = _deck.filter(func(card: Dictionary)->bool:return category[0]=="all" or _category_of(card)==category[0]).size()
 			if count==0: continue
 			var caption: String = str(category[1])
-			var button := _button(_hand,"Pile_"+category[0],"%s%s" % [caption,count],Rect2(x,0,72,26),_filter.bind(category[0]))
+			var button := _button(_hand,"Pile_"+category[0],"%s%s" % [caption,count],Rect2(x,HAND_FILTER_Y,72,26),_filter.bind(category[0]))
 			button.add_theme_font_size_override("font_size",14)
 			_ui.choice_style(button,category[0] == ("event" if _event_table() else _category))
 			x += 74
 	else:
-		_text(_hand,_library_title()+" · %s 张" % _deck.size(),Rect2(0,0,490,26),17,UI.MUTED)
+		_text(_hand,_library_title()+" · %s 张" % _deck.size(),Rect2(0,HAND_FILTER_Y,490,26),17,UI.MUTED)
 	var search := LineEdit.new()
 	search.name = "FindCard"
-	search.position = Vector2(755,0)
-	search.size = Vector2(181,26)
 	search.placeholder_text = "寻牌 · 名称或关系"
 	search.text = _search
 	search.visible = not _event_table()
 	search.add_theme_font_size_override("font_size",14)
 	_hand.add_child(search)
+	search.size = Vector2(181,26)
+	# Theme minimums can make the input taller than a category button.
+	search.position = Vector2(_hand.size.x-search.size.x,HAND_FILTER_Y+26-search.size.y)
 	search.text_changed.connect(_find_card)
-	_hand_hint = _text(_hand,"",Rect2(0,291,936,19),13,UI.MUTED)
+	_hand_hint = _text(_hand,"",Rect2(0,261,_hand.size.x,19),13,UI.MUTED)
 	_refresh_fan()
 
 func _refresh_fan() -> void:
@@ -424,8 +437,8 @@ func _refresh_fan() -> void:
 	_hand_cards = _deck.filter(_matches)
 	_fan = HandFan.new()
 	_fan.name = "HandFan"
-	_fan.position = Vector2(0,30)
-	_fan.size = Vector2(936,254)
+	_fan.size = Vector2(_hand.size.x,254)
+	_fan.pass_through_lift_band = true
 	_fan.focus_index = clampi(_fan_index,0,maxi(0,_hand_cards.size()-1))
 	_hand.add_child(_fan)
 	var faces: Array[Control] = []
@@ -584,6 +597,7 @@ func _play_card(card: Dictionary) -> void:
 	_optional = false
 	_confirmed = false
 	_result_text = ""
+	_result_rows = []
 	_prayer_result = {}
 	if card.id=="anchor/bind":
 		_entry = "POWER_ANCHOR"
@@ -645,8 +659,9 @@ func _render_table() -> void:
 	if not _prayer_result.is_empty():
 		_render_prayer_result()
 	elif not _result_text.is_empty():
-		_reading(_result_text)
-		_button(_table,"Done","收回卡牌",Rect2(973,223,220,36),_recall,true)
+		if _result_rows.is_empty(): _reading(_result_text)
+		else: _field_reading(_result_rows)
+		_button(_table,"Done","收回卡牌",Rect2(973,223+TABLE_EXTRA_HEIGHT,220,36),_recall,true)
 	elif _played.get("kind")=="resistance": _render_resistance()
 	elif _played.get("kind")=="power" and _played.type=="object": _render_power_record()
 	elif _played.type=="object": _render_object()
@@ -659,12 +674,13 @@ func _recall() -> void:
 	_selection = {}
 	_picker = ""
 	_result_text = ""
+	_result_rows = []
 	_prayer_result = {}
 	_render_table()
 	_render_hand()
 
 func _reading(value: String) -> void:
-	var scroll := _scroller(_table,Rect2(220,44,960,168))
+	var scroll := _scroller(_table,Rect2(220,44,960,168+TABLE_EXTRA_HEIGHT))
 	var box := VBoxContainer.new()
 	box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	scroll.add_child(box)
@@ -673,7 +689,7 @@ func _reading(value: String) -> void:
 func _render_resistance() -> void:
 	var plan: Dictionary = _played.subject
 	_text(_table, str(_played.detail), Rect2(220,38,960,30),18,UI.GOLD)
-	var scroll := _scroller(_table,Rect2(220,76,960,188))
+	var scroll := _scroller(_table,Rect2(220,76,960,184+TABLE_EXTRA_HEIGHT))
 	var box := VBoxContainer.new()
 	box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	box.add_theme_constant_override("separation",10)
@@ -692,7 +708,7 @@ func _forecast_field(parent: Container, caption: String, value: String) -> void:
 	CardFields.row(parent,caption,value,_size(17)).name = "Forecast_"+caption
 
 func _field_reading(parts: Array) -> void:
-	var scroll := _scroller(_table,Rect2(220,44,960,168))
+	var scroll := _scroller(_table,Rect2(220,44,960,168+TABLE_EXTRA_HEIGHT))
 	var box := VBoxContainer.new()
 	box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	box.add_theme_constant_override("separation",10)
@@ -715,8 +731,9 @@ func _render_object() -> void:
 			parts.append(CardFields.field("预告",_views.world_resistance_text(_tasks,str(item.id)).trim_prefix("反制：")))
 			for metric: String in ["barrier","pollution","alert","stability"]:
 				parts.append(CardFields.field(str(_views.WORLD_METRICS[metric])+"情报",_views.metric_help_text(item,metric).trim_prefix(str(_views.WORLD_METRICS[metric])+" · ")))
-			_button(_table,"History","查阅编年史",Rect2(973,223,220,36),_read_history)
+			_button(_table,"History","查阅编年史",Rect2(973,223+TABLE_EXTRA_HEIGHT,220,36),_read_history)
 		"person":
+			parts.append(CardFields.field("结识",item.get("discovery","此前已与你建立联系。")))
 			parts.append(CardFields.field("身份",_views._role(self,item)))
 			parts.append(CardFields.field("关系","信徒" if item.get("bound_member",false) else "已知联系"))
 			parts.append(CardFields.field("所在世界",title(str(item.get("domain","")))))
@@ -735,7 +752,7 @@ func _render_object() -> void:
 			parts.append(CardFields.field("领袖",title(str(item.get("leader","")))))
 			parts.append(CardFields.field("本轮指令",_views._strategy_name(projection.economy_plan.get("strategies",{}).get(item.id,item.get("strategy","hold")))))
 			parts.append(CardFields.field("具名成员",_views._members_for(self,item).size()))
-			if str(item.id)!=_study_cult: _button(_table,"EnterCult","进入教团 →",Rect2(973,223,220,36),_enter_cult.bind(str(item.id)),true)
+			if str(item.id)!=_study_cult: _button(_table,"EnterCult","进入教团 →",Rect2(973,223+TABLE_EXTRA_HEIGHT,220,36),_enter_cult.bind(str(item.id)),true)
 		"relic":
 			parts.append(CardFields.field("状态",str({"bound":"绑定","carried":"携带","controlled":"库藏","ground":"遗落","seized":"被扣押","sealed":"封存"}.get(item.get("placement",""),"状态未掌握"))))
 			parts.append(CardFields.field("所在世界",title(str(item.get("domain","")))))
@@ -817,7 +834,7 @@ func _fill_single_choices() -> void:
 
 func _field_title(field: Dictionary) -> String:
 	if _entry=="POWER_ANCHOR" and field.key=="npc": return "护持者"
-	if field.key=="npc" and _played.get("group")=="activity": return "发起者"
+	if field.key=="npc" and _played.get("group")=="activity": return "祭仪者" if _selection.get("operation")=="ROUTE_CALENDAR_RITE" else "参加者"
 	return str(field.label)
 
 func _option_caption(option: Dictionary) -> String:
@@ -862,6 +879,7 @@ func _render_slot(field: Dictionary, bounds: Rect2) -> void:
 func _display_fields(fields: Array) -> Array:
 	var visible: Array = []
 	for field: Dictionary in fields:
+		if field.get("automatic",false): continue
 		if field.key in ["domain","operation"] and _played.get("selection",{}).has(field.key): continue
 		if field.key=="cult" and not _study_cult.is_empty(): continue
 		if _entry=="POWER_ANCHOR" and field.key=="institution" and _target>=0: continue
@@ -879,16 +897,17 @@ func _display_fields(fields: Array) -> Array:
 
 func _render_action() -> void:
 	if _played.get("kind")=="prayer" and _entry.is_empty():
-		var reading := _scroller(_table,Rect2(220,36,953,86))
+		var reading := _scroller(_table,Rect2(220,36,953,86+TABLE_EXTRA_HEIGHT))
 		var body := VBoxContainer.new()
 		body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		reading.add_child(body)
 		CardFields.line(body,_prayer_parts(),_size(16)).name = "PrayerStory"
 		var choices := _prayer_options()
-		_field_at(_table,[CardFields.field("回应方式","%d 种" % choices.size())],Rect2(220,124,640,22),14)
-		_render_picker({"key":"__prayer","label":"回应","options":choices},147)
+		_button(_table,"InspectPetitioner","查阅求告者",Rect2(800,124+TABLE_EXTRA_HEIGHT,190,22),_inspect_petitioner)
+		_field_at(_table,[CardFields.field("回应方式","%d 种" % choices.size())],Rect2(220,124+TABLE_EXTRA_HEIGHT,640,22),14)
+		_render_picker({"key":"__prayer","label":"回应","options":choices},147+TABLE_EXTRA_HEIGHT)
 		if _played.get("space",false):
-			_button(_table,"DismissPrayer","不再回应…",Rect2(1010,124,183,22),_start_dismiss_prayer)
+			_button(_table,"DismissPrayer","不再回应…",Rect2(1010,124+TABLE_EXTRA_HEIGHT,183,22),_start_dismiss_prayer)
 		return
 	if _played.get("kind")=="prayer":
 		_render_prayer_preparation()
@@ -930,7 +949,7 @@ func _render_action() -> void:
 		if field.key==_picker: picking = field; break
 	if not picking.is_empty(): _render_picker(picking,104)
 	else:
-		var notes := _scroller(_table,Rect2(220,104,966,112))
+		var notes := _scroller(_table,Rect2(220,104,966,112+TABLE_EXTRA_HEIGHT))
 		var text_box := VBoxContainer.new()
 		text_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		notes.add_child(text_box)
@@ -942,7 +961,7 @@ func _render_action() -> void:
 	var status_parts: Array = [CardFields.field("消耗",info)]
 	if int(costs.get("success_target",costs.get("probability",-1)))>=0:
 		status_parts.append(" · ")
-		status_parts.append(CardFields.field("成功点数","%s / 100" % int(costs.get("success_target",costs.get("probability")))))
+		status_parts.append(CardFields.field("成功条件","D100 ≤ %s" % int(costs.get("success_target",costs.get("probability")))))
 	var reason: String = "选项齐备 · 尚未执行" if prepared.get("ok",false) else session.explain_error(str(prepared.get("error","条件尚未满足")))
 	if not missing.is_empty():
 		var absent: Array[String] = []
@@ -952,13 +971,13 @@ func _render_action() -> void:
 	if _confirmed:
 		reason = "确认关闭这声祈求，之后不能再回应。" if _entry.ends_with("/dismiss") else "不可逆代价 · 再次确认执行。"+str(_actions._irreversible_summary(_tasks,session.action_entry(_entry,_selection),_selection))
 	status_parts.append_array(["\n",CardFields.field("状态",reason)])
-	var status := _field_at(_table,status_parts,Rect2(220,220,739,40),15)
+	var status := _field_at(_table,status_parts,Rect2(220,220+TABLE_EXTRA_HEIGHT,739,40),15)
 	status.tooltip_text = CardFields.plain(status_parts)
 	status.mouse_filter = Control.MOUSE_FILTER_PASS
 	var caption := ("确认 · " if _confirmed else "施行 · ")+str(_played.title)
 	if int(costs.get("success_target",costs.get("probability",-1)))>=0:
 		caption = ("确认掷骰 · " if _confirmed else "掷骰 · ")+str(_played.title)
-	var execute := _button(_table,"Execute",caption,Rect2(973,223,220,36),_execute,true)
+	var execute := _button(_table,"Execute",caption,Rect2(973,223+TABLE_EXTRA_HEIGHT,220,36),_execute,true)
 	execute.disabled = not prepared.get("ok",false) or not missing.is_empty() or projection.get("phase") != "actions"
 
 
@@ -974,6 +993,7 @@ func _back_to_prayer() -> void:
 	_confirmed = false
 	_quoted = {}
 	_result_text = ""
+	_result_rows = []
 	_prayer_result = {}
 	_render_table()
 
@@ -1007,7 +1027,7 @@ func _render_prayer_preparation() -> void:
 	if not picking.is_empty():
 		_render_picker(picking,104)
 	else:
-		var reading := _scroller(_table,Rect2(220,notes_y,966,214-notes_y))
+		var reading := _scroller(_table,Rect2(220,notes_y,966,214+TABLE_EXTRA_HEIGHT-notes_y))
 		var body := VBoxContainer.new()
 		body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		body.add_theme_constant_override("separation",7)
@@ -1030,7 +1050,7 @@ func _render_prayer_preparation() -> void:
 		parts.append(CardFields.field("消耗",price))
 		if prepared.get("ok",false):
 			parts.append_array(["    ",CardFields.field("成功条件",PrayerReceipt.check_condition(int(costs.get("success_target",costs.get("probability",-1)))))])
-	_field_at(_table,parts,Rect2(220,219,739,23),15).name = "PrayerCostAndCheck"
+	_field_at(_table,parts,Rect2(220,214+TABLE_EXTRA_HEIGHT,739,23),15).name = "PrayerCostAndCheck"
 	var reason := ""
 	if not prepared.get("ok",false): reason = session.explain_error(str(prepared.get("error","条件尚未满足")))
 	if not missing.is_empty():
@@ -1040,13 +1060,13 @@ func _render_prayer_preparation() -> void:
 		reason = "没有可选的"+"、".join(absent) if not absent.is_empty() else "还需选择 · "+"、".join(missing)
 	if _confirmed and not dismissed: reason = str(_actions._irreversible_summary(_tasks,session.action_entry(_entry,_selection),_selection))
 	if not reason.is_empty():
-		var label := _field_at(_table,[CardFields.field("确认代价" if _confirmed else "当前限制",reason)],Rect2(220,243,739,22),14)
+		var label := _field_at(_table,[CardFields.field("确认代价" if _confirmed else "当前限制",reason)],Rect2(220,238+TABLE_EXTRA_HEIGHT,739,22),14)
 		label.tooltip_text = reason
 		label.mouse_filter = Control.MOUSE_FILTER_PASS
 	var execute_caption := "确认不再回应" if dismissed else ("确认回应" if _confirmed else "回应这声祈求")
 	if int(costs.get("success_target",costs.get("probability",-1)))>=0:
 		execute_caption = "确认掷骰回应" if _confirmed else "掷骰回应"
-	var execute := _button(_table,"Execute",execute_caption,Rect2(973,223,220,36),_execute,true)
+	var execute := _button(_table,"Execute",execute_caption,Rect2(973,223+TABLE_EXTRA_HEIGHT,220,36),_execute,true)
 	execute.disabled = not prepared.get("ok",false) or not missing.is_empty() or projection.get("phase")!="actions"
 
 func _render_prayer_result() -> void:
@@ -1061,7 +1081,7 @@ func _render_prayer_result() -> void:
 		elif _prayer_result.no_roll: check = ["此次回应无需掷骰"]
 		else: check = ["回执未提供骰点"]
 	_field_at(_table,check,Rect2(470,78,716,30),18).name = "PrayerRoll"
-	var reading := _scroller(_table,Rect2(220,119,966,93))
+	var reading := _scroller(_table,Rect2(220,119,966,93+TABLE_EXTRA_HEIGHT))
 	var body := VBoxContainer.new()
 	body.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	body.add_theme_constant_override("separation",8)
@@ -1073,14 +1093,18 @@ func _render_prayer_result() -> void:
 	var closing: String = "回应已留下。此牌仍可在牌堆中查阅。" if _prayer_result.remains else "回应已留下，这声祈求不再留于牌堆。"
 	if _prayer_result.outcome=="dismissed": closing = "联系已断开，这声祈求不再留于牌堆。"
 	if not _prayer_result.committed: closing = "尚未支付或掷骰，可返回重新选择。"
-	_text(_table,closing,Rect2(220,224,739,27),15,UI.MUTED)
-	_button(_table,"Done","让回响散去" if _prayer_result.committed else "返回回应方式",Rect2(973,223,220,36),_recall if _prayer_result.committed else _back_to_prayer,true)
+	_text(_table,closing,Rect2(220,224+TABLE_EXTRA_HEIGHT,739,27),15,UI.MUTED)
+	_button(_table,"Done","让回响散去" if _prayer_result.committed else "返回回应方式",Rect2(973,223+TABLE_EXTRA_HEIGHT,220,36),_recall if _prayer_result.committed else _back_to_prayer,true)
 
 func _prayer_parts(appeal := true) -> Array:
 	var who: String = str(_played.get("petitioner",""))
 	var parts: Array = [CardFields.field("求告者",title(who) if not who.is_empty() else "身份未明"),"    ",CardFields.field("期限",_played.requirement)]
 	if appeal and not str(_played.get("effect","")).strip_edges().is_empty(): parts.append("\n“"+str(_played.effect)+"”")
 	return parts
+
+func _inspect_petitioner() -> void:
+	var who := str(_played.get("petitioner",""))
+	if not who.is_empty(): _tasks.open_subject("person",who,_return_from_history,{"read_only":true})
 
 func _start_dismiss_prayer() -> void:
 	_entry = str(_played.id) + "/dismiss"
@@ -1093,12 +1117,20 @@ func _action_notes() -> Array:
 	var row: Dictionary = session.action_entry(_entry,_selection)
 	var effects: Dictionary = _actions._outcome_effects(_tasks,row,_selection)
 	var parts: Array = []
-	var always: String = _actions._always_cost(_tasks,row,_selection)
-	if not always.is_empty(): parts.append(CardFields.field("必付",always))
+	var ritual: bool = _selection.get("operation") == "ROUTE_CALENDAR_RITE"
+	var details: Dictionary = row.get("details",{})
+	if ritual and details.has("介入"): parts.append(CardFields.field("联系",details["介入"]))
 	var success: String = str(effects.get("summary",effects.get("success","")))
-	if not success.is_empty(): parts.append(CardFields.field("作用",success))
-	for key: String in ["failure","disaster"]:
-		if not str(effects.get(key,"")).is_empty(): parts.append(CardFields.field("失败" if key=="failure" else "灾变",effects[key]))
+	if not success.is_empty(): parts.append(CardFields.field("成功",success))
+	if ritual and details.has("实践用途"):
+		parts.append(CardFields.field("实践",details["实践用途"]))
+		if details.has("所需成功回合"): parts.append(CardFields.field("进度","%s / %s 个成功回合" % [details.get("成功回合",0),details["所需成功回合"]]))
+	var consequence: String = _actions.cost_context(_actions._always_cost(_tasks,row,_selection))
+	if not consequence.is_empty(): parts.append(CardFields.field("施行影响",consequence))
+	var failure := str(effects.get("failure",""))
+	var disaster := str(effects.get("disaster",""))
+	if not failure.is_empty(): parts.append(CardFields.field("未成功" if failure==disaster else "失败",failure))
+	if not disaster.is_empty() and disaster!=failure: parts.append(CardFields.field("灾变",disaster))
 	if parts.is_empty(): return [str(_played.get("effect",_played.get("requirement","")))]
 	var lines: Array = []
 	for part: Variant in parts:
@@ -1206,7 +1238,12 @@ func _render_picker(field: Dictionary, y: float) -> void:
 		var recipe := _face_recipe(kind,subject) if not kind.is_empty() else {}
 		var sample := {"category_id":card.palette,"art_kind":kind,"title":_option_caption(option),"line1":"","line2":"",
 			"paper_backed":int(recipe.get("request",{}).get("style",-1)) in [2,6]}
-		var artwork: Texture2D = null if not recipe.is_empty() or is_prayer else _symbol_texture("relic" if field.key=="relic" else "anchor",hash(subject), {"subject":_views._find(self,"relics",subject)} if field.key=="relic" else {"id":"anchor/bind"})
+		var symbol: Dictionary = {"id":"fallback/resolution"}
+		if field.key=="relic": symbol={"subject":_views._find(self,"relics",subject)}
+		elif field.key=="source": symbol={"id":"object/evidence"}
+		elif field.key in ["institution","target_institution"]: symbol={"id":"object/institution"}
+		elif field.key=="anchor": symbol={"id":"object/anchor"}
+		var artwork: Texture2D = null if not recipe.is_empty() or is_prayer else _symbol_texture("relic" if field.key=="relic" else "action",hash(subject),symbol)
 		var image := card.configure_carrier(sample,artwork,{"show_copy":false,"show_art":not is_prayer,
 			"art_height":67.0,"reading_onset":-0.25 if is_prayer else 0.36})
 		if not recipe.is_empty():
@@ -1285,10 +1322,12 @@ func _execute() -> void:
 	_set_dice_context(str(_played.title),_played)
 	var response: Dictionary = session.execute_action(_entry,_selection,_confirmed,"",_quoted)
 	_busy = false
+	_result_rows = []
 	if not response.get("ok",false):
 		_result_text = "未执行 · "+session.explain_error(str(response.get("error","")))
 	else:
-		_result_text = "已施行 · "+str(_played.title)+"\n\n"+"\n".join(_feedback.build(self,response,projection,session.project(),str(_played.title)))
+		_result_text = "已施行"
+		_result_rows = _feedback.presentation_rows(self,response,projection,session.project())
 	var after: Dictionary = session.project()
 	if _played.get("kind")=="prayer":
 		_prayer_result = PrayerReceipt.build(self,response,projection,after,str(_played.subject_id),choice,_entry.ends_with("/dismiss"))
@@ -1314,7 +1353,7 @@ func _render_plan() -> void:
 	else: parts.append(session.explain_error(str(result.get("error","无法登记指令"))))
 	parts.append("登记后在轮末执行；当前不结算收入。")
 	_field_reading(parts)
-	var submit := _button(_table,"Execute","登记 · "+str(_played.title),Rect2(973,223,220,36),_save_plan.bind(plan),true)
+	var submit := _button(_table,"Execute","登记 · "+str(_played.title),Rect2(973,223+TABLE_EXTRA_HEIGHT,220,36),_save_plan.bind(plan),true)
 	submit.disabled = not result.get("ok",false) or forecast.is_empty() or not str(forecast.get("reason","")).is_empty()
 
 func _render_maintenance() -> void:
@@ -1348,8 +1387,8 @@ func _render_maintenance() -> void:
 	_ui.choice_style(priority,bool(_selection.get("priority",false)))
 	var reason: String = str(forecast.get("reason",""))
 	_field_at(_table,[CardFields.field("轮末供奉","%s 信仰" % forecast.get("fee",0)),"\n",_views._economy_reason(self,reason) if not reason.is_empty() else "继续护持与供奉，维系锚点"],Rect2(799,98,390,112),17)
-	_text(_table,"登记安排，不会立即推进回合。",Rect2(225,225,700,30),15,UI.MUTED)
-	_button(_table,"Execute","登记供奉",Rect2(973,223,220,36),_save_plan.bind(plan),true).disabled = not preview.get("ok",false)
+	_text(_table,"登记安排，不会立即推进回合。",Rect2(225,225+TABLE_EXTRA_HEIGHT,700,30),15,UI.MUTED)
+	_button(_table,"Execute","登记供奉",Rect2(973,223+TABLE_EXTRA_HEIGHT,220,36),_save_plan.bind(plan),true).disabled = not preview.get("ok",false)
 
 func _maintenance_retarget() -> void:
 	_target = -1
@@ -1417,6 +1456,7 @@ func _known_objects() -> Array:
 		var collection: String = {"cult": "cults", "person": "people", "relic": "relics", "anchor": "anchors"}[kind]
 		for subject: Dictionary in projection.get(collection, []):
 			if subject.get("domain", "") != _world_id: continue
+			if kind == "person" and subject.get("prayer_carried", false): continue
 			if not cult.is_empty():
 				if kind == "cult": continue
 				if kind == "person" and (subject.get("cult_id", "") != _study_cult or not subject.get("bound_member", false)): continue
@@ -1463,8 +1503,8 @@ func _build_master() -> void:
 	var context := "第 %s 轮 · %s 件待处理" % [projection.turn,_deck.size()] if events else ("万物档案 · 查阅" if not _library.is_empty() else ("所属世界 · "+title(_world_id) if kind=="cult" else "当前世界"))
 	_master = StudyCard.new()
 	_master.name = "MasterCard"
-	_master.position = Vector2(32,83)
-	_master.size = Vector2(250,375)
+	_master.position = Vector2(SCOPE_X,83)
+	_master.size = Vector2(SCOPE_WIDTH,375)
 	_master.seed_value = 472
 	_master.palette = kind
 	_master.mouse_filter = Control.MOUSE_FILTER_PASS
@@ -1476,7 +1516,8 @@ func _build_master() -> void:
 	var sample := {"title":str(subject.title),"line1":context,"line2":"","category_id":kind,"art_kind":kind,
 		"paper_backed":int(recipe.get("request",{}).get("style",-1)) in [2,6]}
 	if kind=="cult": sample.line1_fields = [CardFields.field("所属世界",title(_world_id))]
-	var artwork: Texture2D = _symbol_texture(kind,472) if recipe.is_empty() else null
+	var cover := {"id":"cover/events" if events else "cover/"+kind}
+	var artwork: Texture2D = _symbol_texture(kind,472,cover) if recipe.is_empty() else null
 	var slot := _master.configure_carrier(sample,artwork,{"title_y":267.0,"info_y":328.0,"title_font_size":22,"title_max_lines":2}) as TextureRect
 	if not recipe.is_empty():
 		slot.set_meta("subject_id",str(subject.subject.id))
@@ -1486,7 +1527,7 @@ func _build_master() -> void:
 	_master.tooltip_parts = [str(subject.title),"\n"]+sample.get("line1_fields",[context])
 	if not _master.payload.is_empty(): _master.tooltip_parts.append("\n将主卡拖到右侧查阅完整资料")
 	_master.accessibility_name = str(subject.title)
-	var information := _region(_world_body,"ScopeInformation",Rect2(32,473,250,179))
+	var information := _region(_world_body,"ScopeInformation",Rect2(SCOPE_X,473,SCOPE_WIDTH,179))
 	if events:
 		_text(information,"将事件牌拖到上方，\n逐一决定本轮的回应。",Rect2(10,0,230,61),17,UI.MUTED)
 		_text(information,"处理完后进入神意行动",Rect2(10,91,230,34),15,UI.MUTED)
@@ -1542,13 +1583,14 @@ func _open_library(kind: String) -> void:
 	if not kind in ["power","relic","person"]: return
 	_close_surface()
 	if _library.is_empty():
-		_library_memory = {"world":_world_id,"cult":_study_cult,"played":_played.duplicate(true),"selection":_selection.duplicate(true),"entry":_entry,"target":_target,"picker":_picker,"picker_page":_picker_page,"optional":_optional,"confirmed":_confirmed,"result":_result_text,"prayer_result":_prayer_result.duplicate(true),"category":_category,"search":_search,"fan":_fan_index}
+		_library_memory = {"world":_world_id,"cult":_study_cult,"played":_played.duplicate(true),"selection":_selection.duplicate(true),"entry":_entry,"target":_target,"picker":_picker,"picker_page":_picker_page,"optional":_optional,"confirmed":_confirmed,"result":_result_text,"result_rows":_result_rows.duplicate(true),"prayer_result":_prayer_result.duplicate(true),"category":_category,"search":_search,"fan":_fan_index}
 	_library = kind
 	_played = {}
 	_selection = {}
 	_entry = ""
 	_picker = ""
 	_result_text = ""
+	_result_rows = []
 	_prayer_result = {}
 	_category = "all"
 	_search = ""
@@ -1570,6 +1612,7 @@ func _close_library() -> void:
 	_optional = _library_memory.get("optional",false)
 	_confirmed = _library_memory.get("confirmed",false)
 	_result_text = _library_memory.get("result","")
+	_result_rows = _library_memory.get("result_rows",[])
 	_prayer_result = _library_memory.get("prayer_result",{})
 	_category = _library_memory.get("category","all")
 	_search = _library_memory.get("search","")
@@ -1579,12 +1622,9 @@ func _close_library() -> void:
 
 func _render_power_thresholds() -> void:
 	_text(_table, "尚未开放 · 苏醒与实际前提均须具备", Rect2(220, 106, 680, 25), 16, UI.MUTED)
-	var scroll := ScrollContainer.new()
+	var scroll := _scroller(_table,Rect2(220,137,960,112+TABLE_EXTRA_HEIGHT))
 	scroll.name = "LockedPowerRequirements"
-	scroll.position = Vector2(220, 137)
-	scroll.size = Vector2(690, 112)
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
-	_table.add_child(scroll)
 	var column := VBoxContainer.new()
 	column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	column.add_theme_constant_override("separation", 6)
@@ -1601,7 +1641,9 @@ func _render_power_record() -> void:
 	lines.append(CardFields.field("施行所需苏醒","%s / %s" % [projection.awakening,definition.unlock_awakening]))
 	lines.append(CardFields.field("首次开放",session.card_unlock_policy.rules.get(str(definition.id),{}).get("description","")))
 	lines.append(CardFields.field("基础消耗",_model._price(int(definition.faith),int(definition.whispers))))
-	for pair: Array in [["target_requirement","所需条件"],["always_cost","必付代价"],["success","成功作用"],["deep_success","深刻成功"],["failure","失败"],["disaster","灾变"]]:
+	var consequence: String = _actions.cost_context(str(definition.get("always_cost","")))
+	if not consequence.is_empty(): lines.append(CardFields.field("施行影响",consequence))
+	for pair: Array in [["target_requirement","所需条件"],["success","成功作用"],["deep_success","深刻成功"],["failure","失败"],["disaster","灾变"]]:
 		if not str(definition.get(pair[0],"")).is_empty(): lines.append(CardFields.field(pair[1],definition[pair[0]]))
 	_field_reading(lines)
-	_text(_table,"图鉴仅供查阅 · 从世界或教团的行为牌发起行动",Rect2(220,223,960,36),15,UI.MUTED)
+	_text(_table,"图鉴仅供查阅 · 从世界或教团的行为牌发起行动",Rect2(220,223+TABLE_EXTRA_HEIGHT,960,36),15,UI.MUTED)

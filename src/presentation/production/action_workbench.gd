@@ -101,8 +101,8 @@ func render(task, box: VBoxContainer, footer: Container, row: Dictionary, select
 			var probabilities: Dictionary = preview.get("preview", {}).get("outcomes", {})
 			if probabilities.is_empty(): actions._render_consequences(task, rows, row, selection)
 			else:
-				var always: String = actions._always_cost(task, row, selection)
-				if not always.is_empty() and not always in ["低语", "低语和信仰"]: rows.add_child(task.label("必付代价：" + always))
+				var always: String = actions.cost_context(actions._always_cost(task, row, selection))
+				if not always.is_empty(): rows.add_child(task.label("施行影响：" + always))
 				var effects: Dictionary = actions._outcome_effects(task, row, selection)
 				for outcome: Dictionary in actions.outcome_groups(probabilities, effects):
 					rows.add_child(task.label(outcome.title, true))

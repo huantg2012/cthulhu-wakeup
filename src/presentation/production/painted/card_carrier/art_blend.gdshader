@@ -9,6 +9,8 @@ uniform float fade_bottom : hint_range(0.04, 0.45, 0.005) = 0.28;
 uniform float grain_scale : hint_range(3.0, 16.0, 0.25) = 7.0;
 uniform float source_aspect = 1.0;
 uniform float seed_value = 0.0;
+// Disabled for normal faces. Multi-line prayer titles own their reading area.
+uniform float reading_limit = 1.0;
 
 // This is an opacity floor for the subject, never a visible crop silhouette.
 // Adjust to the actual world / place / person rather than cutting every image
@@ -72,6 +74,10 @@ void fragment() {
 	float protection = 1.0 - smoothstep(0.82, 1.24, length(protected_q));
 	protection *= 1.0 - smoothstep(0.90, 0.985, p.y);
 	coverage = max(coverage, protection);
+	if (reading_limit < 0.99) {
+		float reading_edge = reading_limit - 0.015 - 0.035 * broad;
+		coverage *= 1.0 - smoothstep(reading_edge - 0.055, reading_edge, UV.y + fibre_offset);
+	}
 
 	// Small landscape selectors need irregular lateral absorption as well:
 	// never leave a miniature square photograph floating on the card.

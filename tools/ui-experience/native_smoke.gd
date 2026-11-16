@@ -43,7 +43,7 @@ func _run() -> void:
 	var choice: Dictionary = app.draft.selection.duplicate(true)
 	var execute: Button = app._work_footer.find_child("ExecuteDraft", true, false)
 	if not need(execute != null and not execute.disabled and app._work_box.find_child("PrayerChoice_deep", true, false) != null, "打开祈求即有两种回应选择与实际提交按钮"): return
-	var costs: Array = app._work_box.get_children().filter(func(node: Node) -> bool: return node is Label and node.text.begins_with("必付代价"))
+	var costs: Array = app._work_box.get_children().filter(func(node: Node) -> bool: return node is Label and node.text.begins_with("施行影响"))
 	if not need(costs.size() == 1 and "理智" in costs[0].text and not "忠诚" in costs[0].text, "献身祈求将必付理智损耗与成功忠诚收益分开"): return
 	if not need(execute.get_global_rect().end.y <= 900 and execute.get_global_rect().position.y >= 0 and not app._work_scroll.is_ancestor_of(execute), "祈求提交在画布内且不随长内容滚走"): return
 	var details: Button = app._work_box.find_child("OutcomeDetailsToggle", true, false)

@@ -1,0 +1,100 @@
+BAKE
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+BAKED power_listen
+BAKED power_dream
+BAKED power_oracle
+BAKED power_bestow
+BAKED power_appoint
+BAKED power_sacrifice
+BAKED power_breach
+BAKED power_seed
+BAKED anchor_bind
+BAKED power_veil
+BAKED power_transfer
+BAKED power_manifest
+BAKED route_axiom_probe
+BAKED route_axiom_recheck
+BAKED route_axiom_repeat
+BAKED route_network_exchange
+BAKED route_private_devotion
+BAKED route_joint_work
+BAKED route_covert_gathering
+BAKED route_calendar_rite
+BAKED route_record_practice
+BAKED route_calendar_keeping
+BAKED route_ritual_transmission
+BAKED route_memory_circle
+BAKED route_memory_practice
+BAKED route_dissent_practice
+BAKED route_pact_agreement
+BAKED route_reciprocal_covenant
+BAKED relic_echo_bell
+BAKED relic_witness_lens
+BAKED relic_hollow_seal
+BAKED relic_living_script
+BAKED relic_root_nail
+BAKED relic_last_ember
+BAKED resist_trace
+BAKED resist_purge
+BAKED resist_seize
+BAKED resist_repair
+BAKED resist_erase
+BAKED resist_rewrite
+BAKED relic_action_equip
+BAKED relic_action_unequip
+BAKED relic_action_unbind
+BAKED relic_action_recover
+BAKED relic_action_disassemble
+BAKED relic_action_public
+BAKED relic_action_wait
+BAKED anchor_maintain
+BAKED order_expand
+BAKED order_conceal
+BAKED order_hold
+BAKED event_01
+BAKED event_02
+BAKED event_03
+BAKED event_04
+BAKED event_05
+BAKED event_06
+BAKED event_07
+BAKED event_08
+BAKED event_09
+BAKED event_10
+BAKED event_11
+BAKED event_12
+BAKED cover_power
+BAKED cover_relic
+BAKED cover_person
+BAKED cover_events
+BAKED object_anchor
+BAKED object_evidence
+BAKED object_institution
+BAKED fallback_resolution
+PAINTED_DECK_BAKE_OK: 72 surfaces / 71 fixed images
+
+MAPPING
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ART_MAPPING_OK 64 definitions / 63 unique drawings / 8 support images; { "powers": 12, "activities": 16, "relics": 6, "previews": 6, "actions": 12, "events": 12 }
+RUNTIME_IDENTITY_OK: objects, actions, operations, event instances, resistance instances, collections
+
+NATIVE
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+PRODUCTION_ART_OK: 64 definitions; 71 saved resources cached; arrival/world/hand/drag; Session unchanged
+
+PROOF
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+FULL_DECK_NATIVE_PROOF: 72 surfaces / 71 images / 10 sheets
+
+PACK
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 90.5 - Compatibility - Using Device: Apple - Apple M4 Pro
+
+PACKED_ART_OK 71 distinct 512px resources; no drafts/baker; cold resource loading 254ms

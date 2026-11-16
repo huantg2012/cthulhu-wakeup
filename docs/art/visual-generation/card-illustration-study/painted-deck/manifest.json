@@ -1,0 +1,594 @@
+{
+	"images": {
+		"anchor_bind": {
+			"png_sha256": "1dbbb89f2e1b67a4aeb27c2aa42ad4ac2a37d1e2ae208c102f4d8b6a5b79623d",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/anchor_bind.res",
+			"seed": 846304,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/anchor_bind.png",
+			"source_sha256": "8c16d55b4c7392f186a05d32a9c0cf893840fb336bd6abfe5383095ae9754edc"
+		},
+		"anchor_maintain": {
+			"png_sha256": "91e38da5b94dc235679df16cc29e36d9c38d1fee547ff6e35f1574973939d812",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/anchor_maintain.res",
+			"seed": 406256,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/anchor_maintain.png",
+			"source_sha256": "a5f821ad22a59689b401668de1b85e56071e7d817fd9b5d5102b2cfc4e1a4573"
+		},
+		"cover_events": {
+			"png_sha256": "3516a00a546b2409e485fcfcd82ac6b59daa05836e864da842eb5c108910e2b2",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/cover_events.res",
+			"seed": 618209,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/cover_events.png",
+			"source_sha256": "084554c6b0f847a7e71ef361bffb30accb26f90b644359cda2939bfad9f6a937"
+		},
+		"cover_person": {
+			"png_sha256": "e7249fd0bb3bbe2d25de3c4035c12e6fd6b7c682a04021311e330095842e9596",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/cover_person.res",
+			"seed": 558524,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/cover_person.png",
+			"source_sha256": "9d0c559827ab106bbc8874aafa61d07716bcb8826fe9415aec1ec3e579d0da50"
+		},
+		"cover_power": {
+			"png_sha256": "085bc32130614f84cdea95f95930af50a44306bc9d35ab3445d1a6b121bbfa0c",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/cover_power.res",
+			"seed": 531032,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/cover_power.png",
+			"source_sha256": "ec09e266a6f5befec01b3c3be5a37ae184e652a13fd312405172787aa53319ef"
+		},
+		"cover_relic": {
+			"png_sha256": "ee7846b0ba9ba101a66d1d062043ba4317774347f6da048e933dc82449ff36b7",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/cover_relic.res",
+			"seed": 967236,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/cover_relic.png",
+			"source_sha256": "23a687787bfb8f10b9d13c780cef0adcba64fd82da9e8b55740385486ab8a5e3"
+		},
+		"event_01": {
+			"png_sha256": "cff86edacf292372ca4fc5fc9eb7f12fd2a5401024ca9fab7e50a19decfa4dda",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/event_01.res",
+			"seed": 87820,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/event_01.png",
+			"source_sha256": "659ec0d31040bcfe37bdb8a70695160e6e06af04be6bba39b5be3456cfbfe511"
+		},
+		"event_02": {
+			"png_sha256": "f835a5582e2faaf90a9a116542c0e4ee906cdbba2ac0ee60cca317cfc62b6219",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/event_02.res",
+			"seed": 59155,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/event_02.png",
+			"source_sha256": "364fac11e973cff6da272448762e6e5a902f2bd88c810f53365614a9a161ee10"
+		},
+		"event_03": {
+			"png_sha256": "55048178e2d7e77056caa03bf5d56ce474ed746a14084b0857a8c48c2c99966a",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/event_03.res",
+			"seed": 356290,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/event_03.png",
+			"source_sha256": "229b3d448379228263ea85cedcc6361a2bbe806fa7cfbe1641b096b4ee66b41e"
+		},
+		"event_04": {
+			"png_sha256": "783687922ca23849b3fc093b4b1381d1340e639da032566f09108df907eab7c4",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/event_04.res",
+			"seed": 673380,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/event_04.png",
+			"source_sha256": "1c770f4a4638ca880a33cf2d9ec629e1e38cd976a8572cc312b8c92ef8d4ced1"
+		},
+		"event_05": {
+			"png_sha256": "b48a88ca8c8e858e1f598ca436cf9920312730d10a50424408b7e15eb361598e",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/event_05.res",
+			"seed": 512214,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/event_05.png",
+			"source_sha256": "d6027ed43bd46383fda93434c3faa1ec2cd22c5980c0e21d7e05b9dbe0d6a062"
+		},
+		"event_06": {
+			"png_sha256": "790ec07543af660b4b17983b73df3045f116c93edd50dc30e23d20677aa6cc80",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/event_06.res",
+			"seed": 404206,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/event_06.png",
+			"source_sha256": "34b3b939a3b7ec9360ee68619cf4bc2acff906d79ac16ed60887e6684a0feda5"
+		},
+		"event_07": {
+			"png_sha256": "e65768e01969054c8f3f72e96017783b4ec96a3293a48373af9fc22141cebf71",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/event_07.res",
+			"seed": 970333,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/event_07.png",
+			"source_sha256": "a2207dceca7d139356088139c35bbf59bcfbbbb6bdaec7e296e90e988f2e341b"
+		},
+		"event_08": {
+			"png_sha256": "08628b80ee78455e7f90d1c3a5c26b183edf37a5d4ecbeca963586d2c542821e",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/event_08.res",
+			"seed": 73478,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/event_08.png",
+			"source_sha256": "647204275b9b0b2955e3658bde6f6967da61ff8bcccab7afb1639ed4ed3798c2"
+		},
+		"event_09": {
+			"png_sha256": "043b4754272b809413771b22a00f396900d19981f5aaa4fbd1c8ffd144a45a05",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/event_09.res",
+			"seed": 630714,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/event_09.png",
+			"source_sha256": "1c775ac775b4d9b2d41d6a670c2f9cf9e07840d101ba7cceb8f1c2b1a2e36d1e"
+		},
+		"event_10": {
+			"png_sha256": "5ecc971132267704880eeae61427d283143d165d5e185c7d817dc08e026beb84",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/event_10.res",
+			"seed": 192398,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/event_10.png",
+			"source_sha256": "c5ad5430bbf9aba0b940445e1b24479f9faeffae7cb2639a8001739b0e915caa"
+		},
+		"event_11": {
+			"png_sha256": "b1dcd142effd2d48cbf7dbc4b962d1e9e8714ed3758dd99e0eae6a1d8bb82c07",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/event_11.res",
+			"seed": 148930,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/event_11.png",
+			"source_sha256": "3e4b374fd8ba328d355fd5acdc7b8736815f2410124bb754e21d4dbee7ce2600"
+		},
+		"event_12": {
+			"png_sha256": "00b11f762a7f91f442c7d8a36740cb2499bd9e3b491cb738ccfc8286bbc9e5b4",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/event_12.res",
+			"seed": 526734,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/event_12.png",
+			"source_sha256": "41825eeb747f4044ae4fc6e898e78e983d6fadfbea8cdf5a9396ce4d08f45019"
+		},
+		"fallback_resolution": {
+			"png_sha256": "0dbceadd108d4f965218435c3daf3bb2fb7546f5da3fa684321813134ad40d00",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/fallback_resolution.res",
+			"seed": 598490,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/fallback_resolution.png",
+			"source_sha256": "3a2b806dfcf7631b7caab6a245b8751a721f31a1c0f3ded48878885f26992cf8"
+		},
+		"object_anchor": {
+			"png_sha256": "72505ed6e608493ff5ad2d93f600333c85736c06d4e75db101510b241e7d9f7f",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/object_anchor.res",
+			"seed": 444920,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/object_anchor.png",
+			"source_sha256": "3ba37381dc80079289867bd2a251a801299f562d278aad56406b1d57a2e6f1d9"
+		},
+		"object_evidence": {
+			"png_sha256": "7f6f1d3a04ea9c6bbb3e710bcc7d17d7570fbaae625530e7d015debedb0a0273",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/object_evidence.res",
+			"seed": 908920,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/object_evidence.png",
+			"source_sha256": "09eeb1c67eb6e3ddacc52cbf43eff1341caae89654ff82e14da16941357eed47"
+		},
+		"object_institution": {
+			"png_sha256": "c25a3b00061ac69a5f486b60f3c991f65377cf17beee7a1123776d82f47b0d21",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/object_institution.res",
+			"seed": 188269,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/object_institution.png",
+			"source_sha256": "5195fda120250f7055da667cb1732127b17fd74c6362e56c4bd7daaea3685538"
+		},
+		"order_conceal": {
+			"png_sha256": "5d5d0458a1f01b273c42f02e5d27b32133c7fc3d725094c4665492c05da87033",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/order_conceal.res",
+			"seed": 143065,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/order_conceal.png",
+			"source_sha256": "46c677767e81935b75be206fc03c5d03378070997a15bd2cb7b9f17f1898816c"
+		},
+		"order_expand": {
+			"png_sha256": "2f880d75cf6015cdc698528b639cdc8e2cc4e4d15886ecf0ee7dfd003d6f4a04",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/order_expand.res",
+			"seed": 750958,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/order_expand.png",
+			"source_sha256": "8f355172a753dd884cfa5f47d441adbc00007e5ee4622de85abcb11f2a000679"
+		},
+		"order_hold": {
+			"png_sha256": "dc4dcea74f85eaef15e9d7f3e5ddc0c3bd6c35d3ee80b44fff789050229a8d3a",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/order_hold.res",
+			"seed": 123054,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/order_hold.png",
+			"source_sha256": "ff71b4a2e6b13873d6877e18765ccc671a5397baf8c8d337ae7fc90bd96d68a4"
+		},
+		"power_appoint": {
+			"png_sha256": "c73ca9717d10a56e7b6636808dbf25481e2d589903bf2a9724039f695f5dcc1f",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/power_appoint.res",
+			"seed": 802149,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/power_appoint.png",
+			"source_sha256": "8fa4a30703c6ae8a83fcb83be0decc88763471b556511e711c79905c13deef7b"
+		},
+		"power_bestow": {
+			"png_sha256": "8aede039ce536454ad9da984859fecaa3999df2e6244d19eefc1961b8b1505f6",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/power_bestow.res",
+			"seed": 680578,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/power_bestow.png",
+			"source_sha256": "1fcc8898cd15f8406a05e5e06a247a67338895aa3ca06c64d8b0da704c6b6899"
+		},
+		"power_breach": {
+			"png_sha256": "a3eeb7e0b8fb99bab9eecb6973c3c5fdf7203d3d5558e3217c1c0e1e055cee64",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/power_breach.res",
+			"seed": 281724,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/power_breach.png",
+			"source_sha256": "8d4afd13a22c0d626420489380b37efd54fe51da80e5bb1b99febc85d0d290e6"
+		},
+		"power_dream": {
+			"png_sha256": "bacc295e4a8ea01d8ea25d11d8a6d232c7e8a2a61db382cccfb78e3218c103ad",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/power_dream.res",
+			"seed": 827553,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/power_dream.png",
+			"source_sha256": "9c0b4b12a0059b2189cc9453c7c293bdefaa6be8cc8df4da253f5cd87462621a"
+		},
+		"power_listen": {
+			"png_sha256": "7b8cfd04f62b2b1862eb0498b35ce87f7a735330a753e74cdb2eb78c5ba101f6",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/power_listen.res",
+			"seed": 502756,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/power_listen.png",
+			"source_sha256": "eb7b930ae8475a7f5283bee9d70245b43fada0e72f358a6d7eabb2d5de225555"
+		},
+		"power_manifest": {
+			"png_sha256": "ab3955b74fc966c91dcfa82ab68ecb91e6eb7131eeb216f319efd16be98dfc81",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/power_manifest.res",
+			"seed": 273046,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/power_manifest.png",
+			"source_sha256": "f193199acb9d56b79428af925fae10e1816ca541275994c0b3f3ad250f0c77c0"
+		},
+		"power_oracle": {
+			"png_sha256": "50d81380ae863582010e316eaf3b7ad6403366a490e9c5ae7837d6f9862c7739",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/power_oracle.res",
+			"seed": 160276,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/power_oracle.png",
+			"source_sha256": "5ce57b4b5e498b48b3a67218dadc3fde1ddb1dbfc610a85e79a240656ad66438"
+		},
+		"power_sacrifice": {
+			"png_sha256": "7db1f60560f90de001bd6ae547a03b78f06a4184d479a9e4ab31d68991d46ab0",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/power_sacrifice.res",
+			"seed": 591271,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/power_sacrifice.png",
+			"source_sha256": "bdcd81b5364730bf776f7cbfa82c209d4169d551b09f6e2603f3039e26c7be16"
+		},
+		"power_seed": {
+			"png_sha256": "bbbe457089cfd9202038d2947125fb95f64a2d0b23a0633fde26d6616a34670c",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/power_seed.res",
+			"seed": 811518,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/power_seed.png",
+			"source_sha256": "9527bba65095d4b47407f5febad6231645a295e083efb884200a5dcb395331f0"
+		},
+		"power_transfer": {
+			"png_sha256": "93a2ca47afdf4a327b331480a980b8b9eb4ee9528720203b00b2bed3ebabcd6f",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/power_transfer.res",
+			"seed": 22441,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/power_transfer.png",
+			"source_sha256": "f0212b741f63ceaaafe23b989092b617c322b606008a4cca22076c09853f4855"
+		},
+		"power_veil": {
+			"png_sha256": "7d9a9719b88ad9133a9e8c416419594b419e035d1fb5e8268aa8bfdf77716de2",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/power_veil.res",
+			"seed": 532019,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/power_veil.png",
+			"source_sha256": "9c6500463c836fb0b8c86f99b1aa4902ac3645bba458032dd76173f15b620890"
+		},
+		"relic_action_disassemble": {
+			"png_sha256": "3a3b6c738221a960b8dd7fd9cf32157fac82cb790317a93bf1fc53184249bda1",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/relic_action_disassemble.res",
+			"seed": 45268,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/relic_action_disassemble.png",
+			"source_sha256": "d5258cfd939c538037f9bc8e8e9697f60391e29dec30a1babd175adc9b38269b"
+		},
+		"relic_action_equip": {
+			"png_sha256": "93a869d0497798ec13c0244d568350f8f3487163480eba4500ee1cd752d0c963",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/relic_action_equip.res",
+			"seed": 846278,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/relic_action_equip.png",
+			"source_sha256": "d2753e5ab40f1cc17fa75ce8555f8678dc8f75c417cf3b898ea0fc54401463bc"
+		},
+		"relic_action_public": {
+			"png_sha256": "c7152b8db7f0c3877256a714a78fd17420e270a2ff06e846dfde110d0f479344",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/relic_action_public.res",
+			"seed": 97927,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/relic_action_public.png",
+			"source_sha256": "eeac3bef8ad60d819fb5ec0fcae70f7a25891ac08c7126e7bb6be82676258534"
+		},
+		"relic_action_recover": {
+			"png_sha256": "e1504768ceaa6f30aef6382ffae05e9c4c396c0a60fc89a141f1737445b7b2fb",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/relic_action_recover.res",
+			"seed": 639619,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/relic_action_recover.png",
+			"source_sha256": "cc2a5f16df74bcc3e57d009a114ade860a0f0bf1716d731984583320c8d77ac8"
+		},
+		"relic_action_unbind": {
+			"png_sha256": "98de5bdeaea12df1317cf37a151f781b57acdac1044a878fbe14441445790992",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/relic_action_unbind.res",
+			"seed": 685671,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/relic_action_unbind.png",
+			"source_sha256": "ecb3be15200a86269ac22c0b96c4707689e323e70a6265f64027f7aba7bdc1c1"
+		},
+		"relic_action_unequip": {
+			"png_sha256": "38e2d3073b5d441ef953c7019a39591baf4732ab72b639a62ae083b46016c026",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/relic_action_unequip.res",
+			"seed": 257405,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/relic_action_unequip.png",
+			"source_sha256": "b2ed523ac001a39bd8aecded561c0efe20126ad9ac8985b0de7e57b65bbcd3c3"
+		},
+		"relic_action_wait": {
+			"png_sha256": "f92b41ba9050e0e7de76d52e1e1eaad75d580746cc80f0c21112a848a5bd6fe1",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/relic_action_wait.res",
+			"seed": 563471,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/relic_action_wait.png",
+			"source_sha256": "038d75ec13e6f4a9ab6fabff46c6fe5aaf04633e10ee89880885c651f1696609"
+		},
+		"relic_echo_bell": {
+			"png_sha256": "2dc9b51237cbaf30f6793c6f9a25ba13ad3d1f623542ed02f2867819dfc723b4",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/relic_echo_bell.res",
+			"seed": 419085,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/relic_echo_bell.png",
+			"source_sha256": "47c6f2ceae24c518b64aa0b4e6606b840729e0e5be74c9e063e1813d0c7780f1"
+		},
+		"relic_hollow_seal": {
+			"png_sha256": "0fa98e6f32b45430836a5540efaa4d81b29182e362076cd89792b5ab80f2b889",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/relic_hollow_seal.res",
+			"seed": 473009,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/relic_hollow_seal.png",
+			"source_sha256": "566b69c6d332b15123bf0db0f036342883d7c991892fb77462e513ebe7d6636a"
+		},
+		"relic_last_ember": {
+			"png_sha256": "47741bf088da9727f2192eea4adbc267fbc42f8e4f76e2d2e3bfac3a3033eee7",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/relic_last_ember.res",
+			"seed": 56030,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/relic_last_ember.png",
+			"source_sha256": "ea6fc4def5bbab5bba9aef42829367fa378ec3910e130e33a2d6249c76740a4a"
+		},
+		"relic_living_script": {
+			"png_sha256": "58a55e1adb93209c805da12d23344f8bff57b39d1d5d1b550e676843c93220de",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/relic_living_script.res",
+			"seed": 156140,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/relic_living_script.png",
+			"source_sha256": "0eb979c3136529237da18dab9189baac09c39095d8e0806e127264add2f54704"
+		},
+		"relic_root_nail": {
+			"png_sha256": "f6e79b751887d94fe91ae14dfd625b07e5e1c33c878b12354257bfa89f6c5fbc",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/relic_root_nail.res",
+			"seed": 190339,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/relic_root_nail.png",
+			"source_sha256": "e70e1102d14dd1a0bd77e9f8ea740380396bd2bd5047d464157935f7f7b4dcb4"
+		},
+		"relic_witness_lens": {
+			"png_sha256": "1352bd8db3ef9d7b806ad915ae86225cb005efcd01035571c05f62c7011ef315",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/relic_witness_lens.res",
+			"seed": 560483,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/relic_witness_lens.png",
+			"source_sha256": "55ad1f6303d416b069a5c1e1d1ac6570fdceb01535b97ca97dc090b4f7a1637a"
+		},
+		"resist_erase": {
+			"png_sha256": "9c03fd8c886280b5d90151f2117565bbbb78138a433be9c0c3ee6b590e4aec46",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/resist_erase.res",
+			"seed": 882116,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/resist_erase.png",
+			"source_sha256": "601b70dd542b9df364528fa859a1fc605deec67b97e4ed720f3eeadceda27465"
+		},
+		"resist_purge": {
+			"png_sha256": "59214694782730539c41dfc19e5deda9be0c8bbdd1a0edc87963f8af5ce4b414",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/resist_purge.res",
+			"seed": 533577,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/resist_purge.png",
+			"source_sha256": "ce525661ffa7508c996edcc4b4c61623f69c572260f5a38e5edec969785f0982"
+		},
+		"resist_repair": {
+			"png_sha256": "ff87c9a62b1384b12825940888fb3b2ef541fa5a0c2752f13064d0c931c0e40d",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/resist_repair.res",
+			"seed": 856081,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/resist_repair.png",
+			"source_sha256": "f837842956864933c46b4a0a02373a5b0c1184474d2b3ef115f0f8c364e74a5d"
+		},
+		"resist_rewrite": {
+			"png_sha256": "9736ade1741241ec2e616efb3bc2769a29cb82723f2da33e3afa37011723edd4",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/resist_rewrite.res",
+			"seed": 116731,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/resist_rewrite.png",
+			"source_sha256": "05a0c942f9f0c8435ced0a1f130877c321f36ba4cf2f99c7729b42bf7133f72a"
+		},
+		"resist_seize": {
+			"png_sha256": "27f1b82873c6e5c5c22bbf330909431dfebbcb35bd4440eaeba617934b3eb636",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/resist_seize.res",
+			"seed": 975475,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/resist_seize.png",
+			"source_sha256": "42c5d517bb5735c125a51c9c3f5506d0f76b8a01a5bc7155e114053d4178f6db"
+		},
+		"resist_trace": {
+			"png_sha256": "1051ed6e467abab76d4dba695a901fc21460613dca9a52465c4f52901a30a9c9",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/resist_trace.res",
+			"seed": 385699,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/resist_trace.png",
+			"source_sha256": "e9feec1d699d5fc32eb689c78b314a1bf4ae0fd100a299e12a9766283b7d28e1"
+		},
+		"route_axiom_probe": {
+			"png_sha256": "baa34c65119b67a7f2cd5d553f85616b480fc58ed9498595a8931d8a432bdd3b",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/route_axiom_probe.res",
+			"seed": 519863,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/route_axiom_probe.png",
+			"source_sha256": "d60ec728b8716e61f3520dc596a049697b0217a9a2269c5c1a67bf99c1174ba9"
+		},
+		"route_axiom_recheck": {
+			"png_sha256": "db74b341bef5f9e1b2ec90ec52f4e860060b44f769e7a295a17859fab3524682",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/route_axiom_recheck.res",
+			"seed": 292191,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/route_axiom_recheck.png",
+			"source_sha256": "e14cf4109d625ba7962eaf1bbd4f382c61186cd13661c985cea27ebd66aedd0f"
+		},
+		"route_axiom_repeat": {
+			"png_sha256": "cc2e2090744eeccc5465b14eeaefd349efb6fa3ad2f1baca75d9c7ee09a7cb9e",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/route_axiom_repeat.res",
+			"seed": 725240,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/route_axiom_repeat.png",
+			"source_sha256": "dbd31c029d9f46a4ebfaa1baa50f27ff7878073e7dc16af2276b23f23ed8436f"
+		},
+		"route_calendar_keeping": {
+			"png_sha256": "343318f2ea4f08a0f136920a7949ae7949996e2bc5a148501601946aacd07377",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/route_calendar_keeping.res",
+			"seed": 530148,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/route_calendar_keeping.png",
+			"source_sha256": "47dc08af3b07695f2d8f632c5f56a5de20baa95585767fe8ce862eb57f210d05"
+		},
+		"route_calendar_rite": {
+			"png_sha256": "e914bf25a6a7bf732c27d41d41d46a64ee62e8563421840003545d663476b81d",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/route_calendar_rite.res",
+			"seed": 394025,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/route_calendar_rite.png",
+			"source_sha256": "7c4dbbbfc1bcfbb8d3cd42efc29eec9d09d6efbb911deab51c0a8eaba35fcf77"
+		},
+		"route_covert_gathering": {
+			"png_sha256": "1afea2d95a25fd56af1ac5cc3462f323cc681713f0ab18336fdefdbf8673979c",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/route_covert_gathering.res",
+			"seed": 446837,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/route_covert_gathering.png",
+			"source_sha256": "9b2b704dde69148bae22ff2d3e8bf2abc0b4035f46c8b6d0a3b5dc1b6ba89b69"
+		},
+		"route_dissent_practice": {
+			"png_sha256": "9b0d03a1dc1909d70d30b98e7100461f6fc99eeeda8f01f1b36dc09aaa81b867",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/route_dissent_practice.res",
+			"seed": 49288,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/route_dissent_practice.png",
+			"source_sha256": "123a808af4be024b14fb21d9bbfa1e2c59195a7483befcc246a92bc1c22763b5"
+		},
+		"route_joint_work": {
+			"png_sha256": "1dea30386f39595824aba8431563c59304eb46e3becc9a0196235ca334efb389",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/route_joint_work.res",
+			"seed": 804642,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/route_joint_work.png",
+			"source_sha256": "17bbaf7193f0649548fed6ef61dac505007277eb584922628807a844dbccd9f3"
+		},
+		"route_memory_circle": {
+			"png_sha256": "07dad48c24e7f004183cd0bb261c65ed5d52c00544e354d427f1e3410d273607",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/route_memory_circle.res",
+			"seed": 51204,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/route_memory_circle.png",
+			"source_sha256": "557362a5eb0c969d8553acd396adb9c64abd6276bd77acf85a74f0ff869d0a97"
+		},
+		"route_memory_practice": {
+			"png_sha256": "b816582c78324d7e66c2d89cf97b410cae69aeab74a086c3d6ccf73a33b77a26",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/route_memory_practice.res",
+			"seed": 78596,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/route_memory_practice.png",
+			"source_sha256": "5fda62e5d1126a5d4c5b1aae25118658d757555700c30fd96f27dfb118482901"
+		},
+		"route_network_exchange": {
+			"png_sha256": "d5e0f0c37cb763c02ef3083e0f75e6e113a9a3f2fd909dec12bfd815f73b3131",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/route_network_exchange.res",
+			"seed": 543189,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/route_network_exchange.png",
+			"source_sha256": "bd0ca207d3f1053d91e9c2fcde863252b4ef99dab82916f107c6ec70d8730f10"
+		},
+		"route_pact_agreement": {
+			"png_sha256": "617a7e7a5ec60b24dc8da702779001be5e780ca771df53262433d26e9d5bf71a",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/route_pact_agreement.res",
+			"seed": 192992,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/route_pact_agreement.png",
+			"source_sha256": "353a8f41d95f329620a1bdce743c23b3c7701c91ab5886b1bcd299e36537c562"
+		},
+		"route_private_devotion": {
+			"png_sha256": "9a4924296ec14af6748b85a68a49447d077a41f3df8b2533178f186c70c4f34c",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/route_private_devotion.res",
+			"seed": 397975,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/route_private_devotion.png",
+			"source_sha256": "95e8ff9c5848b225cda60a49b86476fd40fafeba4b77d3d513b08ac5695df492"
+		},
+		"route_reciprocal_covenant": {
+			"png_sha256": "832650f41711d3561f1bc33ec7b8c5be41a417b180f984c04aa6c3eee375c3a0",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/route_reciprocal_covenant.res",
+			"seed": 407101,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/route_reciprocal_covenant.png",
+			"source_sha256": "dc2cc4cf2e6aef3f1f222bffe21827573b0f9f10a09694bedda04c88db16e510"
+		},
+		"route_record_practice": {
+			"png_sha256": "b7305df88171599f71e4891425ba6111721cf8e873d360676c479d021ddbb906",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/route_record_practice.res",
+			"seed": 636390,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/route_record_practice.png",
+			"source_sha256": "c97d61b8f17006fcf2662753b1489653fdefa96b856d32f24974455752fd8116"
+		},
+		"route_ritual_transmission": {
+			"png_sha256": "cfd4bf458afa5e7bd270344aac737bc60dd2ea7e49f307fae7fb49063f420c0a",
+			"resource": "res://assets/ui/card-illustrations/painted-deck/route_ritual_transmission.res",
+			"seed": 668953,
+			"source": "res://docs/art/visual-generation/card-illustration-study/full-deck-drafts/art/route_ritual_transmission.png",
+			"source_sha256": "443929213b54f4638311ee7a616bbdd515443941415f4e51c019c66343b92fa1"
+		}
+	},
+	"parameters": {
+		"bloom": 0.75,
+		"bloom_knee": 0.1,
+		"bloom_threshold": 0.9,
+		"g_time": 0.0,
+		"grain": 0.05,
+		"madness": 0.06,
+		"palette": 0,
+		"px_scale": 0.68,
+		"styleIndex": 0,
+		"styleSid": 0,
+		"vignette": 0.55
+	},
+	"pipeline": "src/art_generation/post/npr_pipeline.gd",
+	"post_shader_sha256": "c76e69e025274d38ef5f00160b84121aed4634c1d77afad4f57a86397bdc3981",
+	"records": {
+		"ROUTE_AXIOM_PROBE": "route_axiom_probe",
+		"ROUTE_AXIOM_RECHECK": "route_axiom_recheck",
+		"ROUTE_AXIOM_REPEAT": "route_axiom_repeat",
+		"ROUTE_CALENDAR_KEEPING": "route_calendar_keeping",
+		"ROUTE_CALENDAR_RITE": "route_calendar_rite",
+		"ROUTE_COVERT_GATHERING": "route_covert_gathering",
+		"ROUTE_DISSENT_PRACTICE": "route_dissent_practice",
+		"ROUTE_JOINT_WORK": "route_joint_work",
+		"ROUTE_MEMORY_CIRCLE": "route_memory_circle",
+		"ROUTE_MEMORY_PRACTICE": "route_memory_practice",
+		"ROUTE_NETWORK_EXCHANGE": "route_network_exchange",
+		"ROUTE_PACT_AGREEMENT": "route_pact_agreement",
+		"ROUTE_PRIVATE_DEVOTION": "route_private_devotion",
+		"ROUTE_RECIPROCAL_COVENANT": "route_reciprocal_covenant",
+		"ROUTE_RECORD_PRACTICE": "route_record_practice",
+		"ROUTE_RITUAL_TRANSMISSION": "route_ritual_transmission",
+		"anchor/bind": "anchor_bind",
+		"anchor/maintain": "anchor_maintain",
+		"cover/events": "cover_events",
+		"cover/person": "cover_person",
+		"cover/power": "cover_power",
+		"cover/relic": "cover_relic",
+		"event/EVENT_01": "event_01",
+		"event/EVENT_02": "event_02",
+		"event/EVENT_03": "event_03",
+		"event/EVENT_04": "event_04",
+		"event/EVENT_05": "event_05",
+		"event/EVENT_06": "event_06",
+		"event/EVENT_07": "event_07",
+		"event/EVENT_08": "event_08",
+		"event/EVENT_09": "event_09",
+		"event/EVENT_10": "event_10",
+		"event/EVENT_11": "event_11",
+		"event/EVENT_12": "event_12",
+		"fallback/resolution": "fallback_resolution",
+		"object/anchor": "object_anchor",
+		"object/evidence": "object_evidence",
+		"object/institution": "object_institution",
+		"order/conceal": "order_conceal",
+		"order/expand": "order_expand",
+		"order/hold": "order_hold",
+		"record/POWER_ANCHOR": "anchor_bind",
+		"record/POWER_APPOINT": "power_appoint",
+		"record/POWER_BESTOW": "power_bestow",
+		"record/POWER_BREACH": "power_breach",
+		"record/POWER_DREAM": "power_dream",
+		"record/POWER_LISTEN": "power_listen",
+		"record/POWER_MANIFEST": "power_manifest",
+		"record/POWER_ORACLE": "power_oracle",
+		"record/POWER_SACRIFICE": "power_sacrifice",
+		"record/POWER_SEED": "power_seed",
+		"record/POWER_TRANSFER": "power_transfer",
+		"record/POWER_VEIL": "power_veil",
+		"relic/RELIC_ECHO_BELL": "relic_echo_bell",
+		"relic/RELIC_HOLLOW_SEAL": "relic_hollow_seal",
+		"relic/RELIC_LAST_EMBER": "relic_last_ember",
+		"relic/RELIC_LIVING_SCRIPT": "relic_living_script",
+		"relic/RELIC_ROOT_NAIL": "relic_root_nail",
+		"relic/RELIC_WITNESS_LENS": "relic_witness_lens",
+		"relic/disassemble": "relic_action_disassemble",
+		"relic/equip": "relic_action_equip",
+		"relic/public": "relic_action_public",
+		"relic/recover": "relic_action_recover",
+		"relic/unbind": "relic_action_unbind",
+		"relic/unequip": "relic_action_unequip",
+		"relic/wait": "relic_action_wait",
+		"resistance/RESIST_ERASE": "resist_erase",
+		"resistance/RESIST_PURGE": "resist_purge",
+		"resistance/RESIST_REPAIR": "resist_repair",
+		"resistance/RESIST_REWRITE": "resist_rewrite",
+		"resistance/RESIST_SEIZE": "resist_seize",
+		"resistance/RESIST_TRACE": "resist_trace"
+	},
+	"source_manifest_sha256": "7b7a4d70034835c6b00cc941c88b9710ee25448bae3c5af6b3c3f07fc252440a",
+	"status": "COMPOSITIONS_APPROVED_NPR_IMPLEMENTED",
+	"style": "暗黑厚涂",
+	"style_sid": 0
+}

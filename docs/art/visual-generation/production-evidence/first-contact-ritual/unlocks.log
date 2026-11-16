@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+DISCOVERY_OBSERVE ms=1.987
+STARTER_CARDS ["愿接下差事的调查员", "等着履行约定的信使", "聆听", "入梦"]
+CARD_UNLOCKS_OK 69 assertions; all 28 functional entries, starter deck/arrival, prerequisites, persistence, legacy save, no RNG/state mutation

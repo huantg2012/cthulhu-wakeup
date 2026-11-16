@@ -22,13 +22,17 @@ const FACT_RESULTS: Dictionary = {
 	"recovery_opportunity_closed": "此次争夺机会已结束", "request_closed": "此次请求已结束",
 }
 
-func build(host, result: Dictionary, before: Dictionary, after: Dictionary, action_title: String) -> Array[String]:
+func build(host, result: Dictionary, before: Dictionary, after: Dictionary, action_title: String, include_effects := true) -> Array[String]:
 	var lines: Array[String] = []
 	if not result.get("ok", false): return ["未执行：" + str(result.get("error", "当前条件不满足"))]
 	var old: Dictionary = _index(before)
 	var current: Dictionary = _index(after)
 	var facts: Array = result.get("facts", [])
 	var reported: Dictionary = {}
+	var effect_fields := {}
+	for effect: Dictionary in result.get("action_effects", {}).get("deltas", []):
+		if not effect_fields.has(effect.subject): effect_fields[effect.subject] = {}
+		effect_fields[effect.subject][effect.field] = true
 	for fact: Dictionary in facts:
 		if fact.get("kind") != "npc_miracle_response": continue
 		if not reported.has(fact.actor): reported[fact.actor] = {}
@@ -40,6 +44,8 @@ func build(host, result: Dictionary, before: Dictionary, after: Dictionary, acti
 	for fact: Dictionary in facts:
 		if fact.get("kind") == "prayer_space_result" and fact.get("changes", {}).get("disclosure") == "unknown" and fact.changes.get("outcome") in ["deep", "success"]: outcome = "已显现"
 	if not action_title.is_empty(): lines.append(action_title + (" · " + outcome if not outcome.is_empty() else " · 已执行"))
+	if include_effects:
+		for row: Dictionary in effect_rows(host, result, before, after): lines.append(str(row.caption) + "：" + str(row.value))
 	# Status and ownership changes outrank bookkeeping and newly learned objects.
 	var changes: Array[String] = []
 	lines.append_array(cult_settlement_lines(host, result.get("cult_settlement", [])))
@@ -64,6 +70,10 @@ func build(host, result: Dictionary, before: Dictionary, after: Dictionary, acti
 		var numbers: Array[String] = []
 		var revealed: Array[String] = []
 		for field: String in ATTRIBUTES:
+			# Committed deltas take precedence over stale world snapshots and
+			# member-only attribute totals. Never double count a bound actor.
+			if effect_fields.get(id, {}).has(field): continue
+			if field == "followers" and effect_fields.get(str(item.get("domain","")),{}).has(field): continue
 			if not _numeric(item.get(field)): continue
 			if not _numeric(prior.get(field)):
 				if not field in ["alert", "pollution", "barrier", "stability"]: revealed.append(str(ATTRIBUTES[field]) + " " + str(item[field]))
@@ -77,6 +87,7 @@ func build(host, result: Dictionary, before: Dictionary, after: Dictionary, acti
 	# fulfilled obligation or material reception. No generic kind/ID dump.
 	var fact_lines: Array[String] = []
 	for fact: Dictionary in facts:
+		if fact.get("kind") == "population_transfer" and fact.changes.get("mode") in ["convert","leave"] and effect_fields.get(str(fact.domain),{}).has("followers"): continue
 		var text: String = _fact_line(host, fact, old, current)
 		if not text.is_empty(): _append(fact_lines, text)
 	for line: String in fact_lines: _append(lines, line)
@@ -89,6 +100,51 @@ func build(host, result: Dictionary, before: Dictionary, after: Dictionary, acti
 	if not resources.is_empty(): lines.append(resources)
 	if lines.is_empty(): lines.append("行动已执行。")
 	return lines
+
+## Explicit field/value rows for both the tabletop and the dice reveal. Legacy
+## receipts can still use build(); no UI has to parse punctuation out of prose.
+func presentation_rows(host, result: Dictionary, before: Dictionary, after: Dictionary) -> Array:
+	var rows: Array = effect_rows(host, result, before, after)
+	for line: String in build(host, result, before, after, "", false):
+		if line != "行动已执行。": rows.append(line)
+	return rows
+
+func effect_rows(host, result: Dictionary, before: Dictionary, after: Dictionary) -> Array:
+	var rows: Array = []
+	var effects: Dictionary = result.get("action_effects", {})
+	var old := _index(before)
+	var current := _index(after)
+	for fact: Dictionary in effects.get("revealed", []):
+		# Runtime load avoids RecordText's historical miracle formatter dependency.
+		var text = load("res://src/presentation/player_record_text.gd")
+		var record: Dictionary = text.summarize(host, fact)
+		rows.append({"caption":"聆听所得", "value":"%s · 第 %d 轮 · %s" % [_title(host, str(fact.domain), old, current), int(fact.turn), record.title]})
+		rows.append({"caption":"记录内容", "value":str(record.summary) + ("\n" + " · ".join(record.lines) if not record.lines.is_empty() else "")})
+	var groups := {}
+	for delta: Dictionary in effects.get("deltas", []):
+		if not ATTRIBUTES.has(delta.field): continue
+		var id := str(delta.subject)
+		if not groups.has(id): groups[id] = []
+		var amount := int(delta.delta)
+		groups[id].append(str(ATTRIBUTES[delta.field]) + (" %+d" % amount if amount != 0 else " 未变化"))
+	for collection: String in ["people", "cults", "domains"]:
+		for item: Dictionary in after.get(collection, []):
+			var id := str(item.id)
+			if groups.has(id): rows.append({"caption":{"people":"人物变化", "cults":"教团变化", "domains":"世界变化"}[collection], "value":_title(host, id, old, current) + "\n" + " · ".join(groups[id])})
+	for notice: Dictionary in effects.get("developments", []):
+		var value := ""
+		match str(notice.kind):
+			"activity": value = str(notice.text)
+			"preparation":
+				var action := str(notice.action)
+				if host != null and host.session.catalog.display_tables.powers.has(action): action = host.session.catalog.display_tables.powers[action].name
+				elif action.begins_with("PRAYER/"): action = "已指定的祈求回应"
+				value = "%s获得「%s」准备，成功上限 +%d；至第 %d 轮有效，使用一次后消耗。" % [_title(host, notice.actor, old, current), action, notice.amount, notice.expires]
+			"evidence": value = "%d 项追查依据及其关联收益已失效。" % notice.count
+			"appointment": value = "%s → %s · %s；第 %d 轮开始时复核并生效，当前尚未就任。" % [_title(host, notice.actor, old, current), _title(host, notice.cult, old, current), {"leader":"领袖", "guardian":"护持者"}.get(notice.role, "职务"), notice.due]
+			"manifest": value = "降临进度 %d / %d。%s" % [notice.progress, notice.duration, "本轮结束时复核条件并进行最终检定。" if notice.progress == notice.duration else "下轮仍需继续仪式、支付代价并维持锚点。"]
+		if not value.is_empty(): rows.append({"caption":"后续", "value":value})
+	return rows
 
 static func miracle_reaction(fact: Dictionary, person: String) -> Dictionary:
 	var data: Dictionary = fact.changes
@@ -194,7 +250,18 @@ func _fact_line(host, fact: Dictionary, old: Dictionary, current: Dictionary) ->
 	if kind == "member_enrolled" and not subject.is_empty(): return subject + "：已成为正式成员"
 	if kind == "member_left" and not subject.is_empty(): return subject + "：已解除成员身份"
 	if kind == "cult_member_joined" and not subject.is_empty(): return subject + "：已加入当地教团"
-	if kind == "manifest_interrupted": return "本次降临已终止；已付 %s 轮进度不保留。" % data.get("progress", 0)
+	if kind == "manifest_completed": return "降临仪式完成，神意已进入诸界。"
+	if kind == "manifest_interrupted": return "" if data.get("reason") == "completed" else "本次降临已终止；已付 %s 轮进度不保留。" % data.get("progress", 0)
+	if kind == "population_transfer":
+		var place := _title(host, str(fact.domain), old, current)
+		match str(data.get("mode", "")):
+			"convert": return "%s：%d 名当地居民成为信众。" % [place, data.amount]
+			"leave": return "%s：%d 名信众离开信仰。" % [place, data.amount]
+			"migrate": return "%d 名信众从%s迁往%s。" % [data.amount, place, _title(host, str(data.target), old, current)]
+	if kind == "migration": return "%s已从%s迁往%s。" % [_title(host, str(fact.actor), old, current), _title(host, str(data.from), old, current), _title(host, str(data.to), old, current)]
+	if kind == "anchor_institution_bound": return "%s：锚定已建立或修复，圣物已绑定；供奉须另行安排。" % _title(host, str(data.institution), old, current)
+	if kind == "cult_appointed": return "%s：已就任%s的%s。" % [_title(host, str(fact.actor), old, current), _title(host, str(data.cult), old, current), {"leader":"领袖", "guardian":"护持者"}.get(data.role,"职务")]
+	if kind == "cult_appointment_cancelled": return "%s：任命生效条件已失效，本次任命取消。" % _title(host, str(fact.actor), old, current)
 	if kind == "event_publication" and current.has(str(data.get("institution", ""))): return _title(host, str(data.institution), old, current) + "：已公开收录这份证据"
 	if kind == "relic_create" and not subject.is_empty(): return "已取得圣物：" + subject
 	# prayer_delta/event_delta.amount is requested, not clamped actual; omitted.

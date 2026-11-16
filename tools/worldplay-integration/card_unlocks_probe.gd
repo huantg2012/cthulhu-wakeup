@@ -38,7 +38,7 @@ func run() -> void:
 	arrivals.reset(true)
 	arrivals.observe(s,p)
 	check(arrivals.cards.all(func(c: Dictionary) -> bool: return c.id != "POWER_APPOINT" and c.id != "anchor/bind"), "Round arrival bypassed discovery")
-	check(arrivals.cards.any(func(c: Dictionary) -> bool: return c.id == "ROUTE_JOINT_WORK" and c.arrival == "unlock"), "Event phase suppressed a genuinely opened activity from arrival")
+	check(arrivals.cards.any(func(c: Dictionary) -> bool: return c.id == "POWER_DREAM" and c.arrival == "unlock"), "Event phase suppressed genuine opening")
 	# Persisted presentation history is separate from current ability to execute.
 	var retained: Dictionary = p.duplicate(true)
 	retained.card_unlocks["POWER_APPOINT"] = {"turn":1,"domain":p.domains[0].id}
@@ -73,7 +73,7 @@ func run() -> void:
 	# A real Session boundary retains already opened foundation activities.
 	check(legacy._submit("finish_events").ok,"Could not enter the real first action phase")
 	var actionable: Dictionary = legacy.project()
-	check(actionable.card_unlocks.has("ROUTE_JOINT_WORK") and actionable.card_unlocks.has("ROUTE_RECORD_PRACTICE"),"Real available foundation activities failed to remain open")
+	check(actionable.card_unlocks.has("POWER_DREAM") and not actionable.card_unlocks.has("ROUTE_CALENDAR_RITE"),"First-contact policy lost a valid power or revealed a hidden specialist")
 	check(not actionable.card_unlocks.has("POWER_APPOINT") and not actionable.card_unlocks.has("POWER_ANCHOR"),"Entering actions manufactured organisation prerequisites")
 	arrivals.observe(legacy, actionable) # Same round does not replay.
 	var next := actionable.duplicate(true); next.turn += 1
